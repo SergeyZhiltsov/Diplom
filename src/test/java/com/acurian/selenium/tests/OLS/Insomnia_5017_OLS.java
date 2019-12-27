@@ -271,14 +271,14 @@ public class Insomnia_5017_OLS extends BaseTest {
                 .waitForPageLoad()
                 .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
 
-        OtherThanSkinCancerPageOLS otherThanSkinCancerPageOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+        WhenDiagnosedWithCancerOLS whenDiagnosedWithCancerOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Cancer")
-                .clickNextButton(new OtherThanSkinCancerPageOLS());
+                .clickNextButton(new WhenDiagnosedWithCancerOLS());
 
         //Q6: QS42
-        otherThanSkinCancerPageOLS
+        whenDiagnosedWithCancerOLS
                 .waitForPageLoad()
                 .back();
 

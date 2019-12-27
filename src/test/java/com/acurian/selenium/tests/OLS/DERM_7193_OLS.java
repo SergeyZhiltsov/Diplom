@@ -332,7 +332,7 @@ public class DERM_7193_OLS extends BaseTest {
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
 
 //General_Health
-        OtherThanSkinCancerPageOLS otherThanSkinCancerPageOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+        WhenDiagnosedWithCancerOLS whenDiagnosedWithCancerOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Skin problems (eczema or atopic dermatitis, psoriasis)",
                         "Cancer",
@@ -340,9 +340,9 @@ public class DERM_7193_OLS extends BaseTest {
                         "Heart or circulation problems (heart attack, heart failure, stroke)",
                         "Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)",
                         "Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)")
-                .clickNextButton(new OtherThanSkinCancerPageOLS());
+                .clickNextButton(new WhenDiagnosedWithCancerOLS());
 
-        HaveYouEverExperiencedHeartRelatedMedicalCondOLS haveYouEverExperiencedHeartRelatedMedicalCondOLS = otherThanSkinCancerPageOLS
+        HaveYouEverExperiencedHeartRelatedMedicalCondOLS haveYouEverExperiencedHeartRelatedMedicalCondOLS = whenDiagnosedWithCancerOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Within the past 5 years")
                 .clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondOLS());
@@ -351,7 +351,7 @@ public class DERM_7193_OLS extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS42", protocols)
                 .back();
-        otherThanSkinCancerPageOLS
+        whenDiagnosedWithCancerOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Diagnosed with skin cancer only")
                 .clickNextButton(haveYouEverExperiencedHeartRelatedMedicalCondOLS);
@@ -524,7 +524,7 @@ public class DERM_7193_OLS extends BaseTest {
         haveYouEverExperiencedHeartRelatedMedicalCondOLS
                 .waitForPageLoad()
                 .back();
-        otherThanSkinCancerPageOLS
+        whenDiagnosedWithCancerOLS
                 .waitForPageLoad()
                 .back();
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS

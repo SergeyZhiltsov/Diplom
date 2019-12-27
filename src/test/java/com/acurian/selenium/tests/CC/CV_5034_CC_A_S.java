@@ -210,11 +210,11 @@ public class CV_5034_CC_A_S extends BaseTest {
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS6704", site.activeProtocols)
                 .back();
-        CurrentlyTreatingYourDiabetesPageCC сurrentlyTreatingYourDiabetesPageCC = whatKindOfDiabetesPageCC
+        CurrentlyTreatingYourDiabetesPageCC currentlyTreatingYourDiabetesPageCC1 = whatKindOfDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Unsure")
                 .clickNextButton(new CurrentlyTreatingYourDiabetesPageCC());
-        сurrentlyTreatingYourDiabetesPageCC
+        currentlyTreatingYourDiabetesPageCC1
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS6704", site.activeProtocols)

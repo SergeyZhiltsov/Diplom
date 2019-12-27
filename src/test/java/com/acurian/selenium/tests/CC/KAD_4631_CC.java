@@ -5,7 +5,7 @@ import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.Derm_4631.*;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.SubquestionExperiencedHeartPageCC;
 import com.acurian.selenium.pages.CC.MDD_3159.MostRecentHeartProcedurePageСС;
-import com.acurian.selenium.pages.CC.PSO_456.DiagnosedWithPsoriasisCC;
+import com.acurian.selenium.pages.CC.PSO_456.HealthcareDiagnosedPsoriasisPageCC;
 import com.acurian.selenium.pages.CC.closes.LessThan18YearsOldPageCC;
 import com.acurian.selenium.pages.CC.closes.QualifiedClose1PageCC;
 import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
@@ -112,12 +112,12 @@ public class KAD_4631_CC extends BaseTest {
                         .clickNextButton(new HasHealthcareProfessionalEverDiagnosedYouWithEczema_CC());
 
         //------------Q2:  hasHealthcareProfessionalEverDiagnosedYouWithEczema_CC----
-        DiagnosedWithPsoriasisCC diagnosedWithPsoriasisCC = hasHealthcareProfessionalEverDiagnosedYouWithEczema_CC
+        HealthcareDiagnosedPsoriasisPageCC healthcareDiagnosedPsoriasisPageCC = hasHealthcareProfessionalEverDiagnosedYouWithEczema_CC
                 .waitForPageLoad()
                 .clickOnAnswer("No")
-                .clickNextButton(new DiagnosedWithPsoriasisCC());
+                .clickNextButton(new HealthcareDiagnosedPsoriasisPageCC());
 
-        diagnosedWithPsoriasisCC
+        healthcareDiagnosedPsoriasisPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS5802", site.activeProtocols)
@@ -326,7 +326,7 @@ public class KAD_4631_CC extends BaseTest {
                         "Angina, or heart-related chest pain, that required you to stay in a hospital overnight")
                 .clickNextButton(new SubquestionExperiencedHeartPageCC());
 
-        HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC haveYouUndergoneAnyOfFollowingHeartRelatedProcCC = subquestionExperiencedHeartPageCC
+        HeartrelatedMedicalProceduresPageCC heartrelatedMedicalProceduresPageCC = subquestionExperiencedHeartPageCC
                 .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
                 .waitForPageLoad(2, subquestionExperiencedHeartPageCC.titleExpected2)
                 .waitForPageLoad(3, subquestionExperiencedHeartPageCC.titleExpected3)
@@ -335,8 +335,8 @@ public class KAD_4631_CC extends BaseTest {
                 .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
                 .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
                 .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
-                .clickNextButton(new HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC());
-        haveYouUndergoneAnyOfFollowingHeartRelatedProcCC
+                .clickNextButton(new HeartrelatedMedicalProceduresPageCC());
+        heartrelatedMedicalProceduresPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
@@ -351,8 +351,8 @@ public class KAD_4631_CC extends BaseTest {
                 .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
                 .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
                 .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
-                .clickNextButton(new HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC());
-        haveYouUndergoneAnyOfFollowingHeartRelatedProcCC
+                .clickNextButton(new HeartrelatedMedicalProceduresPageCC());
+        heartrelatedMedicalProceduresPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
@@ -364,7 +364,7 @@ public class KAD_4631_CC extends BaseTest {
                 .clickOnAnswerForSubQuestion(2, "Less than 30 days ago")
                 .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
                 .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
-                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
+                .clickNextButton(heartrelatedMedicalProceduresPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
@@ -376,7 +376,7 @@ public class KAD_4631_CC extends BaseTest {
                 .clickOnAnswerForSubQuestion(2, "1 - 3 months ago")
                 .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
                 .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
-                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
+                .clickNextButton(heartrelatedMedicalProceduresPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
@@ -388,7 +388,7 @@ public class KAD_4631_CC extends BaseTest {
                 .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
                 .clickOnAnswerForSubQuestion(3, "Less than 30 days ago")
                 .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
-                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
+                .clickNextButton(heartrelatedMedicalProceduresPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
@@ -400,7 +400,7 @@ public class KAD_4631_CC extends BaseTest {
                 .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
                 .clickOnAnswerForSubQuestion(3, "1 - 3 months ago")
                 .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
-                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
+                .clickNextButton(heartrelatedMedicalProceduresPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
@@ -412,7 +412,7 @@ public class KAD_4631_CC extends BaseTest {
                 .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
                 .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
                 .clickOnAnswerForSubQuestion(4, "Less than 30 days ago")
-                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
+                .clickNextButton(heartrelatedMedicalProceduresPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
@@ -424,7 +424,7 @@ public class KAD_4631_CC extends BaseTest {
                 .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
                 .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
                 .clickOnAnswerForSubQuestion(4, "1 - 3 months ago")
-                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
+                .clickNextButton(heartrelatedMedicalProceduresPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
@@ -436,12 +436,12 @@ public class KAD_4631_CC extends BaseTest {
                 .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
                 .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
                 .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
-                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
+                .clickNextButton(heartrelatedMedicalProceduresPageCC)
                 .waitForPageLoad()
                 .clickOnAnswers("Stent placement in your heart, neck or legs")
                 .clickNextButton(new MostRecentHeartProcedurePageСС())
                 .waitForPageLoad()
-                .back(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
+                .back(heartrelatedMedicalProceduresPageCC)
                 .waitForPageLoad()
                 .back(subquestionExperiencedHeartPageCC)
                 .waitForPageLoad()

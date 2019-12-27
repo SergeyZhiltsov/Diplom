@@ -391,12 +391,12 @@ public class OA_5044_OLS_S extends BaseTest {
                 .clickOnAnswers("Neurological issues (Alzheimer's disease, memory loss, multiple sclerosis or MS, Parkinson's disease, seizure disorder or epilepsy, fibromyalgia)")
                 .clickNextButton(new WhichOfTheFollowingHaveYouBeenDiagnosedBonesJoints_OLS());
 
-        OtherThanSkinCancerPageOLS otherThanSkinCancerPageOLS = whichOfTheFollowingHaveYouBeenDiagnosedBonesJoints_ols
+        WhenDiagnosedWithCancerOLS whenDiagnosedWithCancerOLS = whichOfTheFollowingHaveYouBeenDiagnosedBonesJoints_ols
                 .waitForPageLoad()
                 .clickOnAnswers("Ankylosing spondylitis or axial spondyloarthritis")
-                .clickNextButton(new OtherThanSkinCancerPageOLS());
+                .clickNextButton(new WhenDiagnosedWithCancerOLS());
 
-        otherThanSkinCancerPageOLS
+        whenDiagnosedWithCancerOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS40", site.activeProtocols)
@@ -405,7 +405,7 @@ public class OA_5044_OLS_S extends BaseTest {
         HaveYouEverExperiencedHeartRelatedMedicalCondOLS haveYouEverExperiencedHeartRelatedMedicalCondOLS = whichOfTheFollowingHaveYouBeenDiagnosedBonesJoints_ols
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(otherThanSkinCancerPageOLS)
+                .clickNextButton(whenDiagnosedWithCancerOLS)
                 .waitForPageLoad()
                 .clickOnAnswer("Within the past 5 years")
                 .clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondOLS());
@@ -414,7 +414,7 @@ public class OA_5044_OLS_S extends BaseTest {
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
-                .back(otherThanSkinCancerPageOLS)
+                .back(whenDiagnosedWithCancerOLS)
                 .waitForPageLoad()
                 .clickOnAnswer("Diagnosed with skin cancer only")
                 .clickNextButton(haveYouEverExperiencedHeartRelatedMedicalCondOLS);

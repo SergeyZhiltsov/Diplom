@@ -458,11 +458,11 @@ public class RA_4835_OLS extends BaseTest {
                 .waitForPageLoad()
                 .back();
 
-       OtherThanSkinCancerPageOLS otherThanSkinCancerPageOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+        WhenDiagnosedWithCancerOLS whenDiagnosedWithCancerOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Cancer")//Select
-                .clickNextButton(new OtherThanSkinCancerPageOLS());
+                .clickNextButton(new WhenDiagnosedWithCancerOLS());
 
         //Q6: QS42
        HashMap<String, List<String>> disqualifyQ6 = new HashMap<>();
@@ -472,7 +472,7 @@ public class RA_4835_OLS extends BaseTest {
        WhatKindOfDiabetesPageOLS whatKindOfDiabetesPageOLS = new WhatKindOfDiabetesPageOLS();
        for (Map.Entry<String, List<String>> entry : disqualifyQ6.entrySet()) {
             System.out.println(entry.getKey());
-            otherThanSkinCancerPageOLS
+           whenDiagnosedWithCancerOLS
                     .waitForPageLoad()
                     .clickOnAnswer(entry.getKey())
                     .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
@@ -482,7 +482,7 @@ public class RA_4835_OLS extends BaseTest {
                     .back();
         }
         //Back to haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
-       otherThanSkinCancerPageOLS
+        whenDiagnosedWithCancerOLS
                 .waitForPageLoad()
                 .back();
 

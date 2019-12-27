@@ -373,7 +373,7 @@ public class IBD_3889_OLS extends BaseTest {
         //----------Q5 - whichOfFollowingHaveYouDiagnosedWithOLS --------------------
         whichOfFollowingHaveYouDiagnosedWithOLS
                 .waitForPageLoad();
-        OtherThanSkinCancerPageOLS otherThanSkinCancerPageOLS = whichOfFollowingHaveYouDiagnosedWithOLS
+        WhenDiagnosedWithCancerOLS whenDiagnosedWithCancerOLS = whichOfFollowingHaveYouDiagnosedWithOLS
                 .clickOnAnswers(
                         "Asthma",
                         "Chronic cough",
@@ -382,13 +382,13 @@ public class IBD_3889_OLS extends BaseTest {
                         "COPD",
 
                         "Emphysema")
-                .clickNextButton(new OtherThanSkinCancerPageOLS());
+                .clickNextButton(new WhenDiagnosedWithCancerOLS());
 
 
         //----------Q6 - When were you diagnosed with cancer (other than skin cancer)? --------------------
-        otherThanSkinCancerPageOLS
+        whenDiagnosedWithCancerOLS
                 .waitForPageLoad();
-        WhatKindOfDiabetesPageOLS whatKindOfDiabetesPageOLS = otherThanSkinCancerPageOLS
+        WhatKindOfDiabetesPageOLS whatKindOfDiabetesPageOLS = whenDiagnosedWithCancerOLS
                 .clickOnAnswer("Within the past 5 years")
                 .clickNextButton(new WhatKindOfDiabetesPageOLS());
         whatKindOfDiabetesPageOLS
@@ -396,7 +396,7 @@ public class IBD_3889_OLS extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS42", protocol1, protocol2, protocol3, protocol4)
                 .back();
-        otherThanSkinCancerPageOLS
+        whenDiagnosedWithCancerOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Diagnosed with skin cancer only")
                 .clickNextButton(new WhatKindOfDiabetesPageOLS());

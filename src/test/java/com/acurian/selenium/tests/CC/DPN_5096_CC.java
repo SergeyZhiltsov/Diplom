@@ -215,7 +215,7 @@ public class DPN_5096_CC extends BaseTest {
         whereDoYouExperienceDiabeticNervePain_CC
                 .waitForPageLoadDPN()
                 .clickOnAnswers("None of the above")
-                .clickOnAnswers("Right foot", "Right hand or arm", "Left hand or arm") //TODO probably will fall
+                .clickOnAnswers("Right foot", "Right hand or arm", "Left hand or arm")
                 .clickNextButton(withType2DiabetesPageCC);
 
         withType2DiabetesPageCC

@@ -17,7 +17,6 @@ import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.*;
 import com.acurian.selenium.pages.blinx.ams.shared.DRSBlinx;
-import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
@@ -101,17 +100,17 @@ public class GAST_4357_OLS extends BaseTest {
                     .clickOnAnswer("Yes") //Continue to Q3
                     .clickNextButton(new WhatKindOfDiabetesPageOLS());
             //Q3
-            CardiovascularDiseaseThanOthersPageOLS сardiovascularDiseaseThanOthersPageOLS = whatKindOfDiabetesPageOLS
+            CardiovascularDiseaseThanOthersPageOLS cardiovascularDiseaseThanOthersPageOLS = whatKindOfDiabetesPageOLS
                     .waitForPageLoad()
                     .clickOnAnswer("Gestational diabetes (diabetes only during pregnancy)") //Disqualify ("No diagnosis of diabetes")
                     .clickNextButton(new CardiovascularDiseaseThanOthersPageOLS());
-            сardiovascularDiseaseThanOthersPageOLS
+            cardiovascularDiseaseThanOthersPageOLS
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS7203", site.activeProtocols)
                     .back(whatKindOfDiabetesPageOLS)
                     .clickOnAnswer("High blood sugar only")
-                    .clickNextButton(сardiovascularDiseaseThanOthersPageOLS)
+                    .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS7203", site.activeProtocols)
@@ -145,8 +144,7 @@ public class GAST_4357_OLS extends BaseTest {
                     .clickNextButton(new WithType1DiabetesPageOLS());
 
             //Q5
-            CardiovascularDiseaseThanOthersPageOLS cardiovascularDiseaseThanOthersPageOLS =
-                    new CardiovascularDiseaseThanOthersPageOLS();
+
             for (String answer : disqualify) {
                 System.out.println("Select answer for Q5: " + answer);
                 withType1DiabetesPageOLS
@@ -362,21 +360,21 @@ public class GAST_4357_OLS extends BaseTest {
                     .waitForPageLoad()
                     .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS); //Back to Q2: QS38
 
-            OtherThanSkinCancerPageOLS otherThanSkinCancerPageOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+            WhenDiagnosedWithCancerOLS whenDiagnosedWithCancerOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers("Cancer")
-                    .clickNextButton(new OtherThanSkinCancerPageOLS());
+                    .clickNextButton(new WhenDiagnosedWithCancerOLS());
 
             //Q6: QS42
-            otherThanSkinCancerPageOLS
+            whenDiagnosedWithCancerOLS
                     .waitForPageLoad()
                     .clickOnAnswer("Within the past 5 years")
                     .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
-                    .back(otherThanSkinCancerPageOLS)
+                    .back(whenDiagnosedWithCancerOLS)
                     .waitForPageLoad()
                     .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
 

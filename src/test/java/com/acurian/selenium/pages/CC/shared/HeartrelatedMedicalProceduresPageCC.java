@@ -9,7 +9,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC extends MainPageCC {
+public class HeartrelatedMedicalProceduresPageCC extends MainPageCC {
 
     public final String titleExpected = "Have you ever had any of the following heart-related surgeries or procedures?\n" +
             "Agent Note: Select all that apply";
@@ -20,18 +20,18 @@ public class HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC extends MainPageCC
     @FindBy(xpath = Locators.CHEKBOX_LIST_CC)
     List<WebElement> checkBoxList;
 
-    public HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC() {
+    public HeartrelatedMedicalProceduresPageCC() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC waitForPageLoad() {
+    public HeartrelatedMedicalProceduresPageCC waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC clickOnAnswers(String ...answerText) {
+    public HeartrelatedMedicalProceduresPageCC clickOnAnswers(String ...answerText) {
         clickOnCheckBoxes(checkBoxList, answerText);
         return this;
     }

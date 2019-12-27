@@ -99,11 +99,11 @@ public class NoIndication4471_OLS extends BaseTest {
                         "Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)")
                 .clickNextButton(new WhichOfTheFollowingBreathingLungPageOLS());
 
-        OtherThanSkinCancerPageOLS otherThanSkinCancerPageOLS = whichOfTheFollowingBreathingLungPageOLS
+        WhenDiagnosedWithCancerOLS whenDiagnosedWithCancerOLS = whichOfTheFollowingBreathingLungPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Asthma")
-                .clickNextButton(new OtherThanSkinCancerPageOLS());
-        otherThanSkinCancerPageOLS
+                .clickNextButton(new WhenDiagnosedWithCancerOLS());
+        whenDiagnosedWithCancerOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS41", protocol1, protocol2)
@@ -111,7 +111,7 @@ public class NoIndication4471_OLS extends BaseTest {
         whichOfTheFollowingBreathingLungPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(otherThanSkinCancerPageOLS)
+                .clickNextButton(whenDiagnosedWithCancerOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS41", protocol1, protocol2)
@@ -119,7 +119,7 @@ public class NoIndication4471_OLS extends BaseTest {
         whichOfTheFollowingBreathingLungPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Chronic bronchitis")
-                .clickNextButton(otherThanSkinCancerPageOLS)
+                .clickNextButton(whenDiagnosedWithCancerOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS41", protocol1, protocol2)
@@ -128,9 +128,9 @@ public class NoIndication4471_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Chronic cough")
-                .clickNextButton(otherThanSkinCancerPageOLS);
+                .clickNextButton(whenDiagnosedWithCancerOLS);
 
-        otherThanSkinCancerPageOLS
+        whenDiagnosedWithCancerOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Within the past 5 years")
                 .clickNextButton(whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS)
@@ -138,7 +138,7 @@ public class NoIndication4471_OLS extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS42", protocol1, protocol2)
                 .back();
-        otherThanSkinCancerPageOLS
+        whenDiagnosedWithCancerOLS
                 .waitForPageLoad()
                 .clickOnAnswer("6 - 10 years ago")
                 .clickNextButton(whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS);
@@ -213,7 +213,7 @@ public class NoIndication4471_OLS extends BaseTest {
         whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS
                 .waitForPageLoad()
                 .back();
-        otherThanSkinCancerPageOLS
+        whenDiagnosedWithCancerOLS
                 .waitForPageLoad()
                 .back();
         whichOfTheFollowingBreathingLungPageOLS
@@ -359,12 +359,12 @@ public class NoIndication4471_OLS extends BaseTest {
                 .clickOnAnswer("Yes")
                 .clickNextButton(haveYouSmokedCigarettesOLS);
 
-        DiagnosedWithFollowingConditionsOLS diagnosedWithFollowingConditionsOLS = haveYouSmokedCigarettesOLS
+        EverDiagnosedWithFollowingConditionsOLS everDiagnosedWithFollowingConditionsOLS = haveYouSmokedCigarettesOLS
                 .waitForPageLoadNew()
                 .clickOnAnswers("No, I never smoked")
-                .clickNextButton(new DiagnosedWithFollowingConditionsOLS())
+                .clickNextButton(new EverDiagnosedWithFollowingConditionsOLS())
                 .waitForPageLoad();
-        diagnosedWithFollowingConditionsOLS.back();
+        everDiagnosedWithFollowingConditionsOLS.back();
 
         HowManyCigarettesOLS howManyCigarettesOLS = haveYouSmokedCigarettesOLS
                 .waitForPageLoadNew()
@@ -395,22 +395,22 @@ public class NoIndication4471_OLS extends BaseTest {
                 .waitForPageLoad1()
                 .enterYears("20")
                 .howManyCigarettes("21")
-                .clickNextButton(new DiagnosedWithFollowingConditionsOLS())
+                .clickNextButton(new EverDiagnosedWithFollowingConditionsOLS())
                 .waitForPageLoad();
         debugPageOLS.checkProtocolsContainsForQNumber("QS6209", protocol1, protocol2);
         debugPageOLS.back();
         howManyCigarettesOLS
                 .waitForPageLoad1()
                 .enterYears("15")
-                .clickNextButton(new DiagnosedWithFollowingConditionsOLS());
+                .clickNextButton(new EverDiagnosedWithFollowingConditionsOLS());
 
-        ACEInhibitorsLS aCEInhibitorsLS = diagnosedWithFollowingConditionsOLS
+        ACEInhibitorsLS aCEInhibitorsLS = everDiagnosedWithFollowingConditionsOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Post-Nasal Drip (Upper Airway Cough Syndrome)", "Lung Cancer", "Tuberculosis (TB)")
                 .clickNextButton(new ACEInhibitorsLS())
                 .waitForPageLoad();
         aCEInhibitorsLS.back();
-        diagnosedWithFollowingConditionsOLS
+        everDiagnosedWithFollowingConditionsOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new ACEInhibitorsLS());

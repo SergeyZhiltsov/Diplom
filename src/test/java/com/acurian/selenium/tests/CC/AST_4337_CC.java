@@ -2,21 +2,15 @@ package com.acurian.selenium.tests.CC;
 
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.AST_4337.*;
-import com.acurian.selenium.pages.CC.END_4385.HormonalBirthControlCC;
 import com.acurian.selenium.pages.CC.closes.DoctorInformationCollectionPageCC;
 import com.acurian.selenium.pages.CC.closes.HSGeneralCC;
 import com.acurian.selenium.pages.CC.closes.HSMedicalRecordsPageCC;
-import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
 import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.pediatric.ChildrenUnderPageCC;
-import com.acurian.selenium.pages.CC.pediatric.EthnicBackgroundPageCC;
 import com.acurian.selenium.pages.CC.pediatric.TheStudySitePageCC;
-import com.acurian.selenium.pages.CC.pediatric.WhatSortPageCC;
 import com.acurian.selenium.pages.CC.shared.*;
-import com.acurian.selenium.pages.OLS.AST_4337.TheseSymptomsPageOLS;
-import com.acurian.selenium.pages.OLS.shared.InThePastYearHowManyTimesDidYouSeekMedicalOLS;
 import com.acurian.selenium.utils.DataProviderPool;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -250,10 +244,10 @@ public class AST_4337_CC extends BaseTest{
         theseSymptomsPageCC
                 .waitForPageLoad();
         Assert.assertEquals(theseSymptomsPageCC.getTitleText(),theseSymptomsPageCC.titleExpected, "Title is diff");
-        SmokedCigarettesPageCC smokedCigarettesPageCC = theseSymptomsPageCC
+        HaveYouSmokedCigarettesCC haveYouSmokedCigarettesCC = theseSymptomsPageCC
                 .clickOnAnswer("Less than once a week")
-                .clickNextButton(new SmokedCigarettesPageCC());
-        smokedCigarettesPageCC
+                .clickNextButton(new HaveYouSmokedCigarettesCC());
+        haveYouSmokedCigarettesCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsEquals(theseSymptomsPageCC.titleExpected, protocol1)
@@ -261,27 +255,27 @@ public class AST_4337_CC extends BaseTest{
         theseSymptomsPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Every day")
-                .clickNextButton(smokedCigarettesPageCC);
+                .clickNextButton(haveYouSmokedCigarettesCC);
 
-        smokedCigarettesPageCC
+        haveYouSmokedCigarettesCC
                 .waitForPageLoad();
-        Assert.assertEquals(smokedCigarettesPageCC.getTitleText(),smokedCigarettesPageCC.titleExpected, "Title is diff");
-        TransitionStatementCC transitionStatementCC = smokedCigarettesPageCC
+        Assert.assertEquals(haveYouSmokedCigarettesCC.getTitleText(), haveYouSmokedCigarettesCC.titleExpected, "Title is diff");
+        TransitionStatementCC transitionStatementCC = haveYouSmokedCigarettesCC
                 .clickOnAnswer("No, I never smoked")
                 .clickNextButton(new TransitionStatementCC());
         transitionStatementCC
                 .waitForPageLoad("asthma")
                 .back();
-        SubquestionSmokedCigarettePageCC subquestionSmokedCigarettePageCC = smokedCigarettesPageCC
+        SubquestionSmokedCigarettePageCC subquestionSmokedCigarettePageCC = haveYouSmokedCigarettesCC
                 .waitForPageLoad()
                 .clickOnAnswer("Yes, I currently smoke")
                 .clickNextButton(new SubquestionSmokedCigarettePageCC());
         subquestionSmokedCigarettePageCC
                 .waitForPageLoad(1,subquestionSmokedCigarettePageCC.titleExpected1)
                 .getPage(debugPageCC)
-                .checkProtocolsEquals(smokedCigarettesPageCC.titleExpected, protocol1)
+                .checkProtocolsEquals(haveYouSmokedCigarettesCC.titleExpected, protocol1)
                 .back();
-        smokedCigarettesPageCC
+        haveYouSmokedCigarettesCC
                 .waitForPageLoad()
                 .clickOnAnswer("I used to smoke, but have since quit")
                 .clickNextButton(subquestionSmokedCigarettePageCC);

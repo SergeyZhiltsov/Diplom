@@ -14,7 +14,7 @@ import com.acurian.selenium.utils.DataProviderPool;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
-import ru.yandex.qatools.allure.annotations.TestCaseId;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -272,10 +272,10 @@ public class LBP_2108_CC extends BaseTest{
                 .clickNextButton(new FollowingWomensHealthPageCC())
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new OtherThanSkinCancerPageCC())
+                .clickNextButton(new WhenDiagnosedWithCancerCC())
                 .waitForPageLoad()
                 .clickOnAnswer("No")
-                .clickNextButton(new SmokedCigarettesPageCC())
+                .clickNextButton(new HaveYouSmokedCigarettesCC())
                 .waitForPageLoad()
                 .clickOnAnswer("No, I never smoked")
                 .clickNextButton(new HistoryOfDrugPageCC())

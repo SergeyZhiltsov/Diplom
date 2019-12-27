@@ -72,7 +72,7 @@ public class NoIndication3889_OLS extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS38", site.activeProtocols)
                 .back();
-        OtherThanSkinCancerPageOLS otherThanSkinCancerPageOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+        WhenDiagnosedWithCancerOLS whenDiagnosedWithCancerOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Cancer",
                                 "Kidney disease",
@@ -81,9 +81,9 @@ public class NoIndication3889_OLS extends BaseTest {
                                 "Stomach problems (Acid reflux, heartburn or GERD, Gastroparesis or delayed gastric emptying)",
                                 "Intestinal disorders (IBS or irritable bowel syndrome, IBD, Crohn's disease, ulcerative colitis)",
                                 "Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)")
-                .clickNextButton(new OtherThanSkinCancerPageOLS());
+                .clickNextButton(new WhenDiagnosedWithCancerOLS());
 
-        WhichOfFollowingDigestiveConditionPageOLS whichOfFollowingDigestiveConditionPageOLS = otherThanSkinCancerPageOLS
+        WhichOfFollowingDigestiveConditionPageOLS whichOfFollowingDigestiveConditionPageOLS = whenDiagnosedWithCancerOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Within the past 5 years")
                 .clickNextButton(new WhichOfFollowingDigestiveConditionPageOLS());
@@ -92,7 +92,7 @@ public class NoIndication3889_OLS extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
                 .back();
-        otherThanSkinCancerPageOLS
+        whenDiagnosedWithCancerOLS
                 .waitForPageLoad()
                 .clickOnAnswer("6 - 10 years ago")
                 .clickNextButton(whichOfFollowingDigestiveConditionPageOLS)
@@ -100,7 +100,7 @@ public class NoIndication3889_OLS extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
                 .back();
-        otherThanSkinCancerPageOLS
+        whenDiagnosedWithCancerOLS
                 .waitForPageLoad()
                 .clickOnAnswer("11 or more years ago")
                 .clickNextButton(whichOfFollowingDigestiveConditionPageOLS)
@@ -108,7 +108,7 @@ public class NoIndication3889_OLS extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
                 .back();
-        otherThanSkinCancerPageOLS
+        whenDiagnosedWithCancerOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Diagnosed with skin cancer only")
                 .clickNextButton(whichOfFollowingDigestiveConditionPageOLS);
@@ -293,7 +293,7 @@ public class NoIndication3889_OLS extends BaseTest {
         whichOfFollowingDigestiveConditionPageOLS
                 .waitForPageLoad()
                 .back();
-        otherThanSkinCancerPageOLS
+        whenDiagnosedWithCancerOLS
                 .waitForPageLoad()
                 .back();
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS

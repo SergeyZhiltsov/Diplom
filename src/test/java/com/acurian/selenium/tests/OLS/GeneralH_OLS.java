@@ -286,15 +286,15 @@ public class GeneralH_OLS extends BaseTest{
                 		"EFC14833","EFC14837","EFC14868","EFC15166","BHV3000_201","R727_CL_1532","THR_1442_C_603","M15_991","M14_702")
                 .back();
 
-        OtherThanSkinCancerPageOLS otherThanSkinCancerPageOLS = mentalHealthPageOLS
+        WhenDiagnosedWithCancerOLS whenDiagnosedWithCancerOLS = mentalHealthPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(womensHealthPageOLS)
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new OtherThanSkinCancerPageOLS());
+                .clickNextButton(new WhenDiagnosedWithCancerOLS());
 
-        SmokedCigarettesPageOLS smokedCigarettesPageOLS = otherThanSkinCancerPageOLS
+        SmokedCigarettesPageOLS smokedCigarettesPageOLS = whenDiagnosedWithCancerOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes, in the past 5 years")
                 .clickNextButton(new SmokedCigarettesPageOLS());
@@ -308,7 +308,7 @@ public class GeneralH_OLS extends BaseTest{
                 		"R727_CL_1532","THR_1442_C_603","M15_991","M14_702","CL04041023","VMDN_003","NYX_2925_2001")
                 .back();
 
-        HistoryOfDrugPageOLS historyOfDrugPageOLS = otherThanSkinCancerPageOLS
+        HistoryOfDrugPageOLS historyOfDrugPageOLS = whenDiagnosedWithCancerOLS
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(smokedCigarettesPageOLS)

@@ -187,7 +187,7 @@ public class HOTF_7119_OLS extends BaseTest {
 
 
 //#############General_Health ###########################
-        OtherThanSkinCancerPageOLS otherThanSkinCancerPageOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+        WhenDiagnosedWithCancerOLS whenDiagnosedWithCancerOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .clickOnAnswers("ADHD or attention deficit hyperactivity disorder",
                         "Arthritis (osteoarthritis, rheumatoid arthritis or RA, psoriatic arthritis)",
@@ -213,7 +213,7 @@ public class HOTF_7119_OLS extends BaseTest {
                         "Women's health issues (endometriosis, uterine fibroids)")
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Cancer")
-                .clickNextButton(new OtherThanSkinCancerPageOLS());
+                .clickNextButton(new WhenDiagnosedWithCancerOLS());
 
 
         DoAnyOftheFollowingAdditionalDiagnosesOLS doAnyOftheFollowingAdditionalDiagnosesCC =
@@ -222,7 +222,7 @@ public class HOTF_7119_OLS extends BaseTest {
                 "11 or more years ago");
         for (String answer : disqualifyQ6QS42) {
             System.out.println("Select answer for QS42: " + answer);
-            otherThanSkinCancerPageOLS
+            whenDiagnosedWithCancerOLS
                     .waitForPageLoad()
                     .clickOnAnswer(answer)
                     .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
@@ -231,7 +231,7 @@ public class HOTF_7119_OLS extends BaseTest {
                     .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
                     .back();
         }
-        otherThanSkinCancerPageOLS
+        whenDiagnosedWithCancerOLS
                 .waitForPageLoad()
                 .back();
         WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS = 

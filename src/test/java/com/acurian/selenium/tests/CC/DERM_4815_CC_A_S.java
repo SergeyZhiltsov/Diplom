@@ -5,7 +5,7 @@ import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.Derm_4631.*;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.SubquestionExperiencedHeartPageCC;
 import com.acurian.selenium.pages.CC.LOWT.CurrentlyTakingFollowingMedicationsCC;
-import com.acurian.selenium.pages.CC.PSO_456.DiagnosedWithPsoriasisCC;
+import com.acurian.selenium.pages.CC.PSO_456.HealthcareDiagnosedPsoriasisPageCC;
 import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
@@ -103,12 +103,12 @@ public class DERM_4815_CC_A_S extends BaseTest {
                 .clickOnAnswer("Female")
                 .clickNextButton(new HasHealthcareProfessionalEverDiagnosedYouWithEczema_CC());
 
-        DiagnosedWithPsoriasisCC diagnosedWithPsoriasisCC = hasHealthcareProfessionalEverDiagnosedYouWithEczema_cc
+        HealthcareDiagnosedPsoriasisPageCC healthcareDiagnosedPsoriasisPageCC = hasHealthcareProfessionalEverDiagnosedYouWithEczema_cc
                 .waitForPageLoad()
                 .clickOnAnswer("No")
-                .clickNextButton(new DiagnosedWithPsoriasisCC());
+                .clickNextButton(new HealthcareDiagnosedPsoriasisPageCC());
 
-        diagnosedWithPsoriasisCC
+        healthcareDiagnosedPsoriasisPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS5802", site.activeProtocols)
@@ -297,7 +297,7 @@ public class DERM_4815_CC_A_S extends BaseTest {
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(answer)
-                    .clickNextButton(diagnosedWithPsoriasisCC)
+                    .clickNextButton(healthcareDiagnosedPsoriasisPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("QS5830", site.activeProtocols)

@@ -239,7 +239,7 @@ public class COPD_5042_OLS extends BaseTest {
 
 
 //General_Health
-        OtherThanSkinCancerPageOLS otherThanSkinCancerPageOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+        WhenDiagnosedWithCancerOLS whenDiagnosedWithCancerOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .clickOnAnswers(//"Skin problems (eczema or atopic dermatitis, psoriasis)",
                         "Cancer",
@@ -247,11 +247,11 @@ public class COPD_5042_OLS extends BaseTest {
                         //"Heart or circulation problems (heart attack, heart failure, stroke)",
                         "Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)")
                 //"Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)")
-                .clickNextButton(new OtherThanSkinCancerPageOLS());
+                .clickNextButton(new WhenDiagnosedWithCancerOLS());
 
         //HaveYouEverExperiencedHeartRelatedMedicalCondOLS haveYouEverExperiencedHeartRelatedMedicalCondOLS = otherThanSkinCancerPageOLS
         WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS whichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS =
-                otherThanSkinCancerPageOLS
+                whenDiagnosedWithCancerOLS
                         .waitForPageLoad()
                         .clickOnAnswer("Within the past 5 years")
                         .clickNextButton(new WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS());
@@ -260,7 +260,7 @@ public class COPD_5042_OLS extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
                 .back();
-        otherThanSkinCancerPageOLS
+        whenDiagnosedWithCancerOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Diagnosed with skin cancer only")
                 .clickNextButton(new WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS());

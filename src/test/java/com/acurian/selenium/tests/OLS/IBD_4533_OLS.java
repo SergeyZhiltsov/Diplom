@@ -402,7 +402,7 @@ public class IBD_4533_OLS extends BaseTest {
         whichOfFollowingHaveYouDiagnosedWithOLS
                 .waitForPageLoad();
         Assert.assertEquals(whichOfFollowingHaveYouDiagnosedWithOLS.getTitleText(), whichOfFollowingHaveYouDiagnosedWithOLS.titleExpected, "Title is diff");
-        OtherThanSkinCancerPageOLS otherThanSkinCancerPageOLS = whichOfFollowingHaveYouDiagnosedWithOLS
+        WhenDiagnosedWithCancerOLS whenDiagnosedWithCancerOLS = whichOfFollowingHaveYouDiagnosedWithOLS
                 .clickOnAnswers(
                         "Asthma",
                         "Chronic cough",
@@ -411,14 +411,14 @@ public class IBD_4533_OLS extends BaseTest {
                         "COPD",
 
                         "Emphysema")
-                .clickNextButton(new OtherThanSkinCancerPageOLS());
+                .clickNextButton(new WhenDiagnosedWithCancerOLS());
 
 
         //----------Q6 - When were you diagnosed with cancer (other than skin cancer)? --------------------
-        otherThanSkinCancerPageOLS
+        whenDiagnosedWithCancerOLS
                 .waitForPageLoad();
-        Assert.assertEquals(otherThanSkinCancerPageOLS.getTitleText(), otherThanSkinCancerPageOLS.titleExpected, "Title is diff");
-        WhatKindOfDiabetesPageOLS whatKindOfDiabetesPageOLS = otherThanSkinCancerPageOLS
+        Assert.assertEquals(whenDiagnosedWithCancerOLS.getTitleText(), whenDiagnosedWithCancerOLS.titleExpected, "Title is diff");
+        WhatKindOfDiabetesPageOLS whatKindOfDiabetesPageOLS = whenDiagnosedWithCancerOLS
                 .clickOnAnswer("Within the past 5 years")
                 .clickNextButton(new WhatKindOfDiabetesPageOLS());
         whatKindOfDiabetesPageOLS
@@ -426,7 +426,7 @@ public class IBD_4533_OLS extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS42", protocol1, protocol2, protocol3, protocol4)
                 .back();
-        otherThanSkinCancerPageOLS
+        whenDiagnosedWithCancerOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Diagnosed with skin cancer only")
                 .clickNextButton(new WhatKindOfDiabetesPageOLS());

@@ -2,13 +2,12 @@ package com.acurian.selenium.tests.OLS;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.OLS.ChronicCough.DiagnosedWithFollowingConditionsOLS;
+import com.acurian.selenium.pages.OLS.ChronicCough.EverDiagnosedWithFollowingConditionsOLS;
 import com.acurian.selenium.pages.OLS.GERD.*;
 import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.*;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
@@ -85,11 +84,11 @@ public class GERD_4301_OLS extends BaseTest {
                 .clickOnAnswer("No")
                 .clickNextButton(new WhichoOfFollowingMedicationsCurrentlyGERD_OLS());
 
-        DiagnosedWithFollowingConditionsOLS diagnosedWithFollowingConditionsOLS = whichoOfFollowingMedicationsCurrentlyGERD_OLS
+        EverDiagnosedWithFollowingConditionsOLS everDiagnosedWithFollowingConditionsOLS = whichoOfFollowingMedicationsCurrentlyGERD_OLS
                 .waitForPageLoad2()
                 .clickOnAnswers("None of the above") //----DQ if selected any of these options in Q3:  None of the above
-                .clickNextButton(new DiagnosedWithFollowingConditionsOLS());
-        diagnosedWithFollowingConditionsOLS
+                .clickNextButton(new EverDiagnosedWithFollowingConditionsOLS());
+        everDiagnosedWithFollowingConditionsOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS6330", site.activeProtocols)
@@ -97,7 +96,7 @@ public class GERD_4301_OLS extends BaseTest {
         whichoOfFollowingMedicationsCurrentlyGERD_OLS
                 .waitForPageLoad2()
                 .clickOnAnswers("Other \"over-the-counter\" or non-prescription medication not listed")
-                .clickNextButton(diagnosedWithFollowingConditionsOLS)
+                .clickNextButton(everDiagnosedWithFollowingConditionsOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS6330", site.activeProtocols)
@@ -114,7 +113,7 @@ public class GERD_4301_OLS extends BaseTest {
         despiteTakingMedicationDoYouStillExperienceSymptoms_OLS
                 .waitForPageLoad2()
                 .clickOnAnswer("1 day per week or less")
-                .clickNextButton(diagnosedWithFollowingConditionsOLS)
+                .clickNextButton(everDiagnosedWithFollowingConditionsOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS6331", site.activeProtocols)
@@ -122,7 +121,7 @@ public class GERD_4301_OLS extends BaseTest {
         despiteTakingMedicationDoYouStillExperienceSymptoms_OLS
                 .waitForPageLoad2()
                 .clickOnAnswer("2 - 3 days per week")
-                .clickNextButton(diagnosedWithFollowingConditionsOLS)
+                .clickNextButton(everDiagnosedWithFollowingConditionsOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS6331", site.activeProtocols)
@@ -130,7 +129,7 @@ public class GERD_4301_OLS extends BaseTest {
         despiteTakingMedicationDoYouStillExperienceSymptoms_OLS
                 .waitForPageLoad2()
                 .clickOnAnswer("Not currently experiencing symptoms")
-                .clickNextButton(diagnosedWithFollowingConditionsOLS)
+                .clickNextButton(everDiagnosedWithFollowingConditionsOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS6331", site.activeProtocols)
@@ -138,9 +137,9 @@ public class GERD_4301_OLS extends BaseTest {
         despiteTakingMedicationDoYouStillExperienceSymptoms_OLS
                 .waitForPageLoad2()
                 .clickOnAnswer("4 - 5 days per week")
-                .clickNextButton(diagnosedWithFollowingConditionsOLS);
+                .clickNextButton(everDiagnosedWithFollowingConditionsOLS);
 
-        WhatTypeOfSurgeryDidYouHave_OLS whatTypeOfSurgeryDidYouHave_OLS = diagnosedWithFollowingConditionsOLS
+        WhatTypeOfSurgeryDidYouHave_OLS whatTypeOfSurgeryDidYouHave_OLS = everDiagnosedWithFollowingConditionsOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Erosive esophagitis or esophageal erosions, sores or breaks in the lining of the esophagus")
                 .clickNextButton(new WhatTypeOfSurgeryDidYouHave_OLS());
@@ -410,7 +409,7 @@ public class GERD_4301_OLS extends BaseTest {
         whatTypeOfSurgeryDidYouHave_OLS
                 .back();
 
-        DidTakeMedicationToTreatPyloriOLS didTakeMedicationToTreatPyloriOLS = diagnosedWithFollowingConditionsOLS
+        DidTakeMedicationToTreatPyloriOLS didTakeMedicationToTreatPyloriOLS = everDiagnosedWithFollowingConditionsOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Helicobacter pylori or H. pylori infection")
                 .clickNextButton(new DidTakeMedicationToTreatPyloriOLS());

@@ -319,15 +319,15 @@ public class DERM_7036_OLS extends BaseTest {
                 .waitForPageLoad()
                 .back();
 
-        OtherThanSkinCancerPageOLS otherThanSkinCancerPageOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+        WhenDiagnosedWithCancerOLS whenDiagnosedWithCancerOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Cancer", "Heart or circulation problems (heart attack, heart failure, stroke)",
                         "Kidney disease", "Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)",
                         "Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)")
-                .clickNextButton(new OtherThanSkinCancerPageOLS());
+                .clickNextButton(new WhenDiagnosedWithCancerOLS());
 
-        HaveYouEverExperiencedHeartRelatedMedicalCondOLS heartrelatedMedicalConditionsProceduresPageCC = otherThanSkinCancerPageOLS
+        HaveYouEverExperiencedHeartRelatedMedicalCondOLS heartrelatedMedicalConditionsProceduresPageCC = whenDiagnosedWithCancerOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Within the past 5 years")
                 .clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondOLS());
@@ -338,7 +338,7 @@ public class DERM_7036_OLS extends BaseTest {
                 .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
                 .back();
 
-        otherThanSkinCancerPageOLS
+        whenDiagnosedWithCancerOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Diagnosed with skin cancer only")
                 .clickNextButton(heartrelatedMedicalConditionsProceduresPageCC);
