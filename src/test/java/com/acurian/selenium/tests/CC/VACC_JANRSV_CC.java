@@ -164,20 +164,13 @@ public class VACC_JANRSV_CC extends BaseTest {
             getDriver().switchTo().window(tabs.get(1));
             dRSBlinx
                     .waitForPageLoadBlinx()
-                    .clickOnBtnNoApp()
-                    .waitForUnf()
-                    .clickOnBtnPrev()
-                    .waitForPageLoadBlinx()
-                    .waitForPageLoadBlinx()
                     .clickOnDay()
                     .clickOnTime()
                     .clickOnNext()
                     .waitForPageLoadClientDetails()
                     .dateCheck()
                     .startsAtCheck()
-                    .serviceProviderCheck()
-                    .clickOnAgree()
-                    .clickOnSendSMS();
+                    .serviceProviderCheck();
                     //.assertClientData("qa.acurian@gmail.com", "9999999999")
 //                    .clickBook()
 //                    .waitForPageLoadSuccess()

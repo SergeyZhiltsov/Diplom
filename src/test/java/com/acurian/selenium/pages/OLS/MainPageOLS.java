@@ -30,11 +30,15 @@ public class MainPageOLS extends BasePage {
     @FindBy(xpath = "//img[starts-with(@src,'http')]")
     private List<WebElement> images;
 
+    @FindBy(xpath = "//*[@id='debug_pid']")
+    WebElement pidNumberPath;
+
     String pid;
     String childPid;
 //    String cpid;
     String dispoParent;
     String dispoChild;
+    String pidNumber;
 
 
     public MainPageOLS() {
@@ -278,6 +282,15 @@ public class MainPageOLS extends BasePage {
         String flareStatus = getDbConnection().dbGetStatusFlare(env, pid);
         logTextToAllure("Flare : current status = "+ flareStatus + " for childPID " + pid);
         Assert.assertEquals(flareStatus, statusCode, "Current status for Flare is diff");
+        return this;
+    }
+
+    @Step
+    public MainPageOLS getPID(){
+        pidNumber = getText(pidNumberPath);
+        logTextToAllure("PID = " + pidNumber);
+        PassPID.getInstance().setPidNumber(pidNumber);
+        System.out.println("PID = " + pidNumber);
         return this;
     }
 

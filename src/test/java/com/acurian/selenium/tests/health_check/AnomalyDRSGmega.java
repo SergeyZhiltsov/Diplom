@@ -19,7 +19,7 @@ public class AnomalyDRSGmega extends BaseTest
 
         @Test(enabled = true)
         @Description("Test for 41C Anomaly DRS Blinx")
-        public void anomalyTestDRS() {
+        public void anomalyTestDRSBlinx() {
         String phoneNumber = "AUTGMEG41C";
         String siteName = "AUT_GEMGA_01A";
         String zipCode = "19422";
