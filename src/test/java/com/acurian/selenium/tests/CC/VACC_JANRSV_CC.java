@@ -36,7 +36,7 @@ public class VACC_JANRSV_CC extends BaseTest {
     @DataProvider
     public Object[][] sites() {
         return new Object[][]{
-                {Site.AUT_AMS_JANRDS_Syn},
+                {Site.JANRSV_AUT_JANDS},
                 {Site.AUT_AMS_JANRSV},
                 {Site.AUT_AMS_JANRSV_Syn}
         };
@@ -101,7 +101,7 @@ public class VACC_JANRSV_CC extends BaseTest {
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
                 .clickNextButton(new ZipCodePageCC());
 
-        if (site == Site.AUT_AMS_JANRDS_Syn) {
+        if (site == Site.JANRSV_AUT_JANDS) {
             HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC =
                     new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC();
             ScedulerCC scedulerCC = new ScedulerCC();
