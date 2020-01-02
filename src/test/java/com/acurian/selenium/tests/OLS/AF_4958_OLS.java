@@ -557,6 +557,26 @@ public class AF_4958_OLS extends BaseTest {
         IdentificationPageOLS identificationPageOLS = approximateHeightPageCC
                 .waitForPageLoad()
                 .setLbs("150")
+                .clickNextButton(new CurrentlyParticipatingInStudyOLS())
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
+                .clickNextButton(new RequirePassDrugTestOLS())
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS912", site.activeProtocols)
+                .back(new CurrentlyParticipatingInStudyOLS())
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new RequirePassDrugTestOLS())
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new IdentificationPageOLS())
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS913", site.activeProtocols)
+                .back(new RequirePassDrugTestOLS())
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
                 .clickNextButton(new IdentificationPageOLS());
 
 

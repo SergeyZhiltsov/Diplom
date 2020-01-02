@@ -7,7 +7,9 @@ import com.acurian.selenium.pages.CC.HOTF_7119.DoyouExperienceHotFlashesCC;
 import com.acurian.selenium.pages.CC.HOTF_7119.HowWouldYouDescribeYourHotFlashesCC;
 import com.acurian.selenium.pages.CC.HOTF_7119.OnAvgHowManyHotFlashesDoYouExperiencePerDayCC;
 import com.acurian.selenium.pages.CC.SUI_3923.HaveYouGoneThroughMenopauseCC;
+import com.acurian.selenium.pages.CC.closes.CurrentlyParticipatingInStudy;
 import com.acurian.selenium.pages.CC.closes.LessThan18YearsOldPageCC;
+import com.acurian.selenium.pages.CC.closes.RequirePassDrugTest;
 import com.acurian.selenium.pages.CC.closes.SynexusRadiantDirectScheduleCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
@@ -394,6 +396,26 @@ public class HOTF_7119_CC extends BaseTest {
 
         letMeSeePageCC
                 .waitForPageLoad()
+                .clickNextButton(new CurrentlyParticipatingInStudy())
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
+                .clickNextButton(new RequirePassDrugTest())
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS912", site.activeProtocols)
+                .back(new CurrentlyParticipatingInStudy())
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new RequirePassDrugTest())
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new IdentificationPageCC())
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS913", site.activeProtocols)
+                .back(new RequirePassDrugTest())
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
                 .clickNextButton(new IdentificationPageCC())
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",

@@ -795,6 +795,26 @@ public class DERM_4967_OLS extends BaseTest {
                 .waitForPageLoad()
                 .setAll("3", "2", "33")
                 //----------PII (IdentificationPageOLS) Page--------------------
+                .clickNextButton(new CurrentlyParticipatingInStudyOLS())
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
+                .clickNextButton(new RequirePassDrugTestOLS())
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS912", site.activeProtocols)
+                .back(new CurrentlyParticipatingInStudyOLS())
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new RequirePassDrugTestOLS())
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new IdentificationPageOLS())
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS913", site.activeProtocols)
+                .back(new RequirePassDrugTestOLS())
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
                 .clickNextButton(identificationPageOLS);
 
         SiteSelectionPageOLS siteSelectionPageOLS = identificationPageOLS

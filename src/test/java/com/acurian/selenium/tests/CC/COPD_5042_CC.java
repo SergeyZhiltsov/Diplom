@@ -333,6 +333,26 @@ public class COPD_5042_CC extends BaseTest {
         letMeSeePageCC
                 .waitForPageLoad();
         IdentificationPageCC identificationPageCC = approximateHeightPageCC
+                .clickNextButton(new CurrentlyParticipatingInStudy())
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
+                .clickNextButton(new RequirePassDrugTest())
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS912", site.activeProtocols)
+                .back(new CurrentlyParticipatingInStudy())
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new RequirePassDrugTest())
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new IdentificationPageCC())
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS913", site.activeProtocols)
+                .back(new RequirePassDrugTest())
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
                 .clickNextButton(new IdentificationPageCC());
 
 

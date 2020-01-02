@@ -651,6 +651,26 @@ public class DIA_5062_OLS extends BaseTest {
         IdentificationPageOLS identificationPageOLS = approximateHeightPageOLS
                 .waitForPageLoad()
                 .setAll("4", "9", "140") //BMI > 30
+                .clickNextButton(new CurrentlyParticipatingInStudyOLS())
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
+                .clickNextButton(new RequirePassDrugTestOLS())
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS912", site.activeProtocols)
+                .back(new CurrentlyParticipatingInStudyOLS())
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new RequirePassDrugTestOLS())
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new IdentificationPageOLS())
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS913", site.activeProtocols)
+                .back(new RequirePassDrugTestOLS())
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
                 .clickNextButton(new IdentificationPageOLS());
         identificationPageOLS
                 .waitForPageLoad()
