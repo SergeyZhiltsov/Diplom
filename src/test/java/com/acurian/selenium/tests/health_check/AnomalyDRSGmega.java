@@ -91,8 +91,9 @@ public class AnomalyDRSGmega extends BaseTest
                 .waitForPageLoadClientDetails()
                 .dateCheck()
                 .startsAtCheck()
-                .serviceProviderCheck()
-                .pidFromDbToLog(env)
+                .serviceProviderCheck();
+                getDriver().quit();
+        dRSBlinx
                 .convert54Cto1R(env)
                 .dispoShouldMatch("1R");
 

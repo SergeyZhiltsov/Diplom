@@ -329,7 +329,6 @@ public class MainPageBlinx extends BasePage {
 
     @Step
     public MainPageBlinx convert54Cto1R(String env) {
-        System.out.println("123123412q3123123sadasdasd    "+pid);
         getDbConnection().convert54Cto1R(env, pid);
         logTextToAllure("54 to 1R conversion completed");
         threadSleep(2000);
