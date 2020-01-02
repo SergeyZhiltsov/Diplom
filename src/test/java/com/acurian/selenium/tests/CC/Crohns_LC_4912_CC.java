@@ -268,7 +268,9 @@ public class Crohns_LC_4912_CC extends BaseTest {
                 .clickOnAnswer("Yes")
                 .clickNextButton(currentlyHaveAnyFollowingCC)
                 .waitForPageLoad()
-                .flareCodeShouldMatch(env, "11");
+                .getPID()
+                .pidFromDbToLog(env)
+                .flareCodeShouldMatch(env, "3");
 
         //backflareCodeShouldMatch
         currentlyHaveAnyFollowingCC

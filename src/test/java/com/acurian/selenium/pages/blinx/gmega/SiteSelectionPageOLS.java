@@ -28,7 +28,7 @@ public class SiteSelectionPageOLS extends MainPageBlinx {
     @FindBy(id = "expandLocationsCta")
     WebElement showOthersAdditionalLocations;
 
-    @FindBy(xpath = "//div[@id='debugCollapsed']/div[1]/div[1]")
+    @FindBy(xpath = "//*[@id='collapsedContent1']/div[1]")
     WebElement pidNumberPath;
 
 
@@ -59,15 +59,4 @@ public class SiteSelectionPageOLS extends MainPageBlinx {
         }
         return this;
     }
-
-    @Step
-    public SiteSelectionPageOLS getPID(){
-        pidNumber = getText(pidNumberPath);
-        logTextToAllure("PID = " + pidNumber);
-        PassPID.getInstance().setPidNumber(pidNumber);
-        System.out.println("PID = " + pidNumber);
-        return this;
-    }
-
-
 }

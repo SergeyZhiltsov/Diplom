@@ -25,11 +25,14 @@ public class MainPageCC extends BasePage {
 
     @FindBy(xpath = "//button[text()='Next']")
     private WebElement nextButton;
+    @FindBy(xpath = "//*[@id='debug-pid']")
+    WebElement pidNumberPath;
 
     String pid;
     String childPid;
     String dispoParent;
     String dispoChild;
+    String pidNumber;
 
     public MainPageCC() {
         PageFactory.initElements(getDriver(), this);
@@ -119,6 +122,15 @@ public class MainPageCC extends BasePage {
                 Assert.assertEquals(radiantResults.getStudyReference(), assertStudyReference[0], "Study reference is not matched!");
             }
         }
+        return this;
+    }
+
+    @Step
+    public MainPageCC getPID(){
+        pidNumber = getText(pidNumberPath);
+        logTextToAllure("PID = " + pidNumber);
+        PassPID.getInstance().setPidNumber(pidNumber);
+        System.out.println("PID = " + pidNumber);
         return this;
     }
 

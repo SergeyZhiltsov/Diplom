@@ -104,6 +104,7 @@ public class DBConnection {
 
     public void convert54Cto1R(String environment, String pidNumber) {
         try {
+            System.out.println("12314231 "+pidNumber);
             Connection connTemp = getDbCon(environment);
             stmt = connTemp.createStatement();
             connTemp.setAutoCommit(false);
@@ -111,7 +112,8 @@ public class DBConnection {
             String sql = "DECLARE " +
                     "BEGIN " +
                     "cc_dev.patient_admin_pkg.fix_54C_patient('" + pidNumber + "', 1, 'R'); " +
-                    "END;";
+                    "END"+
+                    "commit;";
             stmt.execute(sql);
             connTemp.commit();
             connTemp.setAutoCommit(true);

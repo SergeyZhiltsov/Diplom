@@ -211,9 +211,11 @@ public class Crohns_4818_OLS extends BaseTest {
                 .clickNextButton(currentlyHaveUlcersOrSoresOLS)
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(currentlyHaveAnyFollowingOLS);
-               // .waitForPageLoad()
-               // .flareCodeShouldMatch(env, "11");
+                .clickNextButton(currentlyHaveAnyFollowingOLS)
+                .waitForPageLoad()
+                .getPID()
+                .pidFromDbToLog(env)
+                .flareCodeShouldMatch(env, "3");
 
         //back
         currentlyHaveAnyFollowingOLS
@@ -244,9 +246,11 @@ public class Crohns_4818_OLS extends BaseTest {
                 .clickNextButton(currentlyHaveUlcersOrSoresOLS)
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(currentlyHaveAnyFollowingOLS);
-               // .waitForPageLoad()
-               // .flareCodeShouldMatch(env, "3");
+                .clickNextButton(currentlyHaveAnyFollowingOLS)
+                .waitForPageLoad()
+                .getPID()
+                .pidFromDbToLog(env)
+                .flareCodeShouldMatch(env, "3");
 
 
 

@@ -1,6 +1,7 @@
 package com.acurian.selenium.tests.health_check;
 
 import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.OLS.closes.HSGeneralPageOLS;
 import com.acurian.selenium.pages.blinx.ams.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.blinx.ams.closes.ThankYouCloseSimplePageOLS;
 import com.acurian.selenium.pages.blinx.ams.derm.WhatKindOfArthritisPageOLS;
@@ -71,22 +72,33 @@ public class AnomalyDRSGmega extends BaseTest
                 .waitForPageLoad()
                 .clickOnAnswers("Rheumatoid arthritis, a serious medical condition caused by your immune system attacking your joints")
                 .clickNextButton(new DiagnosedWithRAPageOLS());
-
-        DRSBlinx dRSBlinx = diagnosedWithRAPageOLS
+            SiteSelectionPageOLS siteSelectionPageOLS = new SiteSelectionPageOLS();
+        diagnosedWithRAPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("7 - 11 months ago")
                 .clickNextButton(identificationPageOLS)
                 .waitForPageLoad2()
                 .clickNextButton(new SiteSelectionPageOLS())
                 .waitForPageLoad("Arthritis, a low back pain study, a rheumatoid arthritis (RA) study!")
-                .getPID()
+                .getPID();
+            DRSBlinx dRSBlinx = siteSelectionPageOLS
                 .clickOnFacilityName("Acurian-1234")
                 .clickNextButton(new DRSBlinx());
         dRSBlinx
                 .waitForPageLoad2()
-                .clickOnBtnNoApp()
-                .waitForUnf()
-                .clickOnUnfNext();
+                .clickOnDay()
+                .clickOnTime()
+                .clickOnNext()
+                .waitForPageLoadClientDetails()
+                .dateCheck()
+                .startsAtCheck()
+                .serviceProviderCheck();
+                getDriver().quit();
+        dRSBlinx
+                .pidFromDbToLog(env)
+                .convert54Cto1R(env)
+                .dispoShouldMatch("1R");
+
 //                .clickOnBtnPrev()
 //                .waitForPageLoadBlinx()
 //                .clickOnDay()
@@ -98,15 +110,16 @@ public class AnomalyDRSGmega extends BaseTest
 //                .serviceProviderCheck()
 //                .clickOnAgree()
 //                .clickOnSendSMS();
+//
+//            QualifiedClosePageOLS qualifiedClosePageOLS = new QualifiedClosePageOLS();
+//            qualifiedClosePageOLS
+//                .waitForPageLoad()
+//                .clickNextButton(new ThankYouCloseSimplePageOLS())
+//                .waitForPageLoad2()
+//                .clickNextButton(new AboutHealthPageOLS())
+//                .waitForPageLoad()
+//                .pidFromDbToLog(env)
+//                .getAnomalyDbToLog(env);
 
-            QualifiedClosePageOLS qualifiedClosePageOLS = new QualifiedClosePageOLS();
-            qualifiedClosePageOLS
-                .waitForPageLoad()
-                .clickNextButton(new ThankYouCloseSimplePageOLS())
-                .waitForPageLoad2()
-                .clickNextButton(new AboutHealthPageOLS())
-                .waitForPageLoad()
-                .pidFromDbToLog(env)
-                .getAnomalyDbToLog(env);
     }
     }
