@@ -81,10 +81,7 @@ public class AnomalyDRSGmega extends BaseTest
                 .clickNextButton(new SiteSelectionPageOLS())
                 .waitForPageLoad("Arthritis, a low back pain study, a rheumatoid arthritis (RA) study!")
                 .getPID();
-            DRSBlinx dRSBlinx = new DRSBlinx();
-            siteSelectionPageOLS
-                    .getPID();
-            siteSelectionPageOLS
+            DRSBlinx dRSBlinx = siteSelectionPageOLS
                 .clickOnFacilityName("Acurian-1234")
                 .clickNextButton(new DRSBlinx());
         dRSBlinx

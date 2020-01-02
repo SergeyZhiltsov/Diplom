@@ -33,7 +33,7 @@ public class MainPageBlinx extends BasePage {
     String dispoChild;
     String pidNumber;
 
-    @FindBy(xpath = "//*[@id='debug_pid']")
+    @FindBy(xpath = "//*[@id='collapsedContent1']/div[1]")
     WebElement pidNumberPath;
     @FindBy(id = "submit")
     WebElement nextButton;
