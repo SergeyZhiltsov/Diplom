@@ -95,6 +95,7 @@ public class AnomalyDRSGmega extends BaseTest
                 .serviceProviderCheck();
                 getDriver().quit();
         dRSBlinx
+                .pidFromDbToLog(env)
                 .convert54Cto1R(env)
                 .dispoShouldMatch("1R");
 

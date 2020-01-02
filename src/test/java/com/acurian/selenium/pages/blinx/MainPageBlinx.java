@@ -323,17 +323,21 @@ public class MainPageBlinx extends BasePage {
     public MainPageBlinx getPID(){
         pidNumber = getText(pidNumberPath);
         logTextToAllure("PID = " + pidNumber);
+        PassPID.getInstance().setPidNumber(pidNumber);
+        System.out.println("PID = " + pidNumber);
         return this;
     }
 
     @Step
     public MainPageBlinx convert54Cto1R(String env) {
-        getDbConnection().convert54Cto1R(env, pidNumber);
+        System.out.println("PID = " + pid);
+
+        getDbConnection().convert54Cto1R(env, pid);
         logTextToAllure("54 to 1R conversion completed");
         threadSleep(2000);
-        getDbConnection().dbReadPID(env, pidNumber);
+        getDbConnection().dbReadPID(env, pid);
         dispoParent = getDbConnection().getDispo();
-        logTextToAllure("Dispo = " + dispoParent + " for PID " + pidNumber + "  after conversion");
+        logTextToAllure("Dispo = " + dispoParent + " for PID " + pid + "  after conversion");
         return this;
     }
 

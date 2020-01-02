@@ -251,9 +251,11 @@ public class Crohns_4818_CC extends BaseTest {
                 .clickNextButton(currentlyHaveUlcersOrSoresCC)
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(currentlyHaveAnyFollowingCC);
-               // .waitForPageLoad()
-                //.flareCodeShouldMatch(env, "11");
+                .clickNextButton(currentlyHaveAnyFollowingCC)
+                .waitForPageLoad()
+                .getPID()
+                .pidFromDbToLog(env)
+                .flareCodeShouldMatch(env, "3");
 
         //backflareCodeShouldMatch
         currentlyHaveAnyFollowingCC
@@ -284,9 +286,11 @@ public class Crohns_4818_CC extends BaseTest {
                 .clickNextButton(currentlyHaveUlcersOrSoresCC)
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(currentlyHaveAnyFollowingCC);
-                //.waitForPageLoad()
-               // .flareCodeShouldMatch(env, "3");
+                .clickNextButton(currentlyHaveAnyFollowingCC)
+                .waitForPageLoad()
+                .getPID()
+                .pidFromDbToLog(env)
+                .flareCodeShouldMatch(env, "3");
 
 
         HashMap<String, List<String>> disqualify = new HashMap<>();

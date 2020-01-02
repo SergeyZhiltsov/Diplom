@@ -119,7 +119,6 @@ public class DBConnection {
             connTemp.setAutoCommit(true);
             System.out.println("DB dispo converted from 54C to 1R");
         } catch (SQLException e) {
-            System.out.println("dzadfasdfasdf");
             e.printStackTrace();
         } finally {
             closeResources();
