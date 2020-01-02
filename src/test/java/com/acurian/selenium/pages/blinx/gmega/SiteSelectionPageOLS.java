@@ -28,7 +28,7 @@ public class SiteSelectionPageOLS extends MainPageBlinx {
     @FindBy(id = "expandLocationsCta")
     WebElement showOthersAdditionalLocations;
 
-    @FindBy(xpath = "//*[@id='collapsedContent1']/div[1]/text()")
+    @FindBy(xpath = "//*[@id='collapsedContent1']/div[1]")
     WebElement pidNumberPath;
 
 
