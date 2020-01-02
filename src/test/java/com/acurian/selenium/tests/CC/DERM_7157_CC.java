@@ -8,10 +8,7 @@ import com.acurian.selenium.pages.CC.Diabetes_4356A.WhatKindOfDiabetesPageCC;
 import com.acurian.selenium.pages.CC.MDD_3159.MostRecentHeartProcedurePageСС;
 import com.acurian.selenium.pages.CC.OAB_4867.DoYouTakeAnyMedicationsControlHypertension_CC;
 import com.acurian.selenium.pages.CC.PSO_456.HealthcareDiagnosedPsoriasisPageCC;
-import com.acurian.selenium.pages.CC.closes.DoesNotGivePermissionToProceedClosePageCC;
-import com.acurian.selenium.pages.CC.closes.MedicalRecordsOptionPageCC;
-import com.acurian.selenium.pages.CC.closes.SynexusRadiantDirectScheduleCC;
-import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
+import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
@@ -814,6 +811,26 @@ public class DERM_7157_CC extends BaseTest {
 
        letMeSeePageCC
                 .waitForPageLoad()
+               .clickNextButton(new CurrentlyParticipatingInStudy())
+               .waitForPageLoad()
+               .clickOnAnswer("Yes")
+               .clickNextButton(new RequirePassDrugTest())
+               .waitForPageLoad()
+               .getPage(debugPageCC)
+               .checkProtocolsContainsForQNumber("QS912", site.activeProtocols)
+               .back(new CurrentlyParticipatingInStudy())
+               .waitForPageLoad()
+               .clickOnAnswer("No")
+               .clickNextButton(new RequirePassDrugTest())
+               .waitForPageLoad()
+               .clickOnAnswer("No")
+               .clickNextButton(new IdentificationPageCC())
+               .waitForPageLoad()
+               .getPage(debugPageCC)
+               .checkProtocolsContainsForQNumber("QS913", site.activeProtocols)
+               .back(new RequirePassDrugTest())
+               .waitForPageLoad()
+               .clickOnAnswer("Yes")
                 .clickNextButton(identificationPageCC);
 
         //----------PII (IdentificationPageOLS) Page--------------------

@@ -10,6 +10,7 @@ import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
+import com.acurian.selenium.pages.OLS.generalHealth.IdentificationPageOLS;
 import com.acurian.selenium.utils.DataProviderPool;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -695,37 +696,29 @@ public class IBS_4684_CC extends BaseTest {
                 .clickNextButton(new LetMeSeePageCC());
 
         //Not Sinexus Close about drugs
-        CurrentlyParticipatingInStudy currentlyParticipatingInStudy = letMeSeePageCC
+        IdentificationPageCC identificationPageCC = letMeSeePageCC
                 .waitForPageLoad()
-                .clickNextButton(new CurrentlyParticipatingInStudy());
-
-        RequirePassDrugTest requirePassDrugTest = currentlyParticipatingInStudy
+                .clickNextButton(new CurrentlyParticipatingInStudy())
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(new RequirePassDrugTest());
-        requirePassDrugTest
+                .clickNextButton(new RequirePassDrugTest())
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS912", site.activeProtocols)
-                .back(currentlyParticipatingInStudy)
+                .back(new CurrentlyParticipatingInStudy())
                 .waitForPageLoad()
                 .clickOnAnswer("No")
-                .clickNextButton(requirePassDrugTest);
-        IdentificationPageCC identificationPageCC = requirePassDrugTest
+                .clickNextButton(new RequirePassDrugTest())
                 .waitForPageLoad()
                 .clickOnAnswer("No")
-                .clickNextButton(new IdentificationPageCC());
-        identificationPageCC
-                .waitForPageLoadNotQ()
+                .clickNextButton(new IdentificationPageCC())
+                .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS913", site.activeProtocols)
-                .back(requirePassDrugTest);
-        requirePassDrugTest
+                .back(new RequirePassDrugTest())
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(identificationPageCC);
-        //end
-
+                .clickNextButton(new IdentificationPageCC());
         SiteSelectionPageCC siteSelectionPageCC = identificationPageCC
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999",

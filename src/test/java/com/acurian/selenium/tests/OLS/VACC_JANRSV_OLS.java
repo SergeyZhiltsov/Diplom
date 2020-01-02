@@ -582,6 +582,26 @@ public class VACC_JANRSV_OLS extends BaseTest {
             /*DoYouExperienceAnyOfFollowingSymptoms_OLS doYouExperienceAnyOfFollowingSymptoms_OLS*/ IdentificationPageOLS identificationPageOLS= approximateHeightPageOLS
                     .waitForPageLoad()
                     .setLbs("150")
+                    .clickNextButton(new CurrentlyParticipatingInStudyOLS())
+                    .waitForPageLoad()
+                    .clickOnAnswer("Yes")
+                    .clickNextButton(new RequirePassDrugTestOLS())
+                    .waitForPageLoad()
+                    .getPage(debugPageOLS)
+                    .checkProtocolsContainsForQNumber("QS912", site.activeProtocols)
+                    .back(new CurrentlyParticipatingInStudyOLS())
+                    .waitForPageLoad()
+                    .clickOnAnswer("No")
+                    .clickNextButton(new RequirePassDrugTestOLS())
+                    .waitForPageLoad()
+                    .clickOnAnswer("No")
+                    .clickNextButton(new IdentificationPageOLS())
+                    .waitForPageLoad()
+                    .getPage(debugPageOLS)
+                    .checkProtocolsContainsForQNumber("QS913", site.activeProtocols)
+                    .back(new RequirePassDrugTestOLS())
+                    .waitForPageLoad()
+                    .clickOnAnswer("Yes")
                     .clickNextButton(new /*DoYouExperienceAnyOfFollowingSymptoms_OLS*/IdentificationPageOLS());
 
 //            DoyouExperienceHotFlashesOLS doyouExperienceHotFlashesOLS = doYouExperienceAnyOfFollowingSymptoms_OLS
