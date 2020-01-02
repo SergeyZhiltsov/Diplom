@@ -42,7 +42,7 @@ public class DRSBlinx extends MainPageBlinx {
     @FindBy(xpath = "(//div[contains(@class, 'cell-day')][not(contains(@class, 'disabled'))])[1]")
     WebElement dayBtn;
 
-    @FindBy(xpath = "(//div[contains(@class, 'timeSlot-btn')][contains(@class, 'available')])[1]")
+    @FindBy(xpath = "(//div[contains(@class, 'timeSlot-btn')]/div[not(contains(@class, 'unavailable'))])[1]")
     WebElement timeBtn;
 
     @FindBy(xpath = "//span[contains(@class, 'confirmationDate')]")

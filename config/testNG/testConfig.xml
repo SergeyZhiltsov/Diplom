@@ -3,7 +3,7 @@
 <suite name="All" verbose="4" parallel="classes" thread-count="5">
     <test name="Regression1">
         <classes>
-            <class name="com.acurian.selenium.tests.OLS.SYNType_2_Diabetes_OLS"></class>
+            <class name="com.acurian.selenium.tests.health_check.AnomalyDRSGmega"></class>
         </classes>
     </test>
 </suite>
