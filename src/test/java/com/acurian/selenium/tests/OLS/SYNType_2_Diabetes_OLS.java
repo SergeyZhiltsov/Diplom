@@ -933,10 +933,37 @@ public class SYNType_2_Diabetes_OLS extends BaseTest {
 //                .clickNextButton(new IdentificationPageOLS());
 
 
-        IdentificationPageOLS identificationPageOLS = approximateHeightPageOLS
+        CurrentlyParticipatingInStudyOLS currentlyParticipatingInStudyOLS = approximateHeightPageOLS
                 .waitForPageLoad()
                 .setAll("5", "5", "190") //BMI > 30
+                .clickNextButton(new CurrentlyParticipatingInStudyOLS());
+
+        RequirePassDrugTestOLS requirePassDrugTestOLS = currentlyParticipatingInStudyOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
+                .clickNextButton(new RequirePassDrugTestOLS());
+        requirePassDrugTestOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS912", site.activeProtocols)
+                .back(currentlyParticipatingInStudyOLS)
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(requirePassDrugTestOLS);
+        PersonalDetails personalDetails = requirePassDrugTestOLS
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new PersonalDetails());
+        personalDetails
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS913", site.activeProtocols)
+                .back();
+        IdentificationPageOLS identificationPageOLS = requirePassDrugTestOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
                 .clickNextButton(new IdentificationPageOLS());
+
 
         SiteSelectionPageOLS siteSelectionPageOLS = identificationPageOLS
                 .waitForPageLoad()
@@ -949,8 +976,8 @@ public class SYNType_2_Diabetes_OLS extends BaseTest {
                 .clickOnFacilityName(site.name)
                 .waitForAnimation();
         ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = siteSelectionPageOLS
-                .clickNextButton(new DirectSheduleVaccOLS())
-                .waitForPageLoad()
+//                .clickNextButton(new DirectSheduleVaccOLS())
+//                .waitForPageLoad()
 
                 .clickNextButton(new QualifiedClose2PageOLS())
                 .waitForPageLoad()

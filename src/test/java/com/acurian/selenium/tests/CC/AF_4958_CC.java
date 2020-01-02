@@ -110,7 +110,7 @@ public class AF_4958_CC extends BaseTest {
                 .waitForPageLoad()
                 .setMonth("Jan")
                 .setDay("1")
-                .setYear("2002") //Disqualify (“Age < 18 years old”) if <18
+                .setYear("2003") //Disqualify (“Age < 18 years old”) if <18
                 .clickOnAnswer("Female")
                 .clickNextButton(lessThan18YearsOldPageCC)
                 .waitForPageLoad()
@@ -588,9 +588,35 @@ public class AF_4958_CC extends BaseTest {
                 .clickNextButton(new LetMeSeePageCC());
 
 
-        IdentificationPageCC identificationPageCC = letMeSeePageCC
+        CurrentlyParticipatingInStudy currentlyParticipatingInStudy = letMeSeePageCC
                 .waitForPageLoad()
+                .clickNextButton(new CurrentlyParticipatingInStudy());
+
+        RequirePassDrugTest requirePassDrugTest = currentlyParticipatingInStudy
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
+                .clickNextButton(new RequirePassDrugTest());
+        requirePassDrugTest
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS912", site.activeProtocols)
+                .back(currentlyParticipatingInStudy)
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(requirePassDrugTest);
+        IdentificationPageCC identificationPageCC = requirePassDrugTest
+                .waitForPageLoad()
+                .clickOnAnswer("No")
                 .clickNextButton(new IdentificationPageCC());
+        identificationPageCC
+                .waitForPageLoadNotQ()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS913", site.activeProtocols)
+                .back(requirePassDrugTest);
+        requirePassDrugTest
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
+                .clickNextButton(identificationPageCC);
 
 
         SiteSelectionPageCC siteSelectionPageCC = identificationPageCC

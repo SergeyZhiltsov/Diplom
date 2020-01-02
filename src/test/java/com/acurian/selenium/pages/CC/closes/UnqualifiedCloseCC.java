@@ -10,7 +10,9 @@ import org.openqa.selenium.support.PageFactory;
 import java.util.List;
 
 public class UnqualifiedCloseCC extends MainPageCC {
-    public final String titleExpected = "Unfortunately, from the information you have provided, you would not be a candidate at this time. We appreciate your interest in participating.";
+    public final String titleExpected = "We appreciate your interest in participating.\n" +
+            "\n" +
+            "Unfortunately, from the information you have provided, you would not be a candidate at this time.";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_CC)
     WebElement titleText;
@@ -24,6 +26,7 @@ public class UnqualifiedCloseCC extends MainPageCC {
 
     @Step
     public UnqualifiedCloseCC waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

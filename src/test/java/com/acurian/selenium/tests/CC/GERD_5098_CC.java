@@ -89,6 +89,7 @@ public class GERD_5098_CC extends BaseTest {
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
                 .clickNextButton(new ZipCodePageCC());
 
+        EverDiagnosedWithFollowingConditionsСС everDiagnosedWithFollowingConditionsCC = new EverDiagnosedWithFollowingConditionsСС();
 
         GenderPageCC genderPageCC = zipCodePageCC
                 .waitForPageLoad()
@@ -101,7 +102,7 @@ public class GERD_5098_CC extends BaseTest {
                 .clickOnAnswer("Male")
                 .setDay("1")
                 .setMonth("Jan")
-                .setYear("2002")
+                .setYear("2003")
                 .clickNextButton(new LessThan18YearsOldPageCC());
         lessThan18YearsOldPageCC
                 .waitForPageLoad()
@@ -124,9 +125,43 @@ public class GERD_5098_CC extends BaseTest {
                 .checkProtocolsContainsForQNumber("QS6302", site.activeProtocols)
                 .back();
 
+        doYouExperienceAnyOfFollowingSymptoms_CC
+                .waitForPageLoad()
+                .clickOnAnswers("Frequent indigestion")
+                .clickNextButton(nonQRtransitionPageCC);
+        nonQRtransitionPageCC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS6302", site.activeProtocols)
+                .back();
+
+        doYouExperienceAnyOfFollowingSymptoms_CC
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Upper abdomen pain or discomfort")
+                .clickNextButton(everDiagnosedWithFollowingConditionsCC);
+        everDiagnosedWithFollowingConditionsCC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS6302", site.activeProtocols[0])
+                .back();
+
+        doYouExperienceAnyOfFollowingSymptoms_CC
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Stomach ulcer or peptic ulcer")
+                .clickNextButton(everDiagnosedWithFollowingConditionsCC);
+        everDiagnosedWithFollowingConditionsCC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS6302", site.activeProtocols[0])
+                .back();
+
+
         CurrentlyTakeMedicationPrescribedByHealthcareProvider_CC currentlyTakeMedicationPrescribedByHealthcareProvider_CC =
                 doYouExperienceAnyOfFollowingSymptoms_CC
                         .waitForPageLoad()
+                        .clickOnAnswers("None of the above")
                         .clickOnAnswers("GERD which has been diagnosed by a medical professional",
                                 "Heartburn, which can be felt as pain or a burning sensation behind the breastbone",
                                 "Acid reflux or frequent regurgitation, which is a sensation of liquid or food coming back up into your throat without vomiting")
@@ -147,11 +182,11 @@ public class GERD_5098_CC extends BaseTest {
                         "Prilosec (Agent Note: PRY-lo-sec)",
                         "Zegerid (Agent Note: ZEGG-er-rid)")
                 .clickNextButton(new DespiteTakingMedicationDoYouStillExperienceSymptoms_CC());
-        EverDiagnosedWithFollowingConditionsСС everDiagnosedWithFollowingConditionsСС = despiteTakingMedicationDoYouStillExperienceSymptoms_CC
+        despiteTakingMedicationDoYouStillExperienceSymptoms_CC
                 .waitForPageLoad2()
                 .clickOnAnswer("4 - 5 days per week")
-                .clickNextButton(new EverDiagnosedWithFollowingConditionsСС());
-        WhatTypeOfSurgeryDidYouHave_CC whatTypeOfSurgeryDidYouHave_CC = everDiagnosedWithFollowingConditionsСС
+                .clickNextButton(everDiagnosedWithFollowingConditionsCC);
+        WhatTypeOfSurgeryDidYouHave_CC whatTypeOfSurgeryDidYouHave_CC = everDiagnosedWithFollowingConditionsCC
                 .waitForPageLoad()
                 .clickOnAnswers("Erosive esophagitis or esophageal erosions, sores or breaks in the lining of the esophagus")
                 .clickNextButton(new WhatTypeOfSurgeryDidYouHave_CC());
@@ -195,9 +230,10 @@ public class GERD_5098_CC extends BaseTest {
                 .back(whatTypeOfSurgeryDidYouHave_CC);
 
         whatTypeOfSurgeryDidYouHave_CC
+                .waitForPageLoad()
                 .back();
 
-        everDiagnosedWithFollowingConditionsСС
+        everDiagnosedWithFollowingConditionsCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Zollinger-Ellison syndrome, a condition that causes the stomach to produce too much acid")
@@ -207,7 +243,7 @@ public class GERD_5098_CC extends BaseTest {
                 .checkProtocolsContainsForQNumber("QS6332", site.activeProtocols)
                 .back();
 
-        DidTakeMedicationToTreatPyloriCC didTakeMedicationToTreatPyloriCC = everDiagnosedWithFollowingConditionsСС
+        DidTakeMedicationToTreatPyloriCC didTakeMedicationToTreatPyloriCC = everDiagnosedWithFollowingConditionsCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Helicobacter pylori or H. pylori infection")
@@ -230,7 +266,11 @@ public class GERD_5098_CC extends BaseTest {
                 .clickOnAnswers("Other surgery on my stomach, intestines, colon, or esophagus")
                 .clickNextButton(whenDidYouHaveAppendixRemoved_CC)
                 .waitForPageLoad(1, whenDidYouHaveAppendixRemoved_CC.titleExpected4)
-                .clickOnAnswerForSubQuestion(1, "More than 6 months ago")
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS6310", site.activeProtocols)
+                .back(whatTypeOfSurgeryDidYouHave_CC)
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
                 .clickNextButton(weightLossSurgeryPageCC);
 
         List<String> disqualifyQ26pt2 = Arrays.asList("Gastric bypass", "Gastric sleeve or sleeve gastrectomy",
@@ -674,8 +714,35 @@ public class GERD_5098_CC extends BaseTest {
                 .clickNextButton(new LetMeSeePageCC());
 
 
-        IdentificationPageCC identificationPageCC = letMeSeePageCC
+        CurrentlyParticipatingInStudy currentlyParticipatingInStudy = letMeSeePageCC
                 .waitForPageLoad()
+                .clickNextButton(new CurrentlyParticipatingInStudy());
+
+        RequirePassDrugTest requirePassDrugTest = currentlyParticipatingInStudy
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
+                .clickNextButton(new RequirePassDrugTest());
+        requirePassDrugTest
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS912", site.activeProtocols)
+                .back(currentlyParticipatingInStudy)
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(requirePassDrugTest);
+        UnqualifiedCloseCC unqualifiedCloseCC = requirePassDrugTest
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new UnqualifiedCloseCC());
+        unqualifiedCloseCC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS913", site.activeProtocols)
+                .back();
+        requirePassDrugTest.back();
+        IdentificationPageCC identificationPageCC = requirePassDrugTest
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
                 .clickNextButton(new IdentificationPageCC());
 
 

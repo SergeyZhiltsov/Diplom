@@ -94,7 +94,7 @@ public class RO_7069_CC extends BaseTest {
                 .waitForPageLoad()
                 .setMonth("Jan")
                 .setDay("1")
-                .setYear("2002") //Disqualify (“Age < 18 years old”) if <18
+                .setYear("2003") //Disqualify (“Age < 18 years old”) if <18
                 .clickOnAnswer("Female")
                 .clickNextButton(lessThan18YearsOldPageCC)
                 .waitForPageLoad()
@@ -104,7 +104,7 @@ public class RO_7069_CC extends BaseTest {
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC =
                 genderPageCC
                         .waitForPageLoad()
-                        .setYear("1970") //Disqualify ("Age") if < 50
+                        .setYear("1971") //Disqualify ("Age") if < 50
                         .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
@@ -568,13 +568,43 @@ public class RO_7069_CC extends BaseTest {
                 .clickNextButton(letMeSeePageCC);
 
 
-        letMeSeePageCC
+        //Not Sinexus Close about drugs
+        CurrentlyParticipatingInStudy currentlyParticipatingInStudy = letMeSeePageCC
                 .waitForPageLoad()
-                .clickNextButton(new IdentificationPageCC())
+                .clickNextButton(new CurrentlyParticipatingInStudy());
+
+        RequirePassDrugTest requirePassDrugTest = currentlyParticipatingInStudy
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
+                .clickNextButton(new RequirePassDrugTest());
+        requirePassDrugTest
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS912", site.activeProtocols)
+                .back(currentlyParticipatingInStudy)
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(requirePassDrugTest);
+        IdentificationPageCC identificationPageCC = requirePassDrugTest
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new IdentificationPageCC());
+        identificationPageCC
+                .waitForPageLoadNotQ()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS913", site.activeProtocols)
+                .back(requirePassDrugTest);
+        requirePassDrugTest
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
+                .clickNextButton(identificationPageCC);
+        //end
+        SiteSelectionPageCC siteSelectionPageCC = identificationPageCC
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
                         "9999999999", site.zipCode)
-                .clickNextButton(new SiteSelectionPageCC())
+                .clickNextButton(new SiteSelectionPageCC());
+        siteSelectionPageCC
                 .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnAnswer(site.name)

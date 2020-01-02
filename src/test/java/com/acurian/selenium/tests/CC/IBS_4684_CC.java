@@ -96,7 +96,7 @@ public class IBS_4684_CC extends BaseTest {
                 .waitForPageLoad()
                 .setMonth("Jan")
                 .setDay("1")
-                .setYear("2002") //Disqualify (“Age < 18 years old”) if <18
+                .setYear("2003") //Disqualify (“Age < 18 years old”) if <18
                 .clickOnAnswer("Female")
                 .clickNextButton(lessThan18YearsOldPageCC)
                 .waitForPageLoad()
@@ -694,9 +694,37 @@ public class IBS_4684_CC extends BaseTest {
                 .setAll("5", "5", "170") //Disqualify ("High BMI") if > 39
                 .clickNextButton(new LetMeSeePageCC());
 
-        IdentificationPageCC identificationPageCC = letMeSeePageCC
+        //Not Sinexus Close about drugs
+        CurrentlyParticipatingInStudy currentlyParticipatingInStudy = letMeSeePageCC
                 .waitForPageLoad()
+                .clickNextButton(new CurrentlyParticipatingInStudy());
+
+        RequirePassDrugTest requirePassDrugTest = currentlyParticipatingInStudy
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
+                .clickNextButton(new RequirePassDrugTest());
+        requirePassDrugTest
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS912", site.activeProtocols)
+                .back(currentlyParticipatingInStudy)
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(requirePassDrugTest);
+        IdentificationPageCC identificationPageCC = requirePassDrugTest
+                .waitForPageLoad()
+                .clickOnAnswer("No")
                 .clickNextButton(new IdentificationPageCC());
+        identificationPageCC
+                .waitForPageLoadNotQ()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS913", site.activeProtocols)
+                .back(requirePassDrugTest);
+        requirePassDrugTest
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
+                .clickNextButton(identificationPageCC);
+        //end
 
         SiteSelectionPageCC siteSelectionPageCC = identificationPageCC
                 .waitForPageLoad()
@@ -713,6 +741,8 @@ public class IBS_4684_CC extends BaseTest {
                         //.clickOnAnswer("No")
                         .clickNextButton(new ThankYouCloseSimplePageCC())
                         .waitForPageLoad3()
+                        .clickNextButton(new AlzheimerClosePageCC())
+                        .waitForPageLoad()
                         .clickNextButton(selectActionPageCC)
                         .waitForPageLoad()
                         .pidFromDbToLog(env)
