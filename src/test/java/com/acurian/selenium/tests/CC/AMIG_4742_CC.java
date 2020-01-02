@@ -5,9 +5,7 @@ import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.SubquestionExperiencedHeartPageCC;
 import com.acurian.selenium.pages.CC.LMG_4686.*;
 import com.acurian.selenium.pages.CC.Migraine.*;
-import com.acurian.selenium.pages.CC.closes.LessThan18YearsOldPageCC;
-import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
-import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
+import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
@@ -80,7 +78,7 @@ public class AMIG_4742_CC extends BaseTest {
         LessThan18YearsOldPageCC lessThan18YearsOldPageCC = genderPageCC
                 .setMonth("Sep")
                 .setDay("9")
-                .setYear("2002")
+                .setYear("2003")
                 .clickOnAnswer("Female")
                 .clickNextButton(new LessThan18YearsOldPageCC());
 
@@ -476,17 +474,47 @@ public class AMIG_4742_CC extends BaseTest {
                 .setAll("5", "5", "160")
                 .clickNextButton(new LetMeSeePageCC());
 
-        letMeSeePageCC
+        //Not Sinexus Close about drugs
+        CurrentlyParticipatingInStudy currentlyParticipatingInStudy = letMeSeePageCC
                 .waitForPageLoad()
-                .clickNextButton(new IdentificationPageCC())
+                .clickNextButton(new CurrentlyParticipatingInStudy());
+
+        RequirePassDrugTest requirePassDrugTest = currentlyParticipatingInStudy
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
+                .clickNextButton(new RequirePassDrugTest());
+        requirePassDrugTest
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS912", site.activeProtocols)
+                .back(currentlyParticipatingInStudy)
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(requirePassDrugTest);
+        IdentificationPageCC identificationPageCC = requirePassDrugTest
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new IdentificationPageCC());
+        identificationPageCC
+                .waitForPageLoadNotQ()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS913", site.activeProtocols)
+                .back(requirePassDrugTest);
+        requirePassDrugTest
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
+                .clickNextButton(identificationPageCC);
+        //end
+        SiteSelectionPageCC siteSelectionPageCC = identificationPageCC
                 .waitForPageLoad()
                 .setFirstName("Acurian")
                 .setLastName("Trial")
                 .setPhone("9999999999")
                 .setEmailAddress("qa.acurian@gmail.com")
                 .setZipCode(site.zipCode)
-                .clickNextButton(new SiteSelectionPageCC())
+                .clickNextButton(new SiteSelectionPageCC());
                 //----------SITE Selection Page--------------------
+        siteSelectionPageCC
                 .waitForPageLoad(studyName1)
                 .getPID()
 
