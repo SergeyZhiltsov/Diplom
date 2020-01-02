@@ -25,7 +25,7 @@ public class MainPageCC extends BasePage {
 
     @FindBy(xpath = "//button[text()='Next']")
     private WebElement nextButton;
-    @FindBy(xpath = "//*[@id='debug_pid']")
+    @FindBy(xpath = "//*[@id='debug-pid']")
     WebElement pidNumberPath;
 
     String pid;
