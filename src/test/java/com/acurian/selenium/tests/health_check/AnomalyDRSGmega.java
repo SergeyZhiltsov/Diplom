@@ -72,15 +72,16 @@ public class AnomalyDRSGmega extends BaseTest
                 .waitForPageLoad()
                 .clickOnAnswers("Rheumatoid arthritis, a serious medical condition caused by your immune system attacking your joints")
                 .clickNextButton(new DiagnosedWithRAPageOLS());
-
-        DRSBlinx dRSBlinx = diagnosedWithRAPageOLS
+            SiteSelectionPageOLS siteSelectionPageOLS = new SiteSelectionPageOLS();
+        diagnosedWithRAPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("7 - 11 months ago")
                 .clickNextButton(identificationPageOLS)
                 .waitForPageLoad2()
                 .clickNextButton(new SiteSelectionPageOLS())
                 .waitForPageLoad("Arthritis, a low back pain study, a rheumatoid arthritis (RA) study!")
-                .getPID()
+                .getPID();
+            DRSBlinx dRSBlinx = siteSelectionPageOLS
                 .clickOnFacilityName("Acurian-1234")
                 .clickNextButton(new DRSBlinx());
         dRSBlinx
@@ -91,7 +92,8 @@ public class AnomalyDRSGmega extends BaseTest
                 .waitForPageLoadClientDetails()
                 .dateCheck()
                 .startsAtCheck()
-                .serviceProviderCheck();
+                .serviceProviderCheck()
+                .getPID();
                 getDriver().quit();
         dRSBlinx
                 .convert54Cto1R(env)

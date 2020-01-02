@@ -59,15 +59,4 @@ public class SiteSelectionPageOLS extends MainPageBlinx {
         }
         return this;
     }
-
-    @Step
-    public SiteSelectionPageOLS getPID(){
-        pidNumber = getText(pidNumberPath);
-        logTextToAllure("PID = " + pidNumber);
-        PassPID.getInstance().setPidNumber(pidNumber);
-        System.out.println("PID = " + pidNumber);
-        return this;
-    }
-
-
 }
