@@ -31,6 +31,7 @@ public class MainPageBlinx extends BasePage {
     String childPid;
     String dispoParent;
     String dispoChild;
+    String pidNumber;
 
     @FindBy(xpath = "//*[@id='debug_pid']")
     WebElement pidNumberPath;
@@ -320,21 +321,21 @@ public class MainPageBlinx extends BasePage {
 
     @Step
     public MainPageBlinx getPID(){
-        pid = getText(pidNumberPath);
-        logTextToAllure("PID = " + pid);
-        PassPID.getInstance().setPidNumber(pid);
-        System.out.println("PID = " + pid);
+        pidNumber = getText(pidNumberPath);
+        logTextToAllure("PID = " + pidNumber);
+        PassPID.getInstance().setPidNumber(pidNumber);
+        System.out.println("PID = " + pidNumber);
         return this;
     }
 
     @Step
     public MainPageBlinx convert54Cto1R(String env) {
-        getDbConnection().convert54Cto1R(env, pid);
+        getDbConnection().convert54Cto1R(env, pidNumber);
         logTextToAllure("54 to 1R conversion completed");
         threadSleep(2000);
-        getDbConnection().dbReadPID(env, pid);
+        getDbConnection().dbReadPID(env, pidNumber);
         dispoParent = getDbConnection().getDispo();
-        logTextToAllure("Dispo = " + dispoParent + " for PID " + pid + "  after conversion");
+        logTextToAllure("Dispo = " + dispoParent + " for PID " + pidNumber + "  after conversion");
         return this;
     }
 
