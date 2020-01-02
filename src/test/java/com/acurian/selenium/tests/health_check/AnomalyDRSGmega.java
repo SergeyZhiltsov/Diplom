@@ -94,6 +94,7 @@ public class AnomalyDRSGmega extends BaseTest
                 .serviceProviderCheck();
             HSGeneralPageOLS hsGeneralPageOLS = new HSGeneralPageOLS();
             hsGeneralPageOLS
+                    .getPID()
                     .pidFromDbToLog(env)
                     .convert54Cto1R(env)
                     .dispoShouldMatch("1R");
