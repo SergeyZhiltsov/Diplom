@@ -104,6 +104,7 @@ public class DBConnection {
 
     public void convert54Cto1R(String environment, String pidNumber) {
         try {
+            System.out.println("12314231 "+pidNumber);
             Connection connTemp = getDbCon(environment);
             stmt = connTemp.createStatement();
             connTemp.setAutoCommit(false);
@@ -118,6 +119,7 @@ public class DBConnection {
             connTemp.setAutoCommit(true);
             System.out.println("DB dispo converted from 54C to 1R");
         } catch (SQLException e) {
+            System.out.println("dzadfasdfasdf");
             e.printStackTrace();
         } finally {
             closeResources();
