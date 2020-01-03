@@ -112,8 +112,7 @@ public class DBConnection {
             String sql = "DECLARE " +
                     "BEGIN " +
                     "cc_dev.patient_admin_pkg.fix_54C_patient('" + pidNumber + "', 1, 'R'); " +
-                    "END"+
-                    "commit;";
+                    "END";
             stmt.execute(sql);
             connTemp.commit();
             connTemp.setAutoCommit(true);
