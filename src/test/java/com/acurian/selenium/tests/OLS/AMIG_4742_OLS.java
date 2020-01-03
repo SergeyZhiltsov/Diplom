@@ -49,7 +49,7 @@ public class AMIG_4742_OLS extends BaseTest {
                 .waitForPageLoad();
         Assert.assertEquals(genderPageOLS.getTitleText(), genderPageOLS.titleExpected, "Title is diff");
         LessThan18YearsOldPageOLS lessThan18YearsOldPageOLS = genderPageOLS
-                .setDate("09092002")  //DQ if <18 and Age Unqualified close
+                .setDate("09092003")  //DQ if <18 and Age Unqualified close
                 .clickOnAnswer("Female")
                 .clickNextButton(new LessThan18YearsOldPageOLS());
 

@@ -275,7 +275,7 @@ public class DPN_5096_OLS extends BaseTest {
                 .checkProtocolsContainsForQNumber("QS5529", site.activeProtocols)
                 .back(whichBestDescribesYourDiabeticNervePainOLS)
                 .waitForPageLoad()
-                .clickOnAnswer("Noticeable dicomfort, but does not limit my activities")
+                .clickOnAnswer("Noticeable discomfort, but does not limit my activities")
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
 
 

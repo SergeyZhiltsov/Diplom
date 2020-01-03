@@ -81,7 +81,7 @@ public class CG_4960_OLS extends BaseTest {
 
         genderPageOLS
                 .waitForPageLoad()
-                .setDate("01012002") //Disqualify (“Age < 18 years old”) if <18
+                .setDate("01012003") //Disqualify (“Age < 18 years old”) if <18
                 .clickOnAnswer("Female")
                 .clickNextButton(lessThan18YearsOldPageOLS)
                 .waitForPageLoad()

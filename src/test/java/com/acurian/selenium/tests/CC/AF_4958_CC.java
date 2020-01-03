@@ -120,7 +120,7 @@ public class AF_4958_CC extends BaseTest {
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC =
                 genderPageCC
                         .waitForPageLoad()
-                        .setYear("1943") //Disqualify ("Age") if >= 76
+                        .setYear("1944") //Disqualify ("Age") if >= 76
                         .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
@@ -593,30 +593,30 @@ public class AF_4958_CC extends BaseTest {
                 .clickNextButton(new CurrentlyParticipatingInStudy());
 
         RequirePassDrugTest requirePassDrugTest = currentlyParticipatingInStudy
+//                .waitForPageLoad()
+//                .clickOnAnswer("Yes")
+//                .clickNextButton(new RequirePassDrugTest());
+//        requirePassDrugTest
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS912", site.activeProtocols)
+//                .back(currentlyParticipatingInStudy)
                 .waitForPageLoad()
-                .clickOnAnswer("Yes")
+                .clickOnAnswer("No")
                 .clickNextButton(new RequirePassDrugTest());
-        requirePassDrugTest
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS912", site.activeProtocols)
-                .back(currentlyParticipatingInStudy)
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(requirePassDrugTest);
         IdentificationPageCC identificationPageCC = requirePassDrugTest
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(new IdentificationPageCC());
-        identificationPageCC
-                .waitForPageLoadNotQ()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS913", site.activeProtocols)
-                .back(requirePassDrugTest);
-        requirePassDrugTest
+//                .waitForPageLoad()
+//                .clickOnAnswer("No")
+//                .clickNextButton(new IdentificationPageCC());
+//        identificationPageCC
+//                .waitForPageLoadNotQ()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS913", site.activeProtocols)
+//                .back(requirePassDrugTest);
+//        requirePassDrugTest
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(identificationPageCC);
+                .clickNextButton(new IdentificationPageCC());
 
 
         SiteSelectionPageCC siteSelectionPageCC = identificationPageCC

@@ -108,7 +108,7 @@ public class PSA_5071_CC extends BaseTest {
                 .waitForPageLoad()
                 .setDay("9")
                 .setMonth("Aug")
-                .setYear("2002") //Disqualify (“Age < 18 years old”) if <18
+                .setYear("2003") //Disqualify (“Age < 18 years old”) if <18
                 .clickOnAnswer("Female")
                 .clickNextButton(lessThan18YearsOldPageCC)
                 .waitForPageLoad()

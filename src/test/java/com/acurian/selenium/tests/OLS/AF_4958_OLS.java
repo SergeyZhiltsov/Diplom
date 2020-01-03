@@ -86,7 +86,7 @@ public class AF_4958_OLS extends BaseTest {
         genderPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Female")
-                .setDate("01012002")
+                .setDate("01012003")
                 .clickNextButton(lessThan18YearsOldPageOLS);
         lessThan18YearsOldPageOLS
                 .waitForPageLoad()
@@ -96,7 +96,7 @@ public class AF_4958_OLS extends BaseTest {
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS =
                 genderPageOLS
                         .waitForPageLoad()
-                        .setDate("01011943") //Disqualify ("Age") if >= 76
+                        .setDate("01011944") //Disqualify ("Age") if >= 76
                         .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()

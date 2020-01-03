@@ -310,7 +310,7 @@ public class DPN_5096_CC extends BaseTest {
                 .back(whichBestDescribesYourDiabeticNervePainCC);
         TransitionStatementCC transitionStatementCC = whichBestDescribesYourDiabeticNervePainCC
                 .waitForPageLoad()
-                .clickOnAnswer("Noticeable dicomfort, but does not limit my activities")
+                .clickOnAnswer("Noticeable discomfort, but does not limit my activities")
                 .clickNextButton(new TransitionStatementCC());
 
         transitionStatementCC

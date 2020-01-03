@@ -232,7 +232,7 @@ public class VACC_JANRSV_OLS extends BaseTest {
                 .clickNextButton(dateOfBirthPageOLS)
                 .waitForPageLoad1()
                 .clickOnAnswer("Female")
-                .setDate("01012002")
+                .setDate("01012003")
                 .clickNextButton(lessThan18YearsOldPageOLS);
         lessThan18YearsOldPageOLS
                 .waitForPageLoad()

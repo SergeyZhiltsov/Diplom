@@ -93,7 +93,7 @@ public class CV_4450_OLS extends BaseTest {
                 .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
                 .back(genderPageOLS)
                 .waitForPageLoad()
-                .setDate("01081975")//"Disqualify (“Age”) if < 45
+                .setDate("01081976")//"Disqualify (“Age”) if < 45
                 .clickNextButton(new CardiovascularDiseaseThanOthersPageOLS());
 
         cardiovascularDiseaseThanOthersPageOLS

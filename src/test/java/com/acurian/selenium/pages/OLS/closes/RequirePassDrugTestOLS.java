@@ -22,6 +22,7 @@ public class RequirePassDrugTestOLS extends MainPageOLS {
 
     @Step
     public RequirePassDrugTestOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
