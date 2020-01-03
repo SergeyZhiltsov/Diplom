@@ -33,7 +33,7 @@ public class MainPageBlinx extends BasePage {
     String dispoChild;
     String pidNumber;
 
-    @FindBy(xpath = "//*[@id='collapsedContent1']/div[1]")
+    @FindBy(xpath = "//*[@id='collapsedContent1']/div[1]/text")
     WebElement pidNumberPath;
     @FindBy(id = "submit")
     WebElement nextButton;
@@ -322,6 +322,7 @@ public class MainPageBlinx extends BasePage {
     @Step
     public MainPageBlinx getPID(){
         pidNumber = getText(pidNumberPath);
+        pidNumber = pidNumber.split(" ")[1];
         logTextToAllure("PID = " + pidNumber);
         PassPID.getInstance().setPidNumber(pidNumber);
         System.out.println("PID = " + pidNumber);

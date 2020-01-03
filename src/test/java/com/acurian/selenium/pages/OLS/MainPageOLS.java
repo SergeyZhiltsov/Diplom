@@ -232,6 +232,7 @@ public class MainPageOLS extends BasePage {
         getDbConnection().convert54Cto1R(env, pid);
         logTextToAllure("54 to 1R conversion completed");
         threadSleep(2000);
+        getDbConnection().dbReadPID(env, pid);
         dispoParent = getDbConnection().getDispo();
         logTextToAllure("Dispo = " + dispoParent + " for PID " + pid + "  after conversion");
         return this;
