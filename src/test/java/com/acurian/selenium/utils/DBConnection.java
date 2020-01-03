@@ -88,7 +88,7 @@ public class DBConnection {
     public void dbReadPID(String environment, String pidNumber) {
         try {
             stmt = getDbCon(environment).createStatement();
-            String sql = "select * from call where patient_id in ('" + pidNumber + "')";
+            String sql = "select * from call where patient_id in (" + pidNumber + ")";
             rset = stmt.executeQuery(sql);
             while (rset.next()) {
                 dispoCode = rset.getString("dispo_cd");
