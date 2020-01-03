@@ -290,7 +290,7 @@ public class Crohns_4818_CC extends BaseTest {
                 .waitForPageLoad()
                 .getPID()
                 .pidFromDbToLog(env)
-                .flareCodeShouldMatch(env, "3");
+                .flareCodeShouldMatch(env, "4");
 
 
         HashMap<String, List<String>> disqualify = new HashMap<>();
@@ -579,22 +579,8 @@ public class Crohns_4818_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickNextButton(new CurrentlyParticipatingInStudy())
                 .waitForPageLoad()
-                .clickOnAnswer("Yes")
-                .clickNextButton(new RequirePassDrugTest())
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS912", site.activeProtocols)
-                .back(new CurrentlyParticipatingInStudy())
-                .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new RequirePassDrugTest())
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(new IdentificationPageCC())
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS913", site.activeProtocols)
-                .back(new RequirePassDrugTest())
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(identificationPageCC)

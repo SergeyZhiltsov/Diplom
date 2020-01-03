@@ -714,53 +714,12 @@ public class GERD_5098_CC extends BaseTest {
                 .clickNextButton(new LetMeSeePageCC());
 
 
-        CurrentlyParticipatingInStudy currentlyParticipatingInStudy = letMeSeePageCC
+        IdentificationPageCC identificationPageCC = letMeSeePageCC
                 .waitForPageLoad()
-                .clickNextButton(new CurrentlyParticipatingInStudy());
-
-        RequirePassDrugTest requirePassDrugTest = currentlyParticipatingInStudy
-                .waitForPageLoad()
-                .clickOnAnswer("Yes")
-                .clickNextButton(new RequirePassDrugTest());
-        requirePassDrugTest
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS912", site.activeProtocols)
-                .back(currentlyParticipatingInStudy)
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(requirePassDrugTest);
-        UnqualifiedCloseCC unqualifiedCloseCC = requirePassDrugTest
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(new UnqualifiedCloseCC());
-        unqualifiedCloseCC
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS913", site.activeProtocols)
-                .back();
-        requirePassDrugTest.back();
-        IdentificationPageCC identificationPageCC = requirePassDrugTest
-                .waitForPageLoad()
-                .clickOnAnswer("Yes")
                 .clickNextButton(new CurrentlyParticipatingInStudy())
                 .waitForPageLoad()
-                .clickOnAnswer("Yes")
-                .clickNextButton(new RequirePassDrugTest())
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS912", site.activeProtocols)
-                .back(new CurrentlyParticipatingInStudy())
-                .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new RequirePassDrugTest())
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(new IdentificationPageCC())
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS913", site.activeProtocols)
-                .back(new RequirePassDrugTest())
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new IdentificationPageCC());

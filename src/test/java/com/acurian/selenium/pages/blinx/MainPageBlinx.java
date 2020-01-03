@@ -322,6 +322,7 @@ public class MainPageBlinx extends BasePage {
     @Step
     public MainPageBlinx getPID(){
         pidNumber = getText(pidNumberPath);
+        pidNumber = pidNumber.split(" ")[1];
         logTextToAllure("PID = " + pidNumber);
         PassPID.getInstance().setPidNumber(pidNumber);
         System.out.println("PID = " + pidNumber);
@@ -331,7 +332,6 @@ public class MainPageBlinx extends BasePage {
     @Step
     public MainPageBlinx convert54Cto1R(String env) {
         System.out.println("PID = " + pid);
-
         getDbConnection().convert54Cto1R(env, pid);
         logTextToAllure("54 to 1R conversion completed");
         threadSleep(2000);

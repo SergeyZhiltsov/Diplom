@@ -569,35 +569,15 @@ public class RO_7069_CC extends BaseTest {
 
 
         //Not Sinexus Close about drugs
-        CurrentlyParticipatingInStudy currentlyParticipatingInStudy = letMeSeePageCC
+        IdentificationPageCC identificationPageCC = letMeSeePageCC
                 .waitForPageLoad()
-                .clickNextButton(new CurrentlyParticipatingInStudy());
-
-        RequirePassDrugTest requirePassDrugTest = currentlyParticipatingInStudy
+                .clickNextButton(new CurrentlyParticipatingInStudy())
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new RequirePassDrugTest())
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(new RequirePassDrugTest());
-        requirePassDrugTest
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS912", site.activeProtocols)
-                .back(currentlyParticipatingInStudy)
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(requirePassDrugTest);
-        IdentificationPageCC identificationPageCC = requirePassDrugTest
-                .waitForPageLoad()
-                .clickOnAnswer("No")
                 .clickNextButton(new IdentificationPageCC());
-        identificationPageCC
-                .waitForPageLoadNotQ()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS913", site.activeProtocols)
-                .back(requirePassDrugTest);
-        requirePassDrugTest
-                .waitForPageLoad()
-                .clickOnAnswer("Yes")
-                .clickNextButton(identificationPageCC);
         //end
         SiteSelectionPageCC siteSelectionPageCC = identificationPageCC
                 .waitForPageLoad()

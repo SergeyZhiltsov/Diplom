@@ -933,33 +933,13 @@ public class SYNType_2_Diabetes_OLS extends BaseTest {
 //                .clickNextButton(new IdentificationPageOLS());
 
 
-        CurrentlyParticipatingInStudyOLS currentlyParticipatingInStudyOLS = approximateHeightPageOLS
+        IdentificationPageOLS identificationPageOLS = approximateHeightPageOLS
                 .waitForPageLoad()
                 .setAll("5", "5", "190") //BMI > 30
-                .clickNextButton(new CurrentlyParticipatingInStudyOLS());
-
-        RequirePassDrugTestOLS requirePassDrugTestOLS = currentlyParticipatingInStudyOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Yes")
-                .clickNextButton(new RequirePassDrugTestOLS());
-        requirePassDrugTestOLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS912", site.activeProtocols)
-                .back(currentlyParticipatingInStudyOLS)
+                .clickNextButton(new CurrentlyParticipatingInStudyOLS())
                 .waitForPageLoad()
                 .clickOnAnswer("No")
-                .clickNextButton(requirePassDrugTestOLS);
-        PersonalDetails personalDetails = requirePassDrugTestOLS
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(new PersonalDetails());
-        personalDetails
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS913", site.activeProtocols)
-                .back();
-        IdentificationPageOLS identificationPageOLS = requirePassDrugTestOLS
+                .clickNextButton(new RequirePassDrugTestOLS())
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new IdentificationPageOLS());
