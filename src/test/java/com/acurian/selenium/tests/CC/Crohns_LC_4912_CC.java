@@ -303,7 +303,9 @@ public class Crohns_LC_4912_CC extends BaseTest {
                 .clickOnAnswer("Yes")
                 .clickNextButton(currentlyHaveAnyFollowingCC)
                 .waitForPageLoad()
-                .flareCodeShouldMatch(env, "3");
+                .getPID()
+                .pidFromDbToLog(env)
+                .flareCodeShouldMatch(env, "4");
 
 
         HashMap<String, List<String>> disqualify = new HashMap<>();

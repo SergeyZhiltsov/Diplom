@@ -290,7 +290,7 @@ public class Crohns_4818_CC extends BaseTest {
                 .waitForPageLoad()
                 .getPID()
                 .pidFromDbToLog(env)
-                .flareCodeShouldMatch(env, "3");
+                .flareCodeShouldMatch(env, "4");
 
 
         HashMap<String, List<String>> disqualify = new HashMap<>();
