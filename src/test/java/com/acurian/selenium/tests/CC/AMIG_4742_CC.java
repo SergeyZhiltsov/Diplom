@@ -475,32 +475,13 @@ public class AMIG_4742_CC extends BaseTest {
                 .clickNextButton(new LetMeSeePageCC());
 
         //Not Sinexus Close about drugs
-        CurrentlyParticipatingInStudy currentlyParticipatingInStudy = letMeSeePageCC
+        IdentificationPageCC identificationPageCC = new IdentificationPageCC();
+        letMeSeePageCC
                 .waitForPageLoad()
-                .clickNextButton(new CurrentlyParticipatingInStudy());
-
-        RequirePassDrugTest requirePassDrugTest = currentlyParticipatingInStudy
-                .waitForPageLoad()
-                .clickOnAnswer("Yes")
-                .clickNextButton(new RequirePassDrugTest());
-        requirePassDrugTest
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS912", site.activeProtocols)
-                .back(currentlyParticipatingInStudy)
+                .clickNextButton(new CurrentlyParticipatingInStudy())
                 .waitForPageLoad()
                 .clickOnAnswer("No")
-                .clickNextButton(requirePassDrugTest);
-        IdentificationPageCC identificationPageCC = requirePassDrugTest
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(new IdentificationPageCC());
-        identificationPageCC
-                .waitForPageLoadNotQ()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS913", site.activeProtocols)
-                .back(requirePassDrugTest);
-        requirePassDrugTest
+                .clickNextButton(new RequirePassDrugTest())
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(identificationPageCC);
