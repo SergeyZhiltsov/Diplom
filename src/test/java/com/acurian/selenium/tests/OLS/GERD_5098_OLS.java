@@ -228,7 +228,11 @@ public class GERD_5098_OLS extends BaseTest {
                 .clickOnAnswers("Other surgery on my stomach, intestines, colon, or esophagus")
                 .clickNextButton(whenDidYouHaveAppendixRemoved_OLS)
                 .waitForPageLoad(1, whenDidYouHaveAppendixRemoved_OLS.titleExpected4)
-                .clickOnAnswerForSubQuestion(1, "More than 6 months ago")
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS6310", site.activeProtocols)
+                .back(whatTypeOfSurgeryDidYouHave_OLS)
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
                 .clickNextButton(weightLossSurgeryPageOLS);
 //        ProcedureForWeightLossPageOLS procedureForWeightLossPageOLS = weightLossSurgeryPageOLS
 //                .waitForPageLoad()
@@ -579,7 +583,7 @@ public class GERD_5098_OLS extends BaseTest {
                 .clickNextButton(new RequirePassDrugTestOLS())
                 .waitForPageLoad()
                 .clickOnAnswer("No")
-                .clickNextButton(new IdentificationPageOLS())
+                .clickNextButton(new UnqualifiedCloseOLS())
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS913", site.activeProtocols)

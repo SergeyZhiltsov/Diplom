@@ -850,7 +850,7 @@ public class DERM_7157_OLS extends BaseTest {
                 .pidFromDbToLog(env)
                 .childPidFromDbToLog(env)
                 .dispoShouldMatch(site.dispo, site.dispo)
-                .assertGeneratedFul(env, site)
+                .assertGeneratedFulDERM(env, site)
                 .assertRmgOrderPriority(env, "7157");
     }
 }

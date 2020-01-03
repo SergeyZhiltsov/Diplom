@@ -534,7 +534,7 @@ public class Crohns_LC_4912_OLS extends BaseTest {
                         .waitForPageLoad()
                         .pidFromDbToLog(env)
                         .childPidFromDbToLog(env)
-                        .assertGeneratedFul(env, site)
+                        .assertGeneratedFulDERM(env, site)
                         .dispoShouldMatch(site.dispo, site.dispo);
                 break;
         }

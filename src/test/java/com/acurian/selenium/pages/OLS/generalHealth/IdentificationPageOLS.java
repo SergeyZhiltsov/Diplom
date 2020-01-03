@@ -73,6 +73,7 @@ public class IdentificationPageOLS extends MainPageOLS{
 
     @Step
     public IdentificationPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

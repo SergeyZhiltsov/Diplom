@@ -61,7 +61,7 @@ public class RO_7069_OLS extends BaseTest {
 
         genderPageOLS
                 .waitForPageLoad()
-                .setDate("01012002") //Disqualify (“Age < 18 years old”) if <18
+                .setDate("01012003") //Disqualify (“Age < 18 years old”) if <18
                 .clickOnAnswer("Female")
                 .clickNextButton(lessThan18YearsOldPageOLS)
                 .waitForPageLoad()
@@ -71,7 +71,7 @@ public class RO_7069_OLS extends BaseTest {
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS =
                 genderPageOLS
                         .waitForPageLoad()
-                        .setDate("01011970") //Disqualify ("Age") if < 50
+                        .setDate("01011971") //Disqualify ("Age") if < 50
                         .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
