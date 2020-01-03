@@ -111,7 +111,7 @@ public class DBConnection {
             stmt = connTemp.createStatement();
             String sql = "DECLARE " +
                     "BEGIN " +
-                    "cc_dev.patient_admin_pkg.fix_54C_patient('" + pidNumber + "', 1, 'R'); " +
+                    "cc_dev.patient_admin_pkg.fix_54C_patient(" + pidNumber + ", 1, 'R'); " +
                     "END;";
             stmt.execute(sql);
             connTemp.commit();
