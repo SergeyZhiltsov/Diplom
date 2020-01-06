@@ -179,8 +179,8 @@ public class AMIG_4742_OLS extends BaseTest {
 
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6033", site.activeProtocols)
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QS6033", site.activeProtocols)
                 .back();
 
         //        Q8	Have you ever taken prescription medications daily to prevent migraines from starting?
@@ -189,8 +189,8 @@ public class AMIG_4742_OLS extends BaseTest {
                 .clickOnAnswer("No, never any daily medications that my doctor prescribed") //Skip to Q11 - Ghost for Preventive Medication Logic
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6033", site.activeProtocols)
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QS6033", site.activeProtocols)
                 .back();
         AreYouCurrentlyTakingPrescriptionMedicationsDailyPageOLS areYouCurrentlyTakingPrescriptionMedicationsDailyPageOLS =
         haveYouEverTakenPrescriptionMedsToPreventMigrainesFromStartingPageOLS
@@ -204,9 +204,9 @@ public class AMIG_4742_OLS extends BaseTest {
                 .clickOnAnswer("No, I used to take daily medications that my doctor prescribed, but I stopped taking them") //Skip to Q11 - Ghost for Preventive Medication Logic
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
-                .getPage(debugPageOLS)
+//                .getPage(debugPageOLS)
                 //-----------STATUS SET validation:  PATIENT_PRIORITY_YES = 8 14 -------------
-                .checkStudyStatusContainsForQNumber(env.equals("PRD") ? "13-20" : "9-16")
+//                .checkStudyStatusContainsForQNumber(env.equals("PRD") ? "13-20" : "9-16")
                 .back();
         PrescriptionMedicationsDailyToPreventMigrainesPageOLS prescriptionMedicationsDailyToPreventMigrainesPageOLS =
         areYouCurrentlyTakingPrescriptionMedicationsDailyPageOLS
@@ -223,8 +223,8 @@ public class AMIG_4742_OLS extends BaseTest {
                     .clickOnAnswer(answer)
                     .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                     .waitForPageLoad()
-                    .getPage(debugPageOLS)
-                    .checkProtocolsContainsForQNumber("QS6033", site.activeProtocols)
+//                    .getPage(debugPageOLS)
+//                    .checkProtocolsContainsForQNumber("QS6033", site.activeProtocols)
                     .back();
         }
         prescriptionMedicationsDailyToPreventMigrainesPageOLS

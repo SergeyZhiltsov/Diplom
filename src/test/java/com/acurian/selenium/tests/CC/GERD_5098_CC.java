@@ -732,10 +732,21 @@ public class GERD_5098_CC extends BaseTest {
                 .clickNextButton(new SiteSelectionPageCC());
 
 
-        siteSelectionPageCC
-                .waitForPageLoad("an indigestion, heartburn, or stomach ulcers study")
-                .getPID()
-                .clickOnAnswer(site.name);
+        switch (site) {
+            case AUT_AMS1_5098_site:
+                siteSelectionPageCC
+                        .waitForPageLoad("a heartburn or reflux study, an indigestion, heartburn, or stomach ulcers study")
+                        .getPID()
+                        .clickOnAnswer(site.name);
+                break;
+            case AUT_AMS1_5098S_site:
+                siteSelectionPageCC
+                        .waitForPageLoad("an indigestion, heartburn, or stomach ulcers study")
+                        .getPID()
+                        .clickOnAnswer(site.name);
+                break;
+        }
+
 
         switch (site) {
             case AUT_AMS1_5098_site:

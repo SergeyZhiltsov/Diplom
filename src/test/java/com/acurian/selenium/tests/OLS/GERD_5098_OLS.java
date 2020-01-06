@@ -225,11 +225,11 @@ public class GERD_5098_OLS extends BaseTest {
                 .clickNextButton(whatTypeOfSurgeryDidYouHave_OLS)
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickOnAnswers("Other surgery on my stomach, intestines, colon, or esophagus")
-                .clickNextButton(whenDidYouHaveAppendixRemoved_OLS)
-                .waitForPageLoad(1, whenDidYouHaveAppendixRemoved_OLS.titleExpected4)
-                .clickOnAnswerForSubQuestion(1, "More than 6 months ago")
                 .clickNextButton(weightLossSurgeryPageOLS);
+//                .clickOnAnswers("Other surgery on my stomach, intestines, colon, or esophagus")
+//                .clickNextButton(whenDidYouHaveAppendixRemoved_OLS)
+//                .waitForPageLoad(1, whenDidYouHaveAppendixRemoved_OLS.titleExpected4)
+//                .clickOnAnswerForSubQuestion(1, "More than 6 months ago")
 //        ProcedureForWeightLossPageOLS procedureForWeightLossPageOLS = weightLossSurgeryPageOLS
 //                .waitForPageLoad()
 //                .clickOnAnswers("Gastric bypass",
@@ -583,7 +583,7 @@ public class GERD_5098_OLS extends BaseTest {
 
         //----------SiteSelection Page--------------------
         siteSelectionPageOLS
-                .waitForPageLoad(studyName)
+                .waitForPageLoad("a heartburn or reflux study, " + studyName)
                 .getPID()
                 .clickOnFacilityName(site.name)
                 .clickNextButton(new QualifiedClose2PageOLS())

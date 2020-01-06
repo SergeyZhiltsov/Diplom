@@ -122,7 +122,7 @@ public class HFL_4722_OLS extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new ApproximateHeightPageOLS())
                 .waitForPageLoad()
-                .setAll("5", "5", "170")
+                .setAll("5", "5", "180")
                 .clickNextButton(new CurrentlyParticipatingInStudyOLS())
                 .waitForPageLoad()
                 .clickOnAnswer("No")

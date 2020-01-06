@@ -451,6 +451,8 @@ public class CV_4450_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
                 .waitForPageLoad()
+                .clickNextButton(new AlzheimerClosePageOLS())
+                .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()
                 .pidFromDbToLog(env)

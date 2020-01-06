@@ -796,14 +796,14 @@ public class DIA_4483_OLS extends BaseTest {
                 .clickNextButton(new RequirePassDrugTestOLS())
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(new IdentificationPageOLS())
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS913", site.activeProtocols)
-                .back(new RequirePassDrugTestOLS())
-                .waitForPageLoad()
-                .clickOnAnswer("Yes")
                 .clickNextButton(new IdentificationPageOLS());
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QS913", site.activeProtocols)
+//                .back(new RequirePassDrugTestOLS())
+//                .waitForPageLoad()
+//                .clickOnAnswer("Yes")
+//                .clickNextButton(new IdentificationPageOLS());
 
         identificationPageOLS
                 .waitForPageLoad()
