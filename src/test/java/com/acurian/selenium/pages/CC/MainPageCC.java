@@ -191,8 +191,8 @@ public class MainPageCC extends BasePage {
 
     @Step
     public MainPageCC flareCodeShouldMatch(String env, String statusCode) {
-        String flareStatus = getDbConnection().dbGetStatusFlare(env, childPid);
-        logTextToAllure("Flare : current status = "+ flareStatus + " for childPID " + childPid);
+        String flareStatus = getDbConnection().dbGetStatusFlare(env, pid);
+        logTextToAllure("Flare : current status = "+ flareStatus + " for childPID " + pid);
         Assert.assertEquals(flareStatus, statusCode, "Current status for Flare is diff");
         return this;
     }
