@@ -153,6 +153,15 @@ public class SiteSelectionPageOLS extends MainPageOLS{
         return this;
     }
 
+    @Step
+    public SiteSelectionPageOLS GETPIDRegex(){
+        pidNumber = getText(pidNumberPath);
+        logTextToAllure("PID = " + pidNumber);
+        PassPID.getInstance().setPidNumber(pidNumber);
+        System.out.println("PID = " + pidNumber);
+        return this;
+    }
+
     public String getPidNumber(){
         return pidNumber;
     }
