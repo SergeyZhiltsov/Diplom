@@ -846,7 +846,7 @@ public class DERM_7157_OLS extends BaseTest {
                 .assertRmgOrderPriority(env, "7157");}
         if(site.name.equals("AUT_AMS1_7157S_site")){
             aboutHealthPageOLS
-                    .assertGeneratedFul(env, site)
+                    .assertGeneratedFulRAD(env, site)
                     .assertRmgOrderPriority(env, "7157");}
     }
     }

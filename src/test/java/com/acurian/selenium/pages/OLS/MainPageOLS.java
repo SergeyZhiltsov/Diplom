@@ -186,6 +186,22 @@ public class MainPageOLS extends BasePage {
         return this;
     }
 
+    @Step
+    public MainPageOLS assertGeneratedFulRAD(String env, Site site) {
+        if (site.hasFul) {
+            String fulValueField = getDbConnection().dbReadFulValue(env, pid);
+            logTextToAllureAndConsole("Fetched DB value of FUL cell: " + fulValueField);
+            Assert.assertNotEquals(fulValueField, "", "FUL VALUE is empty string!");
+            Assert.assertNotEquals(fulValueField.toLowerCase(), "null", "FUL VALUE is null string!");
+            if (site.withMedicalRecords) {
+                Assert.assertTrue(fulValueField.contains(FULType.RADIANT.toString()),
+                        String.format("FUL VALUE contains different string. Expected [%s] but found [%s]",
+                                FULType.RADIANT.toString(), fulValueField));
+            }
+        }
+        return this;
+    }
+
 
     @Step
     public MainPageOLS assertRmgOrderPriority(String env, String projectCode) {

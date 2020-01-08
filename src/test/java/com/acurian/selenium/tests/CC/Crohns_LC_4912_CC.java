@@ -542,7 +542,7 @@ public class Crohns_LC_4912_CC extends BaseTest {
                         .waitForPageLoad()
                         .pidFromDbToLog(env)
                         .childPidFromDbToLog(env)
-                        .assertGeneratedFul(env, site)
+                        .assertGeneratedFulDERM(env, site)
                         .dispoShouldMatch(site.dispo, site.dispo);
                 break;
             case AUT_AMS1_4912_site:
@@ -562,7 +562,7 @@ public class Crohns_LC_4912_CC extends BaseTest {
                         .waitForPageLoad()
                         .pidFromDbToLog(env)
                         .childPidFromDbToLog(env)
-                        .assertGeneratedFulDERM(env, site)
+                        .assertGeneratedFul(env, site)
                         .dispoShouldMatch(site.dispo, site.dispo);
         }
     }
