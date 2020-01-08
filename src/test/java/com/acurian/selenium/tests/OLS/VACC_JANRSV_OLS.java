@@ -242,7 +242,7 @@ public class VACC_JANRSV_OLS extends BaseTest {
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS =
                 dateOfBirthPageOLS
                         .waitForPageLoad1()
-                        .setDate("01011955")
+                        .setDate("01011956")
                         .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
@@ -251,7 +251,7 @@ public class VACC_JANRSV_OLS extends BaseTest {
                 .back();
         AreYouInterestedVaccineResearchStudyOLS areYouInterestedVaccineResearchStudyOLS = dateOfBirthPageOLS
                 .waitForPageLoad1()
-                .setDate("01011954")
+                .setDate("01011955")
                 .clickNextButton(new AreYouInterestedVaccineResearchStudyOLS());
 
             AreYouGenerallyInGoodHealthOLS areYouGenerallyInGoodHealthOLS = areYouInterestedVaccineResearchStudyOLS

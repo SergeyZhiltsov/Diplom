@@ -155,7 +155,7 @@ public class DERM_7157_OLS extends BaseTest {
         }
         howMuchEczemaYouHaveOnYourBody_OLS
                 .waitForPageLoad()
-                .selectFromDropDown("21+")
+                .selectFromDropDown("20")
                 .clickNextButton(new HaveYouTriedAnyFollowingTreatmentsForEczemaPageOLS());
 
         HaveYouTriedAnyFollowingTreatmentsForEczemaPageOLS haveYouTriedAnyFollowingTreatmentsForEczemaPageOLS =
@@ -839,8 +839,14 @@ public class DERM_7157_OLS extends BaseTest {
         aboutHealthPageOLS
                 .pidFromDbToLog(env)
                 .childPidFromDbToLog(env)
-                .dispoShouldMatch(site.dispo, site.dispo)
-                .assertGeneratedFulDERM(env, site)
-                .assertRmgOrderPriority(env, "7157");
+                .dispoShouldMatch(site.dispo, site.dispo);
+                if(site.name.equals("AUT_AMS1_7157_site")){
+                    aboutHealthPageOLS
+                .assertGeneratedFulNEW(env, site)
+                .assertRmgOrderPriority(env, "7157");}
+        if(site.name.equals("AUT_AMS1_7157S_site")){
+            aboutHealthPageOLS
+                    .assertGeneratedFulRAD(env, site)
+                    .assertRmgOrderPriority(env, "7157");}
     }
-}
+    }
