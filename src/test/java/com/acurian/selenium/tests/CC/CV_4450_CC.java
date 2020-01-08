@@ -157,8 +157,7 @@ public class CV_4450_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("Type 2 diabetes (sometimes called Adult-onset diabetes)")
                 .clickNextButton(new WithType2DiabetesPageCC());
-        withType2DiabetesPageCC
-                .waitForPageLoad()
+        withType2DiabetesPageCC.waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS6704", site.activeProtocols)
                 .back();
@@ -420,6 +419,7 @@ public class CV_4450_CC extends BaseTest {
         }
         IdentificationPageCC identificationPageCC = healthcareDiagnosedConditionsPageCC
                 .waitForPageLoad()
+                .clickOnAnswers("None of the above")
                 .clickNextButton(new CurrentlyParticipatingInStudy())
                 .waitForPageLoad()
                 .clickOnAnswer("No")

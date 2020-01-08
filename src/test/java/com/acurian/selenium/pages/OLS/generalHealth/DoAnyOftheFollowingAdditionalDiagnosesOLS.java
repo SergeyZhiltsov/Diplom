@@ -21,6 +21,7 @@ public class DoAnyOftheFollowingAdditionalDiagnosesOLS extends MainPageOLS {
 
     @Step
     public DoAnyOftheFollowingAdditionalDiagnosesOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

@@ -780,16 +780,16 @@ public class DERM_7157_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(approximateHeightPageOLS);
-        approximateHeightPageOLS
+        SiteSelectionPageOLS siteSelectionPageOLS = approximateHeightPageOLS
                 .waitForPageLoad()
                 .setAll("3", "2", "33")
                 //----------PII (IdentificationPageOLS) Page--------------------
-                .clickNextButton(identificationPageOLS);
-
-        SiteSelectionPageOLS siteSelectionPageOLS = identificationPageOLS
-                .waitForPageLoad()
-//                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
-//                        "9999999999", site.zipCode)
+//                .clickNextButton(identificationPageOLS);
+//
+//        SiteSelectionPageOLS siteSelectionPageOLS = identificationPageOLS
+//                .waitForPageLoad()
+////                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
+////                        "9999999999", site.zipCode)
                 .clickNextButton(new CurrentlyParticipatingInStudyOLS())
                 .waitForPageLoad()
                 .clickOnAnswer("No")
@@ -798,6 +798,8 @@ public class DERM_7157_OLS extends BaseTest {
                 .clickOnAnswer("Yes")
                 .clickNextButton(new IdentificationPageOLS())
                 .waitForPageLoad()
+//                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
+//                        "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageOLS());
 
         MedicalRecordsOptionPageOLS medicalRecordsOptionPageOLS = siteSelectionPageOLS

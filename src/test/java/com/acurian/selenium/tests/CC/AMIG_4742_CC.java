@@ -177,8 +177,8 @@ public class AMIG_4742_CC extends BaseTest {
                         .clickNextButton(new TransitionStatementCC());
         transitionStatementCC
                 .waitForPageLoad("migraine")
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS6033", site.activeProtocols) //QS10 Ghost QS - DISQUALIFY
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS6033", site.activeProtocols) //QS10 Ghost QS - DISQUALIFY
                 .back();
         AreYouCurrentlyTakingPrescriptionMedicationsDailyPageСС areYouCurrentlyTakingPrescriptionMedicationsDailyPageСС =
                 haveYouEverTakenPrescriptionMedsToPreventMigrainesFromStartingPageСС
@@ -214,8 +214,8 @@ public class AMIG_4742_CC extends BaseTest {
                     .clickOnAnswer(answer)
                     .clickNextButton(transitionStatementCC)
                     .waitForPageLoad("migraine")
-                    .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber("QS6033", site.activeProtocols)
+//                    .getPage(debugPageCC)
+//                    .checkProtocolsContainsForQNumber("QS6033", site.activeProtocols)
                     .back();
         }
         prescriptionMedicationsDailyToPreventMigrainesPageCC

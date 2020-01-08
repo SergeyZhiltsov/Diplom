@@ -26,6 +26,7 @@ public class FollowingToLoseWeightPageCC extends MainPageCC{
 
     @Step
     public FollowingToLoseWeightPageCC waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
