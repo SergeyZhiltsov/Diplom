@@ -4,6 +4,7 @@ public enum FULType {
 
     REGULAR("followup_call_1R___1R_NULL"),
     MEDICAL_RECORD("followup_call_1R___1R_MED"),
+    MEDICAL_RECORD_NEW("followup_call_1R___1R_MED___10___OLS"),
     BUCKET("followup_call_1R___BUCKET___33___OLS"),
     RADIANT("followup_call_1R___HOLDINGBIN___5___OLS"),
     DERMCC("followup_call_1R___HOLDINGBIN___5___CALLCENTER");

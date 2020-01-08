@@ -174,7 +174,7 @@ public class DERM_7157_CC extends BaseTest {
         }
         howMuchEczemaYouHaveOnYOurBody_CC
                 .waitForPageLoad()
-                .selectFromDropDown("21+")
+                .selectFromDropDown("20")
                 .clickNextButton(new HaveYouTriedAnyFollowingTreatmentsForEczemaPageCC());
 
         HaveYouTriedAnyFollowingTreatmentsForEczemaPageCC haveYouTriedAnyFollowingTreatmentsForEczemaPageCC =
