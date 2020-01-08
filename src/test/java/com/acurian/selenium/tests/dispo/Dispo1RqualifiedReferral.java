@@ -79,7 +79,7 @@ public class Dispo1RqualifiedReferral extends BaseTest {
                 .clickNextButton(new SiteSelectionPageOLS())
                 .waitForPageLoad(env.equals("QA") ? "Arthritis,a low back pain study,a rheumatoid arthritis (RA)" :
                         "Arthritis, a low back pain study, a rheumatoid arthritis (RA)")
-                .getPID()
+                .GETPIDRegex()
                 .clickOnFacilityName(site.name)
                 .clickNextButton(new QualifiedClose2PageOLS())
                 .waitForPageLoadGMEGA()
@@ -89,6 +89,6 @@ public class Dispo1RqualifiedReferral extends BaseTest {
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
                 .dispoShouldMatch(site.dispo)
-                .childPidFromDbToLogWithCopy(env, "4835");
+                .childPidFromDbToLog(env);
     }
 }

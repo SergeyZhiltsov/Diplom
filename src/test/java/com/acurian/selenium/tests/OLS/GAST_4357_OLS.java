@@ -782,20 +782,13 @@ public class GAST_4357_OLS extends BaseTest {
                             getDriver().switchTo().window(tabs.get(1));
                             dRSBlinx
                                     .waitForPageLoadBlinx()
-                                    .clickOnBtnNoApp()
-                                    .waitForUnf()
-                                    .clickOnBtnPrev()
-                                    .waitForPageLoadBlinx()
-                                    .waitForPageLoadBlinx()
                                     .clickOnDay()
                                     .clickOnTime()
                                     .clickOnNext()
                                     .waitForPageLoadClientDetails()
                                     .dateCheck()
                                     .startsAtCheck()
-                                    .serviceProviderCheck()
-                                    .clickOnAgree()
-                                    .clickOnSendSMS();
+                                    .serviceProviderCheck();
                             getDriver().switchTo().window(tabs.get(0));
                             if (env.equals("PRD")) {
                                 directSheduleVaccOLS

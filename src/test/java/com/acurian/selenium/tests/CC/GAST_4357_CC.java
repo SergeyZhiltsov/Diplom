@@ -830,20 +830,13 @@ public class GAST_4357_CC extends BaseTest {
                     getDriver().switchTo().window(tabs.get(1));
                     dRSBlinx
                             .waitForPageLoadBlinx()
-                            .clickOnBtnNoApp()
-                            .waitForUnf()
-                            .clickOnBtnPrev()
-                            .waitForPageLoadBlinx()
-                            .waitForPageLoadBlinx()
                             .clickOnDay()
                             .clickOnTime()
                             .clickOnNext()
                             .waitForPageLoadClientDetails()
                             .dateCheck()
                             .startsAtCheck()
-                            .serviceProviderCheck()
-                            .clickOnAgree()
-                            .clickOnSendSMS();
+                            .serviceProviderCheck();
                     getDriver().switchTo().window(tabs.get(0));
                     QualifiedClose1PageCC qualifiedClose1PageCC = new QualifiedClose1PageCC();
                     SynexusRadiantDirectScheduleCC synexusRadiantDirectScheduleCC = new SynexusRadiantDirectScheduleCC();
