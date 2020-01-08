@@ -79,7 +79,7 @@ public class Dispo1RqualifiedReferral extends BaseTest {
                 .clickNextButton(new SiteSelectionPageOLS())
                 .waitForPageLoad(env.equals("QA") ? "Arthritis,a low back pain study,a rheumatoid arthritis (RA)" :
                         "Arthritis, a low back pain study, a rheumatoid arthritis (RA)")
-                .GETPIDRegex()
+                .getPID()
                 .clickOnFacilityName(site.name)
                 .clickNextButton(new QualifiedClose2PageOLS())
                 .waitForPageLoadGMEGA()
