@@ -305,7 +305,6 @@ public class MainPageOLS extends BasePage {
     @Step
     public MainPageOLS getPID(){
         pidNumber = getText(pidNumberPath);
-        pidNumber = pidNumber.split(" ")[1];
         logTextToAllure("PID = " + pidNumber);
         PassPID.getInstance().setPidNumber(pidNumber);
         System.out.println("PID = " + pidNumber);
