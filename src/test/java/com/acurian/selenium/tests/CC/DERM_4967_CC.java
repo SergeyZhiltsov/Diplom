@@ -726,7 +726,21 @@ public class DERM_4967_CC extends BaseTest {
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
+                .clickOnAnswers("Heart or circulation problems (heart attack, heart failure, stroke)")
+                .clickNextButton(haveYouEverExperiencedHeartRelatedMedicalCondCC);
+        haveYouEverExperiencedHeartRelatedMedicalCondCC
+                .waitForPageLoad()
+                .clickOnAnswers("Heart attack")
+                .clickNextButton(subquestionExperiencedHeartPageCC);
+        subquestionExperiencedHeartPageCC
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
+                .clickOnAnswerForSubQuestion(1, "Less than 30 days ago")
+                .clickNextButton(heartrelatedMedicalProceduresPageCC);
+        heartrelatedMedicalProceduresPageCC
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC);
+
         //Flow for Q2: QS38 was checked
 
         //Q24: QS59
@@ -836,10 +850,14 @@ public class DERM_4967_CC extends BaseTest {
 
         medicalRecordsOptionPageCC
                 .waitForPageLoad()
-                .clickOnAnswer("Continue without medical records")
+                .clickOnAnswer("Continue with medical records")
+                .clickNextButton(new DoctorInformationCollectionPageCC())
+                .waitForPageLoad()
+                .clickNextButton(new HSMedicalRecordsPageCC())
+                .waitForPageLoad()
                 .clickNextButton(new ThankYouCloseSimplePageCC())
                 .waitForPageLoad3()
-                .clickNextButton(selectActionPageCC)
+                .clickNextButton(new SelectActionPageCC())
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
                 .childPidFromDbToLog(env)
