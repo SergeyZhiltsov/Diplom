@@ -55,7 +55,7 @@ public class DBConnection {
         try {
             stmt = getDbCon(environment).createStatement();
             String sql = "DECLARE\n" +
-                    "    v_user_id  NUMBER :=5953; \n" +
+                    "    v_user_id  NUMBER; \n" +
                     "    v_study_id NUMBER;\n" +
                     "    v_call_id NUMBER;\n" +
                     "    v_study_group_id NUMBER;    \n" +
