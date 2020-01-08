@@ -248,7 +248,7 @@ public class VACC_JANRSV_CC extends BaseTest {
             HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC =
                     genderPageCC
                             .waitForPageLoad()
-                            .setYear("1955")
+                            .setYear("1956")
                             .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
             haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                     .waitForPageLoad()
@@ -257,7 +257,7 @@ public class VACC_JANRSV_CC extends BaseTest {
                     .back();
             AreYouInterestedVaccineResearchStudyCC areYouInterestedVaccineResearchStudyCC = genderPageCC
                     .waitForPageLoad()
-                    .setYear("1954")
+                    .setYear("1955")
                     .clickNextButton(new AreYouInterestedVaccineResearchStudyCC());
 
 
