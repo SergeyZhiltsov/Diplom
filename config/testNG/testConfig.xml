@@ -3,7 +3,7 @@
 <suite name="All" verbose="4" parallel="classes" thread-count="5">
     <test name="Regression1">
         <classes>
-            <class name="com.acurian.selenium.tests.dispo.Dispo1RqualifiedReferral"></class>
+            <class name="com.acurian.selenium.tests.health_check.BlinxGmega"></class>
         </classes>
     </test>
 </suite>

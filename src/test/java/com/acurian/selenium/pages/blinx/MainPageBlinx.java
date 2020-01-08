@@ -341,6 +341,26 @@ public class MainPageBlinx extends BasePage {
         return this;
     }
 
+    @Step
+    public MainPageBlinx copyRun(String env) {
+        getDbConnection().dbCOPYProc(env, pid);
+        //dispoParent = getDbConnection().getDispo();
+        //logTextToAllure("Parent dispo = " + dispoParent + " for PID " + pid);
+        return this;
+    }
+
+    @Step
+    public MainPageBlinx childPidFromDbToLogWithCopy(String env, String... firstPartOfChildPhoneNumber) {
+//        cpid = PassPID.getInstance().getPidNumber();
+        copyRun(env);
+        ChildResult childResult = getDbConnection().dbReadChildPID(env, pid, firstPartOfChildPhoneNumber);
+        dispoChild = childResult.getDispoCd() + childResult.getApplicantStatus();
+        childPid = childResult.getChildPid();
+        logTextToAllure("Child dispo =" + childResult.getDispoCd() + childResult.getApplicantStatus() + " for PID " + pid +
+                " with child pid = "+ childResult.getChildPid());
+        return this;
+    }
+
     public String getDispoParent() {
         return dispoParent;
     }

@@ -127,7 +127,7 @@ public class BlinxGmega extends BaseTest {
         aboutHealthPageOLS
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
-                .childPidFromDbToLog(env)
+                .childPidFromDbToLogWithCopy(env)
                 .dispoShouldMatch("1R", "1R");
 
 //        DBConnection dbConnection = new DBConnection();
