@@ -842,7 +842,7 @@ public class DERM_7157_CC extends BaseTest {
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
-                .childPidFromDbToLog(env)
+                //.childPidFromDbToLog(env)
                 .dispoShouldMatch(site.dispo, site.dispo)
                 .assertGeneratedFul(env, site)
                 .assertRmgOrderPriority(env, "7157");
@@ -860,7 +860,7 @@ public class DERM_7157_CC extends BaseTest {
                     .clickNextButton(selectActionPageCC)
                     .waitForPageLoad()
                     .pidFromDbToLog(env)
-                    .childPidFromDbToLog(env)
+                    //.childPidFromDbToLog(env)
                     .dispoShouldMatch(site.dispo, site.dispo)
                     .assertGeneratedFulDERM(env, site)
                     .assertRmgOrderPriority(env, "7157");

@@ -838,7 +838,7 @@ public class DERM_7157_OLS extends BaseTest {
         }
         aboutHealthPageOLS
                 .pidFromDbToLog(env)
-                .childPidFromDbToLog(env)
+                //.childPidFromDbToLog(env)
                 .dispoShouldMatch(site.dispo, site.dispo);
                 if(site.name.equals("AUT_AMS1_7157_site")){
                     aboutHealthPageOLS
