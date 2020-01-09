@@ -5,10 +5,6 @@
         <classes>
             <class name="com.acurian.selenium.tests.OLS.DERM_7157_OLS"></class>
             <class name="com.acurian.selenium.tests.CC.DERM_7157_CC"></class>
-            <class name="com.acurian.selenium.tests.OLS.Crohns_LC_4912_OLS"></class>
-            <class name="com.acurian.selenium.tests.CC.Crohns_LC_4912_CC"></class>
-            <class name="com.acurian.selenium.tests.CC.SYNTMigraine_CC"></class>
-            <class name="com.acurian.selenium.tests.OLS.SYNTMigraine_OLS"></class>
         </classes>
     </test>
 </suite>

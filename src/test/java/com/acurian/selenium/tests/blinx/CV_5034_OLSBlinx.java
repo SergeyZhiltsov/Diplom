@@ -455,6 +455,7 @@ public class CV_5034_OLSBlinx extends BaseTest {
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
                 .childPidFromDbToLog(env)
-                .dispoShouldMatch(site.dispo, site.dispo);
+                .dispoShouldMatch(site.dispo, site.dispo)
+                .assertRmgOrderPriority(env, "5034");
     }
 }

@@ -381,7 +381,8 @@ public class CV_5034_CC_A_S extends BaseTest {
                         .pidFromDbToLog(env)
                         .childPidFromDbToLog(env)
                         .dispoShouldMatch(site.dispo, site.dispo)
-                        .assertGeneratedFul(env, site);
+                        .assertGeneratedFul(env, site)
+                        .assertRmgOrderPriority(env, "5034");
                 break;
             case AUT_CV_5034S_site: //41C
                 doctorInformationCollectionPageCC
@@ -406,7 +407,8 @@ public class CV_5034_CC_A_S extends BaseTest {
                         .pidFromDbToLog(env)
                         .childPidFromDbToLog(env)
                         .getRadiantDbToLog(env, "5034")
-                        .dispoShouldMatch(site.dispo, site.dispo);
+                        .dispoShouldMatch(site.dispo, site.dispo)
+                        .assertRmgOrderPriority(env, "5034");
         }
     }
 }

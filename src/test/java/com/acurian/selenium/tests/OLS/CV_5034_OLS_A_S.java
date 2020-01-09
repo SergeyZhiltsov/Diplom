@@ -460,7 +460,7 @@ public class CV_5034_OLS_A_S extends BaseTest {
                 .pidFromDbToLog(env)
                 .childPidFromDbToLog(env)
                 .assertGeneratedFul(env, site)
-                .dispoShouldMatch(site.dispo, site.dispo);
-
+                .dispoShouldMatch(site.dispo, site.dispo)
+                .assertRmgOrderPriority(env, "5034");
     }
 }
