@@ -32,7 +32,7 @@ public class ServerStatusCC extends BaseTest {
     }
 
     @Test(dataProvider = "testData")
-    public void healthCheckConnectivity(String testURL, String serverName) {
+    public void healthCheckConnectivityCC(String testURL, String serverName) {
         DebugPageCC debugPageCC = new DebugPageCC();
         LoginPageCC loginPageCC = new LoginPageCC();
         CallCenterIntroductionPageCC callCenterIntroductionPageCC = new CallCenterIntroductionPageCC();

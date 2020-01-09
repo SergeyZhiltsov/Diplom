@@ -34,7 +34,7 @@ public class ServerStatusOLS extends BaseTest {
     }
 
     @Test(dataProvider = "testData")
-    public void healthCheckConnectivity(String testURL, String serverName) {
+    public void healthCheckConnectivityOLS(String testURL, String serverName) {
         DebugPageOLS debugPageOLS = new DebugPageOLS();
         MainPageOLS mainPageOLS = new MainPageOLS();
         ServerStatusStartPageOLS serverStatusStartPageOLS = new ServerStatusStartPageOLS();
