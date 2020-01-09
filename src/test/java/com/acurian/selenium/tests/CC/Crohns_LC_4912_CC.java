@@ -36,7 +36,7 @@ public class Crohns_LC_4912_CC extends BaseTest {
     @DataProvider
     public Object[][] sites() {
         return new Object[][]{
-                {Site.AUT_AMS1_4912_site},
+//                {Site.AUT_AMS1_4912_site},
                 {Site.AUT_AMS1_4912S_site}
         };
     }

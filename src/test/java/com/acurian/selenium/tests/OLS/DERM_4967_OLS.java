@@ -717,6 +717,20 @@ public class DERM_4967_OLS extends BaseTest {
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
+                .clickOnAnswers("Heart or circulation problems (heart attack, heart failure, stroke)")
+                .clickNextButton(haveYouEverExperiencedHeartRelatedMedicalCondOLS);
+        haveYouEverExperiencedHeartRelatedMedicalCondOLS
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Heart attack")
+                .clickNextButton(subquestionExperiencedHeartPageOLS);
+        subquestionExperiencedHeartPageOLS
+                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
+                .clickOnAnswerForSubQuestion(1, "Less than 30 days ago")
+                .clickNextButton(heartrelatedMedicalProceduresPageOLS);
+        heartrelatedMedicalProceduresPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS);
         //Q24: QS59
         ApproximateHeightPageOLS approximateHeightPageOLS = doAnyOftheFollowingAdditionalDiagnosesOLS

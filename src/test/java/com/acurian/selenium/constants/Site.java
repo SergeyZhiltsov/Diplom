@@ -163,8 +163,11 @@ public enum Site {
     AUT_DPN_5096_site("AUT_AMS1_5096_site", "08204", "1R", true, false),
     AUT_DPN_5096S_site("AUT_AMS1_5096S_site", "19422", "41C", true, false),
     AUT_AMS1_7191_site("AUT_AMS1_7191_site", "19422", "1R", true, true, "INCB_39110_210"),
-    AUT_AMS1_7191S_site("AUT_AMS1_7191S_site", "08204", "41C", true, true,"INCB_39110_210" )
-        ;
+    AUT_AMS1_7191S_site("AUT_AMS1_7191S_site", "08204", "41C", true, true,"INCB_39110_210"),
+    //UC release 88.0
+    AUT_AMS1_BI_UC_site("AUT_AMS1_BI_UC_site", "19422", "1R", true, true, "1368_0005"),
+    AUT_AMS1_BI_UCS_site("AUT_AMS1_BI_UCS_site", "19044", "41C", true, true, "1368_0005");
+
 
 
 
