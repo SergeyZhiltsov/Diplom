@@ -45,7 +45,7 @@ public class Crohns_4818_OLS extends BaseTest {
     @Test(dataProvider = "flare")
     @Description("Crohns_4818_OLS")
     public void Crohns_4818_OLS(boolean flare) {
-        Site site = Site.AUT_AMS1_4818_Site;
+        Site site = Site.AUT_AMS1_4818A_Site;
         String phoneNumber = "AUTAMS1CRN";
         String studyName = "a Crohn's";
         String site_Indication = "a Crohn's or colitis";
@@ -68,7 +68,7 @@ public class Crohns_4818_OLS extends BaseTest {
                 .waitForPageLoad();
         DebugPageOLS debugPageOLS = new DebugPageOLS();
         lessThan18YearsOldPage_OLS.getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols[1])
+                .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
                 .back();
         dateOfBirthPageOLS
                 .waitForPageLoad("a Crohn's study", "700");
@@ -92,7 +92,7 @@ public class Crohns_4818_OLS extends BaseTest {
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols[1])
+                .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
                 .back(genderPageOLS);
 
         genderPageOLS
@@ -109,7 +109,7 @@ public class Crohns_4818_OLS extends BaseTest {
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS8102", site.activeProtocols[1])
+                .checkProtocolsContainsForQNumber("QS8102", site.activeProtocols)
                 .back();
         WhenDiagnosedWithCronsDiseaseOLS whenDiagnosedWithCronsDiseaseOLS = everDiagnosedWithFollowingConditionsOLS
                 .waitForPageLoad()
@@ -122,7 +122,7 @@ public class Crohns_4818_OLS extends BaseTest {
                 .clickNextButton(new AsPartOfYourCronsDiseaseDiagnosisFollowingProceduresOLS())
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS8103", site.activeProtocols[1])
+                .checkProtocolsContainsForQNumber("QS8103", site.activeProtocols)
                 .back(whenDiagnosedWithCronsDiseaseOLS)
                 .waitForPageLoad()
                 .clickOnAnswer("3 – 6 months ago")
@@ -132,7 +132,7 @@ public class Crohns_4818_OLS extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new EverTakenAnyMedicationOLS())
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS8104", site.activeProtocols[1])
+                .checkProtocolsContainsForQNumber("QS8104", site.activeProtocols)
                 .back(asPartOfYourCronsDiseaseDiagnosisFollowingProceduresOLS)
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
@@ -144,7 +144,7 @@ public class Crohns_4818_OLS extends BaseTest {
                 .clickNextButton(new PreviousDayGeneralWellBeingOLS())
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS8105", site.activeProtocols[1])
+                .checkProtocolsContainsForQNumber("QS8105", site.activeProtocols)
                 .back(everTakenAnyMedicationOLS)
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
@@ -167,7 +167,7 @@ public class Crohns_4818_OLS extends BaseTest {
                 .clickNextButton(new PreviousDayGeneralWellBeingOLS())
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS8110", site.activeProtocols[1])
+                .checkProtocolsContainsForQNumber("QS8110", site.activeProtocols)
                 .back(biologicMedications)
                 .waitForPageLoad()
                 .back(everTreatedYourCronsOLS)
@@ -257,12 +257,12 @@ public class Crohns_4818_OLS extends BaseTest {
 
 
         HashMap<String, List<String>> disqualify = new HashMap<>();
-        disqualify.put("History of a bowel resection within the past 3 months", Arrays.asList(site.activeProtocols[1]));
-        disqualify.put("Colostomy", Arrays.asList(site.activeProtocols[1]));
-        disqualify.put("Ileostomy", Arrays.asList(site.activeProtocols[1]));
-        disqualify.put("A planned or scheduled surgery for Crohn’s disease", Arrays.asList(site.activeProtocols[1]));
-        disqualify.put("Feeding tube", Arrays.asList(site.activeProtocols[1]));
-        disqualify.put("IV (parenteral) nutrition", Arrays.asList(site.activeProtocols[1]));
+        disqualify.put("History of a bowel resection within the past 3 months", Arrays.asList(site.activeProtocols));
+        disqualify.put("Colostomy", Arrays.asList(site.activeProtocols));
+        disqualify.put("Ileostomy", Arrays.asList(site.activeProtocols));
+        disqualify.put("A planned or scheduled surgery for Crohn’s disease", Arrays.asList(site.activeProtocols));
+        disqualify.put("Feeding tube", Arrays.asList(site.activeProtocols));
+        disqualify.put("IV (parenteral) nutrition", Arrays.asList(site.activeProtocols));
         for (Map.Entry<String, List<String>> entry : disqualify.entrySet()) {
             System.out.println(entry.getKey());
             currentlyHaveAnyFollowingOLS
@@ -272,7 +272,7 @@ public class Crohns_4818_OLS extends BaseTest {
                     .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
-                    .checkProtocolsContainsForQNumber("QS8117", site.activeProtocols[1])
+                    .checkProtocolsContainsForQNumber("QS8117", site.activeProtocols)
                     .back();
         }
         currentlyHaveAnyFollowingOLS
@@ -314,7 +314,7 @@ public class Crohns_4818_OLS extends BaseTest {
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS42", site.activeProtocols[1])
+                .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
                 .back();
         whenDiagnosedWithCancerOLS
                 .waitForPageLoad()
@@ -322,7 +322,7 @@ public class Crohns_4818_OLS extends BaseTest {
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS42", site.activeProtocols[1])
+                .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
                 .back();
         whenDiagnosedWithCancerOLS
                 .waitForPageLoad()
@@ -337,7 +337,7 @@ public class Crohns_4818_OLS extends BaseTest {
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS42", site.activeProtocols[1])
+                .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
                 .back();
         whenDiagnosedWithCancerOLS
                 .back();
@@ -360,7 +360,7 @@ public class Crohns_4818_OLS extends BaseTest {
         haveYouUndergoneAnyOfFollowingHeartRelatedProcOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols[1])
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad()
@@ -368,7 +368,7 @@ public class Crohns_4818_OLS extends BaseTest {
                 .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols[1])
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad()
@@ -376,7 +376,7 @@ public class Crohns_4818_OLS extends BaseTest {
                 .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols[1])
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
         subquestionExperiencedHeartPageOLS.back();
 
@@ -391,7 +391,7 @@ public class Crohns_4818_OLS extends BaseTest {
                 .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols[1])
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected2)
@@ -399,7 +399,7 @@ public class Crohns_4818_OLS extends BaseTest {
                 .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols[1])
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected2)
@@ -407,7 +407,7 @@ public class Crohns_4818_OLS extends BaseTest {
                 .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols[1])
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
         subquestionExperiencedHeartPageOLS.back();
 
@@ -422,7 +422,7 @@ public class Crohns_4818_OLS extends BaseTest {
                 .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols[1])
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected3)
@@ -430,7 +430,7 @@ public class Crohns_4818_OLS extends BaseTest {
                 .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols[1])
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected3)
@@ -438,7 +438,7 @@ public class Crohns_4818_OLS extends BaseTest {
                 .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols[1])
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
         subquestionExperiencedHeartPageOLS.back();
 
@@ -453,7 +453,7 @@ public class Crohns_4818_OLS extends BaseTest {
                 .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols[1])
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected4)
@@ -461,7 +461,7 @@ public class Crohns_4818_OLS extends BaseTest {
                 .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols[1])
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected4)
@@ -469,7 +469,7 @@ public class Crohns_4818_OLS extends BaseTest {
                 .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols[1])
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
         subquestionExperiencedHeartPageOLS.back();
         haveYouEverExperiencedHeartRelatedMedicalCondOLS.back();
@@ -486,7 +486,7 @@ public class Crohns_4818_OLS extends BaseTest {
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS51", site.activeProtocols[1])
+                .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
                 .back();
         kidneyProblemsPage
                 .waitForPageLoad()
@@ -495,7 +495,7 @@ public class Crohns_4818_OLS extends BaseTest {
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS51", site.activeProtocols[1])
+                .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
                 .back();
         kidneyProblemsPage
                 .waitForPageLoad()
@@ -520,7 +520,7 @@ public class Crohns_4818_OLS extends BaseTest {
                     .clickNextButton(approximateHeightPageOLS)
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
-                    .checkProtocolsContainsForQNumber("QS59", site.activeProtocols[1])
+                    .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
                     .back();
         }
         doAnyOftheFollowingAdditionalDiagnosesOLS
@@ -529,7 +529,7 @@ public class Crohns_4818_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS61", site.activeProtocols[1])
+                .checkProtocolsContainsForQNumber("QS61", site.activeProtocols)
                 .back(doAnyOftheFollowingAdditionalDiagnosesOLS)
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")

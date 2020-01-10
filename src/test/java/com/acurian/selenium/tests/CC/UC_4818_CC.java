@@ -45,7 +45,7 @@ public class UC_4818_CC extends BaseTest {
     @Test(dataProvider = "flare")
     @Description("4818UC")
     public void uc4818CCTest(boolean flare) {
-        Site site = Site.AUT_AMS1_4818_Site;
+        Site site = Site.AUT_AMS1_4818UC_Site;
         String phoneNumber = "AUTAMS1UC1";
 
         String env = System.getProperty("acurian.env", "STG");
@@ -90,7 +90,7 @@ public class UC_4818_CC extends BaseTest {
         doesNotGivePermissionToProceedClosePageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols[0])
+                .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
                 .back();
         LessThan18YearsOldPageCC lessThan18YearsOldPageCC = dateOfBirthPageCC
                 .waitForPageLoad("a colitis study", "300")
@@ -99,7 +99,7 @@ public class UC_4818_CC extends BaseTest {
         lessThan18YearsOldPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols[0])
+                .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
                 .back();
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
                 .waitForPageLoad("a colitis study", "300")
@@ -120,7 +120,7 @@ public class UC_4818_CC extends BaseTest {
                 .clickNextButton(lessThan18YearsOldPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols[0])
+                .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
                 .back();
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC =
                 genderPageCC
@@ -130,7 +130,7 @@ public class UC_4818_CC extends BaseTest {
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols[0])
+                .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
                 .back(genderPageCC);
         DiagnosedWithCrohnsPageCC diagnosedWithCrohnsPageCC = genderPageCC
                 .waitForPageLoad()
@@ -144,7 +144,7 @@ public class UC_4818_CC extends BaseTest {
         nonQRtransitionPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS8202", site.activeProtocols[0])
+                .checkProtocolsContainsForQNumber("QS8202", site.activeProtocols)
                 .back();
         WhenDiagnosedCrohnsPageCC whenDiagnosedCrohnsPageCC = diagnosedWithCrohnsPageCC
                 .waitForPageLoad()
@@ -154,7 +154,7 @@ public class UC_4818_CC extends BaseTest {
         whenDiagnosedCrohnsPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS8202", site.activeProtocols[0])
+                .checkProtocolsContainsForQNumber("QS8202", site.activeProtocols)
                 .back(diagnosedWithCrohnsPageCC);
 
         WhenWereYouDiagnosedWithUCPageCC whenWereYouDiagnosedWithUCPageCC = diagnosedWithCrohnsPageCC
@@ -173,7 +173,7 @@ public class UC_4818_CC extends BaseTest {
         asPartOfYourUCDiagnosisHaveYouHadFollowingProceduresDonePageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS8203", site.activeProtocols[0])
+                .checkProtocolsContainsForQNumber("QS8203", site.activeProtocols)
                 .back(whenWereYouDiagnosedWithUCPageCC)
                 .waitForPageLoad()
                 .clickOnAnswer("3 – 6 months ago")
@@ -189,7 +189,7 @@ public class UC_4818_CC extends BaseTest {
         haveYouEverTakenAnyMedicationsToTreatYourUCPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS8204", site.activeProtocols[0])
+                .checkProtocolsContainsForQNumber("QS8204", site.activeProtocols)
                 .back(asPartOfYourUCDiagnosisHaveYouHadFollowingProceduresDonePageCC);
 
         asPartOfYourUCDiagnosisHaveYouHadFollowingProceduresDonePageCC
@@ -209,7 +209,7 @@ public class UC_4818_CC extends BaseTest {
         HaveYourEverTakenSteroidMedicationsForYourUCPageCC haveYourEverTakenSteroidMedicationsForYourUCPageCC =
                 howManyBowelMovementsDidYouHaveDuringTheDayPageCC
                         .getPage(debugPageCC)
-                        .checkProtocolsContainsForQNumber("QS8205", site.activeProtocols[0])
+                        .checkProtocolsContainsForQNumber("QS8205", site.activeProtocols)
                         .back(haveYouEverTakenAnyMedicationsToTreatYourUCPageCC)
                         .clickOnAnswer("Yes")
                         .clickNextButton(new HaveYourEverTakenSteroidMedicationsForYourUCPageCC());
@@ -300,7 +300,7 @@ public class UC_4818_CC extends BaseTest {
         howManyBowelMovementsDidYouHaveDuringTheDayPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)//Ghost Question -  IBD Module Full Flow Treatment History Requirement Logic
-                .checkProtocolsContainsForQNumber("QS8210", site.activeProtocols[0])
+                .checkProtocolsContainsForQNumber("QS8210", site.activeProtocols)
                 .back(biologicMedicationsPageCC)
                 .waitForPageLoad()
                 .back(haveYouEverTreatedYourUCWithMedsThatSuppressYourImmuneSystemPageCC);
@@ -368,10 +368,10 @@ public class UC_4818_CC extends BaseTest {
 //Q18 - Do you currently have any of the following?
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC();
         HashMap<String, List<String>> disqualifyQ18 = new HashMap<>();
-        disqualifyQ18.put("History of a bowel resection within the past 3 months", Arrays.asList(site.activeProtocols[0])); //Disqualify (“Crohn’s complication or surgery”)
-        disqualifyQ18.put("Ileostomy", Arrays.asList(site.activeProtocols[0]));
-        disqualifyQ18.put("Feeding tube", Arrays.asList(site.activeProtocols[0]));
-        disqualifyQ18.put("IV (parenteral) nutrition (Agent Note: puh-REN-ter-ul)", Arrays.asList(site.activeProtocols[0]));
+        disqualifyQ18.put("History of a bowel resection within the past 3 months", Arrays.asList(site.activeProtocols)); //Disqualify (“Crohn’s complication or surgery”)
+        disqualifyQ18.put("Ileostomy", Arrays.asList(site.activeProtocols));
+        disqualifyQ18.put("Feeding tube", Arrays.asList(site.activeProtocols));
+        disqualifyQ18.put("IV (parenteral) nutrition (Agent Note: puh-REN-ter-ul)", Arrays.asList(site.activeProtocols));
 
         HashSet<String> disqualify7191 = new HashSet<>(); //options that cause DQ 7191->skip to end of module
         disqualify7191.add("Partial or Total colectomy");
@@ -394,14 +394,14 @@ public class UC_4818_CC extends BaseTest {
                         .clickNextButton(transitionStatementCC)
                         .waitForPageLoadWithCurves("colitis")
                         .getPage(debugPageCC)
-                        .checkProtocolsContainsForQNumber("Q0020441-QS8218-STUDYQUES", site.activeProtocols[0])
+                        .checkProtocolsContainsForQNumber("Q0020441-QS8218-STUDYQUES", site.activeProtocols)
                         .back();
             } else {
                 currentlyHaveAnyOffFollowingPageCC
                         .clickNextButton(weightLossSurgeryPageCC)
                         .waitForPageLoad()
                         .getPage(debugPageCC)
-                        .checkProtocolsContainsForQNumber("Q0020441-QS8218-STUDYQUES", site.activeProtocols[0])
+                        .checkProtocolsContainsForQNumber("Q0020441-QS8218-STUDYQUES", site.activeProtocols)
                         .back();
             }
         }
@@ -507,7 +507,7 @@ public class UC_4818_CC extends BaseTest {
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS42", site.activeProtocols[0])
+                .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
                 .back();
 
         whenDiagnosedWithCancerCC
@@ -515,14 +515,14 @@ public class UC_4818_CC extends BaseTest {
                 .clickOnAnswer("6 - 10 years ago")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
                 .back();
-        //debugPageCC.checkProtocolsContainsForQNumber("QS42", site.activeProtocols[0]);
+        //debugPageCC.checkProtocolsContainsForQNumber("QS42", site.activeProtocols);
         whenDiagnosedWithCancerCC
                 .waitForPageLoad()
                 .clickOnAnswer("11 or more years ago")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS42", site.activeProtocols[0])
+                .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
                 .back();
         whenDiagnosedWithCancerCC
                 .back();
@@ -545,7 +545,7 @@ public class UC_4818_CC extends BaseTest {
         heartrelatedMedicalProceduresPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols[0])
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad()
@@ -553,7 +553,7 @@ public class UC_4818_CC extends BaseTest {
                 .clickNextButton(heartrelatedMedicalProceduresPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols[0])
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad()
@@ -561,7 +561,7 @@ public class UC_4818_CC extends BaseTest {
                 .clickNextButton(heartrelatedMedicalProceduresPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols[0])
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
         subquestionExperiencedHeartPageCC.back();
 
@@ -576,7 +576,7 @@ public class UC_4818_CC extends BaseTest {
                 .clickNextButton(heartrelatedMedicalProceduresPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols[0])
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected2)
@@ -584,7 +584,7 @@ public class UC_4818_CC extends BaseTest {
                 .clickNextButton(heartrelatedMedicalProceduresPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols[0])
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected2)
@@ -592,7 +592,7 @@ public class UC_4818_CC extends BaseTest {
                 .clickNextButton(heartrelatedMedicalProceduresPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols[0])
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
         subquestionExperiencedHeartPageCC.back();
 
@@ -607,7 +607,7 @@ public class UC_4818_CC extends BaseTest {
                 .clickNextButton(heartrelatedMedicalProceduresPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols[0])
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected3)
@@ -615,7 +615,7 @@ public class UC_4818_CC extends BaseTest {
                 .clickNextButton(heartrelatedMedicalProceduresPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols[0])
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected3)
@@ -623,7 +623,7 @@ public class UC_4818_CC extends BaseTest {
                 .clickNextButton(heartrelatedMedicalProceduresPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols[0])
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
         subquestionExperiencedHeartPageCC.back();
 
@@ -638,7 +638,7 @@ public class UC_4818_CC extends BaseTest {
                 .clickNextButton(heartrelatedMedicalProceduresPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols[0])
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected4)
@@ -646,7 +646,7 @@ public class UC_4818_CC extends BaseTest {
                 .clickNextButton(heartrelatedMedicalProceduresPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols[0])
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected4)
@@ -654,7 +654,7 @@ public class UC_4818_CC extends BaseTest {
                 .clickNextButton(heartrelatedMedicalProceduresPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols[0])
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
         subquestionExperiencedHeartPageCC.back();
         haveYouEverExperiencedHeartRelatedMedicalCondCC.back();
@@ -671,7 +671,7 @@ public class UC_4818_CC extends BaseTest {
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS51", site.activeProtocols[0])
+                .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
                 .back();
         whichOfTheFollowingHaveRequiredForKidneyDiseaseCC
                 .waitForPageLoad()
@@ -680,7 +680,7 @@ public class UC_4818_CC extends BaseTest {
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS51", site.activeProtocols[0])
+                .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
                 .back();
         whichOfTheFollowingHaveRequiredForKidneyDiseaseCC
                 .waitForPageLoad()
@@ -703,7 +703,7 @@ public class UC_4818_CC extends BaseTest {
                     .clickNextButton(approximateHeightPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber("QS59", site.activeProtocols[0])
+                    .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
                     .back();
         }
         doAnyOftheFollowingAdditionalDiagnosesCC
@@ -712,7 +712,7 @@ public class UC_4818_CC extends BaseTest {
                 .clickNextButton(approximateHeightPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS61", site.activeProtocols[0])
+                .checkProtocolsContainsForQNumber("QS61", site.activeProtocols)
                 .back(doAnyOftheFollowingAdditionalDiagnosesCC)
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")

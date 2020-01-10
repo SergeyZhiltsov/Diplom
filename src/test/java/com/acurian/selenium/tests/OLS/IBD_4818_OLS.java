@@ -47,7 +47,7 @@ public class IBD_4818_OLS extends BaseTest {
     @Test(dataProvider = "flare", enabled = false)
     @Description("IBD_3889_OLS")
     public void ibd4818OlsTest(boolean flare) {
-        Site site = Site.AUT_AMS1_4818_Site;
+        Site site = Site.AUT_AMS1_4818AS_Site;
         String phoneNumber = "AUTAMS1IBD";
         String studyName = "a Crohn's";
         String site_Indication = "a Crohn's or colitis";
