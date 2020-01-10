@@ -730,6 +730,7 @@ public class DERM_4967_CC extends BaseTest {
                 .clickNextButton(haveYouEverExperiencedHeartRelatedMedicalCondCC);
         haveYouEverExperiencedHeartRelatedMedicalCondCC
                 .waitForPageLoad()
+                .clickOnAnswers("None of the above")
                 .clickOnAnswers("Heart attack")
                 .clickNextButton(subquestionExperiencedHeartPageCC);
         subquestionExperiencedHeartPageCC
