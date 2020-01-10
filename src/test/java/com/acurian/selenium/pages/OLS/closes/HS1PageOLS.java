@@ -34,7 +34,7 @@ public class HS1PageOLS extends MainPageOLS {
     @FindBy (xpath = "//div[@class = 'm-signature-document-field signature'] | //*[@id='page-1']/div[6]/div/div[1]")
     WebElement clickToSignButton;
 
-    @FindBy(xpath = "//div[@class='m-sign-modal-popup']//div[@class='m-sign-modal--menu']//span[text()='Type it in'] | //*[@id='signer-mobile-body']/div[4]/div/div/div/div[1]/div[3]/span[2]")
+    @FindBy(xpath = "//div[@class='m-sign-modal-popup']//div[@class='m-sign-modal--menu']//span[text()='Type it in'] | //*[@id='signer-mobile-body']/div[4]/div/div/div/div[1]/div[3]/span[2] | //*[@id='signer-mobile-body']/div[2]/div/div/div/div[1]/div[3]/span[2]")
     WebElement typeItInButton;
 
     @FindBy(xpath = "//button[@id='insertButton']")
