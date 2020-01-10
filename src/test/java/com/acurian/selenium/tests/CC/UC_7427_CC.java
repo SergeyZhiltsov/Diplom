@@ -45,7 +45,7 @@ public class UC_7427_CC extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "sites")
+    @Test(dataProvider = "sites", enabled = false)
     @Description("Boehringer_Ingelheim_UC_S00472(7427)")
     public void UC_BI_7427_CC(Site site) {
 

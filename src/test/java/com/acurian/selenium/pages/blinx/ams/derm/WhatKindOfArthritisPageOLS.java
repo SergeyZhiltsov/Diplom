@@ -27,6 +27,7 @@ public class WhatKindOfArthritisPageOLS extends MainPageBlinx {
 
     @Step
     public WhatKindOfArthritisPageOLS clickOnAnswers(String... answerText) {
+        waitForAnimation();
         clickOnCheckBoxes(checkBoxList, answerText);
         return this;
     }
