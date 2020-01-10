@@ -395,8 +395,15 @@ public class Crohns_LC_4912_OLS extends BaseTest {
                 .checkProtocolsContainsForQNumber("QS53", site.activeProtocols)
                 .back(new FollowingMentalEmotionalHealthPageOLS())
                 .waitForPageLoad()
-                .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
+                .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
+        WhenDiagnosedWithCancerOLS whenDiagnosedWithCancerOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+                .waitForPageLoad()
                 .clickOnAnswers("None of the above")
+                .clickOnAnswers("Cancer")
+                .clickNextButton(new WhenDiagnosedWithCancerOLS());
+        whenDiagnosedWithCancerOLS
+                .waitForPageLoad()
+                .clickOnAnswer("6 - 10 years ago")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS);
 
         doAnyOftheFollowingAdditionalDiagnosesOLS

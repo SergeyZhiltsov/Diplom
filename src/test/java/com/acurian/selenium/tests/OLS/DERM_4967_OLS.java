@@ -796,20 +796,21 @@ public class DERM_4967_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(approximateHeightPageOLS);
-        CurrentlyParticipatingInStudyOLS currentlyParticipatingInStudyOLS = approximateHeightPageOLS
+        DoYouExperienceAnyOfFollowingSymptoms_OLS DoYouExperienceAnyOfFollowingSymptoms_OLS = approximateHeightPageOLS
                 .waitForPageLoad()
                 .setAll("3", "2", "32")  //Disqualify (Low BMI) if < 16
-                .clickNextButton(new CurrentlyParticipatingInStudyOLS());
-        currentlyParticipatingInStudyOLS
+                .clickNextButton(new DoYouExperienceAnyOfFollowingSymptoms_OLS());
+        DoYouExperienceAnyOfFollowingSymptoms_OLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
                 .back(approximateHeightPageOLS);
-        approximateHeightPageOLS
+        CurrentlyParticipatingInStudyOLS currentlyParticipatingInStudyOLS = approximateHeightPageOLS
                 .waitForPageLoad()
                 .setAll("3", "2", "33")
                 //----------PII (IdentificationPageOLS) Page--------------------
-                .clickNextButton(currentlyParticipatingInStudyOLS)
+                .clickNextButton(new CurrentlyParticipatingInStudyOLS());
+        currentlyParticipatingInStudyOLS
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new RequirePassDrugTestOLS())

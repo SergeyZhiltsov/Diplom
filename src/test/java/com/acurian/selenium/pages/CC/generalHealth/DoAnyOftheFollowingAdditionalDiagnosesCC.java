@@ -27,6 +27,7 @@ public class DoAnyOftheFollowingAdditionalDiagnosesCC extends MainPageCC {
 
     @Step
     public DoAnyOftheFollowingAdditionalDiagnosesCC waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

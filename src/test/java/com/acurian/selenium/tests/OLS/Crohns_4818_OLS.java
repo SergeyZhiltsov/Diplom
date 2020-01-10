@@ -533,6 +533,7 @@ public class Crohns_4818_OLS extends BaseTest {
                 .back(doAnyOftheFollowingAdditionalDiagnosesOLS)
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
+                .clickOnAnswers("Schizophrenia")
                 .clickNextButton(approximateHeightPageOLS);
 
 

@@ -3,6 +3,7 @@ package com.acurian.selenium.tests.CC;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.Crohns.EverDiagnosedWithFollowingConditionsСС;
+import com.acurian.selenium.pages.CC.Diabetes_4356A.WhatKindOfDiabetesPageCC;
 import com.acurian.selenium.pages.CC.GERD.*;
 import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
@@ -663,9 +664,15 @@ public class GERD_5098_CC extends BaseTest {
         }
         followingMentalEmotionalHealthPageCC
                 .waitForPageLoad()
-                .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC)
+                .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC);
+        WhatKindOfDiabetesPageCC whatKindOfDiabetesPageCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
+                .clickOnAnswers("Diabetes (type 1 or type 2)")
+                .clickNextButton(new WhatKindOfDiabetesPageCC());
+        whatKindOfDiabetesPageCC
+                .waitForPageLoad()
+                .clickOnAnswer("Type 1 diabetes (sometimes called Juvenile diabetes)")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC);
 
 
@@ -731,22 +738,10 @@ public class GERD_5098_CC extends BaseTest {
                         "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageCC());
 
-
-        switch (site) {
-            case AUT_AMS1_5098_site:
-                siteSelectionPageCC
-                        .waitForPageLoad("a heartburn or reflux study, an indigestion, heartburn, or stomach ulcers study")
-                        .getPID()
-                        .clickOnAnswer(site.name);
-                break;
-            case AUT_AMS1_5098S_site:
                 siteSelectionPageCC
                         .waitForPageLoad("an indigestion, heartburn, or stomach ulcers study")
                         .getPID()
                         .clickOnAnswer(site.name);
-                break;
-        }
-
 
         switch (site) {
             case AUT_AMS1_5098_site:
