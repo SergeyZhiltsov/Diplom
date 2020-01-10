@@ -45,7 +45,7 @@ public class IBD_4818_CC_UC extends BaseTest {
     @Test(dataProvider = "flare", enabled = false)
     @Description("IBD 4818 for CC Allergan UC")
     public void IBD_4818_CCTest(boolean flare) {
-        Site site = Site.AUT_AMS1_4818_Site;
+        Site site = Site.AUT_AMS1_4818AS_Site;
         String phoneNumber = "AUTAMS1IBD";
 
         String studyName = "Crohn's or colitis";

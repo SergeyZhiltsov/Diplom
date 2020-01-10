@@ -42,7 +42,7 @@ public class UC_4818_OLS extends BaseTest {
     @Test(dataProvider = "flare")
     @Description("4818UC")
     public void uc4818OlsTest(boolean flare) {
-        Site site = Site.AUT_AMS1_4818_Site;
+        Site site = Site.AUT_AMS1_4818UC_Site;
         String phoneNumber = "AUTAMS1UC1";
 
         String env = System.getProperty("acurian.env", "STG");
@@ -63,7 +63,7 @@ public class UC_4818_OLS extends BaseTest {
                 .waitForPageLoad();
         DebugPageOLS debugPageOLS = new DebugPageOLS();
         lessThan18YearsOldPage_OLS.getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols[0])
+                .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
                 .back();
         dateOfBirthPageOLS
                 .waitForPageLoad("a colitis study", "300");
@@ -87,7 +87,7 @@ public class UC_4818_OLS extends BaseTest {
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols[0])
+                .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
                 .back(genderPageOLS);
 
         genderPageOLS
@@ -107,7 +107,7 @@ public class UC_4818_OLS extends BaseTest {
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS8202", site.activeProtocols[0])
+                .checkProtocolsContainsForQNumber("QS8202", site.activeProtocols)
                 .back(haveYouEverBeenOfficiallyDiagnosedByDoctor_OLS);
 
         WhenWereYouDiagnosedWithCrohnsPageOLS whenWereYouDiagnosedWithCrohnsPageOLS = haveYouEverBeenOfficiallyDiagnosedByDoctor_OLS
@@ -118,7 +118,7 @@ public class UC_4818_OLS extends BaseTest {
         whenWereYouDiagnosedWithCrohnsPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS8202", site.activeProtocols[0])
+                .checkProtocolsContainsForQNumber("QS8202", site.activeProtocols)
                 .back(haveYouEverBeenOfficiallyDiagnosedByDoctor_OLS);
 
         WhenWereYouDiagnosedWithUCPageOLS whenWereYouDiagnosedWithUCPageOLS = haveYouEverBeenOfficiallyDiagnosedByDoctor_OLS
@@ -137,7 +137,7 @@ public class UC_4818_OLS extends BaseTest {
         asPartOfYourUCDiagnosisHaveYouHadFollowingProceduresDonePageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS8203", site.activeProtocols[0])
+                .checkProtocolsContainsForQNumber("QS8203", site.activeProtocols)
                 .back(whenWereYouDiagnosedWithUCPageOLS)
                 .waitForPageLoad()
                 .clickOnAnswer("3 – 6 months ago")
@@ -153,7 +153,7 @@ public class UC_4818_OLS extends BaseTest {
         haveYouEverTakenAnyMedicationsToTreatYourUCPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS8204", site.activeProtocols[0])
+                .checkProtocolsContainsForQNumber("QS8204", site.activeProtocols)
                 .back(asPartOfYourUCDiagnosisHaveYouHadFollowingProceduresDonePageOLS);
 
         asPartOfYourUCDiagnosisHaveYouHadFollowingProceduresDonePageOLS
@@ -173,7 +173,7 @@ public class UC_4818_OLS extends BaseTest {
         HaveYourEverTakenSteroidMedicationsForYourUCPageOLS haveYourEverTakenSteroidMedicationsForYourUCPageOLS =
                 howManyBowelMovementsDidYouHaveDuringTheDayPageOLS
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS8205", site.activeProtocols[0])
+                .checkProtocolsContainsForQNumber("QS8205", site.activeProtocols)
                 .back(haveYouEverTakenAnyMedicationsToTreatYourUCPageOLS)
                 .clickOnAnswer("Yes")
                 .clickNextButton(new HaveYourEverTakenSteroidMedicationsForYourUCPageOLS());
@@ -264,7 +264,7 @@ public class UC_4818_OLS extends BaseTest {
         howManyBowelMovementsDidYouHaveDuringTheDayPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)//Ghost Question -  IBD Module Full Flow Treatment History Requirement Logic
-                .checkProtocolsContainsForQNumber("QS8210", site.activeProtocols[0])
+                .checkProtocolsContainsForQNumber("QS8210", site.activeProtocols)
                 .back(biologicMedicationsPageOLS)
                 .waitForPageLoad()
                 .back(haveYouEverTreatedYourUCWithMedsThatSuppressYourImmuneSystemPageOLS);
@@ -332,11 +332,11 @@ public class UC_4818_OLS extends BaseTest {
 //Q18 - Do you currently have any of the following?
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS();
         HashMap<String, List<String>> disqualifyQ18 = new HashMap<>();
-        disqualifyQ18.put("History of a bowel resection within the past 3 months", Arrays.asList(site.activeProtocols[0])); //Disqualify (“Crohn’s complication or surgery”)
-        disqualifyQ18.put("Colostomy", Arrays.asList(site.activeProtocols[0]));
-        disqualifyQ18.put("Ileostomy", Arrays.asList(site.activeProtocols[0]));
-        disqualifyQ18.put("Feeding tube", Arrays.asList(site.activeProtocols[0]));
-        disqualifyQ18.put("IV (parenteral) nutrition", Arrays.asList(site.activeProtocols[0]));
+        disqualifyQ18.put("History of a bowel resection within the past 3 months", Arrays.asList(site.activeProtocols)); //Disqualify (“Crohn’s complication or surgery”)
+        disqualifyQ18.put("Colostomy", Arrays.asList(site.activeProtocols));
+        disqualifyQ18.put("Ileostomy", Arrays.asList(site.activeProtocols));
+        disqualifyQ18.put("Feeding tube", Arrays.asList(site.activeProtocols));
+        disqualifyQ18.put("IV (parenteral) nutrition", Arrays.asList(site.activeProtocols));
 
         HashSet<String> disqualify7191 = new HashSet<>(); //options that cause DQ 7191->skip to end of module
     //    disqualify7191.add("Partial or Total colectomy"); //todo after 7191 activation
@@ -357,7 +357,7 @@ public class UC_4818_OLS extends BaseTest {
                         .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                         .waitForPageLoad()
                         .getPage(debugPageOLS)
-                        .checkProtocolsContainsForQNumber("QS8218", site.activeProtocols[0])
+                        .checkProtocolsContainsForQNumber("QS8218", site.activeProtocols)
                         .back();
             } else {
                 currentlyHaveAnyOffFollowingPageOLS
@@ -365,7 +365,7 @@ public class UC_4818_OLS extends BaseTest {
                         .clickNextButton(weightLossSurgeryPageOLS)
                         .waitForPageLoad()
                         .getPage(debugPageOLS)
-                        .checkProtocolsContainsForQNumber("QS8218", site.activeProtocols[0])
+                        .checkProtocolsContainsForQNumber("QS8218", site.activeProtocols)
                         .back();
             }
         }
