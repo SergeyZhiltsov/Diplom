@@ -21,7 +21,6 @@ public class SynexusRadiantDirectScheduleCC extends MainPageCC{
     public final String titleSynExpected = "The next step is to get you scheduled for an appointment with the study doctor's team. During this visit, the study doctor's team will further discuss the study requirements and answer any questions you may have. Let me look at the site's calendar.\n" +
             "\n" +
             "Agent note: Go to Clinical Conductor and enter the required Acurian information";
-            
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_CC)
     WebElement titleText;

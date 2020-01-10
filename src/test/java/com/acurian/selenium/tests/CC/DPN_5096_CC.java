@@ -34,7 +34,7 @@ public class DPN_5096_CC extends BaseTest {
     @DataProvider
     public Object[][] sites() {
         return new Object[][]{
-                {Site.AUT_DPN_5096_site},
+                //{Site.AUT_DPN_5096_site},
                 {Site.AUT_DPN_5096S_site}
         };
     }

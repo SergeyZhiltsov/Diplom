@@ -960,7 +960,7 @@ public class SYNType_2_Diabetes_CC extends BaseTest {
                         .getPID()
                         .clickOnAnswer(site.name)
                         .clickNextButton(new SynexusRadiantDirectScheduleCC())
-                        .waitForPageLoad()
+                        .waitForPageLoadSyn()
 //                        .clickNextButton(new SynexusRadiantDirectScheduleCC())
                         .assertVariablesNew("Acurian", "Trial", "09/09/1960", "US",
                                 "Chandler, AZ", site.zipCode, "qa.acurian@gmail.com",

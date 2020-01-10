@@ -338,27 +338,6 @@ public class SYNTMigraine_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new IdentificationPageOLS());
-//                .waitForPageLoad()
-//                .clickOnAnswers("None of the above")
-//                .clickNextButton(new TransitionalStatementLowtPageOLS())
-//                .waitForPageLoad()
-//                .clickNextButton(new ExperiencedAnyOfFollowingOLS())
-//                .waitForPageLoad()
-//                .clickOnAnswers("None of the above")
-//                .clickNextButton(new HasDoctorEverDiagnosedYouWithLowTestosterone_OLS())
-//                .waitForPageLoad()
-//                .clickOnAnswer("No")
-//                .clickNextButton(new HasDoctorEverDiagnosedYouMedicalCond_OLS())
-//                .waitForPageLoad()
-//                .clickOnAnswers("None of the above")
-//                .clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondOLS())
-//                .waitForPageLoad()
-//                .clickOnAnswers("None of the above")
-//                .clickNextButton(new AdditionalHeartRelatedConditionsPageOLS())
-//                .waitForPageLoad()
-//                .clickOnAnswers("None of the above")
-//                .clickNextButton(new IdentificationPageOLS());
-
         SiteSelectionPageOLS siteSelectionPageOLS = identificationPageOLS
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
