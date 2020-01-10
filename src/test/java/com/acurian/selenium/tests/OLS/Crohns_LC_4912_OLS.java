@@ -37,7 +37,7 @@ public class Crohns_LC_4912_OLS extends BaseTest {
     @DataProvider
     public Object[][] sites() {
         return new Object[][]{
-                {Site.AUT_AMS1_4912_site},
+//                {Site.AUT_AMS1_4912_site},
                 {Site.AUT_AMS1_4912S_site}
         };
     }
@@ -503,20 +503,32 @@ public class Crohns_LC_4912_OLS extends BaseTest {
                         .dispoShouldMatch(site.dispo, site.dispo);
                 break;
             case AUT_AMS1_4912_site:
-                siteSelectionPageOLS
+                MedicalRecordsOptionPageOLS medicalRecordsOptionPageOLS = siteSelectionPageOLS
                         .waitForPageLoad("a Crohn's")
                         .getPID()
                         .clickOnFacilityName(site.name)
-                        .clickNextButton(new MedicalRecordsOptionPageOLS())
+                        .clickNextButton(new MedicalRecordsOptionPageOLS());
+                DoctorInformationCollectionPageOLS doctorInformationCollectionPageOLS = medicalRecordsOptionPageOLS
                         .waitForPageLoad()
-                        .clickOnAnswer("Continue without medical records")
-                        .clickNextButton(new QualifiedFlareMonitoringAppClosePageOLS())
-                        .waitForPageLoadCrohns()
-                        .getActivationCode()
-                        .waitForPageLoadCrohns()
-                        .clickNextButton(new ThankYouCloseSimplePageOLS())
+                        .clickOnAnswer("Continue with medical records")
+                        .clickNextButton(new DoctorInformationCollectionPageOLS());
+
+                HS1PageOLS hs1PageOLS = doctorInformationCollectionPageOLS
+                        .waitForPageLoadIBD("Crohn's Disease")
+                        .clickNextButton(new HS1PageOLS());
+                hs1PageOLS
                         .waitForPageLoad()
-                        .clickNextButton(new AboutHealthPageOLS())
+                        .clickOkInPopUp()
+                        .setSignature();
+//                        .waitToClickNext()
+//                        .clickNextButton(thankYouCloseSimplePageOLS)
+                ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = qualifiedFlareMonitoringAppClosePageOLS
+                        .waitForPageLoadCrohns()
+                        .clickNextButton(new ThankYouCloseSimplePageOLS());
+                AboutHealthPageOLS aboutHealthPageOLS = thankYouCloseSimplePageOLS
+                        .waitForPageLoad()
+                        .clickNextButton(new AboutHealthPageOLS());
+                aboutHealthPageOLS
                         .waitForPageLoad()
                         .pidFromDbToLog(env)
                         .childPidFromDbToLog(env)

@@ -959,9 +959,9 @@ public class SYNType_2_Diabetes_CC extends BaseTest {
                         .waitForPageLoad(studyName)
                         .getPID()
                         .clickOnAnswer(site.name)
-                        .clickNextButton(new DirectSheduleVaccCC())
-                        .waitForPageLoad()
                         .clickNextButton(new SynexusRadiantDirectScheduleCC())
+                        .waitForPageLoad()
+//                        .clickNextButton(new SynexusRadiantDirectScheduleCC())
                         .assertVariablesNew("Acurian", "Trial", "09/09/1960", "US",
                                 "Chandler, AZ", site.zipCode, "qa.acurian@gmail.com",
                                 "999-999-9999", " 010110 : Synexus - 010110 ", " East Valley Family Physicians", "AESXXXDIA001 - SYNType_2_Diabetes (SYNT2DM)")
