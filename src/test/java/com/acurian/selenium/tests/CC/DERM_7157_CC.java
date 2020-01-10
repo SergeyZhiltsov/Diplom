@@ -842,9 +842,9 @@ public class DERM_7157_CC extends BaseTest {
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
-//                .childPidFromDbToLog(env)
-//                .dispoShouldMatch(site.dispo, site.dispo)
-//                .assertGeneratedFul(env, site)
+                .childPidFromDbToLog(env)
+                .dispoShouldMatch(site.dispo, site.dispo)
+                .assertGeneratedFul(env, site)
                 .assertRmgOrderPriority(env, "7157");
 
         if(site.name.equals("AUT_AMS1_7157S_site"))
@@ -860,9 +860,9 @@ public class DERM_7157_CC extends BaseTest {
                     .clickNextButton(selectActionPageCC)
                     .waitForPageLoad()
                     .pidFromDbToLog(env)
-//                    .childPidFromDbToLog(env)
-//                    .dispoShouldMatch(site.dispo, site.dispo)
-//                    .assertGeneratedFulDERM(env, site)
+                    .childPidFromDbToLog(env)
+                    .dispoShouldMatch(site.dispo, site.dispo)
+                    .assertGeneratedFulDERM(env, site)
                     .assertRmgOrderPriority(env, "7157");
     }
 

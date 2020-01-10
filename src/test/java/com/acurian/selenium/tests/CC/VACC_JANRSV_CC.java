@@ -238,7 +238,7 @@ public class VACC_JANRSV_CC extends BaseTest {
                     .waitForPageLoad()
                     .setMonth("Jan")
                     .setDay("1")
-                    .setYear("2002") //Disqualify (“Age < 18 years old”) if <18
+                    .setYear("2003") //Disqualify (“Age < 18 years old”) if <18
                     .clickOnAnswer("Female")
                     .clickNextButton(lessThan18YearsOldPageCC)
                     .waitForPageLoad()
