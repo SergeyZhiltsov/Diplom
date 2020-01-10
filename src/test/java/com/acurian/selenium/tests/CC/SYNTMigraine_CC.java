@@ -96,7 +96,7 @@ public class SYNTMigraine_CC extends BaseTest {
                 .waitForPageLoad()
                 .setMonth("Sep")
                 .setDay("9")
-                .setYear("1960")
+                .setYear("1968")
                 .clickOnAnswer("Male")
                 .clickNextButton(new HaveYouBeenDiagnosedWithMigrainesPageCC());
 
@@ -376,7 +376,6 @@ public class SYNTMigraine_CC extends BaseTest {
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999",
                         site.zipCode)
                 .clickNextButton(new SiteSelectionPageCC());
-
                 siteSelectionPageCC
                         .waitForPageLoad(studyName)
                         .getPID()
