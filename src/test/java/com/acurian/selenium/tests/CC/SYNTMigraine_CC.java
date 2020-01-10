@@ -358,120 +358,10 @@ public class SYNTMigraine_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(approximateHeightPageCC);
-
-
-//        LetMeSeePageCC letMeSeePageCC = approximateHeightPageCC
-//                .waitForPageLoad()
-//                .setAll("5", "5", "190") //BMI > 30
-//                .clickNextButton(new LetMeSeePageCC());
-//        IdentificationPageOLS identificationPageOLS = letMeSeePageCC
-//                .waitForPageLoad()
-//                .clickNextButton(new IdentificationPageOLS());
-//                .waitForPageLoad()
-//                .clickOnAnswers("None of the above")
-//                .clickNextButton(new TransitionalStatementLowtPageOLS())
-//                .waitForPageLoad()
-//                .clickNextButton(new ExperiencedAnyOfFollowingOLS())
-//                .waitForPageLoad()
-//                .clickOnAnswers("None of the above")
-//                .clickNextButton(new HasDoctorEverDiagnosedYouWithLowTestosterone_OLS())
-//                .waitForPageLoad()
-//                .clickOnAnswer("No")
-//                .clickNextButton(new HasDoctorEverDiagnosedYouMedicalCond_OLS())
-//                .waitForPageLoad()
-//                .clickOnAnswers("None of the above")
-//                .clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondOLS())
-//                .waitForPageLoad()
-//                .clickOnAnswers("None of the above")
-//                .clickNextButton(new AdditionalHeartRelatedConditionsPageOLS())
-//                .waitForPageLoad()
-//                .clickOnAnswers("None of the above")
-//                .clickNextButton(new IdentificationPageOLS());
-//
-//        SiteSelectionPageCC siteSelectionPageCC = identificationPageOLS
-//                .waitForPageLoad()
-//                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
-//                .clickNextButton(new SiteSelectionPageCC());
-//
-//        LetMeSeePageCC letMeSeePageCC = approximateHeightPageCC
-//                .waitForPageLoad()
-//                .setAll("4", "9", "138")
-//                .clickNextButton(new LetMeSeePageCC());
-//
-//        letMeSeePageCC
-//                .waitForPageLoad()
-//                .getPage(debugPageCC)
-//                .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
-//                .back();
-//
         LetMeSeePageCC letMeSeePageCC = approximateHeightPageCC
                 .waitForPageLoad()
-                .setAll("4", "10", "180")
+                .setAll("5", "5", "190")
                 .clickNextButton(new LetMeSeePageCC());
-
-//        DigestiveConditionsAffectDiabetesPageCC digestiveConditionsAffectDiabetesPageCC = letMeSeePageCC
-//                .waitForPageLoad()
-//                .clickNextButton(new DigestiveConditionsAffectDiabetesPageCC());
-//
-//        SymptomsRegularlyOncePerWeekPageCC symptomsRegularlyOncePerWeekPageCC = digestiveConditionsAffectDiabetesPageCC
-//                .waitForPageLoad()
-//                .clickOnAnswers("None of the above")
-//                .clickNextButton(new SymptomsRegularlyOncePerWeekPageCC());
-//
-//        HaveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageCC haveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageCC = symptomsRegularlyOncePerWeekPageCC
-//                .waitForPageLoad()
-//                .clickOnAnswers("None of the above")
-//                .clickNextButton(new HaveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageCC());
-//
-//        CholesterolTriglyceridesLipidsPageCC cholesterolTriglyceridesLipidsPageCC = haveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageCC
-//                .waitForPageLoad()
-//                .clickOnAnswers("Unsure")
-//                .clickNextButton(new CholesterolTriglyceridesLipidsPageCC());
-//
-//        cholesterolTriglyceridesLipidsPageCC
-//                .waitForPageLoad()
-//                .clickOnAnswer("Unsure")
-//                .clickNextButton(haveYouEverExperiencedHeartRelatedMedicalCondCC);
-//
-//        HeartrelatedMedicalProceduresPageCC heartrelatedMedicalProceduresPageCC = haveYouEverExperiencedHeartRelatedMedicalCondCC
-//                .waitForPageLoad()
-//                .clickOnAnswers("None of the above")
-//                .clickNextButton(new HeartrelatedMedicalProceduresPageCC());
-//
-//        AdditionalHeartRelatedConditionsPageCC additionalHeartRelatedConditionsPageCC =  heartrelatedMedicalProceduresPageCC
-//                .waitForPageLoad()
-//                .clickOnAnswers("None of the above")
-//                .clickNextButton(new AdditionalHeartRelatedConditionsPageCC());
-//
-//        IdentificationPageCC identificationPageCC = additionalHeartRelatedConditionsPageCC
-//                .waitForPageLoad()
-//                .clickOnAnswers("None of the above")
-//                .clickNextButton(new IdentificationPageCC());
-
-//        DoYouExperienceAnyOfFollowingSymptoms_CC doYouExperienceAnyOfFollowingSymptoms_CC = doYouExperienceDPN_CC
-//                .waitForPageLoad()
-//                .clickOnAnswer("No, none of the above")
-//                .clickNextButton(new DoYouExperienceAnyOfFollowingSymptoms_CC());
-//
-//        TransitionStatementCVbeginPageCC transitionStatementCVbeginPageCC = doYouExperienceAnyOfFollowingSymptoms_CC
-//                .waitForPageLoad()
-//                .clickOnAnswers("None of the above")
-//                .clickNextButton(new TransitionStatementCVbeginPageCC());
-//
-//        ExperiencedAnyOfFollowingCC experiencedAnyOfFollowingCC = transitionStatementCVbeginPageCC
-//                .waitForPageLoad()
-//                .clickNextButton(new ExperiencedAnyOfFollowingCC());
-//
-//        HasDoctorEverDiagnosedYouWithLowTestosterone_CC hasDoctorEverDiagnosedYouWithLowTestosterone_CC = experiencedAnyOfFollowingCC
-//                .waitForPageLoad()
-//                .clickOnAnswers("None of the above")
-//                .clickNextButton(new HasDoctorEverDiagnosedYouWithLowTestosterone_CC());
-//
-//        IdentificationPageCC identificationPageCC = hasDoctorEverDiagnosedYouWithLowTestosterone_CC
-//                .waitForPageLoad()
-//                .clickOnAnswer("No")
-//                .clickNextButton(new IdentificationPageCC());
-
         IdentificationPageCC identificationPageCC = letMeSeePageCC
                 .waitForPageLoad()
                 .clickNextButton(new CurrentlyParticipatingInStudy())
@@ -486,31 +376,7 @@ public class SYNTMigraine_CC extends BaseTest {
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999",
                         site.zipCode)
                 .clickNextButton(new SiteSelectionPageCC());
-        switch (site) {
-//            case AUT_NASH4483_site: //1R
-//                siteSelectionPageCC
-//                        .waitForPageLoad(studyName)
-//                        .getPID()
-//                        .clickOnAnswer(site.name)
-//                        .clickNextButton(new QualifiedClose1PageCC())
-//                        .waitForPageLoad()
-//                        // .clickOnAnswer("No")
-////                    .clickNextButton(new SynexusHealthyMindsPageCC())
-////                    .waitForPageLoad()
-////                    .clickOnAnswer("No")
-//                        .clickNextButton(new ThankYouCloseSimplePageCC())
-//                        .waitForPageLoad3()
-//                        .clickNextButton(new AlzheimerClosePageCC())
-//                        .waitForPageLoad()
-//                        .clickNextButton(selectActionPageCC)
-//                        .waitForPageLoad()
-//                        .pidFromDbToLog(env)
-//                        .getRadiantDbToLog(env)
-//                        .childPidFromDbToLog(env, "4483")
-//                        .assertGeneratedFul(env, site)
-//                        .dispoShouldMatch(site.dispo, site.dispo);
-//                break;
-            case AUT_AMS1_MIGRS_site: //41C
+
                 siteSelectionPageCC
                         .waitForPageLoad(studyName)
                         .getPID()
@@ -525,11 +391,9 @@ public class SYNTMigraine_CC extends BaseTest {
                         .waitForPageLoad()
                         .pidFromDbToLog(env)
                         .getRadiantDbToLog(env)
-                        .childPidFromDbToLog(env, "4483")
+                        .childPidFromDbToLog(env)
                         .assertGeneratedFul(env, site)
                         .dispoShouldMatch(site.dispo, site.dispo);
-                break;
+
         }
     }
-
-}
