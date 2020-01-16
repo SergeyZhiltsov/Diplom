@@ -35,17 +35,17 @@ public class UC_4818_CC extends BaseTest {
     }
 
     @DataProvider
-    public Object[][] flare() {
+    public Object[][] sites() {
         return new Object[][]{
-                {true},
-                {false}
+                {Site.AUT_AMS1_4818UC_Site},
+                {Site.AUT_AMS1_4818UCS_Site}
         };
     }
 
-    @Test(dataProvider = "flare")
+    @Test(dataProvider = "sites")
     @Description("4818UC")
-    public void uc4818CCTest(boolean flare) {
-        Site site = Site.AUT_AMS1_4818UC_Site;
+    public void uc4818CCTest(Site site) {
+//        Site site = Site.AUT_AMS1_4818UC_Site;
         String phoneNumber = "AUTAMS1UC1";
 
         String env = System.getProperty("acurian.env", "STG");
@@ -315,31 +315,53 @@ public class UC_4818_CC extends BaseTest {
 
         //QS11-QS16 + QS17 Ghost Question - UC Flare Logic
         CurrentlyHaveAnyOffFollowingPageCC currentlyHaveAnyOffFollowingPageCC = new CurrentlyHaveAnyOffFollowingPageCC();
-        if (flare) {
-            howManyBowelMovementsDidYouHaveDuringTheDayPageCC
-                    .waitForPageLoad()
-                    .clickOnAnswer("4 to 6")
-                    .clickNextButton(new HowManyBowelMovementsDidYouHaveAtNightPageCC())
-                    .waitForPageLoad()
-                    .clickOnAnswer("4 or more")
-                    .clickNextButton(new HowMuchUrgencyDidYouFeelToHaveABowelMovementPageCC())
-                    .waitForPageLoad()
-                    .clickOnAnswer("I had to hurry to the bathroom")
-                    .clickNextButton(new DidYouHaveBloodInYourStoolPageCC())
-                    .waitForPageLoad()
-                    .clickOnAnswer("No blood")
-                    .clickNextButton(new HowWouldYouRateYourGeneralWellBeingPageCC())
-                    .waitForPageLoad()
-                    .clickOnAnswer("Poor")
-                    .clickNextButton(new AreYouExperiencingAnyPainInYourJointsPageCC())
-                    .waitForPageLoad()
-                    .clickOnAnswer("Yes")
-                    .clickNextButton(currentlyHaveAnyOffFollowingPageCC);
 
-            currentlyHaveAnyOffFollowingPageCC
-                    .getPage(debugPageCC);
-            // .checkStudyStatusContainsForQNumber("2-3"); //todo
-        } else {
+        HowManyBowelMovementsDidYouHaveAtNightPageCC howManyBowelMovementsDidYouHaveAtNightPageCC = new HowManyBowelMovementsDidYouHaveAtNightPageCC();
+        HowMuchUrgencyDidYouFeelToHaveABowelMovementPageCC howMuchUrgencyDidYouFeelToHaveABowelMovementPageCC = new HowMuchUrgencyDidYouFeelToHaveABowelMovementPageCC();
+        DidYouHaveBloodInYourStoolPageCC didYouHaveBloodInYourStoolPageCC = new DidYouHaveBloodInYourStoolPageCC();
+        HowWouldYouRateYourGeneralWellBeingPageCC howWouldYouRateYourGeneralWellBeingPageCC = new HowWouldYouRateYourGeneralWellBeingPageCC();
+        AreYouExperiencingAnyPainInYourJointsPageCC areYouExperiencingAnyPainInYourJointsPageCC = new AreYouExperiencingAnyPainInYourJointsPageCC();
+        //in flare
+        howManyBowelMovementsDidYouHaveDuringTheDayPageCC
+                .waitForPageLoad()
+                .clickOnAnswer("4 to 6")
+                .clickNextButton(howManyBowelMovementsDidYouHaveAtNightPageCC)
+                .waitForPageLoad()
+                .clickOnAnswer("4 or more")
+                .clickNextButton(howMuchUrgencyDidYouFeelToHaveABowelMovementPageCC)
+                .waitForPageLoad()
+                .clickOnAnswer("I had to hurry to the bathroom")
+                .clickNextButton(didYouHaveBloodInYourStoolPageCC)
+                .waitForPageLoad()
+                .clickOnAnswer("No blood")
+                .clickNextButton(howWouldYouRateYourGeneralWellBeingPageCC)
+                .waitForPageLoad()
+                .clickOnAnswer("Poor")
+                .clickNextButton(areYouExperiencingAnyPainInYourJointsPageCC)
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
+                .clickNextButton(currentlyHaveAnyOffFollowingPageCC);
+        currentlyHaveAnyOffFollowingPageCC
+                .waitForPageLoad()
+                .getPage(debugPageCC);
+//                    .checkStudyStatusContainsForQNumber("2-3"); //todo
+
+        //back
+        currentlyHaveAnyOffFollowingPageCC
+                .waitForPageLoad()
+                .back(areYouExperiencingAnyPainInYourJointsPageCC)
+                .waitForPageLoad()
+                .back(howWouldYouRateYourGeneralWellBeingPageCC)
+                .waitForPageLoad()
+                .back(didYouHaveBloodInYourStoolPageCC)
+                .waitForPageLoad()
+                .back(howMuchUrgencyDidYouFeelToHaveABowelMovementPageCC)
+                .waitForPageLoad()
+                .back(howManyBowelMovementsDidYouHaveAtNightPageCC)
+                .waitForPageLoad()
+                .back(howManyBowelMovementsDidYouHaveDuringTheDayPageCC);
+
+        //not in flare
             howManyBowelMovementsDidYouHaveDuringTheDayPageCC
                     .waitForPageLoad()
                     .clickOnAnswer("4 to 6")
@@ -363,7 +385,7 @@ public class UC_4818_CC extends BaseTest {
             currentlyHaveAnyOffFollowingPageCC
                     .getPage(debugPageCC);
             // .checkStudyStatusContainsForQNumber("QS5730", "2-4"); //TODO*/
-        }
+
 
 //Q18 - Do you currently have any of the following?
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC();

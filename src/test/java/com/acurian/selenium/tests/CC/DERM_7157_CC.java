@@ -844,8 +844,8 @@ public class DERM_7157_CC extends BaseTest {
                 .pidFromDbToLog(env)
                 .childPidFromDbToLog(env)
                 .dispoShouldMatch(site.dispo, site.dispo)
-                .assertGeneratedFul(env, site)
-                .assertRmgOrderPriority(env, "7157");
+                .assertGeneratedFul(env, site);
+//                .assertRmgOrderPriority(env, "7157");
 
         if(site.name.equals("AUT_AMS1_7157S_site"))
             medicalRecordsOptionPageCC
@@ -862,8 +862,8 @@ public class DERM_7157_CC extends BaseTest {
                     .pidFromDbToLog(env)
                     .childPidFromDbToLog(env)
                     .dispoShouldMatch(site.dispo, site.dispo)
-                    .assertGeneratedFulDERM(env, site)
-                    .assertRmgOrderPriority(env, "7157");
+                    .assertGeneratedFulDERM(env, site);
+//                    .assertRmgOrderPriority(env, "7157");
     }
 
 }

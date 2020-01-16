@@ -14,6 +14,14 @@ public class DoctorInformationCollectionPageOLS extends MainPageBlinx {
             "\n" +
             "Please be assured that your records will be kept confidential and only shared with the study doctor's office, except as required by law.";
 
+    public final String titleExpectedIBDcommon = "We're almost done with this questionnaire!\n" +
+            "\n" +
+            "Your medical records related to your %1$s history are required. To make this process easier, our no cost service will obtain these records for you.\n" +
+            "\n" +
+            "Please enter contact information for ALL doctors who treat your %1$s, as well as your primary care physician. Your medical records from these doctors are critical.\n" +
+            "\n" +
+            "Please be assured that your records will be kept confidential and only shared with the study doctor's office, except as required by law.";
+
     @FindBy(xpath = "//div[@id='questions']/div[1]//div[@class='show-in-ols']")
     WebElement titleText;
 
@@ -24,6 +32,13 @@ public class DoctorInformationCollectionPageOLS extends MainPageBlinx {
     @Step
     public DoctorInformationCollectionPageOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
+        return this;
+    }
+
+    @Step
+    public DoctorInformationCollectionPageOLS waitForPageLoadIBD(String siteIndication) {
+        String titleExpectedMod = String.format(titleExpectedIBDcommon, siteIndication);
+        waitForPageLoadMain(titleText, titleExpectedMod);
         return this;
     }
 

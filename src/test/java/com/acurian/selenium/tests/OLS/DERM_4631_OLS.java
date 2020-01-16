@@ -676,13 +676,13 @@ public class DERM_4631_OLS extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
                 .clickOnQNumber("QS60");
-        ExperienceExcessiveHungerOrIncreasedAppetiteOLS experienceExcessiveHungerOrIncreasedAppetiteOLS = approximateHeightPageOLS
+        approximateHeightPageOLS
                 .waitForPageLoad()
                 .setFeatwithClear("4")
                 .setIncheswithClear("5")
                 .setLbs("188")
-                .clickNextButton(new ExperienceExcessiveHungerOrIncreasedAppetiteOLS());
-        experienceExcessiveHungerOrIncreasedAppetiteOLS
+                .clickNextButton(doYouExperienceAnyOfFollowingSymptoms_ols);
+        doYouExperienceAnyOfFollowingSymptoms_ols
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)

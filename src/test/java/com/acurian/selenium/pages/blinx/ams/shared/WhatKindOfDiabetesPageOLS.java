@@ -19,6 +19,7 @@ public class WhatKindOfDiabetesPageOLS extends MainPageBlinx {
 
     @Step
     public WhatKindOfDiabetesPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

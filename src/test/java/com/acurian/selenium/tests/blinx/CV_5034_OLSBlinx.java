@@ -42,7 +42,7 @@ public class CV_5034_OLSBlinx extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "data", enabled = true) //todo turn on after PDV
+    @Test(dataProvider = "data", enabled = false)
     public void CV_5034_Blinx(Site site, String city, String state) {
         String phoneNumber = "AUTAMS1CV1";
         DebugPageOLS debugPageOLS = new DebugPageOLS();
@@ -402,6 +402,12 @@ public class CV_5034_OLSBlinx extends BaseTest {
         IdentificationPageOLS identificationPageOLS = healthcareDiagnosedConditionsPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
+                .clickNextButton(new CurrentlyParticipatingInStudyOLS())
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new RequirePassDrugTestOLS())
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
                 .clickNextButton(new IdentificationPageOLS());
 
         SiteSelectionPageOLS siteSelectionPageOLS = identificationPageOLS

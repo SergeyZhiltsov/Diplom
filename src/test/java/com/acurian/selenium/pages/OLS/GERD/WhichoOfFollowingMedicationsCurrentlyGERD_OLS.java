@@ -1,10 +1,13 @@
 package com.acurian.selenium.pages.OLS.GERD;
 
 import java.util.List;
+
+import com.acurian.selenium.constants.Locators;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
+import org.xml.sax.Locator;
 import ru.yandex.qatools.allure.annotations.Step;
 
 public class WhichoOfFollowingMedicationsCurrentlyGERD_OLS extends MainPageOLS{
@@ -19,7 +22,7 @@ public class WhichoOfFollowingMedicationsCurrentlyGERD_OLS extends MainPageOLS{
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]")
     WebElement titleText;
 
-    @FindBy(xpath ="//span[contains(@class,'visible-md-inline')]/span[@class='show-in-ols']")
+    @FindBy(xpath = Locators.CHEKBOX_LIST_OLS)
     List<WebElement> checkBoxList;
 
     public WhichoOfFollowingMedicationsCurrentlyGERD_OLS() {

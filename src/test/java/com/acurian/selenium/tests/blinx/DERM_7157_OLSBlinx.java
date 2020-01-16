@@ -45,7 +45,7 @@ public class DERM_7157_OLSBlinx extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "sites", enabled = true)
+    @Test(dataProvider = "sites", enabled = false)
     @Description("DERM 7157 Glenmark Atopic Derm")
     public void DERM_7157_Blinx(Site site) {
         final String phoneNumber = "AUTAMS1KAD";
@@ -612,6 +612,12 @@ public class DERM_7157_OLSBlinx extends BaseTest {
         approximateHeightWeightPageOLS
                 .waitForPageLoad()
                 .setAllFields("3", "2", "33")
+                .clickNextButton(new CurrentlyParticipatingInStudyOLS())
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new RequirePassDrugTestOLS())
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
                 //----------PII (IdentificationPageOLS) Page--------------------
                 .clickNextButton(identificationPageOLS);
 

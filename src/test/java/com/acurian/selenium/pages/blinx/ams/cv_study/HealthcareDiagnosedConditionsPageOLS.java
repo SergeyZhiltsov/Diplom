@@ -20,6 +20,7 @@ public class HealthcareDiagnosedConditionsPageOLS extends MainPageBlinx {
 
     @Step
     public HealthcareDiagnosedConditionsPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

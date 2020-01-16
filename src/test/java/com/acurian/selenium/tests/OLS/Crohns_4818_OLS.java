@@ -35,21 +35,22 @@ public class Crohns_4818_OLS extends BaseTest {
     }
 
     @DataProvider
-    public Object[][] flare() {
+    public Object[][] sites() {
         return new Object[][]{
-                {true},
-//                {false}
+                {Site.AUT_AMS1_4818A_Site},
+                {Site.AUT_AMS1_4818AS_Site}
         };
     }
 
-    @Test(dataProvider = "flare")
+    @Test(dataProvider = "sites")
     @Description("Crohns_4818_OLS")
-    public void Crohns_4818_OLS(boolean flare) {
-        Site site = Site.AUT_AMS1_4818A_Site;
+    public void Crohns_4818_OLS(Site site) {
+//        Site site = Site.AUT_AMS1_4818A_Site;
+//        String studyName = "a Crohn's";
+//        String site_Indication = "a Crohn's or colitis";
+//        String indication = "a Crohn's Disease";
+
         String phoneNumber = "AUTAMS1CRN";
-        String studyName = "a Crohn's";
-        String site_Indication = "a Crohn's or colitis";
-        String indication = "a Crohn's Disease";
         String env = System.getProperty("acurian.env", "STG");
 
 
@@ -114,7 +115,7 @@ public class Crohns_4818_OLS extends BaseTest {
         WhenDiagnosedWithCronsDiseaseOLS whenDiagnosedWithCronsDiseaseOLS = everDiagnosedWithFollowingConditionsOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Crohn's disease")
-                .clickOnAnswers("Ulcerative colitis")
+//                .clickOnAnswers("Ulcerative colitis")
                 .clickNextButton(new WhenDiagnosedWithCronsDiseaseOLS());
         AsPartOfYourCronsDiseaseDiagnosisFollowingProceduresOLS asPartOfYourCronsDiseaseDiagnosisFollowingProceduresOLS = whenDiagnosedWithCronsDiseaseOLS
                 .waitForPageLoad()
@@ -251,10 +252,6 @@ public class Crohns_4818_OLS extends BaseTest {
                 .getPID()
                 .pidFromDbToLog(env)
                 .flareCodeShouldMatch(env, "4");
-
-
-
-
 
         HashMap<String, List<String>> disqualify = new HashMap<>();
         disqualify.put("History of a bowel resection within the past 3 months", Arrays.asList(site.activeProtocols));
@@ -539,7 +536,7 @@ public class Crohns_4818_OLS extends BaseTest {
 
         IdentificationPageOLS identificationPageOLS = approximateHeightPageOLS
                 .waitForPageLoad()
-                .setAll("5", "7", "170")
+                .setAll("3", "3", "39")
                 .clickNextButton(new CurrentlyParticipatingInStudyOLS())
                 .waitForPageLoad()
                 .clickOnAnswer("No")
@@ -565,7 +562,7 @@ public class Crohns_4818_OLS extends BaseTest {
                 .clickNextButton(new DoctorInformationCollectionPageOLS());
 
         HS1PageOLS hs1PageOLS = doctorInformationCollectionPageOLS
-                .waitForPageLoadIBD("Ulcerative Colitis")
+                .waitForPageLoadIBD("Crohn's Disease")
                 .clickNextButton(new HS1PageOLS());
 
 

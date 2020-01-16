@@ -2,6 +2,8 @@ package com.acurian.selenium.tests.blinx;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.blinx.ams.closes.CurrentlyParticipatingInStudyOLS;
+import com.acurian.selenium.pages.blinx.ams.closes.RequirePassDrugTestOLS;
 import com.acurian.selenium.pages.blinx.ams.debug.DebugPageOLS;
 import com.acurian.selenium.pages.blinx.ams.*;
 import com.acurian.selenium.pages.blinx.ams.closes.LessThan18YearsOldPageOLS;
@@ -29,7 +31,7 @@ public class CV_4450_OLSblinx extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "data", enabled = true)
+    @Test(dataProvider = "data", enabled = false)
     public void CV_4450_Blinx(Site site, String city, String state) {
         String phoneNumber = "AUTAMS1CV1";
         DebugPageOLS debugPageOLS = new DebugPageOLS();
@@ -422,6 +424,12 @@ public class CV_4450_OLSblinx extends BaseTest {
         IdentificationPageOLS identificationPageOLS = healthcareDiagnosedConditionsPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
+                .clickNextButton(new CurrentlyParticipatingInStudyOLS())
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new RequirePassDrugTestOLS())
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
                 .clickNextButton(new IdentificationPageOLS());
         SiteSelectionPageOLS siteSelectionPageOLS = identificationPageOLS
                 .waitForPageLoadPrequalified()

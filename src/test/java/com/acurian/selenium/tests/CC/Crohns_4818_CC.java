@@ -34,18 +34,17 @@ public class Crohns_4818_CC extends BaseTest {
     }
 
     @DataProvider
-    public Object[][] flare() {
+    public Object[][] sites() {
         return new Object[][]{
-                {true},
-                {false}
+                {Site.AUT_AMS1_4818A_Site},
+                {Site.AUT_AMS1_4818AS_Site}
         };
     }
 
-    @Test(dataProvider = "flare"
-    )
+    @Test(dataProvider = "sites")
     @Description("Crohns_4818_CC")
-    public void Crohns_4818_CC(boolean flare) {
-        Site site = Site.AUT_AMS1_4818A_Site;
+    public void Crohns_4818_CC(Site site) {
+//        Site site = Site.AUT_AMS1_4818A_Site;
         String phoneNumber = "AUTAMS1CRN";
 
         String studyName = "Crohn's or colitis";
@@ -155,7 +154,7 @@ public class Crohns_4818_CC extends BaseTest {
         WhenDiagnosedWithCronsDiseaseCC whenDiagnosedWithCronsDiseaseCC = everDiagnosedWithFollowingConditionsСС
                 .waitForPageLoad2()
                 .clickOnAnswers("Crohn's disease")
-                .clickOnAnswers("Ulcerative colitis")
+//                .clickOnAnswers("Ulcerative colitis")
                 .clickNextButton(new WhenDiagnosedWithCronsDiseaseCC());
         AsPartOfYourCronsDiseaseDiagnosisFollowingProceduresCC asPartOfYourCronsDiseaseDiagnosisFollowingProceduresCC = whenDiagnosedWithCronsDiseaseCC
                 .waitForPageLoad()
@@ -575,7 +574,7 @@ public class Crohns_4818_CC extends BaseTest {
 
         approximateHeightPageCC
                 .waitForPageLoad()
-                .setAll("5", "7", "170")
+                .setAll("3", "3", "39")
                 .clickNextButton(new LetMeSeePageCC())
                 .waitForPageLoad()
                 .clickNextButton(new CurrentlyParticipatingInStudy())
@@ -596,7 +595,7 @@ public class Crohns_4818_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("Continue with medical records")
                 .clickNextButton(new DoctorInformationCollectionPageCC())
-                .waitForPageLoadIBD("Ulcerative Colitis")
+                .waitForPageLoadIBD("Crohn's Disease")
                 .clickNextButton(new HSMedicalRecordsPageCC())
                 .waitForPageLoad()
                 .clickNextButton(new ThankYouCloseSimplePageCC())

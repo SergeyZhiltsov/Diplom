@@ -3,9 +3,7 @@ package com.acurian.selenium.tests.blinx;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.blinx.ams.*;
-import com.acurian.selenium.pages.blinx.ams.closes.AlzheimerClosePageOLS;
-import com.acurian.selenium.pages.blinx.ams.closes.QualifiedClose2PageOLS;
-import com.acurian.selenium.pages.blinx.ams.closes.ThankYouCloseSimplePageOLS;
+import com.acurian.selenium.pages.blinx.ams.closes.*;
 import com.acurian.selenium.pages.blinx.ams.debug.DebugPageOLS;
 import com.acurian.selenium.pages.blinx.ams.dia.*;
 import com.acurian.selenium.pages.blinx.ams.generalHealth.*;
@@ -41,7 +39,7 @@ public class DIA_4483_OLSBlinx extends BaseTest {
         };
     }
 
-    @Test(enabled = true, dataProvider = "sites")
+    @Test(enabled = false, dataProvider = "sites")
     @Description("NASH study 4483 OLS")
     public void dia4483olsTest(Site site) {
         String phoneNumber = "AUTAMSNASH";
@@ -751,6 +749,12 @@ public class DIA_4483_OLSBlinx extends BaseTest {
         IdentificationPageOLS identificationPageOLS = approximateHeightPageOLS
                 .waitForPageLoad()
                 .setAllFields("5", "5", "190") // BMI > 30
+                .clickNextButton(new CurrentlyParticipatingInStudyOLS())
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new RequirePassDrugTestOLS())
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
                 .clickNextButton(new IdentificationPageOLS());
 
         identificationPageOLS

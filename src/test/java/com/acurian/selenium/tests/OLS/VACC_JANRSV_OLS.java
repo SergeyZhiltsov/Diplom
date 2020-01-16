@@ -5,6 +5,7 @@ import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.GERD.DoYouExperienceAnyOfFollowingSymptoms_OLS;
 import com.acurian.selenium.pages.OLS.HOTF_7119.DoyouExperienceHotFlashesOLS;
 import com.acurian.selenium.pages.OLS.LOWT_3017.CardiovascularDiseaseThanOthersPageOLS;
+import com.acurian.selenium.pages.OLS.LOWT_3017.HasDoctorEverDiagnosedYouMedicalCond_OLS;
 import com.acurian.selenium.pages.OLS.Obesity_4605.ExperienceExcessiveHungerOrIncreasedAppetiteOLS;
 import com.acurian.selenium.pages.OLS.RA.WhatKindOfArthritisPageOLS;
 import com.acurian.selenium.pages.OLS.Vaccine.*;
@@ -576,11 +577,11 @@ public class VACC_JANRSV_OLS extends BaseTest {
                     .clickNextButton(approximateHeightPageOLS);
 
 
-            ExperienceExcessiveHungerOrIncreasedAppetiteOLS experienceExcessiveHungerOrIncreasedAppetiteOLS = approximateHeightPageOLS
+            HasDoctorEverDiagnosedYouMedicalCond_OLS hasDoctorEverDiagnosedYouMedicalCond_OLS = approximateHeightPageOLS
                     .waitForPageLoad()
                     .setAll("5", "5", "250")
-                    .clickNextButton(new ExperienceExcessiveHungerOrIncreasedAppetiteOLS());
-            experienceExcessiveHungerOrIncreasedAppetiteOLS
+                    .clickNextButton(new HasDoctorEverDiagnosedYouMedicalCond_OLS());
+            hasDoctorEverDiagnosedYouMedicalCond_OLS
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)

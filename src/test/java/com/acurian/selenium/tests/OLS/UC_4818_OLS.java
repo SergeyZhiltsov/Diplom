@@ -32,17 +32,17 @@ public class UC_4818_OLS extends BaseTest {
     }
 
     @DataProvider
-    public Object[][] flare() {
+    public Object[][] sites() {
         return new Object[][]{
-                {true},
-        //        {false}
+                {Site.AUT_AMS1_4818UC_Site},
+                {Site.AUT_AMS1_4818UCS_Site}
         };
     }
 
-    @Test(dataProvider = "flare")
+    @Test(dataProvider = "sites")
     @Description("4818UC")
-    public void uc4818OlsTest(boolean flare) {
-        Site site = Site.AUT_AMS1_4818UC_Site;
+    public void uc4818OlsTest(Site site) {
+//        Site site = Site.AUT_AMS1_4818UC_Site;
         String phoneNumber = "AUTAMS1UC1";
 
         String env = System.getProperty("acurian.env", "STG");
@@ -279,31 +279,52 @@ public class UC_4818_OLS extends BaseTest {
 
         //QS11-QS16 + QS17 Ghost Question - UC Flare Logic
         CurrentlyHaveAnyOffFollowingPageOLS currentlyHaveAnyOffFollowingPageOLS = new CurrentlyHaveAnyOffFollowingPageOLS();
-        if (flare) {
+        HowManyBowelMovementsDidYouHaveAtNightPageOLS howManyBowelMovementsDidYouHaveAtNightPageOLS = new HowManyBowelMovementsDidYouHaveAtNightPageOLS();
+        HowMuchUrgencyDidYouFeelToHaveABowelMovementPageOLS howMuchUrgencyDidYouFeelToHaveABowelMovementPageOLS = new HowMuchUrgencyDidYouFeelToHaveABowelMovementPageOLS();
+        DidYouHaveBloodInYourStoolPageOLS didYouHaveBloodInYourStoolPageOLS = new DidYouHaveBloodInYourStoolPageOLS();
+        HowWouldYouRateYourGeneralWellBeingPageOLS howWouldYouRateYourGeneralWellBeingPageOLS = new HowWouldYouRateYourGeneralWellBeingPageOLS();
+        AreYouExperiencingAnyPainInYourJointsPageOLS areYouExperiencingAnyPainInYourJointsPageOLS = new AreYouExperiencingAnyPainInYourJointsPageOLS();
+       //in flare
             howManyBowelMovementsDidYouHaveDuringTheDayPageOLS
                     .waitForPageLoad()
                     .clickOnAnswer("4 to 6")
-                    .clickNextButton(new HowManyBowelMovementsDidYouHaveAtNightPageOLS())
+                    .clickNextButton(howManyBowelMovementsDidYouHaveAtNightPageOLS)
                     .waitForPageLoad()
                     .clickOnAnswer("4 or more")
-                    .clickNextButton(new HowMuchUrgencyDidYouFeelToHaveABowelMovementPageOLS())
+                    .clickNextButton(howMuchUrgencyDidYouFeelToHaveABowelMovementPageOLS)
                     .waitForPageLoad()
                     .clickOnAnswer("I had to hurry to the bathroom")
-                    .clickNextButton(new DidYouHaveBloodInYourStoolPageOLS())
+                    .clickNextButton(didYouHaveBloodInYourStoolPageOLS)
                     .waitForPageLoad()
                     .clickOnAnswer("No blood")
-                    .clickNextButton(new HowWouldYouRateYourGeneralWellBeingPageOLS())
+                    .clickNextButton(howWouldYouRateYourGeneralWellBeingPageOLS)
                     .waitForPageLoad()
                     .clickOnAnswer("Poor")
-                    .clickNextButton(new AreYouExperiencingAnyPainInYourJointsPageOLS())
+                    .clickNextButton(areYouExperiencingAnyPainInYourJointsPageOLS)
                     .waitForPageLoad()
                     .clickOnAnswer("Yes")
                     .clickNextButton(currentlyHaveAnyOffFollowingPageOLS);
-
             currentlyHaveAnyOffFollowingPageOLS
+                    .waitForPageLoad()
                     .getPage(debugPageOLS);
-            // .checkStudyStatusContainsForQNumber("2-3"); //todo
-        } else {
+//                    .checkStudyStatusContainsForQNumber("2-3"); //todo
+
+        //back
+            currentlyHaveAnyOffFollowingPageOLS
+                    .waitForPageLoad()
+                    .back(areYouExperiencingAnyPainInYourJointsPageOLS)
+                    .waitForPageLoad()
+                    .back(howWouldYouRateYourGeneralWellBeingPageOLS)
+                    .waitForPageLoad()
+                    .back(didYouHaveBloodInYourStoolPageOLS)
+                    .waitForPageLoad()
+                    .back(howMuchUrgencyDidYouFeelToHaveABowelMovementPageOLS)
+                    .waitForPageLoad()
+                    .back(howManyBowelMovementsDidYouHaveAtNightPageOLS)
+                    .waitForPageLoad()
+                    .back(howManyBowelMovementsDidYouHaveDuringTheDayPageOLS);
+
+    //not in flare
            howManyBowelMovementsDidYouHaveDuringTheDayPageOLS
                     .waitForPageLoad()
                     .clickOnAnswer("4 to 6")
@@ -326,8 +347,8 @@ public class UC_4818_OLS extends BaseTest {
 
             currentlyHaveAnyOffFollowingPageOLS
                     .getPage(debugPageOLS);
-                  // .checkStudyStatusContainsForQNumber("QS5730", "2-4"); //TODO*/
-        }
+//                   .checkStudyStatusContainsForQNumber("2-4"); //TODO*/
+
 
 //Q18 - Do you currently have any of the following?
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS();

@@ -33,7 +33,7 @@ public class HS1PageOLS extends MainPageBlinx {
     @FindBy (xpath = "//div[@class = 'm-signature-document-field signature'] | //*[@id='page-1']/div[6]/div/div[1]")
     WebElement clickToSignButton;
 
-    @FindBy(xpath = "//div[@class='m-sign-modal-popup']//div[@class='m-sign-modal--menu']//span[text()='Type it in'] | //*[@id='signer-mobile-body']/div[4]/div/div/div/div[1]/div[3]/span[2]")
+    @FindBy(xpath = "//body[@id='signer-mobile-body']//div[@role='dialog']//div[@class='m-sign-modal--menu']/div[3]/span[@class='m-sign-modal--menu--item--label']")
     WebElement typeItInButton;
 
     @FindBy(xpath = "//button[@id='insertButton']")
