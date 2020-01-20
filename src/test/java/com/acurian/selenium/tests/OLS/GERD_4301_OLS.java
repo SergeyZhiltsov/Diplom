@@ -53,41 +53,126 @@ public class GERD_4301_OLS extends BaseTest {
                 .clickNextButton(new GenderPageOLS());
 
         //---------------GENDER Question-------------------
-        DoYouExperienceAnyOfFollowingSymptoms_OLS doYouExperienceAnyOfFollowingSymptoms_OLS = genderPageOLS
+        CurrentlySufferOfAnyOfFollowingOLS currentlySufferOfAnyOfFollowingOLS = genderPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Female")
                 .setDate("09091980")
-                .clickNextButton(new DoYouExperienceAnyOfFollowingSymptoms_OLS());
+                .clickNextButton(new CurrentlySufferOfAnyOfFollowingOLS());
 
 
         //---------------Q2 DoYouExperienceAnyOfFollowingSymptoms_OLS page-------------------
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS =
-                doYouExperienceAnyOfFollowingSymptoms_OLS
+                currentlySufferOfAnyOfFollowingOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6302", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS6333", site.activeProtocols)
                 .back();
-        CurrentlyTakeMedicationPrescribedByHealthcareProvider_OLS currentlyTakeMedicationPrescribedByHealthcareProvider_ols =
-                doYouExperienceAnyOfFollowingSymptoms_OLS
+
+        EverDiagnosedWithFollowingConditionsOLS everDiagnosedWithFollowingConditionsOLS = currentlySufferOfAnyOfFollowingOLS
                 .waitForPageLoad()
-                .clickOnAnswers("GERD which has been diagnosed by a medical professional",
-                        "Heartburn, which can be felt as pain or a burning sensation behind the breastbone",
-                        "Acid reflux or frequent regurgitation, which is a sensation of liquid or food coming back up into your throat without vomiting")
+                .clickOnAnswers("Stomach ulcer or peptic ulcer")
+                .clickNextButton(new EverDiagnosedWithFollowingConditionsOLS());
+        everDiagnosedWithFollowingConditionsOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS6333", site.activeProtocols)
+                .back();
+
+        //Q2
+        HowLongHavingSymptomsOLS howLongHavingSymptomsOLS =
+                currentlySufferOfAnyOfFollowingOLS
+                        .waitForPageLoad()
+                        .clickOnAnswers("None of the above")
+                        .clickOnAnswers("GERD that is still causing symptoms",
+                                "Heartburn or indigestion",
+                                "Acid reflux or vomiting",
+                                "Pain in the top of the stomach, or upper stomach pain")
+                        .clickNextButton(new HowLongHavingSymptomsOLS());
+
+        //Q3
+        PainInTheTopOfStomachOLS painInTheTopOfStomachOLS = howLongHavingSymptomsOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Less than 1 month")
+                .clickNextButton(new PainInTheTopOfStomachOLS());
+
+        painInTheTopOfStomachOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS6334", site.activeProtocols[0])
+                .back(howLongHavingSymptomsOLS);
+        howLongHavingSymptomsOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Less than 1 month")
+                .clickNextButton(painInTheTopOfStomachOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS6334", site.activeProtocols[0])
+                .back(howLongHavingSymptomsOLS)
+                .waitForPageLoad()
+                .clickOnAnswer("I used to have these symptoms but they are not troubling me right now")
+                .clickNextButton(painInTheTopOfStomachOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS6334", site.activeProtocols[0])
+                .back(howLongHavingSymptomsOLS);
+
+        howLongHavingSymptomsOLS
+                .waitForPageLoad()
+                .clickOnAnswer("2 months")
+                .clickNextButton(painInTheTopOfStomachOLS);
+
+        HowManyDaysPerWeekHaveSymptomsOLS howManyDaysPerWeekHaveSymptomsOLS = painInTheTopOfStomachOLS
+                .waitForPageLoad()
+                .clickOnAnswer("2 months")
+                .clickNextButton(new HowManyDaysPerWeekHaveSymptomsOLS());
+
+        howManyDaysPerWeekHaveSymptomsOLS
+                .waitForPageLoad()
+                .clickOnAnswer("1 day per week or less")
+                .clickNextButton(everDiagnosedWithFollowingConditionsOLS);
+
+        everDiagnosedWithFollowingConditionsOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS6337", site.activeProtocols)
+                .back(howManyDaysPerWeekHaveSymptomsOLS)
+                .waitForPageLoad()
+                .clickOnAnswer("2 - 3 days per week")
+                .clickNextButton(everDiagnosedWithFollowingConditionsOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS6337", site.activeProtocols)
+                .back(howManyDaysPerWeekHaveSymptomsOLS)
+                .waitForPageLoad()
+                .clickOnAnswer("Not currently experiencing symptoms")
+                .clickNextButton(everDiagnosedWithFollowingConditionsOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS6337", site.activeProtocols)
+                .back(howManyDaysPerWeekHaveSymptomsOLS);
+        CurrentlyTakeMedicationPrescribedByHealthcareProvider_OLS currentlyTakeMedicationPrescribedByHealthcareProvider_OLS = howManyDaysPerWeekHaveSymptomsOLS
+                .waitForPageLoad()
+                .clickOnAnswer("4 - 5 days per week")
                 .clickNextButton(new CurrentlyTakeMedicationPrescribedByHealthcareProvider_OLS());
 
-        WhichoOfFollowingMedicationsCurrentlyGERD_OLS whichoOfFollowingMedicationsCurrentlyGERD_OLS =  currentlyTakeMedicationPrescribedByHealthcareProvider_ols
+
+
+
+
+
+        WhichoOfFollowingMedicationsCurrentlyGERD_OLS whichoOfFollowingMedicationsCurrentlyGERD_OLS = currentlyTakeMedicationPrescribedByHealthcareProvider_OLS
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new WhichoOfFollowingMedicationsCurrentlyGERD_OLS());
 
-        EverDiagnosedWithFollowingConditionsOLS everDiagnosedWithFollowingConditionsOLS = whichoOfFollowingMedicationsCurrentlyGERD_OLS
+        whichoOfFollowingMedicationsCurrentlyGERD_OLS
                 .waitForPageLoad2()
                 .clickOnAnswers("None of the above") //----DQ if selected any of these options in Q3:  None of the above
-                .clickNextButton(new EverDiagnosedWithFollowingConditionsOLS());
+                .clickNextButton(everDiagnosedWithFollowingConditionsOLS);
         everDiagnosedWithFollowingConditionsOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
@@ -101,44 +186,42 @@ public class GERD_4301_OLS extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS6330", site.activeProtocols)
                 .back();
-        DespiteTakingMedicationDoYouStillExperienceSymptoms_OLS despiteTakingMedicationDoYouStillExperienceSymptoms_OLS = whichoOfFollowingMedicationsCurrentlyGERD_OLS
+        whichoOfFollowingMedicationsCurrentlyGERD_OLS
                 .waitForPageLoad2()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Nexium",
                         "Prevacid",
                         "Prilosec",
                         "Zegerid")
-                .clickNextButton(new DespiteTakingMedicationDoYouStillExperienceSymptoms_OLS());
-
-        despiteTakingMedicationDoYouStillExperienceSymptoms_OLS
-                .waitForPageLoad2()
-                .clickOnAnswer("1 day per week or less")
-                .clickNextButton(everDiagnosedWithFollowingConditionsOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6331", site.activeProtocols)
-                .back();
-        despiteTakingMedicationDoYouStillExperienceSymptoms_OLS
-                .waitForPageLoad2()
-                .clickOnAnswer("2 - 3 days per week")
-                .clickNextButton(everDiagnosedWithFollowingConditionsOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6331", site.activeProtocols)
-                .back();
-        despiteTakingMedicationDoYouStillExperienceSymptoms_OLS
-                .waitForPageLoad2()
-                .clickOnAnswer("Not currently experiencing symptoms")
-                .clickNextButton(everDiagnosedWithFollowingConditionsOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6331", site.activeProtocols)
-                .back();
-        despiteTakingMedicationDoYouStillExperienceSymptoms_OLS
-                .waitForPageLoad2()
-                .clickOnAnswer("4 - 5 days per week")
                 .clickNextButton(everDiagnosedWithFollowingConditionsOLS);
-
+//        despiteTakingMedicationDoYouStillExperienceSymptoms_OLS
+//                .waitForPageLoad2()
+//                .clickOnAnswer("1 day per week or less")
+//                .clickNextButton(everDiagnosedWithFollowingConditionsOLS)
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QS6331", site.activeProtocols)
+//                .back();
+//        despiteTakingMedicationDoYouStillExperienceSymptoms_OLS
+//                .waitForPageLoad2()
+//                .clickOnAnswer("2 - 3 days per week")
+//                .clickNextButton(everDiagnosedWithFollowingConditionsOLS)
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QS6331", site.activeProtocols)
+//                .back();
+//        despiteTakingMedicationDoYouStillExperienceSymptoms_OLS
+//                .waitForPageLoad2()
+//                .clickOnAnswer("Not currently experiencing symptoms")
+//                .clickNextButton(everDiagnosedWithFollowingConditionsOLS)
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QS6331", site.activeProtocols)
+//                .back();
+//        despiteTakingMedicationDoYouStillExperienceSymptoms_OLS
+//                .waitForPageLoad2()
+//                .clickOnAnswer("4 - 5 days per week")
+//                .clickNextButton(everDiagnosedWithFollowingConditionsOLS);
         WhatTypeOfSurgeryDidYouHave_OLS whatTypeOfSurgeryDidYouHave_OLS = everDiagnosedWithFollowingConditionsOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Erosive esophagitis or esophageal erosions, sores or breaks in the lining of the esophagus")
@@ -384,10 +467,12 @@ public class GERD_4301_OLS extends BaseTest {
                 .clickOnAnswerForSubQuestion(3, "More than 6 months ago")
                 .clickNextButton(weightLossSurgeryPageOLS);
 
+         UseMarijuanaOrCannabisOLS useMarijuanaOrCannabisOLS = new UseMarijuanaOrCannabisOLS();
+
          weightLossSurgeryPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
+                .clickNextButton(useMarijuanaOrCannabisOLS)
                 .waitForPageLoad()
                 .back(weightLossSurgeryPageOLS)
                 .waitForPageLoad()
@@ -433,6 +518,18 @@ public class GERD_4301_OLS extends BaseTest {
         procedureForWeightLossPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("More than 2 years ago")
+                .clickNextButton(useMarijuanaOrCannabisOLS);
+
+        useMarijuanaOrCannabisOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
+                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS6338", site.activeProtocols)
+                .back(useMarijuanaOrCannabisOLS)
+                .waitForPageLoad()
+                .clickOnAnswer("No")
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
 
 

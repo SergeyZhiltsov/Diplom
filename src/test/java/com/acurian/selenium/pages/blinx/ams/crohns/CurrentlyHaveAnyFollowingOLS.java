@@ -20,6 +20,7 @@ public class CurrentlyHaveAnyFollowingOLS extends MainPageBlinx {
 
     @Step
     public CurrentlyHaveAnyFollowingOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

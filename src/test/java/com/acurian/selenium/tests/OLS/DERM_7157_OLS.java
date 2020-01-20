@@ -842,11 +842,11 @@ public class DERM_7157_OLS extends BaseTest {
                 .dispoShouldMatch(site.dispo, site.dispo);
                 if(site.name.equals("AUT_AMS1_7157_site")){
                     aboutHealthPageOLS
-                .assertGeneratedFulNEW(env, site)
-                .assertRmgOrderPriority(env, "7157");}
+                .assertGeneratedFulNEW(env, site);}
+//                .assertRmgOrderPriority(env, "7157");}
         if(site.name.equals("AUT_AMS1_7157S_site")){
             aboutHealthPageOLS
-                    .assertGeneratedFulRAD(env, site)
-                    .assertRmgOrderPriority(env, "7157");}
+                    .assertGeneratedFulRAD(env, site);}
+//                    .assertRmgOrderPriority(env, "7157");}
     }
     }

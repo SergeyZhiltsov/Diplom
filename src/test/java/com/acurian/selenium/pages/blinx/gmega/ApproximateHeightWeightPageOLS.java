@@ -24,6 +24,7 @@ public class ApproximateHeightWeightPageOLS extends MainPageBlinx {
 
     @Step
     public ApproximateHeightWeightPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleTextPart1, titleExpectedPart1);
         waitForPageLoadMain(titleTextPart2, titleExpectedPart2);
         return this;

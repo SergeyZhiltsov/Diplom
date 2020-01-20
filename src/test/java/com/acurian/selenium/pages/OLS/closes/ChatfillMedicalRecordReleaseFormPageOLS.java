@@ -30,7 +30,9 @@ public class ChatfillMedicalRecordReleaseFormPageOLS extends MainPageOLS {
 
     @Step
     public ChatfillMedicalRecordReleaseFormPageOLS waitForPageLoad() {
+        waitForAnimation();
         try {
+            acceptAlert();
             acceptAlert();
         } catch (Exception ex) {
             logTextToAllureAndConsole("Alert was not appeared. Retry in 10 seconds");

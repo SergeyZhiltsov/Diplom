@@ -4,9 +4,7 @@ import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.blinx.ams.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.blinx.ams.SubquestionExperiencedHeartPageOLS;
-import com.acurian.selenium.pages.blinx.ams.closes.LessThan18YearsOldPageOLS;
-import com.acurian.selenium.pages.blinx.ams.closes.QualifiedClose2PageOLS;
-import com.acurian.selenium.pages.blinx.ams.closes.ThankYouCloseSimplePageOLS;
+import com.acurian.selenium.pages.blinx.ams.closes.*;
 import com.acurian.selenium.pages.blinx.ams.crohns.*;
 import com.acurian.selenium.pages.blinx.ams.debug.DebugPageOLS;
 import com.acurian.selenium.pages.blinx.ams.generalHealth.*;
@@ -41,17 +39,17 @@ public class Crohns_4818_OLSBlinx extends BaseTest {
     }
 
     @DataProvider
-    public Object[][] flare() {
+    public Object[][] sites() {
         return new Object[][]{
-                {true},
-//                {false}
+                {Site.AUT_AMS1_4818A_Site},
+                {Site.AUT_AMS1_4818AS_Site}
         };
     }
 
-    @Test(dataProvider = "flare", enabled = true)
+    @Test(dataProvider = "sites", enabled = false)
     @Description("Crohns_4818_OLSBlinx")
-    public void Crohns_4818_OLS(boolean flare) {
-        Site site = Site.AUT_AMS1_4818A_Site;
+    public void Crohns_4818_OLS(Site site) {
+//        Site site = Site.AUT_AMS1_4818A_Site;
         String phoneNumber = "AUTAMS1CRN";
         String studyName = "a Crohn's";
         String site_Indication = "a Crohn's or colitis";
@@ -130,7 +128,7 @@ public class Crohns_4818_OLSBlinx extends BaseTest {
         WhenDiagnosedWithCronsDiseaseOLS whenDiagnosedWithCronsDiseaseOLS = everDiagnosedWithFollowingConditionsOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Crohn's disease")
-                .clickOnAnswers("Ulcerative colitis")
+//                .clickOnAnswers("Ulcerative colitis")
                 .clickNextButton(new WhenDiagnosedWithCronsDiseaseOLS());
         AsPartOfYourCronsDiseaseDiagnosisFollowingProceduresOLS asPartOfYourCronsDiseaseDiagnosisFollowingProceduresOLS = whenDiagnosedWithCronsDiseaseOLS
                 .waitForPageLoad()
@@ -564,17 +562,40 @@ public class Crohns_4818_OLSBlinx extends BaseTest {
         IdentificationPageOLS identificationPageOLS = approximateHeightWeightPageOLS
                 .waitForPageLoad()
                 .setAllFields("5", "7", "170")
+                .clickNextButton(new CurrentlyParticipatingInStudyOLS())
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new RequirePassDrugTestOLS())
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
                 .clickNextButton(new IdentificationPageOLS());
+
         SiteSelectionPageOLS siteSelectionPageOLS = identificationPageOLS
                 .waitForPageLoad2()
                 .clickNextButton(new SiteSelectionPageOLS());
-        AboutHealthPageOLS aboutHealthPageOLS = siteSelectionPageOLS
-                .waitForPageLoad5("a Crohn's study!")
+
+        MedicalRecordsOptionPageOLS medicalRecordsOptionPageOLS = siteSelectionPageOLS
+                .waitForPageLoad("a Crohn's study!")
                 .getPID()
-                .clickOnFacilityName(site.name) //TODO NO SITE FOR THIS TEST. IN OLS AND CC YOU CAN SEE PROPER SITES. BUT IN BLINX WE HAVE PROBLEMS
-                .clickNextButton(new QualifiedClose2PageOLS())
-                .waitForPageLoad3()
-                .clickNextButton(new ThankYouCloseSimplePageOLS())
+                .clickOnFacilityName(site.name)
+                .clickNextButton(new MedicalRecordsOptionPageOLS());
+
+        DoctorInformationCollectionPageOLS doctorInformationCollectionPageOLS = medicalRecordsOptionPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Continue with medical records")
+                .clickNextButton(new DoctorInformationCollectionPageOLS());
+
+        HS1PageOLS hs1PageOLS = doctorInformationCollectionPageOLS
+                .waitForPageLoadIBD("Crohn's Disease")
+                .clickNextButton(new HS1PageOLS());
+
+        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = new ThankYouCloseSimplePageOLS();
+        hs1PageOLS
+                .waitForPageLoad()
+                .clickOkInPopUp()
+                .waitForPageLoad()
+                .setSignature();
+        AboutHealthPageOLS aboutHealthPageOLS = thankYouCloseSimplePageOLS
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS());
         aboutHealthPageOLS
@@ -583,8 +604,6 @@ public class Crohns_4818_OLSBlinx extends BaseTest {
                 .childPidFromDbToLog(env)
                 .assertGeneratedFul(env, site)
                 .dispoShouldMatch(site.dispo, site.dispo);
-
-
 
     }
 }
