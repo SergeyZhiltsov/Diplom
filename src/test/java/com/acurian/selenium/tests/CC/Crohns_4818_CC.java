@@ -252,9 +252,9 @@ public class Crohns_4818_CC extends BaseTest {
                 .clickOnAnswer("Yes")
                 .clickNextButton(currentlyHaveAnyFollowingCC)
                 .waitForPageLoad()
-                .getPID()
-                .pidFromDbToLog(env)
-                .flareCodeShouldMatch(env, "3");
+                .getPID();
+//                .pidFromDbToLog(env)
+//                .flareCodeShouldMatch(env, "3");
 
         //backflareCodeShouldMatch
         currentlyHaveAnyFollowingCC
@@ -287,9 +287,9 @@ public class Crohns_4818_CC extends BaseTest {
                 .clickOnAnswer("Yes")
                 .clickNextButton(currentlyHaveAnyFollowingCC)
                 .waitForPageLoad()
-                .getPID()
-                .pidFromDbToLog(env)
-                .flareCodeShouldMatch(env, "4");
+                .getPID();
+//                .pidFromDbToLog(env)
+//                .flareCodeShouldMatch(env, "4");
 
 
         HashMap<String, List<String>> disqualify = new HashMap<>();
@@ -572,38 +572,87 @@ public class Crohns_4818_CC extends BaseTest {
                 .clickOnAnswers("Schizophrenia")
                 .clickNextButton(approximateHeightPageCC);
 
-        approximateHeightPageCC
-                .waitForPageLoad()
-                .setAll("3", "3", "39")
-                .clickNextButton(new LetMeSeePageCC())
-                .waitForPageLoad()
-                .clickNextButton(new CurrentlyParticipatingInStudy())
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(new RequirePassDrugTest())
-                .waitForPageLoad()
-                .clickOnAnswer("Yes")
-                .clickNextButton(identificationPageCC)
-                .waitForPageLoad()
-                .clickNextButton(new SiteSelectionPageCC())
-                .waitForPageLoad("a Crohn's study")
-                .getPID()
-                .clickOnAnswer(site.name)
+        switch (site) {
+
+            case AUT_AMS1_4818A_Site:
+
+                approximateHeightPageCC
+                        .waitForPageLoad()
+                        .setAll("3", "3", "39")
+                        .clickNextButton(new LetMeSeePageCC())
+                        .waitForPageLoad()
+                        .clickNextButton(new CurrentlyParticipatingInStudy())
+                        .waitForPageLoad()
+                        .clickOnAnswer("No")
+                        .clickNextButton(new RequirePassDrugTest())
+                        .waitForPageLoad()
+                        .clickOnAnswer("Yes")
+                        .clickNextButton(identificationPageCC)
+                        .waitForPageLoad()
+                        .clickNextButton(new SiteSelectionPageCC())
+                        .waitForPageLoad("a Crohn's study")
+                        .getPID()
+                        .clickOnAnswer(site.name)
 //                .clickNextButton(new QualifiedClose2PageCC())
 //                .waitForPageLoadCrohns4818()
-                .clickNextButton(new MedicalRecordsOptionPageCC())
-                .waitForPageLoad()
-                .clickOnAnswer("Continue with medical records")
-                .clickNextButton(new DoctorInformationCollectionPageCC())
-                .waitForPageLoadIBD("Crohn's Disease")
-                .clickNextButton(new HSMedicalRecordsPageCC())
-                .waitForPageLoad()
-                .clickNextButton(new ThankYouCloseSimplePageCC())
-                .waitForPageLoad3()
-                .clickNextButton(new SelectActionPageCC())
-                .pidFromDbToLog(env)
-                .childPidFromDbToLog(env)
-                .assertGeneratedFul(env, site)
-                .dispoShouldMatch(site.dispo, site.dispo);
+                        .clickNextButton(new MedicalRecordsOptionPageCC())
+                        .waitForPageLoad()
+                        .clickOnAnswer("Continue with medical records")
+                        .clickNextButton(new DoctorInformationCollectionPageCC())
+                        .waitForPageLoadIBD("Crohn's Disease")
+                        .clickNextButton(new HSMedicalRecordsPageCC())
+                        .waitForPageLoad()
+                        .clickNextButton(new ThankYouCloseSimplePageCC())
+                        .waitForPageLoad3()
+                        .clickNextButton(new SelectActionPageCC())
+                        .pidFromDbToLog(env)
+                        .childPidFromDbToLog(env)
+                        .assertGeneratedFul(env, site)
+                        .dispoShouldMatch(site.dispo, site.dispo);
+                break;
+
+            case AUT_AMS1_4818AS_Site:
+
+                approximateHeightPageCC
+                        .waitForPageLoad()
+                        .setAll("3", "3", "39")
+                        .clickNextButton(new LetMeSeePageCC())
+                        .waitForPageLoad()
+                        .clickNextButton(new CurrentlyParticipatingInStudy())
+                        .waitForPageLoad()
+                        .clickOnAnswer("No")
+                        .clickNextButton(new RequirePassDrugTest())
+                        .waitForPageLoad()
+                        .clickOnAnswer("Yes")
+                        .clickNextButton(identificationPageCC)
+                        .waitForPageLoad()
+                        .clickNextButton(new SiteSelectionPageCC())
+                        .waitForPageLoad("a Crohn's study")
+                        .getPID()
+                        .clickOnAnswer(site.name)
+//                .clickNextButton(new QualifiedClose2PageCC())
+//                .waitForPageLoadCrohns4818()
+                        .clickNextButton(new MedicalRecordsOptionPageCC())
+                        .waitForPageLoad()
+                        .clickOnAnswer("Continue with medical records")
+                        .clickNextButton(new DoctorInformationCollectionPageCC())
+                        .waitForPageLoadIBD("Crohn's Disease")
+                        .clickNextButton(new HSMedicalRecordsPageCC())
+                        .waitForPageLoad()
+                        .clickNextButton(new SynexusRadiantDirectScheduleCC())
+                        .waitForPageLoadSyn()
+                        .assertVariablesNew("Acurian", "Trial", "07/01/1990", "US",
+                                "Cape May, NJ", site.zipCode, "qa.acurian@gmail.com",
+                                "999-999-9999", " %SYN_SITE_NUM% ", " "+site.name,
+                                "ALLXXXCRO150 - Allergan Crohn")
+                        .clickOnAnswer("[Successful direct schedule in clinical conductor]")
+                        .clickNextButton(new SelectActionPageCC())
+                        .pidFromDbToLog(env)
+                        .childPidFromDbToLog(env)
+                        .assertGeneratedFul(env, site)
+                        .dispoShouldMatch(site.dispo, site.dispo);
+                break;
+
+        }
     }
 }

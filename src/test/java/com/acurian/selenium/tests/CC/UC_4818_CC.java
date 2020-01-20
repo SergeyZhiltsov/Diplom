@@ -752,32 +752,78 @@ public class UC_4818_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new IdentificationPageCC());
-        identificationPageCC
-                .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
-                        "9999999999", site.zipCode)
-                .clickNextButton(new SiteSelectionPageCC())
-                .waitForPageLoad("a colitis study")
-                .getPID()
-                .clickOnAnswer(site.name)
+
+        switch (site) {
+
+            case AUT_AMS1_4818UC_Site:
+
+            identificationPageCC
+                    .waitForPageLoad()
+                    .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
+                            "9999999999", site.zipCode)
+                    .clickNextButton(new SiteSelectionPageCC())
+                    .waitForPageLoad("a colitis study")
+                    .getPID()
+                    .clickOnAnswer(site.name)
 //                .clickNextButton(new QualifiedClose2PageCC())
 //                .waitForPageLoadCrohns4818()
-                .clickNextButton(new MedicalRecordsOptionPageCC())
-                .waitForPageLoad()
-                .clickOnAnswer("Continue with medical records")
-                .clickNextButton(new DoctorInformationCollectionPageCC())
-                .waitForPageLoadIBD("Ulcerative Colitis")
-                .clickNextButton(new HSMedicalRecordsPageCC())
-                .waitForPageLoad()
-                .clickNextButton(new ThankYouCloseSimplePageCC())
-                .waitForPageLoad3()
+                    .clickNextButton(new MedicalRecordsOptionPageCC())
+                    .waitForPageLoad()
+                    .clickOnAnswer("Continue with medical records")
+                    .clickNextButton(new DoctorInformationCollectionPageCC())
+                    .waitForPageLoadIBD("Ulcerative Colitis")
+                    .clickNextButton(new HSMedicalRecordsPageCC())
+                    .waitForPageLoad()
+                    .clickNextButton(new ThankYouCloseSimplePageCC())
+                    .waitForPageLoad3()
 //                .clickNextButton(new AlzheimerClosePageCC())
 //                .waitForPageLoad()
-                .clickNextButton(selectActionPageCC)
-                .waitForPageLoad()
-                .pidFromDbToLog(env)
-                .childPidFromDbToLog(env)
-                .assertGeneratedFul(env, site)
-                .dispoShouldMatch(site.dispo, site.dispo, "4818");
+                    .clickNextButton(selectActionPageCC)
+                    .waitForPageLoad()
+                    .pidFromDbToLog(env)
+                    .childPidFromDbToLog(env)
+                    .assertGeneratedFul(env, site)
+                    .dispoShouldMatch(site.dispo, site.dispo, "4818");
+            break;
+
+            case AUT_AMS1_4818UCS_Site:
+
+                identificationPageCC
+                        .waitForPageLoad()
+                        .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
+                                "9999999999", site.zipCode)
+                        .clickNextButton(new SiteSelectionPageCC())
+                        .waitForPageLoad("a colitis study")
+                        .getPID()
+                        .clickOnAnswer(site.name)
+//                .clickNextButton(new QualifiedClose2PageCC())
+//                .waitForPageLoadCrohns4818()
+                        .clickNextButton(new MedicalRecordsOptionPageCC())
+                        .waitForPageLoad()
+                        .clickOnAnswer("Continue with medical records")
+                        .clickNextButton(new DoctorInformationCollectionPageCC())
+                        .waitForPageLoadIBD("Ulcerative Colitis")
+                        .clickNextButton(new HSMedicalRecordsPageCC())
+                        .waitForPageLoad()
+                        .clickNextButton(new SynexusRadiantDirectScheduleCC())
+                        .waitForPageLoadSyn()
+                        .assertVariablesNew("Acurian", "Trial", "07/01/1990", "US",
+                                "Cape May, NJ", site.zipCode, "qa.acurian@gmail.com",
+                                "999-999-9999", " %SYN_SITE_NUM% ", " "+site.name,
+                                "ALLXXXCRO150 - Allergan Ulcerative Colitis (UC) Expedition")
+                        .clickOnAnswer("[Successful direct schedule in clinical conductor]")
+//                .clickNextButton(new AlzheimerClosePageCC())
+//                .waitForPageLoad()
+                        .clickNextButton(selectActionPageCC)
+                        .waitForPageLoad()
+                        .pidFromDbToLog(env)
+                        .childPidFromDbToLog(env)
+                        .assertGeneratedFul(env, site)
+                        .dispoShouldMatch(site.dispo, site.dispo, "4818");
+                break;
+
+
+
+        }
     }
 }
