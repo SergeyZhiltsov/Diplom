@@ -273,25 +273,27 @@ public class DIA_4483_OLS extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(cardiovascularDiseaseThanOthersPageOLS);
 
-            cardiovascularDiseaseThanOthersPageOLS
-                    .waitForPageLoad()
-                    .clickOnAnswers("High cholesterol or high triglycerides")
-                    .clickNextButton(new DigestiveConditionsAffectDiabetesPageOLS())
-                    .waitForPageLoad()
-                    .getPage(debugPageOLS)
-                    .checkProtocolsContainsForQNumber("QS4636", site.activeProtocols)
-                    .back(cardiovascularDiseaseThanOthersPageOLS)
+        NoOfAlcoholicDrinkOLS noOfAlcoholicDrinkOLS = cardiovascularDiseaseThanOthersPageOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
-                    .clickNextButton(new DigestiveConditionsAffectDiabetesPageOLS())
+                    .clickNextButton(new NoOfAlcoholicDrinkOLS());
+        noOfAlcoholicDrinkOLS
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS4636", site.activeProtocols)
                     .back(cardiovascularDiseaseThanOthersPageOLS);
-            NoOfAlcoholicDrinkOLS noOfAlcoholicDrinkOLS = cardiovascularDiseaseThanOthersPageOLS
+//                    .waitForPageLoad()
+//                    .clickOnAnswers("High cholesterol or high triglycerides")
+//                    .clickNextButton(new DigestiveConditionsAffectDiabetesPageOLS())
+//                    .waitForPageLoad()
+//                    .getPage(debugPageOLS)
+//                    .checkProtocolsContainsForQNumber("QS4636", site.activeProtocols)
+//                    .back(cardiovascularDiseaseThanOthersPageOLS)
+
+            cardiovascularDiseaseThanOthersPageOLS
                     .waitForPageLoad()
                     .clickOnAnswers("High cholesterol or high triglycerides", "High blood pressure or hypertension")
-                    .clickNextButton(new NoOfAlcoholicDrinkOLS());
+                    .clickNextButton(noOfAlcoholicDrinkOLS);
 
         LiverRelatedConditionOLS liverRelatedConditionOLS = noOfAlcoholicDrinkOLS
                     .waitForPageLoad()

@@ -18,6 +18,7 @@ public class PleaseConfirmYourGenderPageOLS extends MainPageBlinx {
 
     @Step
     public PleaseConfirmYourGenderPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

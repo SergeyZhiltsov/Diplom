@@ -6,6 +6,7 @@ import com.acurian.selenium.pages.OLS.Fibromyalgia.AnyFollowingPainfulConditions
 import com.acurian.selenium.pages.OLS.Fibromyalgia.DiagnosedWithFibromyalgiaOLS;
 import com.acurian.selenium.pages.OLS.Fibromyalgia.FirstDiagnosedWithFibromyalgiaOLS;
 import com.acurian.selenium.pages.OLS.Fibromyalgia.TypeOfDoctorDiagnosedWithFibromyalgiaOLS;
+import com.acurian.selenium.pages.OLS.GERD.CurrentlySufferOfAnyOfFollowingOLS;
 import com.acurian.selenium.pages.OLS.GERD.DoYouExperienceAnyOfFollowingSymptoms_OLS;
 import com.acurian.selenium.pages.OLS.RA.WhatKindOfArthritisPageOLS;
 import com.acurian.selenium.pages.OLS.closes.*;
@@ -545,11 +546,11 @@ public class AF_4958_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageCC);
 
 
-        DoYouExperienceAnyOfFollowingSymptoms_OLS doYouExperienceAnyOfFollowingSymptoms_OLS = approximateHeightPageCC
+        CurrentlySufferOfAnyOfFollowingOLS currentlySufferOfAnyOfFollowingOLS = approximateHeightPageCC
                 .waitForPageLoad()
                 .setAll("5", "5", "250") //Disqualify ("High BMI") if > 40
-                .clickNextButton(new DoYouExperienceAnyOfFollowingSymptoms_OLS());
-        doYouExperienceAnyOfFollowingSymptoms_OLS
+                .clickNextButton(new CurrentlySufferOfAnyOfFollowingOLS());
+        currentlySufferOfAnyOfFollowingOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)

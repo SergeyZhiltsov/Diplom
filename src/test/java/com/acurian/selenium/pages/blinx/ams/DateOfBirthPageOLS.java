@@ -63,6 +63,7 @@ public class DateOfBirthPageOLS extends MainPageBlinx {
 
     @Step
     public DateOfBirthPageOLS waitForPageLoad2(String indication, String compensation) {
+        waitForAnimation();
         waitForPageLoadMain(titleText, getExpectedModifiedTitle2(indication, compensation));
         return this;
     }

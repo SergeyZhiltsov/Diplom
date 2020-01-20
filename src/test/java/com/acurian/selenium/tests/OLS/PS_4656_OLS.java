@@ -294,13 +294,10 @@ public class PS_4656_OLS extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(approximateHeightPageOLS);
 
-        DoYouExperienceAnyOfFollowingSymptoms_OLS doYouExperienceAnyOfFollowingSymptoms_ols = approximateHeightPageOLS
+        CurrentlyParticipatingInStudyOLS сurrentlyParticipatingInStudyOLS = approximateHeightPageOLS
                 .waitForPageLoad()
                 .setAll("5", "5", "160")
-                .clickNextButton(new DoYouExperienceAnyOfFollowingSymptoms_OLS());
-        doYouExperienceAnyOfFollowingSymptoms_ols
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
+                .clickNextButton(new CurrentlyParticipatingInStudyOLS());
 //                .clickNextButton(new EthnicBackgroundPageOLS())
 //                .waitForPageLoad()
 //                .clickOnAnswers("Prefer not to answer")
@@ -314,7 +311,7 @@ public class PS_4656_OLS extends BaseTest {
 //        areYouInterestedInPneumoniaVaccineStudyOLS
 //                .waitForPageLoad()
 //                .clickOnAnswer("No")
-                .clickNextButton(new CurrentlyParticipatingInStudyOLS())
+        сurrentlyParticipatingInStudyOLS
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new RequirePassDrugTestOLS())

@@ -20,6 +20,7 @@ public class DigestiveConditionsPageOLS extends MainPageBlinx {
 
     @Step
     public DigestiveConditionsPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

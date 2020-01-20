@@ -20,6 +20,7 @@ public class FollowingBoneOrJointConditionsPageOLS extends MainPageBlinx {
 
     @Step
     public FollowingBoneOrJointConditionsPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

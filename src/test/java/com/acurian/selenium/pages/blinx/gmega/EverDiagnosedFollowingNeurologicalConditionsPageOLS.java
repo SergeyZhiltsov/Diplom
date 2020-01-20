@@ -20,6 +20,7 @@ public class EverDiagnosedFollowingNeurologicalConditionsPageOLS extends MainPag
 
     @Step
     public EverDiagnosedFollowingNeurologicalConditionsPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

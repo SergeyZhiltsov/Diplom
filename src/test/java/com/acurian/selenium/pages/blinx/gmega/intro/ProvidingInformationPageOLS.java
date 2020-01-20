@@ -19,6 +19,7 @@ public class ProvidingInformationPageOLS extends MainPageBlinx {
 
     @Step
     public ProvidingInformationPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         waitForAnimation();
         return this;

@@ -136,9 +136,9 @@ public class OBS_4605_OLS extends BaseTest {
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new DoYouExperienceAnyOfFollowingSymptoms_OLS())
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
+//                .clickNextButton(new DoYouExperienceAnyOfFollowingSymptoms_OLS())
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
                 .clickNextButton(new CurrentlyParticipatingInStudyOLS())
                 .waitForPageLoad()
                 .clickOnAnswer("No")
