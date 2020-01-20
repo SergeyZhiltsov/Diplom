@@ -512,13 +512,13 @@ public class KAD_4631_OLS extends BaseTest {
                 .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
                 .back();
 
-        DoYouExperienceAnyOfFollowingSymptoms_OLS doYouExperienceAnyOfFollowingSymptoms_ols = approximateHeightPageOLS
+        ExperienceExcessiveHungerOrIncreasedAppetiteOLS experienceExcessiveHungerOrIncreasedAppetiteOLS = approximateHeightPageOLS
                 .waitForPageLoad()
                 .setFeatwithClear("4")
                 .setIncheswithClear("5")
                 .setLbs("188") //BMI=47.15, proceed to Obesity module
-                .clickNextButton(new DoYouExperienceAnyOfFollowingSymptoms_OLS());
-        doYouExperienceAnyOfFollowingSymptoms_ols
+                .clickNextButton(new ExperienceExcessiveHungerOrIncreasedAppetiteOLS());
+        experienceExcessiveHungerOrIncreasedAppetiteOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)

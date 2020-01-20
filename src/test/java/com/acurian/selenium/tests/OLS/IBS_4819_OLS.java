@@ -593,12 +593,12 @@ public class IBS_4819_OLS extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(approximateHeightPageOLS);
 
-        DoYouExperienceAnyOfFollowingSymptoms_OLS doYouExperienceAnyOfFollowingSymptoms_ols =
+        ExperienceExcessiveHungerOrIncreasedAppetiteOLS experienceExcessiveHungerOrIncreasedAppetiteOLS =
                 approximateHeightPageOLS
                         .waitForPageLoad()
                         .setAll("5", "5", "270")
-                        .clickNextButton(new DoYouExperienceAnyOfFollowingSymptoms_OLS());
-        doYouExperienceAnyOfFollowingSymptoms_ols
+                        .clickNextButton(new ExperienceExcessiveHungerOrIncreasedAppetiteOLS());
+        experienceExcessiveHungerOrIncreasedAppetiteOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)

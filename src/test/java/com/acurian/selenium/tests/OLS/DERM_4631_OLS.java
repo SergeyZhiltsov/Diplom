@@ -4,6 +4,7 @@ import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.Derm.*;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
+import com.acurian.selenium.pages.OLS.GERD.CurrentlySufferOfAnyOfFollowingOLS;
 import com.acurian.selenium.pages.OLS.GERD.DoYouExperienceAnyOfFollowingSymptoms_OLS;
 import com.acurian.selenium.pages.OLS.Obesity_4605.ExperienceExcessiveHungerOrIncreasedAppetiteOLS;
 import com.acurian.selenium.pages.OLS.PS_4656.HealthcareDiagnosedPsoriasisPageOLS;
@@ -667,22 +668,22 @@ public class DERM_4631_OLS extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new ApproximateHeightPageOLS());
 
-        DoYouExperienceAnyOfFollowingSymptoms_OLS doYouExperienceAnyOfFollowingSymptoms_ols = approximateHeightPageOLS
+        CurrentlySufferOfAnyOfFollowingOLS currentlySufferOfAnyOfFollowingOLS = approximateHeightPageOLS
                 .waitForPageLoad()
                 .setAll("5", "10", "120")
-                .clickNextButton(new DoYouExperienceAnyOfFollowingSymptoms_OLS());
-        doYouExperienceAnyOfFollowingSymptoms_ols
+                .clickNextButton(new CurrentlySufferOfAnyOfFollowingOLS());
+        currentlySufferOfAnyOfFollowingOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
                 .clickOnQNumber("QS60");
-        approximateHeightPageOLS
+        ExperienceExcessiveHungerOrIncreasedAppetiteOLS experienceExcessiveHungerOrIncreasedAppetiteOLS = approximateHeightPageOLS
                 .waitForPageLoad()
                 .setFeatwithClear("4")
                 .setIncheswithClear("5")
                 .setLbs("188")
-                .clickNextButton(doYouExperienceAnyOfFollowingSymptoms_ols);
-        doYouExperienceAnyOfFollowingSymptoms_ols
+                .clickNextButton(new ExperienceExcessiveHungerOrIncreasedAppetiteOLS());
+        experienceExcessiveHungerOrIncreasedAppetiteOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)

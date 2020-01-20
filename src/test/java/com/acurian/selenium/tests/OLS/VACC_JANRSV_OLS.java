@@ -577,15 +577,30 @@ public class VACC_JANRSV_OLS extends BaseTest {
                     .clickNextButton(approximateHeightPageOLS);
 
 
-            HasDoctorEverDiagnosedYouMedicalCond_OLS hasDoctorEverDiagnosedYouMedicalCond_OLS = approximateHeightPageOLS
-                    .waitForPageLoad()
-                    .setAll("5", "5", "250")
-                    .clickNextButton(new HasDoctorEverDiagnosedYouMedicalCond_OLS());
-            hasDoctorEverDiagnosedYouMedicalCond_OLS
-                    .waitForPageLoad()
-                    .getPage(debugPageOLS)
-                    .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
-                    .back();
+            switch (site) {
+                case AUT_AMS_JANRSV_Syn:
+                    HasDoctorEverDiagnosedYouMedicalCond_OLS hasDoctorEverDiagnosedYouMedicalCond_OLS = approximateHeightPageOLS
+                            .waitForPageLoad()
+                            .setAll("5", "5", "250")
+                            .clickNextButton(new HasDoctorEverDiagnosedYouMedicalCond_OLS());
+                    hasDoctorEverDiagnosedYouMedicalCond_OLS
+                            .waitForPageLoad()
+                            .getPage(debugPageOLS)
+                            .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
+                            .back();
+                    break;
+                case AUT_AMS_JANRSV:
+                    ExperienceExcessiveHungerOrIncreasedAppetiteOLS experienceExcessiveHungerOrIncreasedAppetiteOLS = approximateHeightPageOLS
+                            .waitForPageLoad()
+                            .setAll("5", "5", "250")
+                            .clickNextButton(new ExperienceExcessiveHungerOrIncreasedAppetiteOLS());
+                    experienceExcessiveHungerOrIncreasedAppetiteOLS
+                            .waitForPageLoad()
+                            .getPage(debugPageOLS)
+                            .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
+                            .back();
+                    break;
+            }
             /*DoYouExperienceAnyOfFollowingSymptoms_OLS doYouExperienceAnyOfFollowingSymptoms_OLS*/ IdentificationPageOLS identificationPageOLS= approximateHeightPageOLS
                     .waitForPageLoad()
                     .setLbs("150")
