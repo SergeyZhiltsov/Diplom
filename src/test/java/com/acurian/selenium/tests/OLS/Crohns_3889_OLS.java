@@ -123,6 +123,7 @@ public class Crohns_3889_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new PreviousDayGeneralWellBeingOLS())
+                .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS8105", site.activeProtocols)
                 .back(everTakenAnyMedicationOLS)

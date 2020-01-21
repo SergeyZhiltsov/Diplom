@@ -807,7 +807,7 @@ public class UC_4818_CC extends BaseTest {
                         .waitForPageLoad()
                         .clickNextButton(new SynexusRadiantDirectScheduleCC())
                         .waitForPageLoadSyn()
-                        .assertVariablesNew("Acurian", "Trial", "07/01/1990", "US",
+                        .assertVariablesNew("Acurian", "Trial", "07/01/1990", "US", // maybe need to use another method
                                 "Cape May, NJ", site.zipCode, "qa.acurian@gmail.com",
                                 "999-999-9999", " %SYN_SITE_NUM% ", " "+site.name,
                                 "ALLXXXCRO150 - Allergan Ulcerative Colitis (UC) Expedition")
