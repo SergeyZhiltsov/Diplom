@@ -252,9 +252,9 @@ public class Crohns_4818_CC extends BaseTest {
                 .clickOnAnswer("Yes")
                 .clickNextButton(currentlyHaveAnyFollowingCC)
                 .waitForPageLoad()
-                .getPID();
-//                .pidFromDbToLog(env)
-//                .flareCodeShouldMatch(env, "3");
+                .getPID()
+                .pidFromDbToLog(env)
+                .flareCodeShouldMatch(env, "3");
 
         //backflareCodeShouldMatch
         currentlyHaveAnyFollowingCC
@@ -287,9 +287,9 @@ public class Crohns_4818_CC extends BaseTest {
                 .clickOnAnswer("Yes")
                 .clickNextButton(currentlyHaveAnyFollowingCC)
                 .waitForPageLoad()
-                .getPID();
-//                .pidFromDbToLog(env)
-//                .flareCodeShouldMatch(env, "4");
+                .getPID()
+                .pidFromDbToLog(env)
+                .flareCodeShouldMatch(env, "4");
 
 
         HashMap<String, List<String>> disqualify = new HashMap<>();
@@ -641,8 +641,8 @@ public class Crohns_4818_CC extends BaseTest {
                         .waitForPageLoad()
                         .clickNextButton(new SynexusRadiantDirectScheduleCC())
                         .waitForPageLoadSyn()
-                        .assertVariablesNew("Acurian", "Trial", "07/01/1990", "US",
-                                "Cape May, NJ", site.zipCode, "qa.acurian@gmail.com",
+                        .assertVariablesNew("Acurian", "Trial", "07/01/1990", "US", // maybe need to use another method
+                                "Horsham, PA", site.zipCode, "qa.acurian@gmail.com",
                                 "999-999-9999", " %SYN_SITE_NUM% ", " "+site.name,
                                 "ALLXXXCRO150 - Allergan Crohn")
                         .clickOnAnswer("[Successful direct schedule in clinical conductor]")

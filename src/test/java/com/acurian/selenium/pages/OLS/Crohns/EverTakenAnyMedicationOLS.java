@@ -26,6 +26,7 @@ public class EverTakenAnyMedicationOLS extends MainPageOLS {
 
     @Step
     public EverTakenAnyMedicationOLS clickOnAnswer(String answerText) {
+        waitForAnimation();
         clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }
