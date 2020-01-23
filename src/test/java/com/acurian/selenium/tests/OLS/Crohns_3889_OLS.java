@@ -95,7 +95,7 @@ public class Crohns_3889_OLS extends BaseTest {
         WhenDiagnosedWithCronsDiseaseOLS whenDiagnosedWithCronsDiseaseOLS = everDiagnosedWithFollowingConditionsOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Crohn's disease")
-                .clickOnAnswers("Ulcerative colitis")
+//                .clickOnAnswers("Ulcerative colitis")
                 .clickNextButton(new WhenDiagnosedWithCronsDiseaseOLS());
         AsPartOfYourCronsDiseaseDiagnosisFollowingProceduresOLS asPartOfYourCronsDiseaseDiagnosisFollowingProceduresOLS = whenDiagnosedWithCronsDiseaseOLS
                 .waitForPageLoad()
@@ -133,6 +133,7 @@ public class Crohns_3889_OLS extends BaseTest {
         EverTakenAnyOfFollowingMedicationsOLS everTakenAnyOfFollowingMedicationsOLS = new EverTakenAnyOfFollowingMedicationsOLS();
         EverTreatedYourCronsOLS everTreatedYourCronsOLS = new EverTreatedYourCronsOLS();
         BiologicMedications biologicMedicationsOLS = new BiologicMedications();
+        PreviousDayGeneralWellBeingOLS previousDayGeneralWellBeingOLS = new PreviousDayGeneralWellBeingOLS();
         everTakenSteroidsOLS
                 .waitForPageLoad()
                 .clickOnAnswer("No")
@@ -144,8 +145,15 @@ public class Crohns_3889_OLS extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(biologicMedicationsOLS)
                 .waitForPageLoad()
+                .clickOnAnswers("Stelara")
+                .clickNextButton(previousDayGeneralWellBeingOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS8110", site.activeProtocols[1], site.activeProtocols[2], site.activeProtocols[3])
+                .back(biologicMedicationsOLS)
+                .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new PreviousDayGeneralWellBeingOLS())
+                .clickNextButton(previousDayGeneralWellBeingOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS8110", site.activeProtocols)
@@ -182,7 +190,6 @@ public class Crohns_3889_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(biologicMedicationsOLS);
-        PreviousDayGeneralWellBeingOLS previousDayGeneralWellBeingOLS = new PreviousDayGeneralWellBeingOLS();
         PreviousDayAbdominalPainOLS previousDayAbdominalPainOLS = new PreviousDayAbdominalPainOLS();
         PreviousDayDiarrheaOrLiquidStoolOLS previousDayDiarrheaOrLiquidStoolOLS = new PreviousDayDiarrheaOrLiquidStoolOLS();
         ExperiensingAnyPainInJointsOLS experiensingAnyPainInJointsOLS = new ExperiensingAnyPainInJointsOLS();

@@ -555,17 +555,33 @@ public class AF_4958_OLS extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
                 .back();
-        IdentificationPageOLS identificationPageOLS = approximateHeightPageCC
-                .waitForPageLoad()
-                .setLbs("150")
-                .clickNextButton(new CurrentlyParticipatingInStudyOLS())
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(new RequirePassDrugTestOLS())
-                .waitForPageLoad()
-                .clickOnAnswer("Yes")
-                .clickNextButton(new IdentificationPageOLS());
 
+        IdentificationPageOLS identificationPageOLS = new IdentificationPageOLS();
+
+        if (env.equals("PRD")) {
+            approximateHeightPageCC
+                    .waitForPageLoad()
+                    .setLbs("150")
+                    .clickNextButton(new CurrentlyParticipatingInStudyOLS())
+                    .waitForPageLoad()
+                    .clickOnAnswer("No")
+                    .clickNextButton(new RequirePassDrugTestOLS())
+                    .waitForPageLoad()
+                    .clickOnAnswer("Yes")
+                    .clickNextButton(identificationPageOLS);
+        }
+        if (env.equals("STG")){
+            approximateHeightPageCC
+                    .waitForPageLoad()
+                    .setLbs("150")
+                    .clickNextButton(new CurrentlyParticipatingInStudyOLS())
+                    .waitForPageLoad()
+                    .clickOnAnswer("No")
+                    .clickNextButton(new RequirePassDrugTestOLS())
+                    .waitForPageLoad()
+                    .clickOnAnswer("Yes")
+                    .clickNextButton(identificationPageOLS);
+        }
 
         SiteSelectionPageOLS siteSelectionPageCC = identificationPageOLS
                 .waitForPageLoad()

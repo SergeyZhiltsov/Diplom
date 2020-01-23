@@ -763,6 +763,7 @@ public class GAST_4357_OLS extends BaseTest {
                             break;
 
                         case AUT_GAS4357ds: {
+                            QualifiedClose2PageOLS qualifiedClose2PageOLS3 = new QualifiedClose2PageOLS();
                             DRSBlinx dRSBlinx = new DRSBlinx();
                             DirectSheduleVaccOLS directSheduleVaccOLS = new DirectSheduleVaccOLS();
                             DRSOLS scedulerOLS = new DRSOLS();
@@ -773,8 +774,8 @@ public class GAST_4357_OLS extends BaseTest {
                                         .waitForPageLoad();
                             }
                             if (env.equals("STG")) {
-                                directSheduleVaccOLS
-                                        .waitForPageLoadSTG();
+                                qualifiedClose2PageOLS3
+                                        .waitForPageLoad();
                             }
                             directSheduleVaccOLS
                                     .clickSheduleBtnBlinx(dRSBlinx);
