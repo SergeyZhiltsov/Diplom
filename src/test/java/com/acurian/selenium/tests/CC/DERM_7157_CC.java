@@ -86,7 +86,7 @@ public class DERM_7157_CC extends BaseTest {
                 .getPage(debugPageCC)
                 // .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
                 .back(dateOfBirthPageCC);
-        IdentificationPageCC identificationPageCC= dateOfBirthPageCC
+        IdentificationPageCC identificationPageCC = dateOfBirthPageCC
                 .waitForPageLoad("an eczema (atopic dermatitis) study", "600")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
                 .clickNextButton(new IdentificationPageCC());
@@ -325,8 +325,8 @@ public class DERM_7157_CC extends BaseTest {
                 .clickNextButton(new DupixentInjectionPageCC());
         dupixentInjectionPageCC
                 .waitForPageLoad()
-              //  .getPage(debugPageCC)
-            //    .checkProtocolsContainsForQNumber("QS5850", site.activeProtocols)
+                //  .getPage(debugPageCC)
+                //    .checkProtocolsContainsForQNumber("QS5850", site.activeProtocols)
                 .back();
 
 
@@ -430,8 +430,8 @@ public class DERM_7157_CC extends BaseTest {
                         "system attacking your joints")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
                 .waitForPageLoad()
-             //   .getPage(debugPageCC)
-             //   .checkProtocolsContainsForQNumber("QS39", site.activeProtocols)
+                //   .getPage(debugPageCC)
+                //   .checkProtocolsContainsForQNumber("QS39", site.activeProtocols)
                 .back(whatKindOfArthritisPageCC)
                 .waitForPageLoad()
                 .back();
@@ -809,14 +809,14 @@ public class DERM_7157_CC extends BaseTest {
                 .clickNextButton(letMeSeePageCC);
 
 
-       letMeSeePageCC
+        letMeSeePageCC
                 .waitForPageLoad()
-               .clickNextButton(new CurrentlyParticipatingInStudy())
-               .waitForPageLoad()
-               .clickOnAnswer("No")
-               .clickNextButton(new RequirePassDrugTest())
-               .waitForPageLoad()
-               .clickOnAnswer("Yes")
+                .clickNextButton(new CurrentlyParticipatingInStudy())
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new RequirePassDrugTest())
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
                 .clickNextButton(identificationPageCC);
 
         //----------PII (IdentificationPageOLS) Page--------------------
@@ -847,23 +847,44 @@ public class DERM_7157_CC extends BaseTest {
                 .assertGeneratedFul(env, site);
 //                .assertRmgOrderPriority(env, "7157");
 
-        if(site.name.equals("AUT_AMS1_7157S_site"))
-            medicalRecordsOptionPageCC
-                    .waitForPageLoad()
-                    .clickOnAnswer("Continue without medical records")
-                    .clickNextButton(new SynexusRadiantDirectScheduleCC())
-                    .waitForPageLoadSyn()
-                    .assertVariablesNew("Acurian", "Trial", "04/05/2001", "US",
-                            "Cape May, NJ", site.zipCode, "qa.acurian@gmail.com",
-                            "999-999-9999", " AUT_AMS1_7157S ", " "+site.name, "GLNXXXATO204 - Glenmark Pharmaceuticals Atopic Dermatitis")
-                    .clickOnAnswer("[Successful direct schedule in clinical conductor]")
-                    .clickNextButton(selectActionPageCC)
-                    .waitForPageLoad()
-                    .pidFromDbToLog(env)
-                    .childPidFromDbToLog(env)
-                    .dispoShouldMatch(site.dispo, site.dispo)
-                    .assertGeneratedFulDERM(env, site);
-//                    .assertRmgOrderPriority(env, "7157");
-    }
+        if(env.equals("PRD")) {
 
+            if (site.name.equals("AUT_AMS1_7157S_site"))
+                medicalRecordsOptionPageCC
+                        .waitForPageLoad()
+                        .clickOnAnswer("Continue without medical records")
+                        .clickNextButton(new SynexusRadiantDirectScheduleCC())
+                        .waitForPageLoadSyn()
+                        .assertVariablesNew("Acurian", "Trial", "04/05/2001", "US",
+                                "Cape May, NJ", site.zipCode, "qa.acurian@gmail.com",
+                                "999-999-9999", " AUT_AMS1_7157S ", " " + site.name, "GLNXXXATO204 - Glenmark Pharmaceuticals Atopic Dermatitis")
+                        .clickOnAnswer("[Successful direct schedule in clinical conductor]")
+                        .clickNextButton(selectActionPageCC)
+                        .waitForPageLoad()
+                        .pidFromDbToLog(env)
+                        .childPidFromDbToLog(env)
+                        .dispoShouldMatch(site.dispo, site.dispo)
+                        .assertGeneratedFulDERM(env, site);
+//                    .assertRmgOrderPriority(env, "7157");
+        }
+        if (env.equals("STG")){
+            if (site.name.equals("AUT_AMS1_7157S_site"))
+                medicalRecordsOptionPageCC
+                        .waitForPageLoad()
+                        .clickOnAnswer("Continue without medical records")
+                        .clickNextButton(new SynexusRadiantDirectScheduleCC())
+                        .waitForPageLoadSyn()
+                        .assertVariablesNew("Acurian", "Trial", "04/05/2001", "US",
+                                "Cape May, NJ", site.zipCode, "qa.acurian@gmail.com",
+                                "999-999-9999", " %SYN_SITE_NUM% ", " " + site.name, "GLNXXXATO204 - Glenmark Pharmaceuticals Atopic Dermatitis")
+                        .clickOnAnswer("[Successful direct schedule in clinical conductor]")
+                        .clickNextButton(selectActionPageCC)
+                        .waitForPageLoad()
+                        .pidFromDbToLog(env)
+                        .childPidFromDbToLog(env)
+                        .dispoShouldMatch(site.dispo, site.dispo)
+                        .assertGeneratedFulDERM(env, site);
+//                    .assertRmgOrderPriority(env, "7157");
+        }
+    }
 }

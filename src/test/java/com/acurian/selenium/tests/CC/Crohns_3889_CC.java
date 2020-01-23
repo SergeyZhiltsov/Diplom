@@ -152,6 +152,7 @@ public class Crohns_3889_CC extends BaseTest {
         EverTakenAnyOfFollowingMedicationsCC everTakenAnyOfFollowingMedicationsCC = new EverTakenAnyOfFollowingMedicationsCC();
         EverTreatedYourCronsCC everTreatedYourCronsCC = new EverTreatedYourCronsCC();
         BiologicMedicationsCC biologicMedicationsCC = new BiologicMedicationsCC();
+        PreviousDayGeneralWellBeingCC previousDayGeneralWellBeingCC = new PreviousDayGeneralWellBeingCC();
         everTakenSteroidsCC
                 .waitForPageLoad()
                 .clickOnAnswer("No")
@@ -163,8 +164,15 @@ public class Crohns_3889_CC extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(biologicMedicationsCC)
                 .waitForPageLoad()
+                .clickOnAnswers("Stelara")
+                .clickNextButton(previousDayGeneralWellBeingCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS8110", site.activeProtocols[1], site.activeProtocols[2], site.activeProtocols[3])
+                .back(biologicMedicationsCC)
+                .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new PreviousDayGeneralWellBeingCC())
+                .clickNextButton(previousDayGeneralWellBeingCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS8110", site.activeProtocols)
@@ -201,7 +209,6 @@ public class Crohns_3889_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(biologicMedicationsCC);
-        PreviousDayGeneralWellBeingCC previousDayGeneralWellBeingCC = new PreviousDayGeneralWellBeingCC();
         PreviousDayAbdominalPainCC previousDayAbdominalPainCC = new PreviousDayAbdominalPainCC();
         PreviousDayDiarrheaOrLiquidStoolCC previousDayDiarrheaOrLiquidStoolCC = new PreviousDayDiarrheaOrLiquidStoolCC();
         ExperiensingAnyPainInJointsCC experiensingAnyPainInJointsCC = new ExperiensingAnyPainInJointsCC();
