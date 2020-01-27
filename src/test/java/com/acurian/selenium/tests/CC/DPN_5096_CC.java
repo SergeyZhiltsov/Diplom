@@ -153,14 +153,14 @@ public class DPN_5096_CC extends BaseTest {
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS5503", site.activeProtocols)
                 .back();
-        whatKindOfDiabetesPageCC
-                .waitForPageLoad()
-                .clickOnAnswer("High blood sugar only")
-                .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS5503", site.activeProtocols)
-                .back();
+//        whatKindOfDiabetesPageCC
+//                .waitForPageLoad()
+//                .clickOnAnswer("High blood sugar only")
+//                .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS5503", site.activeProtocols)
+//                .back();
 
         whatKindOfDiabetesPageCC
                 .waitForPageLoad()
@@ -178,7 +178,7 @@ public class DPN_5096_CC extends BaseTest {
 
         //----------Q4 - Do you experience diabetic peripheral neuropathy or diabetic nerve pain? -  Page ---------------
         WithType2DiabetesPageCC withType2DiabetesPageCC = doYouExperienceDPN_CC
-                .waitForPageLoadDPN()
+                .waitForPageLoadNew()
                 .clickOnAnswer("No")
                 .clickNextButton(new WithType2DiabetesPageCC());
         withType2DiabetesPageCC
@@ -189,7 +189,7 @@ public class DPN_5096_CC extends BaseTest {
 
         WhereDoYouExperienceDiabeticNervePain_CC whereDoYouExperienceDiabeticNervePain_CC =
                 doYouExperienceDPN_CC
-                        .waitForPageLoadDPN()
+                        .waitForPageLoadNew()
                         .clickOnAnswer("Yes")
                         .clickNextButton(new WhereDoYouExperienceDiabeticNervePain_CC());
 
@@ -212,7 +212,7 @@ public class DPN_5096_CC extends BaseTest {
         whereDoYouExperienceDiabeticNervePain_CC
                 .waitForPageLoadDPN()
                 .clickOnAnswers("None of the above")
-                .clickOnAnswers("Right foot", "Right hand or arm", "Left hand or arm")
+                .clickOnAnswers("Right foot")
                 .clickNextButton(withType2DiabetesPageCC);
 
         withType2DiabetesPageCC
@@ -221,18 +221,18 @@ public class DPN_5096_CC extends BaseTest {
                 .checkProtocolsContainsForQNumber("QS5527", site.activeProtocols)
                 .back(whereDoYouExperienceDiabeticNervePain_CC);
 
-        whereDoYouExperienceDiabeticNervePain_CC
-                .waitForPageLoadDPN()
-                .clickOnAnswers("None of the above")
-//                .clickOnAnswers("Right leg", "Left foot")
-                .clickOnAnswers("Right hand or arm", "Left hand or arm")
-                .clickNextButton(withType2DiabetesPageCC);
-
-        withType2DiabetesPageCC
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS5527", site.activeProtocols)
-                .back(whereDoYouExperienceDiabeticNervePain_CC);
+//        whereDoYouExperienceDiabeticNervePain_CC
+//                .waitForPageLoadDPN()
+//                .clickOnAnswers("None of the above")
+////                .clickOnAnswers("Right leg", "Left foot")
+//                .clickOnAnswers("Right hand or arm", "Left hand or arm")
+//                .clickNextButton(withType2DiabetesPageCC);
+//
+//        withType2DiabetesPageCC
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS5527", site.activeProtocols)
+//                .back(whereDoYouExperienceDiabeticNervePain_CC);
 
         ApproxHowlongYouBeenExpSymptomsCC approxHowlongYouBeenExpSymptomsCC = whereDoYouExperienceDiabeticNervePain_CC
                 .waitForPageLoadDPN()
@@ -247,70 +247,70 @@ public class DPN_5096_CC extends BaseTest {
         whereDoYouExperienceDiabeticNervePain_CC
                 .waitForPageLoadDPN()
                 .clickOnAnswers("None of the above")
-                .clickOnAnswers("Right leg", "Left leg", "Left foot", "Right hand or arm", "Left hand or arm")
+                .clickOnAnswers("Right leg", "Left leg", "Left foot")
                 .clickNextButton(approxHowlongYouBeenExpSymptomsCC);
 
         //----------Q6 - How would you describe the symptoms or sensations you feel in your feet, legs, hands, or arms? ---------
-        WhichBestDescribesYourDiabeticNervePainCC whichBestDescribesYourDiabeticNervePainCC = approxHowlongYouBeenExpSymptomsCC
+        HowWouldYouDescribeDiabeticNervePainСС howWouldYouDescribeDiabeticNervePainСС = approxHowlongYouBeenExpSymptomsCC
                 .waitForPageLoadDPN()
                 .clickOnAnswer("6 - 11 months")
-                .clickNextButton(new WhichBestDescribesYourDiabeticNervePainCC());
+                .clickNextButton(new HowWouldYouDescribeDiabeticNervePainСС());
 
-        whichBestDescribesYourDiabeticNervePainCC
+        howWouldYouDescribeDiabeticNervePainСС
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS5528", site.activeProtocols)
                 .back(approxHowlongYouBeenExpSymptomsCC)
                 .waitForPageLoadDPN()
                 .clickOnAnswer("1 year")
-                .clickNextButton(whichBestDescribesYourDiabeticNervePainCC)
+                .clickNextButton(howWouldYouDescribeDiabeticNervePainСС)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS5528", site.activeProtocols)
                 .back(approxHowlongYouBeenExpSymptomsCC)
-                .waitForPageLoadDPN()
-                .clickOnAnswer("2 years")
-                .clickNextButton(whichBestDescribesYourDiabeticNervePainCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS5528", site.activeProtocols)
-                .back(approxHowlongYouBeenExpSymptomsCC)
-                .waitForPageLoadDPN()
-                .clickOnAnswer("3 years")
-                .clickNextButton(whichBestDescribesYourDiabeticNervePainCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS5528", site.activeProtocols)
-                .back(approxHowlongYouBeenExpSymptomsCC)
+//                .waitForPageLoadDPN()
+//                .clickOnAnswer("2 years")
+//                .clickNextButton(whichBestDescribesYourDiabeticNervePainCC)
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS5528", site.activeProtocols)
+//                .back(approxHowlongYouBeenExpSymptomsCC)
+//                .waitForPageLoadDPN()
+//                .clickOnAnswer("3 years")
+//                .clickNextButton(whichBestDescribesYourDiabeticNervePainCC)
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS5528", site.activeProtocols)
+//                .back(approxHowlongYouBeenExpSymptomsCC)
                 .waitForPageLoadDPN()
                 .clickOnAnswer("Less than 6 months")
-                .clickNextButton(whichBestDescribesYourDiabeticNervePainCC)
+                .clickNextButton(howWouldYouDescribeDiabeticNervePainСС)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS5528", site.activeProtocols)
                 .back(approxHowlongYouBeenExpSymptomsCC)
                 .waitForPageLoadDPN()
                 .clickOnAnswer("4 or more years")
-                .clickNextButton(whichBestDescribesYourDiabeticNervePainCC);
+                .clickNextButton(howWouldYouDescribeDiabeticNervePainСС);
 
-        whichBestDescribesYourDiabeticNervePainCC
+        howWouldYouDescribeDiabeticNervePainСС
                 .waitForPageLoad()
-                .clickOnAnswer("Pain does not limit my daily activities")
+                .clickOnAnswer("No pain")
                 .clickNextButton(withType2DiabetesPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS5529", site.activeProtocols)
-                .back(whichBestDescribesYourDiabeticNervePainCC)
+                .checkProtocolsContainsForQNumber("QS5530", site.activeProtocols)
+                .back(howWouldYouDescribeDiabeticNervePainСС)
                 .waitForPageLoad()
-                .clickOnAnswer("Constant pain. Need assistance with daily activities")
+                .clickOnAnswer("Mild")
                 .clickNextButton(withType2DiabetesPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS5529", site.activeProtocols)
-                .back(whichBestDescribesYourDiabeticNervePainCC);
-        TransitionStatementCC transitionStatementCC = whichBestDescribesYourDiabeticNervePainCC
+                .checkProtocolsContainsForQNumber("QS5530", site.activeProtocols)
+                .back(howWouldYouDescribeDiabeticNervePainСС);
+        TransitionStatementCC transitionStatementCC = howWouldYouDescribeDiabeticNervePainСС
                 .waitForPageLoad()
-                .clickOnAnswer("Noticeable discomfort, but does not limit my activities")
+                .clickOnAnswer("Moderate")
                 .clickNextButton(new TransitionStatementCC());
 
         transitionStatementCC
@@ -606,6 +606,15 @@ public class DPN_5096_CC extends BaseTest {
                 .setAll("5", "5", "160")
                 .clickNextButton(new LetMeSeePageCC())
                 .waitForPageLoad()
+                .clickNextButton(new WithType2DiabetesPageCC())
+                .waitForPageLoad()
+                .clickOnAnswer("Within the past 2 months")
+                .clickNextButton(new CurrentlyTreatingYourDiabetesPageCC())
+                .waitForPageLoad()
+                .clickOnAnswers("I am not currently treating my diabetes")
+                .clickNextButton(new CardiovascularDiseaseThanOthersPageCC())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
                 .clickNextButton(new CurrentlyParticipatingInStudy())
                 .waitForPageLoad()
                 .clickOnAnswer("No")

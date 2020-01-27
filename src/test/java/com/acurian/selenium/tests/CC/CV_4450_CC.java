@@ -164,7 +164,7 @@ public class CV_4450_CC extends BaseTest {
 
         SufferedFollowingHeartRelatedConditionsPageCC sufferedFollowingHeartRelatedConditionsPageCC = whatKindOfDiabetesPageCC
                 .waitForPageLoad()
-                .clickOnAnswer("Gestational diabetes (diabetes only during pregnancy)") //Display for Females only
+                .clickOnAnswer("Pre-diabetes")
                 .clickOnAnswer("Unsure")
                 .clickNextButton(new SufferedFollowingHeartRelatedConditionsPageCC());
 

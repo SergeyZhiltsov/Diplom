@@ -7,7 +7,7 @@ import com.acurian.selenium.pages.OLS.DPN_3769_4557.*;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.CurrentlyTreatingYourDiabetesPageOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.WithType2DiabetesPageOLS;
-import com.acurian.selenium.pages.OLS.LOWT_3017.HasDoctorEverDiagnosedYouMedicalCond_OLS;
+import com.acurian.selenium.pages.OLS.LOWT_3017.CardiovascularDiseaseThanOthersPageOLS;
 import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
@@ -119,14 +119,14 @@ public class DPN_5096_OLS extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5503", site.activeProtocols)
                 .back();
-        whatKindOfDiabetesPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("High blood sugar only")
-                .clickNextButton(new HasDoctorEverDiagnosedYouMedicalCond_OLS())
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5503", site.activeProtocols)
-                .back();
+//        whatKindOfDiabetesPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswer("High blood sugar only")
+//                .clickNextButton(new HasDoctorEverDiagnosedYouMedicalCond_OLS())
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QS5503", site.activeProtocols)
+//                .back();
 
             whatKindOfDiabetesPageOLS
                     .waitForPageLoad()
@@ -144,7 +144,7 @@ public class DPN_5096_OLS extends BaseTest {
 
         //----------Q4 - Do you experience diabetic peripheral neuropathy or diabetic nerve pain? -  Page ---------------
         WithType2DiabetesPageOLS withType2DiabetesPageOLS = doYouExperienceDPN_OLS
-                .waitForPageLoadDPN()
+                .waitForPageLoadNew()
                 .clickOnAnswer("No")
                 .clickNextButton(new WithType2DiabetesPageOLS());
         withType2DiabetesPageOLS
@@ -155,7 +155,7 @@ public class DPN_5096_OLS extends BaseTest {
 
         WhereDoYouExperienceDiabeticNervePain_OLS whereDoYouExperienceDiabeticNervePain_OLS =
                 doYouExperienceDPN_OLS
-                        .waitForPageLoadDPN()
+                        .waitForPageLoadNew()
                         .clickOnAnswer("Yes")
                         .clickNextButton(new WhereDoYouExperienceDiabeticNervePain_OLS());
 
@@ -178,7 +178,7 @@ public class DPN_5096_OLS extends BaseTest {
         whereDoYouExperienceDiabeticNervePain_OLS
                 .waitForPageLoadDPN()
                 .clickOnAnswers("None of the above")
-                .clickOnAnswers("Right foot", "Right hand or arm", "Left hand or arm")
+                .clickOnAnswers("Right foot")
                 .clickNextButton(withType2DiabetesPageOLS);
 
         withType2DiabetesPageOLS
@@ -187,18 +187,18 @@ public class DPN_5096_OLS extends BaseTest {
                 .checkProtocolsContainsForQNumber("QS5527", site.activeProtocols)
                 .back(whereDoYouExperienceDiabeticNervePain_OLS);
 
-        whereDoYouExperienceDiabeticNervePain_OLS
-                .waitForPageLoadDPN()
-                .clickOnAnswers("None of the above")
-//                .clickOnAnswers("Right leg", "Left foot")
-                .clickOnAnswers("Right hand or arm", "Left hand or arm")
-                .clickNextButton(withType2DiabetesPageOLS);
-
-        withType2DiabetesPageOLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5527", site.activeProtocols)
-                .back(whereDoYouExperienceDiabeticNervePain_OLS);
+//        whereDoYouExperienceDiabeticNervePain_OLS
+//                .waitForPageLoadDPN()
+//                .clickOnAnswers("None of the above")
+////                .clickOnAnswers("Right leg", "Left foot")
+//                .clickOnAnswers("Right hand or arm", "Left hand or arm")
+//                .clickNextButton(withType2DiabetesPageOLS);
+//
+//        withType2DiabetesPageOLS
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QS5527", site.activeProtocols)
+//                .back(whereDoYouExperienceDiabeticNervePain_OLS);
 
         ApproxHowlongYouBeenExpSymptomsOLS approxHowlongYouBeenExpSymptomsOLS = whereDoYouExperienceDiabeticNervePain_OLS
                 .waitForPageLoadDPN()
@@ -213,69 +213,69 @@ public class DPN_5096_OLS extends BaseTest {
         whereDoYouExperienceDiabeticNervePain_OLS
                 .waitForPageLoadDPN()
                 .clickOnAnswers("None of the above")
-                .clickOnAnswers("Right leg", "Left leg", "Left foot", "Right hand or arm", "Left hand or arm")
+                .clickOnAnswers("Right leg", "Left leg", "Left foot")
                 .clickNextButton(approxHowlongYouBeenExpSymptomsOLS);
 
         //----------Q6 - How would you describe the symptoms or sensations you feel in your feet, legs, hands, or arms? ---------
-        WhichBestDescribesYourDiabeticNervePainOLS whichBestDescribesYourDiabeticNervePainOLS = approxHowlongYouBeenExpSymptomsOLS
+        HowWouldYouDescribeDiabeticNervePainOLS howWouldYouDescribeDiabeticNervePainOLS = approxHowlongYouBeenExpSymptomsOLS
                         .waitForPageLoadDPN()
                         .clickOnAnswer("6 - 11 months")
-                        .clickNextButton(new WhichBestDescribesYourDiabeticNervePainOLS());
+                        .clickNextButton(new HowWouldYouDescribeDiabeticNervePainOLS());
 
-        whichBestDescribesYourDiabeticNervePainOLS
+        howWouldYouDescribeDiabeticNervePainOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5528", site.activeProtocols)
                 .back(approxHowlongYouBeenExpSymptomsOLS)
                 .waitForPageLoadDPN()
                 .clickOnAnswer("1 year")
-                .clickNextButton(whichBestDescribesYourDiabeticNervePainOLS)
+                .clickNextButton(howWouldYouDescribeDiabeticNervePainOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5528", site.activeProtocols)
                 .back(approxHowlongYouBeenExpSymptomsOLS)
-                .waitForPageLoadDPN()
-                .clickOnAnswer("2 years")
-                .clickNextButton(whichBestDescribesYourDiabeticNervePainOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5528", site.activeProtocols)
-                .back(approxHowlongYouBeenExpSymptomsOLS)
-                .waitForPageLoadDPN()
-                .clickOnAnswer("3 years")
-                .clickNextButton(whichBestDescribesYourDiabeticNervePainOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5528", site.activeProtocols)
-                .back(approxHowlongYouBeenExpSymptomsOLS)
+//                .waitForPageLoadDPN()
+//                .clickOnAnswer("2 years")
+//                .clickNextButton(howWouldYouDescribeDiabeticNervePainOLS)
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QS5528", site.activeProtocols)
+//                .back(approxHowlongYouBeenExpSymptomsOLS)
+//                .waitForPageLoadDPN()
+//                .clickOnAnswer("3 years")
+//                .clickNextButton(howWouldYouDescribeDiabeticNervePainOLS)
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QS5528", site.activeProtocols)
+//                .back(approxHowlongYouBeenExpSymptomsOLS)
                 .waitForPageLoadDPN()
                 .clickOnAnswer("Less than 6 months")
-                .clickNextButton(whichBestDescribesYourDiabeticNervePainOLS)
+                .clickNextButton(howWouldYouDescribeDiabeticNervePainOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5528", site.activeProtocols)
                 .back(approxHowlongYouBeenExpSymptomsOLS)
                 .waitForPageLoadDPN()
                 .clickOnAnswer("4 or more years")
-                .clickNextButton(whichBestDescribesYourDiabeticNervePainOLS);
+                .clickNextButton(howWouldYouDescribeDiabeticNervePainOLS);
 
-        whichBestDescribesYourDiabeticNervePainOLS
+        howWouldYouDescribeDiabeticNervePainOLS
                 .waitForPageLoad()
-                .clickOnAnswer("Pain does not limit my daily activities")
+                .clickOnAnswer("No pain")
                 .clickNextButton(withType2DiabetesPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5529", site.activeProtocols)
-                .back(whichBestDescribesYourDiabeticNervePainOLS)
+                .checkProtocolsContainsForQNumber("QS5530", site.activeProtocols)
+                .back(howWouldYouDescribeDiabeticNervePainOLS)
                 .waitForPageLoad()
-                .clickOnAnswer("Constant pain. Need assistance with daily activities")
+                .clickOnAnswer("Mild")
                 .clickNextButton(withType2DiabetesPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5529", site.activeProtocols)
-                .back(whichBestDescribesYourDiabeticNervePainOLS)
+                .checkProtocolsContainsForQNumber("QS5530", site.activeProtocols)
+                .back(howWouldYouDescribeDiabeticNervePainOLS)
                 .waitForPageLoad()
-                .clickOnAnswer("Noticeable discomfort, but does not limit my activities")
+                .clickOnAnswer("Moderate")
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
 
 
@@ -477,6 +477,15 @@ public class DPN_5096_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .setAll("5", "5", "160")
+                .clickNextButton(new WithType2DiabetesPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswer("Within the past 2 months")
+                .clickNextButton(new CurrentlyTreatingYourDiabetesPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("I am not currently treating my diabetes")
+                .clickNextButton(new CardiovascularDiseaseThanOthersPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
                 .clickNextButton(new CurrentlyParticipatingInStudyOLS())
                 .waitForPageLoad()
                 .clickOnAnswer("No")

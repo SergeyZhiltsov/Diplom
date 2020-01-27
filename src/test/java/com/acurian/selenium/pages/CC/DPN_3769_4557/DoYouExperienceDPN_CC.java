@@ -15,6 +15,7 @@ public class DoYouExperienceDPN_CC extends MainPageCC{
     		"This condition can cause pain, tingling, or numbness in your feet, legs, hands, or arms.";
     public final String titleExpectedDPN = "Do you experience diabetic peripheral neuropathy (DPN) or diabetic nerve pain?\n" +
             "This condition can cause pain, tingling, or numbness in your feet, legs, hands, or arms.";
+    public final String titleExpectedNew = "Do you experience pain, tingling, or numbness in your feet or legs, symptoms caused by diabetic peripheral neuropathy (DPN) or diabetic nerve pain?";
 
     @FindBy(xpath = "//div[@class='question_text']")
     WebElement titleText;
@@ -36,6 +37,11 @@ public class DoYouExperienceDPN_CC extends MainPageCC{
         return this;
     }
 
+    @Step
+    public DoYouExperienceDPN_CC waitForPageLoadNew() {
+        waitForPageLoadMain(titleText, titleExpectedNew);
+        return this;
+    }
 
     @Step
     public DoYouExperienceDPN_CC clickOnAnswer(String answerText) {

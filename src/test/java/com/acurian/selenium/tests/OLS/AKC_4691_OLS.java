@@ -89,20 +89,20 @@ public class AKC_4691_OLS extends BaseTest {
                 .back();
         whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
-                .clickOnAnswer("Gestational diabetes (diabetes only during pregnancy)")
+                .clickOnAnswer("Pre-diabetes")
                 .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
                 .back();
-        whatKindOfDiabetesPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("High blood sugar only")
-                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
-                .back();
+//        whatKindOfDiabetesPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswer("High blood sugar only")
+//                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
+//                .back();
         whatKindOfDiabetesPageOLS
                 .waitForPageLoad();
         CurrentlyTreatingYourDiabetesPageOLS currentlyTreatingYourDiabetesPageOLS = whatKindOfDiabetesPageOLS
@@ -626,7 +626,7 @@ public class AKC_4691_OLS extends BaseTest {
                 .setAll("5", "5", "160")
                 .clickNextButton(new DoYouExperienceDPN_OLS());
         doYouExperienceDPN_OLS
-                .waitForPageLoadDPN()
+                .waitForPageLoadNew()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
                 .back();

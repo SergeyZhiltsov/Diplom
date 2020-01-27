@@ -4,10 +4,9 @@ import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.Fibromyalgia.AnyFollowingPainfulConditionsOLS;
 import com.acurian.selenium.pages.OLS.Fibromyalgia.DiagnosedWithFibromyalgiaOLS;
-import com.acurian.selenium.pages.OLS.Fibromyalgia.FirstDiagnosedWithFibromyalgiaOLS;
+import com.acurian.selenium.pages.OLS.Fibromyalgia.HowLongBeenHavingSymptomsFibromyalgiaOLS;
 import com.acurian.selenium.pages.OLS.Fibromyalgia.TypeOfDoctorDiagnosedWithFibromyalgiaOLS;
 import com.acurian.selenium.pages.OLS.GERD.CurrentlySufferOfAnyOfFollowingOLS;
-import com.acurian.selenium.pages.OLS.GERD.DoYouExperienceAnyOfFollowingSymptoms_OLS;
 import com.acurian.selenium.pages.OLS.RA.WhatKindOfArthritisPageOLS;
 import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.cv_study.SubquestionHeartPageOLS;
@@ -17,7 +16,6 @@ import com.acurian.selenium.pages.OLS.shared.AreYouCurrentlyReceivingWorkersPage
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
 import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
-import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
@@ -118,60 +116,62 @@ public class AF_4958_OLS extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS7802", site.activeProtocols)
                 .back();
-        FirstDiagnosedWithFibromyalgiaOLS firstDiagnosedWithFibromyalgiaOLS = diagnosedWithFibromyalgiaOLS.waitForPageLoad()
+        HowLongBeenHavingSymptomsFibromyalgiaOLS howLongBeenHavingSymptomsFibromyalgiaOLS = diagnosedWithFibromyalgiaOLS.waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(new FirstDiagnosedWithFibromyalgiaOLS());
+                .clickNextButton(new HowLongBeenHavingSymptomsFibromyalgiaOLS());
+
+        AnyFollowingPainfulConditionsOLS anyFollowingPainfulConditionsOLS = new AnyFollowingPainfulConditionsOLS();
 
         //Q3
         TypeOfDoctorDiagnosedWithFibromyalgiaOLS typeOfDoctorDiagnosedWithFibromyalgiaOLS =
                 new TypeOfDoctorDiagnosedWithFibromyalgiaOLS();
-        List<String> disqualifyQ3 = Arrays.asList("Within the past 2 months", "3 - 6 months ago", "7 - 11 months ago");
+        List<String> disqualifyQ3 = Arrays.asList("Less than 3 months", "3 - 6 months", "7 - 11 months");
         for (String answer : disqualifyQ3) {
             System.out.println("Select answer for Q3: " + answer);
-            firstDiagnosedWithFibromyalgiaOLS
+            howLongBeenHavingSymptomsFibromyalgiaOLS
                     .waitForPageLoad()
                     .clickOnAnswer(answer)
-                    .clickNextButton(typeOfDoctorDiagnosedWithFibromyalgiaOLS)
+                    .clickNextButton(anyFollowingPainfulConditionsOLS)
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
-                    .checkProtocolsContainsForQNumber("QS7803", site.activeProtocols)
+                    .checkProtocolsContainsForQNumber("QS7811", site.activeProtocols)
                     .back();
         }
-        firstDiagnosedWithFibromyalgiaOLS
+        howLongBeenHavingSymptomsFibromyalgiaOLS
                 .waitForPageLoad()
-                .clickOnAnswer("1 year ago or more")
-                .clickNextButton(typeOfDoctorDiagnosedWithFibromyalgiaOLS);
+                .clickOnAnswer("1 year or more")
+                .clickNextButton(anyFollowingPainfulConditionsOLS);
 
 
-        AnyFollowingPainfulConditionsOLS anyFollowingPainfulConditionsOLS = typeOfDoctorDiagnosedWithFibromyalgiaOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Primary care or family doctor")
-                .clickOnAnswer("Rheumatologist")
-                .clickOnAnswer("Psychiatrist")
-                .clickOnAnswer("Pain specialist")
-                .clickOnAnswer("Physiatrist (physical medicine and rehabilitation specialist)")
-                .clickOnAnswer("Neurologist")
-                .clickOnAnswer("Other")
-                .clickNextButton(new AnyFollowingPainfulConditionsOLS());
+//        AnyFollowingPainfulConditionsOLS anyFollowingPainfulConditionsOLS = typeOfDoctorDiagnosedWithFibromyalgiaOLS
+//                .waitForPageLoad()
+//                .clickOnAnswer("Primary care or family doctor")
+//                .clickOnAnswer("Rheumatologist")
+//                .clickOnAnswer("Psychiatrist")
+//                .clickOnAnswer("Pain specialist")
+//                .clickOnAnswer("Physiatrist (physical medicine and rehabilitation specialist)")
+//                .clickOnAnswer("Neurologist")
+//                .clickOnAnswer("Other")
+//                .clickNextButton(new AnyFollowingPainfulConditionsOLS());
 
 
         AreYouCurrentlyReceivingWorkersPageOLS areYouCurrentlyReceivingWorkersPageOLS =
                 new AreYouCurrentlyReceivingWorkersPageOLS();
-        List<String> disqualifyQ5 = Arrays.asList("Nerve damage, numbness, or pain in legs, feet, or hands caused by diabetes (diabetic peripheral neuropathy)",
-                "Ongoing shingles pain (post-herpetic neuralgia)", "Ongoing pain related to a traumatic injury or prior surgery",
-                "Long-lasting pain that affects an arm or leg after an injury, surgery, stroke, or heart attack (complex regional pain syndrome)");
-        for (String answer : disqualifyQ5) {
-            System.out.println("Select answer for Q5: " + answer);
-            anyFollowingPainfulConditionsOLS
-                    .waitForPageLoad()
-                    .clickOnAnswers("None of the above")
-                    .clickOnAnswers(answer)
-                    .clickNextButton(areYouCurrentlyReceivingWorkersPageOLS)
-                    .waitForPageLoad()
-                    .getPage(debugPageOLS)
-                    .checkProtocolsContainsForQNumber("QS7805", site.activeProtocols)
-                    .back();
-        }
+//        List<String> disqualifyQ5 = Arrays.asList("Nerve damage, numbness, or pain in legs, feet, or hands caused by diabetes (diabetic peripheral neuropathy)",
+//                "Ongoing shingles pain (post-herpetic neuralgia)", "Ongoing pain related to a traumatic injury or prior surgery",
+//                "Long-lasting pain that affects an arm or leg after an injury, surgery, stroke, or heart attack (complex regional pain syndrome)");
+//        for (String answer : disqualifyQ5) {
+//            System.out.println("Select answer for Q5: " + answer);
+//            anyFollowingPainfulConditionsOLS
+//                    .waitForPageLoad()
+//                    .clickOnAnswers("None of the above")
+//                    .clickOnAnswers(answer)
+//                    .clickNextButton(areYouCurrentlyReceivingWorkersPageOLS)
+//                    .waitForPageLoad()
+//                    .getPage(debugPageOLS)
+//                    .checkProtocolsContainsForQNumber("QS7805", site.activeProtocols)
+//                    .back();
+//        }
         anyFollowingPainfulConditionsOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
@@ -179,14 +179,14 @@ public class AF_4958_OLS extends BaseTest {
 
 
         areYouCurrentlyReceivingWorkersPageOLS
-                .waitForPageLoad()
+                .waitForPageLoad2()
                 .clickOnAnswer("Yes")
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS7806", site.activeProtocols)
                 .back(areYouCurrentlyReceivingWorkersPageOLS)
-                .waitForPageLoad()
+                .waitForPageLoad2()
                 .clickOnAnswer("No")
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
 
@@ -511,8 +511,8 @@ public class AF_4958_OLS extends BaseTest {
         List<String> disqualifyQ24 = Arrays.asList("Bipolar disorder", "Cancer in the past 5 years, except skin cancer",
                 "Cirrhosis",
                 "Drug or alcohol abuse within the past year",
-                "Hepatitis B",
-                "Hepatitis C",
+//                "Hepatitis B",
+//                "Hepatitis C",
                 "HIV or AIDS");
         for (String answer : disqualifyQ24) {
             System.out.println("Select answer for Q24QS59: " + answer);
@@ -548,7 +548,7 @@ public class AF_4958_OLS extends BaseTest {
 
         CurrentlySufferOfAnyOfFollowingOLS currentlySufferOfAnyOfFollowingOLS = approximateHeightPageCC
                 .waitForPageLoad()
-                .setAll("5", "5", "250") //Disqualify ("High BMI") if > 40
+                .setAll("5", "5", "280") //Disqualify ("High BMI") if > 40
                 .clickNextButton(new CurrentlySufferOfAnyOfFollowingOLS());
         currentlySufferOfAnyOfFollowingOLS
                 .waitForPageLoad()

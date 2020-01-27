@@ -121,21 +121,21 @@ public class DIA_5062_CC extends BaseTest {
                 .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
                 .back(whatKindOfDiabetesPageCC)
                 .waitForPageLoad()
-                .clickOnAnswer("Gestational diabetes (diabetes only during pregnancy)")
+                .clickOnAnswer("Pre-diabetes")
                 .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
                 .back();
 
-        whatKindOfDiabetesPageCC
-                .waitForPageLoad()
-                .clickOnAnswer("High blood sugar only")
-                .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
-                .back();
+//        whatKindOfDiabetesPageCC
+//                .waitForPageLoad()
+//                .clickOnAnswer("High blood sugar only")
+//                .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
+//                .back();
 
         CurrentlyTreatingYourDiabetesPageCC currentlyTreatingYourDiabetesPageCC = whatKindOfDiabetesPageCC
                 .waitForPageLoad()

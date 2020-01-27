@@ -13,6 +13,7 @@ public class DoYouExperienceDPN_OLS extends MainPageOLS {
             "This condition can cause pain, tingling, or numbness in your feet, legs, hands, or arms.";
     public final String titleExpectedDPN = "Do you experience diabetic peripheral neuropathy (DPN) or diabetic nerve pain?\n" +
             "This condition can cause pain, tingling, or numbness in your feet, legs, hands, or arms.";
+    public final String titleExpectedNew = "Do you experience pain, tingling, or numbness in your feet or legs, symptoms caused by diabetic peripheral neuropathy (DPN) or diabetic nerve pain?";
 
     @FindBy(xpath = "//div[@class='ng-scope']//div[contains(@class,'visible-md-block')]")
     WebElement titleText;
@@ -28,6 +29,12 @@ public class DoYouExperienceDPN_OLS extends MainPageOLS {
     @Step
     public DoYouExperienceDPN_OLS waitForPageLoadDPN() {
         waitForPageLoadMain(titleText, titleExpectedDPN);
+        return this;
+    }
+
+    @Step
+    public DoYouExperienceDPN_OLS waitForPageLoadNew() {
+        waitForPageLoadMain(titleText, titleExpectedNew);
         return this;
     }
 

@@ -169,7 +169,7 @@ public class CV_4450_OLS extends BaseTest {
 
         SufferedFollowingHeartRelatedConditionsPageOLS sufferedFollowingHeartRelatedConditionsPageOLS = whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
-                .clickOnAnswer("Gestational diabetes (diabetes only during pregnancy)") //Display for Females only
+                .clickOnAnswer("Pre-diabetes")
                 .clickOnAnswer("Unsure")
                 .clickNextButton(new SufferedFollowingHeartRelatedConditionsPageOLS());
 

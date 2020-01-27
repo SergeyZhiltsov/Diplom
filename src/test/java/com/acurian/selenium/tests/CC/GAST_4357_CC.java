@@ -136,19 +136,19 @@ public class GAST_4357_CC extends BaseTest {
         //Q3
         CardiovascularDiseaseThanOthersPageCC сardiovascularDiseaseThanOthersPageCC = whatKindOfDiabetesPageCC
                 .waitForPageLoad()
-                .clickOnAnswer("Gestational diabetes (diabetes only during pregnancy)") //Disqualify ("No diagnosis of diabetes")
+                .clickOnAnswer("Pre-diabetes") //Disqualify ("No diagnosis of diabetes")
                 .clickNextButton(new CardiovascularDiseaseThanOthersPageCC());
         сardiovascularDiseaseThanOthersPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS7203", site.activeProtocols)
-                .back(whatKindOfDiabetesPageCC)
-                .clickOnAnswer("High blood sugar only")
-                .clickNextButton(сardiovascularDiseaseThanOthersPageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS7203", site.activeProtocols)
                 .back(whatKindOfDiabetesPageCC);
+//                .clickOnAnswer("High blood sugar only")
+//                .clickNextButton(сardiovascularDiseaseThanOthersPageCC)
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS7203", site.activeProtocols)
+//                .back(whatKindOfDiabetesPageCC);
         //Q4
         WithType2DiabetesPageCC withType2DiabetesPageCC = whatKindOfDiabetesPageCC
                 .waitForPageLoad()

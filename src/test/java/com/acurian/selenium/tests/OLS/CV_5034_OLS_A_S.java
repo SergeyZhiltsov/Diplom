@@ -159,22 +159,22 @@ public class CV_5034_OLS_A_S extends BaseTest {
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC =
                 whatKindOfDiabetesPageOLS
                         .waitForPageLoad()
-                        .clickOnAnswer("Gestational diabetes (diabetes only during pregnancy)")
+                        .clickOnAnswer("Pre-diabetes")
                         .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS6704", site.activeProtocols)
                 .back();
-        whatKindOfDiabetesPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("High blood sugar only")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC);
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6704", site.activeProtocols)
-                .back();
+//        whatKindOfDiabetesPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswer("High blood sugar only")
+//                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC);
+//        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QS6704", site.activeProtocols)
+//                .back();
         CurrentlyTreatingYourDiabetesPageOLS currentlyTreatingYourDiabetesPageOLS1 = whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Unsure")

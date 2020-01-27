@@ -115,21 +115,21 @@ public class DIA_4241_СС_ver3 extends BaseTest{
                 .back();
         whatKindOfDiabetesPageCC
                 .waitForPageLoad()
-                .clickOnAnswer("Gestational diabetes (diabetes only during pregnancy)")
+                .clickOnAnswer("Pre-diabetes")
                 .clickNextButton(сardiovascularDiseaseThanOthersPageCC);
         сardiovascularDiseaseThanOthersPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS4603", protocols)
                 .back();
-        whatKindOfDiabetesPageCC
-                .waitForPageLoad()
-                .clickOnAnswer("High blood sugar only")
-                .clickNextButton(сardiovascularDiseaseThanOthersPageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS4603", protocols)
-                .back();
+//        whatKindOfDiabetesPageCC
+//                .waitForPageLoad()
+//                .clickOnAnswer("High blood sugar only")
+//                .clickNextButton(сardiovascularDiseaseThanOthersPageCC)
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS4603", protocols)
+//                .back();
         CurrentlyTreatingYourDiabetesPageCC currentlyTreatingYourDiabetesPageCC = whatKindOfDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Unsure")

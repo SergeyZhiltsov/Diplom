@@ -208,7 +208,7 @@ public class OA_4109CC extends BaseTest {
 
 
         TransitionStatementCC transitionStatementCC = areYouCurrentlyReceivingWorkersPageCC
-                .waitForPageLoad()
+                .waitForPageLoad2()
                 .clickOnAnswer("No")
                 .clickNextButton(new TransitionStatementCC());
 

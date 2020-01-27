@@ -412,9 +412,9 @@ public class SYNType_2_Diabetes_CC extends BaseTest {
                 .clickOnAnswer("No")
                 .clickNextButton(new TransitionStatementCC());
 
-                transitionStatementCC
-                        .waitForPageLoad(indicationHistroyName)
-                        .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC);
+        transitionStatementCC
+                .waitForPageLoad(indicationHistroyName)
+                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC);
 
         WhenDiagnosedWithCancerCC whenDiagnosedWithCancerCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
@@ -784,10 +784,10 @@ public class SYNType_2_Diabetes_CC extends BaseTest {
                         "Psoriatic Arthritis")
                 .clickNextButton(new WhichOfTheFollowingHaveYouBeenDiagnosedBonesJoints_CC())
                 .waitForPageLoad()
-                .clickOnAnswers("Ankylosing spondylitis or axial spondyloarthritis","Gout","Low back pain","Osteoporosis")
+                .clickOnAnswers("Ankylosing spondylitis or axial spondyloarthritis", "Gout", "Low back pain", "Osteoporosis")
                 .clickNextButton(new WhichOfTheFollowingBreathingLungPageСС())
                 .waitForPageLoad()
-                .clickOnAnswers("Asthma","Chronic cough","Chronic bronchitis","COPD","Emphysema")
+                .clickOnAnswers("Asthma", "Chronic cough", "Chronic bronchitis", "COPD", "Emphysema")
                 .clickNextButton(new WhichOfFollowingDigestiveConditionPageCC())
                 .waitForPageLoad()
                 .clickOnAnswers("Acid reflux, heartburn, or GERD (gastroesophageal reflux disease)", "Crohn's disease", "Ulcerative colitis", "Gastroparesis, or delayed gastric emptying",
@@ -808,10 +808,10 @@ public class SYNType_2_Diabetes_CC extends BaseTest {
                 .clickOnAnswer("Less than 30 days ago")
                 .clickNextButton(new FollowingMentalEmotionalHealthPageCC())
                 .waitForPageLoad()
-                .clickOnAnswers("Generalized anxiety disorder (GAD)","Major depressive disorder (MDD) or depression","Bipolar disorder","Schizophrenia")
+                .clickOnAnswers("Generalized anxiety disorder (GAD)", "Major depressive disorder (MDD) or depression", "Bipolar disorder", "Schizophrenia")
                 .clickNextButton(new WhichOfFollowingHaveYouDiagnosedWith_NeurologicalCC())
                 .waitForPageLoad()
-                .clickOnAnswers("Alzheimer's disease","Memory loss","Parkinson's disease","Multiple sclerosis (MS)","Seizure disorder, such as epilepsy","Fibromyalgia")
+                .clickOnAnswers("Alzheimer's disease", "Memory loss", "Parkinson's disease", "Multiple sclerosis (MS)", "Seizure disorder, such as epilepsy", "Fibromyalgia")
                 .clickNextButton(new WhichOfTheFollowingSkinConditionsDoYouSufferСС())
                 .waitForPageLoad()
                 .clickOnAnswers("Eczema or atopic dermatitis")
@@ -930,7 +930,7 @@ public class SYNType_2_Diabetes_CC extends BaseTest {
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999",
                         site.zipCode)
                 .clickNextButton(new SiteSelectionPageCC());
-        switch (site) {
+//        switch (site) {
 //            case AUT_NASH4483_site: //1R
 //                siteSelectionPageCC
 //                        .waitForPageLoad(studyName)
@@ -954,27 +954,53 @@ public class SYNType_2_Diabetes_CC extends BaseTest {
 //                        .assertGeneratedFul(env, site)
 //                        .dispoShouldMatch(site.dispo, site.dispo);
 //                break;
-            case AUT_AMS1_DIABS_site: //41C
-                siteSelectionPageCC
-                        .waitForPageLoad(studyName)
-                        .getPID()
-                        .clickOnAnswer(site.name)
-                        .clickNextButton(new SynexusRadiantDirectScheduleCC())
-                        .waitForPageLoadSyn()
-//                        .clickNextButton(new SynexusRadiantDirectScheduleCC())
-                        .assertVariablesNew("Acurian", "Trial", "09/09/1960", "US",
-                                "Chandler, AZ", site.zipCode, "qa.acurian@gmail.com",
-                                "999-999-9999", " 010110 : Synexus - 010110 ", " East Valley Family Physicians", "AESXXXDIA001 - SYNType_2_Diabetes (SYNT2DM)")
-                        .clickOnAnswer("[Successful direct schedule in clinical conductor]")
-                        .clickNextButton(selectActionPageCC)
-                        .waitForPageLoad()
-                        .pidFromDbToLog(env)
-                        .getRadiantDbToLog(env)
-                        .childPidFromDbToLog(env)
-                        .assertGeneratedFul(env, site)
-                        .dispoShouldMatch(site.dispo, site.dispo);
-                break;
-        }
-    }
+//            case AUT_AMS1_DIABS_site: //41C
 
+        if (env.equals("PRD")) {
+            siteSelectionPageCC
+                    .waitForPageLoad(studyName)
+                    .getPID()
+                    .clickOnAnswer(site.name)
+                    .clickNextButton(new SynexusRadiantDirectScheduleCC())
+                    .waitForPageLoadSyn()
+//                        .clickNextButton(new SynexusRadiantDirectScheduleCC())
+                    .assertVariablesNew("Acurian", "Trial", "09/09/1960", "US",
+                            "Chandler, AZ", site.zipCode, "qa.acurian@gmail.com",
+                            "999-999-9999", " 010110 : Synexus - 010110 ", " East Valley Family Physicians", "AESXXXDIA001 - SYNType_2_Diabetes (SYNT2DM)")
+                    .clickOnAnswer("[Successful direct schedule in clinical conductor]")
+                    .clickNextButton(selectActionPageCC)
+                    .waitForPageLoad()
+                    .pidFromDbToLog(env)
+                    .getRadiantDbToLog(env)
+                    .childPidFromDbToLog(env)
+                    .assertGeneratedFul(env, site)
+                    .dispoShouldMatch(site.dispo, site.dispo);
+//                break;
+//        }
+        }
+
+        if (env.equals("STG")){
+            siteSelectionPageCC
+                    .waitForPageLoad(studyName)
+                    .getPID()
+                    .clickOnAnswer(site.name)
+                    .clickNextButton(new DirectSheduleVaccCC())
+                    .waitForPageLoad()
+                    .clickNextButton(new SynexusRadiantDirectScheduleCC())
+                    .waitForPageLoadSyn()
+//                        .clickNextButton(new SynexusRadiantDirectScheduleCC())
+                    .assertVariablesNew("Acurian", "Trial", "09/09/1960", "US",
+                            "Chandler, AZ", site.zipCode, "qa.acurian@gmail.com",
+                            "999-999-9999", " 010110 : Synexus - 010110 ", " East Valley Family Physicians", "AESXXXDIA001 - SYNType_2_Diabetes (SYNT2DM)")
+                    .clickOnAnswer("[Successful direct schedule in clinical conductor]")
+                    .clickNextButton(selectActionPageCC)
+                    .waitForPageLoad()
+                    .pidFromDbToLog(env)
+                    .getRadiantDbToLog(env)
+                    .childPidFromDbToLog(env)
+                    .assertGeneratedFul(env, site)
+                    .dispoShouldMatch(site.dispo, site.dispo);
+        }
+
+    }
 }

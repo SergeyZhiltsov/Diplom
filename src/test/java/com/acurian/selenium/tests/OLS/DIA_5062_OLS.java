@@ -86,7 +86,7 @@ public class DIA_5062_OLS extends BaseTest {
                 .back();
         whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
-                .clickOnAnswer("High blood sugar only")
+                .clickOnAnswer("Pre-diabetes")
                 .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)

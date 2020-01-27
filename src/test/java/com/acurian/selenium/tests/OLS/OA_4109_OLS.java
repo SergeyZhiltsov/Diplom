@@ -173,7 +173,7 @@ public class OA_4109_OLS extends BaseTest {
 
 
         areYouCurrentlyReceivingWorkersPage_OLS
-                .waitForPageLoad();
+                .waitForPageLoad2();
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS =
                 areYouCurrentlyReceivingWorkersPage_OLS
                         .clickOnAnswer("No")
