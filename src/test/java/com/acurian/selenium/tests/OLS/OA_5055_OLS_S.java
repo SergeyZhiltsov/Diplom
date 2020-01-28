@@ -351,7 +351,7 @@ public class OA_5055_OLS_S extends BaseTest {
                 .clickNextButton(new AreYouCurrentlyReceivingWorkersPageOLS());
 
         areYouCurrentlyReceivingWorkersPage_OLS
-                .waitForPageLoad()
+                .waitForPageLoad2()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS4516", site.activeProtocols)
                 .back(withinThePast6MonthsHaveYouHadNumbness_ols)
@@ -366,7 +366,7 @@ public class OA_5055_OLS_S extends BaseTest {
 
         //------------------AreYouCurrentlyReceivingWorkersPageOLS-------------
         areYouCurrentlyReceivingWorkersPage_OLS
-                .waitForPageLoad()
+                .waitForPageLoad2()
                 .clickOnAnswer("Yes")
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
 

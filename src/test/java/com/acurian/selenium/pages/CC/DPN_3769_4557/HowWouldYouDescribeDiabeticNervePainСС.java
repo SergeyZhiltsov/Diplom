@@ -1,4 +1,4 @@
-package com.acurian.selenium.pages.CC.Fibromyalgia;
+package com.acurian.selenium.pages.CC.DPN_3769_4557;
 
 import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.CC.MainPageCC;
@@ -8,9 +8,9 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class FirstDiagnosedWithFibromyalgiaCC extends MainPageCC {
+public class HowWouldYouDescribeDiabeticNervePainСС extends MainPageCC {
 
-    public final String titleExpected = "When were you first diagnosed with fibromyalgia?";
+    private final String titleExpected = "How would you describe your diabetic nerve pain?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_CC)
     WebElement titleText;
@@ -18,13 +18,13 @@ public class FirstDiagnosedWithFibromyalgiaCC extends MainPageCC {
     List<WebElement> radioButtonsList;
 
     @Step
-    public FirstDiagnosedWithFibromyalgiaCC waitForPageLoad() {
+    public HowWouldYouDescribeDiabeticNervePainСС waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public FirstDiagnosedWithFibromyalgiaCC clickOnAnswer(String answerText) {
+    public HowWouldYouDescribeDiabeticNervePainСС clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }
@@ -33,4 +33,5 @@ public class FirstDiagnosedWithFibromyalgiaCC extends MainPageCC {
     public String getTitleText() {
         return getText(titleText);
     }
+
 }

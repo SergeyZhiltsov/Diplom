@@ -102,19 +102,19 @@ public class GAST_4357_OLS extends BaseTest {
             //Q3
             CardiovascularDiseaseThanOthersPageOLS cardiovascularDiseaseThanOthersPageOLS = whatKindOfDiabetesPageOLS
                     .waitForPageLoad()
-                    .clickOnAnswer("Gestational diabetes (diabetes only during pregnancy)") //Disqualify ("No diagnosis of diabetes")
+                    .clickOnAnswer("Pre-diabetes") //Disqualify ("No diagnosis of diabetes")
                     .clickNextButton(new CardiovascularDiseaseThanOthersPageOLS());
             cardiovascularDiseaseThanOthersPageOLS
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS7203", site.activeProtocols)
-                    .back(whatKindOfDiabetesPageOLS)
-                    .clickOnAnswer("High blood sugar only")
-                    .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
-                    .waitForPageLoad()
-                    .getPage(debugPageOLS)
-                    .checkProtocolsContainsForQNumber("QS7203", site.activeProtocols)
                     .back(whatKindOfDiabetesPageOLS);
+//                    .clickOnAnswer("High blood sugar only")
+//                    .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
+//                    .waitForPageLoad()
+//                    .getPage(debugPageOLS)
+//                    .checkProtocolsContainsForQNumber("QS7203", site.activeProtocols)
+//                    .back(whatKindOfDiabetesPageOLS);
             //Q4
             WithType2DiabetesPageOLS withType2DiabetesPageOLS = whatKindOfDiabetesPageOLS
                     .waitForPageLoad()

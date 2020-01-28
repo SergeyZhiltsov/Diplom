@@ -10,6 +10,7 @@ import java.util.List;
 public class AreYouCurrentlyReceivingWorkersPageCC extends MainPageCC {
 
     public final String titleExpected = "Are you currently receiving worker's compensation, or involved in litigation or a lawsuit related to your pain?";
+    public final String titleExpected2 = "Are you currently receiving worker's compensation, disability payments, or involved in litigation or a lawsuit related to your pain?";
 
     @FindBy(xpath = "//div[@class='question_text']")
     WebElement titleText;
@@ -19,6 +20,12 @@ public class AreYouCurrentlyReceivingWorkersPageCC extends MainPageCC {
     @Step
     public AreYouCurrentlyReceivingWorkersPageCC waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
+        return this;
+    }
+
+    @Step
+    public AreYouCurrentlyReceivingWorkersPageCC waitForPageLoad2() {
+        waitForPageLoadMain(titleText, titleExpected2);
         return this;
     }
 

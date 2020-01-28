@@ -244,7 +244,7 @@ public class OA_5044_CC_S extends BaseTest {
 
         //------------------AreYouCurrentlyReceivingWorkersPage_CC-------------
         areYouCurrentlyReceivingWorkersPageCC
-                .waitForPageLoad()
+                .waitForPageLoad2()
                 .clickOnAnswer("Yes")
                 .clickNextButton(transitionStatementCC);
 

@@ -8,9 +8,9 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class WhichBestDescribesYourDiabeticNervePainOLS extends MainPageOLS {
+public class HowWouldYouDescribeDiabeticNervePainOLS extends MainPageOLS {
 
-    private final String titleExpected = "Which best describes how your diabetic nerve pain affects your daily living?";
+    private final String titleExpected = "How would you describe your diabetic nerve pain?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
     WebElement titleText;
@@ -18,13 +18,13 @@ public class WhichBestDescribesYourDiabeticNervePainOLS extends MainPageOLS {
     List<WebElement> radioButtonsList;
 
     @Step
-    public WhichBestDescribesYourDiabeticNervePainOLS waitForPageLoad() {
+    public HowWouldYouDescribeDiabeticNervePainOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public WhichBestDescribesYourDiabeticNervePainOLS clickOnAnswer(String answerText) {
+    public HowWouldYouDescribeDiabeticNervePainOLS clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }

@@ -955,17 +955,33 @@ public class SYNType_2_Diabetes_OLS extends BaseTest {
                 .getPID()
                 .clickOnFacilityName(site.name)
                 .waitForAnimation();
-        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = siteSelectionPageOLS
+
+        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = new ThankYouCloseSimplePageOLS();
+
+        if (env.equals("PRD")) {
+            siteSelectionPageOLS
 //                .clickNextButton(new DirectSheduleVaccOLS())
 //                .waitForPageLoad()
 
-                .clickNextButton(new QualifiedClose2PageOLS())
-                .waitForPageLoad()
+                    .clickNextButton(new QualifiedClose2PageOLS())
+                    .waitForPageLoad()
 //                .clickNextButton(new SynexusHealthyMindsPageOLS())
 //                .waitForPageLoad()
 //                .clickOnAnswer("No, I am not interested in receiving information");
 //        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = identificationPageOLS
-                .clickNextButton(new ThankYouCloseSimplePageOLS());
+                    .clickNextButton(thankYouCloseSimplePageOLS);
+        }
+
+        if (env.equals("STG")) {
+
+            siteSelectionPageOLS
+                    .clickNextButton(new DirectSheduleVaccOLS())
+                    .waitForPageLoadSTG()
+                    .clickNextButton(new QualifiedClose2PageOLS())
+                    .waitForPageLoad()
+                    .clickNextButton(thankYouCloseSimplePageOLS);
+        }
+
         AboutHealthPageOLS aboutHealthPageOLS = thankYouCloseSimplePageOLS
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS());
