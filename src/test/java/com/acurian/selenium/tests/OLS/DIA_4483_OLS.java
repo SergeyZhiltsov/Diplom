@@ -99,14 +99,14 @@ public class DIA_4483_OLS extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
                 .back();
-        whatKindOfDiabetesPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("High blood sugar only")
-                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
-                .back();
+//        whatKindOfDiabetesPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswer("Unsure")
+//                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
+//                .back();
 
         CurrentlyTreatingYourDiabetesPageOLS currentlyTreatingYourDiabetesPageOLS = whatKindOfDiabetesPageOLS
                 .waitForPageLoad()

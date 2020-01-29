@@ -366,7 +366,7 @@ public class Crohns_3889_OLS extends BaseTest {
         whatKindOfDiabetesPageOLS
                 .waitForPageLoad();
         WhichOfFollowingDigestiveConditionPageOLS whichOfFollowingDigestiveConditionPageOLS = whatKindOfDiabetesPageOLS
-                .clickOnAnswer("High blood sugar only")
+                .clickOnAnswer("Unsure")
                 .clickNextButton(new WhichOfFollowingDigestiveConditionPageOLS());
 
 
