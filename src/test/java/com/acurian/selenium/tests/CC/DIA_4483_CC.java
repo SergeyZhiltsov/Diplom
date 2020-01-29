@@ -135,14 +135,14 @@ public class DIA_4483_CC extends BaseTest {
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
-                .back(whatKindOfDiabetesPageCC)
-                .waitForPageLoad()
-                .clickOnAnswer("High blood sugar only")
-                .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
-                .back();
+                .back(whatKindOfDiabetesPageCC);
+//                .waitForPageLoad()
+//                .clickOnAnswer("Unsure")
+//                .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
+//                .back();
 
         CurrentlyTreatingYourDiabetesPageCC currentlyTreatingYourDiabetesPageCC = whatKindOfDiabetesPageCC
                 .waitForPageLoad()
