@@ -130,7 +130,7 @@ public class DIA_4483_CC extends BaseTest {
                 .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
                 .back(whatKindOfDiabetesPageCC)
                 .waitForPageLoad()
-                .clickOnAnswer("Gestational diabetes (diabetes only during pregnancy)")
+                .clickOnAnswer("Pre-diabetes")
                 .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
