@@ -17,7 +17,7 @@ public class GenderPageOLS extends MainPageOLS{
 
     public final String titleExpectedGmega = "Please confirm your gender:";
 
-    @FindBy(xpath = "//div[contains(@class,'subquestion')][2]//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
+    @FindBy(xpath = "//div[contains(@class,'subquestion')][2]//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols'] | //*[@id=\"question_view\"]/div[1]/div/form/div/div[1]/div/question/div/div/div/div/div[1]/div/h4/div[1]/div[2]")
     WebElement titleText1;
 
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-sm-block')]/div[@class='show-in-ols']")
@@ -26,6 +26,7 @@ public class GenderPageOLS extends MainPageOLS{
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-xs-block')]/div[@class='show-in-ols']")
     WebElement titleText3;
 
+    @FindBy(xpath = "//*[@id=\"question_view\"]/div[1]/div/form/div/div[1]/div/question/div/div/div/div/div[1]/div/h4/div[1]/div[2]")
     WebElement titleText;
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
