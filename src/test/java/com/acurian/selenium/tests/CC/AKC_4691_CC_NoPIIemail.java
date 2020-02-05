@@ -22,7 +22,7 @@ import java.util.Map;
 
 public class AKC_4691_CC_NoPIIemail extends BaseTest {
 
-    @Test()
+    @Test(enabled = false)
     @Description("Akcea_4691 for CC")
     public void akc_4691_CC_NoPIIemail() {
         Site site = Site.AUT_AKC4691_MR;

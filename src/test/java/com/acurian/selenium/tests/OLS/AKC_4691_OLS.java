@@ -23,7 +23,7 @@ import java.util.Map;
 
 public class AKC_4691_OLS extends BaseTest {
 
-    @Test
+    @Test(enabled = false)
     @Description("Akcea 4691 OLS")
     public void Akc4691olsEmailAtPII() {
         Site site = Site.AUT_AKC4691_MR;
