@@ -10,14 +10,23 @@ import java.util.List;
 
 public class WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseCC extends MainPageCC {
 
-    public final String titleExpected = "You reported that you have liver problems.\n" +
-            "Which of the following have you been diagnosed with?\n" +
+//    public final String titleExpected = "You reported that you have liver problems.\n" +
+//            "Which of the following have you been diagnosed with?\n" +
+//            "Agent Note: Select all that apply";
+
+    public final String titleExpected = "Do you have any of the following liver conditions?\n" +
             "Agent Note: Select all that apply";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC)
     WebElement titleText;
     @FindBy(xpath = Locators.CHEKBOX_LIST_CC)
     List<WebElement> checkBoxList;
+
+//    @Step
+//    public WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseCC waitForPageLoad() {
+//        waitForPageLoadMain(titleText, titleExpected);
+//        return this;
+//    }
 
     @Step
     public WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseCC waitForPageLoad() {
