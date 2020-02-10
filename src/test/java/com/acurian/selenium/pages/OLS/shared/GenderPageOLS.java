@@ -58,8 +58,9 @@ public class GenderPageOLS extends MainPageOLS{
 
     @Step
     public GenderPageOLS waitForPageLoad() {
-        if (titleText.isDisplayed()) {
-            waitForPageLoadMain(titleText, titleExpected);
+        waitForAnimation();
+        if (titleText1.isDisplayed()) {
+            waitForPageLoadMain(titleText1, titleExpected);
             System.out.println("usual xpath working");
         }
         else {
