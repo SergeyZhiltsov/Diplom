@@ -10,7 +10,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 public class YouBeenDiagnosedWithCC extends MainPageCC{
 
-    public final String titleExpected = "Which of the following have you been diagnosed with?\n" +
+    public final String titleExpected = "Do you have any of the following liver conditions?\n" +
             "Agent Note: Select all that apply";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC)
