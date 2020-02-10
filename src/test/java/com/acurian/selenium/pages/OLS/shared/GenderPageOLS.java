@@ -20,6 +20,9 @@ public class GenderPageOLS extends MainPageOLS{
     @FindBy(xpath = "//div[contains(@class,'subquestion')][2]//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
     WebElement titleText1;
 
+    @FindBy(xpath = "//div[contains(@class,'visible-xs-block')]//div[@class='show-in-ols' and contains(text(),'Please select your gender:')]")
+    WebElement titleTextNew;
+
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-sm-block')]/div[@class='show-in-ols']")
     WebElement titleText2;
 
@@ -55,7 +58,14 @@ public class GenderPageOLS extends MainPageOLS{
 
     @Step
     public GenderPageOLS waitForPageLoad() {
-        waitForPageLoadMain(titleText, titleExpected);
+        if (titleText.isDisplayed()) {
+            waitForPageLoadMain(titleText, titleExpected);
+            System.out.println("usual xpath working");
+        }
+        else {
+            waitForPageLoadMain(titleTextNew, titleExpected);
+            System.out.println("unusual xpath working");
+        }
         return this;
     }
 
