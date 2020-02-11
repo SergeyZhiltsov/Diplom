@@ -991,7 +991,7 @@ public class SYNType_2_Diabetes_CC extends BaseTest {
 //                        .clickNextButton(new SynexusRadiantDirectScheduleCC())
                     .assertVariablesNew("Acurian", "Trial", "09/09/1960", "US",
                             "Chandler, AZ", site.zipCode, "qa.acurian@gmail.com",
-                            "999-999-9999", " 010110 : Synexus - 010110 ", " East Valley Family Physicians", "AESXXXDIA001 - SYNType_2_Diabetes (SYNT2DM)")
+                            "999-999-9999", " %SYN_PROJECT_CODE% : Synexus - 010110 ", " East Valley Family Physicians", "AESXXXDIA001 - SYNType_2_Diabetes (SYNT2DM)")
                     .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                     .clickNextButton(selectActionPageCC)
                     .waitForPageLoad()
