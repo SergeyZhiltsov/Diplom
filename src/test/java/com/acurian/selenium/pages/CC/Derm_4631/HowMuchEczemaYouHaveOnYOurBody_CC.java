@@ -16,7 +16,7 @@ public class HowMuchEczemaYouHaveOnYOurBody_CC extends MainPageCC{
 
     @FindBy(xpath = "//div[@class='question_text']")
     WebElement titleText;
-
+    //*[@class=" details-control"]
     @FindBy(xpath = "//div[@class='ddlist_container']//select")
     WebElement dropDownList;
 

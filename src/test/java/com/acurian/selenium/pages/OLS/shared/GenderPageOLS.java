@@ -17,7 +17,7 @@ public class GenderPageOLS extends MainPageOLS{
 
     public final String titleExpectedGmega = "Please confirm your gender:";
 
-    @FindBy(xpath = "//div[contains(@class,'subquestion')][2]//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols'] | //*[@id=\"question_view\"]/div[1]/div/form/div/div[1]/div/question/div/div/div/div/div[1]/div/h4/div[1]/div[2]")
+    @FindBy(xpath = "//div[contains(@class,'subquestion')][2]//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
     WebElement titleText1;
 
     @FindBy(xpath = "//div[contains(@class,'visible-xs-block')]//div[@class='show-in-ols' and contains(text(),'Please select your gender:')]")
@@ -59,16 +59,9 @@ public class GenderPageOLS extends MainPageOLS{
 
     @Step
     public GenderPageOLS waitForPageLoad() {
-        waitForAnimation();
-        if (titleText1.isDisplayed()) {
-            waitForPageLoadMain(titleText1, titleExpected);
+            waitForPageLoadMain(titleText, titleExpected);
             System.out.println("usual xpath working");
-        }
-        else {
-            waitForPageLoadMain(titleTextNew, titleExpected);
-            System.out.println("unusual xpath working");
-        }
-        return this;
+            return this;
     }
 
     @Step
