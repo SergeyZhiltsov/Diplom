@@ -521,7 +521,7 @@ public class OA_5055_CC_S extends BaseTest {
                 .waitForPageLoadSyn()
                 .assertVariablesNew("Acurian", "Trial", "09/09/1980", "US",
                         "Dover, DE", site.zipCode, "qa.acurian@gmail.com", "999-999-9999",
-                        " aut5055test ", " AUT_OA_5055_Syn", "REGICNOSA602 - Regeneron Osteoarthritis")
+                        " aut5055test ", " AUT_OA_5055_Syn", "%SYN_PROJECT_CODE% - Regeneron Osteoarthritis")
                 .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
