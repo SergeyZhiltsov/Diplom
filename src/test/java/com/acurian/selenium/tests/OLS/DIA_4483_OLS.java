@@ -36,8 +36,8 @@ public class DIA_4483_OLS extends BaseTest {
     @DataProvider
     public Object[][] sites() {
         return new Object[][]{
-               {Site.AUT_NASH4483_site},
-               {Site.AUT_NASH4483S_site}
+                {Site.AUT_NASH4483_site},
+                {Site.AUT_NASH4483S_site}
         };
     }
 
@@ -76,28 +76,28 @@ public class DIA_4483_OLS extends BaseTest {
 
         DebugPageOLS debugPageOLS = new DebugPageOLS();
 
-        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = diagnosedAnyTypeOfDiabetesPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4602", site.activeProtocols)
-                .back();
         WhatKindOfDiabetesPageOLS whatKindOfDiabetesPageOLS = diagnosedAnyTypeOfDiabetesPageOLS
                 .waitForPageLoad()
+//                .clickOnAnswer("No")
+//                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
+//        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QS4602", site.activeProtocols)
+//                .back();
+//        WhatKindOfDiabetesPageOLS whatKindOfDiabetesPageOLS = diagnosedAnyTypeOfDiabetesPageOLS
+//                .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new WhatKindOfDiabetesPageOLS());
         WithType1DiabetesPageOLS withType1DiabetesPageOLS = new WithType1DiabetesPageOLS();
         CardiovascularDiseaseThanOthersPageOLS cardiovascularDiseaseThanOthersPageOLS = whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
-                .clickOnAnswer("Type 1 diabetes (sometimes called Juvenile diabetes)")
+                .clickOnAnswer("Type 1 diabetes (sometimes called Juvenile diabetes)") //TODO add DQ for "Pre-diabetes" answer;
                 .clickNextButton(new CardiovascularDiseaseThanOthersPageOLS());
-        withType1DiabetesPageOLS
+        cardiovascularDiseaseThanOthersPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS8503", site.activeProtocols)
                 .back();
 //        whatKindOfDiabetesPageOLS
 //                .waitForPageLoad()
@@ -108,15 +108,6 @@ public class DIA_4483_OLS extends BaseTest {
 //                .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
 //                .back();
 
-        CurrentlyTreatingYourDiabetesPageOLS currentlyTreatingYourDiabetesPageOLS = whatKindOfDiabetesPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Unsure")
-                .clickNextButton(new CurrentlyTreatingYourDiabetesPageOLS());
-        currentlyTreatingYourDiabetesPageOLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
-                .back();
         WithType2DiabetesPageOLS withType2DiabetesPageOLS = whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Type 2 diabetes (sometimes called Adult-onset diabetes)")
@@ -125,7 +116,7 @@ public class DIA_4483_OLS extends BaseTest {
         withType2DiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("10 years ago or more")
-                .clickNextButton(currentlyTreatingYourDiabetesPageOLS);
+                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS);
 
 //        NoOfAlcoholicDrinkOLS noOfAlcoholicDrinkOLS = currentlyTreatingYourDiabetesPageOLS
 //                .waitForPageLoad()
@@ -134,210 +125,234 @@ public class DIA_4483_OLS extends BaseTest {
 //        noOfAlcoholicDrinkOLS
 //                .waitForPageLoad()
 //                .back();
+//        currentlyTreatingYourDiabetesPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswers("I am not currently treating my diabetes")
+//                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
+//                .waitForPageLoad()
+//                .back();
+//        LastTimeYouTookPageOLS lastTimeYouTookPageOLS = currentlyTreatingYourDiabetesPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswers("Medication such as metformin or insulin or other diabetes medication")
+//                .clickNextButton(new LastTimeYouTookPageOLS());
+//
+//        List<String> disqualify = Arrays.asList("2 - 3 months ago", "4 - 5 months ago", "6 months ago or longer");
+//        for (String answer : disqualify) {
+//            System.out.println("Select answer for Q6: " + answer);
+//            lastTimeYouTookPageOLS
+//                    .waitForPageLoad()
+//                    .clickOnAnswer("2 - 3 months ago")
+//                    .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
+//                    .waitForPageLoad()
+//                    .back();
+//        }
+//        MetforminMedicationsPageOLS metforminMedicationsPageOLS = lastTimeYouTookPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswer("Currently taking / have taken within the past month")
+//                .clickNextButton(new MetforminMedicationsPageOLS());
+//
+//        ApartFromMetforminPageOLS apartFromMetforminPageOLS = metforminMedicationsPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswers("Metformin",
+//                        "Actoplus Met (metformin and pioglitazone)",
+//                        "Avandamet (metformin and rosiglitazone)",
+//                        "Fortamet (metformin)",
+//                        "Glucophage (metformin)",
+//                        "Glucovance (metformin and glyburide)",
+//                        "Glumetza (metformin)",
+//                        "Invokamet (metformin and canagliflozin)",
+//                        "Janumet (metformin and sitagliptin)",
+//                        "Jentadueto (metformin and linagliptin)",
+//                        "Kazano (metformin and alogliptin)",
+//                        "Kombiglyze (metformin and saxagliptin)",
+//                        "Metformin and glipizide",
+//                        "PrandiMet (metformin and repaglinide)",
+//                        "Synjardy (metformin and empagliflozin)",
+//                        "Xigduo (metformin and dapagliflozin)")
+//                .clickOnAnswers("None of the above")
+//                .clickNextButton(new ApartFromMetforminPageOLS());
+//
+//        CurrentlyTakeInsulinPageOLS currentlyTakeInsulinPageOLS =
+//        apartFromMetforminPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswers("Actos (pioglitazone)",
+//                        "Amaryl (glimepiride)",
+//                        "Avandia (rosiglitazone)",
+//                        "Chlorpropamide",
+//                        "Cycloset (bromocriptine)",
+//                        "Duetact (pioglitazone and glimepiride)",
+//                        "Farxiga (dapagliflozin)",
+//                        "Glipizide XL, Glucotrol, or Glucotrol XL (glipizide)",
+//                        "Glynase (glyburide)",
+//                        "Glyset (miglitol)",
+//                        "Glyxambi (empagliflozin and linagliptin)",
+//                        "Invokana (canagliflozin)",
+//                        "Januvia (sitagliptin)",
+//                        "Jardiance (empagliflozin)",
+//                        "Nesina (alogliptin)",
+//                        "Onglyza (saxagliptin)",
+//                        "Oseni (alogliptin and pioglitazone)",
+//                        "Prandin (repaglinide)",
+//                        "Precose (acarbose)",
+//                        "Starlix (nateglinide)",
+//                        "Tradjenta (linagliptin)")
+//                .clickOnAnswers("None of the above")
+//                .clickNextButton(new CurrentlyTakeInsulinPageOLS());
+//
+//        InjectableMedicationsForYourDiabetesPageOLS injectableMedicationsForYourDiabetesPageOLS = currentlyTakeInsulinPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswer("No")
+//                .clickNextButton(new InjectableMedicationsForYourDiabetesPageOLS());
+//
+//        TakeYourInsulinPageOLS takeYourInsulinPageOLS = injectableMedicationsForYourDiabetesPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswers("Adlyxin (lixisenatide)",
+//                        "Bydureon or Byetta (exenatide)",
+//                        "Tanzeum (albiglutide)",
+//                        "Trulicity (dulaglutide)",
+//                        "Saxenda or Victoza (liraglutide)",
+//                        "SymlinPen (pramlintide)")
+//                .clickOnAnswers("None of the above")
+//                .back(currentlyTakeInsulinPageOLS)
+//                .waitForPageLoad()
+//                .clickOnAnswer("Yes")
+//                .clickNextButton(new TakeYourInsulinPageOLS());
+//
+//        takeYourInsulinPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswers("Inhaled insulin (Afrezza)")
+//                .clickNextButton(injectableMedicationsForYourDiabetesPageOLS);
+//        injectableMedicationsForYourDiabetesPageOLS
+//                .waitForPageLoad()
+//                .back();
+//        BrandsOfInsulinPageOLS brandsOfInsulinPageOLS = takeYourInsulinPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswers("Insulin pump, which delivers insulin continuously")
+//                .clickNextButton(new BrandsOfInsulinPageOLS());
+//
+//        brandsOfInsulinPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswers("Insulin NPH (Humulin N, Novolin N)",
+//                        "Insulin glargine (Basaglar, Lantus)",
+//                        "Toujeo (Insulin glargine)",
+//                        "Insulin detemir (Levemir)",
+//                        "Insulin degludec (Tresiba)",
+//                        "Insulin regular (Humulin R, Novolin R)",
+//                        "Insulin lispro (Admelog, Humalog)",
+//                        "Insulin aspart (Fiasp, Novolog)",
+//                        "Insulin glulisine (Apidra)",
+//                        "Mixed or pre-mixed insulin (Humalog Mix 50/50 or 75/25, Humulin 70/30, Novolin 70/30, Novolog Mix 70/30)")
+//                .clickOnAnswers("None of the above")
+//                .back();
+//
+//        TakeYourInsulinInjectionsPageOLS takeYourInsulinInjectionsPageOLS = takeYourInsulinPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswers("Daily injections")
+//                .clickNextButton(new TakeYourInsulinInjectionsPageOLS());
+//
+//        takeYourInsulinInjectionsPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswer("Only at meal times (this is called bolus insulin)")
+//                .clickNextButton(brandsOfInsulinPageOLS)
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickNextButton(injectableMedicationsForYourDiabetesPageOLS);
+//
+//
+//        injectableMedicationsForYourDiabetesPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS);
+
+        WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS = cardiovascularDiseaseThanOthersPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS());
+
+        CurrentlyTreatingYourDiabetesPageOLS currentlyTreatingYourDiabetesPageOLS = whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS
+                .waitForPageLoad()
+                .clickOnAnswers("Cirrhosis")
+                .clickNextButton(new CurrentlyTreatingYourDiabetesPageOLS());
+
         currentlyTreatingYourDiabetesPageOLS
                 .waitForPageLoad()
-                .clickOnAnswers("I am not currently treating my diabetes")
-                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
-                .waitForPageLoad()
-                .back();
-        LastTimeYouTookPageOLS lastTimeYouTookPageOLS = currentlyTreatingYourDiabetesPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Medication such as metformin or insulin or other diabetes medication")
-                .clickNextButton(new LastTimeYouTookPageOLS());
-
-        List<String> disqualify = Arrays.asList("2 - 3 months ago", "4 - 5 months ago", "6 months ago or longer");
-        for (String answer : disqualify) {
-            System.out.println("Select answer for Q6: " + answer);
-            lastTimeYouTookPageOLS
-                    .waitForPageLoad()
-                    .clickOnAnswer("2 - 3 months ago")
-                    .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
-                    .waitForPageLoad()
-                    .back();
-        }
-        MetforminMedicationsPageOLS metforminMedicationsPageOLS = lastTimeYouTookPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Currently taking / have taken within the past month")
-                .clickNextButton(new MetforminMedicationsPageOLS());
-
-        ApartFromMetforminPageOLS apartFromMetforminPageOLS = metforminMedicationsPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Metformin",
-                        "Actoplus Met (metformin and pioglitazone)",
-                        "Avandamet (metformin and rosiglitazone)",
-                        "Fortamet (metformin)",
-                        "Glucophage (metformin)",
-                        "Glucovance (metformin and glyburide)",
-                        "Glumetza (metformin)",
-                        "Invokamet (metformin and canagliflozin)",
-                        "Janumet (metformin and sitagliptin)",
-                        "Jentadueto (metformin and linagliptin)",
-                        "Kazano (metformin and alogliptin)",
-                        "Kombiglyze (metformin and saxagliptin)",
-                        "Metformin and glipizide",
-                        "PrandiMet (metformin and repaglinide)",
-                        "Synjardy (metformin and empagliflozin)",
-                        "Xigduo (metformin and dapagliflozin)")
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new ApartFromMetforminPageOLS());
-
-        CurrentlyTakeInsulinPageOLS currentlyTakeInsulinPageOLS =
-        apartFromMetforminPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Actos (pioglitazone)",
-                        "Amaryl (glimepiride)",
-                        "Avandia (rosiglitazone)",
-                        "Chlorpropamide",
-                        "Cycloset (bromocriptine)",
-                        "Duetact (pioglitazone and glimepiride)",
-                        "Farxiga (dapagliflozin)",
-                        "Glipizide XL, Glucotrol, or Glucotrol XL (glipizide)",
-                        "Glynase (glyburide)",
-                        "Glyset (miglitol)",
-                        "Glyxambi (empagliflozin and linagliptin)",
-                        "Invokana (canagliflozin)",
-                        "Januvia (sitagliptin)",
-                        "Jardiance (empagliflozin)",
-                        "Nesina (alogliptin)",
-                        "Onglyza (saxagliptin)",
-                        "Oseni (alogliptin and pioglitazone)",
-                        "Prandin (repaglinide)",
-                        "Precose (acarbose)",
-                        "Starlix (nateglinide)",
-                        "Tradjenta (linagliptin)")
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new CurrentlyTakeInsulinPageOLS());
-
-        InjectableMedicationsForYourDiabetesPageOLS injectableMedicationsForYourDiabetesPageOLS = currentlyTakeInsulinPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(new InjectableMedicationsForYourDiabetesPageOLS());
-
-        TakeYourInsulinPageOLS takeYourInsulinPageOLS = injectableMedicationsForYourDiabetesPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Adlyxin (lixisenatide)",
-                        "Bydureon or Byetta (exenatide)",
-                        "Tanzeum (albiglutide)",
-                        "Trulicity (dulaglutide)",
-                        "Saxenda or Victoza (liraglutide)",
-                        "SymlinPen (pramlintide)")
-                .clickOnAnswers("None of the above")
-                .back(currentlyTakeInsulinPageOLS)
-                .waitForPageLoad()
-                .clickOnAnswer("Yes")
-                .clickNextButton(new TakeYourInsulinPageOLS());
-
-        takeYourInsulinPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Inhaled insulin (Afrezza)")
-                .clickNextButton(injectableMedicationsForYourDiabetesPageOLS);
-        injectableMedicationsForYourDiabetesPageOLS
-                .waitForPageLoad()
-                .back();
-        BrandsOfInsulinPageOLS brandsOfInsulinPageOLS = takeYourInsulinPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Insulin pump, which delivers insulin continuously")
-                .clickNextButton(new BrandsOfInsulinPageOLS());
-
-        brandsOfInsulinPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Insulin NPH (Humulin N, Novolin N)",
-                        "Insulin glargine (Basaglar, Lantus)",
-                        "Toujeo (Insulin glargine)",
-                        "Insulin detemir (Levemir)",
-                        "Insulin degludec (Tresiba)",
-                        "Insulin regular (Humulin R, Novolin R)",
-                        "Insulin lispro (Admelog, Humalog)",
-                        "Insulin aspart (Fiasp, Novolog)",
-                        "Insulin glulisine (Apidra)",
-                        "Mixed or pre-mixed insulin (Humalog Mix 50/50 or 75/25, Humulin 70/30, Novolin 70/30, Novolog Mix 70/30)")
-                .clickOnAnswers("None of the above")
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS8506", site.activeProtocols)
                 .back();
 
-        TakeYourInsulinInjectionsPageOLS takeYourInsulinInjectionsPageOLS = takeYourInsulinPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Daily injections")
-                .clickNextButton(new TakeYourInsulinInjectionsPageOLS());
-
-        takeYourInsulinInjectionsPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Only at meal times (this is called bolus insulin)")
-                .clickNextButton(brandsOfInsulinPageOLS)
+        NoOfAlcoholicDrinkOLS noOfAlcoholicDrinkOLS = whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(injectableMedicationsForYourDiabetesPageOLS);
+                .clickNextButton(new NoOfAlcoholicDrinkOLS());
+
+//        NoOfAlcoholicDrinkOLS noOfAlcoholicDrinkOLS = liverBiopsyConfirmsNASHDiagnosisOLS
+//                .waitForPageLoad()
+//                .clickOnAnswer("Yes")
+//                .clickNextButton(new NoOfAlcoholicDrinkOLS());
 
 
-        injectableMedicationsForYourDiabetesPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS);
 
-        NoOfAlcoholicDrinkOLS noOfAlcoholicDrinkOLS = cardiovascularDiseaseThanOthersPageOLS
-                    .waitForPageLoad()
-                    .clickOnAnswers("None of the above")
-                    .clickNextButton(new NoOfAlcoholicDrinkOLS());
-        noOfAlcoholicDrinkOLS
-                    .waitForPageLoad()
-                    .getPage(debugPageOLS)
-                    .checkProtocolsContainsForQNumber("QS4636", site.activeProtocols)
-                    .back(cardiovascularDiseaseThanOthersPageOLS);
-//                    .waitForPageLoad()
-//                    .clickOnAnswers("High cholesterol or high triglycerides")
-//                    .clickNextButton(new DigestiveConditionsAffectDiabetesPageOLS())
+//        noOfAlcoholicDrinkOLS
 //                    .waitForPageLoad()
 //                    .getPage(debugPageOLS)
 //                    .checkProtocolsContainsForQNumber("QS4636", site.activeProtocols)
-//                    .back(cardiovascularDiseaseThanOthersPageOLS)
-
-            cardiovascularDiseaseThanOthersPageOLS
-                    .waitForPageLoad()
-                    .clickOnAnswers("High cholesterol or high triglycerides", "High blood pressure or hypertension")
-                    .clickNextButton(noOfAlcoholicDrinkOLS);
-
+//                    .back(cardiovascularDiseaseThanOthersPageOLS);
+////                    .waitForPageLoad()
+////                    .clickOnAnswers("High cholesterol or high triglycerides")
+////                    .clickNextButton(new DigestiveConditionsAffectDiabetesPageOLS())
+////                    .waitForPageLoad()
+////                    .getPage(debugPageOLS)
+////                    .checkProtocolsContainsForQNumber("QS4636", site.activeProtocols)
+////                    .back(cardiovascularDiseaseThanOthersPageOLS)
+//
+//            cardiovascularDiseaseThanOthersPageOLS
+//                    .waitForPageLoad()
+//                    .clickOnAnswers("High cholesterol or high triglycerides", "High blood pressure or hypertension")
+//                    .clickNextButton(noOfAlcoholicDrinkOLS);
+//
+//        LiverRelatedConditionOLS liverRelatedConditionOLS = noOfAlcoholicDrinkOLS
+//                    .waitForPageLoad()
+//                    .setDrinks("15")
+//                    .clickNextButton(new LiverRelatedConditionOLS());
+//            liverRelatedConditionOLS
+//                    .waitForPageLoad()
+//                    .getPage(debugPageOLS)
+//                    .checkProtocolsContainsForQNumber("QS4623", site.activeProtocols)
+//                    .back();
         LiverRelatedConditionOLS liverRelatedConditionOLS = noOfAlcoholicDrinkOLS
-                    .waitForPageLoad()
-                    .setDrinks("15")
-                    .clickNextButton(new LiverRelatedConditionOLS());
+                .waitForPageLoad()
+                .setDrinks("14")
+                .clickNextButton(new LiverRelatedConditionOLS());
+
+        List<String> options = Arrays.asList("Alcoholic liver disease",
+                "Autoimmune hepatitis, which is not the same as hepatitis caused by a virus",
+//                "Hemochromatosis or iron overload ", "Liver cancer or hepatocellular carcinoma ", //this answer sometimes gives another pages (think because of cash)
+                "Primary sclerosing cholangitis or primary biliary cirrhosis", "Wilson's disease");
+        for (String answer : options) {
+            System.out.println("Select answer for Q17: QS4624 " + answer);
             liverRelatedConditionOLS
                     .waitForPageLoad()
-                    .getPage(debugPageOLS)
-                    .checkProtocolsContainsForQNumber("QS4623", site.activeProtocols)
-                    .back();
-            noOfAlcoholicDrinkOLS
+                    .clickOnAnswers("None of the above")
+                    .clickOnAnswers(answer)
+                    .clickNextButton(new CurrentlyTreatingYourDiabetesPageOLS())
                     .waitForPageLoad()
-                    .setDrinks("14")
-                    .clickNextButton(liverRelatedConditionOLS);
+                    .getPage(debugPageOLS)
+                    .checkProtocolsContainsForQNumber("QS8510", site.activeProtocols)
+                    .back();
+        }
 
-            List<String> options = Arrays.asList("Alcoholic liver disease",
-                    "Autoimmune hepatitis, which is not the same as hepatitis caused by a virus",
-//                "Hemochromatosis or iron overload ", "Liver cancer or hepatocellular carcinoma ", //this answer sometimes gives another pages (think because of cash)
-                    "Primary sclerosing cholangitis or primary biliary cirrhosis", "Wilson's disease");
-            for (String answer : options) {
-                System.out.println("Select answer for Q17: QS4624 " + answer);
-                liverRelatedConditionOLS
-                        .waitForPageLoad()
-                        .clickOnAnswers("None of the above")
-                        .clickOnAnswers(answer)
-                        .clickNextButton(new DigestiveConditionsAffectDiabetesPageOLS())
-                        .waitForPageLoad()
-                        .getPage(debugPageOLS)
-                        .checkProtocolsContainsForQNumber("QS4624", site.activeProtocols)
-                        .back();
-            }
-
-        FollowingToLoseWeightPageOLS followingToLoseWeightPageOLS = liverRelatedConditionOLS
+        WeightLossSurgeryPageOLS weightLossSurgeryPageOLS = liverRelatedConditionOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new FollowingToLoseWeightPageOLS());
-
-        WeightLossSurgeryPageOLS weightLossSurgeryPageOLS = followingToLoseWeightPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Prescription weight loss medication",
-                        "Over-the-counter weight loss medication or supplements",
-                        "Weight loss program such as Weight Watchers or Jenny Craig")
-                .clickOnAnswers("No")
                 .clickNextButton(new WeightLossSurgeryPageOLS());
+
+//        WeightLossSurgeryPageOLS weightLossSurgeryPageOLS = followingToLoseWeightPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswers("Prescription weight loss medication",
+//                        "Over-the-counter weight loss medication or supplements",
+//                        "Weight loss program such as Weight Watchers or Jenny Craig")
+//                .clickOnAnswers("No")
+//                .clickNextButton(new WeightLossSurgeryPageOLS());
 
         PoundsOrMorePageOLS poundsOrMorePageOLS = weightLossSurgeryPageOLS
                 .waitForPageLoad()
@@ -368,7 +383,7 @@ public class DIA_4483_OLS extends BaseTest {
                     .clickNextButton(poundsOrMorePageOLS)
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
-                    .checkProtocolsContainsForQNumber("QS4616", site.activeProtocols)
+                    .checkProtocolsContainsForQNumber("QS8512", site.activeProtocols)
                     .back();
         }
         procedureForWeightLossPageOLS
@@ -379,14 +394,15 @@ public class DIA_4483_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(poundsOrMorePageOLS);
-
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS =
+                new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS();
         poundsOrMorePageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4617", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS8518", site.activeProtocols)
                 .back();
         poundsOrMorePageOLS
                 .waitForPageLoad()
@@ -397,8 +413,8 @@ public class DIA_4483_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("Cancer",
                         "Kidney disease",
-                        "Heart or circulation problems (heart attack, heart failure, stroke)",
-                        "Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)",
+                        //"Heart or circulation problems (heart attack, heart failure, stroke)",
+                        //"Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)",
                         "Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)")
                 .clickNextButton(new WhenDiagnosedWithCancerOLS());
 
@@ -428,138 +444,168 @@ public class DIA_4483_OLS extends BaseTest {
                 .clickOnAnswers("Heart attack", "Stroke", "Mini-Stroke or TIA",
                         "Angina, or heart-related chest pain, that required you to stay in a hospital overnight")
                 .clickNextButton(new SubquestionExperiencedHeartPageOLS());
-
-        subquestionExperiencedHeartPageOLS
-                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
-                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
-                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected3)
-                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected4)
-                .clickOnAnswerForSubQuestion(1, "Less than 30 days ago")
-                .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
-                .back();
-
-        subquestionExperiencedHeartPageOLS
-                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
-                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
-                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected3)
-                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected4)
-                .clickOnAnswerForSubQuestion(1, "1 - 3 months ago")
-                .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
-                .back();
-
-        subquestionExperiencedHeartPageOLS
-                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
-                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
-                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected3)
-                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected4)
-                .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(2, "Less than 30 days ago")
-                .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
-                .back();
-
-        subquestionExperiencedHeartPageOLS
-                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
-                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
-                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected3)
-                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected4)
-                .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(2, "1 - 3 months ago")
-                .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(4,
-                        "More than 1 year ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
-                .back();
-
-        subquestionExperiencedHeartPageOLS
-                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
-                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
-                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected3)
-                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected4)
-                .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(3, "Less than 30 days ago")
-                .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
-                .back();
-
-        subquestionExperiencedHeartPageOLS
-                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
-                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
-                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected3)
-                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected4)
-                .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(3, "1 - 3 months ago")
-                .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
-                .back();
-
-        subquestionExperiencedHeartPageOLS
-                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
-                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
-                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected3)
-                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected4)
-                .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(4, "Less than 30 days ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
-                .back();
-
-        subquestionExperiencedHeartPageOLS
-                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
-                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
-                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected3)
-                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected4)
-                .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(4, "1 - 3 months ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
-                .back();
-
-        subquestionExperiencedHeartPageOLS
-                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
-                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
-                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected3)
-                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected4)
-                .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageOLS);
+//
+//        subquestionExperiencedHeartPageOLS
+//                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
+//                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
+//                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected3)
+//                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected4)
+//                .clickOnAnswerForSubQuestion(1, "Less than 30 days ago")
+//                .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
+//                .clickNextButton(heartrelatedMedicalProceduresPageOLS)
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+//                .back();
+//
+//        subquestionExperiencedHeartPageOLS
+//                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
+//                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
+//                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected3)
+//                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected4)
+//                .clickOnAnswerForSubQuestion(1, "1 - 3 months ago")
+//                .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
+//                .clickNextButton(heartrelatedMedicalProceduresPageOLS)
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+//                .back();
+//
+//        subquestionExperiencedHeartPageOLS
+//                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
+//                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
+//                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected3)
+//                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected4)
+//                .clickOnAnswerForSubQuestion(1, "Less than 30 days ago")
+//                .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
+//                .clickNextButton(heartrelatedMedicalProceduresPageOLS)
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+//                .back();
+//
+//        subquestionExperiencedHeartPageOLS
+//                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
+//                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
+//                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected3)
+//                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected4)
+//                .clickOnAnswerForSubQuestion(1, "1 - 3 months ago")
+//                .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
+//                .clickNextButton(heartrelatedMedicalProceduresPageOLS)
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+//                .back();
+//
+//        subquestionExperiencedHeartPageOLS
+//                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
+//                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
+//                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected3)
+//                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected4)
+//                .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(2, "Less than 30 days ago")
+//                .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
+//                .clickNextButton(heartrelatedMedicalProceduresPageOLS)
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+//                .back();
+//
+//        subquestionExperiencedHeartPageOLS
+//                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
+//                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
+//                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected3)
+//                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected4)
+//                .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(2, "1 - 3 months ago")
+//                .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(4,
+//                        "More than 1 year ago")
+//                .clickNextButton(heartrelatedMedicalProceduresPageOLS)
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+//                .back();
+//
+//        subquestionExperiencedHeartPageOLS
+//                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
+//                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
+//                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected3)
+//                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected4)
+//                .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(3, "Less than 30 days ago")
+//                .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
+//                .clickNextButton(heartrelatedMedicalProceduresPageOLS)
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+//                .back();
+//
+//        subquestionExperiencedHeartPageOLS
+//                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
+//                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
+//                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected3)
+//                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected4)
+//                .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(3, "1 - 3 months ago")
+//                .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
+//                .clickNextButton(heartrelatedMedicalProceduresPageOLS)
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+//                .back();
+//
+//        subquestionExperiencedHeartPageOLS
+//                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
+//                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
+//                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected3)
+//                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected4)
+//                .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(4, "Less than 30 days ago")
+//                .clickNextButton(heartrelatedMedicalProceduresPageOLS)
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+//                .back();
+//
+//        subquestionExperiencedHeartPageOLS
+//                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
+//                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
+//                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected3)
+//                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected4)
+//                .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(4, "1 - 3 months ago")
+//                .clickNextButton(heartrelatedMedicalProceduresPageOLS)
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+//                .back();
+//
+//        subquestionExperiencedHeartPageOLS
+//                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
+//                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
+//                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected3)
+//                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected4)
+//                .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
+//                .clickNextButton(heartrelatedMedicalProceduresPageOLS);
 
         MostRecentHeartProcedurePageOLS mostRecentHeartProcedurePageOLS = heartrelatedMedicalProceduresPageOLS
                 .waitForPageLoad()
@@ -593,7 +639,7 @@ public class DIA_4483_OLS extends BaseTest {
 //                .clickOnAnswer("Yes")
 //                .clickNextButton(new WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS());
 
-        WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS = whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS
+        whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS = whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Dialysis")
                 .clickNextButton(new WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS());
