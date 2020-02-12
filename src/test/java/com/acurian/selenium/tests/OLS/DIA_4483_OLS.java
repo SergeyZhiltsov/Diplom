@@ -418,32 +418,34 @@ public class DIA_4483_OLS extends BaseTest {
                         "Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)")
                 .clickNextButton(new WhenDiagnosedWithCancerOLS());
 
-        HaveYouEverExperiencedHeartRelatedMedicalCondOLS haveYouEverExperiencedHeartRelatedMedicalCondOLS = whenDiagnosedWithCancerOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Within the past 5 years")
-                .clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondOLS());
-        haveYouEverExperiencedHeartRelatedMedicalCondOLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
-                .back();
+        WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS = new WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS();
         whenDiagnosedWithCancerOLS
                 .waitForPageLoad()
-                .clickOnAnswer("Diagnosed with skin cancer only")
-                .clickNextButton(haveYouEverExperiencedHeartRelatedMedicalCondOLS);
+                .clickOnAnswer("Within the past 5 years")
+                .clickNextButton(whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS);
 
-        HeartrelatedMedicalProceduresPageOLS heartrelatedMedicalProceduresPageOLS = haveYouEverExperiencedHeartRelatedMedicalCondOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new HeartrelatedMedicalProceduresPageOLS());
-        heartrelatedMedicalProceduresPageOLS
-                .waitForPageLoad()
-                .back();
-        SubquestionExperiencedHeartPageOLS subquestionExperiencedHeartPageOLS = haveYouEverExperiencedHeartRelatedMedicalCondOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Heart attack", "Stroke", "Mini-Stroke or TIA",
-                        "Angina, or heart-related chest pain, that required you to stay in a hospital overnight")
-                .clickNextButton(new SubquestionExperiencedHeartPageOLS());
+//        whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
+//                .back();
+//        whenDiagnosedWithCancerOLS
+//                .waitForPageLoad()
+//                .clickOnAnswer("Diagnosed with skin cancer only")
+//                .clickNextButton(whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS);
+//
+//        HeartrelatedMedicalProceduresPageOLS heartrelatedMedicalProceduresPageOLS = whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickNextButton(new HeartrelatedMedicalProceduresPageOLS());
+//        heartrelatedMedicalProceduresPageOLS
+//                .waitForPageLoad()
+//                .back();
+//        SubquestionExperiencedHeartPageOLS subquestionExperiencedHeartPageOLS = whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS
+//                .waitForPageLoad()
+//                .clickOnAnswers("Heart attack", "Stroke", "Mini-Stroke or TIA",
+//                        "Angina, or heart-related chest pain, that required you to stay in a hospital overnight")
+//                .clickNextButton(new SubquestionExperiencedHeartPageOLS());
 //
 //        subquestionExperiencedHeartPageOLS
 //                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
@@ -607,12 +609,14 @@ public class DIA_4483_OLS extends BaseTest {
 //                .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
 //                .clickNextButton(heartrelatedMedicalProceduresPageOLS);
 
+/*
         MostRecentHeartProcedurePageOLS mostRecentHeartProcedurePageOLS = heartrelatedMedicalProceduresPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Stent placement in your heart, neck or legs")
                 .clickNextButton(new MostRecentHeartProcedurePageOLS());
+*/
 
-        WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS = new WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS();
+       /* whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS = new WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS();
         mostRecentHeartProcedurePageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Less than 30 days ago")
@@ -633,7 +637,7 @@ public class DIA_4483_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("7 - 12 months ago")
                 .clickNextButton(whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS);
-
+*/
 //        WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS = doYouTakeAnyMedicationsToControlHighBloodPressureOLS
 //                .waitForPageLoad()
 //                .clickOnAnswer("Yes")
@@ -643,15 +647,30 @@ public class DIA_4483_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("Dialysis")
                 .clickNextButton(new WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS());
-        whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
-                .back();
-        whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Kidney transplant")
-                .clickNextButton(whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS)
+//        whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
+//                .back();
+//        whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS
+//                .waitForPageLoad()
+//                .clickOnAnswers("Kidney transplant")
+//                .clickNextButton(whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS)
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
+//                .back();
+//        whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS
+//                .waitForPageLoad()
+//                .clickOnAnswers("Neither")
+//                .clickNextButton(whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS);
+//
+//        FollowingMentalEmotionalHealthPageOLS following_mentalEmotionalHealthPageOLS = whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS
+//                .waitForPageLoad()
+//                .clickOnAnswers("Cirrhosis")
+//                .clickNextButton(new FollowingMentalEmotionalHealthPageOLS());
+        FollowingMentalEmotionalHealthPageOLS following_mentalEmotionalHealthPageOLS = new FollowingMentalEmotionalHealthPageOLS();
+                following_mentalEmotionalHealthPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
@@ -659,20 +678,6 @@ public class DIA_4483_OLS extends BaseTest {
         whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Neither")
-                .clickNextButton(whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS);
-
-        FollowingMentalEmotionalHealthPageOLS following_mentalEmotionalHealthPageOLS = whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Cirrhosis")
-                .clickNextButton(new FollowingMentalEmotionalHealthPageOLS());
-        following_mentalEmotionalHealthPageOLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS52", site.activeProtocols)
-                .back();
-        whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Unsure which type of liver disease")
                 .clickNextButton(following_mentalEmotionalHealthPageOLS);
 
         DoAnyOftheFollowingAdditionalDiagnosesOLS doAnyOftheFollowingAdditionalDiagnosesOLS = following_mentalEmotionalHealthPageOLS
@@ -704,27 +709,24 @@ public class DIA_4483_OLS extends BaseTest {
         following_mentalEmotionalHealthPageOLS
                 .waitForPageLoad()
                 .back();
-        whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS
-                .waitForPageLoad()
-                .back();
+//        whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS
+//                .waitForPageLoad()
+//                .back();
         whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS
                 .waitForPageLoad()
                 .back();
 //        doYouTakeAnyMedicationsToControlHighBloodPressureOLS
 //                .waitForPageLoad()
 //                .back();
-        mostRecentHeartProcedurePageOLS
-                .waitForPageLoad()
-                .back();
-        heartrelatedMedicalProceduresPageOLS
-                .waitForPageLoad()
-                .back();
-        subquestionExperiencedHeartPageOLS
-                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
-                .back();
-        haveYouEverExperiencedHeartRelatedMedicalCondOLS
-                .waitForPageLoad()
-                .back();
+//        mostRecentHeartProcedurePageOLS
+//                .waitForPageLoad()
+//                .back();
+//        heartrelatedMedicalProceduresPageOLS
+//                .waitForPageLoad()
+//                .back();
+//        subquestionExperiencedHeartPageOLS
+//                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
+//                .back();
         whenDiagnosedWithCancerOLS
                 .waitForPageLoad()
                 .back();

@@ -672,9 +672,9 @@ public class DIA_4483_CC extends BaseTest {
 //        subquestionExperiencedHeartPageCC
 //                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
 //                .back();
-        haveYouEverExperiencedHeartRelatedMedicalCondCC
-                .waitForPageLoad()
-                .back();
+//        haveYouEverExperiencedHeartRelatedMedicalCondCC
+//                .waitForPageLoad()
+//                .back();
         whenDiagnosedWithCancerCC
                 .waitForPageLoad()
                 .back();
