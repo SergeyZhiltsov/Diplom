@@ -60,53 +60,54 @@ public class DIA_5062_OLS extends BaseTest {
 
         DebugPageOLS debugPageOLS = new DebugPageOLS();
 
-        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS =
-        diagnosedAnyTypeOfDiabetesPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4602", site.activeProtocols)
-                .back();
-        WhatKindOfDiabetesPageOLS whatKindOfDiabetesPageOLS = diagnosedAnyTypeOfDiabetesPageOLS
+//        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS =
+//                diagnosedAnyTypeOfDiabetesPageOLS
+//                        .waitForPageLoad()
+//                        .clickOnAnswer("No")
+//                        .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
+//        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QS4602", site.activeProtocols)
+//                .back();
+        WithType2DiabetesPageOLS withType2DiabetesPageOLS = diagnosedAnyTypeOfDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(new WhatKindOfDiabetesPageOLS());
-        WithType1DiabetesPageOLS withType1DiabetesPageOLS = new WithType1DiabetesPageOLS();
-        CardiovascularDiseaseThanOthersPageOLS cardiovascularDiseaseThanOthersPageOLS = whatKindOfDiabetesPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Type 1 diabetes (sometimes called Juvenile diabetes)")
-                .clickNextButton(new CardiovascularDiseaseThanOthersPageOLS());
-        withType1DiabetesPageOLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
-                .back();
+                .clickNextButton(new WithType2DiabetesPageOLS());
+//        WithType1DiabetesPageOLS withType1DiabetesPageOLS = new WithType1DiabetesPageOLS();
+//        CardiovascularDiseaseThanOthersPageOLS cardiovascularDiseaseThanOthersPageOLS = whatKindOfDiabetesPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswer("Type 1 diabetes (sometimes called Juvenile diabetes)")
+//                .clickNextButton(new CardiovascularDiseaseThanOthersPageOLS());
+//        withType1DiabetesPageOLS
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
+//                .back();
+//        whatKindOfDiabetesPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswer("Pre-diabetes")
+//                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
+//                .back();
+//        CurrentlyTreatingYourDiabetesPageOLS currentlyTreatingYourDiabetesPageOLS = whatKindOfDiabetesPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswer("Unsure")
+//                .clickNextButton(new CurrentlyTreatingYourDiabetesPageOLS());
+//        currentlyTreatingYourDiabetesPageOLS
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
+//                .back();
+       WhatKindOfDiabetesPageOLS whatKindOfDiabetesPageOLS = new WhatKindOfDiabetesPageOLS();
         whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
-                .clickOnAnswer("Pre-diabetes")
-                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
-                .back();
-        CurrentlyTreatingYourDiabetesPageOLS currentlyTreatingYourDiabetesPageOLS = whatKindOfDiabetesPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Unsure")
-                .clickNextButton(new CurrentlyTreatingYourDiabetesPageOLS());
-        currentlyTreatingYourDiabetesPageOLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
-                .back();
-        WithType2DiabetesPageOLS withType2DiabetesPageOLS = whatKindOfDiabetesPageOLS
-                .waitForPageLoad()
                 .clickOnAnswer("Type 2 diabetes (sometimes called Adult-onset diabetes)")
-                .clickNextButton(new WithType2DiabetesPageOLS());
+                .clickNextButton(withType2DiabetesPageOLS);
 
-        withType2DiabetesPageOLS
+        CardiovascularDiseaseThanOthersPageOLS cardiovascularDiseaseThanOthersPageOLS = withType2DiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Within the past 2 months")
                 .clickOnAnswer("3 - 6 months ago")
@@ -114,115 +115,139 @@ public class DIA_5062_OLS extends BaseTest {
                 .clickOnAnswer("1 to less than 5 years ago")
                 .clickOnAnswer("5 to less than 10 years ago")
                 .clickOnAnswer("10 years ago or more")
-                .clickNextButton(currentlyTreatingYourDiabetesPageOLS);
+                .clickNextButton(new CardiovascularDiseaseThanOthersPageOLS());
 
-        NoOfAlcoholicDrinkOLS noOfAlcoholicDrinkOLS = new NoOfAlcoholicDrinkOLS();
-        currentlyTreatingYourDiabetesPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Diet and exercise")
-                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS);
-        cardiovascularDiseaseThanOthersPageOLS
-                .waitForPageLoad()
-                .back();
-        currentlyTreatingYourDiabetesPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("I am not currently treating my diabetes")
-                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
-                .waitForPageLoad()
-                .back();
-        LastTimeYouTookPageOLS lastTimeYouTookPageOLS = currentlyTreatingYourDiabetesPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Medication such as metformin or insulin or other diabetes medication")
-                .clickNextButton(new LastTimeYouTookPageOLS());
+//        NoOfAlcoholicDrinkOLS noOfAlcoholicDrinkOLS = new NoOfAlcoholicDrinkOLS();
+//        currentlyTreatingYourDiabetesPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswers("Diet and exercise")
+//                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS);
+//        cardiovascularDiseaseThanOthersPageOLS
+//                .waitForPageLoad()
+//                .back();
+//        currentlyTreatingYourDiabetesPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswers("I am not currently treating my diabetes")
+//                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
+//                .waitForPageLoad()
+//                .back();
+//        LastTimeYouTookPageOLS lastTimeYouTookPageOLS = currentlyTreatingYourDiabetesPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswers("Medication such as metformin or insulin or other diabetes medication")
+//                .clickNextButton(new LastTimeYouTookPageOLS());
+//
+//        lastTimeYouTookPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswer("2 - 3 months ago")
+//                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
+//                .waitForPageLoad()
+//                .back();
+//        lastTimeYouTookPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswer("4 - 5 months ago")
+//                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
+//                .waitForPageLoad()
+//                .back();
+//        lastTimeYouTookPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswer("6 months ago or longer")
+//                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
+//                .waitForPageLoad()
+//                .back();
+//        MetforminMedicationsPageOLS metforminMedicationsPageOLS = lastTimeYouTookPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswer("Currently taking / have taken within the past month")
+//                .clickNextButton(new MetforminMedicationsPageOLS());
+//
+//        ApartFromMetforminPageOLS apartFromMetforminPageOLS = metforminMedicationsPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickNextButton(new ApartFromMetforminPageOLS());
+//
+//        CurrentlyTakeInsulinPageOLS currentlyTakeInsulinPageOLS = apartFromMetforminPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickNextButton(new CurrentlyTakeInsulinPageOLS());
+//
+//        InjectableMedicationsForYourDiabetesPageOLS injectableMedicationsForYourDiabetesPageOLS = currentlyTakeInsulinPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswer("No")
+//                .clickNextButton(new InjectableMedicationsForYourDiabetesPageOLS());
+//        injectableMedicationsForYourDiabetesPageOLS
+//                .waitForPageLoad()
+//                .back();
+//        TakeYourInsulinPageOLS takeYourInsulinPageOLS = currentlyTakeInsulinPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswer("Yes")
+//                .clickNextButton(new TakeYourInsulinPageOLS());
+//
+//        takeYourInsulinPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswers("Inhaled insulin (Afrezza)")
+//                .clickNextButton(injectableMedicationsForYourDiabetesPageOLS);
+//        injectableMedicationsForYourDiabetesPageOLS
+//                .waitForPageLoad()
+//                .back();
+//        BrandsOfInsulinPageOLS brandsOfInsulinPageOLS = takeYourInsulinPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswers("Insulin pump, which delivers insulin continuously")
+//                .clickNextButton(new BrandsOfInsulinPageOLS());
+//        brandsOfInsulinPageOLS
+//                .waitForPageLoad()
+//                .back();
+//        TakeYourInsulinInjectionsPageOLS takeYourInsulinInjectionsPageOLS = takeYourInsulinPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswers("Daily injections")
+//                .clickNextButton(new TakeYourInsulinInjectionsPageOLS());
+//
+//        takeYourInsulinInjectionsPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswer("Only at meal times (this is called bolus insulin)")
+//                .clickNextButton(brandsOfInsulinPageOLS)
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickNextButton(injectableMedicationsForYourDiabetesPageOLS);
+//
+//
+//        injectableMedicationsForYourDiabetesPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickNextButton(noOfAlcoholicDrinkOLS);
 
-        lastTimeYouTookPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("2 - 3 months ago")
-                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
-                .waitForPageLoad()
-                .back();
-        lastTimeYouTookPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("4 - 5 months ago")
-                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
-                .waitForPageLoad()
-                .back();
-        lastTimeYouTookPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("6 months ago or longer")
-                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
-                .waitForPageLoad()
-                .back();
-        MetforminMedicationsPageOLS metforminMedicationsPageOLS = lastTimeYouTookPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Currently taking / have taken within the past month")
-                .clickNextButton(new MetforminMedicationsPageOLS());
-
-        ApartFromMetforminPageOLS apartFromMetforminPageOLS = metforminMedicationsPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new ApartFromMetforminPageOLS());
-
-        CurrentlyTakeInsulinPageOLS currentlyTakeInsulinPageOLS = apartFromMetforminPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new CurrentlyTakeInsulinPageOLS());
-
-        InjectableMedicationsForYourDiabetesPageOLS injectableMedicationsForYourDiabetesPageOLS = currentlyTakeInsulinPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(new InjectableMedicationsForYourDiabetesPageOLS());
-        injectableMedicationsForYourDiabetesPageOLS
-                .waitForPageLoad()
-                .back();
-        TakeYourInsulinPageOLS takeYourInsulinPageOLS = currentlyTakeInsulinPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Yes")
-                .clickNextButton(new TakeYourInsulinPageOLS());
-
-        takeYourInsulinPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Inhaled insulin (Afrezza)")
-                .clickNextButton(injectableMedicationsForYourDiabetesPageOLS);
-        injectableMedicationsForYourDiabetesPageOLS
-                .waitForPageLoad()
-                .back();
-        BrandsOfInsulinPageOLS brandsOfInsulinPageOLS = takeYourInsulinPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Insulin pump, which delivers insulin continuously")
-                .clickNextButton(new BrandsOfInsulinPageOLS());
-        brandsOfInsulinPageOLS
-                .waitForPageLoad()
-                .back();
-        TakeYourInsulinInjectionsPageOLS takeYourInsulinInjectionsPageOLS = takeYourInsulinPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Daily injections")
-                .clickNextButton(new TakeYourInsulinInjectionsPageOLS());
-
-        takeYourInsulinInjectionsPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Only at meal times (this is called bolus insulin)")
-                .clickNextButton(brandsOfInsulinPageOLS)
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(injectableMedicationsForYourDiabetesPageOLS);
-
-
-        injectableMedicationsForYourDiabetesPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(noOfAlcoholicDrinkOLS);
-
-        LiverRelatedConditionOLS liverRelatedConditionOLS = cardiovascularDiseaseThanOthersPageOLS
+        WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS = cardiovascularDiseaseThanOthersPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("High cholesterol or high triglycerides", "High blood pressure or hypertension")
-                .clickNextButton(noOfAlcoholicDrinkOLS)
+                .clickNextButton(new WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS());
+
+        CurrentlyTreatingYourDiabetesPageOLS currentlyTreatingYourDiabetesPageOLS = whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS
+                .waitForPageLoad()
+                .clickOnAnswers("Cirrhosis")
+                .clickNextButton(new CurrentlyTreatingYourDiabetesPageOLS());
+
+        currentlyTreatingYourDiabetesPageOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS8506", site.activeProtocols)
+                .back();
+
+        whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(currentlyTreatingYourDiabetesPageOLS);
+
+//        NoOfAlcoholicDrinkOLS noOfAlcoholicDrinkOLS = liverBiopsyConfirmsNASHDiagnosisOLS
+//                .waitForPageLoad()
+//                .clickOnAnswer("Yes")
+//                .clickNextButton(new NoOfAlcoholicDrinkOLS());
+
+        NoOfAlcoholicDrinkOLS noOfAlcoholicDrinkOLS = new NoOfAlcoholicDrinkOLS();
+        LiverRelatedConditionOLS liverRelatedConditionOLS = noOfAlcoholicDrinkOLS
                 .waitForPageLoad()
                 .setDrinks("26")
                 .clickNextButton(new LiverRelatedConditionOLS())
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4623", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS8509", site.activeProtocols)
                 .back(noOfAlcoholicDrinkOLS)
                 .waitForPageLoad()
                 .setDrinks("15")
@@ -239,26 +264,26 @@ public class DIA_5062_OLS extends BaseTest {
         options.put("Wilson's disease", Arrays.asList(site.activeProtocols));
         for (Map.Entry<String, List<String>> entry : options.entrySet()) {
             System.out.println(entry.getKey());
-            DigestiveConditionsAffectDiabetesPageOLS digestiveConditionsAffectDiabetesPageOLS = liverRelatedConditionOLS
+            liverRelatedConditionOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(entry.getKey())
-                    .clickNextButton(new DigestiveConditionsAffectDiabetesPageOLS());
-            digestiveConditionsAffectDiabetesPageOLS
+                    .clickNextButton(currentlyTreatingYourDiabetesPageOLS);
+            currentlyTreatingYourDiabetesPageOLS
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
-                    .checkProtocolsContainsForQNumber("QS4624", (String[]) entry.getValue().toArray())
+                    .checkProtocolsContainsForQNumber("QS8510", (String[]) entry.getValue().toArray())
                     .back();
         }
-        FollowingToLoseWeightPageOLS followingToLoseWeightPageOLS = liverRelatedConditionOLS
+        WeightLossSurgeryPageOLS weightLossSurgeryPageOLS = liverRelatedConditionOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new FollowingToLoseWeightPageOLS());
-
-        WeightLossSurgeryPageOLS weightLossSurgeryPageOLS = followingToLoseWeightPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("No")
                 .clickNextButton(new WeightLossSurgeryPageOLS());
+
+//        WeightLossSurgeryPageOLS weightLossSurgeryPageOLS = followingToLoseWeightPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswers("No")
+//                .clickNextButton(new WeightLossSurgeryPageOLS());
 
         PoundsOrMorePageOLS poundsOrMorePageOLS = weightLossSurgeryPageOLS
                 .waitForPageLoad()
@@ -277,217 +302,218 @@ public class DIA_5062_OLS extends BaseTest {
                 .clickOnAnswer("Less than 3 months ago")
                 .clickNextButton(poundsOrMorePageOLS);
 
-        poundsOrMorePageOLS
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = poundsOrMorePageOLS
                 .waitForPageLoad()
-                .clickOnAnswer("Yes")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
+                .clickOnAnswer("No")
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
 
         WhenDiagnosedWithCancerOLS whenDiagnosedWithCancerOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Cancer",
                         "Kidney disease",
-                        "Heart or circulation problems (heart attack, heart failure, stroke)",
-                        "Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)",
+                        //"Heart or circulation problems (heart attack, heart failure, stroke)",
+                        //"Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)",
                         "Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)")
                 .clickNextButton(new WhenDiagnosedWithCancerOLS());
 
         HaveYouEverExperiencedHeartRelatedMedicalCondOLS haveYouEverExperiencedHeartRelatedMedicalCondOLS = whenDiagnosedWithCancerOLS
                 .waitForPageLoad()
-                .clickOnAnswer("Within the past 5 years")
+                .clickOnAnswer("11 or more years ago")
                 .clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondOLS());
-        haveYouEverExperiencedHeartRelatedMedicalCondOLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
-                .back();
-        whenDiagnosedWithCancerOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Diagnosed with skin cancer only")
-                .clickNextButton(haveYouEverExperiencedHeartRelatedMedicalCondOLS);
-
-        HeartrelatedMedicalProceduresPageOLS heartrelatedMedicalProceduresPageOLS = haveYouEverExperiencedHeartRelatedMedicalCondOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new HeartrelatedMedicalProceduresPageOLS());
-        heartrelatedMedicalProceduresPageOLS
-                .waitForPageLoad()
-                .back();
-        SubquestionExperiencedHeartPageOLS subquestionExperiencedHeartPageOLS = haveYouEverExperiencedHeartRelatedMedicalCondOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Heart attack", "Stroke", "Mini-Stroke or TIA",
-                        "Angina, or heart-related chest pain, that required you to stay in a hospital overnight")
-                .clickNextButton(new SubquestionExperiencedHeartPageOLS());
-
-        subquestionExperiencedHeartPageOLS
-                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
-                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
-                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected3)
-                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected4)
-                .clickOnAnswerForSubQuestion(1, "Less than 30 days ago")
-                .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(4,
-                        "More than 1 year ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
-                .back();
-
-        subquestionExperiencedHeartPageOLS
-                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
-                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
-                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected3)
-                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected4)
-                .clickOnAnswerForSubQuestion(1, "1 - 3 months ago")
-                .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
-                .back();
-
-        subquestionExperiencedHeartPageOLS
-                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
-                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
-                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected3)
-                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected4)
-                .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(2, "Less than 30 days ago")
-                .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
-                .back();
-
-        subquestionExperiencedHeartPageOLS
-                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
-                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
-                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected3)
-                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected4)
-                .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(2, "1 - 3 months ago")
-                .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
-                .back();
-
-        subquestionExperiencedHeartPageOLS
-                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
-                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
-                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected3)
-                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected4)
-                .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(3, "Less than 30 days ago")
-                .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
-                .back();
-
-        subquestionExperiencedHeartPageOLS
-                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
-                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
-                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected3)
-                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected4)
-                .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(3, "1 - 3 months ago")
-                .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
-                .back();
-
-        subquestionExperiencedHeartPageOLS
-                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
-                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
-                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected3)
-                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected4)
-                .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(4, "Less than 30 days ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
-                .back();
-
-        subquestionExperiencedHeartPageOLS
-                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
-                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
-                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected3)
-                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected4)
-                .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(4, "1 - 3 months ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
-                .back();
-
-        subquestionExperiencedHeartPageOLS
-                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
-                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
-                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected3)
-                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected4)
-                .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageOLS);
-
-        MostRecentHeartProcedurePageOLS mostRecentHeartProcedurePageOLS = heartrelatedMedicalProceduresPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Stent placement in your heart, neck or legs")
-                .clickNextButton(new MostRecentHeartProcedurePageOLS());
-
-        DoYouTakeAnyMedicationsToControlHighBloodPressureOLS doYouTakeAnyMedicationsToControlHighBloodPressureOLS = new DoYouTakeAnyMedicationsToControlHighBloodPressureOLS();
-        mostRecentHeartProcedurePageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Less than 30 days ago")
-                .clickNextButton(new WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS())
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS49", site.activeProtocols)
-                .back();
-        mostRecentHeartProcedurePageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("1 - 3 months ago")
-                .clickNextButton(new WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS())
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS49", site.activeProtocols)
-                .back();
-
-        WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS = mostRecentHeartProcedurePageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("7 - 12 months ago")
-                .clickNextButton(new WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS());
-
-       /* WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS = doYouTakeAnyMedicationsToControlHighBloodPressureOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Yes")
-                .clickNextButton(new WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS());*/
-
-        WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS = whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS
+//        haveYouEverExperiencedHeartRelatedMedicalCondOLS
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
+//                .back();
+//        whenDiagnosedWithCancerOLS
+//                .waitForPageLoad()
+//                .clickOnAnswer("Diagnosed with skin cancer only")
+//                .clickNextButton(haveYouEverExperiencedHeartRelatedMedicalCondOLS);
+//
+//        HeartrelatedMedicalProceduresPageOLS heartrelatedMedicalProceduresPageOLS = haveYouEverExperiencedHeartRelatedMedicalCondOLS
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickNextButton(new HeartrelatedMedicalProceduresPageOLS());
+//        heartrelatedMedicalProceduresPageOLS
+//                .waitForPageLoad()
+//                .back();
+//        SubquestionExperiencedHeartPageOLS subquestionExperiencedHeartPageOLS = haveYouEverExperiencedHeartRelatedMedicalCondOLS
+//                .waitForPageLoad()
+//                .clickOnAnswers("Heart attack", "Stroke", "Mini-Stroke or TIA",
+//                        "Angina, or heart-related chest pain, that required you to stay in a hospital overnight")
+//                .clickNextButton(new SubquestionExperiencedHeartPageOLS());
+//
+//        subquestionExperiencedHeartPageOLS
+//                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
+//                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
+//                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected3)
+//                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected4)
+//                .clickOnAnswerForSubQuestion(1, "Less than 30 days ago")
+//                .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(4,
+//                        "More than 1 year ago")
+//                .clickNextButton(heartrelatedMedicalProceduresPageOLS)
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+//                .back();
+//
+//        subquestionExperiencedHeartPageOLS
+//                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
+//                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
+//                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected3)
+//                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected4)
+//                .clickOnAnswerForSubQuestion(1, "1 - 3 months ago")
+//                .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
+//                .clickNextButton(heartrelatedMedicalProceduresPageOLS)
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+//                .back();
+//
+//        subquestionExperiencedHeartPageOLS
+//                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
+//                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
+//                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected3)
+//                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected4)
+//                .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(2, "Less than 30 days ago")
+//                .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
+//                .clickNextButton(heartrelatedMedicalProceduresPageOLS)
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+//                .back();
+//
+//        subquestionExperiencedHeartPageOLS
+//                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
+//                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
+//                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected3)
+//                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected4)
+//                .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(2, "1 - 3 months ago")
+//                .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
+//                .clickNextButton(heartrelatedMedicalProceduresPageOLS)
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+//                .back();
+//
+//        subquestionExperiencedHeartPageOLS
+//                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
+//                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
+//                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected3)
+//                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected4)
+//                .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(3, "Less than 30 days ago")
+//                .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
+//                .clickNextButton(heartrelatedMedicalProceduresPageOLS)
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+//                .back();
+//
+//        subquestionExperiencedHeartPageOLS
+//                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
+//                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
+//                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected3)
+//                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected4)
+//                .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(3, "1 - 3 months ago")
+//                .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
+//                .clickNextButton(heartrelatedMedicalProceduresPageOLS)
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+//                .back();
+//
+//        subquestionExperiencedHeartPageOLS
+//                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
+//                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
+//                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected3)
+//                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected4)
+//                .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(4, "Less than 30 days ago")
+//                .clickNextButton(heartrelatedMedicalProceduresPageOLS)
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+//                .back();
+//
+//        subquestionExperiencedHeartPageOLS
+//                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
+//                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
+//                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected3)
+//                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected4)
+//                .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(4, "1 - 3 months ago")
+//
+//                .clickNextButton(heartrelatedMedicalProceduresPageOLS)
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+//                .back();
+//
+//        subquestionExperiencedHeartPageOLS
+//                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
+//                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
+//                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected3)
+//                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected4)
+//                .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
+//                .clickNextButton(heartrelatedMedicalProceduresPageOLS);
+//
+//        MostRecentHeartProcedurePageOLS mostRecentHeartProcedurePageOLS = heartrelatedMedicalProceduresPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswers("Stent placement in your heart, neck or legs")
+//                .clickNextButton(new MostRecentHeartProcedurePageOLS());
+//
+//        DoYouTakeAnyMedicationsToControlHighBloodPressureOLS doYouTakeAnyMedicationsToControlHighBloodPressureOLS = new DoYouTakeAnyMedicationsToControlHighBloodPressureOLS();
+//        mostRecentHeartProcedurePageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswer("Less than 30 days ago")
+//                .clickNextButton(new WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS())
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QS49", site.activeProtocols)
+//                .back();
+//        mostRecentHeartProcedurePageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswer("1 - 3 months ago")
+//                .clickNextButton(new WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS())
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QS49", site.activeProtocols)
+//                .back();
+//
+//        WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS = mostRecentHeartProcedurePageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswer("7 - 12 months ago")
+//                .clickNextButton(new WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS());
+//
+//       /* WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS = doYouTakeAnyMedicationsToControlHighBloodPressureOLS
+//                .waitForPageLoad()
+//                .clickOnAnswer("Yes")
+//                .clickNextButton(new WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS());*/
+        WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS = new WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS();
+        FollowingMentalEmotionalHealthPageOLS followingMentalEmotionalHealthPageOLS = whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Dialysis")
-                .clickNextButton(new WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS());
-        whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS
+                .clickNextButton(new FollowingMentalEmotionalHealthPageOLS());
+        followingMentalEmotionalHealthPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
@@ -495,23 +521,23 @@ public class DIA_5062_OLS extends BaseTest {
         whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Neither")
-                .clickNextButton(whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS);
+                .clickNextButton(followingMentalEmotionalHealthPageOLS);
+//
+//        FollowingMentalEmotionalHealthPageOLS following_mentalEmotionalHealthPageOLS = whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS
+//                .waitForPageLoad()
+//                .clickOnAnswers("Cirrhosis")
+//                .clickNextButton(new FollowingMentalEmotionalHealthPageOLS());
+//        following_mentalEmotionalHealthPageOLS
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QS52", site.activeProtocols)
+//                .back();
+//        whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS
+//                .waitForPageLoad()
+//                .clickOnAnswers("Unsure which type of liver disease")
+//                .clickNextButton(following_mentalEmotionalHealthPageOLS);
 
-        FollowingMentalEmotionalHealthPageOLS following_mentalEmotionalHealthPageOLS = whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Cirrhosis")
-                .clickNextButton(new FollowingMentalEmotionalHealthPageOLS());
-        following_mentalEmotionalHealthPageOLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS52", site.activeProtocols)
-                .back();
-        whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Unsure which type of liver disease")
-                .clickNextButton(following_mentalEmotionalHealthPageOLS);
-
-        DoAnyOftheFollowingAdditionalDiagnosesOLS doAnyOftheFollowingAdditionalDiagnosesOLS = following_mentalEmotionalHealthPageOLS
+        DoAnyOftheFollowingAdditionalDiagnosesOLS doAnyOftheFollowingAdditionalDiagnosesOLS = followingMentalEmotionalHealthPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Bipolar disorder")
                 .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS());
@@ -520,7 +546,7 @@ public class DIA_5062_OLS extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS53", site.activeProtocols)
                 .back();
-        following_mentalEmotionalHealthPageOLS
+        followingMentalEmotionalHealthPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Schizophrenia")
@@ -529,7 +555,7 @@ public class DIA_5062_OLS extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS53", site.activeProtocols)
                 .back();
-        following_mentalEmotionalHealthPageOLS
+        followingMentalEmotionalHealthPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS);
@@ -537,25 +563,10 @@ public class DIA_5062_OLS extends BaseTest {
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .back();
-        following_mentalEmotionalHealthPageOLS
-                .waitForPageLoad()
-                .back();
-        whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS
+        followingMentalEmotionalHealthPageOLS
                 .waitForPageLoad()
                 .back();
         whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS
-                .waitForPageLoad()
-                .back();
-        mostRecentHeartProcedurePageOLS
-                .waitForPageLoad()
-                .back();
-        heartrelatedMedicalProceduresPageOLS
-                .waitForPageLoad()
-                .back();
-        subquestionExperiencedHeartPageOLS
-                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
-                .back();
-        haveYouEverExperiencedHeartRelatedMedicalCondOLS
                 .waitForPageLoad()
                 .back();
         whenDiagnosedWithCancerOLS

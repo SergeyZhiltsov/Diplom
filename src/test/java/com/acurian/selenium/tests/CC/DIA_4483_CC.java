@@ -104,38 +104,27 @@ public class DIA_4483_CC extends BaseTest {
                 .clickOnAnswer("Female")
                 .clickNextButton(new DiagnosedAnyTypeOfDiabetesPageCC());
 
-        NonQRtransitionPageCC nonQRtransitionPageCC = diagnosedAnyTypeOfDiabetesPageCC
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(new NonQRtransitionPageCC());
-
-        nonQRtransitionPageCC
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS4602", site.activeProtocols)
-                .back();
-
         WhatKindOfDiabetesPageCC whatKindOfDiabetesPageCC = diagnosedAnyTypeOfDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new WhatKindOfDiabetesPageCC());
         WithType1DiabetesPageCC withType1DiabetesPageCC = new WithType1DiabetesPageCC();
-        CardiovascularDiseaseThanOthersPageCC cardiovascularDiseaseThanOthersPageCC = whatKindOfDiabetesPageCC
+        WithType2DiabetesPageCC withType2DiabetesPageCC = whatKindOfDiabetesPageCC
                 .waitForPageLoad()
-                .clickOnAnswer("Type 1 diabetes (sometimes called Juvenile diabetes)")
-                .clickNextButton(new CardiovascularDiseaseThanOthersPageCC());
-        withType1DiabetesPageCC
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
-                .back(whatKindOfDiabetesPageCC)
-                .waitForPageLoad()
-                .clickOnAnswer("Pre-diabetes")
-                .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
-                .back(whatKindOfDiabetesPageCC);
+//                .clickOnAnswer("Type 1 diabetes (sometimes called Juvenile diabetes)")
+//                .clickNextButton(new CardiovascularDiseaseThanOthersPageCC());
+//        cardiovascularDiseaseThanOthersPageCC
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
+//                .back(whatKindOfDiabetesPageCC)
+//                .waitForPageLoad()
+//                .clickOnAnswer("Pre-diabetes")
+//                .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
+//                .back(whatKindOfDiabetesPageCC);
 //                .waitForPageLoad()
 //                .clickOnAnswer("Unsure")
 //                .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
@@ -144,176 +133,203 @@ public class DIA_4483_CC extends BaseTest {
 //                .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
 //                .back();
 
-        CurrentlyTreatingYourDiabetesPageCC currentlyTreatingYourDiabetesPageCC = whatKindOfDiabetesPageCC
-                .waitForPageLoad()
-                .clickOnAnswer("Unsure")
-                .clickNextButton(new CurrentlyTreatingYourDiabetesPageCC());
+//        CurrentlyTreatingYourDiabetesPageCC currentlyTreatingYourDiabetesPageCC = whatKindOfDiabetesPageCC
+//                .waitForPageLoad()
+//                .clickOnAnswer("Unsure")
+//                .clickNextButton(new CurrentlyTreatingYourDiabetesPageCC());
 
-        WithType2DiabetesPageCC withType2DiabetesPageCC = currentlyTreatingYourDiabetesPageCC
-                .waitForPageLoad()
-                .back(whatKindOfDiabetesPageCC)
-                .waitForPageLoad()
+//        WithType2DiabetesPageCC withType2DiabetesPageCC = currentlyTreatingYourDiabetesPageCC
+//                .waitForPageLoad()
+//                .back(whatKindOfDiabetesPageCC)
+//                .waitForPageLoad()
                 .clickOnAnswer("Type 2 diabetes (sometimes called Adult-onset diabetes)")
                 .clickNextButton(new WithType2DiabetesPageCC());
 
-        withType2DiabetesPageCC
+        CardiovascularDiseaseThanOthersPageCC cardiovascularDiseaseThanOthersPageCC = withType2DiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("10 years ago or more")
-                .clickNextButton(currentlyTreatingYourDiabetesPageCC)
-                .waitForPageLoad()
-                .clickOnAnswers("Diet and exercise")
-                .clickNextButton(cardiovascularDiseaseThanOthersPageCC);
+                .clickNextButton(new CardiovascularDiseaseThanOthersPageCC());
 
-        LastTimeYouTookPageCC lastTimeYouTookPageCC = cardiovascularDiseaseThanOthersPageCC
-                .waitForPageLoad()
-                .back(currentlyTreatingYourDiabetesPageCC)
-                .waitForPageLoad()
-                .clickOnAnswers("I am not currently treating my diabetes")
-                .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
-                .waitForPageLoad()
-                .back(currentlyTreatingYourDiabetesPageCC)
-                .clickOnAnswers("Medication such as metformin or insulin or other diabetes medication")
-                .clickNextButton(new LastTimeYouTookPageCC());
+//                .waitForPageLoad()
+//                .clickOnAnswers("Diet and exercise")
+//                .clickNextButton(cardiovascularDiseaseThanOthersPageCC);
+//
+//        LastTimeYouTookPageCC lastTimeYouTookPageCC = cardiovascularDiseaseThanOthersPageCC
+//                .waitForPageLoad()
+//                .back(currentlyTreatingYourDiabetesPageCC)
+//                .waitForPageLoad()
+//                .clickOnAnswers("I am not currently treating my diabetes")
+//                .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
+//                .waitForPageLoad()
+//                .back(currentlyTreatingYourDiabetesPageCC)
+//                .clickOnAnswers("Medication such as metformin or insulin or other diabetes medication")
+//                .clickNextButton(new LastTimeYouTookPageCC());
+//
+//        List<String> disqualify = Arrays.asList("2 - 3 months ago", "4 - 5 months ago", "6 months ago or longer");
+//        for (String answer : disqualify) {
+//            System.out.println("Select answer for Q6: " + answer);
+//            lastTimeYouTookPageCC
+//                    .waitForPageLoad()
+//                    .clickOnAnswer(answer)
+//                    .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
+//                    .waitForPageLoad()
+//                    .back();
+//        }
+//        MetforminMedicationsPageCC metforminMedicationsPageCC = lastTimeYouTookPageCC
+//                .waitForPageLoad()
+//                .clickOnAnswer("Currently taking / have taken within the past month")
+//                .clickNextButton(new MetforminMedicationsPageCC());
+//
+//        ApartFromMetforminPageCC apartFromMetforminPageCC = metforminMedicationsPageCC
+//                .waitForPageLoad()
+//                .clickOnAnswers("Metformin",
+//                        "Actoplus Met (metformin and pioglitazone)",
+//                        "Avandamet (metformin and rosiglitazone)",
+//                        "Fortamet (metformin)",
+//                        "Glucophage (metformin)",
+//                        "Glucovance (metformin and glyburide)",
+//                        "Glumetza (metformin)",
+//                        "Invokamet (metformin and canagliflozin)",
+//                        "Janumet (metformin and sitagliptin)",
+//                        "Jentadueto (metformin and linagliptin)",
+//                        "Kazano (metformin and alogliptin)",
+//                        "Kombiglyze (metformin and saxagliptin)",
+//                        "Metformin and glipizide",
+//                        "PrandiMet (metformin and repaglinide)",
+//                        "Synjardy (metformin and empagliflozin)",
+//                        "Xigduo (metformin and dapagliflozin)")
+//                .clickOnAnswers("None of the above")
+//                .clickNextButton(new ApartFromMetforminPageCC());
+//
+//        CurrentlyTakeInsulinPageCC currentlyTakeInsulinPageCC = apartFromMetforminPageCC
+//                .waitForPageLoad()
+//                .clickOnAnswers("Actos (pioglitazone)",
+//                        "Amaryl (glimepiride)",
+//                        "Avandia (rosiglitazone)",
+//                        "Chlorpropamide",
+//                        "Cycloset (bromocriptine)",
+//                        "Duetact (pioglitazone and glimepiride)",
+//                        "Farxiga (dapagliflozin)",
+//                        "Glipizide XL, Glucotrol, or Glucotrol XL (glipizide)",
+//                        "Glynase (glyburide)",
+//                        "Glyset (miglitol)",
+//                        "Glyxambi (empagliflozin and linagliptin)",
+//                        "Invokana (canagliflozin)",
+//                        "Januvia (sitagliptin)",
+//                        "Jardiance (empagliflozin)",
+//                        "Nesina (alogliptin)",
+//                        "Onglyza (saxagliptin)",
+//                        "Oseni (alogliptin and pioglitazone)",
+//                        "Prandin (repaglinide)",
+//                        "Precose (acarbose)",
+//                        "Starlix (nateglinide)",
+//                        "Tradjenta (linagliptin)")
+//                .clickOnAnswers("None of the above")
+//                .clickNextButton(new CurrentlyTakeInsulinPageCC());
+//
+//        InjectableMedicationsForYourDiabetesPageCC injectableMedicationsForYourDiabetesPageCC = currentlyTakeInsulinPageCC
+//                .waitForPageLoad()
+//                .clickOnAnswer("No")
+//                .clickNextButton(new InjectableMedicationsForYourDiabetesPageCC());
+//
+//        TakeYourInsulinPageCC takeYourInsulinPageCC = injectableMedicationsForYourDiabetesPageCC
+//                .waitForPageLoad()
+//                .clickOnAnswers("Adlyxin (lixisenatide)",
+//                        "Bydureon or Byetta (exenatide)",
+//                        "Tanzeum (albiglutide)",
+//                        "Trulicity (dulaglutide)",
+//                        "Saxenda or Victoza (liraglutide)",
+//                        "SymlinPen (pramlintide)")
+//                .clickOnAnswers("None of the above")
+//                .back(currentlyTakeInsulinPageCC)
+//                .waitForPageLoad()
+//                .clickOnAnswer("Yes")
+//                .clickNextButton(new TakeYourInsulinPageCC());
+//
+//        BrandsOfInsulinPageCC brandsOfInsulinPageCC = takeYourInsulinPageCC
+//                .waitForPageLoad()
+//                .clickOnAnswers("Inhaled insulin (Afrezza)")
+//                .clickNextButton(injectableMedicationsForYourDiabetesPageCC)
+//                .waitForPageLoad()
+//                .back(takeYourInsulinPageCC)
+//                .waitForPageLoad()
+//                .clickOnAnswers("Inhaled insulin (Afrezza)")
+//                .clickOnAnswers("Insulin pump, which delivers insulin continuously")
+//                .clickNextButton(new BrandsOfInsulinPageCC());
+//
+//        TakeYourInsulinInjectionsPageCC takeYourInsulinInjectionsPageCC = brandsOfInsulinPageCC
+//                .waitForPageLoad()
+//                .clickOnAnswers("Insulin NPH, also known as Humulin N or Novolin N",
+//                        "Insulin glargine, Basaglar, or Lantus",
+//                        "Toujeo, aslo known as insulin glargine",
+//                        "Insulin detemir, also known as Levemir",
+//                        "Insulin degludec, also known as Tresiba",
+//                        "Insulin regular, also known as Humulin R or Novolin R",
+//                        "Insulin lispro, also known as Admelog or Humalog",
+//                        "Insulin aspart, also known as Fiasp or Novolog",
+//                        "Insulin glulisine, also known as Apidra",
+//                        "Mixed or pre-mixed insulin, which includes Humalog Mix 50/50 or 75/25, Humulin 70/30, " +
+//                                "Novolin 70/30, or Novolog Mix 70/30")
+//                .clickOnAnswers("None of the above")
+//                .back(takeYourInsulinPageCC)
+//                .waitForPageLoad()
+//                .clickOnAnswers("Insulin pump, which delivers insulin continuously")
+//                .clickOnAnswers("Daily injections")
+//                .clickNextButton(new TakeYourInsulinInjectionsPageCC());
+//
+//        NoOfAlcoholicDrinksCC noOfAlcoholicDrinksCC = new NoOfAlcoholicDrinksCC();
+//        LiverRelatedConditionCC liverRelatedConditionCC = takeYourInsulinInjectionsPageCC
+//                .waitForPageLoad()
+//                .clickOnAnswer("Only at meal times (this is called bolus insulin)")
+//                .clickNextButton(brandsOfInsulinPageCC)
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickNextButton(injectableMedicationsForYourDiabetesPageCC)
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
 
-        List<String> disqualify = Arrays.asList("2 - 3 months ago", "4 - 5 months ago", "6 months ago or longer");
-        for (String answer : disqualify) {
-            System.out.println("Select answer for Q6: " + answer);
-            lastTimeYouTookPageCC
-                    .waitForPageLoad()
-                    .clickOnAnswer(answer)
-                    .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
-                    .waitForPageLoad()
-                    .back();
-        }
-        MetforminMedicationsPageCC metforminMedicationsPageCC = lastTimeYouTookPageCC
+        WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseCC whichOfFollowingHaveYouDiagnosedWith_liverDiseaseCC = cardiovascularDiseaseThanOthersPageCC
                 .waitForPageLoad()
-                .clickOnAnswer("Currently taking / have taken within the past month")
-                .clickNextButton(new MetforminMedicationsPageCC());
-
-        ApartFromMetforminPageCC apartFromMetforminPageCC = metforminMedicationsPageCC
-                .waitForPageLoad()
-                .clickOnAnswers("Metformin",
-                        "Actoplus Met (metformin and pioglitazone)",
-                        "Avandamet (metformin and rosiglitazone)",
-                        "Fortamet (metformin)",
-                        "Glucophage (metformin)",
-                        "Glucovance (metformin and glyburide)",
-                        "Glumetza (metformin)",
-                        "Invokamet (metformin and canagliflozin)",
-                        "Janumet (metformin and sitagliptin)",
-                        "Jentadueto (metformin and linagliptin)",
-                        "Kazano (metformin and alogliptin)",
-                        "Kombiglyze (metformin and saxagliptin)",
-                        "Metformin and glipizide",
-                        "PrandiMet (metformin and repaglinide)",
-                        "Synjardy (metformin and empagliflozin)",
-                        "Xigduo (metformin and dapagliflozin)")
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new ApartFromMetforminPageCC());
+                .clickNextButton(new WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseCC());
 
-        CurrentlyTakeInsulinPageCC currentlyTakeInsulinPageCC = apartFromMetforminPageCC
+        LiverBiopsyConfirmsNASHDiagnosisCC liverBiopsyConfirmsNASHDiagnosisCC = whichOfFollowingHaveYouDiagnosedWith_liverDiseaseCC
                 .waitForPageLoad()
-                .clickOnAnswers("Actos (pioglitazone)",
-                        "Amaryl (glimepiride)",
-                        "Avandia (rosiglitazone)",
-                        "Chlorpropamide",
-                        "Cycloset (bromocriptine)",
-                        "Duetact (pioglitazone and glimepiride)",
-                        "Farxiga (dapagliflozin)",
-                        "Glipizide XL, Glucotrol, or Glucotrol XL (glipizide)",
-                        "Glynase (glyburide)",
-                        "Glyset (miglitol)",
-                        "Glyxambi (empagliflozin and linagliptin)",
-                        "Invokana (canagliflozin)",
-                        "Januvia (sitagliptin)",
-                        "Jardiance (empagliflozin)",
-                        "Nesina (alogliptin)",
-                        "Onglyza (saxagliptin)",
-                        "Oseni (alogliptin and pioglitazone)",
-                        "Prandin (repaglinide)",
-                        "Precose (acarbose)",
-                        "Starlix (nateglinide)",
-                        "Tradjenta (linagliptin)")
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new CurrentlyTakeInsulinPageCC());
+                .clickOnAnswers("Cirrhosis")
+                .clickNextButton(new LiverBiopsyConfirmsNASHDiagnosisCC());
 
-        InjectableMedicationsForYourDiabetesPageCC injectableMedicationsForYourDiabetesPageCC = currentlyTakeInsulinPageCC
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(new InjectableMedicationsForYourDiabetesPageCC());
-
-        TakeYourInsulinPageCC takeYourInsulinPageCC = injectableMedicationsForYourDiabetesPageCC
-                .waitForPageLoad()
-                .clickOnAnswers("Adlyxin (lixisenatide)",
-                        "Bydureon or Byetta (exenatide)",
-                        "Tanzeum (albiglutide)",
-                        "Trulicity (dulaglutide)",
-                        "Saxenda or Victoza (liraglutide)",
-                        "SymlinPen (pramlintide)")
-                .clickOnAnswers("None of the above")
-                .back(currentlyTakeInsulinPageCC)
-                .waitForPageLoad()
-                .clickOnAnswer("Yes")
-                .clickNextButton(new TakeYourInsulinPageCC());
-
-        BrandsOfInsulinPageCC brandsOfInsulinPageCC = takeYourInsulinPageCC
-                .waitForPageLoad()
-                .clickOnAnswers("Inhaled insulin (Afrezza)")
-                .clickNextButton(injectableMedicationsForYourDiabetesPageCC)
-                .waitForPageLoad()
-                .back(takeYourInsulinPageCC)
-                .waitForPageLoad()
-                .clickOnAnswers("Inhaled insulin (Afrezza)")
-                .clickOnAnswers("Insulin pump, which delivers insulin continuously")
-                .clickNextButton(new BrandsOfInsulinPageCC());
-
-        TakeYourInsulinInjectionsPageCC takeYourInsulinInjectionsPageCC = brandsOfInsulinPageCC
-                .waitForPageLoad()
-                .clickOnAnswers("Insulin NPH, also known as Humulin N or Novolin N",
-                        "Insulin glargine, Basaglar, or Lantus",
-                        "Toujeo, aslo known as insulin glargine",
-                        "Insulin detemir, also known as Levemir",
-                        "Insulin degludec, also known as Tresiba",
-                        "Insulin regular, also known as Humulin R or Novolin R",
-                        "Insulin lispro, also known as Admelog or Humalog",
-                        "Insulin aspart, also known as Fiasp or Novolog",
-                        "Insulin glulisine, also known as Apidra",
-                        "Mixed or pre-mixed insulin, which includes Humalog Mix 50/50 or 75/25, Humulin 70/30, " +
-                                "Novolin 70/30, or Novolog Mix 70/30")
-                .clickOnAnswers("None of the above")
-                .back(takeYourInsulinPageCC)
-                .waitForPageLoad()
-                .clickOnAnswers("Insulin pump, which delivers insulin continuously")
-                .clickOnAnswers("Daily injections")
-                .clickNextButton(new TakeYourInsulinInjectionsPageCC());
-
-        NoOfAlcoholicDrinksCC noOfAlcoholicDrinksCC = new NoOfAlcoholicDrinksCC();
-        LiverRelatedConditionCC liverRelatedConditionCC = takeYourInsulinInjectionsPageCC
-                .waitForPageLoad()
-                .clickOnAnswer("Only at meal times (this is called bolus insulin)")
-                .clickNextButton(brandsOfInsulinPageCC)
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(injectableMedicationsForYourDiabetesPageCC)
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(noOfAlcoholicDrinksCC)
+        CurrentlyTreatingYourDiabetesPageCC currentlyTreatingYourDiabetesPageCC = new CurrentlyTreatingYourDiabetesPageCC();
+        currentlyTreatingYourDiabetesPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS4636", site.activeProtocols)
-                .back(cardiovascularDiseaseThanOthersPageCC)
+                .checkProtocolsContainsForQNumber("QS8506", site.activeProtocols)
+                .back();
+
+        NoOfAlcoholicDrinksCC noOfAlcoholicDrinksCC = whichOfFollowingHaveYouDiagnosedWith_liverDiseaseCC
                 .waitForPageLoad()
-                .clickOnAnswers("High blood pressure or hypertension")
-                .clickOnAnswers("High cholesterol or high triglycerides")
-                .clickNextButton(noOfAlcoholicDrinksCC)
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new NoOfAlcoholicDrinksCC());
+
+//        NoOfAlcoholicDrinksCC noOfAlcoholicDrinksCC = liverBiopsyConfirmsNASHDiagnosisCC
+//                .waitForPageLoad()
+//                .clickOnAnswer("Yes")
+//                .clickNextButton(new NoOfAlcoholicDrinksCC());
+
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS4636", site.activeProtocols)
+//                .back(cardiovascularDiseaseThanOthersPageCC)
+//                .waitForPageLoad()
+//                .clickOnAnswers("High blood pressure or hypertension")
+//                .clickOnAnswers("High cholesterol or high triglycerides")
+//                .clickNextButton(noOfAlcoholicDrinksCC)
+        LiverRelatedConditionCC liverRelatedConditionCC = noOfAlcoholicDrinksCC
                 .setDrinks("11")
                 .clickNextButton(new LiverRelatedConditionCC())
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS4623", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS8509", site.activeProtocols)
                 .back(noOfAlcoholicDrinksCC)
                 .waitForPageLoad()
                 .setDrinks("10")
@@ -340,17 +356,17 @@ public class DIA_4483_CC extends BaseTest {
                     .back();
         }*/
 
-        FollowingToLoseWeightPageCC followingToLoseWeightPageCC = liverRelatedConditionCC
+        WeightLossSurgeryPageCC weightLossSurgeryPageCC = liverRelatedConditionCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new FollowingToLoseWeightPageCC());
-        WeightLossSurgeryPageCC weightLossSurgeryPageCC = followingToLoseWeightPageCC
-                .waitForPageLoad()
-                .clickOnAnswers("Prescription weight loss medication",
-                        "Over-the-counter weight loss medication or supplements",
-                        "Weight loss program such as Weight Watchers or Jenny Craig")
-                .clickOnAnswers("No")
                 .clickNextButton(new WeightLossSurgeryPageCC());
+//        WeightLossSurgeryPageCC weightLossSurgeryPageCC = followingToLoseWeightPageCC
+//                .waitForPageLoad()
+//                .clickOnAnswers("Prescription weight loss medication",
+//                        "Over-the-counter weight loss medication or supplements",
+//                        "Weight loss program such as Weight Watchers or Jenny Craig")
+//                .clickOnAnswers("No")
+//                .clickNextButton(new WeightLossSurgeryPageCC());
 
         PoundsOrMorePageCC poundsOrMorePageCC = weightLossSurgeryPageCC
                 .waitForPageLoad()
@@ -380,7 +396,7 @@ public class DIA_4483_CC extends BaseTest {
                     .clickNextButton(poundsOrMorePageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber("QS4616", site.activeProtocols)
+                    .checkProtocolsContainsForQNumber("QS8512", site.activeProtocols)
                     .back();
         }
         procedureForWeightLossPageCC
@@ -397,9 +413,9 @@ public class DIA_4483_CC extends BaseTest {
                 .clickOnAnswer("Yes")
                 .clickNextButton(new TransitionStatementCC());
         transitionStatementCC
-                .waitForPageLoad(indicationHistroyName)
+                .waitForPageLoadDYS()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS4617", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS8518", site.activeProtocols)
                 .back();
         poundsOrMorePageCC
                 .waitForPageLoad()
@@ -407,16 +423,16 @@ public class DIA_4483_CC extends BaseTest {
                 .clickNextButton(transitionStatementCC);
 
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC =
-        transitionStatementCC
-                .waitForPageLoad(indicationHistroyName)
-                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
+                transitionStatementCC
+                        .waitForPageLoadDYS()
+                        .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
 
         WhenDiagnosedWithCancerCC whenDiagnosedWithCancerCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("Cancer",
                         "Kidney disease",
-                        "Heart or circulation problems (heart attack, heart failure, stroke)",
-                        "Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)",
+                        //"Heart or circulation problems (heart attack, heart failure, stroke)",
+                        //"Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)",
                         "Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)")
                 .clickNextButton(new WhenDiagnosedWithCancerCC());
 
@@ -425,191 +441,192 @@ public class DIA_4483_CC extends BaseTest {
                 .clickOnAnswer("Within the past 5 years")
                 .clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondCC());
 
-        HeartrelatedMedicalProceduresPageCC heartrelatedMedicalProceduresPageCC = haveYouEverExperiencedHeartRelatedMedicalCondCC
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
-                .back(whenDiagnosedWithCancerCC)
-                .waitForPageLoad()
-                .clickOnAnswer("Diagnosed with skin cancer only")
-                .clickNextButton(haveYouEverExperiencedHeartRelatedMedicalCondCC)
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new HeartrelatedMedicalProceduresPageCC());
+//        HeartrelatedMedicalProceduresPageCC heartrelatedMedicalProceduresPageCC = haveYouEverExperiencedHeartRelatedMedicalCondCC
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
+//                .back(whenDiagnosedWithCancerCC)
+//                .waitForPageLoad()
+//                .clickOnAnswer("Diagnosed with skin cancer only")
+//                .clickNextButton(haveYouEverExperiencedHeartRelatedMedicalCondCC)
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickNextButton(new HeartrelatedMedicalProceduresPageCC());
+//
+//        SubquestionExperiencedHeartPageCC subquestionExperiencedHeartPageCC = heartrelatedMedicalProceduresPageCC
+//                .waitForPageLoad()
+//                .back(haveYouEverExperiencedHeartRelatedMedicalCondCC)
+//                .waitForPageLoad()
+//                .clickOnAnswers("Heart attack", "Stroke", "Mini-Stroke or TIA",
+//                        "Angina, or heart-related chest pain, that required you to stay in a hospital overnight")
+//                .clickNextButton(new SubquestionExperiencedHeartPageCC());
+//
+//        subquestionExperiencedHeartPageCC
+//                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
+//                .waitForPageLoad(2, subquestionExperiencedHeartPageCC.titleExpected2)
+//                .waitForPageLoad(3, subquestionExperiencedHeartPageCC.titleExpected3)
+//                .waitForPageLoad(4, subquestionExperiencedHeartPageCC.titleExpected4)
+//                .clickOnAnswerForSubQuestion(1, "Less than 30 days ago")
+//                .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
+//                .clickNextButton(heartrelatedMedicalProceduresPageCC)
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+//                .back();
+//
+//        subquestionExperiencedHeartPageCC
+//                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
+//                .waitForPageLoad(2, subquestionExperiencedHeartPageCC.titleExpected2)
+//                .waitForPageLoad(3, subquestionExperiencedHeartPageCC.titleExpected3)
+//                .waitForPageLoad(4, subquestionExperiencedHeartPageCC.titleExpected4)
+//                .clickOnAnswerForSubQuestion(1, "1 - 3 months ago")
+//                .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
+//                .clickNextButton(heartrelatedMedicalProceduresPageCC)
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+//                .back();
+//
+//        subquestionExperiencedHeartPageCC
+//                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
+//                .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(2, "Less than 30 days ago")
+//                .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
+//                .clickNextButton(heartrelatedMedicalProceduresPageCC)
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols)
+//                .back();
+//
+//        subquestionExperiencedHeartPageCC
+//                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
+//                .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(2, "1 - 3 months ago")
+//                .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
+//                .clickNextButton(heartrelatedMedicalProceduresPageCC)
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+//                .back();
+//
+//        subquestionExperiencedHeartPageCC
+//                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
+//                .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(3, "Less than 30 days ago")
+//                .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
+//                .clickNextButton(heartrelatedMedicalProceduresPageCC)
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+//                .back();
+//
+//        subquestionExperiencedHeartPageCC
+//                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
+//                .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(3, "1 - 3 months ago")
+//                .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
+//                .clickNextButton(heartrelatedMedicalProceduresPageCC)
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols)
+//                .back();
+//
+//        subquestionExperiencedHeartPageCC
+//                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
+//                .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(4, "Less than 30 days ago")
+//                .clickNextButton(heartrelatedMedicalProceduresPageCC)
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+//                .back();
+//
+//        subquestionExperiencedHeartPageCC
+//                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
+//                .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(4, "1 - 3 months ago")
+//                .clickNextButton(heartrelatedMedicalProceduresPageCC)
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+//                .back();
+//
+//        MostRecentHeartProcedurePageСС mostRecentHeartProcedurePageСС = subquestionExperiencedHeartPageCC
+//                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
+//                .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
+//                .clickNextButton(heartrelatedMedicalProceduresPageCC)
+//                .waitForPageLoad()
+//                .clickOnAnswers("Stent placement in your heart, neck or legs")
+//                .clickNextButton(new MostRecentHeartProcedurePageСС());
 
-        SubquestionExperiencedHeartPageCC subquestionExperiencedHeartPageCC = heartrelatedMedicalProceduresPageCC
-                .waitForPageLoad()
-                .back(haveYouEverExperiencedHeartRelatedMedicalCondCC)
-                .waitForPageLoad()
-                .clickOnAnswers("Heart attack", "Stroke", "Mini-Stroke or TIA",
-                        "Angina, or heart-related chest pain, that required you to stay in a hospital overnight")
-                .clickNextButton(new SubquestionExperiencedHeartPageCC());
-
-        subquestionExperiencedHeartPageCC
-                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
-                .waitForPageLoad(2, subquestionExperiencedHeartPageCC.titleExpected2)
-                .waitForPageLoad(3, subquestionExperiencedHeartPageCC.titleExpected3)
-                .waitForPageLoad(4, subquestionExperiencedHeartPageCC.titleExpected4)
-                .clickOnAnswerForSubQuestion(1, "Less than 30 days ago")
-                .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
-                .back();
-
-        subquestionExperiencedHeartPageCC
-                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
-                .waitForPageLoad(2, subquestionExperiencedHeartPageCC.titleExpected2)
-                .waitForPageLoad(3, subquestionExperiencedHeartPageCC.titleExpected3)
-                .waitForPageLoad(4, subquestionExperiencedHeartPageCC.titleExpected4)
-                .clickOnAnswerForSubQuestion(1, "1 - 3 months ago")
-                .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
-                .back();
-
-        subquestionExperiencedHeartPageCC
-                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
-                .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(2, "Less than 30 days ago")
-                .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols)
-                .back();
-
-        subquestionExperiencedHeartPageCC
-                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
-                .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(2, "1 - 3 months ago")
-                .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
-                .back();
-
-        subquestionExperiencedHeartPageCC
-                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
-                .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(3, "Less than 30 days ago")
-                .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
-                .back();
-
-        subquestionExperiencedHeartPageCC
-                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
-                .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(3, "1 - 3 months ago")
-                .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols)
-                .back();
-
-        subquestionExperiencedHeartPageCC
-                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
-                .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(4, "Less than 30 days ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
-                .back();
-
-        subquestionExperiencedHeartPageCC
-                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
-                .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(4, "1 - 3 months ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
-                .back();
-
-        MostRecentHeartProcedurePageСС mostRecentHeartProcedurePageСС = subquestionExperiencedHeartPageCC
-                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
-                .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageCC)
-                .waitForPageLoad()
-                .clickOnAnswers("Stent placement in your heart, neck or legs")
-                .clickNextButton(new MostRecentHeartProcedurePageСС());
+//        WhichOfTheFollowingHaveRequiredForKidneyDiseaseCC whichOfTheFollowingHaveRequiredForKidneyDiseaseCC = new WhichOfTheFollowingHaveRequiredForKidneyDiseaseCC();
+//        ArrayList<String> heartProcedurePeriods = new ArrayList<>();
+//        heartProcedurePeriods.add("Less than 30 days ago");
+//        heartProcedurePeriods.add("1 - 3 months ago");
+//        for (String period : heartProcedurePeriods) {
+//            mostRecentHeartProcedurePageСС
+//                    .waitForPageLoad()
+//                    .clickOnAnswer(period)
+//                    .clickNextButton(whichOfTheFollowingHaveRequiredForKidneyDiseaseCC)
+//                    .waitForPageLoad()
+//                    .getPage(debugPageCC)
+//                    .checkProtocolsContainsForQNumber("QS49", site.activeProtocols)
+//                    .back();
+//        }
 
         WhichOfTheFollowingHaveRequiredForKidneyDiseaseCC whichOfTheFollowingHaveRequiredForKidneyDiseaseCC = new WhichOfTheFollowingHaveRequiredForKidneyDiseaseCC();
-        ArrayList<String> heartProcedurePeriods = new ArrayList<>();
-        heartProcedurePeriods.add("Less than 30 days ago");
-        heartProcedurePeriods.add("1 - 3 months ago");
-        for (String period : heartProcedurePeriods) {
-            mostRecentHeartProcedurePageСС
-                    .waitForPageLoad()
-                    .clickOnAnswer(period)
-                    .clickNextButton(whichOfTheFollowingHaveRequiredForKidneyDiseaseCC)
-                    .waitForPageLoad()
-                    .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber("QS49", site.activeProtocols)
-                    .back();
-        }
-
-        WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseCC whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC = mostRecentHeartProcedurePageСС
-                .waitForPageLoad()
-                .clickOnAnswer("More than 1 year ago")
-                .clickNextButton(whichOfTheFollowingHaveRequiredForKidneyDiseaseCC)
+        FollowingMentalEmotionalHealthPageCC followingMentalEmotionalHealthPageCC = whichOfTheFollowingHaveRequiredForKidneyDiseaseCC
+//                .waitForPageLoad()
+//                .clickOnAnswer("More than 1 year ago")
+//                .clickNextButton(WhichOfTheFollowingHaveRequiredForKidneyDiseaseCC)
                 .waitForPageLoad()
                 .clickOnAnswers("Dialysis")
-                .clickNextButton(new WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseCC());
-
-        whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
-                .back(whichOfTheFollowingHaveRequiredForKidneyDiseaseCC)
-                .waitForPageLoad()
-                .clickOnAnswers("Neither")
-                .clickOnAnswers("Kidney transplant")
-                .clickNextButton(whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
-                .back(whichOfTheFollowingHaveRequiredForKidneyDiseaseCC)
-                .waitForPageLoad()
-                .clickOnAnswers("Neither")
-                .clickNextButton(whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC);
-
-        FollowingMentalEmotionalHealthPageCC followingMentalEmotionalHealthPageCC = whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC
-                .waitForPageLoad()
-                .clickOnAnswers("Cirrhosis")
                 .clickNextButton(new FollowingMentalEmotionalHealthPageCC());
+
+//        whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
+//                .back(whichOfTheFollowingHaveRequiredForKidneyDiseaseCC)
+//                .waitForPageLoad()
+//                .clickOnAnswers("Neither")
+//                .clickOnAnswers("Kidney transplant")
+//                .clickNextButton(whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC)
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
+//                .back(whichOfTheFollowingHaveRequiredForKidneyDiseaseCC)
+//                .waitForPageLoad()
+//                .clickOnAnswers("Neither")
+//                .clickNextButton(whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC);
+
+//        FollowingMentalEmotionalHealthPageCC followingMentalEmotionalHealthPageCC = whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC
+//                .waitForPageLoad()
+//                .clickOnAnswers("Cirrhosis")
+//                .clickNextButton(new FollowingMentalEmotionalHealthPageCC());
 
         followingMentalEmotionalHealthPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS52", site.activeProtocols)
-                .back(whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC)
+                .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
+                .back(whichOfTheFollowingHaveRequiredForKidneyDiseaseCC)
                 .waitForPageLoad()
-                .clickOnAnswers("Unsure which type of liver disease")
+                .clickOnAnswers("Neither")
                 .clickNextButton(followingMentalEmotionalHealthPageCC);
 
         DoAnyOftheFollowingAdditionalDiagnosesCC doAnyOftheFollowingAdditionalDiagnosesCC = followingMentalEmotionalHealthPageCC
@@ -640,27 +657,24 @@ public class DIA_4483_CC extends BaseTest {
         followingMentalEmotionalHealthPageCC
                 .waitForPageLoad()
                 .back();
-        whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC
-                .waitForPageLoad()
-                .back();
         whichOfTheFollowingHaveRequiredForKidneyDiseaseCC
                 .waitForPageLoad()
                 .back();
 //        doYouTakeAnyMedicationsToControlHighBloodPressureOLS
 //                .waitForPageLoad()
 //                .back();
-        mostRecentHeartProcedurePageСС
-                .waitForPageLoad()
-                .back();
-        heartrelatedMedicalProceduresPageCC
-                .waitForPageLoad()
-                .back();
-        subquestionExperiencedHeartPageCC
-                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
-                .back();
-        haveYouEverExperiencedHeartRelatedMedicalCondCC
-                .waitForPageLoad()
-                .back();
+//        mostRecentHeartProcedurePageСС
+//                .waitForPageLoad()
+//                .back();
+//        heartrelatedMedicalProceduresPageCC
+//                .waitForPageLoad()
+//                .back();
+//        subquestionExperiencedHeartPageCC
+//                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
+//                .back();
+//        haveYouEverExperiencedHeartRelatedMedicalCondCC
+//                .waitForPageLoad()
+//                .back();
         whenDiagnosedWithCancerCC
                 .waitForPageLoad()
                 .back();
