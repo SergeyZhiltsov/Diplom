@@ -9,10 +9,10 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class WhichOfTheFollowingExperienceIrritablePageOLS extends MainPageOLS{
+public class InThePastDaysFollowingMedicationsOLS extends MainPageOLS {
 
-//    public final String titleExpected = "Which of the following do you experience with your irritable bowel syndrome or IBS?";
-    public final String titleExpected = "Which of the following bowel habits do you experience with your irritable bowel syndrome or IBS?";
+    public final String titleExpected = "In the past 30 days, have you taken any of the following medications?\n" +
+            "Please select all that apply.";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
     WebElement titleText;
@@ -20,18 +20,18 @@ public class WhichOfTheFollowingExperienceIrritablePageOLS extends MainPageOLS{
     @FindBy(xpath = Locators.RADIO_BUTTON_LIST_OLS)
     List<WebElement> radioButtonsList;
 
-    public WhichOfTheFollowingExperienceIrritablePageOLS() {
+    public InThePastDaysFollowingMedicationsOLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public WhichOfTheFollowingExperienceIrritablePageOLS waitForPageLoad() {
+    public InThePastDaysFollowingMedicationsOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public WhichOfTheFollowingExperienceIrritablePageOLS clickOnAnswer(String answerText) {
+    public InThePastDaysFollowingMedicationsOLS clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }
@@ -40,4 +40,5 @@ public class WhichOfTheFollowingExperienceIrritablePageOLS extends MainPageOLS{
     public String getTitleText(){
         return getText(titleText);
     }
+
 }

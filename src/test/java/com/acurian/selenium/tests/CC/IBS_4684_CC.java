@@ -169,13 +169,29 @@ public class IBS_4684_CC extends BaseTest {
                 .clickOnAnswer("Both constipation and diarrhea")
                 .clickNextButton(new WhichSymptomOccursPageCC());
 
+        TypicalWeekBowelMovementsCC typicalWeekBowelMovementsCC = whichSymptomOccursPageCC
+                .waitForPageLoad()
+                .clickOnAnswer("Unsure")
+                .clickNextButton(new TypicalWeekBowelMovementsCC());
+
+        typicalWeekBowelMovementsCC
+                .waitForPageLoad()
+                .clickOnAnswer("None of the time")
+                .clickNextButton(abdominalPainWhenHavingIBSPageCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS6618", protocol1)
+                .back(typicalWeekBowelMovementsCC)
+                .waitForPageLoad()
+                .back(whichSymptomOccursPageCC);
+
         whichSymptomOccursPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Constipation")
                 .clickNextButton(abdominalPainWhenHavingIBSPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0018598-QS6605-STUDYQUES", protocol1)
+                .checkProtocolsContainsForQNumber("QS6605", protocol1)
                 .back();
         whichSymptomOccursPageCC
                 .waitForPageLoad()
@@ -189,7 +205,7 @@ public class IBS_4684_CC extends BaseTest {
         currentlyTakeTreatIBSPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0018599-QS6606-STUDYQUES", protocol1)
+                .checkProtocolsContainsForQNumber("QS6606", protocol1)
                 .back();
         HowOftenAbdominalPainPageCC howOftenAbdominalPainPageCC = abdominalPainWhenHavingIBSPageCC
                 .waitForPageLoad()
@@ -198,16 +214,16 @@ public class IBS_4684_CC extends BaseTest {
 
         AbdominalPainOverPastPageCC abdominalPainOverPastPageCC = howOftenAbdominalPainPageCC
                 .waitForPageLoad()
-                .clickOnAnswer("1 day a month or less")
+                .clickOnAnswer("Less than 1 day a week")
                 .clickNextButton(new AbdominalPainOverPastPageCC());
         abdominalPainOverPastPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0018600-QS6607-STUDYQUES", protocol1)
+                .checkProtocolsContainsForQNumber("QS6619", protocol1)
                 .back();
         howOftenAbdominalPainPageCC
                 .waitForPageLoad()
-                .clickOnAnswer("2 - 3 days a month")
+                .clickOnAnswer("Multiple days a week")
                 .clickNextButton(abdominalPainOverPastPageCC);
 
         abdominalPainOverPastPageCC
@@ -216,72 +232,129 @@ public class IBS_4684_CC extends BaseTest {
                 .clickNextButton(currentlyTakeTreatIBSPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0018601-QS6608-STUDYQUES", protocol1)
+                .checkProtocolsContainsForQNumber("QS6608", protocol1)
                 .back();
         abdominalPainOverPastPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("The pain got better after having a bowel movement")
                 .clickNextButton(currentlyTakeTreatIBSPageCC);
 
-        CeliacDiseasePageCC celiacDiseasePageCC = currentlyTakeTreatIBSPageCC
+        CeliacDiseasePageCC celiacDiseasePageCC = new CeliacDiseasePageCC();
+
+        HaveYouTakenAnyLaxativesCC haveYouTakenAnyLaxativesCC = currentlyTakeTreatIBSPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("Amitiza, also known as lubiprostone (Agent Note: AM-i-tee-za, loo-bi-PRO-stone)")
-                .clickNextButton(new CeliacDiseasePageCC());
-        celiacDiseasePageCC
+                .clickNextButton(new HaveYouTakenAnyLaxativesCC());
+        haveYouTakenAnyLaxativesCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0018603-QS6609-STUDYQUES", protocol1)
+                .checkProtocolsContainsForQNumber("QS6609", protocol1)
                 .back();
         currentlyTakeTreatIBSPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Linzess, also known as linaclotide (Agent Note: Lins-ESS, lin-AK-loe-tide)")
-                .clickNextButton(celiacDiseasePageCC)
+                .clickNextButton(haveYouTakenAnyLaxativesCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0018603-QS6609-STUDYQUES", protocol1)
+                .checkProtocolsContainsForQNumber("QS6609", protocol1)
                 .back();
         currentlyTakeTreatIBSPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Lotronex, also known as alosetron (Agent Note: LOE-tre-nex, a-LO-ze-tron)")
-                .clickNextButton(celiacDiseasePageCC)
+                .clickNextButton(haveYouTakenAnyLaxativesCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0018603-QS6609-STUDYQUES", protocol1)
+                .checkProtocolsContainsForQNumber("QS6609", protocol1)
                 .back();
         currentlyTakeTreatIBSPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Trulance, also known as plecanatide (Agent Note: TRUE-lans, ple-KAN-a-tide)")
-                .clickNextButton(celiacDiseasePageCC)
+                .clickNextButton(haveYouTakenAnyLaxativesCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0018603-QS6609-STUDYQUES", protocol1)
+                .checkProtocolsContainsForQNumber("QS6609", protocol1)
                 .back();
         currentlyTakeTreatIBSPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Viberzi, also known as eluxadoline (Agent Note: vie-BEER-zee, el-ux-AD-oh-leen)")
-                .clickNextButton(celiacDiseasePageCC)
+                .clickNextButton(haveYouTakenAnyLaxativesCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0018603-QS6609-STUDYQUES", protocol1)
+                .checkProtocolsContainsForQNumber("QS6609", protocol1)
                 .back();
         currentlyTakeTreatIBSPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(celiacDiseasePageCC);
-
-        WeightLossSurgeryPageCC weightLossSurgeryPageCC = celiacDiseasePageCC
-                .waitForPageLoad()
-                .clickOnAnswer("Yes")
-                .clickNextButton(new WeightLossSurgeryPageCC());
-        weightLossSurgeryPageCC
+                .clickOnAnswers("Xifaxan, also known as rifaximin (Agent Note: zi-FAX-in, ri-FAX-i-min)")
+                .clickNextButton(haveYouTakenAnyLaxativesCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0018605-QS6610-STUDYQUES", protocol1)
+                .checkProtocolsContainsForQNumber("QS6609", protocol1)
                 .back();
+
+        currentlyTakeTreatIBSPageCC
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(haveYouTakenAnyLaxativesCC);
+
+        InThePastDaysFollowingMedicationsCC inThePastDaysFollowingMedicationsCC = haveYouTakenAnyLaxativesCC
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
+                .clickNextButton(new InThePastDaysFollowingMedicationsCC());
+
+        inThePastDaysFollowingMedicationsCC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS6620", protocol1)
+                .back();
+
+        haveYouTakenAnyLaxativesCC
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(inThePastDaysFollowingMedicationsCC);
+
+        List<String> disqualifyQ12New = Arrays.asList("Xanax, also known as alprazolam", "Klonopin, also known as clonazepam", "Valium, also known as diazepam",
+                "Ativan, also known as lorazepam", "Restoril, also known as temazepam", "Halcion, also known as triazolam");
+        for (String answer : disqualifyQ12New) {
+            System.out.println("Select answer for Q12New: " + answer);
+            inThePastDaysFollowingMedicationsCC
+                    .waitForPageLoad()
+                    .clickOnAnswer("None of the above")
+                    .clickOnAnswer(answer)
+                    .clickNextButton(celiacDiseasePageCC)
+                    .waitForPageLoad()
+                    .getPage(debugPageCC)
+                    .checkProtocolsContainsForQNumber("QS6621", site.activeProtocols)
+                    .back();
+        }
+
+        inThePastDaysFollowingMedicationsCC
+                .waitForPageLoad()
+                .clickOnAnswer("None of the above")
+                .clickNextButton(celiacDiseasePageCC);
+
+
+
+//        weightLossSurgeryPageOLS
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QS6610", protocol1)
+//                .back();
+        WeightLossSurgeryPageCC weightLossSurgeryPageCC = new WeightLossSurgeryPageCC();
+
+        celiacDiseasePageCC
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
+                .clickNextButton(weightLossSurgeryPageCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS6610", site.activeProtocols)
+                .back(celiacDiseasePageCC);
+
         celiacDiseasePageCC
                 .waitForPageLoad()
                 .clickOnAnswer("No")

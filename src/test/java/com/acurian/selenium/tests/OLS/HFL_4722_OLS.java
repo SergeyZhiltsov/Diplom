@@ -5,15 +5,12 @@ import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.HFL_4722.HeartTransplantPageOLS;
 import com.acurian.selenium.pages.OLS.HFL_4722.SymptomsOfHeartFailurePageOLS;
 import com.acurian.selenium.pages.OLS.HFL_4722.TreatYourHeartFailurePageOLS;
-import com.acurian.selenium.pages.OLS.LOWT_3017.CardiovascularDiseaseThanOthersPageOLS;
-import com.acurian.selenium.pages.OLS.Vaccine.AreYouInterestedVaccineResearchStudyOLS;
 import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
 import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 

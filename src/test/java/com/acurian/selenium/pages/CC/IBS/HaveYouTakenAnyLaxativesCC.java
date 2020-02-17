@@ -9,10 +9,9 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class WhichOfTheFollowingExperienceIrritablePageCC extends MainPageCC{
+public class HaveYouTakenAnyLaxativesCC extends MainPageCC {
 
-//    public final String titleExpected = "Which of the following do you experience with your irritable bowel syndrome or IBS?";
-    public final String titleExpected = "Which of the following bowel habits do you experience with your irritable bowel syndrome or IBS?";
+    public final String titleExpected = "Have you taken any laxatives in the past 30 days?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_CC)
     WebElement titleText;
@@ -20,18 +19,18 @@ public class WhichOfTheFollowingExperienceIrritablePageCC extends MainPageCC{
     @FindBy(xpath = Locators.RADIO_BUTTON_LIST_CC)
     List<WebElement> radioButtonsList;
 
-    public WhichOfTheFollowingExperienceIrritablePageCC() {
+    public HaveYouTakenAnyLaxativesCC() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public WhichOfTheFollowingExperienceIrritablePageCC waitForPageLoad() {
+    public HaveYouTakenAnyLaxativesCC waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public WhichOfTheFollowingExperienceIrritablePageCC clickOnAnswer(String answerText) {
+    public HaveYouTakenAnyLaxativesCC clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }
@@ -40,4 +39,5 @@ public class WhichOfTheFollowingExperienceIrritablePageCC extends MainPageCC{
     public String getTitleText(){
         return getText(titleText);
     }
+
 }

@@ -4,6 +4,7 @@ import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.ADG_4357.WithType1DiabetesPageOLS;
 import com.acurian.selenium.pages.OLS.DIA_4241.*;
+import com.acurian.selenium.pages.OLS.DPN_3769_4557.DoYouExperienceDPN_OLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.*;
 import com.acurian.selenium.pages.OLS.LOWT_3017.CardiovascularDiseaseThanOthersPageOLS;
 import com.acurian.selenium.pages.OLS.closes.*;
@@ -31,8 +32,9 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
         String protocol2 = "EFC14829";
         String protocol3 = "EFC14893";
         String protocol4 = "EFC15337";
-        String AKC = "ISIS 703802_CS2";
-        String[] protocols = {protocol2, AKC, protocol3, protocol4};
+//        String AKC = "ISIS 703802_CS2";
+//        String[] protocols = {protocol2, AKC, protocol3, protocol4};
+        String[] protocols = {protocol2, protocol3, protocol4};
         String studyName = "a diabetes";
 
         String env = System.getProperty("acurian.env", "STG");
@@ -105,7 +107,7 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
         whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Pre-diabetes")
-                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
+                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS4603", protocols)
@@ -124,8 +126,8 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
                 .clickNextButton(new CurrentlyTreatingYourDiabetesPageOLS());
         currentlyTreatingYourDiabetesPageOLS
                 .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4603", AKC)
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QS4603", protocols)
                 .back();
         WithType2DiabetesPageOLS withType2DiabetesPageOLS = whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
@@ -153,55 +155,55 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
                 .clickOnAnswer("7 - 11 months ago")
                 .clickNextButton(currentlyTreatingYourDiabetesPageOLS);
 
-        currentlyTreatingYourDiabetesPageOLS
+        DoYouExperienceDPN_OLS doYouExperienceDPNOls = currentlyTreatingYourDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Diet and exercise")
-                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS);
-        cardiovascularDiseaseThanOthersPageOLS
-                .waitForPageLoad()
+                .clickNextButton(new DoYouExperienceDPN_OLS());
+        doYouExperienceDPNOls
+                .waitForPageLoadNew()
                 .getPage(debugPageOLS)
-                .checkProtocolsEqualsForQNumber("QS4631", AKC, protocol2, protocol3, protocol4)
+                .checkProtocolsEqualsForQNumber("QS4631", protocol2, protocol3, protocol4)
                 .back();
         currentlyTreatingYourDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("I am not currently treating my diabetes")
-                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
-                .waitForPageLoad()
+                .clickNextButton(doYouExperienceDPNOls)
+                .waitForPageLoadNew()
                 .getPage(debugPageOLS)
-                .checkProtocolsEqualsForQNumber("QS4631", AKC, protocol2, protocol3, protocol4)
+                .checkProtocolsEqualsForQNumber("QS4631", protocol2, protocol3, protocol4)
                 .back();
-        LastTimeYouTookPageOLS lastTimeYouTookPageOLS = currentlyTreatingYourDiabetesPageOLS
+        MetforminMedicationsPageOLS metforminMedicationsPageOLS = currentlyTreatingYourDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Medication such as metformin or insulin or other diabetes medication")
-                .clickNextButton(new LastTimeYouTookPageOLS());
-
-        lastTimeYouTookPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("2 - 3 months ago")
-                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsEquals(lastTimeYouTookPageOLS.titleExpected, protocols)
-                .back();
-        lastTimeYouTookPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("4 - 5 months ago")
-                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsEquals(lastTimeYouTookPageOLS.titleExpected, AKC, protocol2, protocol3, protocol4)
-                .back();
-        lastTimeYouTookPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("6 months ago or longer")
-                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsEquals(lastTimeYouTookPageOLS.titleExpected, AKC, protocol2, protocol3, protocol4)
-                .back();
-        MetforminMedicationsPageOLS metforminMedicationsPageOLS = lastTimeYouTookPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Currently taking / have taken within the past month")
+//                .clickNextButton(new LastTimeYouTookPageOLS());
+//
+//        lastTimeYouTookPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswer("2 - 3 months ago")
+//                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsEquals(lastTimeYouTookPageOLS.titleExpected, protocols)
+//                .back();
+//        lastTimeYouTookPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswer("4 - 5 months ago")
+//                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsEquals(lastTimeYouTookPageOLS.titleExpected, protocol2, protocol3, protocol4)
+//                .back();
+//        lastTimeYouTookPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswer("6 months ago or longer")
+//                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsEquals(lastTimeYouTookPageOLS.titleExpected, protocol2, protocol3, protocol4)
+//                .back();
+//        MetforminMedicationsPageOLS metforminMedicationsPageOLS = lastTimeYouTookPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswer("Currently taking / have taken within the past month")
                 .clickNextButton(new MetforminMedicationsPageOLS());
 
         ApartFromMetforminPageOLS apartFromMetforminPageOLS = new ApartFromMetforminPageOLS();
@@ -210,8 +212,8 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
 //                .getPage(debugPageOLS)
 //                .checkProtocolsEquals(lastTimeYouTookPageOLS.titleExpected, protocol2);
         HashMap<String, List<String>> options = new HashMap<>();
-        options.put("Actoplus Met (metformin and pioglitazone)", Arrays.asList(AKC, protocol2, protocol4));
-        options.put("Avandamet (metformin and rosiglitazone)", Arrays.asList(AKC, protocol2, protocol4));
+        options.put("Actoplus Met (metformin and pioglitazone)", Arrays.asList(protocol2, protocol4));
+        options.put("Avandamet (metformin and rosiglitazone)", Arrays.asList(protocol2, protocol4));
         options.put("Glucovance (metformin and glyburide)", Arrays.asList(protocol2));
         options.put("Invokamet (metformin and canagliflozin)", Arrays.asList(protocol2, protocol4));
         options.put("Janumet (metformin and sitagliptin)", Arrays.asList(protocol2, protocol3, protocol4));
@@ -251,10 +253,10 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
 
         CurrentlyTakeInsulinPageOLS currentlyTakeInsulinPageOLS = new CurrentlyTakeInsulinPageOLS();
         options.clear();
-        options.put("Actos (pioglitazone)", Arrays.asList(AKC, protocol2, protocol4));
-        options.put("Avandia (rosiglitazone)", Arrays.asList(AKC, protocol2, protocol4));
+        options.put("Actos (pioglitazone)", Arrays.asList(protocol2, protocol4));
+        options.put("Avandia (rosiglitazone)", Arrays.asList(protocol2, protocol4));
         options.put("Cycloset (bromocriptine)", Arrays.asList(protocol2, protocol4));
-        options.put("Duetact (pioglitazone and glimepiride)", Arrays.asList(AKC, protocol2, protocol4));
+        options.put("Duetact (pioglitazone and glimepiride)", Arrays.asList(protocol2, protocol4));
         options.put("Farxiga (dapagliflozin)", Arrays.asList(protocol2, protocol4));
         options.put("Glyset (miglitol)", Arrays.asList(protocol2, protocol4));
         options.put("Glyxambi (empagliflozin and linagliptin)", Arrays.asList(protocol2, protocol3, protocol4));
@@ -263,7 +265,7 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
         options.put("Jardiance (empagliflozin)", Arrays.asList(protocol2, protocol4));
         options.put("Nesina (alogliptin)", Arrays.asList(protocol2, protocol3, protocol4));
         options.put("Onglyza (saxagliptin)", Arrays.asList(protocol2, protocol3, protocol4));
-        options.put("Oseni (alogliptin and pioglitazone)", Arrays.asList(protocol2, AKC, protocol3, protocol4));
+        options.put("Oseni (alogliptin and pioglitazone)", Arrays.asList(protocol2, protocol3, protocol4));
         options.put("Prandin (repaglinide)", Arrays.asList(protocol2, protocol4));
         options.put("Precose (acarbose)", Arrays.asList(protocol2, protocol4 ));
         options.put("Starlix (nateglinide)", Arrays.asList(protocol2, protocol4));
@@ -302,7 +304,7 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
         takeYourInsulinPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals(currentlyTakeInsulinPageOLS.titleExpected, AKC, protocol2, protocol4)
+                .checkProtocolsEquals(currentlyTakeInsulinPageOLS.titleExpected, protocol2, protocol4)
                 .getPage(takeYourInsulinPageOLS)
                 .clickOnAnswers("Inhaled insulin (Afrezza)")
                 .clickNextButton(injectableMedicationsForYourDiabetesPageOLS);
@@ -338,60 +340,61 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(injectableMedicationsForYourDiabetesPageOLS);
 
-        injectableMedicationsForYourDiabetesPageOLS
+        WeightLossSurgeryPageOLS weightLossSurgeryPageOLS = injectableMedicationsForYourDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Adlyxin (lixisenatide)")
-                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
+                .clickNextButton(new WeightLossSurgeryPageOLS());
+        weightLossSurgeryPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals(injectableMedicationsForYourDiabetesPageOLS.titleExpected, AKC, protocol3, protocol2, protocol4)
+                .checkProtocolsEquals(injectableMedicationsForYourDiabetesPageOLS.titleExpected, protocol3, protocol2, protocol4)
                 .back();
         injectableMedicationsForYourDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Bydureon or Byetta (exenatide)")
-                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
+                .clickNextButton(weightLossSurgeryPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals(injectableMedicationsForYourDiabetesPageOLS.titleExpected, AKC, protocol3, protocol2, protocol4)
+                .checkProtocolsEquals(injectableMedicationsForYourDiabetesPageOLS.titleExpected, protocol3, protocol2, protocol4)
                 .back();
         injectableMedicationsForYourDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Tanzeum (albiglutide)")
-                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
+                .clickNextButton(weightLossSurgeryPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals(injectableMedicationsForYourDiabetesPageOLS.titleExpected, AKC, protocol3, protocol2, protocol4)
+                .checkProtocolsEquals(injectableMedicationsForYourDiabetesPageOLS.titleExpected, protocol3, protocol2, protocol4)
                 .back();
         injectableMedicationsForYourDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Trulicity (dulaglutide)")
-                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
+                .clickNextButton(weightLossSurgeryPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals(injectableMedicationsForYourDiabetesPageOLS.titleExpected, AKC, protocol3, protocol2, protocol4)
+                .checkProtocolsEquals(injectableMedicationsForYourDiabetesPageOLS.titleExpected, protocol3, protocol2, protocol4)
                 .back();
         injectableMedicationsForYourDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Saxenda or Victoza (liraglutide)")
-                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
+                .clickNextButton(weightLossSurgeryPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals(injectableMedicationsForYourDiabetesPageOLS.titleExpected, AKC, protocol3, protocol2, protocol4)
+                .checkProtocolsEquals(injectableMedicationsForYourDiabetesPageOLS.titleExpected, protocol3, protocol2, protocol4)
                 .back();
         injectableMedicationsForYourDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("SymlinPen (pramlintide)")
-                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS);
+                .clickNextButton(weightLossSurgeryPageOLS);
 
-        cardiovascularDiseaseThanOthersPageOLS
+        weightLossSurgeryPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals(injectableMedicationsForYourDiabetesPageOLS.titleExpected, AKC, protocol2, protocol4)
+                .checkProtocolsEquals(injectableMedicationsForYourDiabetesPageOLS.titleExpected, protocol2, protocol4)
                 .checkProtocolsEqualsForQNumber("QS4613", protocol3)
                 .back();
         injectableMedicationsForYourDiabetesPageOLS
@@ -402,30 +405,30 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
                 .clickOnAnswers("Insulin glargine (Basaglar, Lantus)")
                 .clickNextButton(injectableMedicationsForYourDiabetesPageOLS)
                 .waitForPageLoad()
-                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS);
+                .clickNextButton(weightLossSurgeryPageOLS);
 
-        NoOfAlcoholicDrinkOLS noOfAlcoholicDrinkOLS = cardiovascularDiseaseThanOthersPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new NoOfAlcoholicDrinkOLS());
-
-        LiverRelatedConditionOLS liverRelatedConditionOLS = noOfAlcoholicDrinkOLS
-                .waitForPageLoad()
-                .setDrinks("4")
-                .clickNextButton(new LiverRelatedConditionOLS());
-
-        FollowingToLoseWeightPageOLS followingToLoseWeightPageOLS = liverRelatedConditionOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Alcoholic liver disease")
-                .clickNextButton(new FollowingToLoseWeightPageOLS());
-
-        WeightLossSurgeryPageOLS weightLossSurgeryPageOLS = followingToLoseWeightPageOLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4624", AKC)
-                .getPage(followingToLoseWeightPageOLS)
-                .clickOnAnswers("No")
-                .clickNextButton(new WeightLossSurgeryPageOLS());
+//        NoOfAlcoholicDrinkOLS noOfAlcoholicDrinkOLS = cardiovascularDiseaseThanOthersPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickNextButton(new NoOfAlcoholicDrinkOLS());
+//
+//        LiverRelatedConditionOLS liverRelatedConditionOLS = noOfAlcoholicDrinkOLS
+//                .waitForPageLoad()
+//                .setDrinks("4")
+//                .clickNextButton(new LiverRelatedConditionOLS());
+//
+//        FollowingToLoseWeightPageOLS followingToLoseWeightPageOLS = liverRelatedConditionOLS
+//                .waitForPageLoad()
+//                .clickOnAnswers("Alcoholic liver disease")
+//                .clickNextButton(new FollowingToLoseWeightPageOLS());
+//
+//        followingToLoseWeightPageOLS
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QS4624", protocols)
+//                .getPage(followingToLoseWeightPageOLS)
+//                .clickOnAnswers("No")
+//                .clickNextButton(weightLossSurgeryPageOLS);
 
         PoundsOrMorePageOLS poundsOrMorePageOLS = weightLossSurgeryPageOLS
                 .waitForPageLoad()
@@ -454,7 +457,7 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
                 .clickNextButton(poundsOrMorePageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4616", protocol2, protocol3, protocol4)
+                .checkProtocolsContainsForQNumber("QS4616", protocols)
                 .back();
         procedureForWeightLossPageOLS
                 .waitForPageLoad()
@@ -462,7 +465,7 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
                 .clickNextButton(poundsOrMorePageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4616", protocol2, protocol3, protocol4)
+                .checkProtocolsContainsForQNumber("QS4616", protocols)
                 .back();
         procedureForWeightLossPageOLS
                 .waitForPageLoad()
@@ -470,7 +473,7 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
                 .clickNextButton(poundsOrMorePageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4616", protocol2, protocol3, protocol4)
+                .checkProtocolsContainsForQNumber("QS4616", protocols)
                 .back();
         procedureForWeightLossPageOLS
                 .waitForPageLoad()
@@ -481,8 +484,8 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
         poundsOrMorePageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
-                .waitForPageLoad()
+                .clickNextButton(doYouExperienceDPNOls)
+                .waitForPageLoadNew()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS4617", protocols)
                 .back();
