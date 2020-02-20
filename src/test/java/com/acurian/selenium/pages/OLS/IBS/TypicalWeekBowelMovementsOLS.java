@@ -1,7 +1,7 @@
-package com.acurian.selenium.pages.CC.ADG_4357;
+package com.acurian.selenium.pages.OLS.IBS;
 
 import com.acurian.selenium.constants.Locators;
-import com.acurian.selenium.pages.CC.MainPageCC;
+import com.acurian.selenium.pages.OLS.MainPageOLS;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -9,28 +9,28 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class SymptomsFirstStartPageCC extends MainPageCC {
+public class TypicalWeekBowelMovementsOLS extends MainPageOLS {
 
-    public final String titleExpected = "When did those symptoms first start?";
+    public final String titleExpected = "Thinking about a typical week, how often are your bowel movements very loose or watery (diarrhea)?";
 
-    @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_CC)
+    @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
     WebElement titleText;
 
-    @FindBy(xpath = Locators.RADIO_BUTTON_LIST_CC)
+    @FindBy(xpath = Locators.RADIO_BUTTON_LIST_OLS)
     List<WebElement> radioButtonsList;
 
-    public SymptomsFirstStartPageCC() {
+    public TypicalWeekBowelMovementsOLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public SymptomsFirstStartPageCC waitForPageLoad() {
+    public TypicalWeekBowelMovementsOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public SymptomsFirstStartPageCC clickOnAnswer(String answerText) {
+    public TypicalWeekBowelMovementsOLS clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }
@@ -39,4 +39,5 @@ public class SymptomsFirstStartPageCC extends MainPageCC {
     public String getTitleText(){
         return getText(titleText);
     }
+
 }

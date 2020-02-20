@@ -461,13 +461,13 @@ public class AMIG_4742_OLS extends BaseTest {
         following_MentalEmotionalHealthPageOLS
                 .waitForPageLoad()
                 .back();
-        WomenHealthConditions womenHealthConditions = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+        WomenHealthConditionsOLS womenHealthConditionsOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Women's health issues (endometriosis, uterine fibroids)")
-                .clickNextButton(new WomenHealthConditions());
+                .clickNextButton(new WomenHealthConditionsOLS());
 
-        womenHealthConditions
+        womenHealthConditionsOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Uterine fibroids", "Endometriosis", "Overactive bladder",
                         "Urinary leakage or urinary incontinence")

@@ -1,4 +1,4 @@
-package com.acurian.selenium.pages.OLS.IBS;
+package com.acurian.selenium.pages.OLS.ADG_4357;
 
 import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
@@ -9,10 +9,11 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class WhichOfTheFollowingExperienceIrritablePageOLS extends MainPageOLS{
+public class OpioidOrNarcoticMedicationPageOLS extends MainPageOLS {
 
-//    public final String titleExpected = "Which of the following do you experience with your irritable bowel syndrome or IBS?";
-    public final String titleExpected = "Which of the following bowel habits do you experience with your irritable bowel syndrome or IBS?";
+    public final String titleExpected = "Do you currently use opioid or narcotic medication every day?\n" +
+            "\n" +
+            "Examples of these medications include: Percocet, Oxycontin, oxycodone, Vicodin, hydrocodone, etc.";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
     WebElement titleText;
@@ -20,18 +21,18 @@ public class WhichOfTheFollowingExperienceIrritablePageOLS extends MainPageOLS{
     @FindBy(xpath = Locators.RADIO_BUTTON_LIST_OLS)
     List<WebElement> radioButtonsList;
 
-    public WhichOfTheFollowingExperienceIrritablePageOLS() {
+    public OpioidOrNarcoticMedicationPageOLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public WhichOfTheFollowingExperienceIrritablePageOLS waitForPageLoad() {
+    public OpioidOrNarcoticMedicationPageOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public WhichOfTheFollowingExperienceIrritablePageOLS clickOnAnswer(String answerText) {
+    public OpioidOrNarcoticMedicationPageOLS clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }
@@ -40,4 +41,5 @@ public class WhichOfTheFollowingExperienceIrritablePageOLS extends MainPageOLS{
     public String getTitleText(){
         return getText(titleText);
     }
+
 }

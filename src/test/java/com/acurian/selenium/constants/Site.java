@@ -40,8 +40,8 @@ public enum Site {
     //4109
     AUT_OA_4109_Site("AUT_OA_4109_Site", "60540", "1R", true, false, "R475_OA_1611", "R475_OA_1688"),
     //4241
-    AUT_DIA_4241("AUT_DIA_4241", "19901", "41C", false, true, "EFC14829", "EFC14893"),
-    //AUT_DIA_4241 TODO add EFC15337 protocol after it becomes active in 4241 child
+    AUT_DIA_4241("AUT_DIA_4241", "19901", "41C", false, true, "EFC14829", "EFC14893", "EFC15337"),
+
     AUT_CV1_4241_site("AUT_CV1_4241_site", "19901", "41C", false, false, "EFC14828"),
     AUT_CV1_4241_NonSynexus_site("AUT_CV1_4241_NonSynexus_site", "45205", "1R", true, false, "EFC14828"),
     //4301
@@ -53,6 +53,11 @@ public enum Site {
     AUT_GAST4357S_site("AUT_GAST4357S_site", "19901", "41C", false, true, "RLM_MD_01", "RLM_MD_02"),
     AUT_GAST4357_site("AUT_GAST4357_site", "08204", "1R", false, true, "RLM_MD_01", "RLM_MD_02"),
     AUT_GAS4357ds("Synexus - 010110 : East Valley Family Physicians", "85244", "41C", false, true, "RLM_MD_01", "RLM_MD_02"),
+
+    AUT_GAST_S09279("9279 Takeda Gastroparesis - Diagnosed", "19044", "1R", true, true, "TAK_906_2002"),
+
+    AUT_GAST_S07114("7114 Neurogastrx Gastroparesis - Diabetic or Idiopathic", "19044", "1R", true, true, "NG101_201"),
+
     //4385
     AUT_END_4385("AUT_END_4385", "19901", "1R", true, true, "MVT_601_3101", "MVT_601_3102"),
     //4442

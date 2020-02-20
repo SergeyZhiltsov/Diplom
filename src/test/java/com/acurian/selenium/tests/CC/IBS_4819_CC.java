@@ -156,6 +156,22 @@ public class IBS_4819_CC extends BaseTest {
                 .clickOnAnswer("Both constipation and diarrhea")
                 .clickNextButton(new WhichSymptomOccursPageCC());
 
+        TypicalWeekBowelMovementsCC typicalWeekBowelMovementsCC = whichSymptomOccursPageCC
+                .waitForPageLoad()
+                .clickOnAnswer("Unsure")
+                .clickNextButton(new TypicalWeekBowelMovementsCC());
+
+        typicalWeekBowelMovementsCC
+                .waitForPageLoad()
+                .clickOnAnswer("None of the time")
+                .clickNextButton(abdominalPainWhenHavingIBSPageCC)
+                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QS6618", site.activeProtocols)
+                .back(typicalWeekBowelMovementsCC)
+                .waitForPageLoad()
+                .back(whichSymptomOccursPageCC);
+
         whichSymptomOccursPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Constipation")
@@ -177,16 +193,16 @@ public class IBS_4819_CC extends BaseTest {
 
         AbdominalPainOverPastPageCC abdominalPainOverPastPageCC = howOftenAbdominalPainPageCC
                 .waitForPageLoad()
-                .clickOnAnswer("1 day a month or less")
+                .clickOnAnswer("Less than 1 day a week")
                 .clickNextButton(new AbdominalPainOverPastPageCC());
         abdominalPainOverPastPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS6607", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS6619", site.activeProtocols)
                 .back();
         howOftenAbdominalPainPageCC
                 .waitForPageLoad()
-                .clickOnAnswer("2 - 3 days a month")
+                .clickOnAnswer("Multiple days a week")
                 .clickNextButton(abdominalPainOverPastPageCC);
 
         abdominalPainOverPastPageCC
@@ -202,11 +218,14 @@ public class IBS_4819_CC extends BaseTest {
                 .clickOnAnswers("The pain got better after having a bowel movement")
                 .clickNextButton(currentlyTakeTreatIBSPageCC);
 
-        CeliacDiseasePageCC celiacDiseasePageCC = currentlyTakeTreatIBSPageCC
+        CeliacDiseasePageCC celiacDiseasePageCC = new CeliacDiseasePageCC();
+
+        HaveYouTakenAnyLaxativesCC haveYouTakenAnyLaxativesCC = currentlyTakeTreatIBSPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("Neomycin (Agent Note: nee-oh-MY-sin)")
-                .clickNextButton(new CeliacDiseasePageCC());
-        celiacDiseasePageCC
+                .clickNextButton(new HaveYouTakenAnyLaxativesCC());
+
+        haveYouTakenAnyLaxativesCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS6609", site.activeProtocols)
@@ -215,7 +234,7 @@ public class IBS_4819_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Viberzi, also known as eluxadoline (Agent Note: vie-BEER-zee, el-ux-AD-oh-leen)")
-                .clickNextButton(celiacDiseasePageCC)
+                .clickNextButton(haveYouTakenAnyLaxativesCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS6609", site.activeProtocols)
@@ -224,7 +243,7 @@ public class IBS_4819_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Xifaxan, also known as rifaximin (Agent Note: zi-FAX-in, ri-FAX-i-min)")
-                .clickNextButton(celiacDiseasePageCC)
+                .clickNextButton(haveYouTakenAnyLaxativesCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS6609", site.activeProtocols)
@@ -232,17 +251,29 @@ public class IBS_4819_CC extends BaseTest {
         currentlyTakeTreatIBSPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
+                .clickNextButton(haveYouTakenAnyLaxativesCC);
+
+        InThePastDaysFollowingMedicationsCC inThePastDaysFollowingMedicationsCC = haveYouTakenAnyLaxativesCC
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new InThePastDaysFollowingMedicationsCC());
+
+        WeightLossSurgeryPageCC weightLossSurgeryPageCC = new WeightLossSurgeryPageCC();
+
+        inThePastDaysFollowingMedicationsCC
+                .waitForPageLoad()
+                .clickOnAnswer("None of the above")
                 .clickNextButton(celiacDiseasePageCC);
 
-        WeightLossSurgeryPageCC weightLossSurgeryPageCC = celiacDiseasePageCC
+        celiacDiseasePageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(new WeightLossSurgeryPageCC());
-        weightLossSurgeryPageCC
+                .clickNextButton(weightLossSurgeryPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS6610", site.activeProtocols)
-                .back();
+                .back(celiacDiseasePageCC);
+
         celiacDiseasePageCC
                 .waitForPageLoad()
                 .clickOnAnswer("No")

@@ -1,4 +1,4 @@
-package com.acurian.selenium.pages.OLS.ADG_4357;
+package com.acurian.selenium.pages.OLS.IBS;
 
 import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
@@ -9,9 +9,10 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class SymptomsFirstStartPageOLS extends MainPageOLS {
+public class HaveYouTakenAnyLaxativesOLS extends MainPageOLS {
 
-    public final String titleExpected = "When did those symptoms first start?";
+
+    public final String titleExpected = "Have you taken any laxatives in the past 30 days?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
     WebElement titleText;
@@ -19,18 +20,18 @@ public class SymptomsFirstStartPageOLS extends MainPageOLS {
     @FindBy(xpath = Locators.RADIO_BUTTON_LIST_OLS)
     List<WebElement> radioButtonsList;
 
-    public SymptomsFirstStartPageOLS() {
+    public HaveYouTakenAnyLaxativesOLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public SymptomsFirstStartPageOLS waitForPageLoad() {
+    public HaveYouTakenAnyLaxativesOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public SymptomsFirstStartPageOLS clickOnAnswer(String answerText) {
+    public HaveYouTakenAnyLaxativesOLS clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }

@@ -10,7 +10,6 @@ import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.*;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
@@ -537,11 +536,11 @@ public class END_4385_OLS extends BaseTest {
                 .clickOnAnswers("Unsure which type of liver disease")
                 .clickNextButton(following_mentalEmotionalHealthPageOLS);
 
-        WomenHealthConditions womenHealthConditions = following_mentalEmotionalHealthPageOLS
+        WomenHealthConditionsOLS womenHealthConditionsOLS = following_mentalEmotionalHealthPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Bipolar disorder")
-                .clickNextButton(new WomenHealthConditions());
-        womenHealthConditions
+                .clickNextButton(new WomenHealthConditionsOLS());
+        womenHealthConditionsOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS53", site.activeProtocols)
@@ -550,7 +549,7 @@ public class END_4385_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Schizophrenia")
-                .clickNextButton(womenHealthConditions)
+                .clickNextButton(womenHealthConditionsOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS53", site.activeProtocols)
@@ -558,9 +557,9 @@ public class END_4385_OLS extends BaseTest {
         following_mentalEmotionalHealthPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(womenHealthConditions);
+                .clickNextButton(womenHealthConditionsOLS);
 
-        womenHealthConditions
+        womenHealthConditionsOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS);

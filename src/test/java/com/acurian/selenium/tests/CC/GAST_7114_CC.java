@@ -4,28 +4,27 @@ import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.ADG_4357.*;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.*;
-import com.acurian.selenium.pages.CC.LOWT.CardiovascularDiseaseThanOthersPageCC;
+import com.acurian.selenium.pages.CC.GERD.CurrentlySufferOfAnyOfFollowingCC;
 import com.acurian.selenium.pages.CC.MDD_3159.MostRecentHeartProcedurePageСС;
 import com.acurian.selenium.pages.CC.OAB_4867.DoYouTakeAnyMedicationsControlHypertension_CC;
-import com.acurian.selenium.pages.CC.Vaccine.DirectSheduleVaccCC;
-import com.acurian.selenium.pages.CC.Vaccine.ScedulerCC;
 import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.selenium.pages.OLS.generalHealth.WhichOfFollowingHaveYouDiagnosedWith_NeurologicalCC;
-import com.acurian.selenium.pages.blinx.ams.shared.DRSBlinx;
 import com.acurian.selenium.utils.Properties;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-public class GAST_4357_CC extends BaseTest {
+public class GAST_7114_CC extends BaseTest {
 
     @BeforeMethod
     public void setUp() {
@@ -37,25 +36,17 @@ public class GAST_4357_CC extends BaseTest {
         super.tearDown();
     }
 
-    @DataProvider
-    public Object[][] sites() {
-        return new Object[][]{
-                {Site.AUT_GAS4357ds, true},
-                {Site.AUT_GAST4357S_site, true},
-                {Site.AUT_GAST4357_site, false}
-        };
-    }
+    @Test
+    @Description("GAST 7114 CC (Neurogastrx Gastroparesis - Diabetic or Idiopathic)")
+    public void gast7114ccTest(){
 
-    @Test(dataProvider = "sites", enabled = true)
-    @Description("GAST 4357 CC (Allergan Diabetic Gastroparesis)")
-    public void gast4357ccTest(Site site, boolean inFlare) {
         String phoneNumber = "AUTAMSGAST";
         String studyName = "a gastroparesis study for people with digestion problems";
-
+        Site site = Site.AUT_GAST_S07114;
         DebugPageCC debugPageCC = new DebugPageCC();
         String env = System.getProperty("acurian.env", "STG");
-
         LoginPageCC loginPageCC = new LoginPageCC();
+
         loginPageCC
                 .openPage(env)
                 .waitForPageLoad();
@@ -84,11 +75,7 @@ public class GAST_4357_CC extends BaseTest {
                 .clickNextButton(new DateOfBirthPageCC());
 
         dateOfBirthPageCC
-                .waitForPageLoad(studyName, "500");
-//        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC
-//                .getExpectedModifiedTitle(studyName, "500"), "Title is diff");
-
-        dateOfBirthPageCC
+                .waitForPageLoad(studyName, "500")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "No")
                 .clickNextButton(new DoesNotGivePermissionToProceedClosePageCC())
@@ -102,7 +89,7 @@ public class GAST_4357_CC extends BaseTest {
                 .clickNextButton(new LessThan18YearsOldPageCC())
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QSI8004",site.activeProtocols)
                 .back(dateOfBirthPageCC)
                 .waitForPageLoad(studyName, "500")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
@@ -116,7 +103,7 @@ public class GAST_4357_CC extends BaseTest {
 
         DiagnosedAnyTypeOfDiabetesPageCC diagnosedAnyTypeOfDiabetesPageCC = genderPageCC
                 .waitForPageLoad()
-                .setMonth("Apr")
+                .setMonth("Jun")
                 .setDay("19")
                 .setYear("2001")
                 .clickOnAnswer("Female")
@@ -127,130 +114,70 @@ public class GAST_4357_CC extends BaseTest {
         //Q2
         WhatKindOfDiabetesPageCC whatKindOfDiabetesPageCC = diagnosedAnyTypeOfDiabetesPageCC
                 .waitForPageLoad()
-                .clickOnAnswer("No") //Disqualify ("No diabetes")
-                .clickNextButton(everDiagnosedGastroparesisOrStomachEmptyingCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS7202", site.activeProtocols)
-                .back(diagnosedAnyTypeOfDiabetesPageCC)
-                .waitForPageLoad()
                 .clickOnAnswer("Yes") //Continue to Q3
                 .clickNextButton(new WhatKindOfDiabetesPageCC());
-        //Q3
+
         whatKindOfDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Pre-diabetes") //Disqualify ("No diagnosis of diabetes")
                 .clickNextButton(everDiagnosedGastroparesisOrStomachEmptyingCC);
         everDiagnosedGastroparesisOrStomachEmptyingCC
                 .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS7203", site.activeProtocols)
-                .back(whatKindOfDiabetesPageCC);
-//                .clickOnAnswer("High blood sugar only")
-//                .clickNextButton(сardiovascularDiseaseThanOthersPageCC)
-//                .waitForPageLoad()
-//                .getPage(debugPageCC)
-//                .checkProtocolsContainsForQNumber("QS7203", site.activeProtocols)
-//                .back(whatKindOfDiabetesPageCC);
-        //Q4
-        WithType2DiabetesPageCC withType2DiabetesPageCC = whatKindOfDiabetesPageCC
+                .back();
+
+        whatKindOfDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Type 2 diabetes (sometimes called Adult-onset diabetes)") //If selected "Type 2 diabetes", go to Q4
-                .clickNextButton(new WithType2DiabetesPageCC());
+                .clickNextButton(new WithType2DiabetesPageCC())
+                .waitForPageLoad()
+                .back(whatKindOfDiabetesPageCC)
+                .waitForPageLoad()
+                .clickOnAnswer("Type 1 diabetes (sometimes called Juvenile diabetes)") //If selected "Type 1 diabetes", go to Q5
+                .clickNextButton(new WithType1DiabetesPageCC())
+                .waitForPageLoad()
+                .back(whatKindOfDiabetesPageCC);
 
-        //Q4
-        List<String> disqualifyQ4 = Arrays.asList("Within the past 2 months",
-                "3 - 6 months ago", "7 - 11 months ago", "1 to less than 5 years ago");
+        HowLongAgoDiagnosedDiabetesPageCC howLongAgoDiagnosedDiabetesPageCC = whatKindOfDiabetesPageCC
+                .waitForPageLoad()
+                .clickOnAnswer("Unsure") //If selected "Unsure", go to Q6
+                .clickNextButton(new HowLongAgoDiagnosedDiabetesPageCC());
+
+        howLongAgoDiagnosedDiabetesPageCC
+                .waitForPageLoad()
+                .clickOnAnswer("1 to less than 5 years ago") //in this place we DQ for RLM_MD_01/02 protocols
+                .clickNextButton(everDiagnosedGastroparesisOrStomachEmptyingCC);
 
         CurrentlyTreatingYourDiabetesPageCC currentlyTreatingYourDiabetesPageCC = new CurrentlyTreatingYourDiabetesPageCC();
 
-        for (String answer: disqualifyQ4) {
-            System.out.println("Select answer for Q4: " + answer);
-            withType2DiabetesPageCC
-                    .waitForPageLoad()
-                    .clickOnAnswer(answer) //skip to Q7
-                    .clickNextButton(everDiagnosedGastroparesisOrStomachEmptyingCC);
-            everDiagnosedGastroparesisOrStomachEmptyingCC
-                    .waitForPageLoad()
-                    .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber("QS7204", site.activeProtocols)
-                    .back(withType2DiabetesPageCC)
-            ;
-        }
-        WithType1DiabetesPageCC withType1DiabetesPageCC = withType2DiabetesPageCC
-                .waitForPageLoad()
-                .back(whatKindOfDiabetesPageCC)
-                .clickOnAnswer("Type 1 diabetes (sometimes called Juvenile diabetes)") //If selected "Type 1 diabetes", go to Q5
-                .clickNextButton(new WithType1DiabetesPageCC());
-
-        //Q5
-        List<String> disqualifyQ5 = Arrays.asList("Within the past 2 months", "3 - 6 months ago", "7 - 11 months ago",
-        "1 to less than 5 years ago");
-        for (String answer: disqualifyQ5) {
-            System.out.println("Select answer for Q5: " + answer);
-            withType1DiabetesPageCC
-                    .waitForPageLoad()
-                    .clickOnAnswer(answer) //skip to Q7
-                    .clickNextButton(everDiagnosedGastroparesisOrStomachEmptyingCC)
-                    .waitForPageLoad()
-                    .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber("QS7205", site.activeProtocols)
-                    .back(withType1DiabetesPageCC);
-        }
-
-        HowLongAgoDiagnosedDiabetesPageCC howLongAgoDiagnosedDiabetesPageCC = withType1DiabetesPageCC
-                .waitForPageLoad()
-                .back(whatKindOfDiabetesPageCC)
-                .clickOnAnswer("Unsure") //If selected "Unsure", go to Q6
-                .clickNextButton(new HowLongAgoDiagnosedDiabetesPageCC());
-        //Q6
-        List<String> disqualifyQ6 = Arrays.asList("Within the past 2 months", "3 - 6 months ago", "7 - 11 months ago",
-                "1 to less than 5 years ago");
-        for (String answer : disqualifyQ6) {
-            System.out.println("Select answer for Q6: " + answer);
-            howLongAgoDiagnosedDiabetesPageCC
-                    .waitForPageLoad()
-                    .clickOnAnswer(answer) //skip to Q7
-                    .clickNextButton(everDiagnosedGastroparesisOrStomachEmptyingCC)
-                    .waitForPageLoad()
-                    .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber("QS7206", site.activeProtocols)
-                    .back(howLongAgoDiagnosedDiabetesPageCC);
-        }
-        //Q6
-        howLongAgoDiagnosedDiabetesPageCC
-                .waitForPageLoad()
-                .clickOnAnswer("10 years ago or more")
-                .clickNextButton(everDiagnosedGastroparesisOrStomachEmptyingCC);
         //Q7
 // ---- START Q9 Ghost Question - Gastroparesis Logic check ----
         FollowingAreCommonSymptomsCC followingAreCommonSymptomsCC = everDiagnosedGastroparesisOrStomachEmptyingCC
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new FollowingAreCommonSymptomsCC());
-        //Q8
+
         followingAreCommonSymptomsCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(currentlyTreatingYourDiabetesPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS7209", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS7208", site.activeProtocols)
                 .back();
+
         followingAreCommonSymptomsCC
                 .waitForPageLoad()
-                .clickOnAnswers("Nausea or feeling sick to your stomach",
-                                "Bloating")
-                .clickNextButton(new HowLongBeenHavingThoseSymptomsPageCC())
+                .clickOnAnswers("Nausea or feeling sick to your stomach")
+                .clickNextButton(currentlyTreatingYourDiabetesPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS7209", site.activeProtocols)
-                .back();
+                .back(followingAreCommonSymptomsCC);
+
 
         HowLongBeenHavingThoseSymptomsPageCC howLongBeenHavingThoseSymptomsPageCC = followingAreCommonSymptomsCC
                 .waitForPageLoad()
-                .clickOnAnswers("Vomiting or throwing up",
-                                "Bloating") //Deselect Bloating
+                .clickOnAnswers("Bloating")
                 .clickNextButton(new HowLongBeenHavingThoseSymptomsPageCC());
 
         //Q10
@@ -266,60 +193,64 @@ public class GAST_4357_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("3 to 5 months")
                 .clickNextButton(new ThrownUpVomitedPastMonthPageCC());
+
         //Q11
         KindOfTestsOrEvaluationHaveYouHadPageCC kindOfTestsOrEvaluationHaveYouHadPageCC = thrownUpVomitedPastMonthPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("None, I have not vomited in the past month")
-                .clickNextButton(new KindOfTestsOrEvaluationHaveYouHadPageCC());// not in flare
-        if (inFlare) {
-            kindOfTestsOrEvaluationHaveYouHadPageCC
-                    .waitForPageLoad()
-                    .back();
-            List<String> inFlareAnswer = Arrays.asList("1 time", "2 times", "3 times", "4 or more times");
-            for (String answer: inFlareAnswer) {
-                System.out.println("Select answer for Q11: " + answer);
-                thrownUpVomitedPastMonthPageCC
-                        .waitForPageLoad()
-                        .clickOnAnswer(answer)
-                        .clickNextButton(kindOfTestsOrEvaluationHaveYouHadPageCC)
-                        .waitForPageLoad()
-                        .getPage(debugPageCC)
-                        .checkStudyStatusContainsForQNumber("QS7211", "2-3")
-                        .back();
-            }
-            thrownUpVomitedPastMonthPageCC
-                    .waitForPageLoad()
-                    .clickNextButton(kindOfTestsOrEvaluationHaveYouHadPageCC);
-        } else {
-            kindOfTestsOrEvaluationHaveYouHadPageCC
-                    .waitForPageLoad()
-                    .getPage(debugPageCC)
-                    .checkStudyStatusContainsForQNumber("QS7211", "2-4");
-        }
+                .clickNextButton(new KindOfTestsOrEvaluationHaveYouHadPageCC());
 
         GastroparesisSymptomsCausedByFollowingPageCC gastroparesisSymptomsCausedByFollowingPageCC = kindOfTestsOrEvaluationHaveYouHadPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new GastroparesisSymptomsCausedByFollowingPageCC());
 
-        OpioidOrNarcoticMedicationPageCC opioidOrNarcoticMedicationPageCC = gastroparesisSymptomsCausedByFollowingPageCC
+        OpioidOrNarcoticMedicationPageCC opioidOrNarcoticMedicationPageCC = new OpioidOrNarcoticMedicationPageCC();
+
+        List<String> DQ13 = Arrays.asList("Surgery", "Parkinson’s disease", "Radiation therapy",
+                "Crohn’s disease", "Chagas disease", "Cannabinoid hyperemesis syndrome", "Cyclic vomiting syndrome",
+                "Rumination syndrome");
+        for (String answer: DQ13) {
+            System.out.println("Select answer for Q13: " + answer);
+            gastroparesisSymptomsCausedByFollowingPageCC
+                    .waitForPageLoad()
+                    .clickOnAnswers("None of the above")
+                    .clickOnAnswers(answer)
+                    .clickNextButton(opioidOrNarcoticMedicationPageCC)
+                    .waitForPageLoad()
+                    .getPage(debugPageCC)
+                    .checkProtocolsContainsForQNumber("QS7224", site.activeProtocols)
+                    .back();
+        }
+
+        gastroparesisSymptomsCausedByFollowingPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new OpioidOrNarcoticMedicationPageCC());
+                .clickNextButton(opioidOrNarcoticMedicationPageCC);
 
         CurrentlyHaveAnyOffFollowingPageCC currentlyHaveAnyOffFollowingPageCC = opioidOrNarcoticMedicationPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Yes, every day")
                 .clickNextButton(new CurrentlyHaveAnyOffFollowingPageCC());
 
+        currentlyHaveAnyOffFollowingPageCC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS7225", site.activeProtocols)
+                .back();
+
+        opioidOrNarcoticMedicationPageCC
+                .waitForPageLoad()
+                .clickOnAnswer("Yes, but not every day")
+                .clickNextButton(currentlyHaveAnyOffFollowingPageCC);
 
         //Q15
         SurgeriesPerformedPageCC surgeriesPerformedPageCC = new SurgeriesPerformedPageCC();
-        List<String> disqualifyQ12 = Arrays.asList("IV nutrition or Parenteral feeding – liquid food provided through a tube into your veins (Agent Note: puh-REN-ter-ul)",
-        "Nasogastric tube – a tube that goes in your nose and then enters your stomach to give you food or help with symptoms (Agent Note: ney-zoh-gas-trik)",
-        "Enterostomy tube – a tube that goes through your skin directly into your stomach to provide you food or help with symptoms (Agent Note: en-tuh-ros-tuh-mee)");
-        for (String answer : disqualifyQ12) {
-            System.out.println("Select answer for Q12: " + answer);
+        List<String> disqualifyQ15 = Arrays.asList("IV nutrition or Parenteral feeding – liquid food provided through a tube into your veins (Agent Note: puh-REN-ter-ul)",
+                "Nasogastric tube – a tube that goes in your nose and then enters your stomach to give you food or help with symptoms (Agent Note: ney-zoh-gas-trik)",
+                "Enterostomy tube – a tube that goes through your skin directly into your stomach to provide you food or help with symptoms (Agent Note: en-tuh-ros-tuh-mee)");
+        for (String answer : disqualifyQ15) {
+            System.out.println("Select answer for Q15: " + answer);
             currentlyHaveAnyOffFollowingPageCC
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -334,9 +265,10 @@ public class GAST_4357_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(surgeriesPerformedPageCC);
+
         //Q16
         WeightLossSurgeryPageCC weightLossSurgeryPageCC = new WeightLossSurgeryPageCC();
-        List<String> disqualifyQ16 = Arrays.asList("Gastric pacemaker placement (Agent Note: gas-trik)",
+        List<String> disqualifyQ16 = Arrays.asList(
                 "Gastrectomy or removal of part of the stomach (Agent Note: ga-strek-tuh-mee)",
                 "Fundoplication (Agent Note: fun-do-pli-kae-tion)", "Vagotomy (Agent Note: vey-got-uh-mee)");
         for (String answer : disqualifyQ16) {
@@ -355,6 +287,7 @@ public class GAST_4357_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(weightLossSurgeryPageCC);
+
         //Q17
         HashMap<String, List<String>> disqualifyQ14 = new HashMap<>();
         ProcedureForWeightLossPageCC procedureForWeightLossPageCC = new ProcedureForWeightLossPageCC(); //Disqualify ("GI surgery")
@@ -379,40 +312,40 @@ public class GAST_4357_CC extends BaseTest {
         TransitionStatementCC transitionStatementCC = weightLossSurgeryPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new TransitionStatementCC()); //Q19
+                .clickNextButton(new TransitionStatementCC());
 
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC =
-        transitionStatementCC
-                .waitForPageLoadWithTitle("Thank you for answering these questions about your stomach problems.\n" +
-                        "I am going to ask you several questions about your general medical history which are important for us to know to match you with a study. After each item on the list, please simply tell me \"yes\" or \"no,\" and I will check off each condition that you do have.\n" +
-                        "Agent Note: If \"no\" to all items in a question, select \"None of the above\"")
-                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
+                transitionStatementCC
+                        .waitForPageLoadWithTitle("Thank you for answering these questions about your stomach problems.\n" +
+                                "I am going to ask you several questions about your general medical history which are important for us to know to match you with a study. After each item on the list, please simply tell me \"yes\" or \"no,\" and I will check off each condition that you do have.\n" +
+                                "Agent Note: If \"no\" to all items in a question, select \"None of the above\"")
+                        .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
 
-//-------------------New GENERAL HEALTH---------------------------
-        WhatKindOfArthritisPageCC whatKindOfArthritisPageCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+        //------------------New GENERAL HEALTH---------------------------
+                WhatKindOfArthritisPageCC whatKindOfArthritisPageCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("ADHD or attention deficit hyperactivity disorder",
-                                "Arthritis (osteoarthritis, rheumatoid arthritis or RA, psoriatic arthritis)",
-                                "Autism spectrum",
-                                "Bone or joint problems (gout, osteoporosis, back pain, ankylosing spondylitis)",
-                                "Breathing, respiratory, or lung problems (COPD, asthma, chronic cough)",
-                                "Cancer",
-                                "Headaches (migraine, cluster, tension)",
-                                "Heart or circulation problems (heart attack, heart failure, stroke)",
-                                "High blood pressure or hypertension",
-                                "High cholesterol, triglycerides, or lipids",
-                                "Intestinal disorders (IBS or irritable bowel syndrome, IBD, Crohn's disease, ulcerative colitis)",
-                                "Stomach problems (Acid reflux, heartburn or GERD, Gastroparesis or delayed gastric emptying)",
-                                "Kidney disease",
-                                "Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)",
-                                "Lupus",
-                                "Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)",
-                                "Neurological issues (Alzheimer's disease, memory loss, multiple sclerosis or MS, " +
-                                        "Parkinson's disease, seizure disorder or epilepsy, fibromyalgia)",
-                                "Skin problems (eczema or atopic dermatitis, psoriasis)",
-                                "Sleep problems (insomnia, sleep apnea, narcolepsy)",
-                                "Urinary or bladder problems (overactive bladder, urinary leakage or incontinence)",
-                                "Women's health issues (endometriosis, uterine fibroids)")
+                        "Arthritis (osteoarthritis, rheumatoid arthritis or RA, psoriatic arthritis)",
+                        "Autism spectrum",
+                        "Bone or joint problems (gout, osteoporosis, back pain, ankylosing spondylitis)",
+                        "Breathing, respiratory, or lung problems (COPD, asthma, chronic cough)",
+                        "Cancer",
+                        "Headaches (migraine, cluster, tension)",
+                        "Heart or circulation problems (heart attack, heart failure, stroke)",
+                        "High blood pressure or hypertension",
+                        "High cholesterol, triglycerides, or lipids",
+                        "Intestinal disorders (IBS or irritable bowel syndrome, IBD, Crohn's disease, ulcerative colitis)",
+                        "Stomach problems (Acid reflux, heartburn or GERD, Gastroparesis or delayed gastric emptying)",
+                        "Kidney disease",
+                        "Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)",
+                        "Lupus",
+                        "Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)",
+                        "Neurological issues (Alzheimer's disease, memory loss, multiple sclerosis or MS, " +
+                                "Parkinson's disease, seizure disorder or epilepsy, fibromyalgia)",
+                        "Skin problems (eczema or atopic dermatitis, psoriasis)",
+                        "Sleep problems (insomnia, sleep apnea, narcolepsy)",
+                        "Urinary or bladder problems (overactive bladder, urinary leakage or incontinence)",
+                        "Women's health issues (endometriosis, uterine fibroids)")
                 .clickNextButton(new WhatKindOfArthritisPageCC());
         whatKindOfArthritisPageCC
                 .waitForPageLoad()
@@ -491,11 +424,13 @@ public class GAST_4357_CC extends BaseTest {
                 .waitForPageLoad(3, subquestionExperiencedHeartPageCC.titleExpected3)
                 .waitForPageLoad(4, subquestionExperiencedHeartPageCC.titleExpected4)
                 .clickOnAnswerForAllSubQuestion("More than 1 year ago");
+
         //Q12.1
         HashMap<String, List<String>> dqQ121 = new HashMap<>();
         HeartRelatedSurgeriesProceduresPageCC heartRelatedSurgeriesProceduresPageCC = new HeartRelatedSurgeriesProceduresPageCC();
         dqQ121.put("Less than 30 days ago", Arrays.asList(site.activeProtocols)); //Disqualify ("Recent MI - Temp 3")
         dqQ121.put("1 - 3 months ago", Arrays.asList(site.activeProtocols));
+        dqQ121.put("4 - 6 months ago", Arrays.asList(site.activeProtocols));
         for (Map.Entry<String, List<String>> entry : dqQ121.entrySet()) {
             System.out.println(entry.getKey());
             subquestionExperiencedHeartPageCC
@@ -514,6 +449,7 @@ public class GAST_4357_CC extends BaseTest {
         HashMap<String, List<String>> dqQ122 = new HashMap<>();
         dqQ122.put("Less than 30 days ago", Arrays.asList(site.activeProtocols)); //Disqualify ("Recent MI - Temp 3")
         dqQ122.put("1 - 3 months ago", Arrays.asList(site.activeProtocols));
+        dqQ122.put("4 - 6 months ago", Arrays.asList(site.activeProtocols));
         for (Map.Entry<String, List<String>> entry : dqQ122.entrySet()) {
             System.out.println(entry.getKey());
             subquestionExperiencedHeartPageCC
@@ -530,6 +466,7 @@ public class GAST_4357_CC extends BaseTest {
                 .waitForPageLoad(2, subquestionExperiencedHeartPageCC.titleExpected2)
                 .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
                 .clickNextButton(heartRelatedSurgeriesProceduresPageCC);
+
         //Q48
         MostRecentHeartProcedurePageСС mostRecentHeartProcedurePageСС = heartRelatedSurgeriesProceduresPageCC
                 .waitForPageLoad()
@@ -540,6 +477,7 @@ public class GAST_4357_CC extends BaseTest {
         HashMap<String, List<String>> dqQ14 = new HashMap<>();
         dqQ14.put("Less than 30 days ago", Arrays.asList(site.activeProtocols)); //Disqualify ("Recent CV procedure - Temp 3")
         dqQ14.put("1 - 3 months ago", Arrays.asList(site.activeProtocols));
+        dqQ14.put("4 - 6 months ago", Arrays.asList(site.activeProtocols));
         for (Map.Entry<String, List<String>> entry : dqQ14.entrySet()) {
             System.out.println(entry.getKey());
             mostRecentHeartProcedurePageСС
@@ -562,31 +500,31 @@ public class GAST_4357_CC extends BaseTest {
                 .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC);
 
         DoYouTakeAnyMedicationsControlHypertension_CC doYouTakeAnyMedicationsControlHypertension_CC =
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
-                 .waitForPageLoad()
-                 .clickOnAnswers("None of the above")
-                 .clickOnAnswers("High blood pressure or hypertension")
-                 .clickNextButton(new DoYouTakeAnyMedicationsControlHypertension_CC());
+                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+                        .waitForPageLoad()
+                        .clickOnAnswers("None of the above")
+                        .clickOnAnswers("High blood pressure or hypertension")
+                        .clickNextButton(new DoYouTakeAnyMedicationsControlHypertension_CC());
         //Q15: QS50
         doYouTakeAnyMedicationsControlHypertension_CC
                 .waitForPageLoad()
                 .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC);
 
         WhichOfFollowingDigestiveConditionPageCC whichOfFollowingDigestiveConditionPageCC =
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Stomach problems (Acid reflux, heartburn or GERD, Gastroparesis or delayed gastric emptying)")
-                .clickNextButton(new WhichOfFollowingDigestiveConditionPageCC());
+                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+                        .waitForPageLoad()
+                        .clickOnAnswers("None of the above")
+                        .clickOnAnswers("Stomach problems (Acid reflux, heartburn or GERD, Gastroparesis or delayed gastric emptying)")
+                        .clickNextButton(new WhichOfFollowingDigestiveConditionPageCC());
 
         //Q8: QS44
         whichOfFollowingDigestiveConditionPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("Acid reflux, heartburn, or GERD (gastroesophageal reflux disease)",
-                                "Crohn's disease",
-                                "Ulcerative colitis",
-                                "Gastroparesis, or delayed gastric emptying",
-                                "IBS, or irritable bowel syndrome")
+                        "Crohn's disease",
+                        "Ulcerative colitis",
+                        "Gastroparesis, or delayed gastric emptying",
+                        "IBS, or irritable bowel syndrome")
                 .clickOnAnswers("None of the above");
         //Q5: QS41
         HashMap<String, List<String>> dqQ8 = new HashMap<>();
@@ -791,10 +729,34 @@ public class GAST_4357_CC extends BaseTest {
 
         LetMeSeePageCC letMeSeePageCC = approximateHeightPageCC
                 .waitForPageLoad()
-                .setAll("3", "6", "100")
+                .setAll("3", "3", "37")
                 .clickNextButton(new LetMeSeePageCC());
 
         letMeSeePageCC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
+                .back(approximateHeightPageCC)
+                .waitForPageLoad()
+                .setAll("5","5","250")
+                .clickNextButton(letMeSeePageCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
+                .back(approximateHeightPageCC)
+                .waitForPageLoad()
+                .setAll("5","5","150")
+                .clickNextButton(letMeSeePageCC);
+
+        letMeSeePageCC
+                .waitForPageLoad()
+                .clickNextButton(currentlyTreatingYourDiabetesPageCC)
+                .waitForPageLoad()
+                .clickOnAnswers("I am not currently treating my diabetes")
+                .clickNextButton(new CurrentlySufferOfAnyOfFollowingCC())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new NonQRtransitionPageCC())
                 .waitForPageLoad()
                 .clickNextButton(new CurrentlyParticipatingInStudy())
                 .waitForPageLoad()
@@ -809,106 +771,17 @@ public class GAST_4357_CC extends BaseTest {
                 .clickNextButton(new SiteSelectionPageCC())
                 .waitForPageLoad(studyName)
                 .getPID();
-        switch (site) {
-            case AUT_GAST4357_site: //1R
-                selectionPageCC
-                        .clickOnAnswer(site.name)
-                        .clickNextButton(new QualifiedCloseGastroPageCC())
-                        .waitForPageLoad()
-//                        .clickNextButton(new SynexusHealthyMindsPageCC())
-//                        .waitForPageLoad()
-//                        .clickOnAnswer("No")
-                        .clickNextButton(new ThankYouCloseSimplePageCC())
-                        .waitForPageLoad3()
-                        .clickNextButton(selectActionPageCC)
-                        .waitForPageLoad()
-                        .pidFromDbToLog(env)
-                        .childPidFromDbToLog(env)
-                        .dispoShouldMatch(site.dispo, site.dispo);
-                break;
-                case AUT_GAS4357ds:
-                    DRSBlinx dRSBlinx = new DRSBlinx();
-                    ScedulerCC scedulerCC = new ScedulerCC();
-                    DirectSheduleVaccCC directSheduleVaccCC = new DirectSheduleVaccCC();
-                    selectionPageCC
-                            .clickOnAnswer(site.name)
-                            .clickNextButton(directSheduleVaccCC);
-                    if (env.equals("PRD")) {
-                        directSheduleVaccCC
-                                .waitForPageLoad();
-                    }
-                    if (env.equals("STG")) {
-                        directSheduleVaccCC
-                                .waitForPageLoadSTG();
-                    }
-                    directSheduleVaccCC
-                            .clickSheduleBtnBlinx(dRSBlinx);
-                    ArrayList<String> tabs = new ArrayList<String>(getDriver().getWindowHandles());
-                    getDriver().switchTo().window(tabs.get(1));
-                    dRSBlinx
-                            .waitForPageLoadBlinx()
-                            .clickOnDay()
-                            .clickOnTime()
-                            .clickOnNext()
-                            .waitForPageLoadClientDetails()
-                            .dateCheck()
-                            .startsAtCheck()
-                            .serviceProviderCheck();
-                    getDriver().switchTo().window(tabs.get(0));
-                    QualifiedClose1PageCC qualifiedClose1PageCC = new QualifiedClose1PageCC();
-                    SynexusRadiantDirectScheduleCC synexusRadiantDirectScheduleCC = new SynexusRadiantDirectScheduleCC();
-                    if (env.equals("PRD")) {
-                        directSheduleVaccCC
-                                .waitForPageLoad();
-                    }
-                    if (env.equals("STG")) {
-                        directSheduleVaccCC
-                                .waitForPageLoadSTG();
-                    }
-                    directSheduleVaccCC
-                            .clickNextButton(synexusRadiantDirectScheduleCC);
-                    /*SynexusHealthyMindsPageCC synexusHealthyMindsPageCC*/
-//                    SynexusRadiantDirectScheduleCC synexusRadiantDirectScheduleCC = qualifiedClose1PageCC
-//                            .waitForPageLoad()
-//                            .clickNextButton(new SynexusRadiantDirectScheduleCC()/*SynexusHealthyMindsPageCC()*/);
 
-//                    ThankYouCloseSimplePageCC thankYouCloseSimplePageCC = synexusHealthyMindsPageCC
-//                            .waitForPageLoad()
-//                            .clickOnAnswer("No")
-//                            .clickNextButton(new ThankYouCloseSimplePageCC());
-                    synexusRadiantDirectScheduleCC
-                            .waitForPageLoadSyn()
-                            .clickOnAnswer("[Successful direct schedule in clinical conductor]")
-                            .clickNextButton(selectActionPageCC);
-//                    thankYouCloseSimplePageCC
-//                            .waitForPageLoad()
-//                            .clickNextButton(selectActionPageCC);
-
-                    selectActionPageCC
-                            .waitForPageLoad()
-                            .pidFromDbToLog(env)
-                            .childPidFromDbToLog(env)
-                            .dispoShouldMatch(site.dispo, site.dispo);
-
-
-                    break;
-            case AUT_GAST4357S_site: //41C
-                selectionPageCC
-                        .clickOnAnswer(site.name)
-                        .clickNextButton(new SynexusRadiantDirectScheduleCC())
-                        .waitForPageLoadSyn()
-                        .assertVariablesNew("Acurian", "Trial", "04/19/2001", "US",
-                                "Dover, DE", site.zipCode, "qa.acurian@gmail.com",
-                                "999-999-9999", env.equals("STG") ? " 4357synexus " : " 4357S ",
-                                " "+site.name, env.equals("STG") ? "ALLXXXDGP01,ALLXXXDGP02 - Allergan Gastroparesis" : "ALLXXXDGPD01,ALLXXXDGPD02 - Allergan Gastroparesis")
-                        .clickOnAnswer("[Successful direct schedule in clinical conductor]")
-                        .clickNextButton(selectActionPageCC)
-                        .waitForPageLoad()
-                        .pidFromDbToLog(env)
-                        .getRadiantDbToLog(env)
-                        .childPidFromDbToLog(env)
-                        .dispoShouldMatch(site.dispo, site.dispo);
-        }
-        selectActionPageCC.flareCodeShouldMatch(env, inFlare ? "3" : "4");
+        selectionPageCC
+                .clickOnAnswer(site.name)
+                .clickNextButton(new QualifiedCloseGastroPageCC())
+                .waitForPageLoad()
+                .clickNextButton(new ThankYouCloseSimplePageCC())
+                .waitForPageLoad3()
+                .clickNextButton(selectActionPageCC)
+                .waitForPageLoad()
+                .pidFromDbToLog(env)
+                .childPidFromDbToLog(env)
+                .dispoShouldMatch(site.dispo, site.dispo);
     }
 }

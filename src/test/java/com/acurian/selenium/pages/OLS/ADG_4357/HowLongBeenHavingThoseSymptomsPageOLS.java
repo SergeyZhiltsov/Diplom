@@ -1,4 +1,4 @@
-package com.acurian.selenium.pages.OLS.IBS;
+package com.acurian.selenium.pages.OLS.ADG_4357;
 
 import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
@@ -9,10 +9,9 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class WhichOfTheFollowingExperienceIrritablePageOLS extends MainPageOLS{
+public class HowLongBeenHavingThoseSymptomsPageOLS extends MainPageOLS {
 
-//    public final String titleExpected = "Which of the following do you experience with your irritable bowel syndrome or IBS?";
-    public final String titleExpected = "Which of the following bowel habits do you experience with your irritable bowel syndrome or IBS?";
+    public final String titleExpected = "How long have you been having those symptoms?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
     WebElement titleText;
@@ -20,18 +19,18 @@ public class WhichOfTheFollowingExperienceIrritablePageOLS extends MainPageOLS{
     @FindBy(xpath = Locators.RADIO_BUTTON_LIST_OLS)
     List<WebElement> radioButtonsList;
 
-    public WhichOfTheFollowingExperienceIrritablePageOLS() {
+    public HowLongBeenHavingThoseSymptomsPageOLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public WhichOfTheFollowingExperienceIrritablePageOLS waitForPageLoad() {
+    public HowLongBeenHavingThoseSymptomsPageOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public WhichOfTheFollowingExperienceIrritablePageOLS clickOnAnswer(String answerText) {
+    public HowLongBeenHavingThoseSymptomsPageOLS clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }
