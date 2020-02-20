@@ -349,23 +349,23 @@ public class LMG_4686_OLS extends BaseTest {
 
         following_MentalEmotionalHealthPageOLS
         		.waitForPageLoad();
-        WomenHealthConditions womenHealthConditions = following_MentalEmotionalHealthPageOLS
+        WomenHealthConditionsOLS womenHealthConditionsOLS = following_MentalEmotionalHealthPageOLS
                 .clickOnAnswers("Generalized anxiety disorder (GAD)",
                 		"Major depressive disorder (MDD) or depression",
                 		"None of the above")
                 .clickOnAnswers("Bipolar disorder", "Schizophrenia")
-                .clickNextButton(new WomenHealthConditions());
-        womenHealthConditions
+                .clickNextButton(new WomenHealthConditionsOLS());
+        womenHealthConditionsOLS
                 .waitForPageLoad();
                 debugPageOLS.checkProtocolsContainsForQNumber("QS53", protocol1);
                 debugPageOLS.back();
         following_MentalEmotionalHealthPageOLS
         		.waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new WomenHealthConditions());
+                .clickNextButton(new WomenHealthConditionsOLS());
         
         
-        DoAnyOftheFollowingAdditionalDiagnosesOLS doAnyOftheFollowingAdditionalDiagnosesOLS = womenHealthConditions
+        DoAnyOftheFollowingAdditionalDiagnosesOLS doAnyOftheFollowingAdditionalDiagnosesOLS = womenHealthConditionsOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS()); 

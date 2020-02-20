@@ -654,19 +654,19 @@ public class IBD_3485_OLS extends BaseTest {
         whichOfTheFollowingSleepRelatedConditionsDiagnosedOLS
                 .waitForPageLoad();
         Assert.assertEquals(whichOfTheFollowingSleepRelatedConditionsDiagnosedOLS.getTitleText(), whichOfTheFollowingSleepRelatedConditionsDiagnosedOLS.titleExpected, "Title is diff");
-        WomenHealthConditions womenHealthConditions = whichOfTheFollowingSleepRelatedConditionsDiagnosedOLS
+        WomenHealthConditionsOLS womenHealthConditionsOLS = whichOfTheFollowingSleepRelatedConditionsDiagnosedOLS
                 .clickOnAnswers("Narcolepsy",
                         "Sleep apnea",
                         "Insomnia",
                         "None of the above")
-                .clickNextButton(new WomenHealthConditions());
+                .clickNextButton(new WomenHealthConditionsOLS());
 
 
         //--------------Q22:  Which of the following sleep-related conditions have you been diagnosed with?-----------------------
-        womenHealthConditions
+        womenHealthConditionsOLS
                 .waitForPageLoad();
-        Assert.assertEquals(womenHealthConditions.getTitleText(), womenHealthConditions.titleExpected, "Title is diff");
-        DoAnyOftheFollowingAdditionalDiagnosesOLS doAnyOftheFollowingAdditionalDiagnosesOLS = womenHealthConditions
+        Assert.assertEquals(womenHealthConditionsOLS.getTitleText(), womenHealthConditionsOLS.titleExpected, "Title is diff");
+        DoAnyOftheFollowingAdditionalDiagnosesOLS doAnyOftheFollowingAdditionalDiagnosesOLS = womenHealthConditionsOLS
                 .clickOnAnswers("Urinary leakage or urinary incontinence")
                 .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS());
 

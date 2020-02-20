@@ -493,9 +493,9 @@ public class IBD_3839_OLS extends BaseTest {
         whichOfTheFollowingSkinConditionsDoYouSufferOLS
                 .waitForPageLoad();
         Assert.assertEquals(whichOfTheFollowingSkinConditionsDoYouSufferOLS.getTitleText(), whichOfTheFollowingSkinConditionsDoYouSufferOLS.titleExpected, "Title is diff");
-        WomenHealthConditions womenHealthConditions = whichOfTheFollowingSkinConditionsDoYouSufferOLS
+        WomenHealthConditionsOLS womenHealthConditionsOLS = whichOfTheFollowingSkinConditionsDoYouSufferOLS
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new WomenHealthConditions());
+                .clickNextButton(new WomenHealthConditionsOLS());
 
 
         //--------------Q21:  Which of the following sleep-related conditions have you been diagnosed with?-----------------------
@@ -511,10 +511,10 @@ public class IBD_3839_OLS extends BaseTest {
 
 
         //--------------Q22:  Which of the following sleep-related conditions have you been diagnosed with?-----------------------
-        womenHealthConditions
+        womenHealthConditionsOLS
                 .waitForPageLoad();
-        Assert.assertEquals(womenHealthConditions.getTitleText(), womenHealthConditions.titleExpected, "Title is diff");
-        DoAnyOftheFollowingAdditionalDiagnosesOLS doAnyOftheFollowingAdditionalDiagnosesOLS = womenHealthConditions
+        Assert.assertEquals(womenHealthConditionsOLS.getTitleText(), womenHealthConditionsOLS.titleExpected, "Title is diff");
+        DoAnyOftheFollowingAdditionalDiagnosesOLS doAnyOftheFollowingAdditionalDiagnosesOLS = womenHealthConditionsOLS
                 .clickOnAnswers("Uterine fibroids")
                 .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS());
 

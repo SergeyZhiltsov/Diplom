@@ -5,7 +5,6 @@ import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.Derm.*;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
 import com.acurian.selenium.pages.OLS.GERD.CurrentlySufferOfAnyOfFollowingOLS;
-import com.acurian.selenium.pages.OLS.GERD.DoYouExperienceAnyOfFollowingSymptoms_OLS;
 import com.acurian.selenium.pages.OLS.MDD_3159.MostRecentHeartProcedurePageOLS;
 import com.acurian.selenium.pages.OLS.OAB_4867.DoYouTakeAnyMedicationsControlHypertension_OLS;
 import com.acurian.selenium.pages.OLS.PS_4656.HealthcareDiagnosedPsoriasisPageOLS;
@@ -704,14 +703,14 @@ public class DERM_4967_OLS extends BaseTest {
                 .waitForPageLoad()
                 .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
 
-        WomenHealthConditions womenHealthConditions =
+        WomenHealthConditionsOLS womenHealthConditionsOLS =
                 haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                         .waitForPageLoad()
                         .clickOnAnswers("None of the above")
                         .clickOnAnswers("Urinary or bladder problems (overactive bladder, urinary leakage or incontinence)")
-                        .clickNextButton(new WomenHealthConditions());
+                        .clickNextButton(new WomenHealthConditionsOLS());
         //Q22: QS57
-        womenHealthConditions
+        womenHealthConditionsOLS
                 .waitForPageLoad()
                 .back();
 

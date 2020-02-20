@@ -484,13 +484,13 @@ public class Insomnia_5017_OLS extends BaseTest {
                 .waitForPageLoad()
                 .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
 
-        WomenHealthConditions womenHealthConditions = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+        WomenHealthConditionsOLS womenHealthConditionsOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Urinary or bladder problems (overactive bladder, urinary leakage or incontinence)")
-                .clickNextButton(new WomenHealthConditions());
+                .clickNextButton(new WomenHealthConditionsOLS());
         //Q22: QS57
-        womenHealthConditions
+        womenHealthConditionsOLS
                 .waitForPageLoad()
                 .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
 
@@ -500,7 +500,7 @@ public class Insomnia_5017_OLS extends BaseTest {
                 .clickOnAnswers("Women's health issues (endometriosis, uterine fibroids)")
                 .clickNextButton(new WhichOfTheFollowingSkinConditionsDoYouSufferOLS());
 
-        womenHealthConditions
+        womenHealthConditionsOLS
                 .waitForPageLoad()
                 .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
 

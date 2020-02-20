@@ -12,7 +12,6 @@ import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.*;
-import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
@@ -513,9 +512,9 @@ public class Crohns_3889_OLS extends BaseTest {
         //--------------Q20:  WhichOfTheFollowingSkinConditionsDoYouSufferOLS-----------------------
         whichOfTheFollowingSkinConditionsDoYouSufferOLS
                 .waitForPageLoad();
-        WomenHealthConditions womenHealthConditions = whichOfTheFollowingSkinConditionsDoYouSufferOLS
+        WomenHealthConditionsOLS womenHealthConditionsOLS = whichOfTheFollowingSkinConditionsDoYouSufferOLS
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new WomenHealthConditions());
+                .clickNextButton(new WomenHealthConditionsOLS());
 
 
         //--------------Q21:  Which of the following sleep-related conditions have you been diagnosed with?-----------------------
@@ -530,9 +529,9 @@ public class Crohns_3889_OLS extends BaseTest {
 
 
         //--------------Q22:  Which of the following sleep-related conditions have you been diagnosed with?-----------------------
-        womenHealthConditions
+        womenHealthConditionsOLS
                 .waitForPageLoad();
-        DoAnyOftheFollowingAdditionalDiagnosesOLS doAnyOftheFollowingAdditionalDiagnosesOLS = womenHealthConditions
+        DoAnyOftheFollowingAdditionalDiagnosesOLS doAnyOftheFollowingAdditionalDiagnosesOLS = womenHealthConditionsOLS
                 .clickOnAnswers("Uterine fibroids")
                 .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS());
 

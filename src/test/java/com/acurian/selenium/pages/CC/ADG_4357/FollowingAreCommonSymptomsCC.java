@@ -9,9 +9,11 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class SymptomsRegularlyOncePerWeekPageCC extends MainPageCC {
+public class FollowingAreCommonSymptomsCC extends MainPageCC {
 
-    public final String titleExpected = "Do you experience any of the following symptoms regularly, at least once per week?\n" +
+    public final String titleExpected = "The following are common symptoms of gastroparesis, or delayed stomach emptying.\n" +
+            "\n" +
+            "In the last month, have you had any of the following symptoms?\n" +
             "Agent Note: Select all that apply";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC)
@@ -20,18 +22,18 @@ public class SymptomsRegularlyOncePerWeekPageCC extends MainPageCC {
     @FindBy(xpath = Locators.CHEKBOX_LIST_CC)
     List<WebElement> checkBoxList;
 
-    public SymptomsRegularlyOncePerWeekPageCC() {
+    public FollowingAreCommonSymptomsCC() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public SymptomsRegularlyOncePerWeekPageCC waitForPageLoad() {
+    public FollowingAreCommonSymptomsCC waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public SymptomsRegularlyOncePerWeekPageCC clickOnAnswers(String ...answerText) {
+    public FollowingAreCommonSymptomsCC clickOnAnswers(String ...answerText) {
         clickOnCheckBoxes(checkBoxList, answerText);
         return this;
     }

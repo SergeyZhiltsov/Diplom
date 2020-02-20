@@ -7,7 +7,6 @@ import com.acurian.selenium.pages.OLS.Crohns_3485.CurrentlyHaveAnyOffFollowingPa
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.CurrentlyTreatingYourDiabetesPageOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.WithType2DiabetesPageOLS;
-import com.acurian.selenium.pages.OLS.LOWT_3017.CardiovascularDiseaseThanOthersPageOLS;
 import com.acurian.selenium.pages.OLS.MDD_3159.MostRecentHeartProcedurePageOLS;
 import com.acurian.selenium.pages.OLS.OAB_4867.DoYouTakeAnyMedicationsControlHypertension_OLS;
 import com.acurian.selenium.pages.OLS.RA.WhatKindOfArthritisPageOLS;
@@ -51,7 +50,7 @@ public class GAST_4357_OLS extends BaseTest {
     @Description("GAST 4357 OLS (Allergan Diabetic Gastroparesis)")
     public void gast4357olsTest(final Site site, boolean inFlare) {
         final String phoneNumber = "AUTAMSGAST";
-        String studyName = "a study for diabetics with digestion problems";
+        String studyName = "a gastroparesis study for people with digestion problems";
         DebugPageOLS debugPageOLS = new DebugPageOLS();
         String env = System.getProperty("acurian.env", "STG");
 
@@ -84,13 +83,14 @@ public class GAST_4357_OLS extends BaseTest {
                     .clickOnAnswer("Female")
                     .clickNextButton(new DiagnosedAnyTypeOfDiabetesPageOLS());
 
-            //Q2
-            HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS =
-                    diagnosedAnyTypeOfDiabetesPageOLS
+        EverDiagnosedGastroparesisOrStomachEmptyingOLS everDiagnosedGastroparesisOrStomachEmptyingOLS = new EverDiagnosedGastroparesisOrStomachEmptyingOLS();
+
+        //Q2
+        diagnosedAnyTypeOfDiabetesPageOLS
                             .waitForPageLoad()
                             .clickOnAnswer("No") //Disqualify ("No diabetes")
-                            .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
-            haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+                            .clickNextButton(everDiagnosedGastroparesisOrStomachEmptyingOLS);
+        everDiagnosedGastroparesisOrStomachEmptyingOLS
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS7202", site.activeProtocols)
@@ -100,11 +100,11 @@ public class GAST_4357_OLS extends BaseTest {
                     .clickOnAnswer("Yes") //Continue to Q3
                     .clickNextButton(new WhatKindOfDiabetesPageOLS());
             //Q3
-            CardiovascularDiseaseThanOthersPageOLS cardiovascularDiseaseThanOthersPageOLS = whatKindOfDiabetesPageOLS
+            whatKindOfDiabetesPageOLS
                     .waitForPageLoad()
                     .clickOnAnswer("Pre-diabetes") //Disqualify ("No diagnosis of diabetes")
-                    .clickNextButton(new CardiovascularDiseaseThanOthersPageOLS());
-            cardiovascularDiseaseThanOthersPageOLS
+                    .clickNextButton(everDiagnosedGastroparesisOrStomachEmptyingOLS);
+        everDiagnosedGastroparesisOrStomachEmptyingOLS
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS7203", site.activeProtocols)
@@ -131,7 +131,7 @@ public class GAST_4357_OLS extends BaseTest {
                 withType2DiabetesPageOLS
                         .waitForPageLoad()
                         .clickOnAnswer(answer) //skip to Q7
-                        .clickNextButton(new CurrentlyTreatingYourDiabetesPageOLS())
+                        .clickNextButton(everDiagnosedGastroparesisOrStomachEmptyingOLS)
                         .waitForPageLoad()
                         .getPage(debugPageOLS)
                         .checkProtocolsContainsForQNumber("QS7204", site.activeProtocols)
@@ -150,7 +150,7 @@ public class GAST_4357_OLS extends BaseTest {
                 withType1DiabetesPageOLS
                         .waitForPageLoad()
                         .clickOnAnswer(answer) //skip to Q7
-                        .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
+                        .clickNextButton(everDiagnosedGastroparesisOrStomachEmptyingOLS)
                         //        .clickNextButton(new CurrentlyTreatingYourDiabetesPageOLS())
                         .waitForPageLoad()
                         .getPage(debugPageOLS)
@@ -169,25 +169,25 @@ public class GAST_4357_OLS extends BaseTest {
                 howLongAgoDiagnosedDiabetesPageOLS
                         .waitForPageLoad()
                         .clickOnAnswer(answer) //skip to Q7
-                        .clickNextButton(currentlyTreatingYourDiabetesPageOLS1)
+                        .clickNextButton(everDiagnosedGastroparesisOrStomachEmptyingOLS)
                         .waitForPageLoad()
                         .getPage(debugPageOLS)
                         .checkProtocolsContainsForQNumber("QS7206", site.activeProtocols)
                         .back(howLongAgoDiagnosedDiabetesPageOLS);
             }
             //Q6
-            DigestiveConditionsAffectDiabetesPageOLS digestiveConditionsAffectDiabetesPageOLS = howLongAgoDiagnosedDiabetesPageOLS
+            howLongAgoDiagnosedDiabetesPageOLS
                     .waitForPageLoad()
                     .clickOnAnswer("10 years ago or more")
-                    .clickNextButton(new DigestiveConditionsAffectDiabetesPageOLS());
+                    .clickNextButton(everDiagnosedGastroparesisOrStomachEmptyingOLS);
             //Q7
 // ---- START Q9 Ghost Question - Gastroparesis Logic check ----
-            SymptomsRegularlyOncePerWeekPageOLS symptomsRegularlyOncePerWeekPageOLS = digestiveConditionsAffectDiabetesPageOLS
+            FollowingAreCommonSymptomsOLS followingAreCommonSymptomsOLS = everDiagnosedGastroparesisOrStomachEmptyingOLS
                     .waitForPageLoad()
-                    .clickOnAnswers("None of the above") //Will DQ in Q9
-                    .clickNextButton(new SymptomsRegularlyOncePerWeekPageOLS());
+                    .clickOnAnswer("No") //Will DQ in Q9
+                    .clickNextButton(new FollowingAreCommonSymptomsOLS());
             //Q8
-            symptomsRegularlyOncePerWeekPageOLS
+            followingAreCommonSymptomsOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above") //Will DQ in Q9 //Skip to Q11
                     .clickNextButton(currentlyTreatingYourDiabetesPageOLS1)
@@ -197,53 +197,69 @@ public class GAST_4357_OLS extends BaseTest {
                     .back();
 
 
-            symptomsRegularlyOncePerWeekPageOLS
+            followingAreCommonSymptomsOLS
                     .waitForPageLoad()
                     .clickOnAnswers("Nausea or feeling sick to your stomach",
                             "Bloating")
-                    .clickNextButton(currentlyTreatingYourDiabetesPageOLS)
+                    .clickNextButton(new HowLongBeenHavingThoseSymptomsPageOLS())
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS7209", site.activeProtocols)
-                    .back(symptomsRegularlyOncePerWeekPageOLS);
+                    .back(followingAreCommonSymptomsOLS);
 
-            SymptomsFirstStartPageOLS symptomsFirstStartPageOLS = symptomsRegularlyOncePerWeekPageOLS
+            HowLongBeenHavingThoseSymptomsPageOLS howLongBeenHavingThoseSymptomsPageOLS = followingAreCommonSymptomsOLS
                     .waitForPageLoad()
                     .clickOnAnswers("Vomiting or throwing up",
                             "Bloating") //Deselect Bloating
-                    .clickNextButton(new SymptomsFirstStartPageOLS());
+                    .clickNextButton(new HowLongBeenHavingThoseSymptomsPageOLS());
 
 //Q10
-            symptomsFirstStartPageOLS
+            howLongBeenHavingThoseSymptomsPageOLS
                     .waitForPageLoad()
-                    .clickOnAnswer("2 months ago or less")
+                    .clickOnAnswer("2 months or less")
                     //.clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
                     .clickNextButton(new CurrentlyTreatingYourDiabetesPageOLS())
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
-                    .checkProtocolsContainsForQNumber("QS7210", site.activeProtocols)
+                    .checkProtocolsContainsForQNumber("QS7222", site.activeProtocols)
                     .back();
-            ThrownUpVomitedPastMonthPageOLS thrownUpVomitedPastMonthPageOLS = symptomsFirstStartPageOLS
+            ThrownUpVomitedPastMonthPageOLS thrownUpVomitedPastMonthPageOLS = howLongBeenHavingThoseSymptomsPageOLS
                     .waitForPageLoad()
-                    .clickOnAnswer("3 to 5 months ago")
+                    .clickOnAnswer("3 to 5 months")
                     .clickNextButton(new ThrownUpVomitedPastMonthPageOLS());
 
             //Q11
-            CurrentlyHaveAnyOffFollowingPageOLS currentlyHaveAnyOffFollowingPageOLS = thrownUpVomitedPastMonthPageOLS
+        KindOfTestsOrEvaluationHaveYouHadPageOLS kindOfTestsOrEvaluationHaveYouHadPageOLS = thrownUpVomitedPastMonthPageOLS
                     .waitForPageLoad()
                     .clickOnAnswer("None, I have not vomited in the past month")// not in flare
-                    .clickNextButton(new CurrentlyHaveAnyOffFollowingPageOLS());
+                    .clickNextButton(new KindOfTestsOrEvaluationHaveYouHadPageOLS());
             if (inFlare) {
-                currentlyHaveAnyOffFollowingPageOLS
+                kindOfTestsOrEvaluationHaveYouHadPageOLS
                         .waitForPageLoad()
                         .back();
                 thrownUpVomitedPastMonthPageOLS
                         .waitForPageLoad()
                         .clickOnAnswer("1 time")// in flare
-                        .clickNextButton(currentlyHaveAnyOffFollowingPageOLS);
+                        .clickNextButton(kindOfTestsOrEvaluationHaveYouHadPageOLS);
             }
 
-            //Q12
+        GastroparesisSymptomsCausedByFollowingPageOLS gastroparesisSymptomsCausedByFollowingPageOLS = kindOfTestsOrEvaluationHaveYouHadPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new GastroparesisSymptomsCausedByFollowingPageOLS());
+
+        OpioidOrNarcoticMedicationPageOLS opioidOrNarcoticMedicationPageOLS = gastroparesisSymptomsCausedByFollowingPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new OpioidOrNarcoticMedicationPageOLS());
+
+        CurrentlyHaveAnyOffFollowingPageOLS currentlyHaveAnyOffFollowingPageOLS = opioidOrNarcoticMedicationPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Yes, every day")
+                .clickNextButton(new CurrentlyHaveAnyOffFollowingPageOLS());
+
+
+        //Q15
             SurgeriesPerformedPageOLS surgeriesPerformedPageOLS = new SurgeriesPerformedPageOLS();
             List<String> disqualifyQ12 = Arrays.asList("IV nutrition or Parenteral feeding – liquid food provided through a tube into your veins",
                     "Nasogastric tube – a tube that goes in your nose and then enters your stomach to give you food or help with symptoms",
@@ -254,7 +270,7 @@ public class GAST_4357_OLS extends BaseTest {
                         .waitForPageLoad()
                         .clickOnAnswers("None of the above")
                         .clickOnAnswers(answer)
-                        .clickNextButton(surgeriesPerformedPageOLS)
+                        .clickNextButton(currentlyTreatingYourDiabetesPageOLS)
                         .waitForPageLoad()
                         .getPage(debugPageOLS)
                         .checkProtocolsContainsForQNumber("QS7212", site.activeProtocols)
@@ -274,7 +290,7 @@ public class GAST_4357_OLS extends BaseTest {
                         .waitForPageLoad()
                         .clickOnAnswers("None of the above")
                         .clickOnAnswers(answer)
-                        .clickNextButton(weightLossSurgeryPageOLS)
+                        .clickNextButton(currentlyTreatingYourDiabetesPageOLS)
                         .waitForPageLoad()
                         .getPage(debugPageOLS)
                         .checkProtocolsContainsForQNumber("QS7213", site.activeProtocols)
@@ -301,6 +317,9 @@ public class GAST_4357_OLS extends BaseTest {
                         .checkProtocolsContainsForQNumber("QS7214", site.activeProtocols)
                         .back(weightLossSurgeryPageOLS);
             }
+
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS =
+                new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS();
             weightLossSurgeryPageOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -627,13 +646,13 @@ public class GAST_4357_OLS extends BaseTest {
                     .waitForPageLoad()
                     .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
 
-            WomenHealthConditions womenHealthConditions = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+            WomenHealthConditionsOLS womenHealthConditionsOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers("Urinary or bladder problems (overactive bladder, urinary leakage or incontinence)")
-                    .clickNextButton(new WomenHealthConditions());
+                    .clickNextButton(new WomenHealthConditionsOLS());
             //Q22: QS57
-            womenHealthConditions
+            womenHealthConditionsOLS
                     .waitForPageLoad()
                     .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
 
@@ -722,7 +741,7 @@ public class GAST_4357_OLS extends BaseTest {
                     .waitForPageLoad()
                     .clickNextButton(new SiteSelectionPageOLS());
             siteSelectionPageOLS
-                    .waitForPageLoad1("a study for diabetics with digestion problems!")
+                    .waitForPageLoad1("a gastroparesis study for people with digestion problems!")
                     .getPID();
             AboutHealthPageOLS aboutHealthPageOLS = new AboutHealthPageOLS();
                 if (inFlare) {
