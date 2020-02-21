@@ -106,7 +106,7 @@ public class RadiantWTtest extends BaseTest {
                 .getPID()
                 .clickOnAnswer(siteName)
                 .clickNextButton(new QualifiedClose2PageCC())
-                .waitForPageLoad2()
+                .waitForPageLoadGMEGA()
                 .clickNextButton(new Regular_WarmTransfer1())
                 .waitForPageLoad()
                 .clickOnAnswer("No")

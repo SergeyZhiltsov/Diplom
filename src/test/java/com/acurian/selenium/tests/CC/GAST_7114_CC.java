@@ -42,7 +42,7 @@ public class GAST_7114_CC extends BaseTest {
 
         String phoneNumber = "AUTAMSGAST";
         String studyName = "a gastroparesis study for people with digestion problems";
-        Site site = Site.AUT_GAST_S07114;
+        Site site = Site.AUT_GAST_7114;
         DebugPageCC debugPageCC = new DebugPageCC();
         String env = System.getProperty("acurian.env", "STG");
         LoginPageCC loginPageCC = new LoginPageCC();

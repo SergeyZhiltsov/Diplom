@@ -54,9 +54,10 @@ public enum Site {
     AUT_GAST4357_site("AUT_GAST4357_site", "08204", "1R", false, true, "RLM_MD_01", "RLM_MD_02"),
     AUT_GAS4357ds("Synexus - 010110 : East Valley Family Physicians", "85244", "41C", false, true, "RLM_MD_01", "RLM_MD_02"),
 
-    AUT_GAST_S09279("9279 Takeda Gastroparesis - Diagnosed", "19044", "1R", true, true, "TAK_906_2002"),
+    AUT_G_9279("AUT_G_9279", "78702", "1R", true, true, "TAK_906_2002"),
 
-    AUT_GAST_S07114("7114 Neurogastrx Gastroparesis - Diabetic or Idiopathic", "19044", "1R", true, true, "NG101_201"),
+    AUT_GAST_7114("AUT_GAST_7114", "94117", "1R", true, true, "NG101_201"),
+    AUT_G_7114S("AUT_G_7114S", "90007", "41C", true, true, "NG101_201"),
 
     //4385
     AUT_END_4385("AUT_END_4385", "19901", "1R", true, true, "MVT_601_3101", "MVT_601_3102"),
