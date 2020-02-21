@@ -33,7 +33,7 @@ public @interface Locators {
     String BASIC_TITLE_WITH_RADIO_BUTTON_OLS_MOBILE = "//div[@class='question']//div[contains(@class,'visible-xs-block')]";
     String RADIO_BUTTON_LIST_OLS = "//span[contains(@class,'visible-md-inline')]/ancestor::label | //div[@class='answer-text']";
 
-    String BASIC_TITLE_WITH_CHECKBOXES_BUTTON_OLS = "//div[@class='question']//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']";
+    String BASIC_TITLE_WITH_CHECKBOXES_BUTTON_OLS = "//div[@class='question']//div[contains(@class,'visible-md-block')]/span[@class='show-in-ols']"; //21.02.2020 changed from div to span
     String BASIC_TITLE_WITH_CHECKBOXES_BUTTON_OLS_TABLET = "//div[@class='question']//div[contains(@class,'visible-sm-block')]/div[@class='show-in-ols']";
     String BASIC_TITLE_WITH_CHECKBOXES_BUTTON_OLS_MOBILE = "//div[@class='question']//div[contains(@class,'visible-xs-block')]/div[@class='show-in-ols']";
     String CHEKBOX_LIST_OLS = "//span[contains(@class,'visible-md-inline')]/span[@class='show-in-ols']";
