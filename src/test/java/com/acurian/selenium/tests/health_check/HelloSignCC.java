@@ -70,12 +70,12 @@ public class HelloSignCC extends BaseTest {
                 .clickNextButton(new GenderPageCC());
 
         WhatKindOfArthritisPageCC whatKindOfArthritisPageCC = genderPageCC
-                .waitForPageLoadByTitle(genderPageCC.titleExpected)
+                .waitForPageLoadByTitleNew()
                 .clickOnAnswer("Female")
                 .clickNextButton(new WhatKindOfArthritisPageCC());
 
         WhenYouDiagnosedWithRaGmegaPageCC whenYouDiagnosedWithRaGmegaPageCC = whatKindOfArthritisPageCC
-                .waitForPageLoad()
+                .waitForPageLoadGMEGA()
                 .clickOnAnswers("Rheumatoid arthritis, a serious medical condition caused by your immune system attacking your joints")
                 .clickNextButton(new WhenYouDiagnosedWithRaGmegaPageCC());
 
@@ -85,16 +85,16 @@ public class HelloSignCC extends BaseTest {
                 .clickNextButton(new BoneOrJointConditionsPageCC());
 
         boneOrJointConditionsPageCC
-                .waitForPageLoad()
+                .waitForPageLoadGMEGA()
                 .clickOnAnswers("Any type of arthritis")
                 .clickNextButton(identificationPageCC);
 
         SiteSelectionPageCC siteSelectionPageCC = identificationPageCC
-                .waitForPageLoad2()
+                .waitForPageLoadGMEGA()
                 .clickNextButton(new SiteSelectionPageCC());
 
         HSCrohns2PageCC hsCrohns2PageCC = siteSelectionPageCC
-                .waitForPageLoad5(studyName)
+                .waitForPageLoadGMEGA(studyName)
                 .getPID()
                 .clickOnAnswer(site.name)
                 .clickNextButton(new HSCrohns2PageCC());

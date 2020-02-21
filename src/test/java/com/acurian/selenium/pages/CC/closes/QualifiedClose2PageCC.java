@@ -19,6 +19,9 @@ public class QualifiedClose2PageCC extends MainPageCC {
     public final String titleExpected2 = "We're glad the location is convenient for you.\n" +
             "We will forward your contact information to the doctor's office that you selected so they may contact you.";
 
+    public final String titleExpectedGMEGA = "We're glad the location is convenient for you. \n" +
+            "We will forward your contact information to the doctor's office that you selected so they may contact you.";
+
     public final String titleExpectedIBD = "We’re glad the location is convenient for you.\n" +
             "\n" +
             "We will forward your contact information to the doctor’s office that you selected so they may contact you about a Ulcerative Colitis study.";
@@ -53,6 +56,12 @@ public class QualifiedClose2PageCC extends MainPageCC {
     @Step
     public QualifiedClose2PageCC waitForPageLoad2() {
         waitForPageLoadMain(titleText, titleExpected2);
+        return this;
+    }
+
+    @Step
+    public QualifiedClose2PageCC waitForPageLoadGMEGA() {
+        waitForPageLoadMain(titleText, titleExpectedGMEGA);
         return this;
     }
 

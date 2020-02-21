@@ -16,6 +16,7 @@ import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.*;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
@@ -36,13 +37,20 @@ public class GAST_7114_OLS extends BaseTest {
         super.tearDown();
     }
 
-    @Test
+    @DataProvider
+    public Object[][] sites() {
+        return new Object[][]{
+                {Site.AUT_GAST_7114},
+                {Site.AUT_G_7114S}
+        };
+    }
+
+    @Test (enabled = true, dataProvider = "sites")
     @Description("GAST 7114 OLS (Neurogastrx Gastroparesis - Diabetic or Idiopathic)")
-    public void gast7114OLSTest() {
+    public void gast7114OLSTest(Site site) {
 
         String phoneNumber = "AUTAMSGAST";
         String studyName = "a gastroparesis study for people with digestion problems";
-        Site site = Site.AUT_GAST_S07114;
         DebugPageOLS debugPageOLS = new DebugPageOLS();
         String env = System.getProperty("acurian.env", "STG");
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
@@ -714,7 +722,7 @@ public class GAST_7114_OLS extends BaseTest {
                 .waitForPageLoad1("a gastroparesis study for people with digestion problems!")
                 .getPID()
                 .clickOnFacilityName(site.name)
-                .clickNextButton(new QualifiedClose1PageOLS())
+                .clickNextButton(new QualifiedClose2PageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
                 .waitForPageLoad()

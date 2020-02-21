@@ -26,6 +26,9 @@ public class IdentificationPageCC extends MainPageCC {
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC)
     WebElement titleText;
 
+    @FindBy(xpath = Locators.BASIC_TITLE2_WITH_RADIO_BUTTON_CC)
+    WebElement titleTextGMEGA;
+
     @FindBy(xpath = "//div[@class='patient_block']/div[@class='question_text']")
     WebElement titleText2;
 
@@ -57,6 +60,12 @@ public class IdentificationPageCC extends MainPageCC {
     @Step
     public IdentificationPageCC waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
+        return this;
+    }
+
+    @Step
+    public IdentificationPageCC waitForPageLoadGMEGA() {
+        waitForPageLoadMain(titleTextGMEGA, titleExpected2);
         return this;
     }
 

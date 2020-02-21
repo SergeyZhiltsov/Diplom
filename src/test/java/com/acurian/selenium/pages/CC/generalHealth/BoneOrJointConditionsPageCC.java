@@ -19,12 +19,20 @@ public class BoneOrJointConditionsPageCC extends MainPageCC {
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC)
     WebElement titleText;
+    @FindBy(xpath = Locators.BASIC_TITLE2_WITH_RADIO_BUTTON_CC)
+    WebElement titleTextGMEGA;
     @FindBy(xpath = "//div[@class='checkboxes_container']//span[@class='show-in-cc']")
     List<WebElement> checkBoxList;
 
     @Step
     public BoneOrJointConditionsPageCC waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
+        return this;
+    }
+
+    @Step
+    public BoneOrJointConditionsPageCC waitForPageLoadGMEGA() {
+        waitForPageLoadMain(titleTextGMEGA, titleExpected);
         return this;
     }
 

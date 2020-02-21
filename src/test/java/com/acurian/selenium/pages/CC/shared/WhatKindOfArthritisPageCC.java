@@ -18,9 +18,18 @@ public class WhatKindOfArthritisPageCC extends MainPageCC {
     @FindBy(xpath = Locators.CHEKBOX_LIST_CC)
     List<WebElement> checkBoxList;
 
+    @FindBy(xpath = Locators.BASIC_TITLE2_WITH_RADIO_BUTTON_CC)
+    WebElement titleTextGMEGA;
+
     @Step
     public WhatKindOfArthritisPageCC waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
+        return this;
+    }
+
+    @Step
+    public WhatKindOfArthritisPageCC waitForPageLoadGMEGA() {
+        waitForPageLoadMain(titleTextGMEGA, titleExpected);
         return this;
     }
 

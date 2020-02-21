@@ -1,5 +1,6 @@
 package com.acurian.selenium.pages.CC.generalHealth;
 
+import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.CC.MainPageCC;
 import com.acurian.selenium.utils.PassPID;
 import org.openqa.selenium.By;
@@ -70,6 +71,9 @@ public class SiteSelectionPageCC extends MainPageCC {
     @FindBy(xpath = unstableTitleText)
     WebElement titleText;
 
+    @FindBy(xpath = Locators.BASIC_TITLE2_WITH_RADIO_BUTTON_CC)
+    WebElement titleTextGMEGA;
+
     @FindBy(xpath = "//div[@class='site_selection_container']//span[@class='site_sel_radio_facilityName']")
     List<WebElement> radioButtonsList;
 
@@ -93,6 +97,19 @@ public class SiteSelectionPageCC extends MainPageCC {
         String titleExpectedMod = String.format(titleExpected2, studyName);
         try {
             waitForPageLoadMain(titleText, titleExpectedMod);
+            return this;
+        } catch (StaleElementReferenceException e) {
+            waitForPageLoadMain(getDriver().findElement(By.xpath(unstableTitleText)), titleExpectedMod);
+            return this;
+        }
+    }
+
+    @Step
+    public SiteSelectionPageCC waitForPageLoadGMEGA(String studyName) {
+        waitForAnimation();
+        String titleExpectedMod = String.format(titleExpected5, studyName);
+        try {
+            waitForPageLoadMain(titleTextGMEGA, titleExpectedMod);
             return this;
         } catch (StaleElementReferenceException e) {
             waitForPageLoadMain(getDriver().findElement(By.xpath(unstableTitleText)), titleExpectedMod);
