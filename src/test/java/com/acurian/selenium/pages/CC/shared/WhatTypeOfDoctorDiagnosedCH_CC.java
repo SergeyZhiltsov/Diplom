@@ -17,7 +17,7 @@ public class WhatTypeOfDoctorDiagnosedCH_CC extends MainPageCC{
     public final String titleExpected = "What type of doctor diagnosed you with cluster headache?\n" +
     		"Agent Note: If multiple doctors confirmed the respondent's diagnosis, select all that apply.";
 
-    @FindBy(xpath = "//div[@class='question_text']//div[@class='show-in-cc']")
+    @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC)
     WebElement titleText;
 
     @FindBy(xpath = "//div[@class='checkboxes_container']//span[@class='show-in-cc']")

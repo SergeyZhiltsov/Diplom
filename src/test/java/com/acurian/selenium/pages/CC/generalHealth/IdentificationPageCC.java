@@ -1,5 +1,6 @@
 package com.acurian.selenium.pages.CC.generalHealth;
 
+import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.CC.MainPageCC;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -22,7 +23,7 @@ public class IdentificationPageCC extends MainPageCC {
 
     public final String titleExpectedNotQ = "Personal details (*required fields)";
 
-    @FindBy(xpath = "//div[@class='question_text']//div[@class='show-in-cc']")
+    @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC)
     WebElement titleText;
 
     @FindBy(xpath = "//div[@class='patient_block']/div[@class='question_text']")

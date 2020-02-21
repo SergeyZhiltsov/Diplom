@@ -13,7 +13,10 @@ public class DigestiveConditionsPageOLS extends MainPageOLS{
     public final String titleExpected = "Has a healthcare professional ever diagnosed you with any of the following digestive conditions?\n" +
             "Please select all that apply.";
 
-    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
+//    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
+//    WebElement titleText;
+
+    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]/span[@class='show-in-ols']")
     WebElement titleText;
 
     @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]/span[@class='show-in-ols']")

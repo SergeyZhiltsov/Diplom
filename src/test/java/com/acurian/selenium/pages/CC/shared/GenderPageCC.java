@@ -11,17 +11,17 @@ import java.util.List;
 
 public class GenderPageCC extends MainPageCC {
 
-    public final String titleExpected = "This part of the questionnaire requires that we ask about your gender. To confirm, please tell me, is your gender male or female?";
+    public final String titleExpected = "This part of the questionnaire requires that we ask about your gender.  To confirm, please tell me, is your gender male or female?";
     public final String titleExpected2 = "May I have your date of birth?";
 
 
     public final String titleExpected3 = "Please confirm your gender:";
 
 
-    @FindBy(xpath = "//div[@class='subquestion'][2]//div[@class='show-in-cc']")
+    @FindBy(xpath = "//div[@class='subquestion'][2]//span[@class='show-in-cc']")
     WebElement titleText;
 
-    @FindBy(xpath = "//div[@class='subquestion'][1]//div[@class='show-in-cc']")
+    @FindBy(xpath = "//div[@class='subquestion'][1]//span[@class='show-in-cc']")
     WebElement titleText2;
 
     @FindBy(xpath = "//div[@class='question_text']")

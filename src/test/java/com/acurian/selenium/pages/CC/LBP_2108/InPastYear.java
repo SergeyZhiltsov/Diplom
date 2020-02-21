@@ -1,5 +1,6 @@
 package com.acurian.selenium.pages.CC.LBP_2108;
 
+import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.CC.MainPageCC;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -15,7 +16,7 @@ public class InPastYear extends MainPageCC {
     public final String titleExpected = "In the past year, did you have to seek medical attention for your low back pain at any of the following locations?\n" +
             "Agent Note: Select all that apply";
 
-    @FindBy(xpath = "//div[@class='question_text']//div[@class='show-in-cc']")
+    @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC)
     WebElement titleText;
 
     @FindBy(xpath = "//div[@class='checkboxes_container']//span[@class='show-in-cc']")

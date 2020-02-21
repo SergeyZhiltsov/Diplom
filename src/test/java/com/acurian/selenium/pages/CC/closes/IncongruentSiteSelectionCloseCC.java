@@ -1,5 +1,6 @@
 package com.acurian.selenium.pages.CC.closes;
 
+import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.CC.MainPageCC;
 import com.acurian.selenium.utils.PassPID;
 
@@ -43,7 +44,7 @@ public class IncongruentSiteSelectionCloseCC extends MainPageCC {
             "you can talk to them about the study. Which would you prefer?\"";
 
 
-    @FindBy(xpath = "//div[@class='question_text']//div[@class='show-in-cc']")
+    @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC)
     WebElement titleText;
 
     @FindBy(xpath = "//div[@class='site_selection_container']//span[@class='site_sel_radio_facilityName']")

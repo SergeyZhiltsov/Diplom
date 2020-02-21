@@ -2,6 +2,8 @@ package com.acurian.selenium.pages.CC.DYS_4356C;
 
 import java.util.Arrays;
 import java.util.List;
+
+import com.acurian.selenium.constants.Locators;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -15,7 +17,7 @@ public class AreYouTakingAnyOfMedicationsCC extends MainPageCC {
             "Are you currently taking any of the following medications on a daily basis? \n" +
             "Agent Note: Select all that apply";
 
-    @FindBy(xpath = "//div[@class='question_text']//div[@class='show-in-cc']")
+    @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC)
     WebElement titleText;
 
     @FindBy(xpath = "//div[@class='checkboxes_container']//span[@class='show-in-cc']")

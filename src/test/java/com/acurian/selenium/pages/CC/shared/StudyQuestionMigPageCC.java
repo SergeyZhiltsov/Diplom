@@ -18,7 +18,7 @@ public class StudyQuestionMigPageCC<Just> extends MainPageCC {
     		"Remember, a migraine attack could last from a few hours to a few days.";
 
     
-    @FindBy(xpath = "//div[@class='question_text']//div[@class='show-in-cc']")
+    @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC)
     WebElement titleText;
     
     @FindBy(xpath = "(//div[@class='subquestion']//div[@class='show-in-cc'])[1]")

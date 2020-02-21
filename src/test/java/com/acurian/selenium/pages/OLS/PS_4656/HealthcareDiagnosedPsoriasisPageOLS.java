@@ -10,7 +10,7 @@ import java.util.List;
 
 public class HealthcareDiagnosedPsoriasisPageOLS extends MainPageOLS {
 
-    public final String titleExpected = "Has a healthcare professional ever diagnosed you with psoriasis? \n" +
+    public final String titleExpected = "Has a healthcare professional ever diagnosed you with psoriasis?\n" +
             "Psoriasis is an autoimmune condition that causes too many skin cells. Your skin forms raised, red plaques covered with silvery scales, which may be painful or itch.";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)

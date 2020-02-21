@@ -2,6 +2,8 @@ package com.acurian.selenium.pages.CC.AUTI_3973;
 
 import java.util.Arrays;
 import java.util.List;
+
+import com.acurian.selenium.constants.Locators;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -15,7 +17,7 @@ public class InThePast3MonthsHaveYouExperienced_CC extends MainPageCC{
     		"In the past three months, have you experienced any of the following?\n" +
     		"Agent Note: Select all that apply";
 
-    @FindBy(xpath = "//div[@class='question_text']//div[@class='show-in-cc']")
+    @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC)
     WebElement titleText;
 
     @FindBy(xpath = "//div[@class='checkboxes_container']//span[@class='show-in-cc']")

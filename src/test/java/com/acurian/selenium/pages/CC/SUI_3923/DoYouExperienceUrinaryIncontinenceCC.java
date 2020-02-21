@@ -17,7 +17,7 @@ public class DoYouExperienceUrinaryIncontinenceCC extends MainPageCC{
     public final String titleExpected = "Do you experience either of the following types of urinary leakage, sometimes called urinary incontinence?\n"+
             "Agent Note: Select all that apply";
 
-    @FindBy(xpath = "//div[@class='question_text']//div[@class='show-in-cc']")
+    @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC)
     WebElement titleText;
 
     @FindBy(xpath = "//div[@class='checkboxes_container']//span[@class='show-in-cc']")

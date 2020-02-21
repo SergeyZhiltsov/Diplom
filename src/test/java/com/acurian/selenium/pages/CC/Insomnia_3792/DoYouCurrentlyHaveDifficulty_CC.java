@@ -15,7 +15,7 @@ public class DoYouCurrentlyHaveDifficulty_CC extends MainPageCC{
     public final String titleExpected = "Do you currently have difficulty with any of the following?\n"+
             "Agent Note: Select all that apply";
 
-    @FindBy(xpath = "//div[@class='question_text']//div[@class='show-in-cc']")
+    @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC)
     WebElement titleText;
 
     @FindBy(xpath = "//div[@class='checkboxes_container']//span[@class='show-in-cc']")

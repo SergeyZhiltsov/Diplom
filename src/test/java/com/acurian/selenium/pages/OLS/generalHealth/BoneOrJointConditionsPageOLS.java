@@ -19,7 +19,10 @@ public class BoneOrJointConditionsPageOLS extends MainPageOLS {
             "Which of the following specific conditions have you been diagnosed with?\n" +
             "Please select all that apply.";
 
-    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
+//    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
+//    WebElement titleText1;
+
+    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]/span[@class='show-in-ols']")
     WebElement titleText1;
 
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-sm-block')]/div[@class='show-in-ols']")

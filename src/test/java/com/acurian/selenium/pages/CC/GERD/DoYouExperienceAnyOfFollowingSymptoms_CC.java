@@ -2,6 +2,8 @@ package com.acurian.selenium.pages.CC.GERD;
 
 import java.util.Arrays;
 import java.util.List;
+
+import com.acurian.selenium.constants.Locators;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -14,7 +16,7 @@ public class DoYouExperienceAnyOfFollowingSymptoms_CC extends MainPageCC{
     public final String titleExpected = "Do you experience any of the following conditions or symptoms?\n" +
     		"Agent Note: Select all that appy";
 
-    @FindBy(xpath = "//div[@class='question_text']//div[@class='show-in-cc']")
+    @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC)
     WebElement titleText;
 
     @FindBy(xpath = "//div[@class='checkboxes_container']//span[@class='show-in-cc']")
