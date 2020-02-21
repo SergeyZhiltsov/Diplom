@@ -11,7 +11,7 @@ public class ApproximateHeightPageCC extends MainPageCC{
 
     public final String titleExpected = "May I have your approximate height?";
 
-    @FindBy(xpath = "//div[@class='subquestion'][1]//div[@class='show-in-cc']")
+    @FindBy(xpath = "//div[@class='subquestion'][1]//span[@class='show-in-cc']")
     WebElement titleText;
 
     @FindBy(xpath = "//select[@class='select-height-feet']")

@@ -692,7 +692,7 @@ public class GAST_7114_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .setAll("3", "3", "37")
-                .clickNextButton(new CurrentlyParticipatingInStudyOLS())
+                .clickNextButton(currentlyTreatingYourDiabetesPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)

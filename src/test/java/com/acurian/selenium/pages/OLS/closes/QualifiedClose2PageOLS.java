@@ -8,11 +8,11 @@ import ru.yandex.qatools.allure.annotations.Step;
 public class QualifiedClose2PageOLS extends MainPageOLS {
 
     //Qualified Close 2: No Pediatric Study Switch - 35
-    public final String titleExpected = "We're glad the location is convenient for you.\n" +
+    public final String titleExpected = "We're glad the location is convenient for you. \n" +
             "\n" +
             "We will forward your contact information to the doctor's office that you selected so they can contact you.";
 
-    public final String titleExpectedGMEGA = "We're glad the location is convenient for you.\n" +
+    public final String titleExpectedGMEGA = "We're glad the location is convenient for you. \n" +
             "We will forward your contact information to the doctor's office that you selected so they may contact you.";
 
     public final String titleExpected_SB = "We're glad the location is convenient for you. We will forward your contact information to the doctor's office that you selected so they may contact you.\n" +

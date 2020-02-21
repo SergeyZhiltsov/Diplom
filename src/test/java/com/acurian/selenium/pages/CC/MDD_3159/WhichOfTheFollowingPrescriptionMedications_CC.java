@@ -1,5 +1,6 @@
 package com.acurian.selenium.pages.CC.MDD_3159;
 
+import com.acurian.selenium.constants.Locators;
 import org.openqa.selenium.WebElement;
 
 import org.openqa.selenium.support.FindBy;
@@ -21,7 +22,7 @@ public class WhichOfTheFollowingPrescriptionMedications_CC extends MainPageCC{
     		"Select all that apply\n" +
     		"If respondent has never taken any, select \"None of the above\"";
 
-    @FindBy(xpath = "//div[@class='question_text']//div[@class='show-in-cc']")
+    @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC)
     WebElement titleText;
 
     @FindBy(xpath = "//div[@class='checkboxes_container']//span[@class='show-in-cc']")

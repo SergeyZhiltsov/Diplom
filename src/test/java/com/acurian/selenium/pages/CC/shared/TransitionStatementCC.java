@@ -1,5 +1,6 @@
 package com.acurian.selenium.pages.CC.shared;
 
+import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.CC.MainPageCC;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -81,7 +82,7 @@ public class TransitionStatementCC extends MainPageCC {
             "Agent Note: If \"no\" to all items in a question, select \"None of the above\"";
 
 
-    @FindBy(xpath = "//div[@class='question_text']")
+    @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_CC)
     WebElement titleText;
 
     @Step

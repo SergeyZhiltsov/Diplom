@@ -342,7 +342,7 @@ public class DateOfBirthPageCC extends MainPageCC {
     @FindBy(xpath = Locators.RADIO_BUTTON_LIST_CC)
     List<WebElement> radioButtonsList;
 
-    @FindBy(xpath = "//div[@class='subquestion']//span[@class='sub_question_text']/div[@class='show-in-cc']")
+    @FindBy(xpath = "//div[@class='subquestion']//span[@class='sub_question_text']/span[@class='show-in-cc']")
     List<WebElement> titlesText;
 
     @Step

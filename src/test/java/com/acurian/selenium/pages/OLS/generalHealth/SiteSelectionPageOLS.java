@@ -34,7 +34,10 @@ public class SiteSelectionPageOLS extends MainPageOLS{
     public final String titleExpected2 = "Good news! You have been matched with the doctor(s) below for %s!\n" +
             "Please select a doctor and click the \"Next\" button.";
 
-    @FindBy(xpath = "//div[contains(@class,'question')]//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
+//    @FindBy(xpath = "//div[contains(@class,'question')]//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
+//    WebElement titleText1;
+
+    @FindBy(xpath = "//div[contains(@class,'question')]//div[contains(@class,'visible-md-block')]/span[@class='show-in-ols']")
     WebElement titleText1;
 
     @FindBy(xpath = "//div[contains(@class,'question')]//div[contains(@class,'visible-sm-block')]/div[@class='show-in-ols']")

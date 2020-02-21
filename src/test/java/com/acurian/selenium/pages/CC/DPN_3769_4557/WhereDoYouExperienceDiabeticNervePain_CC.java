@@ -1,5 +1,6 @@
 package com.acurian.selenium.pages.CC.DPN_3769_4557;
 
+import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.CC.MainPageCC;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -14,7 +15,7 @@ public class WhereDoYouExperienceDiabeticNervePain_CC extends MainPageCC {
     public final String titleExpectedDPN = "Where do you experience pain?\n" +
             "Agent Note: Select all that apply";
 
-    @FindBy(xpath = "//div[@class='question_text']//div[@class='show-in-cc']")
+    @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC)
     WebElement titleText;
     @FindBy(xpath = "//div[@class='checkboxes_container']//span[@class='show-in-cc']")
     List<WebElement> checkBoxList;

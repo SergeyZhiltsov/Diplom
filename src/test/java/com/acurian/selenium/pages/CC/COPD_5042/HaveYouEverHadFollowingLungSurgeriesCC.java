@@ -18,7 +18,7 @@ public class HaveYouEverHadFollowingLungSurgeriesCC extends MainPageCC{
     public final String titleExpected = "Have you ever had any of the following lung surgeries?\n" +
     		"Agent Note: Select all that apply";
     		
-    @FindBy(xpath = "//div[@class='question_text']//div[@class='show-in-cc']")
+    @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC)
     WebElement titleText;
 
     @FindBy(xpath = "//div[@class='checkboxes_container']//span[@class='show-in-cc']")

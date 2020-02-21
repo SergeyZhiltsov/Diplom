@@ -22,7 +22,7 @@ public class WhichFollowingAntidepressantMedicationsYouTriedCC extends MainPageC
     		"Select all that apply\n" +
     		"If respondent has not tried any before for current episode, select \"None of the above\"";
 
-    @FindBy(xpath = "//div[@class='question_text']//div[@class='show-in-cc']")
+    @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC)
     WebElement titleText;
 
     @FindBy(xpath = "//div[@class='checkboxes_container']//span[@class='show-in-cc']")

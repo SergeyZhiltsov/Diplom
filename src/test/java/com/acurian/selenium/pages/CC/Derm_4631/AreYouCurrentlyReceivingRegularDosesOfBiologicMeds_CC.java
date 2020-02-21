@@ -26,7 +26,7 @@ public class AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC extends MainP
     		"·  Please read the full list of medications to the respondent\n" +
     		"·  Select all that apply";
     		
-    @FindBy(xpath = "//div[@class='question_text']//div[@class='show-in-cc']")
+    @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC)
     WebElement titleText;
 
     @FindBy(xpath = "//div[@class='checkboxes_container']//span[@class='show-in-cc']")

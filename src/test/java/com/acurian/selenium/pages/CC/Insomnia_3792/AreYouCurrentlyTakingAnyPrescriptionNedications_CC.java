@@ -15,7 +15,7 @@ public class AreYouCurrentlyTakingAnyPrescriptionNedications_CC extends MainPage
     public final String titleExpected = "Are you currently taking any of the following prescription medications to help you sleep?\n"+
             "Agent Note: Select all that apply";
 
-    @FindBy(xpath = "//div[@class='question_text']//div[@class='show-in-cc']")
+    @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC)
     WebElement titleText;
 
     @FindBy(xpath = "//div[@class='checkboxes_container']//span[@class='show-in-cc']")

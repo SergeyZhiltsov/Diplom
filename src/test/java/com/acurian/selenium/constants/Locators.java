@@ -13,14 +13,14 @@ public @interface Locators {
     String BASIC_DROPDOWN_LIST = "//div[contains(@class,'dropdown')]/select";
 
     //Base CC
-    String BASIC_TITLE_WITH_RADIO_BUTTON_CC = "//div[@class='question_text']";
+    String BASIC_TITLE_WITH_RADIO_BUTTON_CC = "//div[@class='question_text']"; //norm
     String RADIO_BUTTON_LIST_CC = "//div[@class='radio_btns_container']//label";
     String BASIC_DROPDOWN_LIST_CC = "//div[@class='ddlist_container']//select";
 
     String BASIC_TITLE2_WITH_RADIO_BUTTON_CC = "//div[@class='question_text']//div[@class='show-in-cc']";
     String RADIO_BUTTON_LIST2_CC = "";
 
-    String BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC = "//div[@class='question_text']//div[@class='show-in-cc']";
+    String BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC = "//div[@class='question_text']//span[@class='show-in-cc']";
     String CHEKBOX_LIST_CC = "//div[@class='checkboxes_container']//span[@class='show-in-cc']";
 
     String BASIC_TITLE2_WITH_CHECKBOXES_BUTTON_CC = "//div[@class='question_text']";
