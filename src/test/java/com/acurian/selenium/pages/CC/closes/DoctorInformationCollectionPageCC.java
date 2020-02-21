@@ -30,7 +30,7 @@ public class DoctorInformationCollectionPageCC extends MainPageCC{
             "Please be assured that your records will be kept confidential and only shared with the study doctor's office, except as required by law.";
 
 
-    @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC)
+    @FindBy(xpath = Locators.BASIC_TITLE2_WITH_RADIO_BUTTON_CC)
     WebElement titleText;
 
     public DoctorInformationCollectionPageCC() {

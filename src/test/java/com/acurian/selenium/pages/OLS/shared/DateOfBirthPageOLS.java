@@ -411,7 +411,7 @@ public class DateOfBirthPageOLS extends MainPageOLS {
 //            "No-cost study-related care from doctors\n" +
 //            "No-cost study medication";
 //    //visible-xs-block xs - Extra small devices Phones (<768px)
-    @FindBy(xpath = "//div[contains(@class,'subquestion')]//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
+    @FindBy(xpath = "//div[contains(@class,'subquestion')]//div[contains(@class,'visible-md-block')]/span[@class='show-in-ols']")
     WebElement questionText1;
 
     @FindBy(xpath = "//div[contains(@class,'subquestion')]//div[contains(@class,'visible-sm-block')]/div[@class='show-in-ols']")
@@ -469,7 +469,7 @@ public class DateOfBirthPageOLS extends MainPageOLS {
     @FindBy(xpath = Locators.RADIO_BUTTON_LIST_OLS)
     List<WebElement> radioButtonsList;
 
-    @FindBy(xpath = "//div[contains(@class,'subquestion')][2]//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
+    @FindBy(xpath = "//div[contains(@class,'subquestion')][2]//div[contains(@class,'visible-md-block')]/span[@class='show-in-ols']")
     WebElement titleTextAH;
 
     @FindBy(xpath = "//div[contains(@class,'subquestion')][1]//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")

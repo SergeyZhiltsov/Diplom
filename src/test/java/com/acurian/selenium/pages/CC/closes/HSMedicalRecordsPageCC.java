@@ -23,7 +23,7 @@ public class HSMedicalRecordsPageCC extends MainPageCC{
             "Please verify the information and provide your e-signature as soon as you receive this email.\n" +
             "Agent Note: Do not wait for patient to retrieve email. Move to next screen.";
 
-    @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC)
+    @FindBy(xpath = Locators.BASIC_TITLE2_WITH_RADIO_BUTTON_CC)
     WebElement titleText;
 
     public HSMedicalRecordsPageCC() {

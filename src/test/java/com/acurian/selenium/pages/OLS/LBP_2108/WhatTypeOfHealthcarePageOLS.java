@@ -1,5 +1,6 @@
 package com.acurian.selenium.pages.OLS.LBP_2108;
 
+import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS;
 import org.openqa.selenium.WebElement;
@@ -14,7 +15,7 @@ public class WhatTypeOfHealthcarePageOLS extends MainPageOLS{
     public final String titleExpected = "What type of healthcare professional(s) have you seen for your low back pain?\n" +
             "Please select all that apply.";
 
-    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
+    @FindBy(xpath = Locators.BASIC_TITLE2_WITH_RADIO_BUTTON_OLS)
     WebElement titleText;
 
     @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]/span[@class='show-in-ols']")

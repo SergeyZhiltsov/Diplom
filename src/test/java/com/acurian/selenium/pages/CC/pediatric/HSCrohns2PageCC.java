@@ -47,7 +47,7 @@ public class HSCrohns2PageCC extends MainPageCC{
     public final String titleExpectedGmegaQA = "Your medical records related to your ";
 
 
-    @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC)
+    @FindBy(xpath = Locators.BASIC_TITLE2_WITH_RADIO_BUTTON_CC)
     WebElement titleText;
     
     @FindBy(xpath = "//div[@class='text_email_container']/input[@type='text']")

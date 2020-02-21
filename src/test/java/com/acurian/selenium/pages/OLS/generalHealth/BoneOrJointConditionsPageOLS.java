@@ -22,7 +22,7 @@ public class BoneOrJointConditionsPageOLS extends MainPageOLS {
 //    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
 //    WebElement titleText1;
 
-    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]/span[@class='show-in-ols']")
+    @FindBy(xpath = Locators.BASIC_TITLE2_WITH_RADIO_BUTTON_OLS)
     WebElement titleText1;
 
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-sm-block')]/div[@class='show-in-ols']")

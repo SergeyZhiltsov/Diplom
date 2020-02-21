@@ -40,7 +40,7 @@ public @interface Locators {
     String CHEKBOX_LIST_OLS_TABLET = "//span[contains(@class,'visible-sm-inline')]/span[@class='show-in-ols']";
     String CHEKBOX_LIST_OLS_MOBILE = "//span[contains(@class,'visible-xs-inline')]/span[@class='show-in-ols']";
 
-    String BASIC_TITLE2_WITH_RADIO_BUTTON_OLS = "//div[@class='question']//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']";
+    String BASIC_TITLE2_WITH_RADIO_BUTTON_OLS = "//div[@class='question']//div[contains(@class,'visible-md-block')]/span[@class='show-in-ols']";
     String RADIO_BUTTON_LIST2_OLS = "";
 
     String BASIC_TITLE2_WITH_CHECKBOXES_BUTTON_OLS = "//div[@class='question']//div[contains(@class,'visible-md-block')]";

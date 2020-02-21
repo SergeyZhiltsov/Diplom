@@ -1,5 +1,6 @@
 package com.acurian.selenium.pages.OLS.shared;
 
+import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -16,7 +17,7 @@ public class StatinMedicationsOnPageOLS extends MainPageOLS{
             "Think about statin medications you may be taking now as well as those you may have taken in the past.\n" +
             "Please select all that apply.";
 
-    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
+    @FindBy(xpath = Locators.BASIC_TITLE2_WITH_RADIO_BUTTON_OLS)
     WebElement titleText;
 
     @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]/span[@class='show-in-ols']")

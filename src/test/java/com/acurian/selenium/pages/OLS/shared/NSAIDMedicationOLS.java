@@ -14,7 +14,7 @@ public class NSAIDMedicationOLS extends MainPageOLS {
             "Have you ever taken any of the following medications for your pain?\n" +
 			"Please select all that apply.";
 
-    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
+    @FindBy(xpath = Locators.BASIC_TITLE2_WITH_RADIO_BUTTON_OLS)
     WebElement titleText;
 
     @FindBy(xpath = Locators.CHEKBOX_LIST_OLS)

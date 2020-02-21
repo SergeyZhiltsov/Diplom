@@ -24,7 +24,7 @@ public class MIGAttackFrequencyOLS extends MainPageOLS {
     		"Remember, a migraine attack could last from a few hours to a few days.";*/
 
     
-    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
+    @FindBy(xpath = Locators.BASIC_TITLE2_WITH_RADIO_BUTTON_OLS)
     WebElement titleText;
     
 /*    @FindBy(xpath = "(//div[@class='subquestion']//div[@class='show-in-cc'])[1]")

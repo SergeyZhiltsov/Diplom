@@ -12,7 +12,7 @@ public class FollowingJointSymptoms  extends MainPageOLS {
 	public final String titleExpected = "Are you currently experiencing any of the following joint symptoms associated with your RA?\n" +
             "Please select all that apply.";
 
-    @FindBy(xpath = "//div[@class='ng-scope']//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
+    @FindBy(xpath = "//div[@class='ng-scope']//div[contains(@class,'visible-md-block')]/span[@class='show-in-ols']")
     WebElement titleText;
 
     @FindBy(xpath = "//label[contains(@for,'QS508_')]/span[@class='copy']")

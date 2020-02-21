@@ -1,5 +1,6 @@
 package com.acurian.selenium.pages.OLS.LMG_4686;
 
+import com.acurian.selenium.constants.Locators;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -13,7 +14,7 @@ public class HowManyDaysYouSufferOLS extends MainPageOLS {
 			   "If you have a migraine that starts on a Monday and ends on a Tuesday, that counts as two separate days.";
 	
 	    
-	    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
+	    @FindBy(xpath = Locators.BASIC_TITLE2_WITH_RADIO_BUTTON_OLS)
 	    WebElement titleText;	    
 
 	    @FindBy(xpath = "//select[@id='QS6005']")
