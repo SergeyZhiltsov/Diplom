@@ -11,7 +11,7 @@ import java.util.List;
 
 public class GastroparesisSymptomsCausedByFollowingPageOLS extends MainPageOLS {
 
-    public final String titleExpected = "Has a healthcare professional told you that your gastroparesis symptoms are caused by any of the following?\n" +
+    public final String titleExpected = "Has a healthcare professional told you that your gastroparesis symptoms are caused by any of the following? \n" +
             "Please select all that apply.";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_OLS)

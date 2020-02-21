@@ -14,7 +14,7 @@ public class WhatTestsDidYouHave extends MainPageOLS {
 	public final String titleExpected = "What tests did you have that led to your doctor diagnosing your Rheumatoid Arthritis?\n" +
             "Please select all that apply.";
 
-    @FindBy(xpath = "//div[@class='ng-scope']//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
+    @FindBy(xpath = "//div[@class='ng-scope']//div[contains(@class,'visible-md-block')]/span[@class='show-in-ols']")
     WebElement titleText;
 
     @FindBy(xpath = "//label[contains(@for,'QS506_')]/span[@class='copy']")

@@ -25,10 +25,10 @@ public class QualifiedCloseGastroPageCC extends MainPageCC{
     @FindBy(xpath = "//div[@class='question_text']")
     WebElement titleText;
 
-    @FindBy(xpath = "//div[@class='subquestion'][1]/span[@class='sub_question_text']/div[@class='show-in-cc']")
+    @FindBy(xpath = "//div[@class='subquestion'][1]/span[@class='sub_question_text']/span[@class='show-in-cc']")
     WebElement titleText2;
 
-    @FindBy(xpath = "//div[@class='subquestion'][2]/span[@class='sub_question_text']/div[@class='show-in-cc']")
+    @FindBy(xpath = "//div[@class='subquestion'][2]/span[@class='sub_question_text']/span[@class='show-in-cc']")
     WebElement titleText3;
 
     public QualifiedCloseGastroPageCC() {

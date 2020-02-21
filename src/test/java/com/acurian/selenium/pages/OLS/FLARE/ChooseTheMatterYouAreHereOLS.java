@@ -13,7 +13,7 @@ import java.util.List;
 public class ChooseTheMatterYouAreHereOLS extends MainPageOLS {
 
     public final String titleExpected = "Choose the matter you are here, Your opinion is free. Q with options A or B, DQ with option C !!!";
-    public final String titleExpectedQA = "Choose the matter you are here, Your opinion is free: Q if options A or B, DQ with option C !!!";
+    public final String titleExpectedQA = "Choose the matter you are here, Your opinion is free:  Q if options A or B, DQ with option C !!!";
 
     @FindBy(xpath = "//div[contains(@class, 'question_text')]//div[contains(@class, 'visible-md-block')]")
     WebElement titleText;

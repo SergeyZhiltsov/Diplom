@@ -15,7 +15,7 @@ public class WhatKindOfArthritisPageOLS extends MainPageOLS {
     public final String titleExpected = "What kind of arthritis do you have?\n" +
             "Please select all that apply.";
 
-    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]/span[@class='show-in-ols']")
+    @FindBy(xpath = Locators.BASIC_TITLE2_WITH_RADIO_BUTTON_OLS)
     WebElement titleText1;
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_OLS_TABLET)
     WebElement titleText2;

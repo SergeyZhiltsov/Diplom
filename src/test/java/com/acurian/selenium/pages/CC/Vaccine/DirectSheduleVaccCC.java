@@ -26,7 +26,9 @@ public class DirectSheduleVaccCC extends MainPageCC {
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_CC)
     WebElement titleText;
-    @FindBy(xpath = "//*[@id='command']/div[1]/div[1]/a")
+//    @FindBy(xpath = "//*[@id='command']/div[1]/div[1]/a")
+//    WebElement sheduleBtn;
+    @FindBy(xpath = "//span[@class='show-in-cc']/a")
     WebElement sheduleBtn;
 
     @Step

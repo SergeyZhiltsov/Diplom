@@ -1,5 +1,6 @@
 package com.acurian.selenium.pages.OLS.LMG_4686;
 
+import com.acurian.selenium.constants.Locators;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -11,7 +12,7 @@ public class HowManyDaysYouTakeMedicationsOLS extends MainPageOLS {
 	   public final String titleExpected ="In the past month, how many days did you take any of the medications you just indicated in the previous question?";
 	
 	    
-	    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
+	    @FindBy(xpath = Locators.BASIC_TITLE2_WITH_RADIO_BUTTON_OLS)
 	    WebElement titleText;	    
 
 	    @FindBy(xpath = "//select[@ng-model='currentquestion.dropdownAnswer']")

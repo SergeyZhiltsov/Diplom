@@ -10,7 +10,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 public class TakenXeljanz extends MainPageOLS {
 	public final String titleExpected = "Have you ever taken Xeljanz?";
 
-    @FindBy(xpath = "//div[@class='ng-scope']//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
+    @FindBy(xpath = "//div[@class='ng-scope']//div[contains(@class,'visible-md-block')]/span[@class='show-in-ols']")
     WebElement titleText;
 
     @FindBy(xpath = "//label[contains(@class,'col-xs-11')]/span[@class='copy']")
