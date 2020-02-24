@@ -65,7 +65,7 @@ public class ChatFillTest extends BaseTest {
                 .clickNextButton(new ApproximateHeightPageOLS());
 
         HealthcareDiagnosedConditionsPageOLS healthcareDiagnosedConditionsPageOLS = approximateHeightPageOLS
-                .waitForPageLoad()
+                .waitForPageLoadGMEGA()
                 .setAll("5", "5", "160")
                 .clickNextButton(new HealthcareDiagnosedConditionsPageOLS());
 

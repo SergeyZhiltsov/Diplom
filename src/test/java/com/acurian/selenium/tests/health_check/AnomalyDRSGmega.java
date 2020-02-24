@@ -49,7 +49,7 @@ public class AnomalyDRSGmega extends BaseTest
                 .clickNextButton(new ApproximateHeightWeightPageOLS());
 
             EverDiagnosedFollowingNeurologicalConditionsPageOLS everDiagnosedFollowingNeurologicalConditionsPageOLS = approximateHeightWeightPageOLS
-                .waitForPageLoad()
+                .waitForPageLoadGMEGA()
                 .setAllFields("5", "5", "160")
                 .clickNextButton(new EverDiagnosedFollowingNeurologicalConditionsPageOLS());
 

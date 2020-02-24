@@ -19,7 +19,7 @@ public class OlsLegacyDateOfBirthPage extends MainPageCC {
             "No-cost study-related care from doctors\n" +
             "No-cost study medication";
 
-    @FindBy(xpath = "//div[@class='question_text']//div[@class='show-in-ols']")
+    @FindBy(xpath = "//div[@class='question_text']//span[@class='show-in-ols']")
     WebElement titleText;
 
     @FindBy(xpath = Locators.CHEKBOX_LIST_CC)

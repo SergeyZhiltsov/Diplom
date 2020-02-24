@@ -10,10 +10,7 @@ import com.acurian.selenium.pages.OLS.LOWT_3017.CardiovascularDiseaseThanOthersP
 import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.cv_study.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.ApproximateHeightPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.HaveYouEverExperiencedHeartRelatedMedicalCondOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.IdentificationPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.SiteSelectionPageOLS;
+import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.WhatKindOfDiabetesPageOLS;
 import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
@@ -83,7 +80,7 @@ public class CV_4450_OLS extends BaseTest {
                 .typeZipCode(site.zipCode)
                 .clickNextButton(new GenderPageOLS());
 
-        CardiovascularDiseaseThanOthersPageOLS cardiovascularDiseaseThanOthersPageOLS = genderPageOLS
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = genderPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Female")
                 .setDate("01082005") //Disqualify (“Age < 18 years old”) if <18
@@ -94,16 +91,16 @@ public class CV_4450_OLS extends BaseTest {
                 .back(genderPageOLS)
                 .waitForPageLoad()
                 .setDate("01081976")//"Disqualify (“Age”) if < 45
-                .clickNextButton(new CardiovascularDiseaseThanOthersPageOLS());
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
 
-        cardiovascularDiseaseThanOthersPageOLS
+        CardiovascularDiseaseThanOthersPageOLS cardiovascularDiseaseThanOthersPageOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
                 .back(genderPageOLS)
                 .waitForPageLoad()
                 .setDate("01081970")
-                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS);
+                .clickNextButton(new CardiovascularDiseaseThanOthersPageOLS());
 
         //Q3: QS	Certain conditions are more closely linked to cardiovascular disease than others.
         HaveYouEverExperiencedHeartRelatedMedicalCondOLS haveYouEverExperiencedHeartRelatedMedicalCondOLS = cardiovascularDiseaseThanOthersPageOLS

@@ -56,7 +56,7 @@ public class VerityScoreTest extends BaseTest {
                 .clickNextButton(new WhatKindOfArthritisPageOLS());
 
         WhenYouDiagnosedWithRaGmegaPageOLS whenYouDiagnosedWithRaGmegaPageOLS = whatKindOfArthritisPageOLS
-                .waitForPageLoad()
+                .waitForPageLoadGMEGA()
                 .clickOnAnswers("Rheumatoid arthritis, a serious medical condition caused by your immune system attacking your joints")
                 .clickNextButton(new WhenYouDiagnosedWithRaGmegaPageOLS());
 
@@ -66,20 +66,20 @@ public class VerityScoreTest extends BaseTest {
                 .clickNextButton(new BoneOrJointConditionsPageOLS());
 
         boneOrJointConditionsPageOLS
-                .waitForPageLoad()
+                .waitForPageLoadGMEGA()
                 .clickOnAnswers("Any type of arthritis")
                 .clickNextButton(identificationPageOLS);
 
         identificationPageOLS
-                .waitForPageLoadGMEGA()
+                .waitForPageLoadGMEGA2()
                 .clickNextButton(new SiteSelectionPageOLS())
-                .waitForPageLoad(studyName)
+                .waitForPageLoadGMEGA(studyName)
                 .getPID()
                 .clickOnFacilityName(site.name);
         HSGeneralPageOLS hsGeneralPageOLS = identificationPageOLS
                 .clickNextButton(new HSGeneralPageOLS());
         hsGeneralPageOLS
-                .waitForPageLoadByTitle(hsGeneralPageOLS.titleRaExpectedQA);
+                .waitForPageLoadByTitleGMEGA(hsGeneralPageOLS.titleRaExpectedQA);
 
         Assert.assertEquals(debugPageOLS.getVerityText(), "Verity Score: 0", "verity score is diff");
     }
