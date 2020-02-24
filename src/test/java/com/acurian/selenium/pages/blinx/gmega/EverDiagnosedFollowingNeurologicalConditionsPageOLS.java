@@ -9,10 +9,12 @@ import java.util.List;
 
 public class EverDiagnosedFollowingNeurologicalConditionsPageOLS extends MainPageBlinx {
 
-    private final String titleExpected = "Has a healthcare professional ever diagnosed you with any of the following neurological conditions?\n" +
+    private final String titleExpected = "Has a healthcare professional ever diagnosed you with any of the following neurological conditions?N\n" +
             "Please select all that apply.";
 
-    @FindBy(xpath = "(//div[@class='question-text']/div)[1]")
+//    @FindBy(xpath = "(//div[@class='question-text']/div)[1]")
+//    WebElement titleText;
+    @FindBy(xpath = "(//div[@class='question-text']/span)[1]")
     WebElement titleText;
     @FindBy(xpath = "//div[@class='multiple-choice-answers-container']/button")
     List<WebElement> multipleChoiceButtonsList;

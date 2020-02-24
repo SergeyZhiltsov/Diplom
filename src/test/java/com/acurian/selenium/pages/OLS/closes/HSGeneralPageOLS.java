@@ -66,6 +66,9 @@ public class HSGeneralPageOLS extends MainPageOLS{
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_OLS)
     WebElement titleText;
 
+    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
+    WebElement titleTextGMEGA;
+
     @FindBy(xpath = "//input[@type='email']")
     WebElement emailBox;
 
@@ -97,6 +100,12 @@ public class HSGeneralPageOLS extends MainPageOLS{
     @Step
     public HSGeneralPageOLS waitForPageLoadByTitle(String titleExpected) {
         waitForPageLoadMain(titleText, titleExpected);
+        return this;
+    }
+
+    @Step
+    public HSGeneralPageOLS waitForPageLoadByTitleGMEGA(String titleExpected) {
+        waitForPageLoadMain(titleTextGMEGA, titleExpected);
         return this;
     }
 

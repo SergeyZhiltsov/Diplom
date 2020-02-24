@@ -13,6 +13,10 @@ public class ApproximateHeightWeightPageOLS extends MainPageBlinx {
 
     @FindBy(xpath = "(//div[@class='question-text']/div)[2]")
     WebElement titleTextPart1;
+    @FindBy(xpath = "(//div[@class='question-text']/span)[1]")
+    WebElement titleTextPartGMEGA1;
+    @FindBy(xpath = "(//div[@class='question-text']/span)[2]")
+    WebElement titleTextPartGMEGA2;
     @FindBy(xpath = "(//div[@class='question-text']/div)[3]")
     WebElement titleTextPart2;
     @FindBy(xpath = "//div[@data-question-basis='HEIGHT']//label[contains(., 'feet')]/following-sibling::input")
@@ -27,6 +31,14 @@ public class ApproximateHeightWeightPageOLS extends MainPageBlinx {
         waitForAnimation();
         waitForPageLoadMain(titleTextPart1, titleExpectedPart1);
         waitForPageLoadMain(titleTextPart2, titleExpectedPart2);
+        return this;
+    }
+
+    @Step
+    public ApproximateHeightWeightPageOLS waitForPageLoadGMEGA() {
+        waitForAnimation();
+        waitForPageLoadMain(titleTextPartGMEGA1, titleExpectedPart1);
+        waitForPageLoadMain(titleTextPartGMEGA2, titleExpectedPart2);
         return this;
     }
 

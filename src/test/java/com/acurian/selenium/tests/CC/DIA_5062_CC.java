@@ -616,7 +616,7 @@ public class DIA_5062_CC extends BaseTest {
                 .waitForPageLoadSyn()
                 .assertVariablesNew("Acurian", "Trial", "09/09/1960", "US",
                         "Dover, DE", site.zipCode, "qa.acurian@gmail.com", "999-999-9999",
-                        " 12345a ", " "+site.name, "ALLSYHNAH002 - Allergan NASH")
+                        "12345a", site.name, "ALLSYHNAH002 - Allergan NASH")
                 .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()

@@ -42,6 +42,9 @@ public class IdentificationPageOLS extends MainPageOLS{
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-xs-block')]/div[@class='show-in-ols']")
     WebElement titleText3;
 
+    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
+    WebElement titleTextGMEGA;
+
     WebElement titleText;
 
     @FindBy(xpath = "//input[@id='QI3']")
@@ -96,6 +99,12 @@ public class IdentificationPageOLS extends MainPageOLS{
     @Step
     public IdentificationPageOLS waitForPageLoadGMEGA() {
         waitForPageLoadMain(titleText, titleExpected_GMEGA);
+        return this;
+    }
+
+    @Step
+    public IdentificationPageOLS waitForPageLoadGMEGA2() {
+        waitForPageLoadMain(titleTextGMEGA, titleExpected_GMEGA);
         return this;
     }
 

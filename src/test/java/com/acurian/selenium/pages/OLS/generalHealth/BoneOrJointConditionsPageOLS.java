@@ -31,6 +31,9 @@ public class BoneOrJointConditionsPageOLS extends MainPageOLS {
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-xs-block')]/div[@class='show-in-ols']")
     WebElement titleText3;
 
+    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
+    WebElement titleTextGMEGA;
+
     WebElement titleText;
 
     @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]/span[@class='show-in-ols']")
@@ -65,6 +68,12 @@ public class BoneOrJointConditionsPageOLS extends MainPageOLS {
     @Step
     public BoneOrJointConditionsPageOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
+        return this;
+    }
+
+    @Step
+    public BoneOrJointConditionsPageOLS waitForPageLoadGMEGA() {
+        waitForPageLoadMain(titleTextGMEGA, titleExpected);
         return this;
     }
 

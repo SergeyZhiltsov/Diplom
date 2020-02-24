@@ -77,7 +77,7 @@ public class WLPvalidation extends BaseTest {
         } else if (title.equals("Screener")) { //BLINX
             DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
             dateOfBirthPageOLS.logTextToAllureAndConsole("BLINX");
-            dateOfBirthPageOLS.waitForPageLoad("a study", "1,000");
+            dateOfBirthPageOLS.waitForPageLoadGMEGA("a study", "1,000");
         } else {
             Assert.assertTrue(false, "Nor OLS-WS, nor BLINX");
         }
