@@ -333,7 +333,7 @@ public class PS_4656_OLS extends BaseTest {
                 .pidFromDbToLog(env)
                 .childPidFromDbToLog(env, "4656")
                 .assertGeneratedFul(env, site)
-                .dispoShouldMatch(site.dispo, site.dispo)
-                .assertRmgOrderPriority(env, "4656");
+                .dispoShouldMatch(site.dispo, site.dispo);
+ //               .assertRmgOrderPriority(env, "4656");
     }
 }

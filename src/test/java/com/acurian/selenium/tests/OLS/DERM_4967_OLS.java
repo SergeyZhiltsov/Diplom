@@ -856,7 +856,7 @@ public class DERM_4967_OLS extends BaseTest {
                 .pidFromDbToLog(env)
                 .childPidFromDbToLog(env)
                 .dispoShouldMatch(site.dispo, site.dispo)
-                .assertGeneratedFul(env, site)
-                .assertRmgOrderPriority(env, "4967");
+                .assertGeneratedFul(env, site);
+     //           .assertRmgOrderPriority(env, "4967")
     }
 }

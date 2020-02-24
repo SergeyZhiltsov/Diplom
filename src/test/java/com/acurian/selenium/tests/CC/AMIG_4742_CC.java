@@ -509,7 +509,7 @@ public class AMIG_4742_CC extends BaseTest {
                 .pidFromDbToLog(env)
                 .childPidFromDbToLog(env)
                 .assertGeneratedFul(env, site)
-                .assertRmgOrderPriority(env, "4742")
+      //          .assertRmgOrderPriority(env, "4742")
                 .dispoShouldMatch(site.dispo, site.dispo);
     }
 }
