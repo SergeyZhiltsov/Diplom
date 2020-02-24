@@ -38,7 +38,7 @@ public class OA_4831_CC_A_S extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "sites")
+    @Test(dataProvider = "sites", enabled = false)
     public void oa4831ccTest(Site site) {
         String phoneNumber = "AUTAMS1OA1";
         String studyName = "osteoarthritis";

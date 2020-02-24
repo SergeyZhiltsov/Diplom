@@ -592,7 +592,7 @@ public class Crohns_3889_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickNextButton(new SiteSelectionPageOLS());
 
-        siteSelectionPageOLS
+        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = siteSelectionPageOLS
                 .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnFacilityName(site.name)
@@ -601,11 +601,11 @@ public class Crohns_3889_OLS extends BaseTest {
                 .clickOnAnswer("Continue with medical records")
                 .clickNextButton(new DoctorInformationCollectionPageOLS())
                 .waitForPageLoadIBD("Crohn's Disease")
-                .clickNextButton(new HS1PageOLS())
-                .waitForPageLoad()
-                .clickOkInPopUp()
-                .waitForPageLoad()
-                .setSignature();
+                .clickNextButton(new ThankYouCloseSimplePageOLS());
+//                .waitForPageLoad()
+//                .clickOkInPopUp()
+//                .waitForPageLoad()
+//                .setSignature()
 
 /*                //------------HUMAN API Interface in HelloSign----------------
                 .getPage(new HumanAPIOLS())
@@ -626,7 +626,7 @@ public class Crohns_3889_OLS extends BaseTest {
                 .clickNextButton(new ThankYouCloseSimplePageOLS())*/
 
 
-        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = new ThankYouCloseSimplePageOLS();
+//        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = new ThankYouCloseSimplePageOLS();
         QualifiedFlareMonitoringAppClosePageOLS qualifiedFlareMonitoringAppClosePageOLS = new QualifiedFlareMonitoringAppClosePageOLS();
         if(inFlare) {
             qualifiedFlareMonitoringAppClosePageOLS

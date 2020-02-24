@@ -799,30 +799,29 @@ public class DERM_7157_OLS extends BaseTest {
 //                        "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageOLS());
 
-        MedicalRecordsOptionPageOLS medicalRecordsOptionPageOLS = siteSelectionPageOLS
+        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = siteSelectionPageOLS
                 .waitForPageLoad("an eczema (atopic dermatitis)")
                 .getPID()
                 .clickOnFacilityName(site.name)
-                .clickNextButton(new MedicalRecordsOptionPageOLS());
+//                .clickNextButton(new MedicalRecordsOptionPageOLS());
+//
+//        DoctorInformationCollectionPageOLS doctorInformationCollectionPageOLS = medicalRecordsOptionPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswer("Continue with medical records")
+//                .clickNextButton(new DoctorInformationCollectionPageOLS());
+//
+//        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = doctorInformationCollectionPageOLS
+//                .waitForPageLoad()
+                .clickNextButton(new ThankYouCloseSimplePageOLS());
 
-        DoctorInformationCollectionPageOLS doctorInformationCollectionPageOLS = medicalRecordsOptionPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Continue with medical records")
-                .clickNextButton(new DoctorInformationCollectionPageOLS());
 
-        HS1PageOLS hs1PageOLS = doctorInformationCollectionPageOLS
-                .waitForPageLoad()
-                .clickNextButton(new HS1PageOLS());
-
-
-        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = new ThankYouCloseSimplePageOLS();
         AboutHealthPageOLS aboutHealthPageOLS = new AboutHealthPageOLS();
-                hs1PageOLS
-                .waitForPageLoad()
-                .clickOkInPopUp()
-                .setSignature()
-                .waitToClickNext()
-                .clickNextButton(thankYouCloseSimplePageOLS);
+//                hs1PageOLS
+//                .waitForPageLoad()
+//                .clickOkInPopUp()
+//                .setSignature()
+//                .waitToClickNext()
+//                .clickNextButton(thankYouCloseSimplePageOLS);
                 try {
                     thankYouCloseSimplePageOLS
                             .waitForPageLoad()

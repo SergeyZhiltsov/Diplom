@@ -367,12 +367,12 @@ public class CV_5034_CC_A_S extends BaseTest {
         HSMedicalRecordsPageCC hSMedicalRecordsPageCC = new HSMedicalRecordsPageCC();
         switch (site) {
             case AUT_CV_5034A_site: //1R
-                doctorInformationCollectionPageCC
+                ThankYouCloseSimplePageCC thankYouCloseSimplePageCC = doctorInformationCollectionPageCC
                         .waitForPageLoad()
-                        .clickNextButton(hSMedicalRecordsPageCC);
-
-                ThankYouCloseSimplePageCC thankYouCloseSimplePageCC = hSMedicalRecordsPageCC
-                        .waitForPageLoad()
+//                        .clickNextButton(hSMedicalRecordsPageCC);
+//
+//                ThankYouCloseSimplePageCC thankYouCloseSimplePageCC = hSMedicalRecordsPageCC
+//                        .waitForPageLoad()
                         .clickNextButton(new ThankYouCloseSimplePageCC());
 
                 thankYouCloseSimplePageCC

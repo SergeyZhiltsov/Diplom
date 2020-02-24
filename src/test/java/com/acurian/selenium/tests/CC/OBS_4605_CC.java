@@ -14,7 +14,7 @@ import ru.yandex.qatools.allure.annotations.Description;
 
 public class OBS_4605_CC extends BaseTest {
 
-    @Test()
+    @Test(enabled = false)
     @Description("OBS_4605_CC")
     public void obs4605cc() {
         Site site = Site.AUT_OBS_4605_Site;

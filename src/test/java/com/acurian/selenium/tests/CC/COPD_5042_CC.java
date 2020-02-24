@@ -362,8 +362,8 @@ public class COPD_5042_CC extends BaseTest {
                         .clickOnAnswer("Continue with medical records")
                         .clickNextButton(new DoctorInformationCollectionPageCC())
                         .waitForPageLoad()
-                        .clickNextButton(new HSMedicalRecordsPageCC())
-                        .waitForPageLoad()
+//                        .clickNextButton(new HSMedicalRecordsPageCC())
+//                        .waitForPageLoad()
                         .clickNextButton(new SynexusRadiantDirectScheduleCC())
                         .waitForPageLoadSyn()
                         .assertVariables("Acurian", "Trial", "09/09/1941", "US",

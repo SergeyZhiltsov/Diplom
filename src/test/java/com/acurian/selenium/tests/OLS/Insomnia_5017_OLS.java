@@ -45,7 +45,7 @@ public class Insomnia_5017_OLS extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "sites", enabled = true)
+    @Test(dataProvider = "sites", enabled = false)
     @Description("Insomnia 5017 OLS (Idorsia Insomnia)")
     public void insomnia5017olsTest(Site site) {
         String phoneNumber = "AUTAMS1INS";

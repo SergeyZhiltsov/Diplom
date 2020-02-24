@@ -66,16 +66,16 @@ public class DERM_4967_OLS extends BaseTest {
                 .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
                 .back();
 
-        IdentificationPageOLS identificationPageOLS = dateOfBirthPageOLS
+        GenderPageOLS genderPageOLS = dateOfBirthPageOLS
                 .clickOnAnswer("Yes")
                 .waitForPageLoad("an eczema (atopic dermatitis) study", "600")
-                .clickNextButton(new IdentificationPageOLS());
-
-        GenderPageOLS genderPageOLS = identificationPageOLS
-                .waitForPageLoadNotQ()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
-                        "9999999999", site.zipCode)
                 .clickNextButton(new GenderPageOLS());
+
+//        GenderPageOLS genderPageOLS = identificationPageOLS
+//                .waitForPageLoadNotQ()
+//                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
+//                        "9999999999", site.zipCode)
+//                .clickNextButton(new GenderPageOLS());
 
         HasHealthcareProfessionalEverDiagnosedYouWithEczema_OLS hasHealthcareProfessionalEverDiagnosedYouWithEczema_ols =
                 genderPageOLS
@@ -810,41 +810,41 @@ public class DERM_4967_OLS extends BaseTest {
                 .setAll("3", "2", "33")
                 //----------PII (IdentificationPageOLS) Page--------------------
                 .clickNextButton(new CurrentlyParticipatingInStudyOLS());
-        currentlyParticipatingInStudyOLS
+        IdentificationPageOLS identificationPageOLS = currentlyParticipatingInStudyOLS
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new RequirePassDrugTestOLS())
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(identificationPageOLS);
+                .clickNextButton(new IdentificationPageOLS());
 
         SiteSelectionPageOLS siteSelectionPageOLS = identificationPageOLS
                 .waitForPageLoad()
-//                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
-//                        "9999999999", site.zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
+                        "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageOLS());
 
-        MedicalRecordsOptionPageOLS medicalRecordsOptionPageOLS = siteSelectionPageOLS
+        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = siteSelectionPageOLS
                 .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnFacilityName(site.name)
-                .clickNextButton(new MedicalRecordsOptionPageOLS());
+//                .clickNextButton(new MedicalRecordsOptionPageOLS());
+//
+//        DoctorInformationCollectionPageOLS doctorInformationCollectionPageOLS = medicalRecordsOptionPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswer("Continue with medical records")
+//                .clickNextButton(new DoctorInformationCollectionPageOLS());
+//
+//        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = doctorInformationCollectionPageOLS
+//                .waitForPageLoad()
+                .clickNextButton(new ThankYouCloseSimplePageOLS());
 
-        DoctorInformationCollectionPageOLS doctorInformationCollectionPageOLS = medicalRecordsOptionPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Continue with medical records")
-                .clickNextButton(new DoctorInformationCollectionPageOLS());
-
-        HS1PageOLS hs1PageOLS = doctorInformationCollectionPageOLS
-                .waitForPageLoad()
-                .clickNextButton(new HS1PageOLS());
 
 
-        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = new ThankYouCloseSimplePageOLS();
-        hs1PageOLS
-                .waitForPageLoad()
-                .clickOkInPopUp()
-                .setSignature();
+//        hs1PageOLS
+//                .waitForPageLoad()
+//                .clickOkInPopUp()
+//                .setSignature();
 //                .waitToClickNext()
 //                .getPage(new ThankYouCloseSimplePageOLS());
         AboutHealthPageOLS aboutHealthPageOLS = thankYouCloseSimplePageOLS

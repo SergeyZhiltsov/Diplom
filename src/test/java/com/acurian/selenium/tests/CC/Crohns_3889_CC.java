@@ -610,8 +610,9 @@ public class Crohns_3889_CC extends BaseTest {
                 .clickOnAnswer("Continue with medical records")
                 .clickNextButton(new DoctorInformationCollectionPageCC())
                 .waitForPageLoadIBD("Crohn's Disease")
-                .clickNextButton(new HSMedicalRecordsPageCC())
-                .waitForPageLoad();
+                .clickNextButton(new HSMedicalRecordsPageCC());
+//                .clickNextButton(new HSMedicalRecordsPageCC())
+//                .waitForPageLoad();
         if(flareStatus.equals("Not in Flare")) {
             hsMedicalRecordsPageCC
                     .clickNextButton(new QualifiedFlareMonitoringAppClosePageCC())

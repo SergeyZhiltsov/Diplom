@@ -29,7 +29,7 @@ public class PS_4656_OLS extends BaseTest {
         };
     }
 
-    @Test(enabled = true, dataProvider = "sites")
+    @Test(enabled = false, dataProvider = "sites")
     @Description("PS 4556 OLS")
     public void ps4556olsTest(Site site) {
         final String phoneNumber = "AUTAMS1PSO";

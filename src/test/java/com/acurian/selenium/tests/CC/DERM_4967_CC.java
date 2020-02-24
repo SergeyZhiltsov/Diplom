@@ -842,20 +842,20 @@ public class DERM_4967_CC extends BaseTest {
 //                        "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageCC());
 
-        MedicalRecordsOptionPageCC medicalRecordsOptionPageCC = selectionPageCC
+        selectionPageCC
                 .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnAnswer(site.name)
-                .clickNextButton(new MedicalRecordsOptionPageCC());
-
-
-        medicalRecordsOptionPageCC
-                .waitForPageLoad()
-                .clickOnAnswer("Continue with medical records")
-                .clickNextButton(new DoctorInformationCollectionPageCC())
-                .waitForPageLoad()
-                .clickNextButton(new HSMedicalRecordsPageCC())
-                .waitForPageLoad()
+//                .clickNextButton(new MedicalRecordsOptionPageCC());
+//
+//
+//        medicalRecordsOptionPageCC
+//                .waitForPageLoad()
+//                .clickOnAnswer("Continue with medical records")
+//                .clickNextButton(new DoctorInformationCollectionPageCC())
+//                .waitForPageLoad()
+//                .clickNextButton(new HSMedicalRecordsPageCC())
+//                .waitForPageLoad()
                 .clickNextButton(new ThankYouCloseSimplePageCC())
                 .waitForPageLoad3()
                 .clickNextButton(new SelectActionPageCC())

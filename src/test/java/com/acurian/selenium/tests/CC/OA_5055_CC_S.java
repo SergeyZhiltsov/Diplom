@@ -22,7 +22,7 @@ import java.util.List;
 
 public class OA_5055_CC_S extends BaseTest {
 
-    @Test
+    @Test(enabled = false)
     @Description("OA_5055_CC_S")
     public void oa_5055_cc_s() {
         Site site = Site.AUT_OA_5055_S;

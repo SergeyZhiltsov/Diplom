@@ -432,27 +432,26 @@ public class CV_5034_OLS_A_S extends BaseTest {
                 break;
         }*/
 
-        MedicalRecordsOptionPageOLS medicalRecordsOptionPageOLS = siteSelectionPageOLS
+        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = siteSelectionPageOLS
                 .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnFacilityName(site.name)
-                .clickNextButton(new MedicalRecordsOptionPageOLS());
+//                .clickNextButton(new MedicalRecordsOptionPageOLS());
+//
+//        DoctorInformationCollectionPageOLS doctorInformationCollectionPageOLS = medicalRecordsOptionPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswer("Continue with medical records")
+//                .clickNextButton(new DoctorInformationCollectionPageOLS());
+//
+//        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = doctorInformationCollectionPageOLS
+//                .waitForPageLoad()
+                .clickNextButton(new ThankYouCloseSimplePageOLS());
 
-        DoctorInformationCollectionPageOLS doctorInformationCollectionPageOLS = medicalRecordsOptionPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Continue with medical records")
-                .clickNextButton(new DoctorInformationCollectionPageOLS());
+//        hS1PageOLS
+//                .waitForPageLoad()
+//                .clickOkInPopUp()
+//                .setSignature();
 
-        HS1PageOLS hS1PageOLS = doctorInformationCollectionPageOLS
-                .waitForPageLoad()
-                .clickNextButton(new HS1PageOLS());
-
-        hS1PageOLS
-                .waitForPageLoad()
-                .clickOkInPopUp()
-                .setSignature();
-
-        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS =new ThankYouCloseSimplePageOLS();
         thankYouCloseSimplePageOLS
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())

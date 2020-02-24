@@ -19,7 +19,7 @@ import java.util.List;
 
 public class PSO_4656_CC extends BaseTest {
 
-    @Test(dataProvider = "sites", dataProviderClass = PS_4656_OLS.class)
+    @Test(dataProvider = "sites", dataProviderClass = PS_4656_OLS.class, enabled = false)
     @Description("PSO_4656_CC")
     public void psor4656cc(Site site) {
         final String phoneNumber = "AUTAMS1PSO";

@@ -73,13 +73,13 @@ public class Crohns_4818_OLS extends BaseTest {
                 .back();
         dateOfBirthPageOLS
                 .waitForPageLoad("a Crohn's study", "700");
-        PersonalDetails personalDetails = dateOfBirthPageOLS
+        GenderPageOLS genderPageOLS = dateOfBirthPageOLS
                 .clickOnAnswer("Yes")
-                .clickNextButton(new PersonalDetails());
-
-        GenderPageOLS genderPageOLS = personalDetails
-                .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
+//                .clickNextButton(new PersonalDetails());
+//
+//        GenderPageOLS genderPageOLS = personalDetails
+//                .waitForPageLoad()
+//                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
                 .clickNextButton(new GenderPageOLS());
 
         genderPageOLS
@@ -561,17 +561,17 @@ public class Crohns_4818_OLS extends BaseTest {
                 .clickOnAnswer("Continue with medical records")
                 .clickNextButton(new DoctorInformationCollectionPageOLS());
 
-        HS1PageOLS hs1PageOLS = doctorInformationCollectionPageOLS
+        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = doctorInformationCollectionPageOLS
                 .waitForPageLoadIBD("Crohn's Disease")
-                .clickNextButton(new HS1PageOLS());
+                .clickNextButton(new ThankYouCloseSimplePageOLS());
 
 
-        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = new ThankYouCloseSimplePageOLS();
-        hs1PageOLS
-                .waitForPageLoad()
-                .clickOkInPopUp()
-                .waitForPageLoad()
-                .setSignature();
+//        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = new ThankYouCloseSimplePageOLS();
+//        hs1PageOLS
+//                .waitForPageLoad()
+//                .clickOkInPopUp()
+//                .waitForPageLoad()
+//                .setSignature();
         AboutHealthPageOLS aboutHealthPageOLS = thankYouCloseSimplePageOLS
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS());

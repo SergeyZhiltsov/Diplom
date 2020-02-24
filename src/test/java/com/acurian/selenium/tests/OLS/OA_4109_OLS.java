@@ -16,7 +16,7 @@ import java.util.List;
 
 public class OA_4109_OLS extends BaseTest {
 
-    @Test()
+    @Test(enabled = false)
     public void OA_4109_OLS_Script() {
         Site site = Site.AUT_OA_4109_Site;
         String phoneNumber = "AUTAMS1OA1";
