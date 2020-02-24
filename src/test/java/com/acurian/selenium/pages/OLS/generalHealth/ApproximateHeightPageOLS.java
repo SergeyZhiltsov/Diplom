@@ -10,8 +10,8 @@ public class ApproximateHeightPageOLS extends MainPageOLS{
 
     public final String titleExpected = "What is your approximate height?";
 
-//    @FindBy(xpath = "//div[contains(@class,'subquestion')][1]//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
-//    WebElement titleText;
+    @FindBy(xpath = "//div[contains(@class,'subquestion')][1]//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
+    WebElement titleTextGMEGA;
 
     @FindBy(xpath = "//div[contains(@class,'subquestion')][1]//div[contains(@class,'visible-md-block')]/span[@class='show-in-ols']")
     WebElement titleText;
@@ -32,6 +32,12 @@ public class ApproximateHeightPageOLS extends MainPageOLS{
     @Step
     public ApproximateHeightPageOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
+        return this;
+    }
+
+    @Step
+    public ApproximateHeightPageOLS waitForPageLoadGMEGA() {
+        waitForPageLoadMain(titleTextGMEGA, titleExpected);
         return this;
     }
 

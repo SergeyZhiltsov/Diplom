@@ -40,6 +40,9 @@ public class SiteSelectionPageOLS extends MainPageOLS{
     @FindBy(xpath = "//div[contains(@class,'question')]//div[contains(@class,'visible-md-block')]/span[@class='show-in-ols']")
     WebElement titleText1;
 
+    @FindBy(xpath = "//div[contains(@class,'question')]//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
+    WebElement titleTextGMEGA;
+
     @FindBy(xpath = "//div[contains(@class,'question')]//div[contains(@class,'visible-sm-block')]/div[@class='show-in-ols']")
     WebElement titleText2;
 
@@ -85,6 +88,20 @@ public class SiteSelectionPageOLS extends MainPageOLS{
             return this;
         } catch (StaleElementReferenceException e) {
             waitForPageLoadMain(titleText, titleExpectedMod);
+            return this;
+        }
+    }
+
+    @Step
+    public SiteSelectionPageOLS waitForPageLoadGMEGA(String studyName) {
+        waitForAnimation();
+        attachPageScreenshot();
+        String titleExpectedMod = String.format(titleExpected, studyName);
+        try {
+            waitForPageLoadMain(titleTextGMEGA, titleExpectedMod);
+            return this;
+        } catch (StaleElementReferenceException e) {
+            waitForPageLoadMain(titleTextGMEGA, titleExpectedMod);
             return this;
         }
     }

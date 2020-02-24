@@ -21,7 +21,7 @@ public class HelloSignOls extends BaseTest {
     public void helloSignOlsTest() {
         Site site = Site.AUT_GRA1_Site;
         String phoneNumber = "AUTGMEGA03"; //Indication RA
-        String studyName = "a rheumatoid arthritis (RA) study!";
+        String studyName = "a rheumatoid arthritis (RA)";
 
         String env = System.getProperty("acurian.env", "QA");
 
@@ -48,7 +48,7 @@ public class HelloSignOls extends BaseTest {
                 .clickNextButton(new WhatKindOfArthritisPageOLS()); //BoneOrJointConditionsPageOLS
 
         WhenYouDiagnosedWithRaGmegaPageOLS whenYouDiagnosedWithRaGmegaPageOLS = whatKindOfArthritisPageOLS
-                .waitForPageLoad()
+                .waitForPageLoadGMEGA()
                 .clickOnAnswers("Rheumatoid arthritis, a serious medical condition caused by your immune system attacking your joints")
                 .clickNextButton(new WhenYouDiagnosedWithRaGmegaPageOLS());
 
@@ -58,24 +58,24 @@ public class HelloSignOls extends BaseTest {
                 .clickNextButton(new BoneOrJointConditionsPageOLS());
 
         boneOrJointConditionsPageOLS
-                .waitForPageLoad()
+                .waitForPageLoadGMEGA()
                 .clickOnAnswers("Any type of arthritis")
                 .clickNextButton(identificationPageOLS);
 
         HSGeneralPageOLS hsGeneralPageOLS = identificationPageOLS
-                .waitForPageLoadGMEGA()
+                .waitForPageLoadGMEGA2()
                 .clickNextButton(new SiteSelectionPageOLS())
-                .waitForPageLoad1(studyName)
+                .waitForPageLoadGMEGA(studyName)
                 .getPID()
                 .clickOnFacilityName(site.name)
                 .clickNextButton(new HSGeneralPageOLS());
 
         DoctorInformationCollectionPageOLS doctorInformationCollectionPageOLS = hsGeneralPageOLS
-                .waitForPageLoadByTitle(hsGeneralPageOLS.titleRaExpectedQA)
+                .waitForPageLoadByTitleGMEGA(hsGeneralPageOLS.titleRaExpectedQA)
                 .clickNextButton(new DoctorInformationCollectionPageOLS());
 
         HS1PageOLS hs1PageOLS = doctorInformationCollectionPageOLS
-                .waitForPageLoadByTitle(env.equals("QA") ? doctorInformationCollectionPageOLS.titleGmegaQAExpected :
+                .waitForPageLoadByTitleGMEGA(env.equals("QA") ? doctorInformationCollectionPageOLS.titleGmegaQAExpected :
                         doctorInformationCollectionPageOLS.titleGmegaExpected)
                 .clickNextButton(new HS1PageOLS());
 

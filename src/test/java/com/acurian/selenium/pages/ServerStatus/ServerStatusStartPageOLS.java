@@ -21,7 +21,8 @@ public class ServerStatusStartPageOLS extends MainPageOLS {
     @FindBy(xpath = "//div[@class='subquestion']//span[@class='question_wrap']//span[@class='sub_question_text'] | (//div[@class='show-in-ols'])[5]")
     WebElement titleTextServer;
 
-    @FindBy(xpath = "//*[@id='command']/div[2]/span[1]/div[2] | //*[@id='question_view']/div[1]/div/form/div/div[1]/div[2]/div[1]/question/div/div/div/div/div/div/h4/div[1]/div[2]") //TODO need to fix
+//    @FindBy(xpath = "//*[@id='command']/div[2]/span[1]/div[2] | //*[@id='question_view']/div[1]/div/form/div/div[1]/div[2]/div[1]/question/div/div/div/div/div/div/h4/div[1]/div[2]") //TODO need to fix
+    @FindBy(xpath = "//div[@class='subquestion'][1] | (//div[@class='visible-md-block visible-lg-block ng-scope'])[1]")
     WebElement titleText;
 
     @FindBy(xpath = "(//*[@class = 'label_radio'])[1] | (//*[@id='question_view']//*[contains(@class, 'choice')])[2]")

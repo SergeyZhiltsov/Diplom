@@ -48,7 +48,7 @@ public class CV_5034_OLS_A_S extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "5034Sites")
+    @Test(dataProvider = "5034Sites", enabled = false)
     @Description("CV_5034_OLS_A_S")
     public void cv5034olsTest(Site site) {
         final String phoneNumber = "AUTAMS1CV1";

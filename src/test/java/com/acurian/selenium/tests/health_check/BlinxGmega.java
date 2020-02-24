@@ -55,7 +55,7 @@ public class BlinxGmega extends BaseTest {
 
         EverDiagnosedFollowingNeurologicalConditionsPageOLS everDiagnosedFollowingNeurologicalConditionsPageOLS =
                 approximateHeightWeightPageOLS
-                        .waitForPageLoad()
+                        .waitForPageLoadGMEGA()
                         .setAllFields("5", "5", "160")
                         .clickNextButton(new EverDiagnosedFollowingNeurologicalConditionsPageOLS());
         everDiagnosedFollowingNeurologicalConditionsPageOLS

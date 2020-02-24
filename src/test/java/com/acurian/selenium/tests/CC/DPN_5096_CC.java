@@ -640,7 +640,7 @@ public class DPN_5096_CC extends BaseTest {
                         .waitForPageLoadSyn()
                         .assertVariablesNew("Acurian", "Trial", "04/05/2001", "US",
                                 "Blue Bell, PA", site.zipCode, "qa.acurian@gmail.com",
-                                "999-999-9999", " aut5096cc ", " "+site.name,
+                                "999-999-9999", "aut5096cc", site.name,
                                 "APTXXXDPN008 - Aptinyx DPN (diabetic neuropathy)")
                         .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                         .clickNextButton(selectActionPageCC)

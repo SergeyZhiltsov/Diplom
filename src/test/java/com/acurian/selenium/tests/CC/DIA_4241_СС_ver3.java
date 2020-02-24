@@ -2,6 +2,7 @@ package com.acurian.selenium.tests.CC;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.CC.ADG_4357.EverDiagnosedGastroparesisOrStomachEmptyingCC;
 import com.acurian.selenium.pages.CC.ADG_4357.WithType1DiabetesPageCC;
 import com.acurian.selenium.pages.CC.DIA_4241.*;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.*;
@@ -33,8 +34,8 @@ public class DIA_4241_СС_ver3 extends BaseTest{
         String protocol2 = "EFC14829";
         String protocol3 = "EFC14893";
         String protocol4 = "EFC15337";
-        String AKC = "ISIS 703802_CS2";
-        String[] protocols = {protocol2, protocol3, protocol4, AKC};
+//        String AKC = "ISIS 703802_CS2";
+        String[] protocols = {protocol2, protocol3, protocol4};
         String studyName = "a study for diabetics";
         
         String env = System.getProperty("acurian.env", "STG");
@@ -103,21 +104,20 @@ public class DIA_4241_СС_ver3 extends BaseTest{
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new WhatKindOfDiabetesPageCC());
-        WithType1DiabetesPageCC withType1DiabetesPageCC = new WithType1DiabetesPageCC();
-        CardiovascularDiseaseThanOthersPageCC сardiovascularDiseaseThanOthersPageCC = whatKindOfDiabetesPageCC
+        WithType1DiabetesPageCC withType1DiabetesPageCC = whatKindOfDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Type 1 diabetes (sometimes called Juvenile diabetes)")
-                .clickNextButton(new  CardiovascularDiseaseThanOthersPageCC());
+                .clickNextButton(new  WithType1DiabetesPageCC());
         withType1DiabetesPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS4603", protocols)
                 .back();
-        whatKindOfDiabetesPageCC
+        EverDiagnosedGastroparesisOrStomachEmptyingCC everDiagnosedGastroparesisOrStomachEmptyingCC = whatKindOfDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Pre-diabetes")
-                .clickNextButton(сardiovascularDiseaseThanOthersPageCC);
-        сardiovascularDiseaseThanOthersPageCC
+                .clickNextButton(new EverDiagnosedGastroparesisOrStomachEmptyingCC());
+        everDiagnosedGastroparesisOrStomachEmptyingCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS4603", protocols)
@@ -136,8 +136,8 @@ public class DIA_4241_СС_ver3 extends BaseTest{
                 .clickNextButton(new CurrentlyTreatingYourDiabetesPageCC());
         currentlyTreatingYourDiabetesPageCC
                 .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS4603", AKC)
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS4603", AKC)
                 .back();
         WithType2DiabetesPageCC withType2DiabetesPageCC = whatKindOfDiabetesPageCC
                 .waitForPageLoad()
@@ -150,7 +150,7 @@ public class DIA_4241_СС_ver3 extends BaseTest{
                 .clickNextButton(currentlyTreatingYourDiabetesPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS4604", protocol2,protocol3, protocol4)
+                .checkProtocolsContainsForQNumber("QS4604", protocol2, protocol3)
                 .back();
         withType2DiabetesPageCC
                 .waitForPageLoad()
@@ -158,7 +158,7 @@ public class DIA_4241_СС_ver3 extends BaseTest{
                 .clickNextButton(currentlyTreatingYourDiabetesPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS4604", protocol2,protocol3, protocol4)
+                .checkProtocolsContainsForQNumber("QS4604", protocol2, protocol3)
                 .back();
         withType2DiabetesPageCC
                 .waitForPageLoad()
@@ -169,62 +169,62 @@ public class DIA_4241_СС_ver3 extends BaseTest{
         currentlyTreatingYourDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("Diet and exercise")
-                .clickNextButton(cardiovascularDiseaseThanOthersPageCC);
-        cardiovascularDiseaseThanOthersPageCC
+                .clickNextButton(everDiagnosedGastroparesisOrStomachEmptyingCC);
+        everDiagnosedGastroparesisOrStomachEmptyingCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsEqualsForQNumber("QS4631", AKC, protocol2, protocol3, protocol4)
+                .checkProtocolsEqualsForQNumber("QS4631", protocols)
                 .back();
         currentlyTreatingYourDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("I am not currently treating my diabetes")
-                .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
+                .clickNextButton(everDiagnosedGastroparesisOrStomachEmptyingCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsEqualsForQNumber("QS4631", AKC, protocol2, protocol3, protocol4)
+                .checkProtocolsEqualsForQNumber("QS4631", protocols)
                 .back();
-        LastTimeYouTookPageCC lastTimeYouTookPageCC = currentlyTreatingYourDiabetesPageCC
+        MetforminMedicationsPageCC metforminMedicationsPageCC = currentlyTreatingYourDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("Medication such as metformin or insulin or other diabetes medication")
-                .clickNextButton(new LastTimeYouTookPageCC());
-
-        lastTimeYouTookPageCC
-                .waitForPageLoad()
-                .clickOnAnswer("2 - 3 months ago")
-                .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0018436-QS4632-STUDYQUES", protocols)
-                .back();
-        lastTimeYouTookPageCC
-                .waitForPageLoad()
-                .clickOnAnswer("4 - 5 months ago")
-                .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS4632", AKC, protocol2, protocol3, protocol4)
-                .back();
-        lastTimeYouTookPageCC
-                .waitForPageLoad()
-                .clickOnAnswer("6 months ago or longer")
-                .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS4632", AKC, protocol2, protocol3, protocol4)
-                .back();
-        MetforminMedicationsPageCC metforminMedicationsPageCC = lastTimeYouTookPageCC
-                .waitForPageLoad()
-                .clickOnAnswer("Currently taking / have taken within the past month")
                 .clickNextButton(new MetforminMedicationsPageCC());
 
+//        lastTimeYouTookPageCC
+//                .waitForPageLoad()
+//                .clickOnAnswer("2 - 3 months ago")
+//                .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("Q0018436-QS4632-STUDYQUES", protocols)
+//                .back();
+//        lastTimeYouTookPageCC
+//                .waitForPageLoad()
+//                .clickOnAnswer("4 - 5 months ago")
+//                .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS4632", protocols)
+//                .back();
+//        lastTimeYouTookPageCC
+//                .waitForPageLoad()
+//                .clickOnAnswer("6 months ago or longer")
+//                .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS4632", protocols)
+//                .back();
+//        MetforminMedicationsPageCC metforminMedicationsPageCC = lastTimeYouTookPageCC
+//                .waitForPageLoad()
+//                .clickOnAnswer("Currently taking / have taken within the past month")
+//                .clickNextButton(new MetforminMedicationsPageCC());
+//
         ApartFromMetforminPageCC apartFromMetforminPageCC = new ApartFromMetforminPageCC();
 //        metforminMedicationsPageCC
 //                .waitForPageLoad()
 //                .getPage(debugPageCC)
 //                .checkProtocolsEquals(lastTimeYouTookPageCC.titleExpected, protocol1);
         HashMap<String, List<String>> options = new HashMap<>();
-        options.put("Actoplus Met (metformin and pioglitazone)", Arrays.asList(AKC, protocol2, protocol4));
-        options.put("Avandamet (metformin and rosiglitazone)", Arrays.asList(AKC, protocol2, protocol4));
+        options.put("Actoplus Met (metformin and pioglitazone)", Arrays.asList(protocol2, protocol4));
+        options.put("Avandamet (metformin and rosiglitazone)", Arrays.asList(protocol2, protocol4));
         options.put("Glucovance (metformin and glyburide)", Arrays.asList(protocol2));
         options.put("Invokamet (metformin and canagliflozin)", Arrays.asList(protocol2, protocol4));
         options.put("Janumet (metformin and sitagliptin)", Arrays.asList(protocol2, protocol3, protocol4));
@@ -263,10 +263,10 @@ public class DIA_4241_СС_ver3 extends BaseTest{
 
         CurrentlyTakeInsulinPageCC currentlyTakeInsulinPageCC = new CurrentlyTakeInsulinPageCC();
         options.clear();
-        options.put("Actos (pioglitazone)", Arrays.asList(AKC,protocol2, protocol4));
-        options.put("Avandia (rosiglitazone)", Arrays.asList(AKC,protocol2, protocol4));
+        options.put("Actos (pioglitazone)", Arrays.asList(protocol2, protocol4));
+        options.put("Avandia (rosiglitazone)", Arrays.asList(protocol2, protocol4));
         options.put("Cycloset (bromocriptine)", Arrays.asList(protocol2, protocol4));
-        options.put("Duetact (pioglitazone and glimepiride)", Arrays.asList(AKC,protocol2, protocol4));
+        options.put("Duetact (pioglitazone and glimepiride)", Arrays.asList(protocol2, protocol4));
         options.put("Farxiga (dapagliflozin)", Arrays.asList(protocol2, protocol4));
         options.put("Glyset (miglitol)", Arrays.asList(protocol2, protocol4));
         options.put("Glyxambi (empagliflozin and linagliptin)", Arrays.asList(protocol2,protocol3, protocol4));
@@ -275,7 +275,7 @@ public class DIA_4241_СС_ver3 extends BaseTest{
         options.put("Jardiance (empagliflozin)", Arrays.asList(protocol2, protocol4));
         options.put("Nesina (alogliptin)", Arrays.asList(protocol2,protocol3, protocol4));
         options.put("Onglyza (saxagliptin)", Arrays.asList(protocol2,protocol3, protocol4));
-        options.put("Oseni (alogliptin and pioglitazone)", Arrays.asList(protocol2,AKC, protocol3, protocol4));
+        options.put("Oseni (alogliptin and pioglitazone)", Arrays.asList(protocol2,protocol3, protocol4));
         options.put("Prandin (repaglinide)", Arrays.asList(protocol2, protocol4));
         options.put("Precose (acarbose)", Arrays.asList(protocol2, protocol4));
         options.put("Starlix (nateglinide)", Arrays.asList(protocol2, protocol4));
@@ -314,7 +314,7 @@ public class DIA_4241_СС_ver3 extends BaseTest{
         takeYourInsulinPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS4633", AKC, protocol2, protocol4)
+                .checkProtocolsContainsForQNumber("QS4633", protocol2, protocol4)
                 .getPage(takeYourInsulinPageCC)
                 .clickOnAnswers("Inhaled insulin (Afrezza)")
                 .clickNextButton(injectableMedicationsForYourDiabetesPageCC);
@@ -325,8 +325,187 @@ public class DIA_4241_СС_ver3 extends BaseTest{
                 .waitForPageLoad()
                 .clickOnAnswers("Insulin pump, which delivers insulin continuously")
                 .clickNextButton(new BrandsOfInsulinPageCC());
+//        brandsOfInsulinPageCC
+//                .waitForPageLoad()
+//                .back();
+//        TakeYourInsulinInjectionsPageCC takeYourInsulinInjectionsPageCC = takeYourInsulinPageCC
+//                .waitForPageLoad()
+//                .clickOnAnswers("Daily injections")
+//                .clickNextButton(new TakeYourInsulinInjectionsPageCC());
+//
+//        takeYourInsulinInjectionsPageCC
+//                .waitForPageLoad()
+//                .clickOnAnswer("Only at meal times (this is called bolus insulin)")
+//                .clickNextButton(brandsOfInsulinPageCC)
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickNextButton(injectableMedicationsForYourDiabetesPageCC);
+//
+//        injectableMedicationsForYourDiabetesPageCC
+//                .waitForPageLoad()
+//                .clickOnAnswers("Adlyxin (lixisenatide)")
+//                .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS4611", protocols)
+//                .back();
+//        injectableMedicationsForYourDiabetesPageCC
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickOnAnswers("Bydureon or Byetta (exenatide)")
+//                .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS4611", protocols)
+//                .back();
+//        injectableMedicationsForYourDiabetesPageCC
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickOnAnswers("Tanzeum (albiglutide)")
+//                .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS4611", protocols)
+//                .back();
+//        injectableMedicationsForYourDiabetesPageCC
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickOnAnswers("Trulicity (dulaglutide)")
+//                .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS4611", protocols)
+//                .back();
+//        injectableMedicationsForYourDiabetesPageCC
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickOnAnswers("Saxenda or Victoza (liraglutide)")
+//                .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS4611", protocols)
+//                .back();
+//
+//        injectableMedicationsForYourDiabetesPageCC
+//                .waitForPageLoad()
+//                .back();
+//        brandsOfInsulinPageCC
+//                .waitForPageLoad()
+//                .clickOnAnswers("Toujeo, aslo known as insulin glargine")
+//                .clickNextButton(injectableMedicationsForYourDiabetesPageCC)
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS4630", site.activeProtocols[1])
+//                .back(brandsOfInsulinPageCC)
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickOnAnswers("Insulin glargine, Basaglar, or Lantus")
+//                .clickNextButton(injectableMedicationsForYourDiabetesPageCC);
+//
+//        injectableMedicationsForYourDiabetesPageCC
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickOnAnswers("SymlinPen (pramlintide)")
+//                .clickNextButton(cardiovascularDiseaseThanOthersPageCC);
+//
+//        NoOfAlcoholicDrinksCC noOfAlcoholicDrinksCC = cardiovascularDiseaseThanOthersPageCC
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickNextButton(new NoOfAlcoholicDrinksCC());
+//
+//        LiverRelatedConditionCC liverRelatedConditionCC = noOfAlcoholicDrinksCC
+//                .waitForPageLoad()
+//                .setDrinks("4")
+//                .clickNextButton(new LiverRelatedConditionCC());
+//
+//        FollowingToLoseWeightPageCC followingToLoseWeightPageCC = liverRelatedConditionCC
+//                .waitForPageLoad()
+//                .clickOnAnswers("Alcoholic liver disease")
+//                .clickNextButton(new FollowingToLoseWeightPageCC());
+//
+////        WeightLossSurgeryPageCC weightLossSurgeryPageCC = followingToLoseWeightPageCC
+////                .waitForPageLoad()
+////                .getPage(debugPageCC)
+////                .checkProtocolsContainsForQNumber("QS4624", AKC)
+////                .getPage(followingToLoseWeightPageCC)
+////                .clickOnAnswers("No")
+////                .clickNextButton(new WeightLossSurgeryPageCC());
+//
+//        PoundsOrMorePageCC poundsOrMorePageCC = weightLossSurgeryPageCC
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickNextButton(new PoundsOrMorePageCC());
+//        poundsOrMorePageCC
+//                .waitForPageLoad()
+//                .back();
+//        ProcedureForWeightLossPageCC procedureForWeightLossPageCC = weightLossSurgeryPageCC
+//                .waitForPageLoad()
+//                .clickOnAnswers("Gastric bypass")
+//                .clickNextButton(new ProcedureForWeightLossPageCC());
+//
+//        procedureForWeightLossPageCC
+//                .waitForPageLoad()
+//                .clickOnAnswer("Less than 3 months ago")
+//                .clickNextButton(poundsOrMorePageCC);
+//        poundsOrMorePageCC
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS4616", protocols)
+//                .back();
+//        procedureForWeightLossPageCC
+//                .waitForPageLoad()
+//                .clickOnAnswer("3 - 6 months ago")
+//                .clickNextButton(poundsOrMorePageCC)
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS4616", protocol2, protocol3, protocol4 )
+//                .back();
+//        procedureForWeightLossPageCC
+//                .waitForPageLoad()
+//                .clickOnAnswer("7 - 11 months ago")
+//                .clickNextButton(poundsOrMorePageCC)
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS4616", protocol2, protocol3, protocol4)
+//                .back();
+//        procedureForWeightLossPageCC
+//                .waitForPageLoad()
+//                .clickOnAnswer("1 - 2 years ago")
+//                .clickNextButton(poundsOrMorePageCC)
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS4616", protocol2, protocol3, protocol4)
+//                .back();
+//        procedureForWeightLossPageCC
+//                .waitForPageLoad()
+//                .clickOnAnswer("More than 2 years ago")
+//                .clickNextButton(poundsOrMorePageCC);
+//
+//
+//        TransitionStatementCC transitionStatementCC = poundsOrMorePageCC
+//                .waitForPageLoad()
+//                .clickOnAnswer("Yes")
+//                .clickNextButton(new TransitionStatementCC());
+//        transitionStatementCC
+//                .waitForPageLoadDYS()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS4617", protocols)
+//                .back();
+//        poundsOrMorePageCC
+//                .waitForPageLoad()
+//                .clickOnAnswer("No")
+//                .clickNextButton(transitionStatementCC);
+
+        //Q13:QS4630
         brandsOfInsulinPageCC
                 .waitForPageLoad()
+                .clickOnAnswers("Toujeo, aslo known as insulin glargine")
+                .clickNextButton(injectableMedicationsForYourDiabetesPageCC)
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS4630", site.activeProtocols[1])
+                .back(brandsOfInsulinPageCC)
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
                 .back();
         TakeYourInsulinInjectionsPageCC takeYourInsulinInjectionsPageCC = takeYourInsulinPageCC
                 .waitForPageLoad()
@@ -341,95 +520,95 @@ public class DIA_4241_СС_ver3 extends BaseTest{
                 .clickOnAnswers("None of the above")
                 .clickNextButton(injectableMedicationsForYourDiabetesPageCC);
 
-        injectableMedicationsForYourDiabetesPageCC
+        WeightLossSurgeryPageCC weightLossSurgeryPageCC = injectableMedicationsForYourDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("Adlyxin (lixisenatide)")
-                .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
+                .clickNextButton(new WeightLossSurgeryPageCC());
+        weightLossSurgeryPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS4611", AKC, protocol3, protocol2, protocol4)
+                .checkProtocolsEquals(injectableMedicationsForYourDiabetesPageCC.titleExpected, protocol3, protocol2, protocol4)
                 .back();
         injectableMedicationsForYourDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Bydureon or Byetta (exenatide)")
-                .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
+                .clickNextButton(weightLossSurgeryPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS4611", AKC, protocol3, protocol2, protocol4)
+                .checkProtocolsEquals(injectableMedicationsForYourDiabetesPageCC.titleExpected, protocol3, protocol2, protocol4)
                 .back();
         injectableMedicationsForYourDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Tanzeum (albiglutide)")
-                .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
+                .clickNextButton(weightLossSurgeryPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS4611", AKC, protocol3, protocol2, protocol4)
+                .checkProtocolsEquals(injectableMedicationsForYourDiabetesPageCC.titleExpected, protocol3, protocol2, protocol4)
                 .back();
         injectableMedicationsForYourDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Trulicity (dulaglutide)")
-                .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
+                .clickNextButton(weightLossSurgeryPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS4611", AKC, protocol3, protocol2, protocol4)
+                .checkProtocolsEquals(injectableMedicationsForYourDiabetesPageCC.titleExpected, protocol3, protocol2, protocol4)
                 .back();
         injectableMedicationsForYourDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Saxenda or Victoza (liraglutide)")
-                .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
+                .clickNextButton(weightLossSurgeryPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS4611", AKC, protocol3, protocol2, protocol4)
+                .checkProtocolsEquals(injectableMedicationsForYourDiabetesPageCC.titleExpected, protocol3, protocol2, protocol4)
                 .back();
+        injectableMedicationsForYourDiabetesPageCC
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("SymlinPen (pramlintide)")
+                .clickNextButton(weightLossSurgeryPageCC);
 
+        weightLossSurgeryPageCC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsEquals(injectableMedicationsForYourDiabetesPageCC.titleExpected, protocol2, protocol4)
+                .checkProtocolsEqualsForQNumber("QS4613", protocol3)
+                .back();
         injectableMedicationsForYourDiabetesPageCC
                 .waitForPageLoad()
                 .back();
         brandsOfInsulinPageCC
                 .waitForPageLoad()
-                .clickOnAnswers("Toujeo, aslo known as insulin glargine")
+                .clickOnAnswers("Insulin glargine, Basaglar, or Lantus")
                 .clickNextButton(injectableMedicationsForYourDiabetesPageCC)
                 .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS4630", site.activeProtocols[1])
-                .back(brandsOfInsulinPageCC)
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Insulin glargine, Basaglar, or Lantus")
-                .clickNextButton(injectableMedicationsForYourDiabetesPageCC);
+                .clickNextButton(weightLossSurgeryPageCC);
 
-        injectableMedicationsForYourDiabetesPageCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("SymlinPen (pramlintide)")
-                .clickNextButton(cardiovascularDiseaseThanOthersPageCC);
-
-        NoOfAlcoholicDrinksCC noOfAlcoholicDrinksCC = cardiovascularDiseaseThanOthersPageCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new NoOfAlcoholicDrinksCC());
-
-        LiverRelatedConditionCC liverRelatedConditionCC = noOfAlcoholicDrinksCC
-                .waitForPageLoad()
-                .setDrinks("4")
-                .clickNextButton(new LiverRelatedConditionCC());
-
-        FollowingToLoseWeightPageCC followingToLoseWeightPageCC = liverRelatedConditionCC
-                .waitForPageLoad()
-                .clickOnAnswers("Alcoholic liver disease")
-                .clickNextButton(new FollowingToLoseWeightPageCC());
-
-        WeightLossSurgeryPageCC weightLossSurgeryPageCC = followingToLoseWeightPageCC
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS4624", AKC)
-                .getPage(followingToLoseWeightPageCC)
-                .clickOnAnswers("No")
-                .clickNextButton(new WeightLossSurgeryPageCC());
+//        NoOfAlcoholicDrinkOLS noOfAlcoholicDrinkOLS = cardiovascularDiseaseThanOthersPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickNextButton(new NoOfAlcoholicDrinkOLS());
+//
+//        LiverRelatedConditionOLS liverRelatedConditionOLS = noOfAlcoholicDrinkOLS
+//                .waitForPageLoad()
+//                .setDrinks("4")
+//                .clickNextButton(new LiverRelatedConditionOLS());
+//
+//        FollowingToLoseWeightPageOLS followingToLoseWeightPageOLS = liverRelatedConditionOLS
+//                .waitForPageLoad()
+//                .clickOnAnswers("Alcoholic liver disease")
+//                .clickNextButton(new FollowingToLoseWeightPageOLS());
+//
+//        followingToLoseWeightPageOLS
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QS4624", protocols)
+//                .getPage(followingToLoseWeightPageOLS)
+//                .clickOnAnswers("No")
+//                .clickNextButton(weightLossSurgeryPageOLS);
 
         PoundsOrMorePageCC poundsOrMorePageCC = weightLossSurgeryPageCC
                 .waitForPageLoad()
@@ -446,7 +625,7 @@ public class DIA_4241_СС_ver3 extends BaseTest{
         procedureForWeightLossPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Less than 3 months ago")
-                .clickNextButton(poundsOrMorePageCC);
+                .clickNextButton(new PoundsOrMorePageCC());
         poundsOrMorePageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
@@ -458,7 +637,7 @@ public class DIA_4241_СС_ver3 extends BaseTest{
                 .clickNextButton(poundsOrMorePageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS4616", protocol2, protocol3, protocol4 )
+                .checkProtocolsContainsForQNumber("QS4616", protocols)
                 .back();
         procedureForWeightLossPageCC
                 .waitForPageLoad()
@@ -466,7 +645,7 @@ public class DIA_4241_СС_ver3 extends BaseTest{
                 .clickNextButton(poundsOrMorePageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS4616", protocol2, protocol3, protocol4)
+                .checkProtocolsContainsForQNumber("QS4616", protocols)
                 .back();
         procedureForWeightLossPageCC
                 .waitForPageLoad()
@@ -474,7 +653,7 @@ public class DIA_4241_СС_ver3 extends BaseTest{
                 .clickNextButton(poundsOrMorePageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS4616", protocol2, protocol3, protocol4)
+                .checkProtocolsContainsForQNumber("QS4616", protocols)
                 .back();
         procedureForWeightLossPageCC
                 .waitForPageLoad()
@@ -482,19 +661,19 @@ public class DIA_4241_СС_ver3 extends BaseTest{
                 .clickNextButton(poundsOrMorePageCC);
 
 
-        TransitionStatementCC transitionStatementCC = poundsOrMorePageCC
+        poundsOrMorePageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(new TransitionStatementCC());
-        transitionStatementCC
-                .waitForPageLoadDYS()
+                .clickNextButton(everDiagnosedGastroparesisOrStomachEmptyingCC)
+                .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS4617", protocols)
                 .back();
-        poundsOrMorePageCC
+
+        TransitionStatementCC transitionStatementCC = poundsOrMorePageCC
                 .waitForPageLoad()
                 .clickOnAnswer("No")
-                .clickNextButton(transitionStatementCC);
+                .clickNextButton(new TransitionStatementCC());
 
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC =
         transitionStatementCC
@@ -534,7 +713,7 @@ public class DIA_4241_СС_ver3 extends BaseTest{
                 .waitForPageLoadSyn()
                 .assertVariablesNew("Acurian", "Trial", "09/09/1980", "US",
                         "Dover, DE", site.zipCode, "qa.acurian@gmail.com", "999-999-9999",
-                        env.equals("STG") ? " 010151 " : " TA4722S ", " "+site.name, "SANPPDDIA893 - Sanofi type 2 diabetes")
+                        env.equals("STG") ? " 010151 " : "TA4722S", site.name, "SANPPDDIA893 - Sanofi type 2 diabetes")
                 .clickOnAnswer("[Successful direct schedule in clinical conductor]")                
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()

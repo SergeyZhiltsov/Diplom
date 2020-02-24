@@ -48,7 +48,7 @@ public class Conversion54Cto1Rtest extends BaseTest {
                 .clickNextButton(new WhatKindOfArthritisPageOLS()); //BoneOrJointConditionsPageOLS
 
         WhenYouDiagnosedWithRaGmegaPageOLS whenYouDiagnosedWithRaGmegaPageOLS = whatKindOfArthritisPageOLS
-                .waitForPageLoad()
+                .waitForPageLoadGMEGA()
                 .clickOnAnswers("Rheumatoid arthritis, a serious medical condition caused by your immune system attacking your joints")
                 .clickNextButton(new WhenYouDiagnosedWithRaGmegaPageOLS());
 
@@ -58,20 +58,20 @@ public class Conversion54Cto1Rtest extends BaseTest {
                 .clickNextButton(new BoneOrJointConditionsPageOLS());
 
         boneOrJointConditionsPageOLS
-                .waitForPageLoad()
+                .waitForPageLoadGMEGA()
                 .clickOnAnswers("Any type of arthritis")
                 .clickNextButton(identificationPageOLS);
 
         HSGeneralPageOLS hsGeneralPageOLS = identificationPageOLS
-                .waitForPageLoadGMEGA()
+                .waitForPageLoadGMEGA2()
                 .clickNextButton(new SiteSelectionPageOLS())
-                .waitForPageLoad(studyName)
+                .waitForPageLoadGMEGA(studyName)
                 .getPID()
                 .clickOnFacilityName(site.name)
                 .clickNextButton(new HSGeneralPageOLS());
 
         hsGeneralPageOLS
-                .waitForPageLoadByTitle(hsGeneralPageOLS.titleRaExpectedQA)
+                .waitForPageLoadByTitleGMEGA(hsGeneralPageOLS.titleRaExpectedQA)
                 .pidFromDbToLog(env)
                 .convert54Cto1R(env)
                 .dispoShouldMatch(site.dispo);

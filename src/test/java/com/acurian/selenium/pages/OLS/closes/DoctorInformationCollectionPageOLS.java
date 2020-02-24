@@ -32,6 +32,9 @@ public class DoctorInformationCollectionPageOLS extends MainPageOLS{
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_OLS)
     WebElement titleText;
 
+    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
+    WebElement titleTextGMEGA;
+
     public DoctorInformationCollectionPageOLS() {
         PageFactory.initElements(getDriver(), this);
     }
@@ -51,6 +54,12 @@ public class DoctorInformationCollectionPageOLS extends MainPageOLS{
     @Step
     public DoctorInformationCollectionPageOLS waitForPageLoadByTitle(String title) {
         waitForPageLoadMain(titleText, title);
+        return this;
+    }
+
+    @Step
+    public DoctorInformationCollectionPageOLS waitForPageLoadByTitleGMEGA(String title) {
+        waitForPageLoadMain(titleTextGMEGA, title);
         return this;
     }
 

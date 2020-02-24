@@ -45,10 +45,17 @@ public class DateOfBirthPageOLS extends MainPageBlinx {
     WebElement titleTextPart1;
     @FindBy(xpath = "(//div[@class='question-text']/div)[3]")
     WebElement titleTextPart2;
+    @FindBy(xpath = "(//div[@class='question-text']/span)[1]")
+    WebElement titleTextPartGMEGA1;
+    @FindBy(xpath = "(//div[@class='question-text']/span)[2]")
+    WebElement titleTextPartGMEGA2;
     @FindBy(xpath = Locators.RADIO_BUTTON_LIST_OLS)
     List<WebElement> singleChoiceButtonsList;
-    @FindBy(xpath = "//*[@id='QSI8002']/div/div")
+//    @FindBy(xpath = "//*[@id='QSI8002']/div/div")
+//    WebElement titleText;
+    @FindBy(xpath = "//*[@id='QSI8002']/div/span")
     WebElement titleText;
+
     @Step
     public DateOfBirthPageOLS waitForPageLoad0(String indication, String compensation) {
         waitForPageLoadMain(titleTextPart, getExpectedModifiedTitle(indication, compensation));
@@ -72,6 +79,13 @@ public class DateOfBirthPageOLS extends MainPageBlinx {
     public DateOfBirthPageOLS waitForPageLoad(String indication, String compensation) {
         waitForPageLoadMain(titleTextPart1, String.format(titleExpectedPart1, indication, compensation));
         waitForPageLoadMain(titleTextPart2, titleExpectedPart2);
+        return this;
+    }
+
+    @Step
+    public DateOfBirthPageOLS waitForPageLoadGMEGA(String indication, String compensation) {
+        waitForPageLoadMain(titleTextPartGMEGA1, String.format(titleExpectedPart1, indication, compensation));
+        waitForPageLoadMain(titleTextPartGMEGA2, titleExpectedPart2);
         return this;
     }
 

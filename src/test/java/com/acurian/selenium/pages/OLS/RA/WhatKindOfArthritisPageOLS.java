@@ -22,6 +22,10 @@ public class WhatKindOfArthritisPageOLS extends MainPageOLS {
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_OLS_MOBILE)
     WebElement titleText3;
 
+    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
+    WebElement titleTextGMEGA;
+
+
     WebElement titleText;
 
     @FindBy(xpath = Locators.CHEKBOX_LIST_OLS)
@@ -54,6 +58,12 @@ public class WhatKindOfArthritisPageOLS extends MainPageOLS {
     @Step
     public WhatKindOfArthritisPageOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
+        return this;
+    }
+
+    @Step
+    public WhatKindOfArthritisPageOLS waitForPageLoadGMEGA() {
+        waitForPageLoadMain(titleTextGMEGA, titleExpected);
         return this;
     }
 
