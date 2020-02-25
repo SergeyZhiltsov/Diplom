@@ -99,7 +99,7 @@ public class Crohns_LC_4912_CC extends BaseTest {
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
                 .back();
-        GenderPageCC genderPageCC = dateOfBirthPageCC
+        ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
                 // .waitForPageLoad2Ver()
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
 //                .clickNextButton(new IdentificationPageCC());
@@ -108,6 +108,11 @@ public class Crohns_LC_4912_CC extends BaseTest {
 //                .waitForPageLoadNotQCrohn()
 //                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
 //                        "9999999999", site.zipCode)
+                .clickNextButton(new ZipCodePageCC());
+
+        GenderPageCC genderPageCC = zipCodePageCC
+                .waitForPageLoad()
+                .typeZipCode(site.zipCode)
                 .clickNextButton(new GenderPageCC());
 
         genderPageCC

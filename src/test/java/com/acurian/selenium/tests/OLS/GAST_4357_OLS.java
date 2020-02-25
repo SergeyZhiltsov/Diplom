@@ -67,15 +67,20 @@ public class GAST_4357_OLS extends BaseTest {
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
                     .back();
-            PersonalDetails personalDetails = dateOfBirthPageOLS
+        ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
                     .waitForPageLoad(studyName, "500")
                     .clickOnAnswer("Yes")
-                    .clickNextButton(new PersonalDetails());
+                    .clickNextButton(new ZipCodePageOLS());
 
-            GenderPageOLS genderPageOLS = personalDetails
-                    .waitForPageLoad()
-                    .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
-                    .clickNextButton(new GenderPageOLS());
+//            GenderPageOLS genderPageOLS = personalDetails
+//                    .waitForPageLoad()
+//                    .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
+//                    .clickNextButton(new GenderPageOLS());
+
+        GenderPageOLS genderPageOLS = zipCodePageOLS
+                .waitForPageLoad()
+                .typeZipCode(site.zipCode)
+                .clickNextButton(new GenderPageOLS());
 
             DiagnosedAnyTypeOfDiabetesPageOLS diagnosedAnyTypeOfDiabetesPageOLS = genderPageOLS
                     .waitForPageLoad()
@@ -739,6 +744,7 @@ public class GAST_4357_OLS extends BaseTest {
                     .clickNextButton(new IdentificationPageOLS());
             SiteSelectionPageOLS siteSelectionPageOLS = identificationPageOLS
                     .waitForPageLoad()
+                    .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
                     .clickNextButton(new SiteSelectionPageOLS());
             siteSelectionPageOLS
                     .waitForPageLoad1("a gastroparesis study for people with digestion problems!")

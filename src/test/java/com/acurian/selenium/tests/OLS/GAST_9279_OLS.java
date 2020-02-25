@@ -59,14 +59,19 @@ public class GAST_9279_OLS extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
                 .back();
-        PersonalDetails personalDetails = dateOfBirthPageOLS
+        ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
                 .waitForPageLoad(studyName, "500")
                 .clickOnAnswer("Yes")
-                .clickNextButton(new PersonalDetails());
+                .clickNextButton(new ZipCodePageOLS());
 
-        GenderPageOLS genderPageOLS = personalDetails
+//        GenderPageOLS genderPageOLS = personalDetails
+//                .waitForPageLoad()
+//                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
+//                .clickNextButton(new GenderPageOLS());
+
+        GenderPageOLS genderPageOLS = zipCodePageOLS
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
+                .typeZipCode(site.zipCode)
                 .clickNextButton(new GenderPageOLS());
 
         DiagnosedAnyTypeOfDiabetesPageOLS diagnosedAnyTypeOfDiabetesPageOLS = genderPageOLS
@@ -724,6 +729,7 @@ public class GAST_9279_OLS extends BaseTest {
 
         SiteSelectionPageOLS siteSelectionPageOLS = identificationPageOLS
                 .waitForPageLoad()
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageOLS());
         AboutHealthPageOLS aboutHealthPageOLS = siteSelectionPageOLS
                 .waitForPageLoad1("a gastroparesis study for people with digestion problems!")

@@ -8,10 +8,7 @@ import com.acurian.selenium.pages.OLS.UC.WhenWereYouDiagnosedWithUCPageOLS;
 import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
-import com.acurian.selenium.pages.OLS.shared.BiologicMedications;
-import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
-import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
-import com.acurian.selenium.pages.OLS.shared.PersonalDetails;
+import com.acurian.selenium.pages.OLS.shared.*;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
@@ -67,12 +64,15 @@ public class Crohns_LC_4912_OLS extends BaseTest {
                 .back();
         dateOfBirthPageOLS
                 .waitForPageLoad("a Crohn's study", "700");
-        PersonalDetails personalDetails = dateOfBirthPageOLS
+        ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
                 .clickOnAnswer("Yes")
-                .clickNextButton(new PersonalDetails());
+                .clickNextButton(new ZipCodePageOLS());
         IdentificationPageOLS identificationPageOLS = new IdentificationPageOLS();
-        GenderPageOLS genderPageOLS = new GenderPageOLS();
 
+        GenderPageOLS genderPageOLS = zipCodePageOLS
+                .waitForPageLoad()
+                .typeZipCode(site.zipCode)
+                .clickNextButton(new GenderPageOLS());
         genderPageOLS
                 .waitForPageLoad()
                 .setDate("07012003")

@@ -103,15 +103,21 @@ public class Crohns_4818_CC extends BaseTest {
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
                 .back();
-        IdentificationPageCC identificationPageCC = dateOfBirthPageCC
+        ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
                 .waitForPageLoad("a Crohn's study", "700")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
-                .clickNextButton(new IdentificationPageCC());
+                .clickNextButton(new ZipCodePageCC());
 
-        GenderPageCC genderPageCC = identificationPageCC
-                .waitForPageLoadNotQCrohn()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
-                        "9999999999", site.zipCode)
+//        GenderPageCC genderPageCC = identificationPageCC
+//                .waitForPageLoadNotQCrohn()
+//                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
+//                        "9999999999", site.zipCode)
+//                .clickNextButton(new GenderPageCC());
+
+
+        GenderPageCC genderPageCC = zipCodePageCC
+                .waitForPageLoad()
+                .typeZipCode(site.zipCode)
                 .clickNextButton(new GenderPageCC());
 
         genderPageCC
@@ -587,8 +593,10 @@ public class Crohns_4818_CC extends BaseTest {
                         .clickNextButton(new RequirePassDrugTest())
                         .waitForPageLoad()
                         .clickOnAnswer("Yes")
-                        .clickNextButton(identificationPageCC)
+                        .clickNextButton(new IdentificationPageCC())
                         .waitForPageLoad()
+                        .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
+                                "9999999999", site.zipCode)
                         .clickNextButton(new SiteSelectionPageCC())
                         .waitForPageLoad("a Crohn's study")
                         .getPID()
@@ -624,8 +632,10 @@ public class Crohns_4818_CC extends BaseTest {
                         .clickNextButton(new RequirePassDrugTest())
                         .waitForPageLoad()
                         .clickOnAnswer("Yes")
-                        .clickNextButton(identificationPageCC)
+                        .clickNextButton(new IdentificationPageCC())
                         .waitForPageLoad()
+                        .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
+                        "9999999999", site.zipCode)
                         .clickNextButton(new SiteSelectionPageCC())
                         .waitForPageLoad("a Crohn's study")
                         .getPID()

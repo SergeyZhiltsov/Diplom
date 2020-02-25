@@ -36,7 +36,7 @@ public class CV_5034_CC_A_S extends BaseTest {
         super.tearDown();
     }
 
-    @Test(dataProvider = "5034Sites", dataProviderClass = CV_5034_OLS_A_S.class)
+    @Test(dataProvider = "5034Sites", dataProviderClass = CV_5034_OLS_A_S.class, enabled = false)
     @Description("Diabetes_5034_Synexus for CC")
     public void CV_5034_CC_Test(Site site) {
         String phoneNumber = "AUTAMS1CV1";

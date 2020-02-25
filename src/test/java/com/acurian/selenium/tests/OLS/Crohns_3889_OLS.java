@@ -75,14 +75,18 @@ public class Crohns_3889_OLS extends BaseTest {
                 .back();
         dateOfBirthPageOLS
                 .waitForPageLoad("a Crohn's or colitis study", "700");
-        PersonalDetails personalDetails = dateOfBirthPageOLS
+        ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
                 .clickOnAnswer("Yes")
-                .clickNextButton(new PersonalDetails());
+                .clickNextButton(new ZipCodePageOLS());
 
-        GenderPageOLS genderPageOLS = personalDetails
+        GenderPageOLS genderPageOLS = zipCodePageOLS
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
+                .typeZipCode(site.zipCode)
                 .clickNextButton(new GenderPageOLS());
+//        GenderPageOLS genderPageOLS = personalDetails
+//                .waitForPageLoad()
+//                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
+//                .clickNextButton(new GenderPageOLS());
 
         genderPageOLS
                 .waitForPageLoad();
@@ -590,6 +594,7 @@ public class Crohns_3889_OLS extends BaseTest {
         //----------PII (IdentificationPageOLS) Page--------------------
         SiteSelectionPageOLS siteSelectionPageOLS = identificationPageOLS
                 .waitForPageLoad()
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageOLS());
 
         ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = siteSelectionPageOLS

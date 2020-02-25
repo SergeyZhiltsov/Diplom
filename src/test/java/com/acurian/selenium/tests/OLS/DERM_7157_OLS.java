@@ -66,15 +66,20 @@ public class DERM_7157_OLS extends BaseTest {
                 .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
                 .back();
 
-        IdentificationPageOLS identificationPageOLS = dateOfBirthPageOLS
+        ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
                 .clickOnAnswer("Yes")
                 .waitForPageLoad("an eczema (atopic dermatitis) study", "600")
-                .clickNextButton(new IdentificationPageOLS());
+                .clickNextButton(new ZipCodePageOLS());
 
-        GenderPageOLS genderPageOLS = identificationPageOLS
-                .waitForPageLoadNotQ()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
-                        "9999999999", site.zipCode)
+//        GenderPageOLS genderPageOLS = identificationPageOLS
+//                .waitForPageLoadNotQ()
+//                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
+//                        "9999999999", site.zipCode)
+//                .clickNextButton(new GenderPageOLS());
+
+        GenderPageOLS genderPageOLS = zipCodePageOLS
+                .waitForPageLoad()
+                .typeZipCode(site.zipCode)
                 .clickNextButton(new GenderPageOLS());
 
         HasHealthcareProfessionalEverDiagnosedYouWithEczema_OLS hasHealthcareProfessionalEverDiagnosedYouWithEczema_ols =
@@ -777,16 +782,16 @@ public class DERM_7157_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(approximateHeightPageOLS);
-        SiteSelectionPageOLS siteSelectionPageOLS = approximateHeightPageOLS
+        IdentificationPageOLS identificationPageOLS = approximateHeightPageOLS
                 .waitForPageLoad()
                 .setAll("3", "2", "33")
                 //----------PII (IdentificationPageOLS) Page--------------------
-//                .clickNextButton(identificationPageOLS);
-//
-//        SiteSelectionPageOLS siteSelectionPageOLS = identificationPageOLS
-//                .waitForPageLoad()
-////                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
-////                        "9999999999", site.zipCode)
+                .clickNextButton(new IdentificationPageOLS());
+
+        SiteSelectionPageOLS siteSelectionPageOLS = identificationPageOLS
+                .waitForPageLoad()
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
+                        "9999999999", site.zipCode)
                 .clickNextButton(new CurrentlyParticipatingInStudyOLS())
                 .waitForPageLoad()
                 .clickOnAnswer("No")

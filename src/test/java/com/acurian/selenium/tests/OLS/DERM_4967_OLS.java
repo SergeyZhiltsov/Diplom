@@ -66,16 +66,21 @@ public class DERM_4967_OLS extends BaseTest {
                 .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
                 .back();
 
-        GenderPageOLS genderPageOLS = dateOfBirthPageOLS
+        ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
                 .clickOnAnswer("Yes")
                 .waitForPageLoad("an eczema (atopic dermatitis) study", "600")
-                .clickNextButton(new GenderPageOLS());
+                .clickNextButton(new ZipCodePageOLS());
 
 //        GenderPageOLS genderPageOLS = identificationPageOLS
 //                .waitForPageLoadNotQ()
 //                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
 //                        "9999999999", site.zipCode)
 //                .clickNextButton(new GenderPageOLS());
+
+        GenderPageOLS genderPageOLS = zipCodePageOLS
+                .waitForPageLoad()
+                .typeZipCode(site.zipCode)
+                .clickNextButton(new GenderPageOLS());
 
         HasHealthcareProfessionalEverDiagnosedYouWithEczema_OLS hasHealthcareProfessionalEverDiagnosedYouWithEczema_ols =
                 genderPageOLS
