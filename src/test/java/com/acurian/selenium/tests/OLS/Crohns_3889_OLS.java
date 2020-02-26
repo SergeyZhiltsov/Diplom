@@ -75,14 +75,18 @@ public class Crohns_3889_OLS extends BaseTest {
                 .back();
         dateOfBirthPageOLS
                 .waitForPageLoad("a Crohn's or colitis study", "700");
-        PersonalDetails personalDetails = dateOfBirthPageOLS
+        ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
                 .clickOnAnswer("Yes")
-                .clickNextButton(new PersonalDetails());
+                .clickNextButton(new ZipCodePageOLS());
 
-        GenderPageOLS genderPageOLS = personalDetails
+        GenderPageOLS genderPageOLS = zipCodePageOLS
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
+                .typeZipCode(site.zipCode)
                 .clickNextButton(new GenderPageOLS());
+//        GenderPageOLS genderPageOLS = personalDetails
+//                .waitForPageLoad()
+//                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
+//                .clickNextButton(new GenderPageOLS());
 
         genderPageOLS
                 .waitForPageLoad();
@@ -590,9 +594,10 @@ public class Crohns_3889_OLS extends BaseTest {
         //----------PII (IdentificationPageOLS) Page--------------------
         SiteSelectionPageOLS siteSelectionPageOLS = identificationPageOLS
                 .waitForPageLoad()
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageOLS());
 
-        siteSelectionPageOLS
+        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = siteSelectionPageOLS
                 .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnFacilityName(site.name)
@@ -601,11 +606,11 @@ public class Crohns_3889_OLS extends BaseTest {
                 .clickOnAnswer("Continue with medical records")
                 .clickNextButton(new DoctorInformationCollectionPageOLS())
                 .waitForPageLoadIBD("Crohn's Disease")
-                .clickNextButton(new HS1PageOLS())
-                .waitForPageLoad()
-                .clickOkInPopUp()
-                .waitForPageLoad()
-                .setSignature();
+                .clickNextButton(new ThankYouCloseSimplePageOLS());
+//                .waitForPageLoad()
+//                .clickOkInPopUp()
+//                .waitForPageLoad()
+//                .setSignature()
 
 /*                //------------HUMAN API Interface in HelloSign----------------
                 .getPage(new HumanAPIOLS())
@@ -626,7 +631,7 @@ public class Crohns_3889_OLS extends BaseTest {
                 .clickNextButton(new ThankYouCloseSimplePageOLS())*/
 
 
-        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = new ThankYouCloseSimplePageOLS();
+//        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = new ThankYouCloseSimplePageOLS();
         QualifiedFlareMonitoringAppClosePageOLS qualifiedFlareMonitoringAppClosePageOLS = new QualifiedFlareMonitoringAppClosePageOLS();
         if(inFlare) {
             qualifiedFlareMonitoringAppClosePageOLS

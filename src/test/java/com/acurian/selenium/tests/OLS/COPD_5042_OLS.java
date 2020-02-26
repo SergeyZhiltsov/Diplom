@@ -348,15 +348,15 @@ public class COPD_5042_OLS extends BaseTest {
                 .waitForPageLoadEmailNotProvided()
                 .typeEmail("qa.acurian@gmail.com")
                 .clickNextButton(new DoctorInformationCollectionPageOLS());
-        HS1PageOLS hs1PageOLS = doctorInformationCollectionPageOLS
+        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = doctorInformationCollectionPageOLS
                 .waitForPageLoad()
-                .clickNextButton(new HS1PageOLS());
-        hs1PageOLS
-                .waitForPageLoad()
-                .clickOkInPopUp()
-                .setSignature();
+                .clickNextButton(new ThankYouCloseSimplePageOLS());
+//        hs1PageOLS
+//                .waitForPageLoad()
+//                .clickOkInPopUp()
+//                .setSignature();
 //                .waitToClickNext();
-        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = new ThankYouCloseSimplePageOLS();
+//        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = new ThankYouCloseSimplePageOLS();
         AboutHealthPageOLS aboutHealthPageOLS = thankYouCloseSimplePageOLS
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS());

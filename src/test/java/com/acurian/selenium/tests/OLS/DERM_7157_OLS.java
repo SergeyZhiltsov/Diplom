@@ -66,15 +66,20 @@ public class DERM_7157_OLS extends BaseTest {
                 .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
                 .back();
 
-        IdentificationPageOLS identificationPageOLS = dateOfBirthPageOLS
+        ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
                 .clickOnAnswer("Yes")
                 .waitForPageLoad("an eczema (atopic dermatitis) study", "600")
-                .clickNextButton(new IdentificationPageOLS());
+                .clickNextButton(new ZipCodePageOLS());
 
-        GenderPageOLS genderPageOLS = identificationPageOLS
-                .waitForPageLoadNotQ()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
-                        "9999999999", site.zipCode)
+//        GenderPageOLS genderPageOLS = identificationPageOLS
+//                .waitForPageLoadNotQ()
+//                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
+//                        "9999999999", site.zipCode)
+//                .clickNextButton(new GenderPageOLS());
+
+        GenderPageOLS genderPageOLS = zipCodePageOLS
+                .waitForPageLoad()
+                .typeZipCode(site.zipCode)
                 .clickNextButton(new GenderPageOLS());
 
         HasHealthcareProfessionalEverDiagnosedYouWithEczema_OLS hasHealthcareProfessionalEverDiagnosedYouWithEczema_ols =
@@ -777,16 +782,16 @@ public class DERM_7157_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(approximateHeightPageOLS);
-        SiteSelectionPageOLS siteSelectionPageOLS = approximateHeightPageOLS
+        IdentificationPageOLS identificationPageOLS = approximateHeightPageOLS
                 .waitForPageLoad()
                 .setAll("3", "2", "33")
                 //----------PII (IdentificationPageOLS) Page--------------------
-//                .clickNextButton(identificationPageOLS);
-//
-//        SiteSelectionPageOLS siteSelectionPageOLS = identificationPageOLS
-//                .waitForPageLoad()
-////                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
-////                        "9999999999", site.zipCode)
+                .clickNextButton(new IdentificationPageOLS());
+
+        SiteSelectionPageOLS siteSelectionPageOLS = identificationPageOLS
+                .waitForPageLoad()
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
+                        "9999999999", site.zipCode)
                 .clickNextButton(new CurrentlyParticipatingInStudyOLS())
                 .waitForPageLoad()
                 .clickOnAnswer("No")
@@ -799,30 +804,29 @@ public class DERM_7157_OLS extends BaseTest {
 //                        "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageOLS());
 
-        MedicalRecordsOptionPageOLS medicalRecordsOptionPageOLS = siteSelectionPageOLS
+        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = siteSelectionPageOLS
                 .waitForPageLoad("an eczema (atopic dermatitis)")
                 .getPID()
                 .clickOnFacilityName(site.name)
-                .clickNextButton(new MedicalRecordsOptionPageOLS());
+//                .clickNextButton(new MedicalRecordsOptionPageOLS());
+//
+//        DoctorInformationCollectionPageOLS doctorInformationCollectionPageOLS = medicalRecordsOptionPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswer("Continue with medical records")
+//                .clickNextButton(new DoctorInformationCollectionPageOLS());
+//
+//        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = doctorInformationCollectionPageOLS
+//                .waitForPageLoad()
+                .clickNextButton(new ThankYouCloseSimplePageOLS());
 
-        DoctorInformationCollectionPageOLS doctorInformationCollectionPageOLS = medicalRecordsOptionPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Continue with medical records")
-                .clickNextButton(new DoctorInformationCollectionPageOLS());
 
-        HS1PageOLS hs1PageOLS = doctorInformationCollectionPageOLS
-                .waitForPageLoad()
-                .clickNextButton(new HS1PageOLS());
-
-
-        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = new ThankYouCloseSimplePageOLS();
         AboutHealthPageOLS aboutHealthPageOLS = new AboutHealthPageOLS();
-                hs1PageOLS
-                .waitForPageLoad()
-                .clickOkInPopUp()
-                .setSignature()
-                .waitToClickNext()
-                .clickNextButton(thankYouCloseSimplePageOLS);
+//                hs1PageOLS
+//                .waitForPageLoad()
+//                .clickOkInPopUp()
+//                .setSignature()
+//                .waitToClickNext()
+//                .clickNextButton(thankYouCloseSimplePageOLS);
                 try {
                     thankYouCloseSimplePageOLS
                             .waitForPageLoad()

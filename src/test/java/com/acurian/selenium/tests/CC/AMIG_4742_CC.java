@@ -18,7 +18,7 @@ import java.util.List;
 
 public class AMIG_4742_CC extends BaseTest {
     //FULs were stopped on AMS1 R68.2
-    @Test(enabled = true)
+    @Test(enabled = false)
     public void Amig4742cc() {
         String phoneNumber = "AUTAMS1MIG";
         Site site = Site.AUT_MIG4742_site;
@@ -509,7 +509,7 @@ public class AMIG_4742_CC extends BaseTest {
                 .pidFromDbToLog(env)
                 .childPidFromDbToLog(env)
                 .assertGeneratedFul(env, site)
-                .assertRmgOrderPriority(env, "4742")
+      //          .assertRmgOrderPriority(env, "4742")
                 .dispoShouldMatch(site.dispo, site.dispo);
     }
 }

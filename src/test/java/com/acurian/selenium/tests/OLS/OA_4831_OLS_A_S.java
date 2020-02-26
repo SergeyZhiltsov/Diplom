@@ -42,7 +42,7 @@ public class OA_4831_OLS_A_S extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "sites")
+    @Test(dataProvider = "sites", enabled = false)
     public void OA_4831_OLS_NonSynexus_Script(Site site) {
         String phoneNumber = "AUTAMS1OA1";
         String studyName = "an osteoarthritis";

@@ -41,7 +41,7 @@ public class VACC_JANRSV_CC extends BaseTest {
                 {Site.AUT_AMS_JANRSV_Syn}
         };
     }
-    @Test(dataProvider = "sites")
+    @Test(dataProvider = "sites", enabled = false)
     @Description("VACC_4556_OLS")
     public void vaccJANRSVccTest(Site site) {
         String phoneNumber = "AUTAMS1VAC";

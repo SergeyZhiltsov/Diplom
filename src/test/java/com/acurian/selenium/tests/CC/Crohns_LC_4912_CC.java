@@ -70,7 +70,7 @@ public class Crohns_LC_4912_CC extends BaseTest {
         callCenterIntroductionPageCC
                 .waitForPageLoad()
                 .activateDebugOnProd(env);
-        Assert.assertEquals(callCenterIntroductionPageCC.getTitleText(), callCenterIntroductionPageCC.titleExpectedDYS, "Title is diff");
+        Assert.assertEquals(callCenterIntroductionPageCC.getTitleText(), callCenterIntroductionPageCC.titleExpected, "Title is diff");
         DateOfBirthPageCC dateOfBirthPageCC = callCenterIntroductionPageCC
                 .clickOnAnswer("Learn more about matching to clinical trials")
                 .clickNextButton(new DateOfBirthPageCC());
@@ -99,15 +99,20 @@ public class Crohns_LC_4912_CC extends BaseTest {
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
                 .back();
-        IdentificationPageCC identificationPageCC = dateOfBirthPageCC
+        ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
                 // .waitForPageLoad2Ver()
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
-                .clickNextButton(new IdentificationPageCC());
+//                .clickNextButton(new IdentificationPageCC());
+//
+//        GenderPageCC genderPageCC = identificationPageCC
+//                .waitForPageLoadNotQCrohn()
+//                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
+//                        "9999999999", site.zipCode)
+                .clickNextButton(new ZipCodePageCC());
 
-        GenderPageCC genderPageCC = identificationPageCC
-                .waitForPageLoadNotQCrohn()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
-                        "9999999999", site.zipCode)
+        GenderPageCC genderPageCC = zipCodePageCC
+                .waitForPageLoad()
+                .typeZipCode(site.zipCode)
                 .clickNextButton(new GenderPageCC());
 
         genderPageCC
@@ -512,7 +517,7 @@ public class Crohns_LC_4912_CC extends BaseTest {
                 .waitForPageLoad()
                 .setAll("5", "7", "170")
                 .clickNextButton(new LetMeSeePageCC());
-        HSMedicalRecordsPageCC hsMedicalRecordsPageCC = new HSMedicalRecordsPageCC();
+        IdentificationPageCC identificationPageCC = new IdentificationPageCC();
         SiteSelectionPageCC siteSelectionPageCC = letMeSeePageCC
                 .waitForPageLoad()
                 .clickNextButton(new CurrentlyParticipatingInStudy())

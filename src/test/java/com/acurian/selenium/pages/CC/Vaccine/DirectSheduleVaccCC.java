@@ -10,13 +10,13 @@ import ru.yandex.qatools.allure.annotations.Step;
 public class DirectSheduleVaccCC extends MainPageCC {
 
 
-    public final String titleExpected = "The next step is to get you scheduled for an appointment with the study doctor's team. During this visit, the study doctor's team will further discuss the study requirements and answer any questions you may have.\n" +
+    public final String titleExpected = "The next step is to schedule an appointment with the study doctor’s team.\n" +
             "\n" +
-            "Agent note: Click the link below to schedule the patient's appointment. This will open a new window with available dates and times at the site that has been selected. Select an appointment date and time that is convenient for the patient. Then return to this screen to complete next steps.\n" +
+            "Agent Note: Click the link below to schedule an appointment for the patient—this will open a new window with available timeslots at the patient’s preferred site. Please choose the date and time that is most convenient for the patient, then return to the current screen to complete the screening process.\n" +
             "\n" +
-            "Agent note: you may be prompted later to attempt to warm transfer the patient to the site, or to schedule the patient in Clinical Conductor, even if you successfully scheduled the patient's appointment here. If the appointment was successfully scheduled, please do NOT complete the warm transfer or the scheduling in Clinical Conductor.\n" +
+            "Agent Note: Later, you may be prompted to warm transfer the patient to the site or schedule the patient in Clinical Conductor (even if you have successfully scheduled an appointment here).\n" +
             "\n" +
-            "Click here to book an appointment with the site you picked";
+            "If an appointment has already been scheduled, please do NOT complete the warm transfer or schedule the patient in Clinical Conductor.";
 
     public final String titleExpectedSTG = "Click below to schedule your appointment. After the appointment confirmation, please return to this window and click \"next\" to complete the process.\n" +
             "If you are not able to schedule now, you will be contacted by the study doctor's office to schedule your appointment.\n" +

@@ -428,18 +428,18 @@ public class CV_5034_OLSBlinx extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("Continue with medical records")
                 .clickNextButton(new DoctorInformationCollectionPageOLS()); //trick
-        HS1PageOLS hs1PageOLS = doctorInformationCollectionPageOLS
-                .waitForPageLoad()
-                .clickNextButton(new HS1PageOLS());
-
-
-//        ChatfillMedicalRecordReleaseFormPageOLS chatfillMedicalRecordReleaseFormPageOLS =
-//                new ChatfillMedicalRecordReleaseFormPageOLS();
-
-        hs1PageOLS
-                .waitForPageLoad()
-                .clickOkInPopUp()
-                .setSignature();
+//        HS1PageOLS hs1PageOLS = doctorInformationCollectionPageOLS
+//                .waitForPageLoad()
+//                .clickNextButton(new HS1PageOLS());
+//
+//
+////        ChatfillMedicalRecordReleaseFormPageOLS chatfillMedicalRecordReleaseFormPageOLS =
+////                new ChatfillMedicalRecordReleaseFormPageOLS();
+//
+//        hs1PageOLS
+//                .waitForPageLoad()
+//                .clickOkInPopUp()
+//                .setSignature();
 //                .waitToClickNext()
 //                .getPage(new AdobeSignMedAuthFormPageBlinx());
 //                .setAllDataMedicalRecordReleaseForm("Acurian", "PA", "9999999999",
@@ -461,7 +461,7 @@ public class CV_5034_OLSBlinx extends BaseTest {
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
                 .childPidFromDbToLog(env)
-                .dispoShouldMatch(site.dispo, site.dispo)
-                .assertRmgOrderPriority(env, "5034");
+                .dispoShouldMatch(site.dispo, site.dispo);
+//                .assertRmgOrderPriority(env, "5034");
     }
 }

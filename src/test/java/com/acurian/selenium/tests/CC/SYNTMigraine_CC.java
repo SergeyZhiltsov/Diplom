@@ -30,7 +30,7 @@ public class SYNTMigraine_CC extends BaseTest {
         super.tearDown();
     }
 
-    @Test(enabled = true, dataProvider = "sites", dataProviderClass = SYNTMigraine_OLS.class)
+    @Test(enabled = false, dataProvider = "sites", dataProviderClass = SYNTMigraine_OLS.class)
     public void SYNTMigraine_CC(Site site) {
         final String phoneNumber = "AUTAMS1MIG";
         final String studyName = "a migraine study"; //"a NASH study";

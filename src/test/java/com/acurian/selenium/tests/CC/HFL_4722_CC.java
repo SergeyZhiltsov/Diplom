@@ -16,7 +16,7 @@ import ru.yandex.qatools.allure.annotations.Description;
 
 public class HFL_4722_CC extends BaseTest {
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     @Description("HFL_4722 test CC")
     public void hfl_4722_CC() {
         Site site = Site.AUT_HFL_4722_Site;

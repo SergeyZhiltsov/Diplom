@@ -33,7 +33,7 @@ public class KAD_4631_CC extends BaseTest {
         super.tearDown();
     }
 
-    @Test(dataProvider = "sites", dataProviderClass = KAD_4631_OLS.class)
+    @Test(dataProvider = "sites", dataProviderClass = KAD_4631_OLS.class, enabled = false)
     @Description("KAD 4631 Kiniksa Atopic Derm for CC")
     public void kad4631_CCTest(Site site) {
         String phoneNumber = "AUTAMS1KAD";

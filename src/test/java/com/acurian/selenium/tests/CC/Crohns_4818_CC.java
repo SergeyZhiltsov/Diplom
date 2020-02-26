@@ -103,15 +103,21 @@ public class Crohns_4818_CC extends BaseTest {
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
                 .back();
-        IdentificationPageCC identificationPageCC = dateOfBirthPageCC
+        ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
                 .waitForPageLoad("a Crohn's study", "700")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
-                .clickNextButton(new IdentificationPageCC());
+                .clickNextButton(new ZipCodePageCC());
 
-        GenderPageCC genderPageCC = identificationPageCC
-                .waitForPageLoadNotQCrohn()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
-                        "9999999999", site.zipCode)
+//        GenderPageCC genderPageCC = identificationPageCC
+//                .waitForPageLoadNotQCrohn()
+//                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
+//                        "9999999999", site.zipCode)
+//                .clickNextButton(new GenderPageCC());
+
+
+        GenderPageCC genderPageCC = zipCodePageCC
+                .waitForPageLoad()
+                .typeZipCode(site.zipCode)
                 .clickNextButton(new GenderPageCC());
 
         genderPageCC
@@ -587,8 +593,10 @@ public class Crohns_4818_CC extends BaseTest {
                         .clickNextButton(new RequirePassDrugTest())
                         .waitForPageLoad()
                         .clickOnAnswer("Yes")
-                        .clickNextButton(identificationPageCC)
+                        .clickNextButton(new IdentificationPageCC())
                         .waitForPageLoad()
+                        .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
+                                "9999999999", site.zipCode)
                         .clickNextButton(new SiteSelectionPageCC())
                         .waitForPageLoad("a Crohn's study")
                         .getPID()
@@ -600,8 +608,8 @@ public class Crohns_4818_CC extends BaseTest {
                         .clickOnAnswer("Continue with medical records")
                         .clickNextButton(new DoctorInformationCollectionPageCC())
                         .waitForPageLoadIBD("Crohn's Disease")
-                        .clickNextButton(new HSMedicalRecordsPageCC())
-                        .waitForPageLoad()
+//                        .clickNextButton(new HSMedicalRecordsPageCC())
+//                        .waitForPageLoad()
                         .clickNextButton(new ThankYouCloseSimplePageCC())
                         .waitForPageLoad3()
                         .clickNextButton(new SelectActionPageCC())
@@ -624,8 +632,10 @@ public class Crohns_4818_CC extends BaseTest {
                         .clickNextButton(new RequirePassDrugTest())
                         .waitForPageLoad()
                         .clickOnAnswer("Yes")
-                        .clickNextButton(identificationPageCC)
+                        .clickNextButton(new IdentificationPageCC())
                         .waitForPageLoad()
+                        .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
+                        "9999999999", site.zipCode)
                         .clickNextButton(new SiteSelectionPageCC())
                         .waitForPageLoad("a Crohn's study")
                         .getPID()
@@ -637,8 +647,8 @@ public class Crohns_4818_CC extends BaseTest {
                         .clickOnAnswer("Continue with medical records")
                         .clickNextButton(new DoctorInformationCollectionPageCC())
                         .waitForPageLoadIBD("Crohn's Disease")
-                        .clickNextButton(new HSMedicalRecordsPageCC())
-                        .waitForPageLoad()
+//                        .clickNextButton(new HSMedicalRecordsPageCC())
+//                        .waitForPageLoad()
                         .clickNextButton(new SynexusRadiantDirectScheduleCC())
                         .waitForPageLoadSyn()
                         .assertVariablesNew("Acurian", "Trial", "07/01/1990", "US", // maybe need to use another method

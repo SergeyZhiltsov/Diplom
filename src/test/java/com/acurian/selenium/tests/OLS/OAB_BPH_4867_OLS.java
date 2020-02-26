@@ -24,7 +24,7 @@ import java.util.List;
 
 public class OAB_BPH_4867_OLS extends BaseTest {
 
-    @Test()
+    @Test(enabled = false)
     @Description("OAB_BPH_4867_OLS")
     public void OAB_BPH_4867_OLS_Script() {
         Site site = Site.AUT_OAB_4867;

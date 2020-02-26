@@ -21,7 +21,7 @@ import java.util.List;
 
 public class OA_5044_OLS_S extends BaseTest {
 
-    @Test
+    @Test(enabled = false)
     @Description("OA_5044_OLS_S")
     public void oA_5044_OLS_S() {
         Site site = Site.AUT_OA_5044_S;

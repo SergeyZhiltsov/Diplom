@@ -23,7 +23,7 @@ import ru.yandex.qatools.allure.annotations.Description;
 public class OAB_BPH_4867_CC extends BaseTest {
 
     @Description("OAB_BPH_4867_CC")
-    @Test()
+    @Test(enabled = false)
     public void OAB_BPH_4867_CC_Script() {
         Site site = Site.AUT_OAB_4867;
         String phoneNumber = "AUTAMS1OAB";

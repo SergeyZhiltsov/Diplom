@@ -260,7 +260,7 @@ public class AUT_3973_OLS extends BaseTest {
 
 
         //----HEIGHT and WEIGHT Question ------------
-        approximateHeightPageOLS
+        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = approximateHeightPageOLS
                 .waitForPageLoad()
                 //EthnicBackgroundPageOLS ethnicBackgroundPageOLS = approximateHeightPageOLS
                 .waitForPageLoad()
@@ -290,10 +290,10 @@ public class AUT_3973_OLS extends BaseTest {
                 .clickOnAnswer("Continue with medical records")
                 .clickNextButton(new DoctorInformationCollectionPageOLS())
                 .waitForPageLoad()
-                .clickNextButton(new HS1PageOLS())
-                .waitForPageLoad()
-                .clickOkInPopUp()
-                .setSignature();
+                .clickNextButton(new ThankYouCloseSimplePageOLS());
+//                .waitForPageLoad()
+//                .clickOkInPopUp()
+//                .setSignature();
 
 /*                //------------HUMAN API Interface in HelloSign----------------
                 .getPage(new HumanAPIOLS())
@@ -313,7 +313,6 @@ public class AUT_3973_OLS extends BaseTest {
                 .waitToClickNext()
                 .clickNextButton(new ThankYouCloseSimplePageOLS())*/
 
-        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = new ThankYouCloseSimplePageOLS();
         thankYouCloseSimplePageOLS
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())

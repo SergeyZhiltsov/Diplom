@@ -40,7 +40,7 @@ public class DERM_4631_OLS extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "sites")
+    @Test(dataProvider = "sites", enabled = false)
     @Description("4631 Kiniksa Atopic Derm for OLS")
     public void DERM_4631_OLS(Site site) {
         String phoneNumber = "AUTAMS1KAD";

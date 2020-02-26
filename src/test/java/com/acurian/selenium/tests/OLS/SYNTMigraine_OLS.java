@@ -36,7 +36,7 @@ public class SYNTMigraine_OLS extends BaseTest {
         };
     }
 
-    @Test(enabled = true, dataProvider = "sites")
+    @Test(enabled = false, dataProvider = "sites")
     @Description("SYNTMigraine_OLS")
     public void SYNTMigraine_OLS(Site site) {
         DebugPageOLS debugPageOLS = new DebugPageOLS();

@@ -74,7 +74,7 @@ public class Crohns_3889_CC extends BaseTest {
         callCenterIntroductionPageCC
                 .waitForPageLoad()
                 .activateDebugOnProd(env);
-        Assert.assertEquals(callCenterIntroductionPageCC.getTitleText(), callCenterIntroductionPageCC.titleExpectedDYS, "Title is diff");
+        Assert.assertEquals(callCenterIntroductionPageCC.getTitleText(), callCenterIntroductionPageCC.titleExpected, "Title is diff");
         DateOfBirthPageCC dateOfBirthPageCC = callCenterIntroductionPageCC
                 .clickOnAnswer("Learn more about matching to clinical trials")
                 .clickNextButton(new DateOfBirthPageCC());
@@ -84,10 +84,10 @@ public class Crohns_3889_CC extends BaseTest {
 //        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.getExpectedModifiedTitle
 //                ("a Crohn's study", "700"), "Title is diff");
 
-        IdentificationPageCC identificationPageCC = dateOfBirthPageCC
+        ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
-//                .clickNextButton(new LessThan18YearsOldPageCC());
+//                .clickNextButton(new zipCodePageCC());
 //        lessThan18YearsOldPageCC
 //                .waitForPageLoad()
 //                .getPage(debugPageCC)
@@ -96,12 +96,17 @@ public class Crohns_3889_CC extends BaseTest {
 //        IdentificationPageCC identificationPageCC = dateOfBirthPageCC
 //                .waitForPageLoad("a Crohn's study", "700")
 //                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
-                .clickNextButton(new IdentificationPageCC());
+                .clickNextButton(new ZipCodePageCC());
 
-        GenderPageCC genderPageCC = identificationPageCC
-                .waitForPageLoadNotQ()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
-                        "9999999999", site.zipCode)
+//        GenderPageCC genderPageCC = identificationPageCC
+//                .waitForPageLoadNotQ()
+//                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
+//                        "9999999999", site.zipCode)
+//                .clickNextButton(new GenderPageCC());
+
+        GenderPageCC genderPageCC = zipCodePageCC
+                .waitForPageLoad()
+                .typeZipCode(site.zipCode)
                 .clickNextButton(new GenderPageCC());
 
         EverDiagnosedWithFollowingConditionsСС everDiagnosedWithFollowingConditionsСС = genderPageCC
@@ -599,8 +604,10 @@ public class Crohns_3889_CC extends BaseTest {
                 .clickNextButton(new RequirePassDrugTest())
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(identificationPageCC)
+                .clickNextButton(new IdentificationPageCC())
                 .waitForPageLoad()
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
+                        "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageCC())
                 .waitForPageLoad("a Crohn's study")
                 .getPID()
@@ -610,8 +617,9 @@ public class Crohns_3889_CC extends BaseTest {
                 .clickOnAnswer("Continue with medical records")
                 .clickNextButton(new DoctorInformationCollectionPageCC())
                 .waitForPageLoadIBD("Crohn's Disease")
-                .clickNextButton(new HSMedicalRecordsPageCC())
-                .waitForPageLoad();
+                .clickNextButton(new HSMedicalRecordsPageCC());
+//                .clickNextButton(new HSMedicalRecordsPageCC())
+//                .waitForPageLoad();
         if(flareStatus.equals("Not in Flare")) {
             hsMedicalRecordsPageCC
                     .clickNextButton(new QualifiedFlareMonitoringAppClosePageCC())

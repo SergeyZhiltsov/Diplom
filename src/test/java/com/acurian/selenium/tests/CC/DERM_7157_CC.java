@@ -86,15 +86,20 @@ public class DERM_7157_CC extends BaseTest {
                 .getPage(debugPageCC)
                 // .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
                 .back(dateOfBirthPageCC);
-        IdentificationPageCC identificationPageCC = dateOfBirthPageCC
+        ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
                 .waitForPageLoad("an eczema (atopic dermatitis) study", "600")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
-                .clickNextButton(new IdentificationPageCC());
+                .clickNextButton(new ZipCodePageCC());
 
-        GenderPageCC genderPageCC = identificationPageCC
-                .waitForPageLoadNotQCrohn()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
-                        "9999999999", site.zipCode)
+//        GenderPageCC genderPageCC = identificationPageCC
+//                .waitForPageLoadNotQCrohn()
+//                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
+////                        "9999999999", site.zipCode)
+//                .clickNextButton(new GenderPageCC());
+
+        GenderPageCC genderPageCC = zipCodePageCC
+                .waitForPageLoad()
+                .typeZipCode(site.zipCode)
                 .clickNextButton(new GenderPageCC());
 
         HasHealthcareProfessionalEverDiagnosedYouWithEczema_CC hasHealthcareProfessionalEverDiagnosedYouWithEczema_CC =
@@ -809,7 +814,7 @@ public class DERM_7157_CC extends BaseTest {
                 .clickNextButton(letMeSeePageCC);
 
 
-        letMeSeePageCC
+        IdentificationPageCC identificationPageCC = letMeSeePageCC
                 .waitForPageLoad()
                 .clickNextButton(new CurrentlyParticipatingInStudy())
                 .waitForPageLoad()
@@ -817,13 +822,13 @@ public class DERM_7157_CC extends BaseTest {
                 .clickNextButton(new RequirePassDrugTest())
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(identificationPageCC);
+                .clickNextButton(new IdentificationPageCC());
 
         //----------PII (IdentificationPageOLS) Page--------------------
         SiteSelectionPageCC selectionPageCC = identificationPageCC
                 .waitForPageLoad()
-//                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
-//                        "9999999999", site.zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
+                        "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageCC());
 
         MedicalRecordsOptionPageCC medicalRecordsOptionPageCC = selectionPageCC

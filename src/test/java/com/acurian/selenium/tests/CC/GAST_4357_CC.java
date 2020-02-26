@@ -77,7 +77,7 @@ public class GAST_4357_CC extends BaseTest {
         callCenterIntroductionPageCC
                 .waitForPageLoad()
                 .activateDebugOnProd(env);
-        Assert.assertEquals(callCenterIntroductionPageCC.getTitleText(), callCenterIntroductionPageCC.titleExpectedDYS,
+        Assert.assertEquals(callCenterIntroductionPageCC.getTitleText(), callCenterIntroductionPageCC.titleExpected,
                 "Title is diff");
         DateOfBirthPageCC dateOfBirthPageCC = callCenterIntroductionPageCC
                 .clickOnAnswer("Learn more about matching to clinical trials")
@@ -95,7 +95,7 @@ public class GAST_4357_CC extends BaseTest {
                 .waitForPageLoad()
                 .back(dateOfBirthPageCC);
 
-        IdentificationPageCC identificationPageCC = dateOfBirthPageCC
+        ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
                 .waitForPageLoad(studyName, "500")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "No")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
@@ -107,11 +107,16 @@ public class GAST_4357_CC extends BaseTest {
                 .waitForPageLoad(studyName, "500")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
-                .clickNextButton(new IdentificationPageCC());
+                .clickNextButton(new ZipCodePageCC());
 
-        GenderPageCC genderPageCC = identificationPageCC
-                .waitForPageLoadNotQ()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
+//        GenderPageCC genderPageCC = identificationPageCC
+//                .waitForPageLoadNotQ()
+//                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
+//                .clickNextButton(new GenderPageCC());
+
+        GenderPageCC genderPageCC = zipCodePageCC
+                .waitForPageLoad()
+                .typeZipCode(site.zipCode)
                 .clickNextButton(new GenderPageCC());
 
         DiagnosedAnyTypeOfDiabetesPageCC diagnosedAnyTypeOfDiabetesPageCC = genderPageCC
@@ -794,7 +799,7 @@ public class GAST_4357_CC extends BaseTest {
                 .setAll("3", "6", "100")
                 .clickNextButton(new LetMeSeePageCC());
 
-        letMeSeePageCC
+        IdentificationPageCC identificationPageCC = letMeSeePageCC
                 .waitForPageLoad()
                 .clickNextButton(new CurrentlyParticipatingInStudy())
                 .waitForPageLoad()
@@ -802,10 +807,11 @@ public class GAST_4357_CC extends BaseTest {
                 .clickNextButton(new RequirePassDrugTest())
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(identificationPageCC);
+                .clickNextButton(new IdentificationPageCC());
         //----------PII (IdentificationPageOLS) Page--------------------
         SiteSelectionPageCC selectionPageCC = identificationPageCC
                 .waitForPageLoad()
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageCC())
                 .waitForPageLoad(studyName)
                 .getPID();

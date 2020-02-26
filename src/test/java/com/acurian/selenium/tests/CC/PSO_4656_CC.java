@@ -19,7 +19,7 @@ import java.util.List;
 
 public class PSO_4656_CC extends BaseTest {
 
-    @Test(dataProvider = "sites", dataProviderClass = PS_4656_OLS.class)
+    @Test(dataProvider = "sites", dataProviderClass = PS_4656_OLS.class, enabled = false)
     @Description("PSO_4656_CC")
     public void psor4656cc(Site site) {
         final String phoneNumber = "AUTAMS1PSO";
@@ -320,7 +320,7 @@ public class PSO_4656_CC extends BaseTest {
                 .pidFromDbToLog(env)
                 .childPidFromDbToLog(env, "4656")
                 .assertGeneratedFul(env, site)
-                .dispoShouldMatch(site.dispo, site.dispo)
-                .assertRmgOrderPriority(env, "4656");
+                .dispoShouldMatch(site.dispo, site.dispo);
+  //              .assertRmgOrderPriority(env, "4656");
     }
 }

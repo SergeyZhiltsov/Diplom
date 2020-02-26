@@ -16,7 +16,7 @@ import ru.yandex.qatools.allure.annotations.Description;
 
 public class HFL_4722_OLS extends BaseTest {
 
-    @Test
+    @Test(enabled = false)
     @Description("Heart_Failure 4722 OLS")
     public void hfl4722olsTest() {
         Site site = Site.AUT_HFL_4722_Site;
