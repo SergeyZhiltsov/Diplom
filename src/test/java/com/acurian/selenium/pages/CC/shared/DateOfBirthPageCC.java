@@ -309,7 +309,7 @@ public class DateOfBirthPageCC extends MainPageCC {
     @FindBy(xpath = ".//*[contains(@class, 'show-in-cc')][contains(text(), \"If you qualify\")]")
     WebElement titleTextGmega;
 
-    @FindBy(xpath = "//*[@id=\"command\"]/div[2]/span[1]/div[1] ")
+    @FindBy(xpath = "//*[@id=\"command\"]/div[2]/span[1]/span[1] ")
     WebElement titleTextCrohns;
 
     @FindBy(xpath = "//div[@class='subquestion'][1]//div[@class='show-in-cc']")

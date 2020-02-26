@@ -168,7 +168,7 @@ public class GERD_5098_CC extends BaseTest {
 
         howLongHavingSymptomsCC
                 .waitForPageLoad()
-                .clickOnAnswer("Less than 1 month")
+//                .clickOnAnswer("Less than 1 month")
                 .clickNextButton(painInTheTopOfStomachCC);
 
         painInTheTopOfStomachCC
@@ -860,7 +860,7 @@ public class GERD_5098_CC extends BaseTest {
                         .waitForPageLoadSyn()
                         .assertVariablesNew("Acurian", "Trial", "01/01/1990", "US",
                                 "Cape May, NJ", site.zipCode, "qa.acurian@gmail.com",
-                                "999-999-9999", " aut5098S ", " "+site.name,
+                                "999-999-9999", "aut5098S", site.name,
                                 "PHMPPDEOE301,PHMPPDPYL301 - Phathom Phalcon")
                         .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                         .clickNextButton(selectActionPageCC)
