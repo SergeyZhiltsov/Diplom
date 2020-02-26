@@ -9,7 +9,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 public class ServerStatusZipOLS extends MainPageOLS {
     public final String titleExpected = "Zip Code";
 
-    @FindBy(xpath = "//div[@class='question_text'] | (//*[contains(@class, 'visible-md-block')])[1]")
+    @FindBy(xpath = "//div[@class='question_text' and contains(text(),'Zip Code')] | (//*[contains(@class, 'visible-md-block')])[1]")
     WebElement titleText;
 
     @FindBy(xpath = "//div[@class='question']//input")
