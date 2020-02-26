@@ -74,7 +74,7 @@ public class Crohns_4818_CC extends BaseTest {
         callCenterIntroductionPageCC
                 .waitForPageLoad()
                 .activateDebugOnProd(env);
-        Assert.assertEquals(callCenterIntroductionPageCC.getTitleText(), callCenterIntroductionPageCC.titleExpectedDYS, "Title is diff");
+        Assert.assertEquals(callCenterIntroductionPageCC.getTitleText(), callCenterIntroductionPageCC.titleExpected, "Title is diff");
         DateOfBirthPageCC dateOfBirthPageCC = callCenterIntroductionPageCC
                 .clickOnAnswer("Learn more about matching to clinical trials")
                 .clickNextButton(new DateOfBirthPageCC());
@@ -610,6 +610,8 @@ public class Crohns_4818_CC extends BaseTest {
                         .waitForPageLoadIBD("Crohn's Disease")
 //                        .clickNextButton(new HSMedicalRecordsPageCC())
 //                        .waitForPageLoad()
+                        .clickNextButton(new HSMedicalRecordsPageCC())
+                        .waitForPageLoad()
                         .clickNextButton(new ThankYouCloseSimplePageCC())
                         .waitForPageLoad3()
                         .clickNextButton(new SelectActionPageCC())
@@ -653,7 +655,7 @@ public class Crohns_4818_CC extends BaseTest {
                         .waitForPageLoadSyn()
                         .assertVariablesNew("Acurian", "Trial", "07/01/1990", "US", // maybe need to use another method
                                 "Horsham, PA", site.zipCode, "qa.acurian@gmail.com",
-                                "999-999-9999", " %SYN_SITE_NUM% ", " "+site.name,
+                                "999-999-9999", "%SYN_SITE_NUM%", site.name,
                                 "ALLXXXCRO150 - Allergan Crohn")
                         .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                         .clickNextButton(new SelectActionPageCC())
