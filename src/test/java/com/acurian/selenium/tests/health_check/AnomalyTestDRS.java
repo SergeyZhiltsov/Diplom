@@ -91,7 +91,7 @@ public class AnomalyTestDRS extends BaseTest {
                 .clickNextButton(new DirectSheduleVaccOLS());
         if(env.equals("PRD")){
             directSheduleBlinx
-                    .waitForPageLoad();
+                    .waitForPageLoadSTG();
         }
         if(env.equals("STG")){
             directSheduleBlinx
@@ -120,7 +120,7 @@ public class AnomalyTestDRS extends BaseTest {
         getDriver().switchTo().window(tabs.get(0));
         if(env.equals("PRD")){
             directSheduleBlinx
-                    .waitForPageLoad();
+                    .waitForPageLoadSTG();
         }
         if(env.equals("STG")){
             directSheduleBlinx

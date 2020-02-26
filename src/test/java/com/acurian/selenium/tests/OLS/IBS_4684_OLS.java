@@ -718,7 +718,7 @@ public class IBS_4684_OLS extends BaseTest {
 
         IdentificationPageOLS identificationPageOLS = approximateHeightPageOLS
                         .waitForPageLoad()
-                        .setAll("5", "5", "170")
+                        .setAll("6", "2", "350")
                 .clickNextButton(new CurrentlyParticipatingInStudyOLS())
                 .waitForPageLoad()
                 .clickOnAnswer("No")
