@@ -14,7 +14,7 @@ public class FollowingNeurologicalConditionsPageOLS extends MainPageOLS{
 //    public final String titleExpected = "Has a healthcare professional ever diagnosed you with any of the following neurological conditions?\n" +
 //            "Please select all that apply.";
 
-    public final String titleExpected = "Has a healthcare professional ever diagnosed you with any of the following neurological conditions?N\n" +
+    public final String titleExpected = "Has a healthcare professional ever diagnosed you with any of the following neurological conditions?\n" +
             "Please select all that apply.";
 
 //    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
