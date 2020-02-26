@@ -755,14 +755,14 @@ public class GAST_7114_CC extends BaseTest {
 
         IdentificationPageCC identificationPageCC = letMeSeePageCC
                 .waitForPageLoad()
-                .clickNextButton(currentlyTreatingYourDiabetesPageCC)
-                .waitForPageLoad()
-                .clickOnAnswers("I am not currently treating my diabetes")
-                .clickNextButton(new CurrentlySufferOfAnyOfFollowingCC())
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new NonQRtransitionPageCC())
-                .waitForPageLoad()
+//                .clickNextButton(currentlyTreatingYourDiabetesPageCC)
+//                .waitForPageLoad()
+//                .clickOnAnswers("I am not currently treating my diabetes")
+//                .clickNextButton(new CurrentlySufferOfAnyOfFollowingCC())
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickNextButton(new NonQRtransitionPageCC())
+//                .waitForPageLoad()
                 .clickNextButton(new CurrentlyParticipatingInStudy())
                 .waitForPageLoad()
                 .clickOnAnswer("No")
@@ -780,7 +780,7 @@ public class GAST_7114_CC extends BaseTest {
 
         selectionPageCC
                 .clickOnAnswer(site.name)
-                .clickNextButton(new QualifiedCloseGastroPageCC())
+                .clickNextButton(new QualifiedClose1PageCC())
                 .waitForPageLoad()
                 .clickNextButton(new ThankYouCloseSimplePageCC())
                 .waitForPageLoad3()

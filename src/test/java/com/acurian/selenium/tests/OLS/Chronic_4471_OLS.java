@@ -98,9 +98,11 @@ public class Chronic_4471_OLS extends BaseTest {
         EverDiagnosedWithFollowingConditionsOLS everDiagnosedWithFollowingConditionsOLS = haveYouSmokedCigarettesOLS
                 .waitForPageLoadNew()
                 .clickOnAnswers("No, I never smoked")
-                .clickNextButton(new EverDiagnosedWithFollowingConditionsOLS())
-                .waitForPageLoad();
-        everDiagnosedWithFollowingConditionsOLS.back();
+                .clickNextButton(new EverDiagnosedWithFollowingConditionsOLS());
+
+        everDiagnosedWithFollowingConditionsOLS
+                .waitForPageLoad()
+                .back();
 
         HowManyCigarettesOLS howManyCigarettesOLS = haveYouSmokedCigarettesOLS
                 .waitForPageLoadNew()

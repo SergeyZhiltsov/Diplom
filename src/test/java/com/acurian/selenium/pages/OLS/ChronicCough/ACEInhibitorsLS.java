@@ -14,7 +14,7 @@ public class ACEInhibitorsLS extends MainPageOLS{
     		"Please select all that apply."; 
     
     		
-    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]//div[contains(@class,'show-in-ols')]")
+    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]//span[contains(@class,'show-in-ols')]")
     WebElement titleText;
 
     @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]/span[@class='show-in-ols']")
