@@ -14,7 +14,7 @@ public class WhatTypeOfLupusCC extends MainPageCC{
     public final String titleExpected = "What type of lupus were you diagnosed with? (Agent Note: LOOP-us)";
     public final String titleExpected2 = "Which type of lupus do you have? (Agent Note: LOOP-us)";
 
-    @FindBy(xpath = "//div[@class='question_text']/div[@class='show-in-cc']")
+    @FindBy(xpath = "//div[@class='question_text']/span[@class='show-in-cc']")
     WebElement titleText;    
 
     @FindBy(xpath = Locators.RADIO_BUTTON_LIST_CC)

@@ -861,6 +861,8 @@ public class DERM_4967_CC extends BaseTest {
 //                .waitForPageLoad()
 //                .clickNextButton(new HSMedicalRecordsPageCC())
 //                .waitForPageLoad()
+                .clickNextButton(new QualifiedClose1PageCC())
+                .waitForPageLoad()
                 .clickNextButton(new ThankYouCloseSimplePageCC())
                 .waitForPageLoad3()
                 .clickNextButton(new SelectActionPageCC())

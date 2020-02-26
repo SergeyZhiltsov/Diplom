@@ -67,7 +67,7 @@ public class DERM_7157_CC extends BaseTest {
         callCenterIntroductionPageCC
                 .waitForPageLoad()
                 .activateDebugOnProd(env);
-        Assert.assertEquals(callCenterIntroductionPageCC.getTitleText(), callCenterIntroductionPageCC.titleExpectedDYS,
+        Assert.assertEquals(callCenterIntroductionPageCC.getTitleText(), callCenterIntroductionPageCC.titleExpected,
                 "Title is diff");
         DateOfBirthPageCC dateOfBirthPageCC = callCenterIntroductionPageCC
                 .clickOnAnswer("Learn more about matching to clinical trials")
@@ -831,17 +831,19 @@ public class DERM_7157_CC extends BaseTest {
                         "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageCC());
 
-        MedicalRecordsOptionPageCC medicalRecordsOptionPageCC = selectionPageCC
+        QualifiedClose1PageCC qualifiedClose1PageCC = selectionPageCC
                 .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnAnswer(site.name)
-                .clickNextButton(new MedicalRecordsOptionPageCC());
+                .clickNextButton(new QualifiedClose1PageCC());
+
+        SynexusRadiantDirectScheduleCC synexusRadiantDirectScheduleCC = new SynexusRadiantDirectScheduleCC();
 
 
         if(site.name.equals("AUT_AMS1_7157_site"))
-        medicalRecordsOptionPageCC
+            qualifiedClose1PageCC
                 .waitForPageLoad()
-                .clickOnAnswer("Continue without medical records")
+//                .clickOnAnswer("Continue without medical records")
                 .clickNextButton(new ThankYouCloseSimplePageCC())
                 .waitForPageLoad3()
                 .clickNextButton(selectActionPageCC)
@@ -855,14 +857,14 @@ public class DERM_7157_CC extends BaseTest {
         if(env.equals("PRD")) {
 
             if (site.name.equals("AUT_AMS1_7157S_site"))
-                medicalRecordsOptionPageCC
-                        .waitForPageLoad()
-                        .clickOnAnswer("Continue without medical records")
-                        .clickNextButton(new SynexusRadiantDirectScheduleCC())
+                synexusRadiantDirectScheduleCC
+//                        .waitForPageLoad()
+//                        .clickOnAnswer("Continue without medical records")
+//                        .clickNextButton(new SynexusRadiantDirectScheduleCC())
                         .waitForPageLoadSyn()
                         .assertVariablesNew("Acurian", "Trial", "04/05/2001", "US",
                                 "Cape May, NJ", site.zipCode, "qa.acurian@gmail.com",
-                                "999-999-9999", " AUT_AMS1_7157S ", " " + site.name, "GLNXXXATO204 - Glenmark Pharmaceuticals Atopic Dermatitis")
+                                "999-999-9999", "AUT_AMS1_7157S", site.name, "GLNXXXATO204 - Glenmark Pharmaceuticals Atopic Dermatitis")
                         .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                         .clickNextButton(selectActionPageCC)
                         .waitForPageLoad()
@@ -874,14 +876,14 @@ public class DERM_7157_CC extends BaseTest {
         }
         if (env.equals("STG")){
             if (site.name.equals("AUT_AMS1_7157S_site"))
-                medicalRecordsOptionPageCC
-                        .waitForPageLoad()
-                        .clickOnAnswer("Continue without medical records")
-                        .clickNextButton(new SynexusRadiantDirectScheduleCC())
+                synexusRadiantDirectScheduleCC
+//                        .waitForPageLoad()
+//                        .clickOnAnswer("Continue without medical records")
+//                        .clickNextButton(new SynexusRadiantDirectScheduleCC())
                         .waitForPageLoadSyn()
                         .assertVariablesNew("Acurian", "Trial", "04/05/2001", "US",
                                 "Cape May, NJ", site.zipCode, "qa.acurian@gmail.com",
-                                "999-999-9999", " %SYN_SITE_NUM% ", " " + site.name, "GLNXXXATO204 - Glenmark Pharmaceuticals Atopic Dermatitis")
+                                "999-999-9999", "%SYN_SITE_NUM%", site.name, "GLNXXXATO204 - Glenmark Pharmaceuticals Atopic Dermatitis")
                         .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                         .clickNextButton(selectActionPageCC)
                         .waitForPageLoad()

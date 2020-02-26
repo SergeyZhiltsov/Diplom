@@ -425,6 +425,8 @@ public class Lupus_4442_CC extends BaseTest {
                 .waitForPageLoad()
 //                .clickNextButton(new HSMedicalRecordsPageCC())
 //                .waitForPageLoad()
+                .clickNextButton(new HSMedicalRecordsPageCC())
+                .waitForPageLoad()
                 .clickNextButton(new ThankYouCloseSimplePageCC())
                 .waitForPageLoad3()
                 .clickNextButton(selectActionPageCC)

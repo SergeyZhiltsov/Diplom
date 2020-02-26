@@ -14,7 +14,7 @@ public class DiagnosedWithLupusCC extends MainPageCC{
     public final String titleExpected = "Has a healthcare professional ever diagnosed you with lupus? (Agent Note: LOOP-us)";
     public final String titleExpected2 = "Has a healthcare professional diagnosed you with lupus? (Agent Note: LOOP-us)";
 
-    @FindBy(xpath = "//div[@class='question_text']/div[@class='show-in-cc']")
+    @FindBy(xpath = "//div[@class='question_text']/span[@class='show-in-cc']")
     WebElement titleText;    
 
     @FindBy(xpath = Locators.RADIO_BUTTON_LIST_CC)
