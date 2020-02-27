@@ -2,6 +2,8 @@ package com.acurian.selenium.tests.OLS;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.CC.closes.QualifiedClose1PageCC;
+import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
 import com.acurian.selenium.pages.OLS.Crohns.*;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
 import com.acurian.selenium.pages.OLS.closes.*;
@@ -548,8 +550,9 @@ public class Crohns_4818_OLS extends BaseTest {
                 .clickNextButton(new IdentificationPageOLS());
         SiteSelectionPageOLS siteSelectionPageOLS = identificationPageOLS
                 .waitForPageLoad()
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageOLS());
-        MedicalRecordsOptionPageOLS medicalRecordsOptionPageOLS = siteSelectionPageOLS
+        QualifiedClose2PageOLS qualifiedClose2PageOLS = siteSelectionPageOLS
                 .waitForPageLoad("a Crohn's")
                 .getPID()
                 .clickOnFacilityName(site.name)
@@ -557,14 +560,15 @@ public class Crohns_4818_OLS extends BaseTest {
 //                .waitForPageLoadCrohns4818()
 //                .clickNextButton(new ThankYouCloseSimplePageOLS())
 //                .waitForPageLoad()
-                .clickNextButton(new MedicalRecordsOptionPageOLS());
-        DoctorInformationCollectionPageOLS doctorInformationCollectionPageOLS = medicalRecordsOptionPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Continue with medical records")
-                .clickNextButton(new DoctorInformationCollectionPageOLS());
-
-        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = doctorInformationCollectionPageOLS
-                .waitForPageLoadIBD("Crohn's Disease")
+                .clickNextButton(new QualifiedClose2PageOLS());
+//        DoctorInformationCollectionPageOLS doctorInformationCollectionPageOLS = medicalRecordsOptionPageOLS
+        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = qualifiedClose2PageOLS
+                .waitForPageLoadCrohns4818()
+//                .clickOnAnswer("Continue with medical records")
+//                .clickNextButton(new DoctorInformationCollectionPageOLS());
+//
+//        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = doctorInformationCollectionPageOLS
+//                .waitForPageLoadIBD("Crohn's Disease")
                 .clickNextButton(new ThankYouCloseSimplePageOLS());
 
 

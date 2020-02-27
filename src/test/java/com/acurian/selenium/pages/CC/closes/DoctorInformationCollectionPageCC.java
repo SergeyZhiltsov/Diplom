@@ -33,6 +33,9 @@ public class DoctorInformationCollectionPageCC extends MainPageCC{
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC)
     WebElement titleText;
 
+    @FindBy(xpath = Locators.BASIC_TITLE2_WITH_RADIO_BUTTON_CC)
+    WebElement titleTextHelloSign;
+
     public DoctorInformationCollectionPageCC() {
         PageFactory.initElements(getDriver(), this);
     }
@@ -45,7 +48,7 @@ public class DoctorInformationCollectionPageCC extends MainPageCC{
 
     @Step
     public DoctorInformationCollectionPageCC waitForPageLoadByTitle(String title) {
-        waitForPageLoadMain(titleText, title);
+        waitForPageLoadMain(titleTextHelloSign, title);
         return this;
     }
 

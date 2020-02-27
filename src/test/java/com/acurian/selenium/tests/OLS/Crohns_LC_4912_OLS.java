@@ -491,10 +491,10 @@ public class Crohns_LC_4912_OLS extends BaseTest {
                         .clickOnAnswer("Continue with medical records")
                         .clickNextButton(new DoctorInformationCollectionPageOLS())
                         .waitForPageLoadIBD("Crohn's Disease")
-                        .clickNextButton(qualifiedFlareMonitoringAppClosePageOLS);
-//                    .waitForPageLoad()
-//                    .clickOkInPopUp()
-//                    .setSignature();
+                        .clickNextButton(new HS1PageOLS())
+                        .waitForPageLoad()
+                        .clickOkInPopUp()
+                        .setSignature();
                 qualifiedFlareMonitoringAppClosePageOLS
                         .waitForPageLoadCrohns()
                         .getActivationCodeCrohns()
@@ -518,13 +518,13 @@ public class Crohns_LC_4912_OLS extends BaseTest {
                         .clickOnAnswer("Continue with medical records")
                         .clickNextButton(new DoctorInformationCollectionPageOLS());
 
-                doctorInformationCollectionPageOLS
+                HS1PageOLS hs1PageOLS = doctorInformationCollectionPageOLS
                         .waitForPageLoadIBD("Crohn's Disease")
-                        .clickNextButton(qualifiedFlareMonitoringAppClosePageOLS);
-//                hs1PageOLS
-//                        .waitForPageLoad()
-//                        .clickOkInPopUp()
-//                        .setSignature();
+                        .clickNextButton(new HS1PageOLS());
+                hs1PageOLS
+                        .waitForPageLoad()
+                        .clickOkInPopUp()
+                        .setSignature();
 //                        .waitToClickNext()
 //                        .clickNextButton(thankYouCloseSimplePageOLS)
                 ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = qualifiedFlareMonitoringAppClosePageOLS
