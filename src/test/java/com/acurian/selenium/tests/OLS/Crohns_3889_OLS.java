@@ -597,16 +597,22 @@ public class Crohns_3889_OLS extends BaseTest {
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageOLS());
 
-        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = siteSelectionPageOLS
+        QualifiedFlareMonitoringAppClosePageOLS qualifiedFlareMonitoringAppClosePageOLS = new QualifiedFlareMonitoringAppClosePageOLS();
+
+        siteSelectionPageOLS
                 .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnFacilityName(site.name)
-                .clickNextButton(new MedicalRecordsOptionPageOLS())
-                .waitForPageLoad()
-                .clickOnAnswer("Continue with medical records")
-                .clickNextButton(new DoctorInformationCollectionPageOLS())
-                .waitForPageLoadIBD("Crohn's Disease")
-                .clickNextButton(new ThankYouCloseSimplePageOLS());
+                .clickNextButton(qualifiedFlareMonitoringAppClosePageOLS);
+//                .clickNextButton(new QualifiedFlareMonitoringAppClosePageOLS())
+//                .waitForPageLoadCrohns()
+//                .getActivationCodeCrohns()
+//                .clickNextButton(new MedicalRecordsOptionPageOLS())
+//                .waitForPageLoad()
+//                .clickOnAnswer("Continue with medical records")
+//                .clickNextButton(new DoctorInformationCollectionPageOLS())
+//                .waitForPageLoadIBD("Crohn's Disease")
+//                .clickNextButton(new ThankYouCloseSimplePageOLS());
 //                .waitForPageLoad()
 //                .clickOkInPopUp()
 //                .waitForPageLoad()
@@ -631,8 +637,8 @@ public class Crohns_3889_OLS extends BaseTest {
                 .clickNextButton(new ThankYouCloseSimplePageOLS())*/
 
 
-//        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = new ThankYouCloseSimplePageOLS();
-        QualifiedFlareMonitoringAppClosePageOLS qualifiedFlareMonitoringAppClosePageOLS = new QualifiedFlareMonitoringAppClosePageOLS();
+        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = new ThankYouCloseSimplePageOLS();
+
         if(inFlare) {
             qualifiedFlareMonitoringAppClosePageOLS
                     .waitForPageLoadCrohns()
