@@ -63,6 +63,7 @@ public class ApproximateHeightPageCC extends MainPageCC{
 
     @Step
     public ApproximateHeightPageCC setLbs(String number) {
+        waitForAnimation();
         typeText(lbsField, number);
         return this;
     }
