@@ -16,13 +16,13 @@ public class ApproximateHeightPageOLS extends MainPageOLS{
     @FindBy(xpath = "//div[contains(@class,'subquestion')][1]//div[contains(@class,'visible-md-block')]/span[@class='show-in-ols']")
     WebElement titleText;
 
-    @FindBy(xpath = "//input[contains(@class,'text-height-input-feet')]")
+    @FindBy(xpath = "//input[contains(@class,'text-height-input-feet')] | //input[contains(@class, 'form-control text-dual-height-input-feet')]")
     WebElement featField;
 
-    @FindBy(xpath = "//input[contains(@class,'text-height-input-inches')]")
+    @FindBy(xpath = "//input[contains(@class,'text-height-input-inches')] | //input[contains(@class, 'form-control text-dual-height-input-inches')]")
     WebElement inchesField;
 
-    @FindBy(xpath = "//input[contains(@class,'text-weight-input')]")
+    @FindBy(xpath = "//input[contains(@class,'text-weight-input')] | //input[contains(@class, 'text-dual-weight')]")
     WebElement lbsField;
 
     public ApproximateHeightPageOLS() {
@@ -82,6 +82,7 @@ public class ApproximateHeightPageOLS extends MainPageOLS{
 
     @Step
     public ApproximateHeightPageOLS setInches(String number) {
+        waitForAnimation();
         typeTextWithoutClear(inchesField, number);
         waitForAnimation();
         return this;
@@ -89,6 +90,7 @@ public class ApproximateHeightPageOLS extends MainPageOLS{
     
     @Step
     public ApproximateHeightPageOLS setIncheswithClear(String number) {
+        waitForAnimation();
         typeText(inchesField, number);
         waitForAnimation();
         return this;
@@ -96,6 +98,7 @@ public class ApproximateHeightPageOLS extends MainPageOLS{
 
     @Step
     public ApproximateHeightPageOLS setLbs(String number) {
+        waitForAnimation();
         typeText(lbsField, number);
         waitForAnimation();
         return this;
