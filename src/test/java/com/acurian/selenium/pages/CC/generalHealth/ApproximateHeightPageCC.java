@@ -14,13 +14,13 @@ public class ApproximateHeightPageCC extends MainPageCC{
     @FindBy(xpath = "//div[@class='subquestion'][1]//span[@class='show-in-cc']")
     WebElement titleText;
 
-    @FindBy(xpath = "//select[@class='select-height-feet']")
+    @FindBy(xpath = "//select[@class='select-height-feet'] | //*[@class='feet_display']")
     WebElement featSelect;
 
-    @FindBy(xpath = "//select[@class='select-height-inches']")
+    @FindBy(xpath = "//select[@class='select-height-inches'] | //*[@class='inches_display']")
     WebElement inchesSelect;
 
-    @FindBy(xpath = "//input[contains(@class,'input-text')]")
+    @FindBy(xpath = "//input[contains(@class,'input-text')] | //input[@class='weight_display']")
     WebElement lbsField;
 
     public ApproximateHeightPageCC() {
@@ -49,12 +49,14 @@ public class ApproximateHeightPageCC extends MainPageCC{
 
     @Step
     public ApproximateHeightPageCC setFeat(String number) {
+        waitForAnimation();
         selectDropDownListOptionByText(featSelect, number);
         return this;
     }
 
     @Step
     public ApproximateHeightPageCC setInches(String number) {
+        waitForAnimation();
         selectDropDownListOptionByText(inchesSelect, number);
         return this;
     }

@@ -109,10 +109,12 @@ public class HelloSignCC extends BaseTest {
 //
 //        ThankYouCloseSimplePageCC thankYouCloseSimplePageCC =  hsMedicalRecordsPageCC
 //                .waitForPageLoadByTitle(hsMedicalRecordsPageCC.titleExpectedGmegaSTG)
+                .clickNextButton(new HSMedicalRecordsPageCC())
+                .waitForPageLoadGmega()
                 .clickNextButton(new ThankYouCloseSimplePageCC());
 
         thankYouCloseSimplePageCC
-                .waitForPageLoad()
+                .waitForPageLoad3()
                 .clickNextButton(selectActionPageCC);
 
         selectActionPageCC

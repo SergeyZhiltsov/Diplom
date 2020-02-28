@@ -30,7 +30,7 @@ public class QualifiedClose2PageOLS extends MainPageOLS {
 
     public final String titleExpectedCrohns4818 = "We’re glad the location is convenient for you.\n" +
             "\n" +
-            "We will forward your contact information to the doctor’s office that you selected so they can contact you about a Ulcerative Colitis study.";
+            "We will forward your contact information to the doctor’s office that you selected so they can contact you about a Crohn's Disease study.";
 
     public final String titleExpectedIBD4818Prod = "We’re glad the location is convenient for you.\n" +
             "\n" +
