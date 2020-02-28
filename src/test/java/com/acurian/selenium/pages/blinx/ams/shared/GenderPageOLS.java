@@ -13,9 +13,9 @@ public class GenderPageOLS extends MainPageBlinx {
     private final String titleExpectedPart1 = "What is your date of birth?";
     private final String titleExpectedPart2 = "Please select your gender:";
 
-    @FindBy(xpath = "(//div[@class='question-text']/div)[2]")
+    @FindBy(xpath = "(//div[@class='question-text']/span)[1]")
     WebElement titleTextPart1;
-    @FindBy(xpath = "(//div[@class='question-text']/div)[3]")
+    @FindBy(xpath = "(//div[@class='question-text']/span)[2]")
     WebElement titleTextPart2;
     @FindBy(xpath = "//input[contains(@class, 'fallbackDate')]")
     WebElement dateField;

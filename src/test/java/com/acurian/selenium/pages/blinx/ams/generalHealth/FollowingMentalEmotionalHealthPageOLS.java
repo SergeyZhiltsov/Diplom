@@ -21,6 +21,7 @@ public class FollowingMentalEmotionalHealthPageOLS extends MainPageBlinx {
 
     @Step
     public FollowingMentalEmotionalHealthPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

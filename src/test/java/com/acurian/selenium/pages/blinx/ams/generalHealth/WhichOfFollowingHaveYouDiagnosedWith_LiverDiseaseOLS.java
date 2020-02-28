@@ -10,8 +10,11 @@ import java.util.List;
 
 public class WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS extends MainPageBlinx {
 
-    public final String titleExpected = "You reported that you have liver problems.\n" +
-            "Which of the following have you been diagnosed with?\n" +
+//    public final String titleExpected = "You reported that you have liver problems.\n" +
+//            "Which of the following have you been diagnosed with?\n" +
+//            "Please select all that apply.";
+
+    public final String titleExpected = "Do you have any of the following liver conditions?\n" +
             "Please select all that apply.";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS_BLINX)

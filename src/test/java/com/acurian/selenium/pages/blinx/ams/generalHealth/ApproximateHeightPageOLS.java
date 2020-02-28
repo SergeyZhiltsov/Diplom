@@ -12,9 +12,9 @@ public class ApproximateHeightPageOLS extends MainPageBlinx {
     private final String titleExpectedPart2 = "What is your approximate weight?";
 
 
-    @FindBy(xpath = "(//div[@class='question-text']/div)[2]")
+    @FindBy(xpath = "(//div[@class='question-text']/span)[1]")
     WebElement titleTextPart1;
-    @FindBy(xpath = "(//div[@class='question-text']/div)[3]")
+    @FindBy(xpath = "(//div[@class='question-text']/span)[2]")
     WebElement titleTextPart2;
     @FindBy(xpath = "//div[@data-question-basis='HEIGHT']//label[contains(., 'feet')]/following-sibling::input")
     WebElement feetField;
@@ -27,33 +27,33 @@ public class ApproximateHeightPageOLS extends MainPageBlinx {
         PageFactory.initElements(getDriver(), this);
     }
 
-    @io.qameta.allure.Step
+    @Step
     public ApproximateHeightPageOLS waitForPageLoad() {
         waitForPageLoadMain(titleTextPart1, titleExpectedPart1);
         waitForPageLoadMain(titleTextPart2, titleExpectedPart2);
         return this;
     }
 
-    @io.qameta.allure.Step
+    @Step
     public ApproximateHeightPageOLS setFeet(String feet) {
         typeText(feetField, feet);
         return this;
     }
 
-    @io.qameta.allure.Step
+    @Step
     public ApproximateHeightPageOLS setInches(String inches) {
         typeText(inchesField, inches);
         return this;
     }
 
-    @io.qameta.allure.Step
+    @Step
     public ApproximateHeightPageOLS setPounds(String pounds) {
         typeText(poundsField, pounds);
         return this;
     }
 
     @Step
-    public ApproximateHeightPageOLS setAllFields(String feet, String inches, String pounds) {
+    public ApproximateHeightPageOLS setAll(String feet, String inches, String pounds) {
         setFeet(feet);
         setInches(inches);
         setPounds(pounds);
@@ -61,3 +61,4 @@ public class ApproximateHeightPageOLS extends MainPageBlinx {
     }
 
 }
+

@@ -377,7 +377,7 @@ public class DIA_4483_OLS extends BaseTest {
             System.out.println("Select answer for Q20: " + answer);
             procedureForWeightLossPageOLS
                     .waitForPageLoad()
-                    .clickOnAnswer("Less than 3 months ago")
+                    .clickOnAnswer(answer)
                     .clickNextButton(poundsOrMorePageOLS)
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
