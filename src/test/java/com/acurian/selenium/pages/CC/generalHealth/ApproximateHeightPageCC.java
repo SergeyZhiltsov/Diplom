@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import ru.yandex.qatools.allure.annotations.Step;
 
 public class ApproximateHeightPageCC extends MainPageCC{
@@ -20,7 +21,7 @@ public class ApproximateHeightPageCC extends MainPageCC{
     @FindBy(xpath = "//select[@class='select-height-inches'] | //*[@class='inches_display']")
     WebElement inchesSelect;
 
-    @FindBy(xpath = "//input[contains(@class,'input-text')] | //input[@class='weight_display']")
+    @FindBy(css = "#command > div:nth-child(7) > div > div.weight_input_container > input")
     WebElement lbsField;
 
     public ApproximateHeightPageCC() {
@@ -63,7 +64,6 @@ public class ApproximateHeightPageCC extends MainPageCC{
 
     @Step
     public ApproximateHeightPageCC setLbs(String number) {
-        waitForAnimation();
         typeText(lbsField, number);
         return this;
     }
