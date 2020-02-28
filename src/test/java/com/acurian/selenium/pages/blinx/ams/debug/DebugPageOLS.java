@@ -1,5 +1,6 @@
 package com.acurian.selenium.pages.blinx.ams.debug;
 
+import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.blinx.MainPageBlinx;
 import com.acurian.selenium.utils.PassPID;
 import org.openqa.selenium.By;
@@ -18,7 +19,7 @@ public class DebugPageOLS extends MainPageBlinx {
 
     @FindBy(xpath = "//a[@id='question-debug-link']/span")
     WebElement questionLink;
-    @FindBy(xpath = "//div[@id='questionHistory']//a[@role='button']/i[@class='fa fa-times-circle']")
+    @FindBy(xpath = "//div[@id='questionHistory']//a[@role='button']/i[@class='fa fa-times']")
     WebElement closeButton;
 
     @FindBy(xpath = "//a[@id='info-debug-link']/span")
@@ -26,7 +27,10 @@ public class DebugPageOLS extends MainPageBlinx {
     @FindBy(xpath = "//div[@id='studyInfo']//a[@role='button']/i[@class='fa fa-times-circle']")
     WebElement infoCloseButton;
 
-    @FindBy(xpath = "//div[contains(@class,'p-1')][1]//tbody//tr/td[1] | //div[contains(@class,'p-1')][1]//tbody//tr/td/div/div")
+//    @FindBy(xpath = "//div[contains(@class,'p-1')][1]//tbody//tr/td[1] | //div[contains(@class,'p-1')][1]//tbody//tr/td/div/div")
+//    List<WebElement> questionNumberList;
+
+    @FindBy(xpath = "//table[@class='table'][1]//tbody/tr/td[1] | //table[@class='table'][1]//tbody/tr/td/div/div")
     List<WebElement> questionNumberList;
 
     @FindBy(xpath = "//table[@id='questionHistoryTable']/tbody/tr[1]/td[3]")
@@ -81,18 +85,27 @@ public class DebugPageOLS extends MainPageBlinx {
     }
 
     private List<String> getProtocolsForQuestionNumber(String questionNumber) {
+        By locatorForDQNumbers = By.xpath(Locators.DEBUG_DQ_NUMBERS);
+        String xpathForDesiredSection = Locators.DEBUG_QUESTION;
         openDebugWindow();
         waitForAnimation();
-        List<String> temp = questionNumberList.stream()
+        //WebElement parentOfQuestion = getDriver().findElement(By.xpath("//table[@id='questionHistoryTable']//a[text()='"+questionNumber+"']/ancestor::tr"));
+        WebElement parentOfQuestion = getDriver().findElement(By.xpath(String.format(xpathForDesiredSection,questionNumber)));
+        List<WebElement> dqNumberElements = parentOfQuestion.findElements(locatorForDQNumbers);
+        List<String> dqNumbers= dqNumberElements.stream().map(WebElement::getText).collect(Collectors.toList());
+        closeDebugWindow();
+        logTextToAllure("Protocols = " + dqNumbers);
+        return dqNumbers;
+
+        /*List<String> temp = dqNumberElements.stream()
                 .filter(el -> questionNumber.equals(el.getText()))
                 .findFirst()
                 .get()
                 .findElements(By.xpath("//div[contains(@class,'container')]//following-sibling::tr/td/div/div"))
 //                .findElements(By.xpath("/html//table[@id='questionHistoryTable']/tbody/tr[1]/td[5]"))
                 .stream().map(el -> el.getText()).collect(Collectors.toList());
-        closeDebugWindow();
-        logTextToAllure("Protocol = " + temp);
-        return temp;
+
+        return temp;*/
     }
 
     @Step

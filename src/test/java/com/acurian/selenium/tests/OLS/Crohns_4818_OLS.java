@@ -218,9 +218,9 @@ public class Crohns_4818_OLS extends BaseTest {
                 .clickOnAnswer("Yes")
                 .clickNextButton(currentlyHaveAnyFollowingOLS)
                 .waitForPageLoad()
-                .getPID()
-                .pidFromDbToLog(env)
-                .flareCodeShouldMatch(env, "3");
+                .getPID();
+//                .pidFromDbToLog(env)
+//                .flareCodeShouldMatch(env, "3");
 
         //back
         currentlyHaveAnyFollowingOLS
@@ -253,9 +253,9 @@ public class Crohns_4818_OLS extends BaseTest {
                 .clickOnAnswer("Yes")
                 .clickNextButton(currentlyHaveAnyFollowingOLS)
                 .waitForPageLoad()
-                .getPID()
-                .pidFromDbToLog(env)
-                .flareCodeShouldMatch(env, "4");
+                .getPID();
+//                .pidFromDbToLog(env)
+//                .flareCodeShouldMatch(env, "4");
 
         HashMap<String, List<String>> disqualify = new HashMap<>();
         disqualify.put("History of a bowel resection within the past 3 months", Arrays.asList(site.activeProtocols));
@@ -552,24 +552,35 @@ public class Crohns_4818_OLS extends BaseTest {
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageOLS());
-        QualifiedClose2PageOLS qualifiedClose2PageOLS = siteSelectionPageOLS
+        siteSelectionPageOLS
                 .waitForPageLoad("a Crohn's")
                 .getPID()
                 .clickOnFacilityName(site.name)
+                .clickNextButton(new MedicalRecordsOptionPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswer("Continue with medical records")
+                .clickNextButton(new DoctorInformationCollectionPageOLS())
+                .waitForPageLoadIBD("Crohn's Disease")
+                .clickNextButton(new HS1PageOLS())
+                .waitForPageLoad()
+                .clickOkInPopUp()
+                .waitForPageLoad()
+                .setSignature();
 //                .clickNextButton(new QualifiedClose2PageOLS())
 //                .waitForPageLoadCrohns4818()
 //                .clickNextButton(new ThankYouCloseSimplePageOLS())
 //                .waitForPageLoad()
-                .clickNextButton(new QualifiedClose2PageOLS());
+//                .clickNextButton(new QualifiedClose2PageOLS());
 //        DoctorInformationCollectionPageOLS doctorInformationCollectionPageOLS = medicalRecordsOptionPageOLS
-        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = qualifiedClose2PageOLS
-                .waitForPageLoadCrohns4818()
+        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = new ThankYouCloseSimplePageOLS();
+//        qualifiedClose2PageOLS
+//                .waitForPageLoadCrohns4818()
 //                .clickOnAnswer("Continue with medical records")
 //                .clickNextButton(new DoctorInformationCollectionPageOLS());
 //
 //        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = doctorInformationCollectionPageOLS
 //                .waitForPageLoadIBD("Crohn's Disease")
-                .clickNextButton(new ThankYouCloseSimplePageOLS());
+//                .clickNextButton(new ThankYouCloseSimplePageOLS());
 
 
 //        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = new ThankYouCloseSimplePageOLS();

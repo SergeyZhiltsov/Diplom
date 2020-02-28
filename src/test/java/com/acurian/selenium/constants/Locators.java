@@ -50,4 +50,7 @@ public @interface Locators {
     String BASIC_TITLE_WITH_RADIO_BUTTON_OLS_BLINX = "//div[@class='mt-2 mt-sm-4']//div[contains(@class,'question-text')]";
     String CHEKBOX_LIST_OLS_BLINX = "//div[@class='multiple-choice-answers-container']/button";
 
+    String DEBUG_DQ_NUMBERS = ".//div[@class='proto']";
+    String DEBUG_QUESTION = "//table[@id='questionHistoryTable']//a[text()='%s']/ancestor::tr";
+
 }

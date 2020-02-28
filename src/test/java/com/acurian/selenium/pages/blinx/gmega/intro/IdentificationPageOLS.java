@@ -24,7 +24,7 @@ public class IdentificationPageOLS extends MainPageBlinx {
     @FindBy(xpath = "(//div[@class='question-text'])[2]")
     WebElement titleTextPart2;
     @FindBy(xpath = "(//div[@class='question-text'])[13]")
-    WebElement titleTextPart3;
+    WebElement titleTextPart4;
     @FindBy(xpath = "//div[@data-question-basis='FIRST_NAME']//input")
     WebElement firstNameField;
     @FindBy(xpath = "//div[@data-question-basis='LAST_NAME']//input")
@@ -43,7 +43,7 @@ public class IdentificationPageOLS extends MainPageBlinx {
     @Step
     public IdentificationPageOLS waitForPageLoad() {
         waitForPageLoadMain(titleTextPart2, titleExpectedPart2);
-        waitForPageLoadMain(titleTextPart3, titleExpectedPart3);
+        waitForPageLoadMain(titleTextPart4, titleExpectedPart3);
         return this;
     }
 
@@ -51,7 +51,7 @@ public class IdentificationPageOLS extends MainPageBlinx {
     public IdentificationPageOLS waitForPageLoad2() {
         waitForAnimation();
         waitForPageLoadMain(titleTextPart2, titleExpectedPart2);
-        waitForPageLoadMain(titleTextPart3, titleExpectedPart4);
+        waitForPageLoadMain(titleTextPart4, titleExpectedPart4);
         return this;
     }
 
@@ -59,7 +59,7 @@ public class IdentificationPageOLS extends MainPageBlinx {
     public IdentificationPageOLS waitForPageLoadPrequalified() {
         waitForPageLoadMain(titleTextPart1, titleExpectedPart1);
         waitForPageLoadMain(titleTextPart2, titleExpectedPart2);
-        waitForPageLoadMain(titleTextPart3, titleExpectedPart4);
+        waitForPageLoadMain(titleTextPart4, titleExpectedPart4);
         return this;
     }
 

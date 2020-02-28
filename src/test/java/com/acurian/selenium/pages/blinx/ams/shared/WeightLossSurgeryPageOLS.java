@@ -26,6 +26,7 @@ public class WeightLossSurgeryPageOLS extends MainPageBlinx {
 
     @Step
     public WeightLossSurgeryPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

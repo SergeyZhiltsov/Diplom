@@ -41,7 +41,7 @@ public class DIA_4483_OLSBlinx extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "sites")
+    @Test(dataProvider = "sites", enabled = false)
     @Description("NASH study 4483 OLS")
     public void dia4483olsTest(Site site) {
         String phoneNumber = "AUTAMSNASH";

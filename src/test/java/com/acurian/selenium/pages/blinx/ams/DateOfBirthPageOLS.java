@@ -37,7 +37,7 @@ public class DateOfBirthPageOLS extends MainPageBlinx {
 
     private final String titleExpectedPart2 = "Are you age 18 or older?";
 
-    @FindBy(xpath = "//div[@id='questions']/div[1]//div[@class='show-in-ols']")
+    @FindBy(xpath = "//div[@id='questions']/div[1]//span[@class='show-in-ols']")
     WebElement titleTextPart;
     @FindBy(xpath = "//input[contains(@class, 'fallbackDate')]")
     WebElement dateField;
