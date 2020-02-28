@@ -132,12 +132,12 @@ public class PSA_5071_CC extends BaseTest {
 
         //Module Psoriatic Arthritis (PsA) started
         //Q2
-        DoYouSufferFromArthritisCC doYouSufferFromArthritisCC = psoriaticArthritisConditionPageCC
+        NonQRtransitionPageCC nonQRtransitionPageCC = psoriaticArthritisConditionPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("No")
-                .clickNextButton(new DoYouSufferFromArthritisCC());
+                .clickNextButton(new NonQRtransitionPageCC());
 
-        doYouSufferFromArthritisCC
+        nonQRtransitionPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS7502", site.activeProtocols)

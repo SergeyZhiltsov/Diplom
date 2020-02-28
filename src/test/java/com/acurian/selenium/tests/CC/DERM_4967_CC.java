@@ -111,11 +111,11 @@ public class DERM_4967_CC extends BaseTest {
                         .clickOnAnswer("Female")
                         .clickNextButton(new HasHealthcareProfessionalEverDiagnosedYouWithEczema_CC());
 
-        HealthcareDiagnosedPsoriasisPageCC healthcareDiagnosedPsoriasisPageCC = hasHealthcareProfessionalEverDiagnosedYouWithEczema_CC
+        NonQRtransitionPageCC nonQRtransitionPageCC = hasHealthcareProfessionalEverDiagnosedYouWithEczema_CC
                 .waitForPageLoad()
                 .clickOnAnswer("No") //Disqualify ("No atopic dermatitis")
-                .clickNextButton(new HealthcareDiagnosedPsoriasisPageCC());
-        healthcareDiagnosedPsoriasisPageCC
+                .clickNextButton(new NonQRtransitionPageCC());
+        nonQRtransitionPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS5802", site.activeProtocols)

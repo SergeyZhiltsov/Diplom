@@ -94,7 +94,7 @@ public class PSA_5071_OLS extends BaseTest {
                 .clickOnAnswer("No")
                 .clickNextButton(new DoYouSufferFromArthritis());
 
-        doYouSufferFromArthritis
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS7502", site.activeProtocols)
