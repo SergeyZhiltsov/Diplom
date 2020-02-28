@@ -4,7 +4,9 @@ package com.acurian.selenium.tests.OLS;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.Crohns.*;
+import com.acurian.selenium.pages.OLS.Diabetes_4356A.CurrentlyTreatingYourDiabetesPageOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
+import com.acurian.selenium.pages.OLS.Diabetes_4356A.WithType2DiabetesPageOLS;
 import com.acurian.selenium.pages.OLS.END_4385.HormonalBirthControlOLS;
 import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.HaveYouEverBeenOfficiallyDiagnosedByDoctor_OLS;
 import com.acurian.selenium.pages.OLS.RA.WhatKindOfArthritisPageOLS;
@@ -36,8 +38,8 @@ public class Crohns_3889_OLS extends BaseTest {
     @DataProvider
     public Object[][] flare() {
         return new Object[][]{
-                {true},
-                {false}
+                {true}
+//                {false}
         };
     }
 
@@ -203,6 +205,43 @@ public class Crohns_3889_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickNextButton(previousDayGeneralWellBeingOLS);
 
+
+        //not in flare
+        previousDayGeneralWellBeingOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Very well")
+                .clickNextButton(previousDayAbdominalPainOLS)
+                .waitForPageLoad()
+                .clickOnAnswer("None")
+                .clickNextButton(previousDayDiarrheaOrLiquidStoolOLS)
+                .waitForPageLoad()
+                .setStools("1")
+                .clickNextButton(experiensingAnyPainInJointsOLS)
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
+                .clickNextButton(currentlyHaveUlcersOrSoresOLS)
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
+                .clickNextButton(currentlyHaveAnyFollowingOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS8116", site.activeProtocols);
+
+        //        .flareCodeShouldMatch(env, "3");
+
+        //backflareCodeShouldMatch
+        currentlyHaveAnyFollowingOLS
+                .waitForPageLoad()
+                .back(currentlyHaveUlcersOrSoresOLS)
+                .waitForPageLoad()
+                .back(experiensingAnyPainInJointsOLS)
+                .waitForPageLoad()
+                .back(previousDayDiarrheaOrLiquidStoolOLS)
+                .waitForPageLoad()
+                .back(previousDayAbdominalPainOLS)
+                .waitForPageLoad()
+                .back(previousDayGeneralWellBeingOLS);
+
         //in flare
         previousDayGeneralWellBeingOLS
                 .waitForPageLoad()
@@ -223,38 +262,9 @@ public class Crohns_3889_OLS extends BaseTest {
         //.waitForPageLoad()
         //.flareCodeShouldMatch(env, "11");
 
-        //backflareCodeShouldMatch
-        currentlyHaveAnyFollowingOLS
-                .waitForPageLoad()
-                .back(currentlyHaveUlcersOrSoresOLS)
-                .waitForPageLoad()
-                .back(experiensingAnyPainInJointsOLS)
-                .waitForPageLoad()
-                .back(previousDayDiarrheaOrLiquidStoolOLS)
-                .waitForPageLoad()
-                .back(previousDayAbdominalPainOLS)
-                .waitForPageLoad()
-                .back(previousDayGeneralWellBeingOLS);
 
-        //not in flare
-        previousDayGeneralWellBeingOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Very well")
-                .clickNextButton(previousDayAbdominalPainOLS)
-                .waitForPageLoad()
-                .clickOnAnswer("None")
-                .clickNextButton(previousDayDiarrheaOrLiquidStoolOLS)
-                .waitForPageLoad()
-                .setStools("1")
-                .clickNextButton(experiensingAnyPainInJointsOLS)
-                .waitForPageLoad()
-                .clickOnAnswer("Yes")
-                .clickNextButton(currentlyHaveUlcersOrSoresOLS)
-                .waitForPageLoad()
-                .clickOnAnswer("Yes")
-                .clickNextButton(currentlyHaveAnyFollowingOLS);
-        //.waitForPageLoad()
-        //        .flareCodeShouldMatch(env, "3");
+
+
 
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS =
                 new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS();
@@ -584,6 +594,9 @@ public class Crohns_3889_OLS extends BaseTest {
 //                .clickNextButton(new EthnicBackgroundPageOLS())
 //                .waitForPageLoad()
 //                .clickOnAnswers("Prefer not to answer")
+                .clickNextButton(new CurrentlyTreatingYourDiabetesPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("I am not currently treating my diabetes")
                 .clickNextButton(new CurrentlyParticipatingInStudyOLS())
                 .waitForPageLoad()
                 .clickOnAnswer("No")
