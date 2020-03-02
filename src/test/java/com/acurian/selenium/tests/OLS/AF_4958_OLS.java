@@ -553,7 +553,7 @@ public class AF_4958_OLS extends BaseTest {
         currentlySufferOfAnyOfFollowingOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS68", site.activeProtocols)
                 .back();
 
         IdentificationPageOLS identificationPageOLS = new IdentificationPageOLS();

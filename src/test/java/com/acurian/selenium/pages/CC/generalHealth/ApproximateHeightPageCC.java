@@ -2,11 +2,14 @@ package com.acurian.selenium.pages.CC.generalHealth;
 
 import com.acurian.selenium.pages.CC.MainPageCC;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import ru.yandex.qatools.allure.annotations.Step;
+
+import java.util.List;
 
 public class ApproximateHeightPageCC extends MainPageCC{
 
@@ -21,8 +24,14 @@ public class ApproximateHeightPageCC extends MainPageCC{
     @FindBy(xpath = "//select[@class='select-height-inches'] | //*[@class='inches_display']")
     WebElement inchesSelect;
 
-    @FindBy(css = "#command > div:nth-child(7) > div > div.weight_input_container > input")
-    WebElement lbsField;
+//    @FindBy(css = "#command > div:nth-child(7) > div > div.weight_input_container > input")
+//    WebElement lbsField;
+
+    @FindAll({
+            @FindBy(css = "#command > div:nth-child(7) > div > div.weight_input_container > input"),
+            @FindBy(xpath = "//*[@class='input-text']")
+    })
+    private List<WebElement> lbsField;
 
     public ApproximateHeightPageCC() {
         PageFactory.initElements(getDriver(), this);
@@ -64,7 +73,8 @@ public class ApproximateHeightPageCC extends MainPageCC{
 
     @Step
     public ApproximateHeightPageCC setLbs(String number) {
-        typeText(lbsField, number);
+        waitForAnimation();
+        typeText(lbsField.get(0), number);
         return this;
     }
 }

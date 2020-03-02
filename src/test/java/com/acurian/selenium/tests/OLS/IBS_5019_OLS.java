@@ -654,7 +654,7 @@ public class IBS_5019_OLS extends BaseTest {
         currentlySufferOfAnyOfFollowingOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS68", site.activeProtocols)
                 .back(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .setLbs("95") //Disqualify (""Low BMI"") if < 16"
@@ -662,7 +662,7 @@ public class IBS_5019_OLS extends BaseTest {
         IdentificationPageOLS identificationPageOLS = currentlySufferOfAnyOfFollowingOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS68", site.activeProtocols)
                 .back(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .setLbs("120")

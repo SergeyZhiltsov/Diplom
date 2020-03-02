@@ -713,7 +713,7 @@ public class DIA_4241_СС_ver3 extends BaseTest{
                 .waitForPageLoadSyn()
                 .assertVariablesNew("Acurian", "Trial", "09/09/1980", "US",
                         "Dover, DE", site.zipCode, "qa.acurian@gmail.com", "999-999-9999",
-                        env.equals("STG") ? " 010151 " : "TA4722S", site.name, "SANPPDDIA893 - Sanofi type 2 diabetes")
+                        env.equals("STG") ? "010151" : "TA4722S", site.name, "SANPPDDIA893 - Sanofi type 2 diabetes")
                 .clickOnAnswer("[Successful direct schedule in clinical conductor]")                
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
