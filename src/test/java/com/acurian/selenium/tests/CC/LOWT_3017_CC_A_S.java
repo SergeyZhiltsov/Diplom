@@ -11,6 +11,7 @@ import com.acurian.selenium.pages.CC.generalHealth.HaveYouEverBeenDiagnosedWithA
 import com.acurian.selenium.pages.CC.generalHealth.IdentificationPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.SiteSelectionPageCC;
 import com.acurian.selenium.pages.CC.shared.*;
+import com.acurian.selenium.pages.OLS.closes.AlzheimerClosePageOLS;
 import com.acurian.selenium.utils.Properties;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -521,7 +522,7 @@ public class LOWT_3017_CC_A_S extends BaseTest {
         transitionalStatementLowtPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS5627", protocol2)
+                .checkProtocolsContainsForQNumber("QS5633", protocol2)
                 .back();
 
         SiteSelectionPageCC selectionPageCC = approximateHeightPageCC
@@ -550,16 +551,20 @@ public class LOWT_3017_CC_A_S extends BaseTest {
 //                        .waitForPageLoad()
 //                        .clickNextButton(new HSMedicalRecordsPageCC())
 //                        .waitForPageLoad()
-//                        .clickNextButton(new MedicalRecordsOptionPageCC())
-//                        .waitForPageLoad()
-//                        .clickOnAnswer("Continue with medical records")
-//                        .clickNextButton(new DoctorInformationCollectionPageCC())
-//                        .waitForPageLoad()
-//                        .clickNextButton(new HSMedicalRecordsPageCC())
-//                        .waitForPageLoad()
-                        .clickNextButton(new SynexusRadiantDirectScheduleCC())
-                        .waitForPageLoadSyn()
-                        .clickOnAnswer("[Successful direct schedule in clinical conductor]")
+                        .clickNextButton(new MedicalRecordsOptionPageCC())
+                        .waitForPageLoad()
+                        .clickOnAnswer("Continue with medical records")
+                        .clickNextButton(new DoctorInformationCollectionPageCC())
+                        .waitForPageLoad()
+                        .clickNextButton(new HSMedicalRecordsPageCC())
+                        .waitForPageLoad()
+                        .clickNextButton(new ThankYouCloseSimplePageCC())
+                        .waitForPageLoad3()
+                        .clickNextButton(new AlzheimerClosePageCC())
+                        .waitForPageLoad()
+//                        .clickNextButton(new SynexusRadiantDirectScheduleCC())
+//                        .waitForPageLoadSyn()
+//                        .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                         .clickNextButton(selectActionPageCC)
                         .waitForPageLoad()
 //                        .clickNextButton(new SynexusRadiantDirectScheduleCC())

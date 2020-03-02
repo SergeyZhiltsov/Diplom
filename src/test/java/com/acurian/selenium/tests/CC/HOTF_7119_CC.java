@@ -414,7 +414,7 @@ public class HOTF_7119_CC extends BaseTest {
                 .waitForPageLoadSyn()
                 .assertVariablesNew("Acurian", "Trial", "08/09/1970", "US",
                         "Cape May, NJ", site.zipCode, "qa.acurian@gmail.com", "999-999-9999",
-                        " aut7119s ", " "+site.name, "ASSICNVMS301,ASSICNVMS302,ASSICNVMS304 - Astellas Skylight Hot Flashes")
+                        "aut7119s", site.name, "ASSICNVMS301,ASSICNVMS302,ASSICNVMS304 - Astellas Skylight Hot Flashes")
                 .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()

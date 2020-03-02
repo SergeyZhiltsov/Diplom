@@ -89,13 +89,13 @@ public class DERM_4967_OLS extends BaseTest {
                         .clickOnAnswer("Female")
                         .clickNextButton(new HasHealthcareProfessionalEverDiagnosedYouWithEczema_OLS());
 
-        HealthcareDiagnosedPsoriasisPageOLS healthcareDiagnosedPsoriasisPageOLS =
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS =
                 hasHealthcareProfessionalEverDiagnosedYouWithEczema_ols
                         .waitForPageLoad()
                         .clickOnAnswer("No")
-                        .clickNextButton(new HealthcareDiagnosedPsoriasisPageOLS());
+                        .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
 
-        healthcareDiagnosedPsoriasisPageOLS
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5802", site.activeProtocols)
@@ -153,8 +153,8 @@ public class DERM_4967_OLS extends BaseTest {
                     .selectFromDropDown(answer)
                     .clickNextButton(howWouldYouDescribeTheEczemaCurrentlyPageOLS)
                     .waitForPageLoad()
-                    .getPage(debugPageOLS)
-                    .checkStudyStatusContainsForQNumber(env.equals("PRD") ? "12-18" : "8-14")
+//                    .getPage(debugPageOLS)
+//                    .checkStudyStatusContainsForQNumber(env.equals("PRD") ? "12-18" : "8-14")
                     .back();
         }
         howMuchEczemaYouHaveOnYourBody_OLS
@@ -331,12 +331,10 @@ public class DERM_4967_OLS extends BaseTest {
 //                                "Otezla",
 //                                "Cosentyx")
 //                        .clickNextButton(new DupixentInjectionPageOLS());
-
-        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS =
-                dupixentInjectionPageOLS
+        dupixentInjectionPageOLS
                         .waitForPageLoad()
                         .clickOnAnswer("Yes, currently taking")
-                        .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
+                        .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
@@ -808,7 +806,7 @@ public class DERM_4967_OLS extends BaseTest {
         currentlySufferOfAnyOfFollowingOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS68", site.activeProtocols)
                 .back(approximateHeightPageOLS);
         CurrentlyParticipatingInStudyOLS currentlyParticipatingInStudyOLS = approximateHeightPageOLS
                 .waitForPageLoad()
@@ -829,29 +827,30 @@ public class DERM_4967_OLS extends BaseTest {
                         "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageOLS());
 
-        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = siteSelectionPageOLS
+        MedicalRecordsOptionPageOLS medicalRecordsOptionPageOLS = siteSelectionPageOLS
                 .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnFacilityName(site.name)
-//                .clickNextButton(new MedicalRecordsOptionPageOLS());
-//
-//        DoctorInformationCollectionPageOLS doctorInformationCollectionPageOLS = medicalRecordsOptionPageOLS
-//                .waitForPageLoad()
-//                .clickOnAnswer("Continue with medical records")
-//                .clickNextButton(new DoctorInformationCollectionPageOLS());
-//
-//        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = doctorInformationCollectionPageOLS
-//                .waitForPageLoad()
-                .clickNextButton(new ThankYouCloseSimplePageOLS());
+                .clickNextButton(new MedicalRecordsOptionPageOLS());
+
+        DoctorInformationCollectionPageOLS doctorInformationCollectionPageOLS = medicalRecordsOptionPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Continue with medical records")
+                .clickNextButton(new DoctorInformationCollectionPageOLS());
+
+        HS1PageOLS hs1PageOLS = doctorInformationCollectionPageOLS
+                .waitForPageLoad()
+                .clickNextButton(new HS1PageOLS());
 
 
 
-//        hs1PageOLS
-//                .waitForPageLoad()
-//                .clickOkInPopUp()
-//                .setSignature();
+        hs1PageOLS
+                .waitForPageLoad()
+                .clickOkInPopUp()
+                .setSignature();
 //                .waitToClickNext()
 //                .getPage(new ThankYouCloseSimplePageOLS());
+        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = new ThankYouCloseSimplePageOLS();
         AboutHealthPageOLS aboutHealthPageOLS = thankYouCloseSimplePageOLS
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS());

@@ -44,7 +44,7 @@ public class ChatfillMedicalRecordReleaseFormPageOLS extends MainPageOLS {
             }
 
         }
-        getDriver().switchTo().frame("chartfill-iframe");
+//        getDriver().switchTo().frame("chartfill-iframe");
         waitForAnimation();
         waitForPageLoadMain(titleText, titleTextExpected);
         return this;

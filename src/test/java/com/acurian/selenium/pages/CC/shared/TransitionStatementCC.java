@@ -14,6 +14,10 @@ public class TransitionStatementCC extends MainPageCC {
             "Agent Note: If \"no\" to all items in a question, select \"None of the above\"";
 
     private final String titleExpectedWithCurves = "Thank you for answering the questions about your %s history.\n" +
+            "I am going to ask you several questions about your general medical history which are important for us to know to match you with a study. After each item on the list, please simply tell me “yes” or “no,” and I will check off each condition that you do have. \n" +
+            "Agent note: If “no” to all items in a question, select “None of the above”";
+
+    private final String titleExpectedWithCurves93 = "Thank you for answering the questions about your %s history.\n" +
             "I am going to ask you several questions about your general medical history which are important for us to know to match you with a study. After each item on the list, please simply tell me “yes” or “no,” and I will check off each condition that you do have.\n" +
             "Agent note: If “no” to all items in a question, select “None of the above”";
 
@@ -38,7 +42,7 @@ public class TransitionStatementCC extends MainPageCC {
             "Agent note: if \"no\" to all items in a question, select \"None of the above\"";
 
     private final String titleExpectedMDD = "Thank you for answering the questions about your %s.\n" +
-            "I am going to ask you several questions about your general medical history which are important for us to know to match you with a study. After each item on the list, please simply tell me \"yes\" or \"no,\" and I will check off each condition that you do have.\n" +
+            "I am going to ask you several questions about your general medical history which are important for us to know to match you with a study. After each item on the list, please simply tell me \"yes\" or \"no,\" and I will check off each condition that you do have. \n" +
             "Agent note: If \"no\" to all items in a question, select \"None of the above\"";
 
     private final String titleExpectedDYS = "Thank you for answering these specific health questions.\n" +
@@ -147,6 +151,13 @@ public class TransitionStatementCC extends MainPageCC {
     @Step
     public TransitionStatementCC waitForPageLoadWithCurves(String studyName) {
         String titleExpectedMod = String.format(titleExpectedWithCurves, studyName);
+        waitForPageLoadMain(titleText, titleExpectedMod);
+        return this;
+    }
+
+    @Step
+    public TransitionStatementCC waitForPageLoadWithCurves93(String studyName) {
+        String titleExpectedMod = String.format(titleExpectedWithCurves93, studyName);
         waitForPageLoadMain(titleText, titleExpectedMod);
         return this;
     }

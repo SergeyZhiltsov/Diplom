@@ -12,7 +12,7 @@ import java.util.List;
 public class AbdominalPainOverPastPageCC extends MainPageCC{
 
     public final String titleExpected = "With IBS, abdominal pain is often accompanied by a change in bowel habits.\n" +
-            "Which of the following have you had with your abdominal pain over the past 3 months?\n" +
+            "Which of the following have you had with your abdominal pain over the past 3 months? \n" +
             "Agent Note: Select all that apply";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC)

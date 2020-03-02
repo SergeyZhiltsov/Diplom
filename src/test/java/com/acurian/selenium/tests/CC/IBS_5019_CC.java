@@ -695,14 +695,14 @@ public class IBS_5019_CC extends BaseTest {
         letMeSeePageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS68", site.activeProtocols)
                 .back(approximateHeightPageCC)
                 .waitForPageLoad()
                 .setLbs("95") //Disqualify (""Low BMI"") if < 16"
                 .clickNextButton(letMeSeePageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS68", site.activeProtocols)
                 .back(approximateHeightPageCC)
                 .waitForPageLoad()
                 .setLbs("120")
@@ -748,7 +748,7 @@ public class IBS_5019_CC extends BaseTest {
                         .waitForPageLoadSyn()
                         .assertVariablesNew("Acurian", "Trial", "08/01/1990", "US",
                                 "Cape May, NJ", site.zipCode, "qa.acurian@gmail.com",
-                                "999-999-9999", " %SYN_SITE_NUM% ", " "+site.name,
+                                "999-999-9999", "%SYN_SITE_NUM%", site.name,
                                             "BOSPPDIBS201 - Boston Pharmaceuticals IBS-D")
                         .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                         .clickNextButton(selectActionPageCC)

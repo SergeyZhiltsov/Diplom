@@ -173,8 +173,8 @@ public class DERM_7157_CC extends BaseTest {
                     .selectFromDropDown(answer)
                     .clickNextButton(howWouldYouDescribeTheEczemaCurrentlyPageCC)
                     .waitForPageLoad()
-                    .getPage(debugPageCC)
-                    .checkStudyStatusContainsForQNumber("QS5832", env.equals("PRD") ? "12-18" : "8-14")
+//                    .getPage(debugPageCC)
+//                    .checkStudyStatusContainsForQNumber("QS5832", env.equals("PRD") ? "12-18" : "8-14")
                     .back();
         }
         howMuchEczemaYouHaveOnYOurBody_CC
@@ -831,27 +831,37 @@ public class DERM_7157_CC extends BaseTest {
                         "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageCC());
 
-        QualifiedClose1PageCC qualifiedClose1PageCC = selectionPageCC
+        MedicalRecordsOptionPageCC medicalRecordsOptionPageCC = selectionPageCC
                 .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnAnswer(site.name)
-                .clickNextButton(new QualifiedClose1PageCC());
+                .clickNextButton(new MedicalRecordsOptionPageCC());
+
+
+        ThankYouCloseSimplePageCC thankYouCloseSimplePageCC = medicalRecordsOptionPageCC
+                .waitForPageLoad()
+                .clickOnAnswer("Continue with medical records")
+                .clickNextButton(new DoctorInformationCollectionPageCC())
+                .waitForPageLoad()
+                .clickNextButton(new HSMedicalRecordsPageCC())
+                .waitForPageLoad()
+                .clickNextButton(new ThankYouCloseSimplePageCC());
 
         SynexusRadiantDirectScheduleCC synexusRadiantDirectScheduleCC = new SynexusRadiantDirectScheduleCC();
 
 
         if(site.name.equals("AUT_AMS1_7157_site"))
-            qualifiedClose1PageCC
-                .waitForPageLoad()
+//            qualifiedClose1PageCC
+//                .waitForPageLoad()
 //                .clickOnAnswer("Continue without medical records")
-                .clickNextButton(new ThankYouCloseSimplePageCC())
-                .waitForPageLoad3()
-                .clickNextButton(selectActionPageCC)
-                .waitForPageLoad()
-                .pidFromDbToLog(env)
-                .childPidFromDbToLog(env)
-                .dispoShouldMatch(site.dispo, site.dispo)
-                .assertGeneratedFul(env, site);
+        thankYouCloseSimplePageCC
+            .waitForPageLoad3()
+            .clickNextButton(selectActionPageCC)
+            .waitForPageLoad()
+            .pidFromDbToLog(env)
+            .childPidFromDbToLog(env)
+            .dispoShouldMatch(site.dispo, site.dispo)
+            .assertGeneratedFul(env, site);
 //                .assertRmgOrderPriority(env, "7157");
 
         if(env.equals("PRD")) {
