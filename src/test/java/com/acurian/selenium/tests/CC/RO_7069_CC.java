@@ -555,14 +555,14 @@ public class RO_7069_CC extends BaseTest {
         letMeSeePageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS68", site.activeProtocols)
                 .back(approximateHeightPageCC)
                 .waitForPageLoad()
                 .setLbs("220") //Disqualify ("High BMI") if > 33.5
                 .clickNextButton(letMeSeePageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS68", site.activeProtocols)
                 .back(approximateHeightPageCC)
                 .setLbs("150")
                 .clickNextButton(letMeSeePageCC);

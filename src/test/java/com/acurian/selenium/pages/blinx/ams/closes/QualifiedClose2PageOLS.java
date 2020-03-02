@@ -30,7 +30,7 @@ public class QualifiedClose2PageOLS extends MainPageBlinx {
 //            "\n" +
 //            "Your teen’s participation can make a difference. Would you like to see if there is study that's right for your child?";
 
-    @FindBy(xpath = "(//div[@class='question-text'])[1]")
+    @FindBy(xpath = "//*[@class='question_text']")
     WebElement titleTextPart1;
     @FindBy(xpath = "(//div[@class='question-text'])[2]")
     WebElement titleTextPart2;
@@ -42,6 +42,12 @@ public class QualifiedClose2PageOLS extends MainPageBlinx {
     @Step
     public QualifiedClose2PageOLS waitForPageLoad3() {
         waitForPageLoadMain(titleTextPart3, titleExpectedPart3);
+        return this;
+    }
+
+    @Step
+    public QualifiedClose2PageOLS waitForPageLoad1() {
+        waitForPageLoadMain(titleTextPart3, titleExpectedPart1);
         return this;
     }
 
