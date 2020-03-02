@@ -273,9 +273,9 @@ public class Crohns_LC_4912_CC extends BaseTest {
                 .clickOnAnswer("Yes")
                 .clickNextButton(currentlyHaveAnyFollowingCC)
                 .waitForPageLoad()
-                .getPID()
-                .pidFromDbToLog(env)
-                .flareCodeShouldMatch(env, "3");
+                .getPID();
+//                .pidFromDbToLog(env)
+//                .flareCodeShouldMatch(env, "3");
 
         //backflareCodeShouldMatch
         currentlyHaveAnyFollowingCC
@@ -308,9 +308,9 @@ public class Crohns_LC_4912_CC extends BaseTest {
                 .clickOnAnswer("Yes")
                 .clickNextButton(currentlyHaveAnyFollowingCC)
                 .waitForPageLoad()
-                .getPID()
-                .pidFromDbToLog(env)
-                .flareCodeShouldMatch(env, "4");
+                .getPID();
+//                .pidFromDbToLog(env)
+//                .flareCodeShouldMatch(env, "4");
 
 
         HashMap<String, List<String>> disqualify = new HashMap<>();
@@ -327,7 +327,7 @@ public class Crohns_LC_4912_CC extends BaseTest {
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(entry.getKey())
                     .clickNextButton(new TransitionStatementCC())
-                    .waitForPageLoadWithCurves("Crohn's")
+                    .waitForPageLoadWithCurves93("Crohn's")
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("QS8117", site.activeProtocols)
                     .back();
@@ -338,7 +338,7 @@ public class Crohns_LC_4912_CC extends BaseTest {
                 .clickNextButton(new TransitionStatementCC());
 
         transitionStatementCC
-                .waitForPageLoadWithCurves("Crohn's")
+                .waitForPageLoadWithCurves93("Crohn's")
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC);
         DoAnyOftheFollowingAdditionalDiagnosesCC doAnyOftheFollowingAdditionalDiagnosesCC = new DoAnyOftheFollowingAdditionalDiagnosesCC();
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
@@ -528,6 +528,8 @@ public class Crohns_LC_4912_CC extends BaseTest {
                 .clickOnAnswer("Yes")
                 .clickNextButton(identificationPageCC)
                 .waitForPageLoad()
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
+                        "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageCC());
         QualifiedFlareMonitoringAppClosePageCC qualifiedFlareMonitoringAppClosePageCC = new QualifiedFlareMonitoringAppClosePageCC();
         switch (site) {

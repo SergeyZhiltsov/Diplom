@@ -10,7 +10,7 @@ import java.util.List;
 
 public class TypePsoriasisPageCC extends MainPageCC {
 
-    public final String titleExpected = "What type(s) of psoriasis do you have? \n" +
+    public final String titleExpected = "What type(s) of psoriasis do you have?\n" +
             "Agent Note: Select all that apply";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_CC)

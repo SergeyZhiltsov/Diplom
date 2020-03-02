@@ -380,7 +380,7 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
         transitionalStatementLowtPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5627", /*protocol1,*/ protocol2)
+                .checkProtocolsContainsForQNumber("QS5633", /*protocol1,*/ protocol2)
                 .back();
         IdentificationPageOLS identificationPageOLS = approximateHeightPageOLS
                 .waitForPageLoad() //----------Change inches to maje BMI to <50--------------------
@@ -422,15 +422,18 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
                 SiteSelectionPageOLS siteSelectionPageOLS1 = new SiteSelectionPageOLS();
                 siteSelectionPageOLS1
                         .clickOnFacilityName(site.name)
-//                        .clickNextButton(new MedicalRecordsOptionPageOLS())
-//                        .waitForPageLoad()
-//                        .clickOnAnswer("Continue with medical records")
-//                        .clickNextButton(new DoctorInformationCollectionPageOLS())
-//                        .waitForPageLoad()
-//                        .clickNextButton(new HS1PageOLS())
-//                        .waitForPageLoad()
-//                        .clickOkInPopUp()
-//                        .setSignature()
+                        .clickNextButton(new MedicalRecordsOptionPageOLS())
+                        .waitForPageLoad()
+                        .clickOnAnswer("Continue with medical records")
+                        .clickNextButton(new DoctorInformationCollectionPageOLS())
+                        .waitForPageLoad()
+                        .clickNextButton(new HS1PageOLS())
+                        .waitForPageLoad()
+                        .clickOkInPopUp()
+                        .setSignature();
+                ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = new ThankYouCloseSimplePageOLS();
+                thankYouCloseSimplePageOLS
+                        .waitForPageLoad()
 //                        .waitToClickNext()
                         .clickNextButton(new AlzheimerClosePageOLS())
                         .waitForPageLoad()

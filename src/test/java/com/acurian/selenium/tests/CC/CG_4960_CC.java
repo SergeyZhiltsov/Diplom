@@ -108,7 +108,7 @@ public class CG_4960_CC extends BaseTest {
                 .waitForPageLoad()
                 .setMonth("Mar")
                 .setDay("2")
-                .setYear("2002")
+                .setYear("2003")
                 .clickOnAnswer("Female")
                 .clickNextButton(new LessThan18YearsOldPageCC())
                 .waitForPageLoad()
@@ -170,7 +170,7 @@ public class CG_4960_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new TransitionStatementCC())
-                .waitForPageLoadWithCurves("gout")
+                .waitForPageLoadWithCurves93("gout")
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS7904", site.activeProtocols)
                 .back(everTakenMedicationCC)
@@ -224,7 +224,7 @@ public class CG_4960_CC extends BaseTest {
                 .clickOnAnswer("No")
                 .clickNextButton(new TransitionStatementCC());
         transitionStatementCC
-                .waitForPageLoadWithCurves(transitionStudyName)
+                .waitForPageLoadWithCurves93(transitionStudyName)
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC);
 
         //#############General_Health ###########################
@@ -461,7 +461,7 @@ public class CG_4960_CC extends BaseTest {
         letMeSeePageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS68", site.activeProtocols)
                 .back(approximateHeightPageCC)
                 .setLbs("160")
                 .clickNextButton(letMeSeePageCC);
@@ -519,7 +519,7 @@ public class CG_4960_CC extends BaseTest {
                         .waitForPageLoadSyn()
                         .assertVariablesNew("Acurian", "Trial", "03/02/1960", "US",
                                 "Cape May, NJ", site.zipCode, "qa.acurian@gmail.com",
-                                "999-999-9999", " aut4960S ", " "+site.name,
+                                "999-999-9999", "aut4960S", site.name,
                                 "LGLPPDGOU002 - LG Gout")
                         .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                         .clickNextButton(selectActionPageCC)

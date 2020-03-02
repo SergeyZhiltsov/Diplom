@@ -10,7 +10,7 @@ import java.util.List;
 
 public class HasDoctorEverDiagnosedMedicalCondDiseases_CC extends MainPageCC {
 
-    public final String titleExpected = "Has a doctor ever diagnosed you with any of the following medical conditions or diseases? \n" +
+    public final String titleExpected = "Has a doctor ever diagnosed you with any of the following medical conditions or diseases?\n" +
             "Agent note: Select all that apply";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC)

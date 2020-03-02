@@ -15,7 +15,7 @@ public class WhichoOfFollowingMedicationsCurrentlyGERD_OLS extends MainPageOLS{
     public final String titleExpected = "Which of the following medications do you currently take, every day, to treat your heartburn, reflux, or GERD?\n" +
     		"These medications may be prescribed by your doctor and filled at a pharmacy counter, or you may purchase them yourself as \"over-the-counter\" or non-prescription medications.\n" +
     		"Please select all that apply.";
-    public final String titleExpected2 = "Do you currently take any of the following \"over-the-counter\", or non-prescription, medications to treat your heartburn, reflux, or GERD?\n" +
+    public final String titleExpected2 = "Do you currently take any of the following \"over-the-counter\", or non-prescription, medications to treat your heartburn, reflux, or GERD? \n" +
             "Please select all that apply.";
 
     		

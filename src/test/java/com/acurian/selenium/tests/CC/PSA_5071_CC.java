@@ -326,7 +326,7 @@ public class PSA_5071_CC extends BaseTest {
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(answer)
-                    .clickNextButton(whenDiagnosedWithPsoriasisCC)
+                    .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("QS7515", site.activeProtocols)

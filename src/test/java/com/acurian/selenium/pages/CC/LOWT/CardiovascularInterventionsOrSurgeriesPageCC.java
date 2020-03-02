@@ -10,7 +10,7 @@ import java.util.List;
 
 public class CardiovascularInterventionsOrSurgeriesPageCC extends MainPageCC {
 
-    public final String titleExpected = "Have you experienced any of the following cardiovascular interventions or surgeries? \n" +
+    public final String titleExpected = "Have you experienced any of the following cardiovascular interventions or surgeries?\n" +
             "Agent note: Select all that apply";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC)

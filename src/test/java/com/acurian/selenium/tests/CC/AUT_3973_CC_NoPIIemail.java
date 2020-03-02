@@ -227,8 +227,6 @@ public class AUT_3973_CC_NoPIIemail extends BaseTest {
 
 
         //----------------------GENERAL HEALTH Questions -----------------------------
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
-                .waitForPageLoad();
         WhenDiagnosedWithCancerCC whenDiagnosedWithCancerCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)",
@@ -327,16 +325,16 @@ public class AUT_3973_CC_NoPIIemail extends BaseTest {
                 .waitForPageLoad("an autism spectrum disorder study")
                 .getPID()
                 .clickOnAnswer(site.name)
-                .clickNextButton(new QualifiedClose1PageCC())
+                .clickNextButton(new MedicalRecordsOptionPageCC())
                 .waitForPageLoad()
-//                .clickOnAnswer("Continue with medical records")
-//                .clickNextButton(new HSGeneralCC())
-//                .waitForPageLoadEmailNotProvided()
-//                .typeEmail("qa.acurian@gmail.com")
-//                .clickNextButton(new DoctorInformationCollectionPageCC())
-//                .waitForPageLoad()
-//                .clickNextButton(new HSMedicalRecordsPageCC())
-//                .waitForPageLoad()
+                .clickOnAnswer("Continue with medical records")
+                .clickNextButton(new HSGeneralCC())
+                .waitForPageLoadEmailNotProvided()
+                .typeEmail("qa.acurian@gmail.com")
+                .clickNextButton(new DoctorInformationCollectionPageCC())
+                .waitForPageLoad()
+                .clickNextButton(new HSMedicalRecordsPageCC())
+                .waitForPageLoad()
                 .clickNextButton(new ThankYouCloseSimplePageCC())
                 .waitForPageLoad3()
                 .clickNextButton(selectActionPageCC)

@@ -175,8 +175,8 @@ public class DERM_4967_CC extends BaseTest {
                     .clickNextButton(howWouldYouDescribeTheEczemaCurrentlyPageCC);
             howWouldYouDescribeTheEczemaCurrentlyPageCC
                     .waitForPageLoad()
-                    .getPage(debugPageCC)
-                    .checkStudyStatusContainsForQNumber("QS5832", env.equals("PRD") ? "12-18" : "8-14")
+//                    .getPage(debugPageCC)
+//                    .checkStudyStatusContainsForQNumber("QS5832", env.equals("PRD") ? "12-18" : "8-14")
                     .back();
         }
         howMuchEczemaYouHaveOnYOurBody_CC
@@ -822,7 +822,7 @@ public class DERM_4967_CC extends BaseTest {
         letMeSeePageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS68", site.activeProtocols)
                 .back(approximateHeightPageCC);
         approximateHeightPageCC
                 .waitForPageLoad()
@@ -847,22 +847,22 @@ public class DERM_4967_CC extends BaseTest {
                         "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageCC());
 
-        selectionPageCC
+        MedicalRecordsOptionPageCC medicalRecordsOptionPageCC = selectionPageCC
                 .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnAnswer(site.name)
-//                .clickNextButton(new MedicalRecordsOptionPageCC());
-//
-//
-//        medicalRecordsOptionPageCC
-//                .waitForPageLoad()
-//                .clickOnAnswer("Continue with medical records")
-//                .clickNextButton(new DoctorInformationCollectionPageCC())
-//                .waitForPageLoad()
-//                .clickNextButton(new HSMedicalRecordsPageCC())
-//                .waitForPageLoad()
-                .clickNextButton(new QualifiedClose1PageCC())
+                .clickNextButton(new MedicalRecordsOptionPageCC());
+
+
+        medicalRecordsOptionPageCC
                 .waitForPageLoad()
+                .clickOnAnswer("Continue with medical records")
+                .clickNextButton(new DoctorInformationCollectionPageCC())
+                .waitForPageLoad()
+                .clickNextButton(new HSMedicalRecordsPageCC())
+                .waitForPageLoad()
+//                .clickNextButton(new QualifiedClose1PageCC())
+//                .waitForPageLoad()
                 .clickNextButton(new ThankYouCloseSimplePageCC())
                 .waitForPageLoad3()
                 .clickNextButton(new SelectActionPageCC())

@@ -641,7 +641,7 @@ public class IBS_4819_CC extends BaseTest {
         letMeSeePageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS68", site.activeProtocols)
                 .back();
         approximateHeightPageCC
                 .waitForPageLoad()

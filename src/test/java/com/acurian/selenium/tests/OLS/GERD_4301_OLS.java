@@ -617,26 +617,32 @@ public class GERD_4301_OLS extends BaseTest {
                 MedicalRecordsOptionPageOLS medicalRecordsOptionPageOLS = siteSelectionPageOLS
                 .clickNextButton(new MedicalRecordsOptionPageOLS());
 
-        medicalRecordsOptionPageOLS
+        DoctorInformationCollectionPageOLS doctorInformationCollectionPageOLS = medicalRecordsOptionPageOLS
                 .waitForPageLoad()
-                .clickOnAnswer("Continue with medical records");
-                ChatfillMedicalRecordReleaseFormPageOLS chatfillMedicalRecordReleaseFormPageOLS = medicalRecordsOptionPageOLS
-                        .clickNextButton(new ChatfillMedicalRecordReleaseFormPageOLS());
+                .clickOnAnswer("Continue with medical records")
+                .clickNextButton(new DoctorInformationCollectionPageOLS());
 
-//-----------------CHART FILL  form------------------------------
-        AdobeSignMedAuthFormPage adobeSignMedAuthFormPage = chatfillMedicalRecordReleaseFormPageOLS
+        HS1PageOLS hs1PageOLS = doctorInformationCollectionPageOLS
                 .waitForPageLoad()
-                .confirmPatientInformation()
-                .setAllDataMedicalRecordReleaseForm("Acurian", "PA", "9999999999",
-                        "2 walnut grove dr.", "HORSHAM", "19901")
-                .clickSignForm(new AdobeSignMedAuthFormPage());
+                .clickNextButton(new HS1PageOLS());
 
-        adobeSignMedAuthFormPage
+        hs1PageOLS
                 .waitForPageLoad()
-                .setSignature("Acurian");
-        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = adobeSignMedAuthFormPage
-                .clickToSignButton(new ThankYouCloseSimplePageOLS());
+                .clickOkInPopUp()
+                .setSignature();
 
+//                .confirmPatientInformation()
+//                .setAllDataMedicalRecordReleaseForm("Acurian", "PA", "9999999999",
+//                        "2 walnut grove dr.", "HORSHAM", "19901")
+//                .clickSignForm(new AdobeSignMedAuthFormPage());
+
+//        adobeSignMedAuthFormPage
+//                .waitForPageLoad()
+//                .setSignature("Acurian");
+//        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = adobeSignMedAuthFormPage
+//                .clickToSignButton(new ThankYouCloseSimplePageOLS());
+
+        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = new ThankYouCloseSimplePageOLS();
 
         thankYouCloseSimplePageOLS
                 .waitForPageLoad()

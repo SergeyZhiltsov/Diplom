@@ -414,7 +414,7 @@ public class UC_4818_CC extends BaseTest {
 
                 currentlyHaveAnyOffFollowingPageCC
                         .clickNextButton(transitionStatementCC)
-                        .waitForPageLoadWithCurves("colitis")
+                        .waitForPageLoadWithCurves93("colitis")
                         .getPage(debugPageCC)
                         .checkProtocolsContainsForQNumber("Q0020441-QS8218-STUDYQUES", site.activeProtocols)
                         .back();
@@ -489,7 +489,7 @@ public class UC_4818_CC extends BaseTest {
                 .clickNextButton(transitionStatementCC);
 
         transitionStatementCC
-                .waitForPageLoadWithCurves("colitis")
+                .waitForPageLoadWithCurves93("colitis")
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC);
 
 //GH            
@@ -757,7 +757,7 @@ public class UC_4818_CC extends BaseTest {
 
             case AUT_AMS1_4818UC_Site:
 
-            identificationPageCC
+                MedicalRecordsOptionPageCC medicalRecordsOptionPageCC = identificationPageCC
                     .waitForPageLoad()
                     .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
                             "9999999999", site.zipCode)
@@ -765,19 +765,21 @@ public class UC_4818_CC extends BaseTest {
                     .waitForPageLoad("a colitis study")
                     .getPID()
                     .clickOnAnswer(site.name)
-//                .clickNextButton(new QualifiedClose2PageCC())
-//                .waitForPageLoadCrohns4818()
-                    .clickNextButton(new QualifiedClose2PageCC())
-                    .waitForPageLoadUC4818()
-//                    .clickOnAnswer("Continue with medical records")
-//                    .clickNextButton(new DoctorInformationCollectionPageCC())
-//                    .waitForPageLoadIBD("Ulcerative Colitis")
-//                    .clickNextButton(new HSMedicalRecordsPageCC())
-//                    .waitForPageLoad()
-                    .clickNextButton(new ThankYouCloseSimplePageCC())
-                    .waitForPageLoad3()
-//                .clickNextButton(new AlzheimerClosePageCC())
+                    .clickNextButton(new MedicalRecordsOptionPageCC());
+
+
+                medicalRecordsOptionPageCC
+                        .waitForPageLoad()
+                        .clickOnAnswer("Continue with medical records")
+                        .clickNextButton(new DoctorInformationCollectionPageCC())
+                        .waitForPageLoadIBD("Ulcerative Colitis")
+                        .clickNextButton(new HSMedicalRecordsPageCC())
+                        .waitForPageLoad()
+//                .clickNextButton(new QualifiedClose1PageCC())
 //                .waitForPageLoad()
+                        .clickNextButton(new ThankYouCloseSimplePageCC())
+                        .waitForPageLoad3()
+
                     .clickNextButton(selectActionPageCC)
                     .waitForPageLoad()
                     .pidFromDbToLog(env)
@@ -798,13 +800,13 @@ public class UC_4818_CC extends BaseTest {
                         .clickOnAnswer(site.name)
 //                .clickNextButton(new QualifiedClose2PageCC())
 //                .waitForPageLoadCrohns4818()
-//                        .clickNextButton(new MedicalRecordsOptionPageCC())
-//                        .waitForPageLoad()
-//                        .clickOnAnswer("Continue with medical records")
-//                        .clickNextButton(new DoctorInformationCollectionPageCC())
-//                        .waitForPageLoadIBD("Ulcerative Colitis")
-//                        .clickNextButton(new HSMedicalRecordsPageCC())
-//                        .waitForPageLoad()
+                        .clickNextButton(new MedicalRecordsOptionPageCC())
+                        .waitForPageLoad()
+                        .clickOnAnswer("Continue with medical records")
+                        .clickNextButton(new DoctorInformationCollectionPageCC())
+                        .waitForPageLoadIBD("Ulcerative Colitis")
+                        .clickNextButton(new HSMedicalRecordsPageCC())
+                        .waitForPageLoad()
                         .clickNextButton(new SynexusRadiantDirectScheduleCC())
                         .waitForPageLoadSyn()
                         .assertVariablesNew("Acurian", "Trial", "07/01/1990", "US", // maybe need to use another method
