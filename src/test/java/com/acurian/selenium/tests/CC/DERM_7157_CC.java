@@ -838,9 +838,7 @@ public class DERM_7157_CC extends BaseTest {
                 .clickNextButton(new QualifiedClose1PageCC());
 
         ThankYouCloseSimplePageCC thankYouCloseSimplePageCC = new ThankYouCloseSimplePageCC();
-        qualifiedClose1PageCC
-                .waitForPageLoad()
-                .clickNextButton(thankYouCloseSimplePageCC);
+        
 
 
 //        ThankYouCloseSimplePageCC thankYouCloseSimplePageCC = medicalRecordsOptionPageCC
