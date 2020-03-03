@@ -14,7 +14,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 public class AreYouTakingAnyOfMedicationsCC extends MainPageCC {
 
     public final String titleExpected = "Many people are prescribed other kinds of medications to manage high cholesterol, triglycerides, or lipids. They may be taken instead of or in addition to a statin. \n" +
-            "Are you currently taking any of the following medications on a daily basis? \n" +
+            "Are you currently taking any of the following medications on a daily basis?\n" +
             "Agent Note: Select all that apply";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC)

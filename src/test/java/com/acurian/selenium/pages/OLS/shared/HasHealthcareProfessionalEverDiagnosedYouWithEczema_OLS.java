@@ -11,7 +11,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 public class HasHealthcareProfessionalEverDiagnosedYouWithEczema_OLS extends MainPageOLS{
 
-    public final String titleExpected = "Has a healthcare professional ever diagnosed you with eczema,  also called atopic dermatitis? \n" +
+    public final String titleExpected = "Has a healthcare professional ever diagnosed you with eczema,  also called atopic dermatitis?\n" +
             "Eczema (also called atopic dermatitis) occurs when your skin overreacts to certain environmental triggers or allergens, causing very itchy bumps or rash. It typically occurs in people with a personal or family history of asthma or allergies.";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)

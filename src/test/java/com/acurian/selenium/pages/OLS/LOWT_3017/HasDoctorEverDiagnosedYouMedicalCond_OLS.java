@@ -9,7 +9,7 @@ import java.util.List;
 
 public class HasDoctorEverDiagnosedYouMedicalCond_OLS extends MainPageOLS {
 
-    public final String titleExpected = "Has a doctor ever diagnosed you with any of the following medical conditions or diseases? \n" +
+    public final String titleExpected = "Has a doctor ever diagnosed you with any of the following medical conditions or diseases?\n" +
             "Please select all that apply:";
 
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]")

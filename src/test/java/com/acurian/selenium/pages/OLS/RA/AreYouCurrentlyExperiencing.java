@@ -9,7 +9,7 @@ import com.acurian.selenium.pages.OLS.MainPageOLS;
 import ru.yandex.qatools.allure.annotations.Step;
 
 public class AreYouCurrentlyExperiencing extends MainPageOLS {
-	public final String titleExpected = "Are you currently experiencing tender, painful, or swollen joints because of your RA? ";
+	public final String titleExpected = "Are you currently experiencing tender, painful, or swollen joints because of your RA?";
 
     @FindBy(xpath = "//div[@class='ng-scope']//div[contains(@class,'visible-md-block')]")
     WebElement titleText;
