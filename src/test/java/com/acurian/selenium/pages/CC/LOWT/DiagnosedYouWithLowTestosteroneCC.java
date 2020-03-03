@@ -10,7 +10,7 @@ import java.util.List;
 public class DiagnosedYouWithLowTestosteroneCC extends MainPageCC {
 
     public final String titleExpected = "Testosterone (Agent note: tes-TOS-ter-one) is the male sex hormone. Levels may drop as men age.\n" +
-            "Has a doctor ever diagnosed you with low testosterone or hypogonadism? (Agent note: hi-pō-gō-nad-izm)";
+            "Has a doctor ever diagnosed you with low testosterone or hypogonadism?(Agent note: hi-pō-gō-nad-izm)";
 
     @FindBy(xpath = "//div[@class='question_text']")
     WebElement titleText;

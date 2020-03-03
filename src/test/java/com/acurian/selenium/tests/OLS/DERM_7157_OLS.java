@@ -797,13 +797,15 @@ public class DERM_7157_OLS extends BaseTest {
                         "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageOLS());
 
-        MedicalRecordsOptionPageOLS medicalRecordsOptionPageOLS = siteSelectionPageOLS
+        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = new ThankYouCloseSimplePageOLS();
+
+        QualifiedClose2PageOLS qualifiedClose2PageOLS = siteSelectionPageOLS
                 .waitForPageLoad("an eczema (atopic dermatitis)")
                 .getPID()
                 .clickOnFacilityName(site.name)
-                .clickNextButton(new MedicalRecordsOptionPageOLS());
+                .clickNextButton(new QualifiedClose2PageOLS());
 
-        DoctorInformationCollectionPageOLS doctorInformationCollectionPageOLS = medicalRecordsOptionPageOLS
+        /*DoctorInformationCollectionPageOLS doctorInformationCollectionPageOLS = medicalRecordsOptionPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Continue with medical records")
                 .clickNextButton(new DoctorInformationCollectionPageOLS());
@@ -814,24 +816,30 @@ public class DERM_7157_OLS extends BaseTest {
         hs1PageOLS
                 .waitForPageLoad()
                 .clickOkInPopUp()
-                .setSignature();
+                .setSignature();*/
 //                .waitToClickNext()
 //                .clickNextButton(thankYouCloseSimplePageOLS);
 
-        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = new ThankYouCloseSimplePageOLS();
+
 
         AboutHealthPageOLS aboutHealthPageOLS = new AboutHealthPageOLS();
 //
-                try {
-                    thankYouCloseSimplePageOLS
-                            .waitForPageLoad()
-                            .clickNextButton(new AboutHealthPageOLS())
-                            .waitForPageLoad();
-                }
-                catch (Exception t){
-                    aboutHealthPageOLS
-                            .waitForPageLoad();
-        }
+//                try {
+////                    thankYouCloseSimplePageOLS
+////                            .waitForPageLoad()
+////                            .clickNextButton(new AboutHealthPageOLS())
+////                            .waitForPageLoad();
+////                }
+////                catch (Exception t){
+////                    aboutHealthPageOLS
+////                            .waitForPageLoad();
+////        }
+        qualifiedClose2PageOLS
+                .waitForPageLoad()
+                .clickNextButton(thankYouCloseSimplePageOLS);
+        thankYouCloseSimplePageOLS
+                .waitForPageLoad()
+                .clickNextButton(aboutHealthPageOLS);
         aboutHealthPageOLS
                 .pidFromDbToLog(env)
                 .childPidFromDbToLog(env)

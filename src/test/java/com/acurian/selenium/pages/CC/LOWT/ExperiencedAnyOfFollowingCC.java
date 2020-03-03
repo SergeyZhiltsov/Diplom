@@ -10,7 +10,7 @@ import java.util.List;
 
 public class ExperiencedAnyOfFollowingCC extends MainPageCC {
 
-    public final String titleExpected = "Have you experienced any of the following? \n" +
+    public final String titleExpected = "Have you experienced any of the following?\n" +
             "Agent Note: Select all that apply";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC)

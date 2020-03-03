@@ -831,21 +831,26 @@ public class DERM_7157_CC extends BaseTest {
                         "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageCC());
 
-        MedicalRecordsOptionPageCC medicalRecordsOptionPageCC = selectionPageCC
+        QualifiedClose1PageCC qualifiedClose1PageCC = selectionPageCC
                 .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnAnswer(site.name)
-                .clickNextButton(new MedicalRecordsOptionPageCC());
+                .clickNextButton(new QualifiedClose1PageCC());
+
+        ThankYouCloseSimplePageCC thankYouCloseSimplePageCC = new ThankYouCloseSimplePageCC();
+        qualifiedClose1PageCC
+                .waitForPageLoad()
+                .clickNextButton(thankYouCloseSimplePageCC);
 
 
-        ThankYouCloseSimplePageCC thankYouCloseSimplePageCC = medicalRecordsOptionPageCC
-                .waitForPageLoad()
-                .clickOnAnswer("Continue with medical records")
-                .clickNextButton(new DoctorInformationCollectionPageCC())
-                .waitForPageLoad()
-                .clickNextButton(new HSMedicalRecordsPageCC())
-                .waitForPageLoad()
-                .clickNextButton(new ThankYouCloseSimplePageCC());
+//        ThankYouCloseSimplePageCC thankYouCloseSimplePageCC = medicalRecordsOptionPageCC
+//                .waitForPageLoad()
+//                .clickOnAnswer("Continue with medical records")
+//                .clickNextButton(new DoctorInformationCollectionPageCC())
+//                .waitForPageLoad()
+//                .clickNextButton(new HSMedicalRecordsPageCC())
+//                .waitForPageLoad()
+//                .clickNextButton(new ThankYouCloseSimplePageCC());
 
         SynexusRadiantDirectScheduleCC synexusRadiantDirectScheduleCC = new SynexusRadiantDirectScheduleCC();
 
@@ -854,6 +859,9 @@ public class DERM_7157_CC extends BaseTest {
 //            qualifiedClose1PageCC
 //                .waitForPageLoad()
 //                .clickOnAnswer("Continue without medical records")
+        qualifiedClose1PageCC
+            .waitForPageLoad()
+            .clickNextButton(thankYouCloseSimplePageCC);
         thankYouCloseSimplePageCC
             .waitForPageLoad3()
             .clickNextButton(selectActionPageCC)

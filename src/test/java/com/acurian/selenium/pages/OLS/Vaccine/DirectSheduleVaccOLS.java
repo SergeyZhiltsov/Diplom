@@ -13,7 +13,10 @@ public class DirectSheduleVaccOLS extends MainPageOLS {
     public final String titleExpected = "Click the link below to schedule an appointment:\n" +
             "\n" +
             "Once your appointment has been confirmed, please return to this window and click \"Next\" to complete the screening process.\n" +
-            "If you are unable to schedule an appointment now, the study doctor's office will contact you with additional scheduling options.";
+            "If you are unable to schedule an appointment now, the study doctor's office will contact you with additional scheduling options.\n" +
+            "\n" +
+            "\n" +
+            "SCHEDULE AN APPOINTMENT";
 
     public final String titleExpectedSTG = "Click below to schedule your appointment. After the appointment confirmation, please return to this window and click \"next\" to complete the process.\n" +
             "If you are not able to schedule now, you will be contacted by the study doctor's office to schedule your appointment.\n" +
