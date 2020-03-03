@@ -276,6 +276,7 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
         //---------------Q8 HeartOrBloodVesselPageOLS-------------------
         HaveYouExperiencedAnyFollowingCardiovascularInterventions_OLS HaveYouExperiencedAnyFollowingCardiovascularInterventions_OLS =
                 heartOrBloodVesselPageOLS
+                        .waitForPageLoad()
                         //---------SKIP to Q11 if selected "None of the above"  or go to Q10--------
                         .clickOnAnswers("None of the above")
                         .clickNextButton(new HaveYouExperiencedAnyFollowingCardiovascularInterventions_OLS())
@@ -400,6 +401,8 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
         siteSelectionPageOLS
                 .waitForPageLoad(studyName)
                 .getPID();
+
+        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = new ThankYouCloseSimplePageOLS();
         switch (site) {
             case AUT_LOWT_3017_Site: //1R
                 siteSelectionPageOLS
@@ -422,16 +425,17 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
                 SiteSelectionPageOLS siteSelectionPageOLS1 = new SiteSelectionPageOLS();
                 siteSelectionPageOLS1
                         .clickOnFacilityName(site.name)
-                        .clickNextButton(new MedicalRecordsOptionPageOLS())
+                        .clickNextButton(new QualifiedClose2PageOLS())
                         .waitForPageLoad()
-                        .clickOnAnswer("Continue with medical records")
-                        .clickNextButton(new DoctorInformationCollectionPageOLS())
-                        .waitForPageLoad()
-                        .clickNextButton(new HS1PageOLS())
-                        .waitForPageLoad()
-                        .clickOkInPopUp()
-                        .setSignature();
-                ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = new ThankYouCloseSimplePageOLS();
+                        .clickNextButton(thankYouCloseSimplePageOLS);
+//                        .clickOnAnswer("Continue with medical records")
+//                        .clickNextButton(new DoctorInformationCollectionPageOLS())
+//                        .waitForPageLoad()
+//                        .clickNextButton(new HS1PageOLS())
+//                        .waitForPageLoad()
+//                        .clickOkInPopUp()
+//                        .setSignature();
+
                 thankYouCloseSimplePageOLS
                         .waitForPageLoad()
 //                        .waitToClickNext()

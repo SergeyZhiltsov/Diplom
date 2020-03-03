@@ -283,7 +283,7 @@ public class Chronic_4471_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new IdentificationPageOLS());
-        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = identificationPageOLS
+        HS1PageOLS hs1PageOLS = identificationPageOLS
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", eMailId, "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageOLS())
@@ -295,10 +295,12 @@ public class Chronic_4471_OLS extends BaseTest {
                 .clickOnAnswer("Continue with medical records")
                 .clickNextButton(new DoctorInformationCollectionPageOLS())
                 .waitForPageLoad()
-                .clickNextButton(new ThankYouCloseSimplePageOLS());
-//                .waitForPageLoad()
-//                .clickOkInPopUp()
-//                .setSignature();
+                .clickNextButton(new HS1PageOLS());
+        hs1PageOLS
+                .waitForPageLoad()
+                .clickOkInPopUp()
+                .setSignature();
+        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = new ThankYouCloseSimplePageOLS();
 
 /*                //------------HUMAN API Interface in HelloSign----------------
                 .getPage(new HumanAPIOLS())

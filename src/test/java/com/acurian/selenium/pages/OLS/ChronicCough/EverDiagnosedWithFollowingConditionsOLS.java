@@ -9,7 +9,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 public class EverDiagnosedWithFollowingConditionsOLS extends MainPageOLS{
 
-    public final String titleExpected ="Have you ever been diagnosed with any of the following conditions? \n" +
+    public final String titleExpected ="Have you ever been diagnosed with any of the following conditions?\n" +
     		"Please select all that apply."; 
     
     		

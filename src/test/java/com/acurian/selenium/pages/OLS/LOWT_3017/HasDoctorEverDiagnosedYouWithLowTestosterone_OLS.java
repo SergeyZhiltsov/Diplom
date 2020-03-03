@@ -9,8 +9,8 @@ import ru.yandex.qatools.allure.annotations.Step;
 import java.util.List;
 
 public class HasDoctorEverDiagnosedYouWithLowTestosterone_OLS extends MainPageOLS {
-    public final String titleExpected = "Testosterone  is the male sex hormone. Levels may drop as men age.\n" +
-            "Has a doctor ever diagnosed you with low testosterone or hypogonadism? ";
+    public final String titleExpected = "Testosterone is the male sex hormone. Levels may drop as men age.\n" +
+            "Has a doctor ever diagnosed you with low testosterone or hypogonadism?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
     WebElement titleText;

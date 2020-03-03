@@ -260,7 +260,7 @@ public class AUT_3973_OLS extends BaseTest {
 
 
         //----HEIGHT and WEIGHT Question ------------
-        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = approximateHeightPageOLS
+       approximateHeightPageOLS
                 .waitForPageLoad()
                 //EthnicBackgroundPageOLS ethnicBackgroundPageOLS = approximateHeightPageOLS
                 .waitForPageLoad()
@@ -290,7 +290,14 @@ public class AUT_3973_OLS extends BaseTest {
                 .clickOnAnswer("Continue with medical records")
                 .clickNextButton(new DoctorInformationCollectionPageOLS())
                 .waitForPageLoad()
-                .clickNextButton(new ThankYouCloseSimplePageOLS());
+                .clickNextButton(new HS1PageOLS())
+                .waitForPageLoad()
+                .clickOkInPopUp()
+                .setSignature();
+//                QualifiedClose2PageOLS qualifiedClose2PageOLS = new QualifiedClose2PageOLS();
+//        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = qualifiedClose2PageOLS
+//                .waitForPageLoad()
+//                .clickNextButton(new ThankYouCloseSimplePageOLS());
 //                .waitForPageLoad()
 //                .clickOkInPopUp()
 //                .setSignature();
@@ -312,7 +319,7 @@ public class AUT_3973_OLS extends BaseTest {
 
                 .waitToClickNext()
                 .clickNextButton(new ThankYouCloseSimplePageOLS())*/
-
+        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = new ThankYouCloseSimplePageOLS();
         thankYouCloseSimplePageOLS
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())
