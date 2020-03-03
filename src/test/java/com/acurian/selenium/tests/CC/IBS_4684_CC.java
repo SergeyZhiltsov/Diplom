@@ -733,6 +733,7 @@ public class IBS_4684_CC extends BaseTest {
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
+                .clickOnAnswers("Lupus")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC);
 
         ApproximateHeightPageCC approximateHeightPageCC = new ApproximateHeightPageCC();
@@ -765,7 +766,7 @@ public class IBS_4684_CC extends BaseTest {
 
         LetMeSeePageCC letMeSeePageCC = approximateHeightPageCC
                 .waitForPageLoad()
-                .setAll("5", "5", "170") //Disqualify ("High BMI") if > 39
+                .setAll("5", "7", "300") //Disqualify other protocol RMO("High BMI") if > 45
                 .clickNextButton(new LetMeSeePageCC());
 
         //Not Sinexus Close about drugs

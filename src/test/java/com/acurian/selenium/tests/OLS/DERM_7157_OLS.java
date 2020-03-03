@@ -783,7 +783,7 @@ public class DERM_7157_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS);
         SiteSelectionPageOLS siteSelectionPageOLS = approximateHeightPageOLS
                 .waitForPageLoad()
-                .setAll("3", "2", "33")
+                .setAll("3", "2", "30")
                 //----------PII (IdentificationPageOLS) Page--------------------
                 .clickNextButton(new CurrentlyParticipatingInStudyOLS())
                 .waitForPageLoad()
