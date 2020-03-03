@@ -13,7 +13,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 public class NonPrescriptionSupplementsCC extends MainPageCC {
 
-    public final String titleExpected = "Are you currently taking any of the following non-prescription supplements or food products on a daily basis? \n" +
+    public final String titleExpected = "Are you currently taking any of the following non-prescription supplements or food products on a daily basis?\n" +
             "Agent Note: Select all that apply";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC)

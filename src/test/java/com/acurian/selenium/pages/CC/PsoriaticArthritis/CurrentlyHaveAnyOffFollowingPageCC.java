@@ -10,7 +10,7 @@ import java.util.List;
 
 public class CurrentlyHaveAnyOffFollowingPageCC extends MainPageCC {
 
-    public final String titleExpected = "Do you currently have any of the following?  \n" +
+    public final String titleExpected = "Do you currently have any of the following?\n" +
             "Agent Note: Select all that apply";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC)

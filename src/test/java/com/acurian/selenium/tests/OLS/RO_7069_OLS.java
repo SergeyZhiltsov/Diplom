@@ -520,7 +520,7 @@ public class RO_7069_OLS extends BaseTest {
         IdentificationPageOLS identificationPageOLS = everDiagnosedGastroparesisOrStomachEmptyingOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS68", site.activeProtocols)
                 .back(approximateHeightPageOLS)
                 .setLbs("150")
                 .clickNextButton(new CurrentlyParticipatingInStudyOLS())
