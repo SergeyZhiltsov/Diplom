@@ -1,9 +1,11 @@
 package com.acurian.selenium.utils;
 
+import com.acurian.selenium.pages.BasePage;
 import com.acurian.selenium.utils.db.AnomalyResults;
 import com.acurian.selenium.utils.db.ChildResult;
 import com.acurian.selenium.utils.db.RadiantResults;
 import oracle.jdbc.pool.OracleDataSource;
+import org.testng.Assert;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -15,7 +17,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
-public class DBConnection {
+public class DBConnection extends BasePage {
 
 //            String myURL = "jdbc:oracle:thin:@(DESCRIPTION=" +
 //                        "(ADDRESS=(PROTOCOL=TCP)(HOST=dev-db-scan.acurian.com)(PORT=1521))" +
@@ -26,6 +28,8 @@ public class DBConnection {
     private final String qaURL = "jdbc:oracle:thin:@dev-db-scan.acurian.com:1521/acuqa_users.acurian.com";
     private final String userName = "autotest";
     private final String password = "autotest";
+    private String studyNum = null;
+    private String studyID = null;
 
 //    String environment = "PRD";
 //    String pidNumber = "64293501";//prod- 64293501, stg- 63071241,
@@ -95,6 +99,40 @@ public class DBConnection {
                 applicantStatus = rset.getString("applicant_status_cd");
             }
             System.out.println("DB parent: dispo = " + dispoCode + applicantStatus + ", parent pid =" + pidNumber);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeResources();
+        }
+    }
+
+    public void checkTestFlag(String environment) {
+        int i=0;
+        try {
+            stmt = getDbCon(environment).createStatement();
+            String sql = "SELECT * FROM STUDY_SITE WHERE SITE_NUM Like '%AUT%' AND TEST_SITE_IND = 'Y';\n" +
+                    "SELECT * FROM STUDY_SITE WHERE SITE_NUM Like '%QA%' AND TEST_SITE_IND = 'Y';\n" +
+                    "SELECT * FROM STUDY_SITE WHERE SITE_NUM Like '%AUT%' AND TEST_SITE_IND = 'Y';\n" +
+                    "SELECT * FROM STUDY_SITE WHERE SITE_NUM Like '%TEST%' AND TEST_SITE_IND = 'Y';\n" +
+                    "SELECT * FROM STUDY_SITE WHERE SITE_NUM Like '%AUT_%' AND TEST_SITE_IND = 'Y';\n" +
+                    "SELECT * FROM STUDY_SITE WHERE SITE_NUM Like '%QAV_%' AND TEST_SITE_IND = 'Y';\n" +
+                    "SELECT * FROM STUDY_SITE WHERE SITE_NUM Like '%SQA_%' AND TEST_SITE_IND = 'Y';\n" +
+                    "SELECT * FROM STUDY_SITE WHERE SITE_NUM Like '%AUTS%' AND TEST_SITE_IND = 'Y';\n" +
+                    "SELECT * FROM STUDY_SITE WHERE SITE_NUM Like '%AUT%' AND TEST_SITE_IND = 'Y';";
+            rset = stmt.executeQuery(sql);
+            while (rset.next()) {
+                try {
+                    studyNum = rset.getString("site_num");
+                    studyID = rset.getString("study_id");
+                    logTextToAllure("Test site without test flag: "+studyNum+" "+studyID);
+                    i++;
+                }catch(NullPointerException e){
+                    logTextToAllure("All test sites are flagged");
+                    break;
+                }
+            }
+            System.out.println();
+            Assert.assertEquals(i,0);
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
