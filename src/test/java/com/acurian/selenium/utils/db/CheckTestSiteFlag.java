@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 public class CheckTestSiteFlag extends BaseTest {
     @Test()
-    public void clusterHeadache3237сс() {
+    public void checkFlag() {
         final String env = System.getProperty("acurian.env", "STG");
         DBConnection dBConnection = new DBConnection();
         dBConnection
