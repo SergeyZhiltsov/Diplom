@@ -853,22 +853,23 @@ public class DERM_7157_CC extends BaseTest {
         SynexusRadiantDirectScheduleCC synexusRadiantDirectScheduleCC = new SynexusRadiantDirectScheduleCC();
 
 
-        if(site.name.equals("AUT_AMS1_7157_site"))
+        if(site.name.equals("AUT_AMS1_7157_site")) {
 //            qualifiedClose1PageCC
 //                .waitForPageLoad()
 //                .clickOnAnswer("Continue without medical records")
-        qualifiedClose1PageCC
-            .waitForPageLoad()
-            .clickNextButton(thankYouCloseSimplePageCC);
-        thankYouCloseSimplePageCC
-            .waitForPageLoad3()
-            .clickNextButton(selectActionPageCC)
-            .waitForPageLoad()
-            .pidFromDbToLog(env)
-            .childPidFromDbToLog(env)
-            .dispoShouldMatch(site.dispo, site.dispo)
-            .assertGeneratedFul(env, site);
+            qualifiedClose1PageCC
+                    .waitForPageLoad()
+                    .clickNextButton(thankYouCloseSimplePageCC);
+            thankYouCloseSimplePageCC
+                    .waitForPageLoad3()
+                    .clickNextButton(selectActionPageCC)
+                    .waitForPageLoad()
+                    .pidFromDbToLog(env)
+                    .childPidFromDbToLog(env)
+                    .dispoShouldMatch(site.dispo, site.dispo)
+                    .assertGeneratedFul(env, site);
 //                .assertRmgOrderPriority(env, "7157");
+        }
 
         if(env.equals("PRD")) {
 
