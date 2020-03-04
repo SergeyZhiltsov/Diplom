@@ -7,6 +7,7 @@ import com.acurian.selenium.pages.OLS.Crohns_3485.CurrentlyHaveAnyOffFollowingPa
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.CurrentlyTreatingYourDiabetesPageOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.WithType2DiabetesPageOLS;
+import com.acurian.selenium.pages.OLS.GERD.CurrentlySufferOfAnyOfFollowingOLS;
 import com.acurian.selenium.pages.OLS.MDD_3159.MostRecentHeartProcedurePageOLS;
 import com.acurian.selenium.pages.OLS.OAB_4867.DoYouTakeAnyMedicationsControlHypertension_OLS;
 import com.acurian.selenium.pages.OLS.RA.WhatKindOfArthritisPageOLS;
@@ -699,7 +700,8 @@ public class GAST_9279_OLS extends BaseTest {
                 .checkProtocolsContainsForQNumber("QS61", site.activeProtocols)
                 .back();
 
-        IdentificationPageOLS identificationPageOLS = doAnyOftheFollowingAdditionalDiagnosesOLS
+        IdentificationPageOLS identificationPageOLS = new IdentificationPageOLS();
+        doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(approximateHeightPageOLS)
@@ -718,14 +720,24 @@ public class GAST_9279_OLS extends BaseTest {
                 .checkProtocolsContainsForQNumber("QS68", site.activeProtocols)
                 .back(approximateHeightPageOLS)
                 .waitForPageLoad()
-                .setAll("5","5","235")
+                .setAll("5","5","235");
+                if(env.equals("STG")) {
+                    approximateHeightPageOLS
+                .clickNextButton(new CurrentlyTreatingYourDiabetesPageOLS())
+                            .waitForPageLoad()
+                            .clickOnAnswers("I am not currently treating my diabetes")
+                            .clickNextButton(new CurrentlySufferOfAnyOfFollowingOLS())
+                            .waitForPageLoad()
+                            .clickOnAnswers("None of the above");
+                }
+        approximateHeightPageOLS
                 .clickNextButton(new CurrentlyParticipatingInStudyOLS())
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new RequirePassDrugTestOLS())
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(new IdentificationPageOLS());
+                .clickNextButton(identificationPageOLS);
 
         SiteSelectionPageOLS siteSelectionPageOLS = identificationPageOLS
                 .waitForPageLoad()

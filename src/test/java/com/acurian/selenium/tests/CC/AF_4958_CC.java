@@ -6,6 +6,7 @@ import com.acurian.selenium.pages.CC.Fibromyalgia.AnyFollowingPainfulConditionsC
 import com.acurian.selenium.pages.CC.Fibromyalgia.DiagnosedWithFibromyalgiaCC;
 import com.acurian.selenium.pages.CC.Fibromyalgia.HowLongBeenHavingSymptomsFibromyalgiaCC;
 import com.acurian.selenium.pages.CC.Fibromyalgia.TypeOfDoctorDiagnosedWithFibromyalgiaCC;
+import com.acurian.selenium.pages.CC.GERD.CurrentlySufferOfAnyOfFollowingCC;
 import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.pages.CC.cv_study.SubquestionHeartPageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
@@ -586,39 +587,32 @@ public class AF_4958_CC extends BaseTest {
                 .checkProtocolsContainsForQNumber("QS68", site.activeProtocols)
                 .back(approximateHeightPageCC)
                 .waitForPageLoad()
-                .setLbs("150")
+                .setAll("3", "3","30")
                 .clickNextButton(new LetMeSeePageCC());
 
+        CurrentlyParticipatingInStudy currentlyParticipatingInStudy = new CurrentlyParticipatingInStudy();
 
-        CurrentlyParticipatingInStudy currentlyParticipatingInStudy = letMeSeePageCC
-                .waitForPageLoad()
-                .clickNextButton(new CurrentlyParticipatingInStudy());
+        if (env.equals("STG")){
+            letMeSeePageCC
+                    .waitForPageLoad()
+                    .clickNextButton(new CurrentlySufferOfAnyOfFollowingCC())
+                    .waitForPageLoad()
+                    .clickOnAnswers("None of the above")
+                    .clickNextButton(new NonQRtransitionPageCC())
+                    .waitForPageLoad()
+                    .clickNextButton(currentlyParticipatingInStudy);
+
+        }else{
+            letMeSeePageCC
+                    .waitForPageLoad()
+                    .clickNextButton(currentlyParticipatingInStudy);
+        }
 
         RequirePassDrugTest requirePassDrugTest = currentlyParticipatingInStudy
-//                .waitForPageLoad()
-//                .clickOnAnswer("Yes")
-//                .clickNextButton(new RequirePassDrugTest());
-
-
-
-//        requirePassDrugTest
-//                .waitForPageLoad()
-//                .getPage(debugPageCC)
-//                .checkProtocolsContainsForQNumber("QS912", site.activeProtocols)
-//                .back(currentlyParticipatingInStudy)
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new RequirePassDrugTest());
         IdentificationPageCC identificationPageCC = requirePassDrugTest
-//                .waitForPageLoad()
-//                .clickOnAnswer("No")
-//                .clickNextButton(new IdentificationPageCC());
-//        identificationPageCC
-//                .waitForPageLoadNotQ()
-//                .getPage(debugPageCC)
-//                .checkProtocolsContainsForQNumber("QS913", site.activeProtocols)
-//                .back(requirePassDrugTest);
-//        requirePassDrugTest
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new IdentificationPageCC());

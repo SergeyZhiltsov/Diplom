@@ -649,8 +649,8 @@ public class Crohns_4818_CC extends BaseTest {
                         .clickOnAnswer("Continue with medical records")
                         .clickNextButton(new DoctorInformationCollectionPageCC())
                         .waitForPageLoadIBD("Crohn's Disease")
-//                        .clickNextButton(new HSMedicalRecordsPageCC())
-//                        .waitForPageLoad()
+                        .clickNextButton(new HSMedicalRecordsPageCC())
+                        .waitForPageLoad()
                         .clickNextButton(new SynexusRadiantDirectScheduleCC())
                         .waitForPageLoadSyn()
                         .assertVariablesNew("Acurian", "Trial", "07/01/1990", "US", // maybe need to use another method

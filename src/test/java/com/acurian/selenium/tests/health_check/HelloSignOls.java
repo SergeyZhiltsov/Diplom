@@ -75,7 +75,7 @@ public class HelloSignOls extends BaseTest {
                 .clickNextButton(new DoctorInformationCollectionPageOLS());
 
         HS1PageOLS hs1PageOLS = doctorInformationCollectionPageOLS
-                .waitForPageLoadByTitleGMEGA(env.equals("QA") ? doctorInformationCollectionPageOLS.titleGmegaQAExpected :
+                .waitForPageLoadByTitleGMEGA(env.equals("STG") ? doctorInformationCollectionPageOLS.titleGmegaQAExpected :
                         doctorInformationCollectionPageOLS.titleGmegaExpected)
                 .clickNextButton(new HS1PageOLS());
 

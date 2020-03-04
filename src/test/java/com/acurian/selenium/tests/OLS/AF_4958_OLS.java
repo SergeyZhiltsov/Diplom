@@ -507,7 +507,7 @@ public class AF_4958_OLS extends BaseTest {
 
 
         //Q26	Has a healthcare professional ever diagnosed you with any of the following medical conditions?
-        ApproximateHeightPageOLS approximateHeightPageCC = new ApproximateHeightPageOLS();
+        ApproximateHeightPageOLS approximateHeightPageOLS = new ApproximateHeightPageOLS();
         List<String> disqualifyQ24 = Arrays.asList("Bipolar disorder", "Cancer in the past 5 years, except skin cancer",
                 "Cirrhosis",
                 "Drug or alcohol abuse within the past year",
@@ -520,7 +520,7 @@ public class AF_4958_OLS extends BaseTest {
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(answer)
-                    .clickNextButton(approximateHeightPageCC)
+                    .clickNextButton(approximateHeightPageOLS)
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
@@ -534,7 +534,7 @@ public class AF_4958_OLS extends BaseTest {
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(answer)
-                    .clickNextButton(approximateHeightPageCC)
+                    .clickNextButton(approximateHeightPageOLS)
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS61", site.activeProtocols)
@@ -543,10 +543,10 @@ public class AF_4958_OLS extends BaseTest {
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(approximateHeightPageCC);
+                .clickNextButton(approximateHeightPageOLS);
 
 
-        CurrentlySufferOfAnyOfFollowingOLS currentlySufferOfAnyOfFollowingOLS = approximateHeightPageCC
+        CurrentlySufferOfAnyOfFollowingOLS currentlySufferOfAnyOfFollowingOLS = approximateHeightPageOLS
                 .waitForPageLoad()
                 .setAll("5", "5", "280") //Disqualify ("High BMI") if > 40
                 .clickNextButton(new CurrentlySufferOfAnyOfFollowingOLS());
@@ -559,7 +559,7 @@ public class AF_4958_OLS extends BaseTest {
         IdentificationPageOLS identificationPageOLS = new IdentificationPageOLS();
 
         if (env.equals("PRD")) {
-            approximateHeightPageCC
+            approximateHeightPageOLS
                     .waitForPageLoad()
                     .setLbs("150")
                     .clickNextButton(new CurrentlyParticipatingInStudyOLS())
@@ -571,9 +571,12 @@ public class AF_4958_OLS extends BaseTest {
                     .clickNextButton(identificationPageOLS);
         }
         if (env.equals("STG")){
-            approximateHeightPageCC
+            approximateHeightPageOLS
                     .waitForPageLoad()
-                    .setLbs("150")
+                    .setAll("3","3","30")
+                    .clickNextButton(new CurrentlySufferOfAnyOfFollowingOLS())
+                    .waitForPageLoad()
+                    .clickOnAnswers("None of the above")
                     .clickNextButton(new CurrentlyParticipatingInStudyOLS())
                     .waitForPageLoad()
                     .clickOnAnswer("No")

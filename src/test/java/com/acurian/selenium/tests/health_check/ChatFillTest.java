@@ -99,7 +99,7 @@ public class ChatFillTest extends BaseTest {
                 .waitForPageLoad()
                 .confirmPatientInformation()
                 .setAllDataMedicalRecordReleaseForm("Acurian", "PA", "9999999999",
-                        "2 walnut grove dr.", env.equals("QA") ? "Horsham" : "HORSHAM", siteZipCode)
+                        "2 walnut grove dr.", env.equals("STG") ? "Horsham" : "HORSHAM", siteZipCode)
                 .clickSignForm(new AdobeSignMedAuthFormPage());
 
         ThankYouCloseGmegaOLS thankYouCloseGmegaOLS = adobeSignMedAuthFormPage
