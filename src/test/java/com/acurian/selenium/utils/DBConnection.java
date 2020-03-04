@@ -120,18 +120,23 @@ public class DBConnection extends BasePage {
                     "SELECT * FROM STUDY_SITE WHERE SITE_NUM Like '%AUTS%' AND TEST_SITE_IND = 'Y';\n" +
                     "SELECT * FROM STUDY_SITE WHERE SITE_NUM Like '%AUT%' AND TEST_SITE_IND = 'Y';";
             rset = stmt.executeQuery(sql);
+            logTextToAllure("1");
             while (rset.next()) {
                 try {
+                    logTextToAllure("2");
                     studyNum = rset.getString("site_num");
                     studyID = rset.getString("study_id");
                     logTextToAllure("Test site without test flag: "+studyNum+" "+studyID);
                     i++;
+                    logTextToAllure("3");
                 }catch(NullPointerException e){
+                    logTextToAllure("4");
                     logTextToAllure("All test sites are flagged");
                     break;
                 }
             }
             System.out.println();
+            logTextToAllure("5");
             Assert.assertEquals(i,0);
         } catch (SQLException e) {
             e.printStackTrace();
