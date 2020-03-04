@@ -6,6 +6,7 @@ import com.acurian.selenium.utils.db.ChildResult;
 import com.acurian.selenium.utils.db.RadiantResults;
 import oracle.jdbc.pool.OracleDataSource;
 import org.testng.Assert;
+import org.testng.asserts.SoftAssert;
 import ru.yandex.qatools.allure.annotations.Step;
 
 import java.sql.Connection;
@@ -109,18 +110,11 @@ public class DBConnection {
 
     @Step
     public void checkTestFlag(String environment) {
+        SoftAssert softAssert = new SoftAssert();
         int i=0;
         try {
             stmt = getDbCon(environment).createStatement();
-            String sql = "SELECT * FROM STUDY_SITE WHERE SITE_NUM Like '%AUT%' AND TEST_SITE_IND = 'Y';\n" +
-                    "SELECT * FROM STUDY_SITE WHERE SITE_NUM Like '%QA%' AND TEST_SITE_IND = 'Y';\n" +
-                    "SELECT * FROM STUDY_SITE WHERE SITE_NUM Like '%AUT%' AND TEST_SITE_IND = 'Y';\n" +
-                    "SELECT * FROM STUDY_SITE WHERE SITE_NUM Like '%TEST%' AND TEST_SITE_IND = 'Y';\n" +
-                    "SELECT * FROM STUDY_SITE WHERE SITE_NUM Like '%AUT_%' AND TEST_SITE_IND = 'Y';\n" +
-                    "SELECT * FROM STUDY_SITE WHERE SITE_NUM Like '%QAV_%' AND TEST_SITE_IND = 'Y';\n" +
-                    "SELECT * FROM STUDY_SITE WHERE SITE_NUM Like '%SQA_%' AND TEST_SITE_IND = 'Y';\n" +
-                    "SELECT * FROM STUDY_SITE WHERE SITE_NUM Like '%AUTS%' AND TEST_SITE_IND = 'Y';\n" +
-                    "SELECT * FROM STUDY_SITE WHERE SITE_NUM Like '%AUT%' AND TEST_SITE_IND = 'Y';";
+            String sql = "SELECT * FROM STUDY_SITE WHERE (SITE_NUM Like '%AUT%' OR SITE_NUM Like '%QA%' OR SITE_NUM Like '%AUTS%' OR SITE_NUM Like '%QAV%' OR SITE_NUM Like '%QAVS%' OR SITE_NUM Like '%QAV_%') AND TEST_SITE_IND = 'N';";
             rset = stmt.executeQuery(sql);
             System.out.println("1");
             while (rset.next()) {
@@ -139,12 +133,13 @@ public class DBConnection {
             }
             System.out.println();
             System.out.println("5");
-            Assert.assertEquals(i,0);
+            softAssert.assertEquals(i,0);
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             closeResources();
         }
+        softAssert.assertAll();
     }
 
     public void convert54Cto1R(String environment, String pidNumber) {
