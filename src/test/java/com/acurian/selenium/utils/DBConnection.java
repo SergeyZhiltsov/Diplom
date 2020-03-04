@@ -364,7 +364,7 @@ public class DBConnection {
         return Objects.requireNonNull(studyId, "Returned STUDY_ID list is NULL!");
     }
 
-    private void closeResources() {
+    public void closeResources() {
         try {
             if (rset != null) rset.close();
             if (stmt != null) stmt.close();
