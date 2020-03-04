@@ -107,12 +107,6 @@ public class DBConnection {
         }
     }
 
-
-    @Step("{0}")
-    public void logTextToAllureAndConsole(String text) {
-        System.out.println(text);
-    }
-
     @Step
     public void checkTestFlag(String environment) {
         int i=0;
@@ -128,23 +122,23 @@ public class DBConnection {
                     "SELECT * FROM STUDY_SITE WHERE SITE_NUM Like '%AUTS%' AND TEST_SITE_IND = 'Y';\n" +
                     "SELECT * FROM STUDY_SITE WHERE SITE_NUM Like '%AUT%' AND TEST_SITE_IND = 'Y';";
             rset = stmt.executeQuery(sql);
-            logTextToAllureAndConsole("1");
+            System.out.println("1");
             while (rset.next()) {
                 try {
-                    logTextToAllureAndConsole("2");
+                    System.out.println("2");
                     studyNum = rset.getString("site_num");
                     studyID = rset.getString("study_id");
-                    logTextToAllureAndConsole("Test site without test flag: "+studyNum+" "+studyID);
+                    System.out.println("Test site without test flag: "+studyNum+" "+studyID);
                     i++;
-                    logTextToAllureAndConsole("3");
+                    System.out.println("3");
                 }catch(NullPointerException e){
-                    logTextToAllureAndConsole("4");
-                    logTextToAllureAndConsole("All test sites are flagged");
+                    System.out.println("4");
+                    System.out.println("All test sites are flagged");
                     break;
                 }
             }
             System.out.println();
-            logTextToAllureAndConsole("5");
+            System.out.println("5");
             Assert.assertEquals(i,0);
         } catch (SQLException e) {
             e.printStackTrace();
