@@ -6,6 +6,7 @@ import com.acurian.selenium.utils.db.ChildResult;
 import com.acurian.selenium.utils.db.RadiantResults;
 import oracle.jdbc.pool.OracleDataSource;
 import org.testng.Assert;
+import ru.yandex.qatools.allure.annotations.Step;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -17,7 +18,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
-public class DBConnection extends BasePage {
+public class DBConnection {
 
 //            String myURL = "jdbc:oracle:thin:@(DESCRIPTION=" +
 //                        "(ADDRESS=(PROTOCOL=TCP)(HOST=dev-db-scan.acurian.com)(PORT=1521))" +
@@ -106,6 +107,13 @@ public class DBConnection extends BasePage {
         }
     }
 
+
+    @Step("{0}")
+    public void logTextToAllureAndConsole(String text) {
+        System.out.println(text);
+    }
+
+    @Step
     public void checkTestFlag(String environment) {
         int i=0;
         try {
@@ -120,23 +128,23 @@ public class DBConnection extends BasePage {
                     "SELECT * FROM STUDY_SITE WHERE SITE_NUM Like '%AUTS%' AND TEST_SITE_IND = 'Y';\n" +
                     "SELECT * FROM STUDY_SITE WHERE SITE_NUM Like '%AUT%' AND TEST_SITE_IND = 'Y';";
             rset = stmt.executeQuery(sql);
-            logTextToAllure("1");
+            logTextToAllureAndConsole("1");
             while (rset.next()) {
                 try {
-                    logTextToAllure("2");
+                    logTextToAllureAndConsole("2");
                     studyNum = rset.getString("site_num");
                     studyID = rset.getString("study_id");
-                    logTextToAllure("Test site without test flag: "+studyNum+" "+studyID);
+                    logTextToAllureAndConsole("Test site without test flag: "+studyNum+" "+studyID);
                     i++;
-                    logTextToAllure("3");
+                    logTextToAllureAndConsole("3");
                 }catch(NullPointerException e){
-                    logTextToAllure("4");
-                    logTextToAllure("All test sites are flagged");
+                    logTextToAllureAndConsole("4");
+                    logTextToAllureAndConsole("All test sites are flagged");
                     break;
                 }
             }
             System.out.println();
-            logTextToAllure("5");
+            logTextToAllureAndConsole("5");
             Assert.assertEquals(i,0);
         } catch (SQLException e) {
             e.printStackTrace();
