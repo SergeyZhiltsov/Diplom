@@ -76,8 +76,9 @@ public class AnomalyDRSGmega extends BaseTest
         diagnosedWithRAPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("7 - 11 months ago")
-                .clickNextButton(identificationPageOLS)
-                .waitForPageLoad2()
+                .clickNextButton(identificationPageOLS);
+            (env.equals("STG") ? identificationPageOLS.waitForPageLoadSTG() : identificationPageOLS.waitForPageLoad2())
+//                .waitForPageLoad2()
                 .clickNextButton(new SiteSelectionPageOLS())
                 .waitForPageLoad("Arthritis, a low back pain study, a rheumatoid arthritis (RA) study!")
                 .getPID();

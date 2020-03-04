@@ -33,7 +33,7 @@ public class RpaValidation extends BaseTest {
                 .clickSelectProjectByName(projectName)
                 .clickSelectSiteByName(siteName);
 
-        Assert.assertTrue(rpaGeneratePage.isSubmitButtonPresent(), "Submit button is not present , probably site doestnot have IDs");
+        Assert.assertTrue(rpaGeneratePage.isSubmitButtonPresent(), "Submit button is not present , probably site does not have IDs");
 //        Assert.assertTrue(rpaGeneratePage.isPidIncluded(pid), "Pid is "+pid+" not included");
     }
 }
