@@ -411,15 +411,15 @@ public class DIA_4483_OLSBlinx extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
                 .back(doAnyOftheFollowingAdditionalDiagnosesOLS);
-        doAnyOftheFollowingAdditionalDiagnosesOLS
+        /*doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Kidney disease requiring dialysis")
-                .clickNextButton(approximateHeightPageOLS)
+                .clickNextButton(approximateHeightPageOLS)              TODO: ask development team to add this option to the page
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS61", site.activeProtocols)
-                .back(doAnyOftheFollowingAdditionalDiagnosesOLS);
+                .back(doAnyOftheFollowingAdditionalDiagnosesOLS);*/
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
@@ -445,23 +445,16 @@ public class DIA_4483_OLSBlinx extends BaseTest {
                 .clickOnAnswer("Yes")
                 .clickNextButton(new IdentificationPageOLS());
 
-        identificationPageOLS
+        SiteSelectionPageOLS siteSelectionPageOLS = identificationPageOLS
                 .waitForPageLoad2()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode, "Dover", "Delaware")
                 .clickNextButton(new SiteSelectionPageOLS());
 
-        if (site == Site.AUT_NASH4483S_site) {
-            new SiteSelectionPageOLS().waitForPageLoad5(studyName)
-                    .getPID();}
-        else{
-            new SiteSelectionPageOLS().waitForPageLoad5(studyName)
-                    .getPID();}
-
-        SiteSelectionPageOLS siteSelectionPageOLS = new SiteSelectionPageOLS();
-        siteSelectionPageOLS.clickOnFacilityName(site.name)
-                .waitForAnimation();
-        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = siteSelectionPageOLS
-                .clickNextButton(new QualifiedClose2PageOLS())
+        QualifiedClose2PageOLS qualifiedClose2PageOLS = siteSelectionPageOLS
+                .waitForPageLoad5(studyName)
+                .clickOnFacilityName(site.name)
+                .clickNextButton(new QualifiedClose2PageOLS());
+        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = qualifiedClose2PageOLS
                 .waitForPageLoad3()
                 .clickNextButton(new ThankYouCloseSimplePageOLS());
         AlzheimerClosePageOLS alzheimerClosePageOLS = thankYouCloseSimplePageOLS

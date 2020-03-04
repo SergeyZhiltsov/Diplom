@@ -19,6 +19,7 @@ public class FirstDiagnosedPsoriaticArthritisPageCC extends MainPageCC {
 
     @Step
     public FirstDiagnosedPsoriaticArthritisPageCC waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
