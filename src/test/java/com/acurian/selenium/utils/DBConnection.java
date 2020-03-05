@@ -32,6 +32,14 @@ public class DBConnection {
     private final String password = "autotest";
     private String studyNum = null;
     private String studyID = null;
+    private String projectCode = null;
+    private String studyName = null;
+    private String createDate = null;
+    private String updateDate = null;
+    private String facilityCD = null;
+    private String displayInd = null;
+    private String testSiteInd = null;
+
 
 //    String environment = "PRD";
 //    String pidNumber = "64293501";//prod- 64293501, stg- 63071241,
@@ -125,7 +133,23 @@ public class DBConnection {
                 try {
                     studyNum = rset.getString("site_num");
                     studyID = rset.getString("study_id");
-                    logToAllure("Test site without test flag: "+studyNum+" "+studyID);
+                    projectCode = rset.getString("project_code");
+                    studyName = rset.getString("study_name");
+                    createDate = rset.getString("create_date");
+                    updateDate = rset.getString("update_date");
+                    facilityCD = rset.getString("facility_cd");
+                    displayInd = rset.getString("display_ind");
+                    testSiteInd = rset.getString("test_site_ind");
+                    logToAllure("Test site without test flag:" + "\n"
+                            + "site_num: " + studyNum + ","
+                            + "study_id: " + studyID + ","
+                            + "project_code: " + projectCode + ","
+                            + "study_name: " + studyName + ","
+                            + "create_date: " + createDate + ","
+                            + "update_date: " + updateDate + ","
+                            + "facility_cd: " + facilityCD + ","
+                            + "display_ind: " + displayInd + ","
+                            + "test_site_ind: " + testSiteInd + ".");
                     i++;
                 }catch(NullPointerException e){
                     logToAllure("All test sites are flagged");
