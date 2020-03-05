@@ -630,7 +630,7 @@ public class DPN_5096_CC extends BaseTest {
                         .waitForPageLoad()
                         .pidFromDbToLog(env)
                         .childPidFromDbToLog(env)
-                        .assertGeneratedFul(env, site)
+                     //   .assertGeneratedFul(env, site)
                         .dispoShouldMatch(site.dispo, site.dispo);
                 break;
             case AUT_DPN_5096S_site:
@@ -647,7 +647,7 @@ public class DPN_5096_CC extends BaseTest {
                         .waitForPageLoad()
                         .pidFromDbToLog(env)
                         .getRadiantDbToLog(env)
-                        .assertGeneratedFul(env, site)
+                        //.assertGeneratedFul(env, site)
                         .dispoShouldMatch(site.dispo);
         }
     }

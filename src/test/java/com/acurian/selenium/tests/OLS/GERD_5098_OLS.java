@@ -709,7 +709,7 @@ public class GERD_5098_OLS extends BaseTest {
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
                 .childPidFromDbToLog(env)
-                .assertGeneratedFul(env, site)
+                //.assertGeneratedFul(env, site)
                 .dispoShouldMatch(site.dispo, site.dispo);
     }
 }
