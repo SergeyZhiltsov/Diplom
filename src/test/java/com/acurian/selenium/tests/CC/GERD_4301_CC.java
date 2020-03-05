@@ -142,9 +142,8 @@ public class GERD_4301_CC extends BaseTest {
 
 
         //-------------DoYouExperienceAnyOfFollowingSymptoms_CC----------------------------------
-        currentlySufferOfAnyOfFollowingCC
-                .waitForPageLoad();
         NonQRtransitionPageCC nonQRtransitionPageCC = currentlySufferOfAnyOfFollowingCC
+                .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new NonQRtransitionPageCC());
         nonQRtransitionPageCC
@@ -171,7 +170,7 @@ public class GERD_4301_CC extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("GERD that is still causing symptoms",
                         "Heartburn or indigestion",
-                        "Acid reflux or vomiting",
+                        "Acid reflux",
                         "Pain in the top of the stomach, or upper stomach pain")
                 .clickNextButton(new HowLongHavingSymptomsCC());
 
@@ -179,27 +178,27 @@ public class GERD_4301_CC extends BaseTest {
 
 
         //Q3
-        PainInTheTopOfStomachCC painInTheTopOfStomachCC = howLongHavingSymptomsCC
+        DuringPastThreeMounthCC duringPastThreeMounthCC = howLongHavingSymptomsCC
                 .waitForPageLoad()
                 .clickOnAnswer("Less than 1 month")
-                .clickNextButton(new PainInTheTopOfStomachCC());
+                .clickNextButton(new DuringPastThreeMounthCC());
 
-        painInTheTopOfStomachCC
+        duringPastThreeMounthCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS6334", site.activeProtocols)
                 .back(howLongHavingSymptomsCC);
         howLongHavingSymptomsCC
                 .waitForPageLoad()
-                .clickOnAnswer("Less than 1 month")
-                .clickNextButton(painInTheTopOfStomachCC)
+                .clickOnAnswer("1 month")
+                .clickNextButton(duringPastThreeMounthCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS6334", site.activeProtocols)
                 .back(howLongHavingSymptomsCC)
                 .waitForPageLoad()
                 .clickOnAnswer("I used to have these symptoms but they are not troubling me right now")
-                .clickNextButton(painInTheTopOfStomachCC)
+                .clickNextButton(duringPastThreeMounthCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS6334", site.activeProtocols)
@@ -208,9 +207,9 @@ public class GERD_4301_CC extends BaseTest {
         howLongHavingSymptomsCC
                 .waitForPageLoad()
                 .clickOnAnswer("2 months")
-                .clickNextButton(painInTheTopOfStomachCC);
+                .clickNextButton(duringPastThreeMounthCC);
 
-        HowManyDaysPerWeekHaveSymptomsCC howManyDaysPerWeekHaveSymptomsOLS = painInTheTopOfStomachCC
+        HowManyDaysPerWeekHaveSymptomsCC howManyDaysPerWeekHaveSymptomsOLS = duringPastThreeMounthCC
                 .waitForPageLoad()
                 .clickOnAnswer("2 months")
                 .clickNextButton(new HowManyDaysPerWeekHaveSymptomsCC());
