@@ -2,15 +2,15 @@ package com.acurian.selenium.pages.CC.GERD;
 
 import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.CC.MainPageCC;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class HowManyDaysPerWeekHaveSymptomsCC extends MainPageCC {
+public class DoYouRegularlyTakeCC extends MainPageCC {
 
-    public final String titleExpected = "How many days per week do you have symptoms of GERD, heartburn, indigestion, acid reflux?";
+    public final String titleExpected = "Do you regularly take \"over-the-counter\" or non-prescription Nexium, Prevacid, Prilosec, or Zegerid?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_CC)
     WebElement titleText;
@@ -18,13 +18,13 @@ public class HowManyDaysPerWeekHaveSymptomsCC extends MainPageCC {
     List<WebElement> radioButtonsList;
 
     @Step
-    public HowManyDaysPerWeekHaveSymptomsCC waitForPageLoad() {
+    public DoYouRegularlyTakeCC waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public HowManyDaysPerWeekHaveSymptomsCC clickOnAnswer(String answerText) {
+    public DoYouRegularlyTakeCC clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }

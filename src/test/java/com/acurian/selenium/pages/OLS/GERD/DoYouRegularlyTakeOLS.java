@@ -8,9 +8,9 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class HowLongHavingSymptomsOLS extends MainPageOLS {
+public class DoYouRegularlyTakeOLS extends MainPageOLS {
 
-    public final String titleExpected = "How long have you been having symptoms of GERD, heartburn, indigestion, acid reflux?";
+    public final String titleExpected = "Do you regularly take \"over-the-counter\" or non-prescription Nexium, Prevacid, Prilosec, or Zegerid?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
     WebElement titleText;
@@ -18,13 +18,13 @@ public class HowLongHavingSymptomsOLS extends MainPageOLS {
     List<WebElement> radioButtonsList;
 
     @Step
-    public HowLongHavingSymptomsOLS waitForPageLoad() {
+    public DoYouRegularlyTakeOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public HowLongHavingSymptomsOLS clickOnAnswer(String answerText) {
+    public DoYouRegularlyTakeOLS clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }

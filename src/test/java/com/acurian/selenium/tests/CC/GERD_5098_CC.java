@@ -137,14 +137,14 @@ public class GERD_5098_CC extends BaseTest {
                 .back();
 
         //Q2
-        HowLongHavingSymptomsCC howLongHavingSymptomsCC = currentlySufferOfAnyOfFollowingCC
+        DuringPastThreeMounthCC howLongHavingSymptomsCC = currentlySufferOfAnyOfFollowingCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("GERD that is still causing symptoms",
                                 "Heartburn or indigestion",
                                 "Acid reflux or vomiting",
                                 "Pain in the top of the stomach, or upper stomach pain")
-                .clickNextButton(new HowLongHavingSymptomsCC());
+                .clickNextButton(new DuringPastThreeMounthCC());
 
         //Q3
         PainInTheTopOfStomachCC painInTheTopOfStomachCC = howLongHavingSymptomsCC
