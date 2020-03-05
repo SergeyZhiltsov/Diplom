@@ -109,6 +109,10 @@ public class DBConnection {
     }
 
     @Step
+    private void logToAllure(String s){
+        System.out.println(s);
+    }
+    @Step
     public void checkTestFlag(String environment) {
         SoftAssert softAssert = new SoftAssert();
         int i=0;
@@ -117,23 +121,17 @@ public class DBConnection {
 
             String sql = "SELECT * FROM STUDY_SITE WHERE (SITE_NUM LIKE '%AUT%' OR SITE_NUM LIKE '%QA%' OR SITE_NUM LIKE '%AUTS%' OR SITE_NUM LIKE '%QAV%' OR SITE_NUM LIKE '%QAVS%' OR SITE_NUM LIKE '%QAV_%') AND TEST_SITE_IND = 'N'";
             rset = stmt.executeQuery(sql);
-            System.out.println("1");
             while (rset.next()) {
                 try {
-                    System.out.println("2");
                     studyNum = rset.getString("site_num");
                     studyID = rset.getString("study_id");
-                    System.out.println("Test site without test flag: "+studyNum+" "+studyID);
+                    logToAllure("Test site without test flag: "+studyNum+" "+studyID);
                     i++;
-                    System.out.println("3");
                 }catch(NullPointerException e){
-                    System.out.println("4");
-                    System.out.println("All test sites are flagged");
+                    logToAllure("All test sites are flagged");
                     break;
                 }
             }
-            System.out.println();
-            System.out.println("5");
             softAssert.assertEquals(i,0);
         } catch (SQLException e) {
             e.printStackTrace();
