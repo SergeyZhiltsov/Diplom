@@ -3,8 +3,6 @@ package com.acurian.selenium.utils.db;
 import com.acurian.selenium.utils.DBConnection;
 import org.testng.annotations.Test;
 
-
-
 public class CheckTestSiteFlag {
     @Test()
     public void checkFlag() {
