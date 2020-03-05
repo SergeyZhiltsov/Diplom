@@ -52,6 +52,10 @@ public class Crohns_4818_CC extends BaseTest {
 
         String env = System.getProperty("acurian.env", "STG");
 
+        if(env.equals("STG")){
+
+        }
+
         DebugPageCC debugPageCC = new DebugPageCC();
         LoginPageCC loginPageCC = new LoginPageCC();
         loginPageCC

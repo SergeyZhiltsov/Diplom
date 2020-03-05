@@ -10,7 +10,7 @@ import java.util.List;
 
 public class HowLongHavingSymptomsCC extends MainPageCC {
 
-    public final String titleExpected = "How long have you been having symptoms of GERD, heartburn or indigestion, acid reflux or vomiting?";
+    public final String titleExpected = "How long have you been having symptoms of GERD, heartburn, indigestion, acid reflux?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_CC)
     WebElement titleText;

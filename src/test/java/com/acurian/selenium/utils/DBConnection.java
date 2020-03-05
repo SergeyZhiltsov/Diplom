@@ -6,6 +6,7 @@ import com.acurian.selenium.utils.db.ChildResult;
 import com.acurian.selenium.utils.db.RadiantResults;
 import oracle.jdbc.pool.OracleDataSource;
 import org.testng.Assert;
+import org.testng.asserts.SoftAssert;
 import ru.yandex.qatools.allure.annotations.Step;
 
 import java.sql.Connection;
@@ -31,6 +32,14 @@ public class DBConnection {
     private final String password = "autotest";
     private String studyNum = null;
     private String studyID = null;
+    private String projectCode = null;
+    private String studyName = null;
+    private String createDate = null;
+    private String updateDate = null;
+    private String facilityCD = null;
+    private String displayInd = null;
+    private String testSiteInd = null;
+
 
 //    String environment = "PRD";
 //    String pidNumber = "64293501";//prod- 64293501, stg- 63071241,
@@ -108,43 +117,52 @@ public class DBConnection {
     }
 
     @Step
+    private void logToAllure(String s){
+        System.out.println(s);
+    }
+    @Step
     public void checkTestFlag(String environment) {
+        SoftAssert softAssert = new SoftAssert();
         int i=0;
         try {
             stmt = getDbCon(environment).createStatement();
-            String sql = "SELECT * FROM STUDY_SITE WHERE SITE_NUM Like '%AUT%' AND TEST_SITE_IND = 'Y';\n" +
-                    "SELECT * FROM STUDY_SITE WHERE SITE_NUM Like '%QA%' AND TEST_SITE_IND = 'Y';\n" +
-                    "SELECT * FROM STUDY_SITE WHERE SITE_NUM Like '%AUT%' AND TEST_SITE_IND = 'Y';\n" +
-                    "SELECT * FROM STUDY_SITE WHERE SITE_NUM Like '%TEST%' AND TEST_SITE_IND = 'Y';\n" +
-                    "SELECT * FROM STUDY_SITE WHERE SITE_NUM Like '%AUT_%' AND TEST_SITE_IND = 'Y';\n" +
-                    "SELECT * FROM STUDY_SITE WHERE SITE_NUM Like '%QAV_%' AND TEST_SITE_IND = 'Y';\n" +
-                    "SELECT * FROM STUDY_SITE WHERE SITE_NUM Like '%SQA_%' AND TEST_SITE_IND = 'Y';\n" +
-                    "SELECT * FROM STUDY_SITE WHERE SITE_NUM Like '%AUTS%' AND TEST_SITE_IND = 'Y';\n" +
-                    "SELECT * FROM STUDY_SITE WHERE SITE_NUM Like '%AUT%' AND TEST_SITE_IND = 'Y';";
+
+            String sql = "SELECT * FROM STUDY_SITE inner join study on STUDY_SITE.study_id = study.study_id WHERE (SITE_NUM LIKE '%AUT%' OR SITE_NUM LIKE '%QA%' OR SITE_NUM LIKE '%AUTS%' OR SITE_NUM LIKE '%QAV%' OR SITE_NUM LIKE '%QAVS%' OR SITE_NUM LIKE '%QAV_%') AND TEST_SITE_IND = 'N'";
             rset = stmt.executeQuery(sql);
-            System.out.println("1");
             while (rset.next()) {
                 try {
-                    System.out.println("2");
                     studyNum = rset.getString("site_num");
                     studyID = rset.getString("study_id");
-                    System.out.println("Test site without test flag: "+studyNum+" "+studyID);
+                    projectCode = rset.getString("project_code");
+                    studyName = rset.getString("study_name");
+                    createDate = rset.getString("create_date");
+                    updateDate = rset.getString("update_date");
+                    facilityCD = rset.getString("facility_cd");
+                    displayInd = rset.getString("display_ind");
+                    testSiteInd = rset.getString("test_site_ind");
+                    logToAllure("Test site without test flag:" + "\n"
+                            + "site_num: " + studyNum + ","
+                            + "study_id: " + studyID + ","
+                            + "project_code: " + projectCode + ","
+                            + "study_name: " + studyName + ","
+                            + "create_date: " + createDate + ","
+                            + "update_date: " + updateDate + ","
+                            + "facility_cd: " + facilityCD + ","
+                            + "display_ind: " + displayInd + ","
+                            + "test_site_ind: " + testSiteInd + ".");
                     i++;
-                    System.out.println("3");
                 }catch(NullPointerException e){
-                    System.out.println("4");
-                    System.out.println("All test sites are flagged");
+                    logToAllure("All test sites are flagged");
                     break;
                 }
             }
-            System.out.println();
-            System.out.println("5");
-            Assert.assertEquals(i,0);
+            softAssert.assertEquals(i,0);
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             closeResources();
         }
+        softAssert.assertAll();
     }
 
     public void convert54Cto1R(String environment, String pidNumber) {
