@@ -540,11 +540,17 @@ public class LOWT_3017_CC_A_S extends BaseTest {
                         "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageCC())
                 .waitForPageLoad("a men's health study")
-                .getPID();
+                .getPID()
+                .clickOnAnswer(site.name);
         switch (site) {
             case AUT_LOWT_3017S_Site: //41C
                 selectionPageCC
-                        .clickOnAnswer(site.name)
+                        .clickNextButton(new QualifiedClose2PageCC())
+                        .waitForPageLoad()
+                        .clickNextButton(new ThankYouCloseSimplePageCC())
+                        .waitForPageLoad3()
+                        .clickNextButton(new AlzheimerClosePageCC())
+                        .waitForPageLoad()
 //                        .clickNextButton(new HSGeneralCC())
 //                        .waitForPageLoad(siteIndication)
 //                        .clickNextButton(new DoctorInformationCollectionPageCC())
@@ -567,13 +573,13 @@ public class LOWT_3017_CC_A_S extends BaseTest {
 //                        .clickOnAnswer("[Successful direct schedule in clinical conductor]")
 //                        .clickNextButton(selectActionPageCC)
 //                        .waitForPageLoad()
-                        .clickNextButton(new SynexusRadiantDirectScheduleCC())
-                        .waitForPageLoadSyn()
-                        .assertVariablesNew("Acurian", "Trial", "04/05/1941", "US",
-                                "Blue Bell, PA", site.zipCode, "qa.acurian@gmail.com",
-                                "999-999-9999", env.equals("PRD") ? "aut3017test" : "123456A",
-                                site.name, env.equals("PRD") ? "ABVCOVCAR100 - AbbVie TRAVERSE Hypogonadism" : "ABVCOVCAR100 - AbbVie TRAVERSE Hypogonadism")
-                        .clickOnAnswer("[Successful direct schedule in clinical conductor]")
+//                        .clickNextButton(new SynexusRadiantDirectScheduleCC())
+//                        .waitForPageLoadSyn()
+//                        .assertVariablesNew("Acurian", "Trial", "04/05/1941", "US",
+//                                "Blue Bell, PA", site.zipCode, "qa.acurian@gmail.com",
+//                                "999-999-9999", env.equals("PRD") ? "aut3017test" : "123456A",
+//                                site.name, env.equals("PRD") ? "ABVCOVCAR100 - AbbVie TRAVERSE Hypogonadism" : "ABVCOVCAR100 - AbbVie TRAVERSE Hypogonadism")
+//                        .clickOnAnswer("[Successful direct schedule in clinical conductor
                         .clickNextButton(selectActionPageCC)
                         .waitForPageLoad()
                         .pidFromDbToLog(env)
@@ -583,7 +589,6 @@ public class LOWT_3017_CC_A_S extends BaseTest {
                 break;
             case AUT_LOWT_3017_Site:
                 selectionPageCC
-                        .clickOnAnswer(site.name)
 //                        .clickNextButton(new HSGeneralCC())
 //                        .waitForPageLoad(siteIndication)
                         .clickNextButton(new QualifiedClose2PageCC())

@@ -19,7 +19,7 @@ public class BlinxGmega extends BaseTest {
         String env = System.getProperty("acurian.env", "STG");
 
         BaseTest.getDriver().navigate()
-                .to("https://screener.acurianhealth.com/welcome.do?method=beginCall&phoneNumber=AUTGMEGA01&up[]=CLIENT_BLINX" +
+                .to("https://sf.acu2.aws.blinxsolutions.systems/welcome.do?method=beginCall&phoneNumber=AUTGMEGA01&up[]=CLIENT_BLINX" +
                         "&show_debug=1&testing_key=51fa2780f2430b542923956ac1974bb7");
 
         DebugPageOLS debugPageOLS = new DebugPageOLS();
@@ -38,11 +38,11 @@ public class BlinxGmega extends BaseTest {
         providingInformationPageOLS
                 .waitForAnimation();
 
-        PleaseConfirmYourGenderPageOLS pleaseConfirmYourGenderPageOLS = identificationPageOLS
-                .waitForPageLoad2()
+        PleaseConfirmYourGenderPageOLS pleaseConfirmYourGenderPageOLS = new PleaseConfirmYourGenderPageOLS();
+                (env.equals("PRD") ? identificationPageOLS.waitForPageLoad2() : identificationPageOLS.waitForPageLoadSTG())
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
                         "9999999999", "08204", "Cape May", "New Jersey")
-                .clickNextButton(new PleaseConfirmYourGenderPageOLS());
+                .clickNextButton(pleaseConfirmYourGenderPageOLS);
         identificationPageOLS
                 .waitForAnimation();
 
@@ -96,8 +96,8 @@ public class BlinxGmega extends BaseTest {
         diagnosedWithRAPageOLS
                 .waitForAnimation();
 
-        SiteSelectionPageOLS siteSelectionPageOLS = identificationPageOLS
-                .waitForPageLoad2()
+        SiteSelectionPageOLS siteSelectionPageOLS =
+                (env.equals("PRD")? identificationPageOLS.waitForPageLoad2():identificationPageOLS.waitForPageLoadSTG())
                 .clickNextButton(new SiteSelectionPageOLS());
         identificationPageOLS
                 .waitForAnimation();
@@ -121,8 +121,6 @@ public class BlinxGmega extends BaseTest {
         AboutHealthPageOLS aboutHealthPageOLS = thankYouClosePageOLS
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS());
-        thankYouClosePageOLS
-                .waitForAnimation();
 
         aboutHealthPageOLS
                 .waitForPageLoad()

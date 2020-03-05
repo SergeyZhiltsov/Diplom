@@ -477,20 +477,20 @@ public class DPN_5096_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .setAll("5", "5", "160");
-                if (env.equals("STG")) {
-                    switch (site) {
-                        case AUT_DPN_5096_site:
-                            approximateHeightPageOLS
-                                    .clickNextButton(new WithType2DiabetesPageOLS())
-                                    .waitForPageLoad()
-                                    .clickOnAnswer("10 years ago or more")
-                                    .clickNextButton(new CurrentlyTreatingYourDiabetesPageOLS())
-                                    .waitForPageLoad()
-                                    .clickOnAnswers("I am not currently treating my diabetes");
-                            break;
-                        default: break;
-                    }
-                }
+//                if (env.equals("STG")) {
+//                    switch (site) {
+//                        case AUT_DPN_5096_site:
+//                            approximateHeightPageOLS
+//                                    .clickNextButton(new WithType2DiabetesPageOLS())
+//                                    .waitForPageLoad()
+//                                    .clickOnAnswer("10 years ago or more")
+//                                    .clickNextButton(new CurrentlyTreatingYourDiabetesPageOLS())
+//                                    .waitForPageLoad()
+//                                    .clickOnAnswers("I am not currently treating my diabetes");
+//                            break;
+//                        default: break;
+//                    }
+//                }
         approximateHeightPageOLS
                 .clickNextButton(new CurrentlyParticipatingInStudyOLS())
                 .waitForPageLoad()
