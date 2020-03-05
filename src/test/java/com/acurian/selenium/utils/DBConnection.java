@@ -114,7 +114,7 @@ public class DBConnection {
         int i=0;
         try {
             stmt = getDbCon(environment).createStatement();
-            String sql = "select * from STUDY_SITE where SITE_NUM like '%AUT%' and TEST_SITE_IND='N';";
+            String sql = "select * from STUDY_SITE where SITE_NUM and TEST_SITE_IND='N';";
             //String sql = "SELECT * FROM STUDY_SITE WHERE (SITE_NUM LIKE '%AUT%' OR SITE_NUM LIKE '%QA%' OR SITE_NUM LIKE '%AUTS%' OR SITE_NUM LIKE '%QAV%' OR SITE_NUM LIKE '%QAVS%' OR SITE_NUM LIKE '%QAV_%') AND TEST_SITE_IND='N';";
             rset = stmt.executeQuery(sql);
             System.out.println("1");
