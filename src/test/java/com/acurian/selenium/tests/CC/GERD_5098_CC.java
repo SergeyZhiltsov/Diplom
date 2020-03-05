@@ -848,8 +848,8 @@ public class GERD_5098_CC extends BaseTest {
                         .waitForPageLoad()
                         .pidFromDbToLog(env)
                         .childPidFromDbToLog(env)
-                        .dispoShouldMatch(site.dispo, site.dispo)
-                        .assertGeneratedFul(env, site);
+                        .dispoShouldMatch(site.dispo, site.dispo);
+                        //.assertGeneratedFul(env, site);
                 break;
             case AUT_AMS1_5098S_site:
                 SynexusRadiantDirectScheduleCC synexusRadiantDirectScheduleCC = siteSelectionPageCC

@@ -11,7 +11,7 @@ import java.util.List;
 public class EverDiagnosedWithOsteoporosisCC extends MainPageCC {
 
     public final String titleExpected = "Osteoporosis is a common problem that causes bones to become abnormally thin, weak and easily broken (fractured).\n" +
-            "Has a doctor ever diagnosed you with osteoporosis, or told you that you are at risk for osteoporosis?";
+            "Has a doctor ever diagnosed you with osteoporosis by bone density testing?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_CC)
     WebElement titleText;
