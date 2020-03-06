@@ -2,11 +2,15 @@ package com.acurian.selenium.tests.CC;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.CC.Crohns.EverDiagnosedWithFollowingConditionsСС;
 import com.acurian.selenium.pages.CC.Fibromyalgia.AnyFollowingPainfulConditionsCC;
 import com.acurian.selenium.pages.CC.Fibromyalgia.DiagnosedWithFibromyalgiaCC;
 import com.acurian.selenium.pages.CC.Fibromyalgia.HowLongBeenHavingSymptomsFibromyalgiaCC;
 import com.acurian.selenium.pages.CC.Fibromyalgia.TypeOfDoctorDiagnosedWithFibromyalgiaCC;
 import com.acurian.selenium.pages.CC.GERD.CurrentlySufferOfAnyOfFollowingCC;
+import com.acurian.selenium.pages.CC.GERD.DuringPastThreeMonthsCC;
+import com.acurian.selenium.pages.CC.GERD.UseMarijuanaOrCannabisCC;
+import com.acurian.selenium.pages.CC.GERD.WhatTypeOfSurgeryDidYouHave_CC;
 import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.pages.CC.cv_study.SubquestionHeartPageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
@@ -598,8 +602,23 @@ public class AF_4958_CC extends BaseTest {
                     .clickNextButton(new CurrentlySufferOfAnyOfFollowingCC())
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
-                    .clickNextButton(new NonQRtransitionPageCC())
+                    .clickNextButton(new DuringPastThreeMonthsCC())
                     .waitForPageLoad()
+                    .clickOnAnswer("No")
+                    .clickNextButton(new EverDiagnosedWithFollowingConditionsСС())
+                    .waitForPageLoad()
+                    .clickOnAnswers("None of the above")
+                    .clickNextButton(new WhatTypeOfSurgeryDidYouHave_CC())
+                    .waitForPageLoad()
+                    .clickOnAnswers("None of the above")
+                    .clickNextButton(new WeightLossSurgeryPageCC())
+                    .waitForPageLoad()
+                    .clickOnAnswers("None of the above")
+                    .clickNextButton(new UseMarijuanaOrCannabisCC())
+                    .waitForPageLoad()
+                    .clickOnAnswer("No")
+//                    .clickNextButton(new NonQRtransitionPageCC())
+//                    .waitForPageLoad()
                     .clickNextButton(currentlyParticipatingInStudy);
 
         }else{
