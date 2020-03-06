@@ -10,7 +10,7 @@ import java.util.List;
 
 public class HowManyDaysPerWeekHaveSymptomsOLS extends MainPageOLS {
 
-    public final String titleExpected = "How many days per week do you have symptoms of GERD, heartburn, indigestion, acid reflux?";
+    public final String titleExpected = "How many days per week do you have symptoms of GERD, heartburn, indigestion, or acid reflux?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
     WebElement titleText;
