@@ -10,7 +10,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 public class ThankYouCloseGeneralInformationPageCC extends MainPageCC {
 
     public final String titleExpected = "For more information about Acurian and other clinical research study opportunities, please visit www.Acurian.com. " +
-            "Thank you for contacting Acurian's Research Information Center.  Goodbye.";
+            "Thank you for contacting Acurian's Research Information Center. Goodbye.";
 
     @FindBy(xpath = Locators.BASIC_TITLE2_WITH_CHECKBOXES_BUTTON_CC)
     WebElement titleText;

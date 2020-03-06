@@ -294,7 +294,7 @@ public class DateOfBirthPageCC extends MainPageCC {
     @FindBy(xpath = "//span[@class='show-in-cc'and contains(text(),'Are you age 18 or older?')]")
     WebElement titleTextServer;
 
-    @FindBy(xpath = "//div[@class='subquestion']//div[@class='show-in-cc']")
+    @FindBy(xpath = "//div[@class='subquestion']//span[@class='show-in-cc']")
     WebElement questionTextGmega;
 
 //    @FindBy(xpath = "//div[@class='subquestion'][2]//div[@class='show-in-cc']")
