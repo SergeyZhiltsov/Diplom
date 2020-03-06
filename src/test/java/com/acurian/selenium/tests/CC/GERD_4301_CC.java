@@ -8,7 +8,6 @@ import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
-import com.acurian.selenium.pages.OLS.GERD.UseMarijuanaOrCannabisOLS;
 import com.acurian.selenium.utils.Properties;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -142,11 +141,11 @@ public class GERD_4301_CC extends BaseTest {
 
 
         //-------------DoYouExperienceAnyOfFollowingSymptoms_CC----------------------------------
-        NonQRtransitionPageCC nonQRtransitionPageCC = currentlySufferOfAnyOfFollowingCC
+        DuringPastThreeMonthsCC duringPastThreeMonthsCC = currentlySufferOfAnyOfFollowingCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new NonQRtransitionPageCC());
-        nonQRtransitionPageCC
+                .clickNextButton(new DuringPastThreeMonthsCC());
+        duringPastThreeMonthsCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS6333", site.activeProtocols)
@@ -154,11 +153,12 @@ public class GERD_4301_CC extends BaseTest {
         currentlySufferOfAnyOfFollowingCC
                 .waitForPageLoad();
 
-        EverDiagnosedWithFollowingConditionsСС everDiagnosedWithFollowingConditionsCC = currentlySufferOfAnyOfFollowingCC
+        EverDiagnosedWithFollowingConditionsСС everDiagnosedWithFollowingConditionsCC = new EverDiagnosedWithFollowingConditionsСС();
+        currentlySufferOfAnyOfFollowingCC
                 .waitForPageLoad()
                 .clickOnAnswers("Stomach ulcer or peptic ulcer")
-                .clickNextButton(new EverDiagnosedWithFollowingConditionsСС());
-        everDiagnosedWithFollowingConditionsCC
+                .clickNextButton(duringPastThreeMonthsCC);
+        duringPastThreeMonthsCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS6333", site.activeProtocols)
@@ -176,14 +176,13 @@ public class GERD_4301_CC extends BaseTest {
 
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC();
 
-
         //Q3
-        DuringPastThreeMounthCC duringPastThreeMounthCC = howLongHavingSymptomsCC
+        howLongHavingSymptomsCC
                 .waitForPageLoad()
                 .clickOnAnswer("Less than 1 month")
-                .clickNextButton(new DuringPastThreeMounthCC());
+                .clickNextButton(duringPastThreeMonthsCC);
 
-        duringPastThreeMounthCC
+        duringPastThreeMonthsCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS6334", site.activeProtocols)
@@ -191,14 +190,14 @@ public class GERD_4301_CC extends BaseTest {
         howLongHavingSymptomsCC
                 .waitForPageLoad()
                 .clickOnAnswer("1 month")
-                .clickNextButton(duringPastThreeMounthCC)
+                .clickNextButton(duringPastThreeMonthsCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS6334", site.activeProtocols)
                 .back(howLongHavingSymptomsCC)
                 .waitForPageLoad()
                 .clickOnAnswer("I used to have these symptoms but they are not troubling me right now")
-                .clickNextButton(duringPastThreeMounthCC)
+                .clickNextButton(duringPastThreeMonthsCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS6334", site.activeProtocols)
@@ -207,14 +206,14 @@ public class GERD_4301_CC extends BaseTest {
         howLongHavingSymptomsCC
                 .waitForPageLoad()
                 .clickOnAnswer("2 months")
-                .clickNextButton(duringPastThreeMounthCC);
+                .clickNextButton(duringPastThreeMonthsCC);
 
-        HowManyDaysPerWeekHaveSymptomsCC howManyDaysPerWeekHaveSymptomsOLS = duringPastThreeMounthCC
+        HowManyDaysPerWeekHaveSymptomsCC howManyDaysPerWeekHaveSymptomsCC = duringPastThreeMonthsCC
                 .waitForPageLoad()
-                .clickOnAnswer("2 months")
+                .clickOnAnswer("Yes")
                 .clickNextButton(new HowManyDaysPerWeekHaveSymptomsCC());
 
-        howManyDaysPerWeekHaveSymptomsOLS
+        howManyDaysPerWeekHaveSymptomsCC
                 .waitForPageLoad()
                 .clickOnAnswer("1 day per week or less")
                 .clickNextButton(everDiagnosedWithFollowingConditionsCC);
@@ -223,49 +222,45 @@ public class GERD_4301_CC extends BaseTest {
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS6337", site.activeProtocols)
-                .back(howManyDaysPerWeekHaveSymptomsOLS)
+                .back(howManyDaysPerWeekHaveSymptomsCC)
                 .waitForPageLoad()
                 .clickOnAnswer("2 - 3 days per week")
                 .clickNextButton(everDiagnosedWithFollowingConditionsCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS6337", site.activeProtocols)
-                .back(howManyDaysPerWeekHaveSymptomsOLS)
+                .back(howManyDaysPerWeekHaveSymptomsCC)
                 .waitForPageLoad()
                 .clickOnAnswer("Not currently experiencing symptoms")
                 .clickNextButton(everDiagnosedWithFollowingConditionsCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS6337", site.activeProtocols)
-                .back(howManyDaysPerWeekHaveSymptomsOLS);
-        CurrentlyTakeMedicationPrescribedByHealthcareProvider_CC сurrentlyTakeMedicationPrescribedByHealthcareProvider_CC = howManyDaysPerWeekHaveSymptomsOLS
+                .back(howManyDaysPerWeekHaveSymptomsCC);
+        CurrentlyTakeMedicationPrescribedByHealthcareProvider_CC сurrentlyTakeMedicationPrescribedByHealthcareProvider_CC =
+                howManyDaysPerWeekHaveSymptomsCC
                 .waitForPageLoad()
                 .clickOnAnswer("4 - 5 days per week")
                 .clickNextButton(new CurrentlyTakeMedicationPrescribedByHealthcareProvider_CC());
 
-
-
-
-
-
-        WhichoOfFollowingMedicationsCurrentlyGERD_CC whichoOfFollowingMedicationsCurrentlyGERD_CC = сurrentlyTakeMedicationPrescribedByHealthcareProvider_CC
+        DoYouRegularlyTakeCC doYouRegularlyTakeCC = сurrentlyTakeMedicationPrescribedByHealthcareProvider_CC
                 .waitForPageLoad()
                 .clickOnAnswer("No")
-                .clickNextButton(new WhichoOfFollowingMedicationsCurrentlyGERD_CC());
+                .clickNextButton(new DoYouRegularlyTakeCC());
 
-        EverDiagnosedWithFollowingConditionsСС everDiagnosedWithFollowingConditionsСС = whichoOfFollowingMedicationsCurrentlyGERD_CC
-                .waitForPageLoad2()
-                .clickOnAnswers("None of the above") //----DQ if selected any of these options in Q3:  None of the above
-                .clickNextButton(new EverDiagnosedWithFollowingConditionsСС());
-        everDiagnosedWithFollowingConditionsСС
+        doYouRegularlyTakeCC
+                .waitForPageLoad()
+                .clickOnAnswer("No") //----DQ
+                .clickNextButton(everDiagnosedWithFollowingConditionsCC);
+        everDiagnosedWithFollowingConditionsCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS6330", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS6340", site.activeProtocols)
                 .back();
-        whichoOfFollowingMedicationsCurrentlyGERD_CC
-                .waitForPageLoad2()
-                .clickOnAnswers("Other \"over-the-counter\" or non-prescription medication not listed")
-                .clickNextButton(everDiagnosedWithFollowingConditionsСС)
+        doYouRegularlyTakeCC
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
+/*  .clickNextButton(everDiagnosedWithFollowingConditionsСС)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS6330", site.activeProtocols)
@@ -278,38 +273,38 @@ public class GERD_4301_CC extends BaseTest {
                         "Prevacid (Agent Note: PREV-uh-sid)",
                         "Prilosec (Agent Note: PRY-lo-sec)",
                         "Zegerid (Agent Note: ZEGG-er-rid)")
-//                .clickNextButton(new DespiteTakingMedicationDoYouStillExperienceSymptoms_CC());
-//
-//        despiteTakingMedicationDoYouStillExperienceSymptoms_CC
-//                .waitForPageLoad2()
-//                .clickOnAnswer("1 day per week or less")
-//                .clickNextButton(everDiagnosedWithFollowingConditionsСС)
-//                .waitForPageLoad()
-//                .getPage(debugPageCC)
-//                .checkProtocolsContainsForQNumber("QS6331", site.activeProtocols)
-//                .back();
-//        despiteTakingMedicationDoYouStillExperienceSymptoms_CC
-//                .waitForPageLoad2()
-//                .clickOnAnswer("2 - 3 days per week")
-//                .clickNextButton(everDiagnosedWithFollowingConditionsСС)
-//                .waitForPageLoad()
-//                .getPage(debugPageCC)
-//                .checkProtocolsContainsForQNumber("QS6331", site.activeProtocols)
-//                .back();
-//        despiteTakingMedicationDoYouStillExperienceSymptoms_CC
-//                .waitForPageLoad2()
-//                .clickOnAnswer("Not currently experiencing symptoms")
-//                .clickNextButton(everDiagnosedWithFollowingConditionsСС)
-//                .waitForPageLoad()
-//                .getPage(debugPageCC)
-//                .checkProtocolsContainsForQNumber("QS6331", site.activeProtocols)
-//                .back();
-//        despiteTakingMedicationDoYouStillExperienceSymptoms_CC
-//                .waitForPageLoad2()
-//                .clickOnAnswer("4 - 5 days per week")
-                .clickNextButton(everDiagnosedWithFollowingConditionsСС);
+                .clickNextButton(new DespiteTakingMedicationDoYouStillExperienceSymptoms_CC());
 
-        WhatTypeOfSurgeryDidYouHave_CC whatTypeOfSurgeryDidYouHave_CC = everDiagnosedWithFollowingConditionsСС
+        despiteTakingMedicationDoYouStillExperienceSymptoms_CC
+                .waitForPageLoad2()
+                .clickOnAnswer("1 day per week or less")
+                .clickNextButton(everDiagnosedWithFollowingConditionsСС)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS6331", site.activeProtocols)
+                .back();
+        despiteTakingMedicationDoYouStillExperienceSymptoms_CC
+                .waitForPageLoad2()
+                .clickOnAnswer("2 - 3 days per week")
+                .clickNextButton(everDiagnosedWithFollowingConditionsСС)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS6331", site.activeProtocols)
+                .back();
+        despiteTakingMedicationDoYouStillExperienceSymptoms_CC
+                .waitForPageLoad2()
+                .clickOnAnswer("Not currently experiencing symptoms")
+                .clickNextButton(everDiagnosedWithFollowingConditionsСС)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS6331", site.activeProtocols)
+                .back();
+        despiteTakingMedicationDoYouStillExperienceSymptoms_CC
+                .waitForPageLoad2()
+                .clickOnAnswer("4 - 5 days per week")*/
+                .clickNextButton(everDiagnosedWithFollowingConditionsCC);
+
+        WhatTypeOfSurgeryDidYouHave_CC whatTypeOfSurgeryDidYouHave_CC = everDiagnosedWithFollowingConditionsCC
                 .waitForPageLoad()
                 .clickOnAnswers("Erosive esophagitis or esophageal erosions, sores or breaks in the lining of the esophagus")
                 .clickNextButton(new WhatTypeOfSurgeryDidYouHave_CC());
@@ -381,7 +376,7 @@ public class GERD_4301_CC extends BaseTest {
         whatTypeOfSurgeryDidYouHave_CC
                 .back();
 
-        DidTakeMedicationToTreatPyloriCC didTakeMedicationToTreatPyloriCC = everDiagnosedWithFollowingConditionsСС
+        DidTakeMedicationToTreatPyloriCC didTakeMedicationToTreatPyloriCC = everDiagnosedWithFollowingConditionsCC
                 .waitForPageLoad()
                 .clickOnAnswers("Helicobacter pylori or H. pylori infection")
                 .clickNextButton(new DidTakeMedicationToTreatPyloriCC());

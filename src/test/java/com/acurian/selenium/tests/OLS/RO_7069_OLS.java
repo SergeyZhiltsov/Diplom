@@ -72,7 +72,8 @@ public class RO_7069_OLS extends BaseTest {
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS =
                 genderPageOLS
                         .waitForPageLoad()
-                        .setDate("01011971") //Disqualify ("Age") if < 50
+                        .setDate("01011956") //Disqualify ("Age") if < 50
+                        .clickOnAnswer("Male")
                         .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
@@ -81,6 +82,7 @@ public class RO_7069_OLS extends BaseTest {
                 .back(genderPageOLS)
                 .waitForPageLoad()
                 .setDate("01011932")
+                .clickOnAnswer("Female")
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
@@ -96,14 +98,14 @@ public class RO_7069_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new OsteoporosisRelatedFracturesOLS());
-        osteoporosisRelatedFracturesOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS7703", site.activeProtocols)
-                .back();
+//        osteoporosisRelatedFracturesOLS
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QS7703", site.activeProtocols)
+//                .back();
         HaveYouGoneThroughMenopauseOLS haveYouGoneThroughMenopauseOLS = osteoporosisRelatedFracturesOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Hip fracture",

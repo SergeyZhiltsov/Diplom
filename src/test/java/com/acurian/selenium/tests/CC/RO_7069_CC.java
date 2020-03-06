@@ -8,6 +8,7 @@ import com.acurian.selenium.pages.CC.cv_study.SubquestionHeartPageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
+import com.acurian.selenium.pages.OLS.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS;
 import com.acurian.selenium.utils.Properties;
 import io.qameta.allure.Description;
 import org.testng.Assert;
@@ -101,19 +102,20 @@ public class RO_7069_CC extends BaseTest {
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
                 .back();
-        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC =
+
                 genderPageCC
-                        .waitForPageLoad()
-                        .setYear("1971") //Disqualify ("Age") if < 50
-                        .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+                .waitForPageLoad()
+                .setYear("1956") //Disqualify ("Age") if < 65
+                .clickOnAnswer("Male")
+                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC())
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
                 .back(genderPageCC)
                 .waitForPageLoad()
                 .setYear("1932") //Disqualify ("Age") if >= 86
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC)
+                .clickOnAnswer("Female")
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC())
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
@@ -128,16 +130,16 @@ public class RO_7069_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new OsteoporosisRelatedFracturesCC());
-        osteoporosisRelatedFracturesСС
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new NonQRtransitionPageCC())
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS7703", site.activeProtocols)
-                .back();
         HaveYouGoneThroughMenopauseCC haveYouGoneThroughMenopauseCC = osteoporosisRelatedFracturesСС
                 .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickNextButton(new NonQRtransitionPageCC())
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS7703", site.activeProtocols)
+//                .back();
+//        HaveYouGoneThroughMenopauseCC haveYouGoneThroughMenopauseCC = osteoporosisRelatedFracturesСС
+//                .waitForPageLoad()
                 .clickOnAnswers("Hip fracture",
                         "Spine (vertebral) fracture",
                         "Wrist fracture",
@@ -266,9 +268,9 @@ public class RO_7069_CC extends BaseTest {
                 .clickNextButton(transitionStatementCC);
 
 
-        transitionStatementCC
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = transitionStatementCC
                 .waitForPageLoadWithTitle(transitionStatementCC.titleROExpected)
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC);
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
 
         //-------------------New GENERAL HEALTH---------------------------
         WhenDiagnosedWithCancerCC whenDiagnosedWithCancerCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC

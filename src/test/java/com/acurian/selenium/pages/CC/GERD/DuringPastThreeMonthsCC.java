@@ -8,7 +8,7 @@ import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
-public class DuringPastThreeMounthCC extends MainPageCC {
+public class DuringPastThreeMonthsCC extends MainPageCC {
     public final String titleExpected = "During the past 3 months, have you had stomach pain or discomfort that lasted 2 weeks or more?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_CC)
@@ -17,13 +17,13 @@ public class DuringPastThreeMounthCC extends MainPageCC {
     List<WebElement> radioButtonsList;
 
     @Step
-    public DuringPastThreeMounthCC waitForPageLoad() {
+    public DuringPastThreeMonthsCC waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public DuringPastThreeMounthCC clickOnAnswer(String answerText) {
+    public DuringPastThreeMonthsCC clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }
