@@ -38,11 +38,11 @@ public abstract class BaseTest {
 
     @BeforeClass
     public void setUp() {
-                try{
-                    driver = new EventFiringWebDriver(DriverFactory.initDriver(Properties.getBrowser(), Properties.getGridURL()));
-                }catch (Exception e) {
+//                try{
+//                    driver = new EventFiringWebDriver(DriverFactory.initDriver(Properties.getBrowser(), Properties.getGridURL()));
+//                }catch (Exception e) {
                     driver = new EventFiringWebDriver(DriverFactory.initDriver(Properties.getBrowser()));
-                }
+//                }
 //        driver = new EventFiringWebDriver(DriverFactory.initDriver(Properties.getBrowser()));
         driver.register(new EventHandler());
         driver.manage().timeouts().setScriptTimeout(50, TimeUnit.SECONDS);

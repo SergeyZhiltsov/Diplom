@@ -43,6 +43,7 @@ public class MainPageSB extends BasePage {
 
     @Step()
     protected WebElement waitAndClickWebElement(By locator) {
+
         WebElement element = waitToBeClickable(locator);
         element.click();
         return element;
