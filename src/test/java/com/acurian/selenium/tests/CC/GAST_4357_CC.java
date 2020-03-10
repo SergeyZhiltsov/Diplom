@@ -16,6 +16,7 @@ import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.selenium.pages.OLS.generalHealth.WhichOfFollowingHaveYouDiagnosedWith_NeurologicalCC;
 import com.acurian.selenium.pages.blinx.ams.shared.DRSBlinx;
 import com.acurian.selenium.utils.Properties;
+import org.openqa.selenium.TimeoutException;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -833,6 +834,7 @@ public class GAST_4357_CC extends BaseTest {
                         .dispoShouldMatch(site.dispo, site.dispo);
                 break;
                 case AUT_GAS4357ds:
+                    try{
                     DRSBlinx dRSBlinx = new DRSBlinx();
                     ScedulerCC scedulerCC = new ScedulerCC();
                     DirectSheduleVaccCC directSheduleVaccCC = new DirectSheduleVaccCC();
@@ -895,6 +897,9 @@ public class GAST_4357_CC extends BaseTest {
                             .pidFromDbToLog(env)
                             .childPidFromDbToLog(env)
                             .dispoShouldMatch(site.dispo, site.dispo);
+        }catch(TimeoutException e){
+                        selectActionPageCC.logTextToAllure("No appointpments");
+        }
 
 
                     break;

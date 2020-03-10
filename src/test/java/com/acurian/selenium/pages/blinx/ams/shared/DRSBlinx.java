@@ -3,9 +3,12 @@ package com.acurian.selenium.pages.blinx.ams.shared;
 import com.acurian.selenium.pages.WebDriverWaitLogged;
 import com.acurian.selenium.pages.blinx.MainPageBlinx;
 import io.qameta.allure.Step;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
+
+import java.beans.Visibility;
 
 public class DRSBlinx extends MainPageBlinx {
 
@@ -135,10 +138,10 @@ public class DRSBlinx extends MainPageBlinx {
 
     @Step
     public DRSBlinx waitForPageLoadBlinx() {
-        threadSleep(10000);
-        waitForAnimation();
-        waitForPageLoadMain(titleText, titleExpected);
-        return this;
+            threadSleep(10000);
+            waitForAnimation();
+            waitForPageLoadMain(titleText, titleExpected);
+            return this;
     }
 
     @Step
