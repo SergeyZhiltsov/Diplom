@@ -8,6 +8,7 @@ public class Properties {
     private static final String DEFAULT_BROWSER = BrowserType.CHROME;
     private static final String DEFAULT_USERNAME = "aautotest";
     private static final String DEFAULT_PASSWORD = "aautotest";
+    private static final String DEFAULT_GRID_URL = "http://10.6.0.26:55555/wd/hub";
 
     private Properties() {
     }
@@ -25,7 +26,7 @@ public class Properties {
     }
 
     public static String getGridURL() {
-        return System.getProperty(EnvironmentVariable.GRID.toString(), "");
+        return DEFAULT_GRID_URL;
     }
 
     public static String getUsername() {

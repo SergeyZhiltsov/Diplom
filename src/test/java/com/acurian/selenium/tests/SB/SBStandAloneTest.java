@@ -17,7 +17,7 @@ public class SBStandAloneTest extends BaseTest {
     String studyId = null;
     String alertMessage = null;
     final String therapeuticName = "Neurology";
-    final String indicationName = "Low Back Pain";
+     String indicationName = "Low Back Pain";
 
     public SBStandAloneTest() {
         setEnvData(env);
@@ -41,6 +41,12 @@ public class SBStandAloneTest extends BaseTest {
         LoginSBPage loginSBPage = new LoginSBPage();
         StudyEditPage studyEditPage = new StudyEditPage();
 
+        if(env.equals("QA")){
+            indicationName = "Diabetes (QA)";
+        }
+        else{
+            indicationName = "Diabetes";
+        }
         loginSBPage.openPage(env).loginAs(username, password)
                 .searchForStudy(studyName)
                 .clickOnStudyName(studyName)

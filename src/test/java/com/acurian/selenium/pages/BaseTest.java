@@ -7,6 +7,8 @@ import com.acurian.selenium.listeners.TestListener;
 import com.acurian.selenium.utils.DriverFactory;
 import com.acurian.selenium.utils.Properties;
 import com.acurian.selenium.utils.allure.AllureUtils;
+import org.apache.http.conn.HttpHostConnectException;
+import org.apache.http.impl.execchain.TunnelRefusedException;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -15,6 +17,9 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
 
+import java.net.ConnectException;
+import java.nio.channels.ConnectionPendingException;
+import java.rmi.ConnectIOException;
 import java.util.concurrent.TimeUnit;
 
 @Listeners(TestListener.class)
@@ -33,9 +38,11 @@ public abstract class BaseTest {
 
     @BeforeClass
     public void setUp() {
-        driver = Properties.getGridURL().isEmpty()
-                ? new EventFiringWebDriver(DriverFactory.initDriver(Properties.getBrowser()))
-                : new EventFiringWebDriver(DriverFactory.initDriver(Properties.getBrowser(), Properties.getGridURL()));
+                try{
+                    driver = new EventFiringWebDriver(DriverFactory.initDriver(Properties.getBrowser(), Properties.getGridURL()));
+                }catch (Exception e) {
+                    driver = new EventFiringWebDriver(DriverFactory.initDriver(Properties.getBrowser()));
+                }
 //        driver = new EventFiringWebDriver(DriverFactory.initDriver(Properties.getBrowser()));
         driver.register(new EventHandler());
         driver.manage().timeouts().setScriptTimeout(50, TimeUnit.SECONDS);
