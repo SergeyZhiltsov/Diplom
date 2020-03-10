@@ -106,43 +106,55 @@ public class RO_7069_OLS extends BaseTest {
 //                .getPage(debugPageOLS)
 //                .checkProtocolsContainsForQNumber("QS7703", site.activeProtocols)
 //                .back();
-        HaveYouGoneThroughMenopauseOLS haveYouGoneThroughMenopauseOLS = osteoporosisRelatedFracturesOLS
+        osteoporosisRelatedFracturesOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Hip fracture",
                         "Spine (vertebral) fracture",
                         "Wrist fracture",
                         "Pelvic fracture",
                         "Other fracture")
-                .clickNextButton(new HaveYouGoneThroughMenopauseOLS());
-
-        haveYouGoneThroughMenopauseOLS
+                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
-                .clickOnAnswer("No")
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS7714", site.activeProtocols)
+                .back(osteoporosisRelatedFracturesOLS)
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS7704", site.activeProtocols)
-                .back(haveYouGoneThroughMenopauseOLS)
-                .waitForPageLoad()
+                .checkProtocolsContainsForQNumber("QS7714", site.activeProtocols)
                 .back(osteoporosisRelatedFracturesOLS)
                 .waitForPageLoad()
                 .back(everDiagnosedWithOsteoporosisOLS);
-
+//        haveYouGoneThroughMenopauseOLS
+//                .waitForPageLoad()
+//                .clickOnAnswer("No")
+//                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QS7704", site.activeProtocols)
+//                .back(haveYouGoneThroughMenopauseOLS)
+//                .waitForPageLoad()
+//                .back(osteoporosisRelatedFracturesOLS)
+//                .waitForPageLoad()
+//                .back(everDiagnosedWithOsteoporosisOLS);
         everDiagnosedWithOsteoporosisOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(osteoporosisRelatedFracturesOLS);
 
         //Q3
-        osteoporosisRelatedFracturesOLS
+        HaveYouGoneThroughMenopauseOLS haveYouGoneThroughMenopauseOLS = osteoporosisRelatedFracturesOLS
                 .waitForPageLoad()
 //                .clickOnAnswers("Hip fracture",
 //                        "Spine (vertebral) fracture",
 //                        "Wrist fracture",
 //                        "Pelvic fracture",
 //                        "Other fracture")
-                .clickOnAnswers("None of the above")
-                .clickNextButton(haveYouGoneThroughMenopauseOLS);
+//                .clickOnAnswers("None of the above")
+                .clickNextButton(new HaveYouGoneThroughMenopauseOLS());
 
         //Q4
         HowLongAgoReachMenopauseOLS howLongAgoReachMenopauseOLS = haveYouGoneThroughMenopauseOLS
