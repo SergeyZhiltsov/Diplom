@@ -727,26 +727,26 @@ public class GAST_9279_OLS extends BaseTest {
                 .setAll("5","5","235");
                 if(env.equals("STG")) {
                     approximateHeightPageOLS
-                .clickNextButton(new CurrentlyTreatingYourDiabetesPageOLS())
+                            .clickNextButton(new CurrentlyTreatingYourDiabetesPageOLS())
                             .waitForPageLoad()
                             .clickOnAnswers("I am not currently treating my diabetes")
                             .clickNextButton(new CurrentlySufferOfAnyOfFollowingOLS())
                             .waitForPageLoad()
-                            .clickOnAnswers("None of the above");
+                            .clickOnAnswers("None of the above")
+                            .clickNextButton(new DuringPastThreeMonthsOLS())
+                            .waitForPageLoad()
+                            .clickOnAnswer("No")
+                            .clickNextButton(new EverDiagnosedWithFollowingConditionsOLS())
+                            .waitForPageLoad()
+                            .clickOnAnswers("None of the above")
+                            .clickNextButton(new WhatTypeOfSurgeryDidYouHave_OLS())
+                            .waitForPageLoad()
+                            .clickOnAnswers("None of the above")
+                            .clickNextButton(new UseMarijuanaOrCannabisOLS())
+                            .waitForPageLoad()
+                            .clickOnAnswer("No");
                 }
         approximateHeightPageOLS
-                .clickNextButton(new DuringPastThreeMonthsOLS())
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(new EverDiagnosedWithFollowingConditionsOLS())
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new WhatTypeOfSurgeryDidYouHave_OLS())
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new UseMarijuanaOrCannabisOLS())
-                .waitForPageLoad()
-                .clickOnAnswer("No")
                 .clickNextButton(new CurrentlyParticipatingInStudyOLS())
                 .waitForPageLoad()
                 .clickOnAnswer("No")
