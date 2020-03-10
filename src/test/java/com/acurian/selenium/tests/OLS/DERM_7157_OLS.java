@@ -844,7 +844,12 @@ public class DERM_7157_OLS extends BaseTest {
                 .pidFromDbToLog(env)
                 .childPidFromDbToLog(env)
                 .dispoShouldMatch(site.dispo, site.dispo);
-                if(site.name.equals("AUT_AMS1_7157_site")){
+        try {
+            Thread.sleep(15000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        if(site.name.equals("AUT_AMS1_7157_site")){
                     aboutHealthPageOLS
                 .assertGeneratedFulNEW(env, site);}
 //                .assertRmgOrderPriority(env, "7157");}
