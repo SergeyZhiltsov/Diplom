@@ -42,7 +42,9 @@ public class SBMegaScreenerTest extends BaseTest {
         LoginSBPage loginSBPage = new LoginSBPage();
         StudyEditPage studyEditPage = new StudyEditPage();
 
-        loginSBPage.openPage(env).loginAs(username, password)
+        loginSBPage
+                .openPage(env)
+                .loginAs(username, password)
                 .searchForStudy(studyName)
                 .clickOnStudyName(studyName)
                 .deleteIndication(indicationName)
