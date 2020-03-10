@@ -98,7 +98,7 @@ public class OpeningOptionsCC extends BaseTest {
                 .clickOnAnswer("No")
                 .clickNextButton(new ThankYouCloseSimplePageCC());
         OptOutOfDatabaseIdentificationClosePageCC optOutOfDatabaseIdentificationClosePageCC = thankYouCloseSimplePageCC
-                .waitForPageLoadV2()
+                .waitForPageLoad()
                 .back(optOutOfDatabaseClosePageCC)
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")

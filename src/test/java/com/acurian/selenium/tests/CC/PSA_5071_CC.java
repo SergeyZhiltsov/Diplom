@@ -219,7 +219,7 @@ public class PSA_5071_CC extends BaseTest {
                 .clickOnAnswer("No")
                 .clickNextButton(new TransitionStatementCC());
         transitionStatementCC
-                .waitForPageLoadWithCurves(transitionStudyName)
+                .waitForPageLoadWithCurves7518(transitionStudyName)
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS7508", site.activeProtocols)
                 .back();
@@ -239,7 +239,7 @@ public class PSA_5071_CC extends BaseTest {
                 .clickOnAnswers("None of the above") //Otherwise disqualify
                 .clickNextButton(transitionStatementCC);
         transitionStatementCC
-                .waitForPageLoadWithCurves(transitionStudyName)
+                .waitForPageLoadWithCurves7518(transitionStudyName)
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS7511", site.activeProtocols)
                 .back(currentlyHaveAnyOffFollowingPageCC)
@@ -338,7 +338,7 @@ public class PSA_5071_CC extends BaseTest {
                 .clickNextButton(transitionStatementCC);
 
                 transitionStatementCC
-                        .waitForPageLoadWithCurves(transitionStudyName)
+                        .waitForPageLoadWithCurves7518(transitionStudyName)
                         .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC);
 
 

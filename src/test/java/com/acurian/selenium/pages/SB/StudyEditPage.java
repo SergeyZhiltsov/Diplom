@@ -2,6 +2,7 @@ package com.acurian.selenium.pages.SB;
 
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -22,7 +23,7 @@ public class StudyEditPage extends MainPageSB {
     WebElement theraputicAreaSelect;
     @FindBy(css = "label[for=indication] ~ div ul li") //@FindBy(xpath = "//label[@for='indication']//following-sibling::*//ul/li")
     List<WebElement> indication;
-    @FindBy(css = "select[id = indication]")
+    @FindBy(xpath = "(//ul[@class='select2-selection__rendered'])[2]")
     WebElement indicationSelect;
     @FindBy(xpath = "//button[@type='submit']")
     WebElement saveButton;
@@ -72,8 +73,9 @@ public class StudyEditPage extends MainPageSB {
 
     @Step()
     public StudyEditPage addIndication(String indicationName) {
-        Select theraputicList = new Select(indicationSelect);
-        theraputicList.selectByVisibleText(indicationName);
+        getActions().moveToElement(indicationSelect).click().sendKeys(indicationName).click().build().perform();
+//        Select theraputicList = new Select(indicationSelect);
+//        theraputicList.selectByVisibleText(indicationName);
         return this;
     }
 

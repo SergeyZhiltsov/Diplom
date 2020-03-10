@@ -3,11 +3,15 @@ package com.acurian.selenium.tests.OLS;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.ADG_4357.*;
+import com.acurian.selenium.pages.OLS.ChronicCough.EverDiagnosedWithFollowingConditionsOLS;
 import com.acurian.selenium.pages.OLS.Crohns_3485.CurrentlyHaveAnyOffFollowingPageOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.CurrentlyTreatingYourDiabetesPageOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.WithType2DiabetesPageOLS;
 import com.acurian.selenium.pages.OLS.GERD.CurrentlySufferOfAnyOfFollowingOLS;
+import com.acurian.selenium.pages.OLS.GERD.DuringPastThreeMonthsOLS;
+import com.acurian.selenium.pages.OLS.GERD.UseMarijuanaOrCannabisOLS;
+import com.acurian.selenium.pages.OLS.GERD.WhatTypeOfSurgeryDidYouHave_OLS;
 import com.acurian.selenium.pages.OLS.MDD_3159.MostRecentHeartProcedurePageOLS;
 import com.acurian.selenium.pages.OLS.OAB_4867.DoYouTakeAnyMedicationsControlHypertension_OLS;
 import com.acurian.selenium.pages.OLS.RA.WhatKindOfArthritisPageOLS;
@@ -723,12 +727,24 @@ public class GAST_9279_OLS extends BaseTest {
                 .setAll("5","5","235");
                 if(env.equals("STG")) {
                     approximateHeightPageOLS
-                .clickNextButton(new CurrentlyTreatingYourDiabetesPageOLS())
+                            .clickNextButton(new CurrentlyTreatingYourDiabetesPageOLS())
                             .waitForPageLoad()
                             .clickOnAnswers("I am not currently treating my diabetes")
                             .clickNextButton(new CurrentlySufferOfAnyOfFollowingOLS())
                             .waitForPageLoad()
-                            .clickOnAnswers("None of the above");
+                            .clickOnAnswers("None of the above")
+                            .clickNextButton(new DuringPastThreeMonthsOLS())
+                            .waitForPageLoad()
+                            .clickOnAnswer("No")
+                            .clickNextButton(new EverDiagnosedWithFollowingConditionsOLS())
+                            .waitForPageLoad()
+                            .clickOnAnswers("None of the above")
+                            .clickNextButton(new WhatTypeOfSurgeryDidYouHave_OLS())
+                            .waitForPageLoad()
+                            .clickOnAnswers("None of the above")
+                            .clickNextButton(new UseMarijuanaOrCannabisOLS())
+                            .waitForPageLoad()
+                            .clickOnAnswer("No");
                 }
         approximateHeightPageOLS
                 .clickNextButton(new CurrentlyParticipatingInStudyOLS())

@@ -6,7 +6,7 @@ import org.openqa.selenium.support.PageFactory;
 import ru.yandex.qatools.allure.annotations.Step;
 
 public class DeceasedIdentificationClosePageCC extends IdentificationOpeningOptionsClosePageCC {
-    public final String titleExpected = "We are sorry to hear that.  To ensure that we do not contact you again, please provide the following information:";
+    public final String titleExpected = "We are sorry to hear that. To ensure that we do not contact you again, please provide the following information:";
 
     @FindBy(xpath = "//input[contains(@class,'input-auto-zip')]")
     WebElement zipCodeField;

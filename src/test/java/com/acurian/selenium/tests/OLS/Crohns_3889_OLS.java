@@ -11,6 +11,9 @@ import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeart
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.WithType2DiabetesPageOLS;
 import com.acurian.selenium.pages.OLS.END_4385.HormonalBirthControlOLS;
 import com.acurian.selenium.pages.OLS.GERD.CurrentlySufferOfAnyOfFollowingOLS;
+import com.acurian.selenium.pages.OLS.GERD.DuringPastThreeMonthsOLS;
+import com.acurian.selenium.pages.OLS.GERD.UseMarijuanaOrCannabisOLS;
+import com.acurian.selenium.pages.OLS.GERD.WhatTypeOfSurgeryDidYouHave_OLS;
 import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.HaveYouEverBeenOfficiallyDiagnosedByDoctor_OLS;
 import com.acurian.selenium.pages.OLS.RA.WhatKindOfArthritisPageOLS;
 import com.acurian.selenium.pages.OLS.closes.*;
@@ -781,6 +784,21 @@ public class Crohns_3889_OLS extends BaseTest {
                 .clickNextButton(new CurrentlySufferOfAnyOfFollowingOLS())
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
+                .clickNextButton(new DuringPastThreeMonthsOLS())
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new com.acurian.selenium.pages.OLS.ChronicCough.EverDiagnosedWithFollowingConditionsOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new WhatTypeOfSurgeryDidYouHave_OLS())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new WeightLossSurgeryPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new UseMarijuanaOrCannabisOLS())
+                .waitForPageLoad()
+                .clickOnAnswer("No")
                 .clickNextButton(new CurrentlyParticipatingInStudyOLS())
                 .waitForPageLoad()
                 .clickOnAnswer("No")
