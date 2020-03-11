@@ -39,7 +39,7 @@ public class DateOfBirthPageOLS extends MainPageBlinx {
 
     @FindBy(xpath = "//div[@id='questions']/div[1]//span[@class='show-in-ols']")
     WebElement titleTextPart;
-    @FindBy(xpath = "//input[contains(@class, 'fallbackDate')]")
+    @FindBy(xpath = "//input[@placeholder='MM/DD/YYYY']")
     WebElement dateField;
     @FindBy(xpath = "(//div[@class='question-text']/div)[2]")
     WebElement titleTextPart1;
