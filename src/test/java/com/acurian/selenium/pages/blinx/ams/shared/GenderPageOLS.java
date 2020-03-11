@@ -17,7 +17,7 @@ public class GenderPageOLS extends MainPageBlinx {
     WebElement titleTextPart1;
     @FindBy(xpath = "(//div[@class='question-text']/span)[2]")
     WebElement titleTextPart2;
-    @FindBy(xpath = "//input[contains(@class, 'fallbackDate')]")
+    @FindBy(xpath = "//input[@placeholder='MM/DD/YYYY']")
     WebElement dateField;
     @FindBy(xpath = Locators.RADIO_BUTTON_LIST_OLS)
     List<WebElement> singleChoiceButtonsList;

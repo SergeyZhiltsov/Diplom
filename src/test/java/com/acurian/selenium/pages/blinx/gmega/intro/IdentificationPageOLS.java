@@ -81,14 +81,13 @@ public class IdentificationPageOLS extends MainPageBlinx {
 
     @Step
     public IdentificationPageOLS setAllFields(String firstName, String lastName, String email, String phoneNumber,
-                                              String zipCode, String city, String state) {
+                                              String zipCode) {
         setFirstName(firstName);
         setLastName(lastName);
         setEmailAddress(email);
         setPhone(phoneNumber);
         setZipCode(zipCode);
-        setCity(city);
-        setState(state);
+        waitForAnimation();
         return this;
     }
 
@@ -118,7 +117,7 @@ public class IdentificationPageOLS extends MainPageBlinx {
 
     @Step
     public IdentificationPageOLS setZipCode(String zipCode) {
-        typeTextWithoutClear(zipCodeField, zipCode);
+        typeTextWithoutClearAndConfirm(zipCodeField, zipCode);
         return this;
     }
 

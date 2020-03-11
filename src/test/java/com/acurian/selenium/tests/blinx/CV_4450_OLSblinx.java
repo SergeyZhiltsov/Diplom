@@ -434,7 +434,7 @@ public class CV_4450_OLSblinx extends BaseTest {
         SiteSelectionPageOLS siteSelectionPageOLS = identificationPageOLS
                 .waitForPageLoadPrequalified()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
-                        "9999999999", site.zipCode, city, state)
+                        "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageOLS());
 
         QualifiedClose2PageOLS qualifiedClose2PageOLS = siteSelectionPageOLS

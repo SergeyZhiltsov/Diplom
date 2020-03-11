@@ -143,6 +143,13 @@ public abstract class BasePage {
     }
 
     @Step
+    protected void typeTextWithoutClearAndConfirm(WebElement webElement, String text) {
+//        scrollToElement(webElement, false);
+        webElement.sendKeys(text);
+        webElement.sendKeys(Keys.ENTER);
+    }
+
+    @Step
     protected void typeText(WebElement webElement, String text) {
 //        scrollToElement(webElement, false);
         webElement.clear();
