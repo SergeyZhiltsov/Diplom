@@ -8,6 +8,7 @@ import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.*;
+import com.acurian.selenium.utils.Properties;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
@@ -63,9 +64,9 @@ public class GERD_4301_OLS extends BaseTest {
         //---------------Q2 DoYouExperienceAnyOfFollowingSymptoms_OLS page-------------------
         DuringPastThreeMonthsOLS duringPastThreeMonthsOLS =
                 currentlySufferOfAnyOfFollowingOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new DuringPastThreeMonthsOLS());
+                        .waitForPageLoad()
+                        .clickOnAnswers("None of the above")
+                        .clickNextButton(new DuringPastThreeMonthsOLS());
         duringPastThreeMonthsOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
@@ -156,9 +157,9 @@ public class GERD_4301_OLS extends BaseTest {
                 .back(howManyDaysPerWeekHaveSymptomsOLS);
         CurrentlyTakeMedicationPrescribedByHealthcareProvider_OLS currentlyTakeMedicationPrescribedByHealthcareProvider_OLS =
                 howManyDaysPerWeekHaveSymptomsOLS
-                .waitForPageLoad()
-                .clickOnAnswer("4 - 5 days per week")
-                .clickNextButton(new CurrentlyTakeMedicationPrescribedByHealthcareProvider_OLS());
+                        .waitForPageLoad()
+                        .clickOnAnswer("4 - 5 days per week")
+                        .clickNextButton(new CurrentlyTakeMedicationPrescribedByHealthcareProvider_OLS());
 
         DoYouRegularlyTakeOLS doYouRegularlyTakeOLS = currentlyTakeMedicationPrescribedByHealthcareProvider_OLS
                 .waitForPageLoad()
@@ -232,7 +233,7 @@ public class GERD_4301_OLS extends BaseTest {
                         "Hemorrhoids removed - Hemorrhoidectomy")
                 .clickNextButton(new WhenDidYouHaveAppendixRemoved_OLS());
 
-  //      ---------------Q3 WhichoOfFollowingMedicationsCurrentlyGERD_OLS-------------------
+        //      ---------------Q3 WhichoOfFollowingMedicationsCurrentlyGERD_OLS-------------------
 //         HasYourDoctorToldYouThatYouHaveErosion_OLS hasYourDoctorToldYouThatYouHaveErosion_OLS= whichoOfFollowingMedicationsCurrentlyGERD_OLS
 //                .waitForPageLoad()
 //                .clickOnAnswers("None of the above") //----DQ if selected any of these options in Q3:  None of the above
@@ -456,16 +457,16 @@ public class GERD_4301_OLS extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS6311", site.activeProtocols)
                 .back(new WeightLossSurgeryPageOLS());
-         whenDidYouHaveAppendixRemoved_OLS
+        whenDidYouHaveAppendixRemoved_OLS
                 .waitForPageLoad(1, whenDidYouHaveAppendixRemoved_OLS.titleExpected1)
                 .clickOnAnswerForSubQuestion(1, "4 - 6 months ago")
                 .clickOnAnswerForSubQuestion(2, "More than 6 months ago")
                 .clickOnAnswerForSubQuestion(3, "More than 6 months ago")
                 .clickNextButton(weightLossSurgeryPageOLS);
 
-         UseMarijuanaOrCannabisOLS useMarijuanaOrCannabisOLS = new UseMarijuanaOrCannabisOLS();
+        UseMarijuanaOrCannabisOLS useMarijuanaOrCannabisOLS = new UseMarijuanaOrCannabisOLS();
 
-         weightLossSurgeryPageOLS
+        weightLossSurgeryPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(useMarijuanaOrCannabisOLS)
@@ -518,9 +519,9 @@ public class GERD_4301_OLS extends BaseTest {
 
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS =
                 useMarijuanaOrCannabisOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Yes")
-                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
+                        .waitForPageLoad()
+                        .clickOnAnswer("Yes")
+                        .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
@@ -599,7 +600,7 @@ public class GERD_4301_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new IdentificationPageOLS());
-                // ----------PII (IdentificationPageOLS)
+        // ----------PII (IdentificationPageOLS)
 
         identificationPageOLS
                 .waitForPageLoad()
@@ -611,8 +612,8 @@ public class GERD_4301_OLS extends BaseTest {
         siteSelectionPageOLS
                 .waitForPageLoad("a heartburn or reflux") //could not DQ with (Phathom EE & HP) to avoid combined indication
                 .getPID()
-                .clickOnFacilityName(site.name)    ;
-                MedicalRecordsOptionPageOLS medicalRecordsOptionPageOLS = siteSelectionPageOLS
+                .clickOnFacilityName(site.name);
+        MedicalRecordsOptionPageOLS medicalRecordsOptionPageOLS = siteSelectionPageOLS
                 .clickNextButton(new MedicalRecordsOptionPageOLS());
 
         DoctorInformationCollectionPageOLS doctorInformationCollectionPageOLS = medicalRecordsOptionPageOLS
@@ -642,13 +643,17 @@ public class GERD_4301_OLS extends BaseTest {
 
         ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = new ThankYouCloseSimplePageOLS();
 
-        thankYouCloseSimplePageOLS
+        AboutHealthPageOLS aboutHealthPageOLS = thankYouCloseSimplePageOLS
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())
+                .waitForPageLoad();
+        if (aboutHealthPageOLS.getHostName().equals(Properties.getHostName())) {
+            aboutHealthPageOLS
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
                 .childPidFromDbToLog(env, "4301")
                 .assertGeneratedFul(env, site)
                 .dispoShouldMatch(site.dispo, site.dispo);
+        }
     }
 }

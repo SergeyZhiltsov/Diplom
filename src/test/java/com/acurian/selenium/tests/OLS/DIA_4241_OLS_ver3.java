@@ -12,6 +12,7 @@ import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.*;
+import com.acurian.selenium.utils.Properties;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
@@ -268,7 +269,7 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
         options.put("Onglyza (saxagliptin)", Arrays.asList(protocol2, protocol3, protocol4));
         options.put("Oseni (alogliptin and pioglitazone)", Arrays.asList(protocol2, protocol3, protocol4));
         options.put("Prandin (repaglinide)", Arrays.asList(protocol2, protocol4));
-        options.put("Precose (acarbose)", Arrays.asList(protocol2, protocol4 ));
+        options.put("Precose (acarbose)", Arrays.asList(protocol2, protocol4));
         options.put("Starlix (nateglinide)", Arrays.asList(protocol2, protocol4));
         options.put("Tradjenta (linagliptin)", Arrays.asList(protocol2, protocol3, protocol4));
         for (Map.Entry<String, List<String>> entry : options.entrySet()) {
@@ -495,7 +496,7 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
                 .clickOnAnswer("No")
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
 
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+        AboutHealthPageOLS aboutHealthPageOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS())
@@ -554,12 +555,16 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())
-                .waitForPageLoad()
-                .pidFromDbToLog(env)
-                .getRadiantDbToLog(env)
-                .getAnomalyDbToLog(env)
-                .childPidFromDbToLog(env)
-                .assertGeneratedFul(env, site)
-                .dispoShouldMatch(site.dispo, site.dispo);
+                .waitForPageLoad();
+        if (aboutHealthPageOLS.getHostName().equals(Properties.getHostName())) {
+            aboutHealthPageOLS
+                    .waitForPageLoad()
+                    .pidFromDbToLog(env)
+                    .getRadiantDbToLog(env)
+                    .getAnomalyDbToLog(env)
+                    .childPidFromDbToLog(env)
+                    .assertGeneratedFul(env, site)
+                    .dispoShouldMatch(site.dispo, site.dispo);
+        }
     }
 }

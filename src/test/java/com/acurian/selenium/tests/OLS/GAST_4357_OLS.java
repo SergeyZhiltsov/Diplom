@@ -17,6 +17,7 @@ import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.*;
 import com.acurian.selenium.pages.blinx.ams.shared.DRSBlinx;
+import com.acurian.selenium.utils.Properties;
 import org.openqa.selenium.TimeoutException;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -764,13 +765,15 @@ public class GAST_4357_OLS extends BaseTest {
                             .clickNextButton(new ThankYouCloseSimplePageOLS());
                     thankYouCloseSimplePageOLS
                             .waitForPageLoad()
-                            .clickNextButton(aboutHealthPageOLS);
+                            .clickNextButton(aboutHealthPageOLS).waitForPageLoad();
+                    if (aboutHealthPageOLS.getHostName().equals(Properties.getHostName())) {
                     aboutHealthPageOLS
                             .waitForPageLoad()
                             .pidFromDbToLog(env)
                             .childPidFromDbToLog(env)
                             .dispoShouldMatch(site.dispo, site.dispo);
                     break;
+                    }
                 case AUT_GAST4357S_site: //41C
                     QualifiedClose2PageOLS qualifiedClose2PageOLS2 = siteSelectionPageOLS
                             .clickNextButton(new QualifiedClose2PageOLS());
@@ -779,7 +782,9 @@ public class GAST_4357_OLS extends BaseTest {
                             .clickNextButton(new ThankYouCloseSimplePageOLS());
                     thankYouCloseSimplePageOLS2
                             .waitForPageLoad()
-                            .clickNextButton(aboutHealthPageOLS);
+                            .clickNextButton(aboutHealthPageOLS)
+                            .waitForPageLoad();
+                    if (aboutHealthPageOLS.getHostName().equals(Properties.getHostName())) {
                     aboutHealthPageOLS
                             .waitForPageLoad()
                             .pidFromDbToLog(env)
@@ -788,6 +793,7 @@ public class GAST_4357_OLS extends BaseTest {
                             .childPidFromDbToLog(env)
                             .dispoShouldMatch(site.dispo, site.dispo);
                     break;
+                    }
 
                 case AUT_GAS4357ds: {
                     try {
@@ -833,10 +839,14 @@ public class GAST_4357_OLS extends BaseTest {
                                 .clickNextButton(new ThankYouCloseSimplePageOLS())
                                 .waitForPageLoad()
                                 .clickNextButton(aboutHealthPageOLS)
-                                .waitForPageLoad()
-                                .pidFromDbToLog(env)
-                                .childPidFromDbToLog(env)
-                                .dispoShouldMatch(site.dispo, site.dispo);
+                                .waitForPageLoad();
+                        if (aboutHealthPageOLS.getHostName().equals(Properties.getHostName())) {
+                            aboutHealthPageOLS
+                                    .waitForPageLoad()
+                                    .pidFromDbToLog(env)
+                                    .childPidFromDbToLog(env)
+                                    .dispoShouldMatch(site.dispo, site.dispo);
+                        }
                 }catch(TimeoutException e){
                     siteSelectionPageOLS.logTextToAllure("No appointpments");
                 }
@@ -850,13 +860,16 @@ public class GAST_4357_OLS extends BaseTest {
                     .waitForPageLoad()
                     .clickNextButton(new ThankYouCloseSimplePageOLS())
                     .waitForPageLoad()
-                    .clickNextButton(aboutHealthPageOLS);
-            aboutHealthPageOLS
-                    .waitForPageLoad()
-                    .pidFromDbToLog(env)
-                    .childPidFromDbToLog(env)
-                    .dispoShouldMatch(site.dispo, site.dispo)
-                    .flareCodeShouldMatch(env, inFlare ? "3" : "4");
+                    .clickNextButton(aboutHealthPageOLS)
+                    .waitForPageLoad();
+            if (aboutHealthPageOLS.getHostName().equals(Properties.getHostName())) {
+                aboutHealthPageOLS
+                        .waitForPageLoad()
+                        .pidFromDbToLog(env)
+                        .childPidFromDbToLog(env)
+                        .dispoShouldMatch(site.dispo, site.dispo)
+                        .flareCodeShouldMatch(env, inFlare ? "3" : "4");
+            }
         }
     }
 }

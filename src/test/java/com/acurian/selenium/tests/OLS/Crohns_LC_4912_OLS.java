@@ -9,6 +9,7 @@ import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.*;
+import com.acurian.selenium.utils.Properties;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
@@ -479,6 +480,7 @@ public class Crohns_LC_4912_OLS extends BaseTest {
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
                         "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageOLS());
+        AboutHealthPageOLS aboutHealthPageOLS = new AboutHealthPageOLS();
         QualifiedFlareMonitoringAppClosePageOLS qualifiedFlareMonitoringAppClosePageOLS = new QualifiedFlareMonitoringAppClosePageOLS();
         switch (site) {
             case AUT_AMS1_4912S_site:
@@ -500,12 +502,16 @@ public class Crohns_LC_4912_OLS extends BaseTest {
                         .getActivationCodeCrohns()
                         .clickNextButton(new ThankYouCloseSimplePageOLS())
                         .waitForPageLoad()
-                        .clickNextButton(new AboutHealthPageOLS())
-                        .waitForPageLoad()
-                        .pidFromDbToLog(env)
-                        .childPidFromDbToLog(env)
-                        .assertGeneratedFulRAD(env, site)
-                        .dispoShouldMatch(site.dispo, site.dispo);
+                        .clickNextButton(new AboutHealthPageOLS());
+                if(aboutHealthPageOLS.getHostName().equals(Properties.getHostName())) {
+                    aboutHealthPageOLS
+                            .waitForPageLoad()
+                            .waitForPageLoad()
+                            .pidFromDbToLog(env)
+                            .childPidFromDbToLog(env)
+                            .assertGeneratedFulRAD(env, site)
+                            .dispoShouldMatch(site.dispo, site.dispo);
+                }
                 break;
             case AUT_AMS1_4912_site:
                 MedicalRecordsOptionPageOLS medicalRecordsOptionPageOLS = siteSelectionPageOLS
@@ -530,16 +536,19 @@ public class Crohns_LC_4912_OLS extends BaseTest {
                 ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = qualifiedFlareMonitoringAppClosePageOLS
                         .waitForPageLoadCrohns()
                         .clickNextButton(new ThankYouCloseSimplePageOLS());
-                AboutHealthPageOLS aboutHealthPageOLS = thankYouCloseSimplePageOLS
+                thankYouCloseSimplePageOLS
                         .waitForPageLoad()
-                        .clickNextButton(new AboutHealthPageOLS());
-                aboutHealthPageOLS
-                        .waitForPageLoad()
-                        .pidFromDbToLog(env)
-                        .childPidFromDbToLog(env)
-                        .assertGeneratedFulRAD(env, site)
-                        .dispoShouldMatch(site.dispo, site.dispo);
-                break;
+                        .clickNextButton(new AboutHealthPageOLS())
+                        .waitForPageLoad();
+                if(aboutHealthPageOLS.getHostName().equals(Properties.getHostName())) {
+                    aboutHealthPageOLS
+                            .waitForPageLoad()
+                            .pidFromDbToLog(env)
+                            .childPidFromDbToLog(env)
+                            .assertGeneratedFulRAD(env, site)
+                            .dispoShouldMatch(site.dispo, site.dispo);
+                    break;
+                }
         }
     }
 }

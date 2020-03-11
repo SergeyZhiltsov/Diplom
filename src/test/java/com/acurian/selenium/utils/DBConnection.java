@@ -1,11 +1,9 @@
 package com.acurian.selenium.utils;
 
-import com.acurian.selenium.pages.BasePage;
 import com.acurian.selenium.utils.db.AnomalyResults;
 import com.acurian.selenium.utils.db.ChildResult;
 import com.acurian.selenium.utils.db.RadiantResults;
 import oracle.jdbc.pool.OracleDataSource;
-import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 import ru.yandex.qatools.allure.annotations.Step;
 
@@ -117,13 +115,14 @@ public class DBConnection {
     }
 
     @Step
-    private void logToAllure(String s){
+    private void logToAllure(String s) {
         System.out.println(s);
     }
+
     @Step
     public void checkTestFlag(String environment) {
         SoftAssert softAssert = new SoftAssert();
-        int i=0;
+        int i = 0;
         try {
             stmt = getDbCon(environment).createStatement();
 
@@ -141,22 +140,22 @@ public class DBConnection {
                     displayInd = rset.getString("display_ind");
                     testSiteInd = rset.getString("test_site_ind");
                     logToAllure("Test site without test flag:" + "\n"
-                            + "site_num: " + studyNum + ","
-                            + "study_id: " + studyID + ","
-                            + "project_code: " + projectCode + ","
-                            + "study_name: " + studyName + ","
-                            + "create_date: " + createDate + ","
-                            + "update_date: " + updateDate + ","
-                            + "facility_cd: " + facilityCD + ","
-                            + "display_ind: " + displayInd + ","
+                            + "site_num: " + studyNum + ", "
+                            + "study_id: " + studyID + ", "
+                            + "project_code: " + projectCode + ", "
+                            + "study_name: " + studyName + ", "
+                            + "create_date: " + createDate + ", "
+                            + "update_date: " + updateDate + ", "
+                            + "facility_cd: " + facilityCD + ", "
+                            + "display_ind: " + displayInd + ", "
                             + "test_site_ind: " + testSiteInd + ".");
                     i++;
-                }catch(NullPointerException e){
+                } catch (NullPointerException e) {
                     logToAllure("All test sites are flagged");
                     break;
                 }
             }
-            softAssert.assertEquals(i,0);
+            softAssert.assertEquals(i, 0);
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -167,7 +166,7 @@ public class DBConnection {
 
     public void convert54Cto1R(String environment, String pidNumber) {
         try {
-            System.out.println("12314231 "+pidNumber);
+            System.out.println("12314231 " + pidNumber);
             Connection connTemp = getDbCon(environment);
             stmt = connTemp.createStatement();
             connTemp.setAutoCommit(false);

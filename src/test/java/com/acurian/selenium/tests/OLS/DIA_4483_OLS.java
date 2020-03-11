@@ -10,6 +10,7 @@ import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.*;
+import com.acurian.selenium.utils.Properties;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
@@ -289,7 +290,6 @@ public class DIA_4483_OLS extends BaseTest {
 //                .clickNextButton(new NoOfAlcoholicDrinkOLS());
 
 
-
 //        noOfAlcoholicDrinkOLS
 //                    .waitForPageLoad()
 //                    .getPage(debugPageOLS)
@@ -373,7 +373,7 @@ public class DIA_4483_OLS extends BaseTest {
 
         List<String> disqualifyQ20 = Arrays.asList("Less than 3 months ago", "3 - 6 months ago", "7 - 11 months ago",
                 "1 - 2 years ago", "More than 2 years ago");
-        for (String answer: disqualifyQ20) {
+        for (String answer : disqualifyQ20) {
             System.out.println("Select answer for Q20: " + answer);
             procedureForWeightLossPageOLS
                     .waitForPageLoad()
@@ -668,7 +668,7 @@ public class DIA_4483_OLS extends BaseTest {
 //                .clickOnAnswers("Cirrhosis")
 //                .clickNextButton(new FollowingMentalEmotionalHealthPageOLS());
         FollowingMentalEmotionalHealthPageOLS following_mentalEmotionalHealthPageOLS = new FollowingMentalEmotionalHealthPageOLS();
-                following_mentalEmotionalHealthPageOLS
+        following_mentalEmotionalHealthPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
@@ -860,12 +860,13 @@ public class DIA_4483_OLS extends BaseTest {
 
         if (site == Site.AUT_NASH4483S_site) {
             new SiteSelectionPageOLS().waitForPageLoad1(studyName)
-                    .getPID();}
-                    else{
+                    .getPID();
+        } else {
             new SiteSelectionPageOLS().waitForPageLoad1(studyName)
-                    .getPID();}
+                    .getPID();
+        }
 
-                    SiteSelectionPageOLS siteSelectionPageOLS = new SiteSelectionPageOLS();
+        SiteSelectionPageOLS siteSelectionPageOLS = new SiteSelectionPageOLS();
         siteSelectionPageOLS.clickOnFacilityName(site.name)
                 .waitForAnimation();
         ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = siteSelectionPageOLS
@@ -880,22 +881,25 @@ public class DIA_4483_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickNextButton(new AlzheimerClosePageOLS())
                 .waitForPageLoad()
-                .clickNextButton(new AboutHealthPageOLS());
-        aboutHealthPageOLS
-                .waitForPageLoad()
-                .pidFromDbToLog(env)
-                .getRadiantDbToLog(env)
-                .childPidFromDbToLog(env, "4483")
-                .dispoShouldMatch(site.dispo, site.dispo)
-                .assertGeneratedFul(env, site)
-                .queueSiteForFULCheck(site.name);
-        switch (site) {
-            case AUT_NASH4483_site: //1R
-                break;
-            case AUT_NASH4483S_site: //41C
-                aboutHealthPageOLS
-                    .getAnomalyDbToLog(env);
-                break;
+                .clickNextButton(new AboutHealthPageOLS())
+                .waitForPageLoad();
+        if (aboutHealthPageOLS.getHostName().equals(Properties.getHostName())) {
+            aboutHealthPageOLS
+                    .waitForPageLoad()
+                    .pidFromDbToLog(env)
+                    .getRadiantDbToLog(env)
+                    .childPidFromDbToLog(env, "4483")
+                    .dispoShouldMatch(site.dispo, site.dispo)
+                    .assertGeneratedFul(env, site)
+                    .queueSiteForFULCheck(site.name);
+            switch (site) {
+                case AUT_NASH4483_site: //1R
+                    break;
+                case AUT_NASH4483S_site: //41C
+                    aboutHealthPageOLS
+                            .getAnomalyDbToLog(env);
+                    break;
+            }
         }
     }
 }

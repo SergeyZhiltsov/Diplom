@@ -12,6 +12,7 @@ import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.*;
+import com.acurian.selenium.utils.Properties;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
@@ -128,14 +129,14 @@ public class DPN_5096_OLS extends BaseTest {
 //                .checkProtocolsContainsForQNumber("QS5503", site.activeProtocols)
 //                .back();
 
-            whatKindOfDiabetesPageOLS
-                    .waitForPageLoad()
-                    .clickOnAnswer("Unsure")
-                    .clickNextButton(new CurrentlyTreatingYourDiabetesPageOLS())
-                    .waitForPageLoad()
-                    .getPage(debugPageOLS)
-                    .checkProtocolsContainsForQNumber("QS5503", site.activeProtocols)
-                    .back();
+        whatKindOfDiabetesPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Unsure")
+                .clickNextButton(new CurrentlyTreatingYourDiabetesPageOLS())
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS5503", site.activeProtocols)
+                .back();
 
         DoYouExperienceDPN_OLS doYouExperienceDPN_OLS = whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
@@ -218,9 +219,9 @@ public class DPN_5096_OLS extends BaseTest {
 
         //----------Q6 - How would you describe the symptoms or sensations you feel in your feet, legs, hands, or arms? ---------
         HowWouldYouDescribeDiabeticNervePainOLS howWouldYouDescribeDiabeticNervePainOLS = approxHowlongYouBeenExpSymptomsOLS
-                        .waitForPageLoadDPN()
-                        .clickOnAnswer("6 - 11 months")
-                        .clickNextButton(new HowWouldYouDescribeDiabeticNervePainOLS());
+                .waitForPageLoadDPN()
+                .clickOnAnswer("6 - 11 months")
+                .clickNextButton(new HowWouldYouDescribeDiabeticNervePainOLS());
 
         howWouldYouDescribeDiabeticNervePainOLS
                 .waitForPageLoad()
@@ -491,7 +492,7 @@ public class DPN_5096_OLS extends BaseTest {
 //                        default: break;
 //                    }
 //                }
-        approximateHeightPageOLS
+        AboutHealthPageOLS aboutHealthPageOLS = approximateHeightPageOLS
                 .clickNextButton(new CurrentlyParticipatingInStudyOLS())
                 .waitForPageLoad()
                 .clickOnAnswer("No")
@@ -510,10 +511,14 @@ public class DPN_5096_OLS extends BaseTest {
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
                 .waitForPageLoad2()
                 .clickNextButton(new AboutHealthPageOLS())
+                .waitForPageLoad();
+        if (aboutHealthPageOLS.getHostName().equals(Properties.getHostName())) {
+            aboutHealthPageOLS
                 .waitForPageLoad()
-                .pidFromDbToLog(env)
-                .childPidFromDbToLog(env, "5096")
-              //  .assertGeneratedFul(env, site)
-                .dispoShouldMatch(site.dispo, site.dispo);
+                    .pidFromDbToLog(env)
+                    .childPidFromDbToLog(env, "5096")
+                    //  .assertGeneratedFul(env, site)
+                    .dispoShouldMatch(site.dispo, site.dispo);
+        }
     }
 }

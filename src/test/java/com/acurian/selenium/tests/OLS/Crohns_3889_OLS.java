@@ -20,6 +20,7 @@ import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.*;
+import com.acurian.selenium.utils.Properties;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
@@ -854,7 +855,7 @@ public class Crohns_3889_OLS extends BaseTest {
                 .waitToClickNext()
                 .clickNextButton(new ThankYouCloseSimplePageOLS())*/
         ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = new ThankYouCloseSimplePageOLS();
-
+AboutHealthPageOLS aboutHealthPageOLS = new AboutHealthPageOLS();
         if(inFlare) {
 //            qualifiedFlareMonitoringAppClosePageOLS
 //                    .waitForPageLoadCrohns()
@@ -863,11 +864,15 @@ public class Crohns_3889_OLS extends BaseTest {
             thankYouCloseSimplePageOLS
                     .waitForPageLoad()
                     .clickNextButton(new AboutHealthPageOLS())
-                    .waitForPageLoad()
-                    .pidFromDbToLog(env)
-                    .childPidFromDbToLog(env)
-                    .assertGeneratedFul(env, site)
-                    .dispoShouldMatch(site.dispo, site.dispo);
+                    .waitForPageLoad();
+
+            if(aboutHealthPageOLS.getHostName().equals(Properties.getHostName())) {
+                aboutHealthPageOLS
+                        .pidFromDbToLog(env)
+                        .childPidFromDbToLog(env)
+                        .assertGeneratedFul(env, site)
+                        .dispoShouldMatch(site.dispo, site.dispo);
+            }
         } else {
             qualifiedFlareMonitoringAppClosePageOLS
                     .waitForPageLoadCrohns()
@@ -875,11 +880,14 @@ public class Crohns_3889_OLS extends BaseTest {
                     .clickNextButton(thankYouCloseSimplePageOLS)
                     .waitForPageLoad()
                     .clickNextButton(new AboutHealthPageOLS())
-                    .waitForPageLoad()
-                    .pidFromDbToLog(env)
-                    .childPidFromDbToLog(env)
-                    .assertGeneratedFul(env, site)
-                    .dispoShouldMatch(site.dispo, site.dispo);
+                    .waitForPageLoad();
+            if (aboutHealthPageOLS.getHostName().equals(Properties.getHostName())) {
+                aboutHealthPageOLS
+                        .pidFromDbToLog(env)
+                        .childPidFromDbToLog(env)
+                        .assertGeneratedFul(env, site)
+                        .dispoShouldMatch(site.dispo, site.dispo);
+            }
         }
     }
 }

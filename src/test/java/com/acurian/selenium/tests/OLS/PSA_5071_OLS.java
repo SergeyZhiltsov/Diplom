@@ -17,6 +17,7 @@ import com.acurian.selenium.pages.OLS.shared.DoYouSufferFromArthritis;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
 import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
 import com.acurian.selenium.tests.CC.PSA_5071_CC;
+import com.acurian.selenium.utils.Properties;
 import io.qameta.allure.Description;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -505,8 +506,9 @@ public class PSA_5071_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
                 .waitForPageLoad2()
-                .clickNextButton(new AboutHealthPageOLS());
-        if(aboutHealthPageOLS.getHostName().equals("QA-Selenium")) {
+                .clickNextButton(new AboutHealthPageOLS())
+                .waitForPageLoad();
+        if(aboutHealthPageOLS.getHostName().equals(Properties.getHostName())) {
             aboutHealthPageOLS
                     .waitForPageLoad()
                     .pidFromDbToLog(env)
