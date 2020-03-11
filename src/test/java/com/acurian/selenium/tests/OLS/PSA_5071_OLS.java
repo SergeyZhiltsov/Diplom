@@ -483,7 +483,7 @@ public class PSA_5071_OLS extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(approximateHeightPageOLS);
 
-        approximateHeightPageOLS
+        AboutHealthPageOLS aboutHealthPageOLS = approximateHeightPageOLS
                 .waitForPageLoad()
                 .setAll("5", "5", "144")
                 .clickNextButton(new CurrentlyParticipatingInStudyOLS())
@@ -505,12 +505,14 @@ public class PSA_5071_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
                 .waitForPageLoad2()
-                .clickNextButton(new AboutHealthPageOLS())
-                .waitForPageLoad()
-                .pidFromDbToLog(env)
-                .childPidFromDbToLog(env, "5071")
-                .assertGeneratedFul(env, site)
-                .dispoShouldMatch(site.dispo, site.dispo);
-
+                .clickNextButton(new AboutHealthPageOLS());
+        if(aboutHealthPageOLS.getHostName().equals("QA-Selenium")) {
+            aboutHealthPageOLS
+                    .waitForPageLoad()
+                    .pidFromDbToLog(env)
+                    .childPidFromDbToLog(env, "5071")
+                    .assertGeneratedFul(env, site)
+                    .dispoShouldMatch(site.dispo, site.dispo);
+        }
     }
 }
