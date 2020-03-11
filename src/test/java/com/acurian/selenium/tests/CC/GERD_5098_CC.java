@@ -863,10 +863,14 @@ public class GERD_5098_CC extends BaseTest {
                         .waitForPageLoad()
                         .clickOnAnswer("Successful transfer made to site")
                         .clickNextButton(selectActionPageCC)
-                        .waitForPageLoad()
-                        .pidFromDbToLog(env)
-                        .childPidFromDbToLog(env)
-                        .dispoShouldMatch(site.dispo, site.dispo);
+                        .waitForPageLoad();
+                if (selectActionPageCC.getHostName().equals(Properties.getHostName())) {
+                    selectActionPageCC
+                            .waitForPageLoad()
+                            .pidFromDbToLog(env)
+                            .childPidFromDbToLog(env)
+                            .dispoShouldMatch(site.dispo, site.dispo);
+                }
                         //.assertGeneratedFul(env, site);
                 break;
             case AUT_AMS1_5098S_site:
@@ -882,12 +886,16 @@ public class GERD_5098_CC extends BaseTest {
                                 "PHMPPDEOE301,PHMPPDPYL301 - Phathom Phalcon")
                         .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                         .clickNextButton(selectActionPageCC)
-                        .waitForPageLoad()
-                        .getRadiantDbToLog(env)
-                        .pidFromDbToLog(env)
-                        .childPidFromDbToLog(env)
-                        .dispoShouldMatch(site.dispo, site.dispo)
-                        .getRadiantDbToLog(env, "5098");
+                        .waitForPageLoad();
+                if (selectActionPageCC.getHostName().equals(Properties.getHostName())) {
+                    selectActionPageCC
+                            .waitForPageLoad()
+                            .getRadiantDbToLog(env)
+                            .pidFromDbToLog(env)
+                            .childPidFromDbToLog(env)
+                            .dispoShouldMatch(site.dispo, site.dispo)
+                            .getRadiantDbToLog(env, "5098");
+                }
                 break;
         }
     }

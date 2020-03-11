@@ -903,12 +903,16 @@ public class DERM_7157_CC extends BaseTest {
                                 "999-999-9999", "%SYN_SITE_NUM%", site.name, "GLNXXXATO204 - Glenmark Pharmaceuticals Atopic Dermatitis")
                         .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                         .clickNextButton(selectActionPageCC)
+                        .waitForPageLoad();
+            if (selectActionPageCC.getHostName().equals(Properties.getHostName())) {
+                selectActionPageCC
                         .waitForPageLoad()
                         .pidFromDbToLog(env)
                         .childPidFromDbToLog(env)
                         .dispoShouldMatch(site.dispo, site.dispo)
                         .assertGeneratedFulDERM(env, site);
 //                    .assertRmgOrderPriority(env, "7157");
+            }
         }
     }
 }

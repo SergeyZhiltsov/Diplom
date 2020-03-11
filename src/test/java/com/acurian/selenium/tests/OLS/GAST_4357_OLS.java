@@ -767,13 +767,13 @@ public class GAST_4357_OLS extends BaseTest {
                             .waitForPageLoad()
                             .clickNextButton(aboutHealthPageOLS).waitForPageLoad();
                     if (aboutHealthPageOLS.getHostName().equals(Properties.getHostName())) {
-                    aboutHealthPageOLS
-                            .waitForPageLoad()
-                            .pidFromDbToLog(env)
-                            .childPidFromDbToLog(env)
-                            .dispoShouldMatch(site.dispo, site.dispo);
-                    break;
+                        aboutHealthPageOLS
+                                .waitForPageLoad()
+                                .pidFromDbToLog(env)
+                                .childPidFromDbToLog(env)
+                                .dispoShouldMatch(site.dispo, site.dispo);
                     }
+                    break;
                 case AUT_GAST4357S_site: //41C
                     QualifiedClose2PageOLS qualifiedClose2PageOLS2 = siteSelectionPageOLS
                             .clickNextButton(new QualifiedClose2PageOLS());
@@ -785,15 +785,16 @@ public class GAST_4357_OLS extends BaseTest {
                             .clickNextButton(aboutHealthPageOLS)
                             .waitForPageLoad();
                     if (aboutHealthPageOLS.getHostName().equals(Properties.getHostName())) {
-                    aboutHealthPageOLS
-                            .waitForPageLoad()
-                            .pidFromDbToLog(env)
-                            .getRadiantDbToLog(env)
-                            .getAnomalyDbToLog(env)
-                            .childPidFromDbToLog(env)
-                            .dispoShouldMatch(site.dispo, site.dispo);
-                    break;
+                        aboutHealthPageOLS
+                                .waitForPageLoad()
+                                .pidFromDbToLog(env)
+                                .getRadiantDbToLog(env)
+                                .getAnomalyDbToLog(env)
+                                .childPidFromDbToLog(env)
+                                .dispoShouldMatch(site.dispo, site.dispo);
                     }
+                    break;
+
 
                 case AUT_GAS4357ds: {
                     try {

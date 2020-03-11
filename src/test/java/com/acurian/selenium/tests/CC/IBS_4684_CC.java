@@ -12,6 +12,7 @@ import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.selenium.pages.OLS.generalHealth.IdentificationPageOLS;
 import com.acurian.selenium.utils.DataProviderPool;
+import com.acurian.selenium.utils.Properties;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
@@ -797,12 +798,16 @@ public class IBS_4684_CC extends BaseTest {
                         .clickNextButton(new AlzheimerClosePageCC())
                         .waitForPageLoad()
                         .clickNextButton(selectActionPageCC)
-                        .waitForPageLoad()
-                        .pidFromDbToLog(env)
-                        .dispoShouldMatch(site.dispo)
-                        .childPidFromDbToLog(env)
-                        .assertGeneratedFul(env, site)
-                        .dispoShouldMatch(site.dispo, site.dispo);
+                        .waitForPageLoad();
+        if (selectActionPageCC.getHostName().equals(Properties.getHostName())) {
+            selectActionPageCC
+                    .waitForPageLoad()
+                    .pidFromDbToLog(env)
+                    .dispoShouldMatch(site.dispo)
+                    .childPidFromDbToLog(env)
+                    .assertGeneratedFul(env, site)
+                    .dispoShouldMatch(site.dispo, site.dispo);
+        }
 
 
 /*        TransitionStatementCC transitionStatementCC = procedureForWeightLossPageCC

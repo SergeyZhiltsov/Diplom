@@ -579,10 +579,14 @@ public class RO_7069_CC extends BaseTest {
                 .clickNextButton(new AlzheimerClosePageCC())
                 .waitForPageLoad()
                 .clickNextButton(selectActionPageCC)
-                .waitForPageLoad()
-                .pidFromDbToLog(env)
-                .childPidFromDbToLog(env)
-                .dispoShouldMatch(site.dispo, site.dispo)
-                .assertGeneratedFul(env, site);
+                .waitForPageLoad();
+        if (selectActionPageCC.getHostName().equals(Properties.getHostName())) {
+            selectActionPageCC
+                    .waitForPageLoad()
+                    .pidFromDbToLog(env)
+                    .childPidFromDbToLog(env)
+                    .dispoShouldMatch(site.dispo, site.dispo)
+                    .assertGeneratedFul(env, site);
+        }
     }
 }

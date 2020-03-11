@@ -553,11 +553,15 @@ public class Crohns_LC_4912_CC extends BaseTest {
                         .clickNextButton(new ThankYouCloseSimplePageCC())
                         .waitForPageLoad3()
                         .clickNextButton(selectActionPageCC)
-                        .waitForPageLoad()
-                        .pidFromDbToLog(env)
-                        .childPidFromDbToLog(env)
-                        .assertGeneratedFulDERM(env, site)
-                        .dispoShouldMatch(site.dispo, site.dispo);
+                        .waitForPageLoad();
+                if (selectActionPageCC.getHostName().equals(Properties.getHostName())) {
+                    selectActionPageCC
+                            .waitForPageLoad()
+                            .pidFromDbToLog(env)
+                            .childPidFromDbToLog(env)
+                            .assertGeneratedFulDERM(env, site)
+                            .dispoShouldMatch(site.dispo, site.dispo);
+                }
                 break;
             case AUT_AMS1_4912_site:
                 siteSelectionPageCC
@@ -573,11 +577,15 @@ public class Crohns_LC_4912_CC extends BaseTest {
                         .clickNextButton(new ThankYouCloseSimplePageCC())
                         .waitForPageLoad3()
                         .clickNextButton(new SelectActionPageCC())
-                        .waitForPageLoad()
-                        .pidFromDbToLog(env)
-                        .childPidFromDbToLog(env)
-                        .assertGeneratedFul(env, site)
-                        .dispoShouldMatch(site.dispo, site.dispo);
+                        .waitForPageLoad();
+                if (selectActionPageCC.getHostName().equals(Properties.getHostName())) {
+                    selectActionPageCC
+                            .waitForPageLoad()
+                            .pidFromDbToLog(env)
+                            .childPidFromDbToLog(env)
+                            .assertGeneratedFul(env, site)
+                            .dispoShouldMatch(site.dispo, site.dispo);
+                }
         }
     }
 }

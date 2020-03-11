@@ -781,11 +781,15 @@ public class UC_4818_CC extends BaseTest {
                         .waitForPageLoad3()
 
                     .clickNextButton(selectActionPageCC)
-                    .waitForPageLoad()
-                    .pidFromDbToLog(env)
-                    .childPidFromDbToLog(env)
-                    //.assertGeneratedFul(env, site)
-                    .dispoShouldMatch(site.dispo, site.dispo, "4818");
+                        .waitForPageLoad();
+                if (selectActionPageCC.getHostName().equals(Properties.getHostName())) {
+                    selectActionPageCC
+                            .waitForPageLoad()
+                            .pidFromDbToLog(env)
+                            .childPidFromDbToLog(env)
+                            //.assertGeneratedFul(env, site)
+                            .dispoShouldMatch(site.dispo, site.dispo, "4818");
+                }
             break;
 
             case AUT_AMS1_4818UCS_Site:
@@ -817,11 +821,15 @@ public class UC_4818_CC extends BaseTest {
 //                .clickNextButton(new AlzheimerClosePageCC())
 //                .waitForPageLoad()
                         .clickNextButton(selectActionPageCC)
-                        .waitForPageLoad()
-                        .pidFromDbToLog(env)
-                        .childPidFromDbToLog(env)
-                        //.assertGeneratedFul(env, site)
-                        .dispoShouldMatch(site.dispo, site.dispo, "4818");
+                        .waitForPageLoad();
+                if (selectActionPageCC.getHostName().equals(Properties.getHostName())) {
+                    selectActionPageCC
+                            .waitForPageLoad()
+                            .pidFromDbToLog(env)
+                            .childPidFromDbToLog(env)
+                            //.assertGeneratedFul(env, site)
+                            .dispoShouldMatch(site.dispo, site.dispo, "4818");
+                }
                 break;
 
 

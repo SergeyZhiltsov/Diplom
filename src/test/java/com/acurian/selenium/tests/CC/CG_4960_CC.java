@@ -501,11 +501,15 @@ public class CG_4960_CC extends BaseTest {
                         .clickNextButton(new AlzheimerClosePageCC())
                         .waitForPageLoad()
                         .clickNextButton(selectActionPageCC)
-                        .waitForPageLoad()
-                        .pidFromDbToLog(env)
-                        .childPidFromDbToLog(env)
-                        .assertGeneratedFul(env, site)
-                        .dispoShouldMatch(site.dispo, site.dispo);
+                        .waitForPageLoad();
+                if (selectActionPageCC.getHostName().equals(Properties.getHostName())) {
+                    selectActionPageCC
+                            .waitForPageLoad()
+                            .pidFromDbToLog(env)
+                            .childPidFromDbToLog(env)
+                            .assertGeneratedFul(env, site)
+                            .dispoShouldMatch(site.dispo, site.dispo);
+                }
 
                 break;
             case AUT_AMS1_4960S_site:
@@ -523,12 +527,16 @@ public class CG_4960_CC extends BaseTest {
                                 "LGLPPDGOU002 - LG Gout")
                         .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                         .clickNextButton(selectActionPageCC)
-                        .waitForPageLoad()
-                        .pidFromDbToLog(env)
-                        .childPidFromDbToLog(env)
-                        .dispoShouldMatch(site.dispo, site.dispo)
-                        .assertGeneratedFul(env, site)
-                        .getRadiantDbToLog(env);
+                        .waitForPageLoad();
+                if (selectActionPageCC.getHostName().equals(Properties.getHostName())) {
+                    selectActionPageCC
+                            .waitForPageLoad()
+                            .pidFromDbToLog(env)
+                            .childPidFromDbToLog(env)
+                            .dispoShouldMatch(site.dispo, site.dispo)
+                            .assertGeneratedFul(env, site)
+                            .getRadiantDbToLog(env);
+                }
                 break;
         }
     }

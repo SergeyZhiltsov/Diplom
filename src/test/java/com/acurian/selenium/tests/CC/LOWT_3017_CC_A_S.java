@@ -581,11 +581,15 @@ public class LOWT_3017_CC_A_S extends BaseTest {
                                 site.name, env.equals("PRD") ? "ABVCOVCAR100 - AbbVie TRAVERSE Hypogonadism" : "%SYN_PROJECT_CODE% - AbbVie TRAVERSE Hypogonadism")
                         .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                         .clickNextButton(selectActionPageCC)
-                        .waitForPageLoad()
-                        .pidFromDbToLog(env)
-                        .getRadiantDbToLog(env)
-                        .childPidFromDbToLog(env, "3017")
-                        .dispoShouldMatch(site.dispo, site.dispo);
+                        .waitForPageLoad();
+                if (selectActionPageCC.getHostName().equals(Properties.getHostName())) {
+                    selectActionPageCC
+                            .waitForPageLoad()
+                            .pidFromDbToLog(env)
+                            .getRadiantDbToLog(env)
+                            .childPidFromDbToLog(env, "3017")
+                            .dispoShouldMatch(site.dispo, site.dispo);
+                }
                 break;
             case AUT_LOWT_3017_Site:
                 selectionPageCC
@@ -601,11 +605,15 @@ public class LOWT_3017_CC_A_S extends BaseTest {
                         .clickNextButton(new ThankYouCloseSimplePageCC())
                         .waitForPageLoad()
                         .clickNextButton(selectActionPageCC)
-                        .waitForPageLoad()
-                        .pidFromDbToLog(env)
-                        .childPidFromDbToLog(env, "3017")
-                        .assertGeneratedFul(env, site)
-                        .dispoShouldMatch(site.dispo, site.dispo);
+                        .waitForPageLoad();
+                if (selectActionPageCC.getHostName().equals(Properties.getHostName())) {
+                    selectActionPageCC
+                            .waitForPageLoad()
+                            .pidFromDbToLog(env)
+                            .childPidFromDbToLog(env, "3017")
+                            .assertGeneratedFul(env, site)
+                            .dispoShouldMatch(site.dispo, site.dispo);
+                }
         }
     }
 }

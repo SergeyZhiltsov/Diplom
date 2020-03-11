@@ -735,12 +735,16 @@ public class IBS_5019_CC extends BaseTest {
                         .clickNextButton(new ThankYouCloseSimplePageCC())
                         .waitForPageLoad()
                         .clickNextButton(selectActionPageCC)
-                        .waitForPageLoad()
-                        .pidFromDbToLog(env)
-                        .dispoShouldMatch(site.dispo)
-                        .childPidFromDbToLog(env)
-                        .assertGeneratedFul(env, site)
-                        .dispoShouldMatch(site.dispo, site.dispo);
+                        .waitForPageLoad();
+                if (selectActionPageCC.getHostName().equals(Properties.getHostName())) {
+                    selectActionPageCC
+                            .waitForPageLoad()
+                            .pidFromDbToLog(env)
+                            .dispoShouldMatch(site.dispo)
+                            .childPidFromDbToLog(env)
+                            .assertGeneratedFul(env, site)
+                            .dispoShouldMatch(site.dispo, site.dispo);
+                }
                 break;
             case AUT_AMS1_5019S_site:
                 siteSelectionPageCC
@@ -752,12 +756,16 @@ public class IBS_5019_CC extends BaseTest {
                                             "BOSPPDIBS201 - Boston Pharmaceuticals IBS-D")
                         .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                         .clickNextButton(selectActionPageCC)
-                        .waitForPageLoad()
-                        .pidFromDbToLog(env)
-                        .dispoShouldMatch(site.dispo)
-                        .childPidFromDbToLog(env)
-                        .assertGeneratedFul(env, site)
-                        .dispoShouldMatch(site.dispo, site.dispo);
+                        .waitForPageLoad();
+                if (selectActionPageCC.getHostName().equals(Properties.getHostName())) {
+                    selectActionPageCC
+                            .waitForPageLoad()
+                            .pidFromDbToLog(env)
+                            .dispoShouldMatch(site.dispo)
+                            .childPidFromDbToLog(env)
+                            .assertGeneratedFul(env, site)
+                            .dispoShouldMatch(site.dispo, site.dispo);
+                }
                 break;
         }
     }

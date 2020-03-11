@@ -619,10 +619,14 @@ public class Crohns_4818_CC extends BaseTest {
                         .clickNextButton(new ThankYouCloseSimplePageCC())
                         .waitForPageLoad3()
                         .clickNextButton(new SelectActionPageCC())
-                        .pidFromDbToLog(env)
-                        .childPidFromDbToLog(env)
-                        .assertGeneratedFul(env, site)
-                        .dispoShouldMatch(site.dispo, site.dispo);
+                        .waitForPageLoad();
+                if (selectActionPageCC.getHostName().equals(Properties.getHostName())) {
+                    selectActionPageCC
+                            .pidFromDbToLog(env)
+                            .childPidFromDbToLog(env)
+                            .assertGeneratedFul(env, site)
+                            .dispoShouldMatch(site.dispo, site.dispo);
+                }
                 break;
 
             case AUT_AMS1_4818AS_Site:
@@ -663,10 +667,14 @@ public class Crohns_4818_CC extends BaseTest {
                                 "ALLXXXCRO150 - Allergan Crohn")
                         .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                         .clickNextButton(new SelectActionPageCC())
-                        .pidFromDbToLog(env)
-                        .childPidFromDbToLog(env)
-                        .assertGeneratedFul(env, site)
-                        .dispoShouldMatch(site.dispo, site.dispo);
+                        .waitForPageLoad();
+                if (selectActionPageCC.getHostName().equals(Properties.getHostName())) {
+                    selectActionPageCC
+                            .pidFromDbToLog(env)
+                            .childPidFromDbToLog(env)
+                            .assertGeneratedFul(env, site)
+                            .dispoShouldMatch(site.dispo, site.dispo);
+                }
                 break;
 
         }
