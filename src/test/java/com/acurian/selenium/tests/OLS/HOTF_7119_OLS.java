@@ -13,6 +13,7 @@ import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
 import com.acurian.selenium.pages.OLS.shared.HaveYouGoneThroughMenopauseOLS;
 import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
+import com.acurian.selenium.utils.Properties;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
@@ -372,12 +373,15 @@ public class HOTF_7119_OLS extends BaseTest {
                 .waitForPageLoad2()
                 .clickNextButton(new AlzheimerClosePageOLS())
                 .waitForPageLoad()
-                .clickNextButton(new AboutHealthPageOLS());
-        aboutHealthPageOLS
-                .waitForPageLoad()
-                .pidFromDbToLog(env)
-                .dispoShouldMatch(site.dispo)
-                .assertGeneratedFul(env, site)
-                .childPidFromDbToLog(env, "7119");
+                .clickNextButton(new AboutHealthPageOLS())
+                .waitForPageLoad();
+        if (aboutHealthPageOLS.getHostName().equals(Properties.getHostName())) {
+            aboutHealthPageOLS
+                    .waitForPageLoad()
+                    .pidFromDbToLog(env)
+                    .dispoShouldMatch(site.dispo)
+                    .assertGeneratedFul(env, site)
+                    .childPidFromDbToLog(env, "7119");
+        }
     }
 }

@@ -12,6 +12,7 @@ import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
 import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
+import com.acurian.selenium.utils.Properties;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
@@ -359,21 +360,24 @@ public class COPD_5042_OLS extends BaseTest {
         ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = new ThankYouCloseSimplePageOLS();
         AboutHealthPageOLS aboutHealthPageOLS = thankYouCloseSimplePageOLS
                 .waitForPageLoad()
-                .clickNextButton(new AboutHealthPageOLS());
-        aboutHealthPageOLS
+                .clickNextButton(new AboutHealthPageOLS())
+                .waitForPageLoad();
+        if(aboutHealthPageOLS.getHostName().equals(Properties.getHostName())) {
+            aboutHealthPageOLS
                 .waitForPageLoad()
-                .pidFromDbToLog(env)
-                .childPidFromDbToLog(env)
-                .dispoShouldMatch(site.dispo, site.dispo);
-        switch (site) {
-            case AUT_COPD_5042_Site: //1R
-                aboutHealthPageOLS
-                        .assertGeneratedFul(env, site);
-                break;
-            case AUT_COPD_5042S_Site: //41C
-                aboutHealthPageOLS
-                        .getRadiantDbToLog(env)
-                        .getAnomalyDbToLog(env);
+                    .pidFromDbToLog(env)
+                    .childPidFromDbToLog(env)
+                    .dispoShouldMatch(site.dispo, site.dispo);
+            switch (site) {
+                case AUT_COPD_5042_Site: //1R
+                    aboutHealthPageOLS
+                            .assertGeneratedFul(env, site);
+                    break;
+                case AUT_COPD_5042S_Site: //41C
+                    aboutHealthPageOLS
+                            .getRadiantDbToLog(env)
+                            .getAnomalyDbToLog(env);
+            }
         }
     }
 }

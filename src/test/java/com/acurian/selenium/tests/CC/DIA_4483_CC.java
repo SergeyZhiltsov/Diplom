@@ -836,12 +836,16 @@ public class DIA_4483_CC extends BaseTest {
                         .clickNextButton(new AlzheimerClosePageCC())
                         .waitForPageLoad()
                     .clickNextButton(selectActionPageCC)
-                    .waitForPageLoad()
-                    .pidFromDbToLog(env)
-                    .getRadiantDbToLog(env)
-                    .childPidFromDbToLog(env, "4483")
-                    .assertGeneratedFul(env, site)
-                    .dispoShouldMatch(site.dispo, site.dispo);
+                        .waitForPageLoad();
+                if (selectActionPageCC.getHostName().equals(Properties.getHostName())) {
+                    selectActionPageCC
+                            .waitForPageLoad()
+                            .pidFromDbToLog(env)
+                            .getRadiantDbToLog(env)
+                            .childPidFromDbToLog(env, "4483")
+                            .assertGeneratedFul(env, site)
+                            .dispoShouldMatch(site.dispo, site.dispo);
+                }
                 break;
             case AUT_NASH4483S_site: //41C
                 siteSelectionPageCC
@@ -855,12 +859,16 @@ public class DIA_4483_CC extends BaseTest {
                             "999-999-9999", "aut4483", site.name, "MADPRANAH611 - Madrigal NASH")
                     .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                     .clickNextButton(selectActionPageCC)
-                    .waitForPageLoad()
-                    .pidFromDbToLog(env)
-                    .getRadiantDbToLog(env)
-                    .childPidFromDbToLog(env, "4483")
-                    .assertGeneratedFul(env, site)
-                    .dispoShouldMatch(site.dispo, site.dispo);
+                        .waitForPageLoad();
+                if (selectActionPageCC.getHostName().equals(Properties.getHostName())) {
+                    selectActionPageCC
+                            .waitForPageLoad()
+                            .pidFromDbToLog(env)
+                            .getRadiantDbToLog(env)
+                            .childPidFromDbToLog(env, "4483")
+                            .assertGeneratedFul(env, site)
+                            .dispoShouldMatch(site.dispo, site.dispo);
+                }
                 break;
         }
     }

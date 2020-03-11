@@ -11,6 +11,7 @@ import com.acurian.selenium.pages.OLS.generalHealth.SiteSelectionPageOLS;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
 import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
+import com.acurian.selenium.utils.Properties;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -95,7 +96,11 @@ public class AHLandingPage_OLS extends BaseTest {
 
 
         //----------SiteSelection Page--------------------
-        SiteSelectionPageOLS siteSelectionPageOLS = new SiteSelectionPageOLS()
-                .getPID();
+
+        SiteSelectionPageOLS siteSelectionPageOLS = new SiteSelectionPageOLS();
+        if(siteSelectionPageOLS.getHostName().equals(Properties.getHostName())) {
+            siteSelectionPageOLS
+                    .getPID();
+        }
     }
 }

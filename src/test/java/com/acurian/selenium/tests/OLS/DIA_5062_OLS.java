@@ -10,6 +10,7 @@ import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.*;
+import com.acurian.selenium.utils.Properties;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
@@ -97,7 +98,7 @@ public class DIA_5062_OLS extends BaseTest {
 //                .getPage(debugPageOLS)
 //                .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
 //                .back();
-       WhatKindOfDiabetesPageOLS whatKindOfDiabetesPageOLS = new WhatKindOfDiabetesPageOLS();
+        WhatKindOfDiabetesPageOLS whatKindOfDiabetesPageOLS = new WhatKindOfDiabetesPageOLS();
         whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Type 2 diabetes (sometimes called Adult-onset diabetes)")
@@ -665,7 +666,7 @@ public class DIA_5062_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new IdentificationPageOLS());
-        identificationPageOLS
+        AboutHealthPageOLS aboutHealthPageOLS = identificationPageOLS
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageOLS())
@@ -682,13 +683,17 @@ public class DIA_5062_OLS extends BaseTest {
                 .clickNextButton(new AlzheimerClosePageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())
-                .waitForPageLoad()
-                .pidFromDbToLog(env)
-                .getRadiantDbToLog(env)
-                .getAnomalyDbToLog(env)
-                .childPidFromDbToLog(env)
-                .dispoShouldMatch(site.dispo, site.dispo)
-                .assertGeneratedFul(env, site)
-                .queueSiteForFULCheck(site.name);
+                .waitForPageLoad();
+        if (aboutHealthPageOLS.getHostName().equals(Properties.getHostName())) {
+            aboutHealthPageOLS
+                    .waitForPageLoad()
+                    .pidFromDbToLog(env)
+                    .getRadiantDbToLog(env)
+                    .getAnomalyDbToLog(env)
+                    .childPidFromDbToLog(env)
+                    .dispoShouldMatch(site.dispo, site.dispo)
+                    .assertGeneratedFul(env, site)
+                    .queueSiteForFULCheck(site.name);
+        }
     }
 }

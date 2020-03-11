@@ -13,6 +13,7 @@ import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.*;
+import com.acurian.selenium.utils.Properties;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -859,14 +860,17 @@ public class DERM_4967_OLS extends BaseTest {
 
         AboutHealthPageOLS aboutHealthPageOLS = thankYouCloseSimplePageOLS
                 .waitForPageLoad()
-                .clickNextButton(new AboutHealthPageOLS());
+                .clickNextButton(new AboutHealthPageOLS())
+                .waitForPageLoad();
 
-        aboutHealthPageOLS
-                .waitForPageLoad()
-                .pidFromDbToLog(env)
-                .childPidFromDbToLog(env)
-                .dispoShouldMatch(site.dispo, site.dispo)
-                .assertGeneratedFul(env, site);
-     //           .assertRmgOrderPriority(env, "4967")
+        if(aboutHealthPageOLS.getHostName().equals(Properties.getHostName())) {
+            aboutHealthPageOLS
+                    .waitForPageLoad()
+                    .pidFromDbToLog(env)
+                    .childPidFromDbToLog(env)
+                    .dispoShouldMatch(site.dispo, site.dispo)
+                    .assertGeneratedFul(env, site);
+            //           .assertRmgOrderPriority(env, "4967")
+        }
     }
 }

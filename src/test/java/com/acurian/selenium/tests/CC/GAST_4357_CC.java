@@ -828,10 +828,14 @@ public class GAST_4357_CC extends BaseTest {
                         .clickNextButton(new ThankYouCloseSimplePageCC())
                         .waitForPageLoad3()
                         .clickNextButton(selectActionPageCC)
-                        .waitForPageLoad()
-                        .pidFromDbToLog(env)
-                        .childPidFromDbToLog(env)
-                        .dispoShouldMatch(site.dispo, site.dispo);
+                        .waitForPageLoad();
+                if (selectActionPageCC.getHostName().equals(Properties.getHostName())) {
+                    selectActionPageCC
+                            .waitForPageLoad()
+                            .pidFromDbToLog(env)
+                            .childPidFromDbToLog(env)
+                            .dispoShouldMatch(site.dispo, site.dispo);
+                }
                 break;
                 case AUT_GAS4357ds:
                     try{
@@ -887,16 +891,18 @@ public class GAST_4357_CC extends BaseTest {
                     synexusRadiantDirectScheduleCC
                             .waitForPageLoadSyn()
                             .clickOnAnswer("[Successful direct schedule in clinical conductor]")
-                            .clickNextButton(selectActionPageCC);
+                            .clickNextButton(selectActionPageCC).waitForPageLoad();
+                        if (selectActionPageCC.getHostName().equals(Properties.getHostName())) {
 //                    thankYouCloseSimplePageCC
 //                            .waitForPageLoad()
 //                            .clickNextButton(selectActionPageCC);
 
-                    selectActionPageCC
-                            .waitForPageLoad()
-                            .pidFromDbToLog(env)
-                            .childPidFromDbToLog(env)
-                            .dispoShouldMatch(site.dispo, site.dispo);
+                            selectActionPageCC
+                                    .waitForPageLoad()
+                                    .pidFromDbToLog(env)
+                                    .childPidFromDbToLog(env)
+                                    .dispoShouldMatch(site.dispo, site.dispo);
+                        }
         }catch(TimeoutException e){
                         selectActionPageCC.logTextToAllure("No appointpments");
         }
@@ -914,11 +920,15 @@ public class GAST_4357_CC extends BaseTest {
                                 site.name, env.equals("STG") ? "ALLXXXDGP01,ALLXXXDGP02 - Allergan Gastroparesis" : "ALLXXXDGPD01,ALLXXXDGPD02 - Allergan Gastroparesis")
                         .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                         .clickNextButton(selectActionPageCC)
-                        .waitForPageLoad()
-                        .pidFromDbToLog(env)
-                        .getRadiantDbToLog(env)
-                        .childPidFromDbToLog(env)
-                        .dispoShouldMatch(site.dispo, site.dispo);
+                        .waitForPageLoad();
+                if (selectActionPageCC.getHostName().equals(Properties.getHostName())) {
+                    selectActionPageCC
+                            .waitForPageLoad()
+                            .pidFromDbToLog(env)
+                            .getRadiantDbToLog(env)
+                            .childPidFromDbToLog(env)
+                            .dispoShouldMatch(site.dispo, site.dispo);
+                }
         }
         selectActionPageCC.flareCodeShouldMatch(env, inFlare ? "3" : "4");
     }

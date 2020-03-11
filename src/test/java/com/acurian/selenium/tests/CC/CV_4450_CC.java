@@ -443,10 +443,14 @@ public class CV_4450_CC extends BaseTest {
                         "999-999-9999", "12345D", site.name, "NNDXXXCAR388 - Novo Nordisk cardiovascular outcomes")
                 .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                 .clickNextButton(selectActionPageCC)
-                .waitForPageLoad()
-                .pidFromDbToLog(env)
-                .getRadiantDbToLog(env)
-                .childPidFromDbToLog(env)
-                .dispoShouldMatch(site.dispo, site.dispo);
+                .waitForPageLoad();
+        if (selectActionPageCC.getHostName().equals(Properties.getHostName())) {
+            selectActionPageCC
+                    .waitForPageLoad()
+                    .pidFromDbToLog(env)
+                    .getRadiantDbToLog(env)
+                    .childPidFromDbToLog(env)
+                    .dispoShouldMatch(site.dispo, site.dispo);
+        }
     }
 }

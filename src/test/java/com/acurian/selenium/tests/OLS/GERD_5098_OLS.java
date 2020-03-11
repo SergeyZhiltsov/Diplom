@@ -8,6 +8,7 @@ import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.*;
+import com.acurian.selenium.utils.Properties;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -717,7 +718,7 @@ public class GERD_5098_OLS extends BaseTest {
                 .clickNextButton(new SiteSelectionPageOLS());
 
         //----------SiteSelection Page--------------------
-        siteSelectionPageOLS
+        AboutHealthPageOLS aboutHealthPageOLS = siteSelectionPageOLS
                 .waitForPageLoad("a heartburn or reflux study, " + studyName)
                 .getPID()
                 .clickOnFacilityName(site.name)
@@ -726,10 +727,14 @@ public class GERD_5098_OLS extends BaseTest {
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
                 .waitForPageLoad2()
                 .clickNextButton(new AboutHealthPageOLS())
+                .waitForPageLoad();
+        if (aboutHealthPageOLS.getHostName().equals(Properties.getHostName())) {
+            aboutHealthPageOLS
                 .waitForPageLoad()
-                .pidFromDbToLog(env)
-                .childPidFromDbToLog(env)
-                //.assertGeneratedFul(env, site)
-                .dispoShouldMatch(site.dispo, site.dispo);
+                    .pidFromDbToLog(env)
+                    .childPidFromDbToLog(env)
+                    //.assertGeneratedFul(env, site)
+                    .dispoShouldMatch(site.dispo, site.dispo);
+        }
     }
 }

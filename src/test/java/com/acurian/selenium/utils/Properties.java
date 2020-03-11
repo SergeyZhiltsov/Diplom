@@ -9,6 +9,7 @@ public class Properties {
     private static final String DEFAULT_USERNAME = "aautotest";
     private static final String DEFAULT_PASSWORD = "aautotest";
     private static final String DEFAULT_GRID_URL = "http://10.6.0.26:55555/wd/hub";
+    private static final String DEFAULT_HOSTNAME = "QA-Selenium";
 
     private Properties() {
     }
@@ -35,6 +36,10 @@ public class Properties {
 
     public static String getPassword() {
         return DEFAULT_PASSWORD;
+    }
+
+    public static String getHostName() {
+        return DEFAULT_HOSTNAME;
     }
 
     enum EnvironmentVariable {

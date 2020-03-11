@@ -10,6 +10,7 @@ import com.acurian.selenium.pages.OLS.generalHealth.HaveYouEverBeenDiagnosedWith
 import com.acurian.selenium.pages.OLS.generalHealth.IdentificationPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.SiteSelectionPageOLS;
 import com.acurian.selenium.pages.OLS.shared.*;
+import com.acurian.selenium.utils.Properties;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -436,18 +437,21 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
 //                        .clickOkInPopUp()
 //                        .setSignature();
 
-                thankYouCloseSimplePageOLS
+                AboutHealthPageOLS aboutHealthPageOLS = thankYouCloseSimplePageOLS
                         .waitForPageLoad()
 //                        .waitToClickNext()
                         .clickNextButton(new AlzheimerClosePageOLS())
                         .waitForPageLoad()
-                        .clickNextButton(new AboutHealthPageOLS())
-                        .waitForPageLoad()
-                        .pidFromDbToLog(env)
-                        .getRadiantDbToLog(env)
-                       // .getAnomalyDbToLog(env)
-                        .childPidFromDbToLog(env)
-                        .dispoShouldMatch(site.dispo, site.dispo);
+                        .clickNextButton(new AboutHealthPageOLS())                .waitForPageLoad();
+                if (aboutHealthPageOLS.getHostName().equals(Properties.getHostName())) {
+                    aboutHealthPageOLS
+                            .waitForPageLoad()
+                            .pidFromDbToLog(env)
+                            .getRadiantDbToLog(env)
+                            // .getAnomalyDbToLog(env)
+                            .childPidFromDbToLog(env)
+                            .dispoShouldMatch(site.dispo, site.dispo);
+                }
         }
     }
 }

@@ -12,6 +12,7 @@ import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.*;
+import com.acurian.selenium.utils.Properties;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -839,23 +840,28 @@ public class DERM_7157_OLS extends BaseTest {
                 .clickNextButton(thankYouCloseSimplePageOLS);
         thankYouCloseSimplePageOLS
                 .waitForPageLoad()
-                .clickNextButton(aboutHealthPageOLS);
-        aboutHealthPageOLS
-                .pidFromDbToLog(env)
-                .childPidFromDbToLog(env)
-                .dispoShouldMatch(site.dispo, site.dispo);
-        try {
-            Thread.sleep(15000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        if(site.name.equals("AUT_AMS1_7157_site")){
-                    aboutHealthPageOLS
-                .assertGeneratedFulNEW(env, site);}
-//                .assertRmgOrderPriority(env, "7157");}
-        if(site.name.equals("AUT_AMS1_7157S_site")){
+                .clickNextButton(aboutHealthPageOLS)
+                .waitForPageLoad();
+        if(aboutHealthPageOLS.getHostName().equals(Properties.getHostName())) {
             aboutHealthPageOLS
-                    .assertGeneratedFulRAD(env, site);}
+                    .pidFromDbToLog(env)
+                    .childPidFromDbToLog(env)
+                    .dispoShouldMatch(site.dispo, site.dispo);
+            try {
+                Thread.sleep(15000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            if (site.name.equals("AUT_AMS1_7157_site")) {
+                aboutHealthPageOLS
+                        .assertGeneratedFulNEW(env, site);
+            }
+//                .assertRmgOrderPriority(env, "7157");}
+            if (site.name.equals("AUT_AMS1_7157S_site")) {
+                aboutHealthPageOLS
+                        .assertGeneratedFulRAD(env, site);
+            }
 //                    .assertRmgOrderPriority(env, "7157");}
+        }
     }
-    }
+}

@@ -417,13 +417,17 @@ public class HOTF_7119_CC extends BaseTest {
                         "aut7119s", site.name, "ASSICNVMS301,ASSICNVMS302,ASSICNVMS304 - Astellas Skylight Hot Flashes")
                 .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                 .clickNextButton(selectActionPageCC)
-                .waitForPageLoad()
-                .pidFromDbToLog(env)
-                .getRadiantDbToLog(env)
-                .childPidFromDbToLog(env)
-                .assertGeneratedFul(env, site)
-                .dispoShouldMatch(site.dispo, site.dispo)
-                .queueSiteForFULCheck(site.name);
+                .waitForPageLoad();
+        if (selectActionPageCC.getHostName().equals(Properties.getHostName())) {
+            selectActionPageCC
+                    .waitForPageLoad()
+                    .pidFromDbToLog(env)
+                    .getRadiantDbToLog(env)
+                    .childPidFromDbToLog(env)
+                    .assertGeneratedFul(env, site)
+                    .dispoShouldMatch(site.dispo, site.dispo)
+                    .queueSiteForFULCheck(site.name);
+        }
 
     }
 }

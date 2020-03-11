@@ -430,10 +430,14 @@ public class Lupus_4442_CC extends BaseTest {
                 .clickNextButton(new ThankYouCloseSimplePageCC())
                 .waitForPageLoad3()
                 .clickNextButton(selectActionPageCC)
-                .waitForPageLoad()
-                .pidFromDbToLog(env)
-                .childPidFromDbToLog(env, "4442")
-                .assertGeneratedFul(env, site)
-                .dispoShouldMatch(site.dispo, site.dispo);
+                .waitForPageLoad();
+        if (selectActionPageCC.getHostName().equals(Properties.getHostName())) {
+            selectActionPageCC
+                    .waitForPageLoad()
+                    .pidFromDbToLog(env)
+                    .childPidFromDbToLog(env, "4442")
+                    .assertGeneratedFul(env, site)
+                    .dispoShouldMatch(site.dispo, site.dispo);
+        }
     }
 }

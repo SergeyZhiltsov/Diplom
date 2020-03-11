@@ -11,6 +11,7 @@ import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.*;
+import com.acurian.selenium.utils.Properties;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
@@ -738,13 +739,16 @@ public class UC_4818_OLS extends BaseTest {
                     .getPage(new ThankYouCloseSimplePageOLS());
             AboutHealthPageOLS aboutHealthPageOLS = thankYouCloseSimplePageOLS
                     .waitForPageLoad()
-                    .clickNextButton(new AboutHealthPageOLS());
+                    .clickNextButton(new AboutHealthPageOLS())
+                    .waitForPageLoad();
+        if (aboutHealthPageOLS.getHostName().equals(Properties.getHostName())) {
             aboutHealthPageOLS
                     .waitForPageLoad()
                     .pidFromDbToLog(env)
                     .childPidFromDbToLog(env)
                     //.assertGeneratedFul(env, site)
                     .dispoShouldMatch(site.dispo, site.dispo, "4818");
+        }
         }
     }
 

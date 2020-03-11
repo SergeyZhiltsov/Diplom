@@ -19,6 +19,7 @@ import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.*;
+import com.acurian.selenium.utils.Properties;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -767,16 +768,18 @@ public class GAST_9279_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
                 .waitForPageLoad()
-                .clickNextButton(new AboutHealthPageOLS());
+                .clickNextButton(new AboutHealthPageOLS())
+                .waitForPageLoad();
+        if (aboutHealthPageOLS.getHostName().equals(Properties.getHostName())) {
 
-        aboutHealthPageOLS
-                .waitForPageLoad()
-                .pidFromDbToLog(env)
-                .getRadiantDbToLog(env)
-                .getAnomalyDbToLog(env)
-                .childPidFromDbToLog(env)
-                .dispoShouldMatch(site.dispo, site.dispo);
+            aboutHealthPageOLS
+                    .waitForPageLoad()
+                    .pidFromDbToLog(env)
+                    .getRadiantDbToLog(env)
+                    .getAnomalyDbToLog(env)
+                    .childPidFromDbToLog(env)
+                    .dispoShouldMatch(site.dispo, site.dispo);
 
-
+        }
     }
 }

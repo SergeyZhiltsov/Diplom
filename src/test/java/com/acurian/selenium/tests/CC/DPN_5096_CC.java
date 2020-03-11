@@ -627,11 +627,15 @@ public class DPN_5096_CC extends BaseTest {
                         //.clickOnAnswer("No")
                         .clickNextButton(new ThankYouCloseSimplePageCC())
                         .clickNextButton(selectActionPageCC)
-                        .waitForPageLoad()
-                        .pidFromDbToLog(env)
-                        .childPidFromDbToLog(env)
-                     //   .assertGeneratedFul(env, site)
-                        .dispoShouldMatch(site.dispo, site.dispo);
+                        .waitForPageLoad();
+                if (selectActionPageCC.getHostName().equals(Properties.getHostName())) {
+                    selectActionPageCC
+                            .waitForPageLoad()
+                            .pidFromDbToLog(env)
+                            .childPidFromDbToLog(env)
+                            //   .assertGeneratedFul(env, site)
+                            .dispoShouldMatch(site.dispo, site.dispo);
+                }
                 break;
             case AUT_DPN_5096S_site:
                 siteSelectionPageCC
@@ -644,11 +648,15 @@ public class DPN_5096_CC extends BaseTest {
                                 "APTXXXDPN008 - Aptinyx DPN (diabetic neuropathy)")
                         .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                         .clickNextButton(selectActionPageCC)
-                        .waitForPageLoad()
-                        .pidFromDbToLog(env)
-                        .getRadiantDbToLog(env)
-                        //.assertGeneratedFul(env, site)
-                        .dispoShouldMatch(site.dispo);
+                        .waitForPageLoad();
+                if (selectActionPageCC.getHostName().equals(Properties.getHostName())) {
+                    selectActionPageCC
+                            .waitForPageLoad()
+                            .pidFromDbToLog(env)
+                            .getRadiantDbToLog(env)
+                            //.assertGeneratedFul(env, site)
+                            .dispoShouldMatch(site.dispo);
+                }
         }
     }
 }

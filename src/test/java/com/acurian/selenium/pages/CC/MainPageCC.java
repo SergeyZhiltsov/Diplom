@@ -17,6 +17,8 @@ import org.testng.Assert;
 import ru.yandex.qatools.allure.annotations.Step;
 
 import java.io.*;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -63,6 +65,23 @@ public class MainPageCC extends BasePage {
         dispoParent = getDbConnection().getDispo();
         logTextToAllure("Parent dispo = " + dispoParent + " for PID " + pid);
         return this;
+    }
+
+    @Step
+    public String getHostName(){
+        String hostname = null;
+
+        try
+        {
+            InetAddress addr;
+            addr = InetAddress.getLocalHost();
+            hostname = addr.getHostName();
+        }
+        catch (UnknownHostException ex)
+        {
+            System.out.println("Hostname can not be resolved");
+        }
+        return hostname;
     }
 
     @Step

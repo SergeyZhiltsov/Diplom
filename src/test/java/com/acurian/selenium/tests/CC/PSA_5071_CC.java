@@ -593,11 +593,14 @@ public class PSA_5071_CC extends BaseTest {
                         .clickNextButton(selectActionPageCC);
                 break;
         }
-        selectActionPageCC
-                .waitForPageLoad()
-                .pidFromDbToLog(env)
-                .childPidFromDbToLog(env, "5071")
-                .assertGeneratedFul(env, site)
-                .dispoShouldMatch(site.dispo, site.dispo);
+        selectActionPageCC.waitForPageLoad();
+        if (selectActionPageCC.getHostName().equals(Properties.getHostName())) {
+            selectActionPageCC
+                    .waitForPageLoad()
+                    .pidFromDbToLog(env)
+                    .childPidFromDbToLog(env, "5071")
+                    .assertGeneratedFul(env, site)
+                    .dispoShouldMatch(site.dispo, site.dispo);
+        }
     }
 }

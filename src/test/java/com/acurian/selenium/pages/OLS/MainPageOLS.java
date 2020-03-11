@@ -139,6 +139,7 @@ public class MainPageOLS extends BasePage {
         return this;
     }
 
+    @Step
     public String getHostName(){
         String hostname = null;
 
