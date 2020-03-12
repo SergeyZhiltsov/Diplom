@@ -128,7 +128,7 @@ public class AnomalyTestDRS extends BaseTest {
         }
         directSheduleBlinx
                 .clickNextButton(new QualifiedClose2PageOLS())
-                .waitForPageLoadGMEGA()
+                .waitForPageLoadGMEGA2()
                 .clickNextButton(new ThankYouCloseGmegaOLS())
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())

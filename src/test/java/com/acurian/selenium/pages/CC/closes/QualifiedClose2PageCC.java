@@ -19,8 +19,8 @@ public class QualifiedClose2PageCC extends MainPageCC {
     public final String titleExpected2 = "We're glad the location is convenient for you.\n" +
             "We will forward your contact information to the doctor's office that you selected so they may contact you.";
 
-    public final String titleExpectedGMEGA = "We're glad the location is convenient for you. \n" +
-            "We will forward your contact information to the doctor's office that you selected so they may contact you.";
+    public final String titleExpectedGMEGA = "We're glad the location is convenient for you.\n" +
+            "We will forward your contact information to the doctor's office that you selected so they may contact you about your condition Low Back Pain, Arthritis, Rheumatoid Arthritis, Diabetes";
 
     public final String titleExpectedIBD = "We’re glad the location is convenient for you.\n" +
             "\n" +

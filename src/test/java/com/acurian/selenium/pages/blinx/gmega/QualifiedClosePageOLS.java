@@ -7,8 +7,8 @@ import org.openqa.selenium.support.FindBy;
 
 public class QualifiedClosePageOLS extends MainPageBlinx {
 
-    private final String titleExpected = "We're glad the location is convenient for you. \n" +
-            "We will forward your contact information to the doctor's office that you selected so they may contact you.";
+    private final String titleExpected = "We're glad the location is convenient for you.\n" +
+            "We will forward your contact information to the doctor's office that you selected so they may contact you about your condition Low Back Pain, Arthritis, Rheumatoid Arthritis, Diabetes";
 
     @FindBy(xpath = "//div[@class='question-text']")
     WebElement titleText;
