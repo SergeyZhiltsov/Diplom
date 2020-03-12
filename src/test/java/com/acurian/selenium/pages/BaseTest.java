@@ -18,6 +18,8 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
 
 import java.net.ConnectException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.nio.channels.ConnectionPendingException;
 import java.rmi.ConnectIOException;
 import java.util.concurrent.TimeUnit;
@@ -38,8 +40,10 @@ public abstract class BaseTest {
 
     @BeforeClass
     public void setUp() {
-                    //driver = new EventFiringWebDriver(DriverFactory.initDriver(Properties.getBrowser(), Properties.getGridURL()));
-                    driver = new EventFiringWebDriver(DriverFactory.initDriver(Properties.getBrowser()));
+
+        if (getHostName().equals(Properties.getHostNameSergey())) {driver = new EventFiringWebDriver(DriverFactory.initDriver(Properties.getBrowser(), Properties.getGridURL()));}
+        if (getHostName().equals(Properties.getHostNameIvan())) {driver = new EventFiringWebDriver(DriverFactory.initDriver(Properties.getBrowser(), Properties.getGridURLNew()));}
+        if (getHostName().equals(Properties.getHostName())) {driver = new EventFiringWebDriver(DriverFactory.initDriver(Properties.getBrowser()));}
 
 //        driver = new EventFiringWebDriver(DriverFactory.initDriver(Properties.getBrowser()));
         driver.register(new EventHandler());
@@ -72,6 +76,22 @@ public abstract class BaseTest {
             DRIVER.get().quit();
             DRIVER.remove();
         }
+    }
+
+    public String getHostName(){
+        String hostname = null;
+
+        try
+        {
+            InetAddress addr;
+            addr = InetAddress.getLocalHost();
+            hostname = addr.getHostName();
+        }
+        catch (UnknownHostException ex)
+        {
+            System.out.println("Hostname can not be resolved");
+        }
+        return hostname;
     }
 
     /**
