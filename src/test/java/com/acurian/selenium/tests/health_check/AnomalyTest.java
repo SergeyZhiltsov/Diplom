@@ -85,7 +85,7 @@ public class AnomalyTest extends BaseTest {
 //                .clickNextButton(new DirectSheduleVaccOLS())
 //                .waitForPageLoad()
                 .clickNextButton(new QualifiedClose2PageOLS())
-                .waitForPageLoadGMEGA()
+                .waitForPageLoadGMEGA2()
                 .clickNextButton(new ThankYouCloseGmegaOLS())
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())
