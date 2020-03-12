@@ -9,7 +9,10 @@ public class Properties {
     private static final String DEFAULT_USERNAME = "aautotest";
     private static final String DEFAULT_PASSWORD = "aautotest";
     private static final String DEFAULT_GRID_URL = "http://10.6.0.26:55555/wd/hub";
+    private static final String DEFAULT_GRID_URL_NEW = "http://10.6.0.26:66666/wd/hub";
     private static final String DEFAULT_HOSTNAME = "QA-Selenium";
+    private static final String DEFAULT_HOSTNAME_IVAN = "i-lipskyi-pc";
+    private static final String DEFAULT_HOSTNAME_SERGEY = "s-zhyltsov-pc";
 
     private Properties() {
     }
@@ -30,6 +33,10 @@ public class Properties {
         return DEFAULT_GRID_URL;
     }
 
+    public static String getGridURLNew() {
+        return DEFAULT_GRID_URL_NEW;
+    }
+
     public static String getUsername() {
         return DEFAULT_USERNAME;
     }
@@ -40,6 +47,14 @@ public class Properties {
 
     public static String getHostName() {
         return DEFAULT_HOSTNAME;
+    }
+
+    public static String getHostNameIvan() {
+        return DEFAULT_HOSTNAME_IVAN;
+    }
+
+    public static String getHostNameSergey() {
+        return DEFAULT_HOSTNAME_SERGEY;
     }
 
     enum EnvironmentVariable {
