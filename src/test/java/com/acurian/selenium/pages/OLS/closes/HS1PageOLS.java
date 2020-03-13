@@ -49,6 +49,8 @@ public class HS1PageOLS extends MainPageOLS {
     @FindBy(xpath = "//div[@id='signer-mobile-application']//button[//text()='I agree']")
     WebElement agreeButton;
 
+    @FindBy(xpath = "//*[@id='page-1']/div/div[5]/div/div[1]/div/textarea")
+    WebElement printYourNameButton;
 
     private void waitJQuery(){
         driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) wdriver -> ((JavascriptExecutor) getDriver()).executeScript(
@@ -107,6 +109,7 @@ public class HS1PageOLS extends MainPageOLS {
         driverWait.waitforVisibility(insertButton);
         insertButton.click();
         waitForAnimation();
+        printYourNameButton.sendKeys("Acurian trial");
         driverWait.waitforVisibility(continueButton);
         continueButton.click();
         waitForAnimation();
