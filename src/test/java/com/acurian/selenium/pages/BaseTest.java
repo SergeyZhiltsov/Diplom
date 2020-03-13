@@ -41,13 +41,13 @@ public abstract class BaseTest {
     @BeforeClass
     public void setUp() {
 
-        try {
-            driver = getHostName().equals(Properties.getHostNameSergey()) ? new EventFiringWebDriver(DriverFactory.initDriver(Properties.getBrowser(), Properties.getGridURL())) :
-                    (getHostName().equals(Properties.getHostNameIvan())) ? new EventFiringWebDriver(DriverFactory.initDriver(Properties.getBrowser(), Properties.getGridURLNew())) :
-                            (getHostName().equals(Properties.getHostName())) ? new EventFiringWebDriver(DriverFactory.initDriver(Properties.getBrowser())) : null;
-        }catch(Exception e){
+//        try {
+//            driver = getHostName().equals(Properties.getHostNameSergey()) ? new EventFiringWebDriver(DriverFactory.initDriver(Properties.getBrowser(), Properties.getGridURL())) :
+//                    (getHostName().equals(Properties.getHostNameIvan())) ? new EventFiringWebDriver(DriverFactory.initDriver(Properties.getBrowser(), Properties.getGridURLNew())) :
+//                            (getHostName().equals(Properties.getHostName())) ? new EventFiringWebDriver(DriverFactory.initDriver(Properties.getBrowser())) : null;
+//        }catch(Exception e){
             driver =  new EventFiringWebDriver(DriverFactory.initDriver(Properties.getBrowser()));
-        }
+//        }
 
 //        driver = new EventFiringWebDriver(DriverFactory.initDriver(Properties.getBrowser()));
         driver.register(new EventHandler());

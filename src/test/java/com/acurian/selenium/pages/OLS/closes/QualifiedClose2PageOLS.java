@@ -16,7 +16,7 @@ public class QualifiedClose2PageOLS extends MainPageOLS {
 //            "We will forward your contact information to the doctor's office that you selected so they may contact you.";
 
     public final String titleExpectedGMEGA = "We're glad the location is convenient for you.\n" +
-            "We will forward your contact information to the doctor's office that you selected so they may contact you about your condition Diabetes, Rheumatoid Arthritis, Arthritis, Low Back Pain";
+            "We will forward your contact information to the doctor's office that you selected so they may contact you about your condition Low Back Pain, Arthritis, Rheumatoid Arthritis, Diabetes";
 
     public final String titleExpectedGMEGA2 = "We're glad the location is convenient for you.\n" +
             "We will forward your contact information to the doctor's office that you selected so they may contact you about your condition Low Back Pain, Arthritis, Rheumatoid Arthritis, Diabetes";

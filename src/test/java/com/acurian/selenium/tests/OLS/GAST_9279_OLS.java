@@ -776,7 +776,7 @@ public class GAST_9279_OLS extends BaseTest {
                     .waitForPageLoad()
                     .pidFromDbToLog(env)
                     .getRadiantDbToLog(env)
-                    .getAnomalyDbToLog(env)
+          //;          .getAnomalyDbToLog(env)
                     .childPidFromDbToLog(env)
                     .dispoShouldMatch(site.dispo, site.dispo);
 
