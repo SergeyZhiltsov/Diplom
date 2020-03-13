@@ -19,6 +19,11 @@ public class QualifiedFlareMonitoringAppClosePageOLS extends MainPageOLS{
 
     public final String titleExpectedCrohns ="Once you download and activate the MyColo app, take time to answer the 3 daily questions. This will measure your disease activity and alert you when you are experiencing active disease (also known as flare). Once the app alerts you to being in flare, you will be prompted to call us so we can connect you to your study site staff who will discuss your qualifications for the study and next steps.";
 
+    public final String titleExpectedQuestion = "Please confirm your email address to ensure you receive your My Colo activation key email.";
+
+    @FindBy(xpath = "(//*[contains(@class, 'visible-md-block')][contains(@class, 'ng-scope')])[2]")
+    WebElement titleTextQuestion;
+
     @FindBy(xpath = "//div[@class='question']")
     WebElement titleText;
 
@@ -61,7 +66,7 @@ public class QualifiedFlareMonitoringAppClosePageOLS extends MainPageOLS{
 
     @Step
     public QualifiedFlareMonitoringAppClosePageOLS waitForPageLoadHealthCheck() {
-        waitForPageLoadMain(titleText, titleExpectedHealthCheck);
+        waitForPageLoadMain(titleTextQuestion, titleExpectedQuestion);
         return this;
     }
 

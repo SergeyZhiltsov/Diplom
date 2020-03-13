@@ -10,7 +10,7 @@ import java.util.List;
 public class LevelOrHypogonadismPageOLS extends MainPageOLS {
 
     public final String titleExpected = "The following medications are prescribed for men who have been diagnosed with a low testosterone (male hormone) level or hypogonadism.\n" +
-            "Are you currently taking any of the following medications? \n" +
+            "Are you currently taking any of the following medications?\n" +
             "Please select all that apply.";
 
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]")
