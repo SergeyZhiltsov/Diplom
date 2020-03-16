@@ -24,6 +24,7 @@ public class GenderPageOLS extends MainPageBlinx {
 
     @Step
     public GenderPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleTextPart1, titleExpectedPart1);
         waitForPageLoadMain(titleTextPart2, titleExpectedPart2);
         return this;

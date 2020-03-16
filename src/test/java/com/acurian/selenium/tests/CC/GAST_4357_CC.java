@@ -245,9 +245,8 @@ public class GAST_4357_CC extends BaseTest {
                 .back();
         followingAreCommonSymptomsCC
                 .waitForPageLoad()
-                .clickOnAnswers("Nausea or feeling sick to your stomach",
-                                "Bloating")
-                .clickNextButton(new HowLongBeenHavingThoseSymptomsPageCC())
+                .clickOnAnswers("Nausea or feeling sick to your stomach")
+                .clickNextButton(new CurrentlyTreatingYourDiabetesPageCC())
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS7209", site.activeProtocols)
@@ -255,8 +254,7 @@ public class GAST_4357_CC extends BaseTest {
 
         HowLongBeenHavingThoseSymptomsPageCC howLongBeenHavingThoseSymptomsPageCC = followingAreCommonSymptomsCC
                 .waitForPageLoad()
-                .clickOnAnswers("Vomiting or throwing up",
-                                "Bloating") //Deselect Bloating
+                .clickOnAnswers("Vomiting or throwing up")
                 .clickNextButton(new HowLongBeenHavingThoseSymptomsPageCC());
 
         //Q10
