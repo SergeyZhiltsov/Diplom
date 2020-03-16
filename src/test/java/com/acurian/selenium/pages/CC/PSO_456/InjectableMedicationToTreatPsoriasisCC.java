@@ -1,4 +1,4 @@
-package com.acurian.selenium.pages.CC.Gout;
+package com.acurian.selenium.pages.CC.PSO_456;
 
 import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.CC.MainPageCC;
@@ -8,29 +8,30 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class PastThreeMonthsTakenKrystexxaCC extends MainPageCC {
-    public final String titleExpected = "In the past 3 months, have you taken Krystexxa (pegloticase)?\n" +
-            "This is a medication given by IV infusion (into a vein)";
+public class InjectableMedicationToTreatPsoriasisCC extends MainPageCC {
+
+    public final String titleExpected = "When did you last use an injectable medication to treat your psoriasis?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_CC)
     WebElement titleText;
     @FindBy(xpath = Locators.RADIO_BUTTON_LIST_CC)
-    List<WebElement> radioButtonsList;
+    List<WebElement> radioButtonList;
 
     @Step
-    public PastThreeMonthsTakenKrystexxaCC waitForPageLoad() {
+    public InjectableMedicationToTreatPsoriasisCC waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public PastThreeMonthsTakenKrystexxaCC clickOnAnswer(String answerText) {
-        clickOnRadioButton(radioButtonsList, answerText);
+    public InjectableMedicationToTreatPsoriasisCC clickOnAnswer(String answerText) {
+        clickOnRadioButton(radioButtonList, answerText);
         return this;
     }
 
     @Step
-    public String getTitleText() {
+    public String getTitleText(){
         return getText(titleText);
     }
+
 }

@@ -52,7 +52,7 @@ public enum Site {
     //4357
     AUT_GAST4357S_site("AUT_GAST4357S_site", "19901", "41C", false, true, "RLM_MD_01", "RLM_MD_02"),
     AUT_GAST4357_site("AUT_GAST4357_site", "08204", "1R", false, true, "RLM_MD_01", "RLM_MD_02"),
-    AUT_GAS4357ds("Synexus - 010110 : East Valley Family Physicians", "85244", "41C", false, true, "RLM_MD_01", "RLM_MD_02"),
+    AUT_GAS4357ds("Synexus - 010126 : Thunderbird- Glendale", "85244", "41C", false, true, "RLM_MD_01", "RLM_MD_02"),
 
     AUT_G_9279("AUT_G_9279", "78702", "1R", true, true, "TAK_906_2002"),
 
@@ -87,6 +87,8 @@ public enum Site {
     AUT_DERM_4631_Site("AUT_DERM_4631_Site", "19901", "1R", true, false, "KPL_716_C001"),
     //4656
     AUT_PSO4656("AUT_PSO4656", "19901", "1R", true, false, "CC_10004_PSOR_022"),
+    //7469
+    AUT_S10484("S10484_AUT_7469S", "19901", "1R", true, false, "EDP1815_201"),
     //4691
     AUT_AKC4691_MR("AUT_AKC4691_MR", "08204", "1R", true, false, "ISIS 703802_CS2"),
     //4708

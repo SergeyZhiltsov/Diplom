@@ -84,7 +84,7 @@ if(env.equals("QA")){
         StudyProjectsListPage studyProjectsListPage = new StudyProjectsListPage();
         if (env.equals("QA")) {
             saveStudyDiffSummaryPage.clickPublishToEnvironment();
-        }
+        }//legend[text()='Screener Navigator']
         studyProjectsListPage
                 .checkAlertMessage(String.format("×\n%s published to %s Successfully. " +
                                 "Cleared Cache for Study %s successfully.", projectCode, alertMessage, studyId))
@@ -152,7 +152,7 @@ if(env.equals("QA")){
         studyEditPage
                 .clickDashboard()
                 .clickPublishStudySetup(studyName, StudyProjectsListPage.SetupEnv.valueOf(env))
-                //.checkDeletedTherapeutic(therapeuticName)
+                .checkDeletedTherapeutic(therapeuticName)
                 .checkAddedIndication(indicationName)
                 .clickSaveAndPublish()
                 .clickConfirmPublishOnPopUp();

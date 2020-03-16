@@ -8,8 +8,8 @@ public class Properties {
     private static final String DEFAULT_BROWSER = BrowserType.CHROME;
     private static final String DEFAULT_USERNAME = "aautotest";
     private static final String DEFAULT_PASSWORD = "aautotest";
-    private static final String DEFAULT_GRID_URL = "http://10.6.0.26:55555/wd/hub";
-    private static final String DEFAULT_GRID_URL_NEW = "http://10.6.0.26:66666/wd/hub";
+    private static final String DEFAULT_GRID_URL = "http://10.6.0.26:55555/wd/hub2";
+    private static final String DEFAULT_GRID_URL_NEW = "http://10.6.0.26:66666/wd/hub2";
     private static final String DEFAULT_HOSTNAME = "QA-Selenium";
     private static final String DEFAULT_HOSTNAME_IVAN = "i-lipskyi-pc";
     private static final String DEFAULT_HOSTNAME_SERGEY = "s-zhyltsov-pc";

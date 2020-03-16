@@ -15,7 +15,7 @@ public class QualifiedFlareMonitoringAppClosePageOLS extends MainPageOLS{
 
     public final String titleExpectedHealthCheck = "We’re glad the location is convenient for you.\n" +
             "\n" +
-            "This research study requires you to be in active disease (also known as flare) with your digestive condition. There is a monitoring app called My Colo that you can download to your android or iPhone. The app will monitor your symptoms and determine if you are in active disease (or flare) so you can contact your study site and let them know. Please note that use of this app is not required to take part in the study.";
+            "This research study requires you to be in active disease (also known as flare) with your digestive condition Crohn's Disease. There is a monitoring app called My Colo that you can download to your android or iPhone. The app will monitor your symptoms and determine if you are in active disease (or flare) so you can contact your study site and let them know. Please note that use of this app is not required to take part in the study.";
 
     public final String titleExpectedCrohns ="Once you download and activate the MyColo app, take time to answer the 3 daily questions. This will measure your disease activity and alert you when you are experiencing active disease (also known as flare). Once the app alerts you to being in flare, you will be prompted to call us so we can connect you to your study site staff who will discuss your qualifications for the study and next steps.";
 
