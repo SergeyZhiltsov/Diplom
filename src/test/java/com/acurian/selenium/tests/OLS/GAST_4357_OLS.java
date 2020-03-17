@@ -205,18 +205,20 @@ public class GAST_4357_OLS extends BaseTest {
                 .back();
 
 
-        followingAreCommonSymptomsOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Nausea or feeling sick to your stomach")
-                .clickNextButton(new CurrentlyTreatingYourDiabetesPageOLS())
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS7209", site.activeProtocols)
-                .back(followingAreCommonSymptomsOLS);
+//        followingAreCommonSymptomsOLS
+//                .waitForPageLoad()
+//                .clickOnAnswers("Nausea or feeling sick to your stomach",
+//                        "Bloating")
+//                .clickNextButton(new HowLongBeenHavingThoseSymptomsPageOLS())
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QS7209", site.activeProtocols)
+//                .back(followingAreCommonSymptomsOLS);
 
         HowLongBeenHavingThoseSymptomsPageOLS howLongBeenHavingThoseSymptomsPageOLS = followingAreCommonSymptomsOLS
                 .waitForPageLoad()
-                .clickOnAnswers("Vomiting or throwing up")
+                .clickOnAnswers("Vomiting or throwing up",
+                        "Bloating") //Deselect Bloating
                 .clickNextButton(new HowLongBeenHavingThoseSymptomsPageOLS());
 
 //Q10
