@@ -20,6 +20,7 @@ public class HeartRelatedSurgeriesProceduresPageOLS extends MainPageBlinx {
 
     @Step
     public HeartRelatedSurgeriesProceduresPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

@@ -10,7 +10,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 import java.util.List;
 
 public class PastThreeMonthsTakenKrystexxaOLS extends MainPageOLS {
-    public final String titleExpected = "In the past 3 months, have you taken Krystexxa (pegloticase)?\n" +
+    public final String titleExpected = "In the past 3 months, have you taken Krystexxa (pegloticase)\n" +
             "This is a medication given by IV infusion (into a vein)";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)

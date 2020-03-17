@@ -2,6 +2,7 @@ package com.acurian.selenium.tests.blinx;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.blinx.ams.AboutHealthPageOLS;
 import com.acurian.selenium.pages.blinx.ams.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.blinx.ams.PS_7469.*;
 import com.acurian.selenium.pages.blinx.ams.SubquestionExperiencedHeartPageOLS;
@@ -12,7 +13,6 @@ import com.acurian.selenium.pages.blinx.ams.debug.DebugPageOLS;
 import com.acurian.selenium.pages.blinx.ams.derm.HasHealthcareProfessionalEverDiagnosedYouWithEczema_OLS;
 import com.acurian.selenium.pages.blinx.ams.generalHealth.*;
 import com.acurian.selenium.pages.blinx.ams.shared.*;
-import com.acurian.selenium.pages.blinx.gmega.AboutHealthPageOLS;
 import com.acurian.selenium.pages.blinx.gmega.intro.IdentificationPageOLS;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -200,7 +200,7 @@ public class PS_7469_OLSBlinx extends BaseTest {
                 .checkProtocolsContainsForQNumber("QS7013", site.activeProtocols)
                 .back(injectableMedicationToTreatPsoriasisOLS)
                 .waitForPageLoad()
-                .clickOnAnswer("Between 7 months to and 1 year ago")
+                .clickOnAnswer("Between 7 months and 1 year ago")
                 .clickNextButton(psoriaticArthritisConditionPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)

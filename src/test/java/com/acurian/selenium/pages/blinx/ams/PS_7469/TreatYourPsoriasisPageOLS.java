@@ -20,6 +20,7 @@ public class TreatYourPsoriasisPageOLS extends MainPageBlinx {
 
     @Step
     public TreatYourPsoriasisPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

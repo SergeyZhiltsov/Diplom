@@ -11,6 +11,8 @@ public enum Site {
     AUT_RA2821_Site("AUT_RA2821_Site", "19044", "1R", false, true, "M15_925"),
     //4835
     AUT_RA_4835_Site("AUT_RA4835_Site", "19901", "1R", true, false, "M16_063"),
+    //4950 R86 OUS
+    AUT_4950("AUT_4950", "19901", "1R", false, false, "201790", "201791", "202018"),
     //3017
     AUT_LOWT_3017S_Site("AUT_LOWT_3017S_Site", "19422", "41C", false, true, "M16_100_S"),
     AUT_LOWT_3017_Site("AUT_LOWT_3017_Site", "19901", "1R", true, true, "M16_100"),
@@ -88,7 +90,7 @@ public enum Site {
     //4656
     AUT_PSO4656("AUT_PSO4656", "19901", "1R", true, false, "CC_10004_PSOR_022"),
     //7469
-    AUT_S10484("S10484_AUT_7469S", "19901", "1R", true, false, "EDP1815_201"),
+    AUT_S10484("AUT_S10484", "19901", "1R", true, false, "EDP1815_201"),
     //4691
     AUT_AKC4691_MR("AUT_AKC4691_MR", "08204", "1R", true, false, "ISIS 703802_CS2"),
     //4708

@@ -681,14 +681,14 @@ public class Crohns_3889_OLS extends BaseTest {
                 .back(new FollowingMentalEmotionalHealthPageOLS())
                 .waitForPageLoad()
                 .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
-        WhenDiagnosedWithCancerOLS whenDiagnosedWithCancerOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickOnAnswers("Cancer")
-                .clickNextButton(new WhenDiagnosedWithCancerOLS());
-        whenDiagnosedWithCancerOLS
-                .waitForPageLoad()
-                .clickOnAnswer("6 - 10 years ago")
+//                .clickOnAnswers("Cancer")
+//                .clickNextButton(new WhenDiagnosedWithCancerOLS());
+//        whenDiagnosedWithCancerOLS
+//                .waitForPageLoad()
+//                .clickOnAnswer("6 - 10 years ago")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS);
 
         doAnyOftheFollowingAdditionalDiagnosesOLS
@@ -750,6 +750,8 @@ public class Crohns_3889_OLS extends BaseTest {
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
+                .clickOnAnswers("Multiple sclerosis (MS)")
+                .clickOnAnswers("Seizure disorder such as epilepsy")
                 .clickNextButton(approximateHeightPageOLS);
 
 
@@ -757,49 +759,31 @@ public class Crohns_3889_OLS extends BaseTest {
         IdentificationPageOLS identificationPageOLS = approximateHeightPageOLS
                 .waitForPageLoad()
                 //WhatTypeOfLupusOLS whatTypeOfLupusOLS = approximateHeightPageOLS
-                .setAll("5", "5", "160")
-//        		.clickNextButton(new ChildrenUnderPageOLS())
-//		//----------ChildrenUnderTheAge Page--------------------
-//		        .waitForPageLoad()
-//		        .clickOnAnswer("Yes")
-//		        .clickNextButton(new HouseholdHavePageOLS())
-//		        .waitForPageLoad()
-//		        .clickOnAnswers("None of the above")
-//		        .clickNextButton(new TheStudySitePageOLS())
-//		        .waitForPageLoad()
-//
-//		//-------------------PEDIATRIC QUESTIONS-----------------------------
-//		        .clickOnAnswer("Public transportation")
-//		        .clickNextButton(new WhatMedicalCoveragePageOLS())
-//		        .waitForPageLoad()
-//		        .clickOnAnswers("No, I have no coverage")
-//                .clickNextButton(new EthnicBackgroundPageOLS())
+                .setAll("3", "3", "39")
+//                .clickNextButton(new EverDiagnosedGastroparesisOrStomachEmptyingOLS())
 //                .waitForPageLoad()
-//                .clickOnAnswers("Prefer not to answer")
-                .clickNextButton(new EverDiagnosedGastroparesisOrStomachEmptyingOLS())
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(new FollowingAreCommonSymptomsOLS())
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new CurrentlySufferOfAnyOfFollowingOLS())
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new DuringPastThreeMonthsOLS())
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(new com.acurian.selenium.pages.OLS.ChronicCough.EverDiagnosedWithFollowingConditionsOLS())
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new WhatTypeOfSurgeryDidYouHave_OLS())
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new WeightLossSurgeryPageOLS())
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new UseMarijuanaOrCannabisOLS())
-                .waitForPageLoad()
-                .clickOnAnswer("No")
+//                .clickOnAnswer("No")
+//                .clickNextButton(new FollowingAreCommonSymptomsOLS())
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickNextButton(new CurrentlySufferOfAnyOfFollowingOLS())
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickNextButton(new DuringPastThreeMonthsOLS())
+//                .waitForPageLoad()
+//                .clickOnAnswer("No")
+//                .clickNextButton(new com.acurian.selenium.pages.OLS.ChronicCough.EverDiagnosedWithFollowingConditionsOLS())
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickNextButton(new WhatTypeOfSurgeryDidYouHave_OLS())
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickNextButton(new WeightLossSurgeryPageOLS())
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickNextButton(new UseMarijuanaOrCannabisOLS())
+//                .waitForPageLoad()
+//                .clickOnAnswer("No")
                 .clickNextButton(new CurrentlyParticipatingInStudyOLS())
                 .waitForPageLoad()
                 .clickOnAnswer("No")

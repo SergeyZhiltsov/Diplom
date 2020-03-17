@@ -26,6 +26,7 @@ public class WhichTypeOfPsoriasisDoYouHaveOLS extends MainPageBlinx {
 
     @Step
     public WhichTypeOfPsoriasisDoYouHaveOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

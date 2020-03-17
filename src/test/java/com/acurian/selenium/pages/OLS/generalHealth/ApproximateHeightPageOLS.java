@@ -31,6 +31,7 @@ public class ApproximateHeightPageOLS extends MainPageOLS{
 
     @Step
     public ApproximateHeightPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

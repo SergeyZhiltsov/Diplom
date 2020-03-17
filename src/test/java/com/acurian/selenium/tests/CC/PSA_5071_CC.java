@@ -4,9 +4,7 @@ import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.Crohns_3485.BiologicMedicationsPageCC;
 import com.acurian.selenium.pages.CC.LPS_4442.EitherOfTheFollowingMedicationsCC;
-import com.acurian.selenium.pages.CC.PSO_456.HealthcareDiagnosedPsoriasisPageCC;
-import com.acurian.selenium.pages.CC.PSO_456.TypePsoriasisPageCC;
-import com.acurian.selenium.pages.CC.PSO_456.WhenDiagnosedWithPsoriasisCC;
+import com.acurian.selenium.pages.CC.PSO_456.*;
 import com.acurian.selenium.pages.CC.PsoriaticArthritis.*;
 import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
@@ -192,11 +190,11 @@ public class PSA_5071_CC extends BaseTest {
                 .clickNextButton(currentlyHaveSoreTenderPainfulPsoriaticArthritisPageCC);
 
         //Q6
-        HealthcareDiagnosedPsoriasisPageCC healthcareDiagnosedPsoriasisPageCC = currentlyHaveSoreTenderPainfulPsoriaticArthritisPageCC
+        HasHealthCareProfessionalDiagnosedPsoriasisCC hasHealthCareProfessionalDiagnosedPsoriasisCC = currentlyHaveSoreTenderPainfulPsoriaticArthritisPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("No") //skip to Q8
-                .clickNextButton(new HealthcareDiagnosedPsoriasisPageCC());
-        healthcareDiagnosedPsoriasisPageCC
+                .clickNextButton(new HasHealthCareProfessionalDiagnosedPsoriasisCC());
+        hasHealthCareProfessionalDiagnosedPsoriasisCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS7506", site.activeProtocols)
@@ -211,10 +209,10 @@ public class PSA_5071_CC extends BaseTest {
         howManyJointsAreSoreTenderPainfulPageCC
                 .waitForPageLoad()
                 .setJointsPainful("1")
-                .clickNextButton(healthcareDiagnosedPsoriasisPageCC);
+                .clickNextButton(hasHealthCareProfessionalDiagnosedPsoriasisCC);
 
         //Q8
-        TransitionStatementCC transitionStatementCC = healthcareDiagnosedPsoriasisPageCC
+        TransitionStatementCC transitionStatementCC = hasHealthCareProfessionalDiagnosedPsoriasisCC
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new TransitionStatementCC());
@@ -223,13 +221,13 @@ public class PSA_5071_CC extends BaseTest {
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS7508", site.activeProtocols)
                 .back();
-        TypePsoriasisPageCC typePsoriasisPageCC = healthcareDiagnosedPsoriasisPageCC
+        WhichTypeOfPsoriasisDoYouHaveCC whichTypeOfPsoriasisDoYouHaveCC = hasHealthCareProfessionalDiagnosedPsoriasisCC
                 .waitForPageLoad()
                 .clickOnAnswer("Yes") //continue to Q9
-                .clickNextButton(new TypePsoriasisPageCC());
+                .clickNextButton(new WhichTypeOfPsoriasisDoYouHaveCC());
 
         //Q9 //check Q11 Ghost Question - Psoriasis Logic
-        CurrentlyHaveAnyOffFollowingPageCC currentlyHaveAnyOffFollowingPageCC = typePsoriasisPageCC
+        CurrentlyHaveAnyOffFollowingPageCC currentlyHaveAnyOffFollowingPageCC = whichTypeOfPsoriasisDoYouHaveCC
                 .waitForPageLoad()
                 .clickOnAnswers("Another type of psoriasis (Guttate, Pustular, Erythtodermic, Inverse)") //Otherwise disqualify
                 .clickNextButton(new CurrentlyHaveAnyOffFollowingPageCC());
@@ -244,7 +242,7 @@ public class PSA_5071_CC extends BaseTest {
                 .checkProtocolsContainsForQNumber("QS7511", site.activeProtocols)
                 .back(currentlyHaveAnyOffFollowingPageCC)
                 .waitForPageLoad()
-                .back(typePsoriasisPageCC)
+                .back(whichTypeOfPsoriasisDoYouHaveCC)
                 .waitForPageLoad()
                 .clickOnAnswers("Plaque - Thick, red patches of skin are covered by flaky, silver-white scales. " +
                         "This is the most common type of psoriasis")
@@ -326,7 +324,7 @@ public class PSA_5071_CC extends BaseTest {
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(answer)
-                    .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC)
+                    .clickNextButton(whenDiagnosedWithPsoriasisCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("QS7515", site.activeProtocols)

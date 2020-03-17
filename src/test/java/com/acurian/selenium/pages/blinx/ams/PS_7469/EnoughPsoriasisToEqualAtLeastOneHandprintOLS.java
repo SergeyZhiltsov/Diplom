@@ -29,6 +29,7 @@ public class EnoughPsoriasisToEqualAtLeastOneHandprintOLS extends MainPageBlinx 
 
     @Step
     public EnoughPsoriasisToEqualAtLeastOneHandprintOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
