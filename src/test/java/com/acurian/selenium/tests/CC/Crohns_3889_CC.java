@@ -224,39 +224,6 @@ public class Crohns_3889_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickNextButton(previousDayGeneralWellBeingCC);
 
-        //in flare
-        previousDayGeneralWellBeingCC
-                .waitForPageLoad()
-                .clickOnAnswer("Very poor")
-                .clickNextButton(previousDayAbdominalPainCC)
-                .waitForPageLoad()
-                .clickOnAnswer("Severe")
-                .clickNextButton(previousDayDiarrheaOrLiquidStoolCC)
-                .waitForPageLoad()
-                .setStools("3")
-                .clickNextButton(experiensingAnyPainInJointsCC)
-                .waitForPageLoad()
-                .clickOnAnswer("Yes")
-                .clickNextButton(currentlyHaveUlcersOrSoresCC)
-                .waitForPageLoad()
-                .clickOnAnswer("Yes")
-                .clickNextButton(currentlyHaveAnyFollowingCC);
-        //.waitForPageLoad()
-        //.flareCodeShouldMatch(env, "11");
-
-        //backflareCodeShouldMatch
-        currentlyHaveAnyFollowingCC
-                .waitForPageLoad()
-                .back(currentlyHaveUlcersOrSoresCC)
-                .waitForPageLoad()
-                .back(experiensingAnyPainInJointsCC)
-                .waitForPageLoad()
-                .back(previousDayDiarrheaOrLiquidStoolCC)
-                .waitForPageLoad()
-                .back(previousDayAbdominalPainCC)
-                .waitForPageLoad()
-                .back(previousDayGeneralWellBeingCC);
-
         //not in flare
         previousDayGeneralWellBeingCC
                 .waitForPageLoad()
@@ -277,9 +244,38 @@ public class Crohns_3889_CC extends BaseTest {
         //.waitForPageLoad()
         //        .flareCodeShouldMatch(env, "3");
 
+        //backflareCodeShouldMatch
+        currentlyHaveAnyFollowingCC
+                .waitForPageLoad()
+                .back(currentlyHaveUlcersOrSoresCC)
+                .waitForPageLoad()
+                .back(experiensingAnyPainInJointsCC)
+                .waitForPageLoad()
+                .back(previousDayDiarrheaOrLiquidStoolCC)
+                .waitForPageLoad()
+                .back(previousDayAbdominalPainCC)
+                .waitForPageLoad()
+                .back(previousDayGeneralWellBeingCC);
 
-
-
+        //in flare
+        previousDayGeneralWellBeingCC
+                .waitForPageLoad()
+                .clickOnAnswer("Very poor")
+                .clickNextButton(previousDayAbdominalPainCC)
+                .waitForPageLoad()
+                .clickOnAnswer("Severe")
+                .clickNextButton(previousDayDiarrheaOrLiquidStoolCC)
+                .waitForPageLoad()
+                .setStools("3")
+                .clickNextButton(experiensingAnyPainInJointsCC)
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
+                .clickNextButton(currentlyHaveUlcersOrSoresCC)
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
+                .clickNextButton(currentlyHaveAnyFollowingCC);
+        //.waitForPageLoad()
+        //.flareCodeShouldMatch(env, "11");
 
         HashMap<String, List<String>> disqualify = new HashMap<>();
         disqualify.put("History of a bowel resection within the past 3 months", Arrays.asList(site.activeProtocols));
@@ -589,12 +585,14 @@ public class Crohns_3889_CC extends BaseTest {
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
+                .clickOnAnswers("Multiple sclerosis (MS)")
+                .clickOnAnswers("Seizure disorder such as epilepsy")
                 .clickNextButton(approximateHeightPageCC);
 
 
         LetMeSeePageCC letMeSeePageCC = approximateHeightPageCC
                 .waitForPageLoad()
-                .setAll("5", "7", "170")
+                .setAll("3", "3", "39")
                 .clickNextButton(new LetMeSeePageCC());
         HSMedicalRecordsPageCC hsMedicalRecordsPageCC  = letMeSeePageCC
                 .waitForPageLoad()
@@ -627,6 +625,7 @@ public class Crohns_3889_CC extends BaseTest {
                     .getActivationCode();
         }
         hsMedicalRecordsPageCC
+                .waitForPageLoad()
                 .clickNextButton(new QualifiedFlareMonitoringAppClosePageCC())
                 .waitForPageLoadCrohns()
                 .getActivationCode()

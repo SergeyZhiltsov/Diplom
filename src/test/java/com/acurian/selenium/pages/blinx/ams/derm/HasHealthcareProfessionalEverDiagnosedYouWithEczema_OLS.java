@@ -26,6 +26,7 @@ public class HasHealthcareProfessionalEverDiagnosedYouWithEczema_OLS extends Mai
 
     @Step
     public HasHealthcareProfessionalEverDiagnosedYouWithEczema_OLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

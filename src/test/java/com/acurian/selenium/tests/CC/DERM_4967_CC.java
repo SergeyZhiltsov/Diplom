@@ -7,6 +7,7 @@ import com.acurian.selenium.pages.CC.Diabetes_4356A.SubquestionExperiencedHeartP
 import com.acurian.selenium.pages.CC.Diabetes_4356A.WhatKindOfDiabetesPageCC;
 import com.acurian.selenium.pages.CC.MDD_3159.MostRecentHeartProcedurePageСС;
 import com.acurian.selenium.pages.CC.OAB_4867.DoYouTakeAnyMedicationsControlHypertension_CC;
+import com.acurian.selenium.pages.CC.PSO_456.HasHealthCareProfessionalDiagnosedPsoriasisCC;
 import com.acurian.selenium.pages.CC.PSO_456.HealthcareDiagnosedPsoriasisPageCC;
 import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
@@ -111,11 +112,13 @@ public class DERM_4967_CC extends BaseTest {
                         .clickOnAnswer("Female")
                         .clickNextButton(new HasHealthcareProfessionalEverDiagnosedYouWithEczema_CC());
 
-        NonQRtransitionPageCC nonQRtransitionPageCC = hasHealthcareProfessionalEverDiagnosedYouWithEczema_CC
+        NonQRtransitionPageCC nonQRtransitionPageCC = new NonQRtransitionPageCC();
+        HasHealthCareProfessionalDiagnosedPsoriasisCC hasHealthCareProfessionalDiagnosedPsoriasisCC =
+                hasHealthcareProfessionalEverDiagnosedYouWithEczema_CC
                 .waitForPageLoad()
                 .clickOnAnswer("No") //Disqualify ("No atopic dermatitis")
-                .clickNextButton(new NonQRtransitionPageCC());
-        nonQRtransitionPageCC
+                .clickNextButton(new HasHealthCareProfessionalDiagnosedPsoriasisCC());
+        hasHealthCareProfessionalDiagnosedPsoriasisCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS5802", site.activeProtocols)
@@ -341,13 +344,14 @@ public class DERM_4967_CC extends BaseTest {
 //                        "Nucala (Agent Note: new-CA-la)", "Otezla (Agent Note: oh-TEZ-la)")
 //                .clickNextButton(new DupixentInjectionPageCC());
 
+        TransitionStatementCC transitionStatementCC = new TransitionStatementCC();
         //Q33
-        TransitionStatementCC transitionStatementCC = dupixentInjectionPageCC
+        dupixentInjectionPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Yes, currently taking")
-                .clickNextButton(new TransitionStatementCC());
-        transitionStatementCC
-                .waitForPageLoadWithCurvesKAD(studyNameForTrans)
+                .clickNextButton(hasHealthCareProfessionalDiagnosedPsoriasisCC);
+        hasHealthCareProfessionalDiagnosedPsoriasisCC
+                .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS5847", site.activeProtocols)
                 .back(dupixentInjectionPageCC)

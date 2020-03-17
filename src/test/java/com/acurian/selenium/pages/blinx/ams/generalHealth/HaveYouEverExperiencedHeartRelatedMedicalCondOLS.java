@@ -20,6 +20,7 @@ public class HaveYouEverExperiencedHeartRelatedMedicalCondOLS extends MainPageBl
 
     @Step
     public HaveYouEverExperiencedHeartRelatedMedicalCondOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

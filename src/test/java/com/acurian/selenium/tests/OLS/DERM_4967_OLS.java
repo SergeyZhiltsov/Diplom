@@ -7,6 +7,7 @@ import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeart
 import com.acurian.selenium.pages.OLS.GERD.CurrentlySufferOfAnyOfFollowingOLS;
 import com.acurian.selenium.pages.OLS.MDD_3159.MostRecentHeartProcedurePageOLS;
 import com.acurian.selenium.pages.OLS.OAB_4867.DoYouTakeAnyMedicationsControlHypertension_OLS;
+import com.acurian.selenium.pages.OLS.PS_4656.HasHealthCareProfessionalDiagnosedPsoriasisOLS;
 import com.acurian.selenium.pages.OLS.PS_4656.HealthcareDiagnosedPsoriasisPageOLS;
 import com.acurian.selenium.pages.OLS.RA.WhatKindOfArthritisPageOLS;
 import com.acurian.selenium.pages.OLS.closes.*;
@@ -91,12 +92,14 @@ public class DERM_4967_OLS extends BaseTest {
                         .clickNextButton(new HasHealthcareProfessionalEverDiagnosedYouWithEczema_OLS());
 
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS =
+                new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS();
+        HasHealthCareProfessionalDiagnosedPsoriasisOLS hasHealthCareProfessionalDiagnosedPsoriasisOLS =
                 hasHealthcareProfessionalEverDiagnosedYouWithEczema_ols
                         .waitForPageLoad()
                         .clickOnAnswer("No")
-                        .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
+                        .clickNextButton(new HasHealthCareProfessionalDiagnosedPsoriasisOLS());
 
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+        hasHealthCareProfessionalDiagnosedPsoriasisOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5802", site.activeProtocols)
@@ -335,8 +338,8 @@ public class DERM_4967_OLS extends BaseTest {
         dupixentInjectionPageOLS
                         .waitForPageLoad()
                         .clickOnAnswer("Yes, currently taking")
-                        .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+                        .clickNextButton(hasHealthCareProfessionalDiagnosedPsoriasisOLS);
+        hasHealthCareProfessionalDiagnosedPsoriasisOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5847", site.activeProtocols)

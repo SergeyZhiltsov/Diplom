@@ -4,9 +4,7 @@ import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.Crohns_3485.BiologicMedicationsPageOLS;
 import com.acurian.selenium.pages.OLS.LPS_4442.EitherOfFollowingMedicationsOLS;
-import com.acurian.selenium.pages.OLS.PS_4656.HealthcareDiagnosedPsoriasisPageOLS;
-import com.acurian.selenium.pages.OLS.PS_4656.HowLongPsoriasisPageOLS;
-import com.acurian.selenium.pages.OLS.PS_4656.TypePsoriasisPageOLS;
+import com.acurian.selenium.pages.OLS.PS_4656.*;
 import com.acurian.selenium.pages.OLS.PsoriaticArthritis.*;
 import com.acurian.selenium.pages.OLS.RA.WhatKindOfArthritisPageOLS;
 import com.acurian.selenium.pages.OLS.closes.*;
@@ -150,12 +148,12 @@ public class PSA_5071_OLS extends BaseTest {
                 .clickNextButton(currentlyHaveSoreTenderPainfulPsoriaticArthritisPageOLS);
 
         //Q6
-        HealthcareDiagnosedPsoriasisPageOLS healthcareDiagnosedPsoriasisPageOLS =
+        HasHealthCareProfessionalDiagnosedPsoriasisOLS hasHealthCareProfessionalDiagnosedPsoriasisOLS =
                 currentlyHaveSoreTenderPainfulPsoriaticArthritisPageOLS
                         .waitForPageLoad()
                         .clickOnAnswer("No") //skip to Q8
-                        .clickNextButton(new HealthcareDiagnosedPsoriasisPageOLS());
-        healthcareDiagnosedPsoriasisPageOLS
+                        .clickNextButton(new HasHealthCareProfessionalDiagnosedPsoriasisOLS());
+        hasHealthCareProfessionalDiagnosedPsoriasisOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS7506", site.activeProtocols)
@@ -170,10 +168,10 @@ public class PSA_5071_OLS extends BaseTest {
         howManyJointsAreSoreTenderPainfulPageOLS
                 .waitForPageLoad()
                 .setJointsPainful("1")
-                .clickNextButton(healthcareDiagnosedPsoriasisPageOLS);
+                .clickNextButton(hasHealthCareProfessionalDiagnosedPsoriasisOLS);
 
         //Q8
-        healthcareDiagnosedPsoriasisPageOLS
+        hasHealthCareProfessionalDiagnosedPsoriasisOLS
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
@@ -182,13 +180,13 @@ public class PSA_5071_OLS extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS7508", site.activeProtocols)
                 .back();
-        TypePsoriasisPageOLS typePsoriasisPageOLS = healthcareDiagnosedPsoriasisPageOLS
+        WhichTypeOfPsoriasisDoYouHaveOLS whichTypeOfPsoriasisDoYouHaveOLS = hasHealthCareProfessionalDiagnosedPsoriasisOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes") //continue to Q9
-                .clickNextButton(new TypePsoriasisPageOLS());
+                .clickNextButton(new WhichTypeOfPsoriasisDoYouHaveOLS());
 
         //Q9 //check Q11 Ghost Question - Psoriasis Logic
-        CurrentlyHaveAnyOffFollowingPageOLS currentlyHaveAnyOffFollowingPageOLS = typePsoriasisPageOLS
+        CurrentlyHaveAnyOffFollowingPageOLS currentlyHaveAnyOffFollowingPageOLS = whichTypeOfPsoriasisDoYouHaveOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Another type of psoriasis (Guttate, Pustular, Erythtodermic, Inverse)") //Otherwise disqualify
                 .clickNextButton(new CurrentlyHaveAnyOffFollowingPageOLS());
@@ -203,7 +201,7 @@ public class PSA_5071_OLS extends BaseTest {
                 .checkProtocolsContainsForQNumber("QS7511", site.activeProtocols)
                 .back(currentlyHaveAnyOffFollowingPageOLS)
                 .waitForPageLoad()
-                .back(typePsoriasisPageOLS)
+                .back(whichTypeOfPsoriasisDoYouHaveOLS)
                 .waitForPageLoad()
                 .clickOnAnswers("Plaque - Thick, red patches of skin are covered by flaky, silver-white scales. This is the most common type of psoriasis")
                 .clickNextButton(currentlyHaveAnyOffFollowingPageOLS);
@@ -268,7 +266,7 @@ public class PSA_5071_OLS extends BaseTest {
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(answer)
-                    .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
+                    .clickNextButton(howLongPsoriasisPageOLS)
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS7515", site.activeProtocols)

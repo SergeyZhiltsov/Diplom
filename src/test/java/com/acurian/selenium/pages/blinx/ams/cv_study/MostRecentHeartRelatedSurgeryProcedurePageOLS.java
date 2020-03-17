@@ -25,6 +25,7 @@ public class MostRecentHeartRelatedSurgeryProcedurePageOLS extends MainPageBlinx
 
     @Step
     public MostRecentHeartRelatedSurgeryProcedurePageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

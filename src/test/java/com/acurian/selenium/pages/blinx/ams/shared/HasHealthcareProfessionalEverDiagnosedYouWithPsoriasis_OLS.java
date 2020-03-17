@@ -27,6 +27,7 @@ public class HasHealthcareProfessionalEverDiagnosedYouWithPsoriasis_OLS extends 
 
     @Step
     public HasHealthcareProfessionalEverDiagnosedYouWithPsoriasis_OLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

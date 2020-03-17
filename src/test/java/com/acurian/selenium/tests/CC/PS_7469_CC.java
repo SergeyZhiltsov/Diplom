@@ -23,7 +23,7 @@ public class PS_7469_CC extends BaseTest {
 
     @Test(enabled = true)
     @Description("PS_7469_CC")
-    public void psor4656cc() {
+    public void ps7469cctest() {
 
         String phoneNumber = "AUTAMS1PSO";
         String studyName = "a psoriasis study";
@@ -176,7 +176,7 @@ public class PS_7469_CC extends BaseTest {
                 .checkProtocolsContainsForQNumber("QS7013", site.activeProtocols)
                 .back(injectableMedicationToTreatPsoriasisCC)
                 .waitForPageLoad()
-                .clickOnAnswer("Between 7 months to and 1 year ago")
+                .clickOnAnswer("Between 7 months and 1 year ago")
                 .clickNextButton(psoriaticArthritisConditionPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
@@ -521,10 +521,7 @@ public class PS_7469_CC extends BaseTest {
                 .clickOnAnswers("Seizure disorder such as epilepsy")
                 .clickNextButton(approximateHeightPageCC);
 
-        LetMeSeePageCC letMeSeePageCC = doAnyOftheFollowingAdditionalDiagnosesCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(approximateHeightPageCC)
+        LetMeSeePageCC letMeSeePageCC = approximateHeightPageCC
                 .waitForPageLoad()
                 .setAll("5", "5", "180")
                 .clickNextButton(new LetMeSeePageCC());
@@ -539,28 +536,30 @@ public class PS_7469_CC extends BaseTest {
                 .clickOnAnswer("Yes")
                 .clickNextButton(new IdentificationPageCC());
         //----------PII (IdentificationPageOLS) Page--------------------
-        identificationPageCC
+        SiteSelectionPageCC siteSelectionPageCC = identificationPageCC
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
                         "9999999999", site.zipCode)
-                .clickNextButton(new SiteSelectionPageCC())
+                .clickNextButton(new SiteSelectionPageCC());
+
+        SynexusRadiantDirectScheduleCC synexusRadiantDirectScheduleCC = siteSelectionPageCC
                 .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnAnswer(site.name)
-                .clickNextButton(new QualifiedClose1PageCC())
-                .waitForPageLoad()
-                .clickNextButton(new ThankYouCloseSimplePageCC())
-                .waitForPageLoad3()
-                .clickNextButton(selectActionPageCC)
+                .clickNextButton(new SynexusRadiantDirectScheduleCC());
+        synexusRadiantDirectScheduleCC
+                .waitForPageLoadSyn()
+                .assertVariablesNew("Acurian", "Trial", "09/15/1980", "US",
+                        "Dover, DE", site.zipCode, "qa.acurian@gmail.com",
+                        "999-999-9999", "S10484", site.name,
+                        "EVLPPDPSO201 - Evelo Psoriasis")
+                .clickOnAnswer("[Successful direct schedule in clinical conductor]")
+                .clickNextButton(selectActionPageCC);
+         selectActionPageCC
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
                 .childPidFromDbToLog(env, "4656")
                 .assertGeneratedFul(env, site)
                 .dispoShouldMatch(site.dispo, site.dispo);
-
-
-
-
-
     }
 }
