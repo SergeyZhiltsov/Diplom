@@ -21,6 +21,8 @@ public class AsPartOfYourCronsDiseaseDiagnosisFollowingProceduresOLS extends Mai
 
     @Step
     public AsPartOfYourCronsDiseaseDiagnosisFollowingProceduresOLS waitForPageLoad() {
+
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

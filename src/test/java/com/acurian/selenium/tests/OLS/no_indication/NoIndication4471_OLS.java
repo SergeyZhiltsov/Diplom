@@ -404,18 +404,18 @@ public class NoIndication4471_OLS extends BaseTest {
                 .enterYears("15")
                 .clickNextButton(new EverDiagnosedWithFollowingConditionsOLS());
 
-        ACEInhibitorsLS aCEInhibitorsLS = everDiagnosedWithFollowingConditionsOLS
+        ACEInhibitorsOLS aCEInhibitorsOLS = everDiagnosedWithFollowingConditionsOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Post-Nasal Drip (Upper Airway Cough Syndrome)", "Lung Cancer", "Tuberculosis (TB)")
-                .clickNextButton(new ACEInhibitorsLS())
+                .clickNextButton(new ACEInhibitorsOLS())
                 .waitForPageLoad();
-        aCEInhibitorsLS.back();
+        aCEInhibitorsOLS.back();
         everDiagnosedWithFollowingConditionsOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new ACEInhibitorsLS());
+                .clickNextButton(new ACEInhibitorsOLS());
 
-        ExperienceWithYourChronicCoughOLS experienceWithYourChronicCoughOLS = aCEInhibitorsLS
+        ExperienceWithYourChronicCoughOLS experienceWithYourChronicCoughOLS = aCEInhibitorsOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Benazepril (Brand name: Lotensin)", "Captopril (Brand name: Capoten)", "Cilazapril (Brand name: Inhibace)", "Enalapril (Brand names: Vasotec, Renitec, Berlipril, Enap, Enapren)")
                 .clickOnAnswers("Fosinopril (Brand names: Fositen, Monopril)", "Imidapril (Brand name: Tanatril)", "Lisinopril (Brand names: Listril, Lopril, Novatec, Prinivil, Zestril, Lisidigal)")
@@ -425,7 +425,7 @@ public class NoIndication4471_OLS extends BaseTest {
                 .waitForPageLoad();
         debugPageOLS.checkProtocolsContainsForQNumber("QS6211", protocol1, protocol2);
         debugPageOLS.back();
-        aCEInhibitorsLS
+        aCEInhibitorsOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new ExperienceWithYourChronicCoughOLS());

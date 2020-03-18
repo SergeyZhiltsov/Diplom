@@ -2,12 +2,17 @@ package com.acurian.selenium.tests.blinx;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.blinx.ams.adg_4357.WithType1DiabetesPageOLS;
 import com.acurian.selenium.pages.blinx.ams.debug.DebugPageOLS;
 import com.acurian.selenium.pages.blinx.ams.*;
 import com.acurian.selenium.pages.blinx.ams.closes.*;
 import com.acurian.selenium.pages.blinx.ams.cv_study.*;
+import com.acurian.selenium.pages.blinx.ams.diabetes.CurrentlyTreatingYourDiabetesPageOLS;
+import com.acurian.selenium.pages.blinx.ams.diabetes.WithType2DiabetesPageOLS;
 import com.acurian.selenium.pages.blinx.ams.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS;
 import com.acurian.selenium.pages.blinx.ams.generalHealth.SiteSelectionPageOLS;
+import com.acurian.selenium.pages.blinx.ams.lowt_3017.CardiovascularDiseaseThanOthersPageOLS;
+import com.acurian.selenium.pages.blinx.ams.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.blinx.ams.shared.GenderPageOLS;
 import com.acurian.selenium.pages.blinx.ams.shared.WhatKindOfDiabetesPageOLS;
 import com.acurian.selenium.pages.blinx.ams.shared.ZipCodePageOLS;
@@ -182,13 +187,13 @@ public class CV_5034_OLSBlinx extends BaseTest {
                 .checkProtocolsContainsForQNumber("QS6704", site.activeProtocols)
                 .back(whatKindOfDiabetesPageOLS);
 
-        WithType2diabetesPageOLS withType2diabetesPageOLS = whatKindOfDiabetesPageOLS
+        WithType2DiabetesPageOLS withType2DiabetesPageOLS = whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Type 2 diabetes (sometimes called Adult-onset diabetes)")
-                .clickNextButton(new WithType2diabetesPageOLS());
+                .clickNextButton(new WithType2DiabetesPageOLS());
 
         //Q6	How long ago were you diagnosed with type 2 diabetes?
-        CholesterolTriglyceridesLipidsPageOLS cholesterolTriglyceridesLipidsPageOLS = withType2diabetesPageOLS
+        CholesterolTriglyceridesLipidsPageOLS cholesterolTriglyceridesLipidsPageOLS = withType2DiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Within the past 2 months")
                 .clickNextButton(new CholesterolTriglyceridesLipidsPageOLS());
@@ -196,8 +201,8 @@ public class CV_5034_OLSBlinx extends BaseTest {
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS6705", site.activeProtocols)
-                .back(withType2diabetesPageOLS);
-        withType2diabetesPageOLS
+                .back(withType2DiabetesPageOLS);
+        withType2DiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("3 - 6 months ago")
                 .clickNextButton(cholesterolTriglyceridesLipidsPageOLS);

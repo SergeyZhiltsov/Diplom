@@ -1,7 +1,7 @@
 package com.acurian.selenium.tests.health_check;
 
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.blinx.ams.DateOfBirthPageOLS;
+import com.acurian.selenium.pages.blinx.ams.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.outer.AcurianHealthPage;
 import com.acurian.selenium.pages.outer.OlsLegacyDateOfBirthPage;
 import com.acurian.selenium.pages.outer.OlsLegacyNumberPage;
