@@ -2,18 +2,13 @@ package com.acurian.selenium.tests.blinx;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.blinx.ams.DateOfBirthPageOLS;
-import com.acurian.selenium.pages.blinx.ams.SubquestionExperiencedHeartPageOLS;
+import com.acurian.selenium.pages.blinx.ams.shared.*;
+import com.acurian.selenium.pages.blinx.ams.diabetes.SubquestionExperiencedHeartPageOLS;
 import com.acurian.selenium.pages.blinx.ams.closes.*;
 import com.acurian.selenium.pages.blinx.ams.crohns.*;
 import com.acurian.selenium.pages.blinx.ams.debug.DebugPageOLS;
 import com.acurian.selenium.pages.blinx.ams.generalHealth.*;
-import com.acurian.selenium.pages.blinx.ams.shared.BiologicMedications;
-import com.acurian.selenium.pages.blinx.ams.shared.GenderPageOLS;
-import com.acurian.selenium.pages.blinx.ams.shared.PersonalDetails;
-import com.acurian.selenium.pages.blinx.ams.uc.WhenWereYouDiagnosedWithUCPageOLS;
-import com.acurian.selenium.pages.blinx.gmega.AboutHealthPageOLS;
-import com.acurian.selenium.pages.blinx.gmega.ApproximateHeightWeightPageOLS;
+import com.acurian.selenium.pages.blinx.ams.uc.WhenWereYouDiagnosedWithUCPageOLS;;
 import com.acurian.selenium.pages.blinx.gmega.intro.IdentificationPageOLS;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -51,7 +46,7 @@ public class Crohns_4818_OLSBlinx extends BaseTest {
     public void Crohns_4818_OLS(Site site) {
 //        Site site = Site.AUT_AMS1_4818A_Site;
         String phoneNumber = "AUTAMS1CRN";
-        String studyName = "a Crohn's";
+        String studyName = "a Crohn's study";
         String site_Indication = "a Crohn's or colitis";
         String indication = "a Crohn's Disease";
         String env = System.getProperty("acurian.env", "STG");
@@ -64,7 +59,7 @@ public class Crohns_4818_OLSBlinx extends BaseTest {
         LessThan18YearsOldPageOLS lessThan18YearsOldPage_OLS = new LessThan18YearsOldPageOLS();
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
-                .waitForPageLoadCrohns("a Crohn's study", "700")
+                .waitForPageLoadCrohns(studyName, "700")
                 .clickOnAnswer("No");
 //                .clickNextButton(new LessThan18YearsOldPageOLS());
         DebugPageOLS debugPageOLS = new DebugPageOLS();
@@ -73,15 +68,14 @@ public class Crohns_4818_OLSBlinx extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
                 .back(dateOfBirthPageOLS);
-        dateOfBirthPageOLS
-                .waitForPageLoadCrohns("a Crohn's study", "700");
-        PersonalDetails personalDetails = dateOfBirthPageOLS
+        ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
+                .waitForPageLoadCrohns(studyName, "700")
                 .clickOnAnswer("Yes")
-                .getPage(new PersonalDetails());
+                .getPage(new ZipCodePageOLS());
 
-        GenderPageOLS genderPageOLS = personalDetails
+        GenderPageOLS genderPageOLS = zipCodePageOLS
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode, "West Cape May", "New Jersey")
+                .setZipCode(site.zipCode)
                 .clickNextButton(new GenderPageOLS());
 
         genderPageOLS
@@ -127,20 +121,22 @@ public class Crohns_4818_OLSBlinx extends BaseTest {
 
         WhenDiagnosedWithCronsDiseaseOLS whenDiagnosedWithCronsDiseaseOLS = everDiagnosedWithFollowingConditionsOLS
                 .waitForPageLoad()
+                .clickOnAnswers("None of the above")
                 .clickOnAnswers("Crohn's disease")
 //                .clickOnAnswers("Ulcerative colitis")
                 .clickNextButton(new WhenDiagnosedWithCronsDiseaseOLS());
         AsPartOfYourCronsDiseaseDiagnosisFollowingProceduresOLS asPartOfYourCronsDiseaseDiagnosisFollowingProceduresOLS = whenDiagnosedWithCronsDiseaseOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Less than 3 months ago")
-                .clickNextButton(new AsPartOfYourCronsDiseaseDiagnosisFollowingProceduresOLS())
+                .clickNextButton(new AsPartOfYourCronsDiseaseDiagnosisFollowingProceduresOLS());
+        asPartOfYourCronsDiseaseDiagnosisFollowingProceduresOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS8103", site.activeProtocols)
                 .back(whenDiagnosedWithCronsDiseaseOLS)
                 .waitForPageLoad()
                 .clickOnAnswer("3 – 6 months ago")
-                .clickNextButton(new AsPartOfYourCronsDiseaseDiagnosisFollowingProceduresOLS());
+                .clickNextButton(asPartOfYourCronsDiseaseDiagnosisFollowingProceduresOLS);
         EverTakenAnyMedicationOLS everTakenAnyMedicationOLS = asPartOfYourCronsDiseaseDiagnosisFollowingProceduresOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
@@ -527,7 +523,7 @@ public class Crohns_4818_OLSBlinx extends BaseTest {
                 .clickOnAnswers("Neither")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS);
 
-        ApproximateHeightWeightPageOLS approximateHeightWeightPageOLS = new ApproximateHeightWeightPageOLS();
+        ApproximateHeightPageOLS approximateHeightPageOLS = new ApproximateHeightPageOLS();
         List<String> disqualifyQS59 = Arrays.asList("Cancer in the past 5 years, except skin cancer",
                 "Cirrhosis",
                 "Drug or alcohol abuse within the past year",
@@ -540,7 +536,7 @@ public class Crohns_4818_OLSBlinx extends BaseTest {
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(answer)
-                    .clickNextButton(approximateHeightWeightPageOLS)
+                    .clickNextButton(approximateHeightPageOLS)
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
@@ -549,19 +545,19 @@ public class Crohns_4818_OLSBlinx extends BaseTest {
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Multiple sclerosis (MS)")
-                .clickNextButton(approximateHeightWeightPageOLS)
+                .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS61", site.activeProtocols)
                 .back(doAnyOftheFollowingAdditionalDiagnosesOLS)
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(approximateHeightWeightPageOLS);
+                .clickNextButton(approximateHeightPageOLS);
 
 
-        IdentificationPageOLS identificationPageOLS = approximateHeightWeightPageOLS
+        IdentificationPageOLS identificationPageOLS = approximateHeightPageOLS
                 .waitForPageLoad()
-                .setAllFields("5", "7", "170")
+                .setAll("5", "7", "170")
                 .clickNextButton(new CurrentlyParticipatingInStudyOLS())
                 .waitForPageLoad()
                 .clickOnAnswer("No")
@@ -572,10 +568,11 @@ public class Crohns_4818_OLSBlinx extends BaseTest {
 
         SiteSelectionPageOLS siteSelectionPageOLS = identificationPageOLS
                 .waitForPageLoad2()
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageOLS());
 
         MedicalRecordsOptionPageOLS medicalRecordsOptionPageOLS = siteSelectionPageOLS
-                .waitForPageLoad("a Crohn's study!")
+                .waitForPageLoad(studyName + "!")
                 .getPID()
                 .clickOnFacilityName(site.name)
                 .clickNextButton(new MedicalRecordsOptionPageOLS());

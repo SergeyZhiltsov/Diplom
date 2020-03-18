@@ -2,13 +2,12 @@ package com.acurian.selenium.tests.blinx;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.blinx.ams.*;
+import com.acurian.selenium.pages.blinx.ams.adg_4357.WithType1DiabetesPageOLS;
 import com.acurian.selenium.pages.blinx.ams.closes.*;
-import com.acurian.selenium.pages.blinx.ams.cv_study.SubquestionHeartPageOLS;
-import com.acurian.selenium.pages.blinx.ams.cv_study.SufferedFollowingHeartRelatedConditionsPageOLS;
 import com.acurian.selenium.pages.blinx.ams.debug.DebugPageOLS;
-import com.acurian.selenium.pages.blinx.ams.dia.*;
+import com.acurian.selenium.pages.blinx.ams.diabetes.*;
 import com.acurian.selenium.pages.blinx.ams.generalHealth.*;
+import com.acurian.selenium.pages.blinx.ams.lowt_3017.CardiovascularDiseaseThanOthersPageOLS;
 import com.acurian.selenium.pages.blinx.ams.shared.*;
 import com.acurian.selenium.pages.blinx.gmega.AboutHealthPageOLS;
 import com.acurian.selenium.pages.blinx.gmega.intro.IdentificationPageOLS;

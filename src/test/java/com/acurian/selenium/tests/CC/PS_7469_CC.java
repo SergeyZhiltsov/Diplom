@@ -558,7 +558,7 @@ public class PS_7469_CC extends BaseTest {
          selectActionPageCC
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
-                .childPidFromDbToLog(env, "4656")
+                .childPidFromDbToLog(env)
                 .assertGeneratedFul(env, site)
                 .dispoShouldMatch(site.dispo, site.dispo);
     }

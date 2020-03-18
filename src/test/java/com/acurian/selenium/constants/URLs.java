@@ -20,6 +20,7 @@ public interface URLs {
     String BLINX_PROD = "https://screener.acurianhealth.com/welcome.do?method=beginCall&phoneNumber=%1$s&up[]" +
             "=CLIENT_BLINX&testing_key=%2$s&show_debug=1#";
     String BLINX_STG = "https://sf.acu2.aws.blinxsolutions.systems/welcome.do?method=beginCall&phoneNumber=%1$s";
+    String BLINX_QA = "https://sf.acu3.aws.blinxsolutions.systems/welcome.do?method=beginCall&phoneNumber=%1$s";
 
     String OLS_STG = "https://test-screener.acurian.com/questionnaire_test_staging/welcome?pn=%1$s";
     String OLS_QA = "https://test-screener.acurian.com/questionnaire_test_qa/welcome?pn=%1$s";

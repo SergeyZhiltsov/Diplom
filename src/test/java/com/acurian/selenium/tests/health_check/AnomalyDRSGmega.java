@@ -1,9 +1,7 @@
 package com.acurian.selenium.tests.health_check;
 
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.OLS.closes.HSGeneralPageOLS;
-import com.acurian.selenium.pages.blinx.ams.DateOfBirthPageOLS;
-import com.acurian.selenium.pages.blinx.ams.closes.ThankYouCloseSimplePageOLS;
+import com.acurian.selenium.pages.blinx.ams.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.blinx.ams.derm.WhatKindOfArthritisPageOLS;
 import com.acurian.selenium.pages.blinx.ams.shared.DRSBlinx;
 import com.acurian.selenium.pages.blinx.gmega.*;
@@ -12,8 +10,6 @@ import com.acurian.selenium.pages.blinx.gmega.intro.PleaseConfirmYourGenderPageO
 import com.acurian.selenium.pages.blinx.gmega.intro.ProvidingInformationPageOLS;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
-
-import java.util.ArrayList;
 
 public class AnomalyDRSGmega extends BaseTest
     {

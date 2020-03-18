@@ -2,10 +2,10 @@ package com.acurian.selenium.tests.blinx;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.blinx.ams.DateOfBirthPageOLS;
-import com.acurian.selenium.pages.blinx.ams.DoYouTakeAnyMedicationsControlHypertension_OLS;
+import com.acurian.selenium.pages.blinx.ams.shared.DateOfBirthPageOLS;
+import com.acurian.selenium.pages.blinx.ams.oab_4867.DoYouTakeAnyMedicationsControlHypertension_OLS;
 import com.acurian.selenium.pages.blinx.ams.MostRecentHeartProcedurePageOLS;
-import com.acurian.selenium.pages.blinx.ams.SubquestionExperiencedHeartPageOLS;
+import com.acurian.selenium.pages.blinx.ams.diabetes.SubquestionExperiencedHeartPageOLS;
 import com.acurian.selenium.pages.blinx.ams.closes.*;
 import com.acurian.selenium.pages.blinx.ams.derm.*;
 import com.acurian.selenium.pages.blinx.ams.debug.DebugPageOLS;

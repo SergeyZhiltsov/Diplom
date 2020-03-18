@@ -17,6 +17,7 @@ public class ZipCodePageOLS extends MainPageBlinx {
 
     @Step
     public ZipCodePageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

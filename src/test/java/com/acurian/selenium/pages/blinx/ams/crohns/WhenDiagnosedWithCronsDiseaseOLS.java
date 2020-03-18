@@ -20,6 +20,7 @@ public class WhenDiagnosedWithCronsDiseaseOLS extends MainPageBlinx {
 
     @Step
     public WhenDiagnosedWithCronsDiseaseOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

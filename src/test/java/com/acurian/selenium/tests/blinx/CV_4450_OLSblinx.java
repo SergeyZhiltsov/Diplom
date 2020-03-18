@@ -2,19 +2,21 @@ package com.acurian.selenium.tests.blinx;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.blinx.ams.closes.CurrentlyParticipatingInStudyOLS;
-import com.acurian.selenium.pages.blinx.ams.closes.RequirePassDrugTestOLS;
+import com.acurian.selenium.pages.blinx.ams.adg_4357.WithType1DiabetesPageOLS;
+import com.acurian.selenium.pages.blinx.ams.closes.*;
 import com.acurian.selenium.pages.blinx.ams.debug.DebugPageOLS;
 import com.acurian.selenium.pages.blinx.ams.*;
-import com.acurian.selenium.pages.blinx.ams.closes.LessThan18YearsOldPageOLS;
 import com.acurian.selenium.pages.blinx.ams.cv_study.*;
+import com.acurian.selenium.pages.blinx.ams.diabetes.CurrentlyTreatingYourDiabetesPageOLS;
+import com.acurian.selenium.pages.blinx.ams.diabetes.WithType2DiabetesPageOLS;
+import com.acurian.selenium.pages.blinx.ams.lowt_3017.CardiovascularDiseaseThanOthersPageOLS;
+import com.acurian.selenium.pages.blinx.ams.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.blinx.ams.shared.GenderPageOLS;
 import com.acurian.selenium.pages.blinx.ams.shared.WhatKindOfDiabetesPageOLS;
 import com.acurian.selenium.pages.blinx.ams.shared.ZipCodePageOLS;
 import com.acurian.selenium.pages.blinx.gmega.AboutHealthPageOLS;
 import com.acurian.selenium.pages.blinx.gmega.ApproximateHeightWeightPageOLS;
 import com.acurian.selenium.pages.blinx.ams.generalHealth.SiteSelectionPageOLS;
-import com.acurian.selenium.pages.blinx.ams.closes.QualifiedClose2PageOLS;
 import com.acurian.selenium.pages.blinx.gmega.intro.IdentificationPageOLS;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -131,11 +133,11 @@ public class CV_4450_OLSblinx extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS6704", site.activeProtocols)
                 .back(whatKindOfDiabetesPageOLS);
-        WithType2diabetesPageOLS withType2diabetesPageOLS = whatKindOfDiabetesPageOLS
+        WithType2DiabetesPageOLS withType2DiabetesPageOLS = whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Type 2 diabetes (sometimes called Adult-onset diabetes)")
-                .clickNextButton(new WithType2diabetesPageOLS());
-        withType2diabetesPageOLS
+                .clickNextButton(new WithType2DiabetesPageOLS());
+        withType2DiabetesPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS6704", site.activeProtocols)
@@ -445,12 +447,12 @@ public class CV_4450_OLSblinx extends BaseTest {
                 .clickOnFacilityName(site.name)
                 .clickNextButton(new QualifiedClose2PageOLS());
 
-        ThankYouClosePageBlinx thankYouClosePageBlinx = qualifiedClose2PageOLS
+        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = qualifiedClose2PageOLS
                 .waitForPageLoad3()
                 .clickOnAnswer("No")
-                .clickNextButton(new ThankYouClosePageBlinx());
+                .clickNextButton(new ThankYouCloseSimplePageOLS());
 
-        AboutHealthPageOLS aboutHealthPageOLS = thankYouClosePageBlinx
+        AboutHealthPageOLS aboutHealthPageOLS = thankYouCloseSimplePageOLS
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS());
 
