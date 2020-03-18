@@ -626,9 +626,6 @@ public class Crohns_3889_CC extends BaseTest {
         }
         hsMedicalRecordsPageCC
                 .waitForPageLoad()
-                .clickNextButton(new QualifiedFlareMonitoringAppClosePageCC())
-                .waitForPageLoadCrohns()
-                .getActivationCode()
                 .clickNextButton(new ThankYouCloseSimplePageCC())
                 .waitForPageLoad3()
                 .clickNextButton(selectActionPageCC)
