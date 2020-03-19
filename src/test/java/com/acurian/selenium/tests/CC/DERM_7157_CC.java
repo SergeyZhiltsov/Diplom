@@ -880,7 +880,7 @@ public class DERM_7157_CC extends BaseTest {
 //                        .waitForPageLoad()
 //                        .clickOnAnswer("Continue without medical records")
 //                        .clickNextButton(new SynexusRadiantDirectScheduleCC())
-                        .waitForPageLoadSyn()
+                        .waitForPageLoad()
                         .assertVariablesNew("Acurian", "Trial", "04/05/2001", "US",
                                 "Cape May, NJ", site.zipCode, "qa.acurian@gmail.com",
                                 "999-999-9999", "AUT_AMS1_7157S", site.name, "GLNXXXATO204 - Glenmark Pharmaceuticals Atopic Dermatitis")

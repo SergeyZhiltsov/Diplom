@@ -625,7 +625,7 @@ public class DPN_5096_CC extends BaseTest {
                 siteSelectionPageCC
                         .clickOnAnswer(site.name)
                         .clickNextButton(new SynexusRadiantDirectScheduleCC())
-                        .waitForPageLoadSyn()
+                        .waitForPageLoad()
                         .assertVariablesNew("Acurian", "Trial", "04/05/2001", "US",
                                 "Blue Bell, PA", site.zipCode, "qa.acurian@gmail.com",
                                 "999-999-9999", "aut5096cc", site.name,

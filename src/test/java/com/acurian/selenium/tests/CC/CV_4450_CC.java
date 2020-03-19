@@ -437,7 +437,7 @@ public class CV_4450_CC extends BaseTest {
                 .getPID()
                 .clickOnAnswer(site.name)
                 .clickNextButton(new SynexusRadiantDirectScheduleCC())
-                .waitForPageLoadSyn()
+                .waitForPageLoad()
                 .assertVariablesNew("Acurian", "Trial", "09/09/1952", "US",
                         "Dover, DE", site.zipCode, "qa.acurian@gmail.com",
                         "999-999-9999", "12345D", site.name, "NNDXXXCAR388 - Novo Nordisk cardiovascular outcomes")

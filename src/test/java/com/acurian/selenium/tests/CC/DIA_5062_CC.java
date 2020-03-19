@@ -613,7 +613,7 @@ public class DIA_5062_CC extends BaseTest {
                 .getPID()
                 .clickOnAnswer(site.name)
                 .clickNextButton(new SynexusRadiantDirectScheduleCC())
-                .waitForPageLoadSyn()
+                .waitForPageLoad()
                 .assertVariablesNew("Acurian", "Trial", "09/09/1960", "US",
                         "Dover, DE", site.zipCode, "qa.acurian@gmail.com", "999-999-9999",
                         "12345a", site.name, "ALLSYHNAH002 - Allergan NASH")
