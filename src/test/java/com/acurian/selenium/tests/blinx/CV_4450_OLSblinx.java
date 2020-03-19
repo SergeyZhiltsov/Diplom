@@ -26,27 +26,25 @@ import java.util.List;
 
 public class CV_4450_OLSblinx extends BaseTest {
 
-    @DataProvider(name = "data")
-    private Object[][] getTestData() {
+    @DataProvider
+    public Object[][] sites() {
         return new Object[][] {
-                {Site.AUT_CV1_4450S_Syn, "Dover", "Delaware" }
+                {Site.AUT_CV1_4450S_Syn}
         };
     }
 
-    @Test(dataProvider = "data", enabled = false)
-    public void CV_4450_Blinx(Site site, String city, String state) {
+    @Test(dataProvider = "sites", enabled = false)
+    public void CV_4450_Blinx(Site site) {
         String phoneNumber = "AUTAMS1CV1";
         DebugPageOLS debugPageOLS = new DebugPageOLS();
         String env = System.getProperty("acurian.env", "STG");
+        String studyName = "a heart health study";
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
-//        BaseTest.getDriver().navigate()
-//                .to("https://screener.acurianhealth.com/welcome.do?method=beginCall&phoneNumber=AUTAMS1CV1&up[]" +
-//                        "=CLIENT_BLINX&testing_key=51fa2780f2430b542923956ac1974bb7&show_debug=1#");
 
         LessThan18YearsOldPageOLS lessThan18YearsOldPageOLS = dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
-                .waitForPageLoad("a heart health study", "750")
+                .waitForPageLoad(studyName, "750")
                 .clickOnAnswer("No")
                 .getPage(new LessThan18YearsOldPageOLS());
 
@@ -57,7 +55,7 @@ public class CV_4450_OLSblinx extends BaseTest {
                 .back(dateOfBirthPageOLS);
 
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
-                .waitForPageLoad("a heart health study", "750")
+                .waitForPageLoad(studyName, "750")
                 .clickOnAnswer("Yes")
                 .getPage(new ZipCodePageOLS());
 

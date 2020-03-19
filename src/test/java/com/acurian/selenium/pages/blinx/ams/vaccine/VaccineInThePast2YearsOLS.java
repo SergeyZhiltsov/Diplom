@@ -1,4 +1,4 @@
-package com.acurian.selenium.pages.blinx.ams.shared;
+package com.acurian.selenium.pages.blinx.ams.vaccine;
 
 import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.blinx.MainPageBlinx;
@@ -8,26 +8,25 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class DiagnosedAnyTypeOfDiabetesPageOLS extends MainPageBlinx {
+public class VaccineInThePast2YearsOLS extends MainPageBlinx {
 
-    public final String titleExpected = "Have you been diagnosed with any type of diabetes?";
+    public final String titleExpected = "Have you had a flu vaccine in the past 2 years?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS_BLINX)
     WebElement titleText;
-    @FindBy(xpath = Locators.RADIO_BUTTON_LIST_OLS)
-    List<WebElement> radioButtonsList;
-
+    @FindBy(xpath = Locators.CHEKBOX_LIST_OLS_BLINX)
+    List<WebElement> checkBoxList;
 
     @Step
-    public DiagnosedAnyTypeOfDiabetesPageOLS waitForPageLoad() {
+    public VaccineInThePast2YearsOLS waitForPageLoad() {
         waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public DiagnosedAnyTypeOfDiabetesPageOLS clickOnAnswer(String answerText) {
-        clickOnRadioButton(radioButtonsList, answerText);
+    public VaccineInThePast2YearsOLS clickOnAnswers(String ...answerText) {
+        clickOnCheckBoxes(checkBoxList, answerText);
         return this;
     }
 
