@@ -853,7 +853,13 @@ AboutHealthPageOLS aboutHealthPageOLS = new AboutHealthPageOLS();
             if(aboutHealthPageOLS.getHostName().equals(Properties.getHostName())) {
                 aboutHealthPageOLS
                         .pidFromDbToLog(env)
-                        .childPidFromDbToLog(env)
+                        .childPidFromDbToLog(env);
+                try {
+                    Thread.sleep(5*60*1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                aboutHealthPageOLS
                         .assertGeneratedFul(env, site)
                         .dispoShouldMatch(site.dispo, site.dispo);
             }

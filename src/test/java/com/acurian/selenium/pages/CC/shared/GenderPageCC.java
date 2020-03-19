@@ -11,7 +11,7 @@ import java.util.List;
 
 public class GenderPageCC extends MainPageCC {
 
-    public final String titleExpected = "This part of the questionnaire requires that we ask about your gender.  To confirm, please tell me, is your gender male or female?";
+    public final String titleExpected = "This part of the questionnaire requires that we ask about your gender. To confirm, please tell me, is your gender male or female?";
     public final String titleExpected2 = "May I have your date of birth?";
     public final String titleExpected3 = "Please confirm your gender:";
 
