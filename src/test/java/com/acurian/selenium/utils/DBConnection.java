@@ -150,6 +150,9 @@ public class DBConnection {
                             + "display_ind: " + displayInd + ", "
                             + "test_site_ind: " + testSiteInd + ".");
                     i++;
+                    if (studyNum.contains("AUT_TEMP")){
+                        i--;
+                    }
                 } catch (NullPointerException e) {
                     logToAllure("All test sites are flagged");
                     break;
