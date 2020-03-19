@@ -851,7 +851,7 @@ public class DERM_7157_OLS extends BaseTest {
                     .childPidFromDbToLog(env)
                     .dispoShouldMatch(site.dispo, site.dispo);
             try {
-                Thread.sleep(15000);
+                Thread.sleep(5*60*1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

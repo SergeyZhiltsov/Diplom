@@ -430,7 +430,7 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
                         .waitForPageLoad()
                         .clickNextButton(thankYouCloseSimplePageOLS);
 //                        .clickOnAnswer("Continue with medical records")
-//                        .clickNextButton(new DoctorInformationCollectionPageOLS())
+//                        .clickNextButton(new DoctorInformationCollectionPageOLS())пф
 //                        .waitForPageLoad()
 //                        .clickNextButton(new HS1PageOLS())
 //                        .waitForPageLoad()
