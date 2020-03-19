@@ -889,7 +889,7 @@ public class GAST_4357_CC extends BaseTest {
 //                            .clickOnAnswer("No")
 //                            .clickNextButton(new ThankYouCloseSimplePageCC());
                     synexusRadiantDirectScheduleCC
-                            .waitForPageLoadSyn()
+                            .waitForPageLoad()
                             .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                             .clickNextButton(selectActionPageCC).waitForPageLoad();
                         if (selectActionPageCC.getHostName().equals(Properties.getHostName())) {
@@ -913,7 +913,7 @@ public class GAST_4357_CC extends BaseTest {
                 selectionPageCC
                         .clickOnAnswer(site.name)
                         .clickNextButton(new SynexusRadiantDirectScheduleCC())
-                        .waitForPageLoadSyn()
+                        .waitForPageLoad()
                         .assertVariablesNew("Acurian", "Trial", "04/19/2001", "US",
                                 "Dover, DE", site.zipCode, "qa.acurian@gmail.com",
                                 "999-999-9999", env.equals("STG") ? "4357synexus" : "4357S",

@@ -411,7 +411,7 @@ public class HOTF_7119_CC extends BaseTest {
                 .getPID()
                 .clickOnAnswer(site.name)
                 .clickNextButton(new SynexusRadiantDirectScheduleCC())
-                .waitForPageLoadSyn()
+                .waitForPageLoad()
                 .assertVariablesNew("Acurian", "Trial", "08/09/1970", "US",
                         "Cape May, NJ", site.zipCode, "qa.acurian@gmail.com", "999-999-9999",
                         "aut7119s", site.name, "ASSICNVMS301,ASSICNVMS302,ASSICNVMS304 - Astellas Skylight Hot Flashes")
