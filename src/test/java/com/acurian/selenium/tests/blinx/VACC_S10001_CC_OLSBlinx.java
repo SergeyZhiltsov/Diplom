@@ -22,7 +22,7 @@ import ru.yandex.qatools.allure.annotations.Description;
 import java.util.Arrays;
 import java.util.List;
 
-public class VACC_S10001_OLSBlinx extends BaseTest {
+public class VACC_S10001_CC_OLSBlinx extends BaseTest {
 
     @BeforeMethod
     public void setUp() {

@@ -68,7 +68,8 @@ public enum Site {
     //4450
     AUT_CV1_4450S_Syn("AUT_CV1_4450S_Syn", "19901", "41C", false, false, "EX9536_4388"),
     //S10560(8983)
-    AUT_CV_8983("AUT_CV_8983", "19901", "1R", false, false, "20170625"),
+    AUT_CV_8983("AUT_CV_8983", "19044", "1R", true, false, "20170625"),
+    AUT_CV_8983S("AUT_CV_8983S", "08204", "1R", true, false, "20170625"),
     //4471
     AUT_MCC("AUT_MCC", "19341", "1R", false, true, "MK_7264_030"),
     //4533
@@ -79,9 +80,9 @@ public enum Site {
     //    AUT_VAC_4556_Site("AUT_VAC_4556_Site", "60061", "1R", true, false, "B7471008"),//"B7471007"
     AUT_AMS_JANRSV("AUT_JANRSV_site", "19901", "1R", false, false, "VAC18193RSV2001"),
 
-    AUT_S10159("AUT_S10159", "19901", "1R", false, false, "FBP00004"),
-    AUT_S10001("AUT_S10001", "19901", "1R", false, false, "VLA1553_301"),
-    AUT_S10569("AUT_S10569", "19901", "1R", false, false, "VAC52416BAC1001"),
+    AUT_S10159("AUT_S10159", "19901", "1R", true, false, "FBP00004"),
+    AUT_S10001("AUT_S10001", "19044", "1R", true, false, "VLA1553_301"),
+    AUT_S10569("AUT_S10569", "19244", "1R", true, false, "VAC52416BAC1001"),
 
     AUT_AMS_JANRSV_Syn("AUT_JANRSVS_site", "19422", "41C", false, false, "VAC18193RSV2001"),
     JANRSV_AUT_JANDS("Synexus – 301010 : Chicago", "60602", "41C", false, false, "VAC18193RSV2001"),
