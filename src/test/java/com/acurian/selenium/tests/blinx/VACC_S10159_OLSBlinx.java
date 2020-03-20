@@ -14,7 +14,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
-public class VACC_S10159_CC_OLSBlinx extends BaseTest {
+public class VACC_S10159_OLSBlinx extends BaseTest {
 
     @BeforeMethod
     public void setUp() {
