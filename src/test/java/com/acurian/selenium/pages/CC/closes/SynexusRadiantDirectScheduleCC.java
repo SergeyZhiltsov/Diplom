@@ -74,7 +74,7 @@ public class SynexusRadiantDirectScheduleCC extends MainPageCC{
     
     @Step
     public SynexusRadiantDirectScheduleCC waitForPageLoadSyn() {
-        waitForPageLoadMain(titleText, titleSynExpected);
+        waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
     

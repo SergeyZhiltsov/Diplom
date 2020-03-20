@@ -11,7 +11,7 @@ import com.acurian.selenium.pages.blinx.gmega.intro.ProvidingInformationPageOLS;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
-public class AnomalyDRSGmega extends BaseTest
+public class AnomalyDRSBlinx extends BaseTest
     {
 
         @Test(enabled = true)
