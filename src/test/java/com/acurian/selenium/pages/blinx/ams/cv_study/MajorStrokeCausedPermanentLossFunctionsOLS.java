@@ -1,4 +1,4 @@
-package com.acurian.selenium.pages.blinx.ams.shared;
+package com.acurian.selenium.pages.blinx.ams.cv_study;
 
 import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.blinx.MainPageBlinx;
@@ -8,9 +8,10 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class DiagnosedAnyTypeOfDiabetesPageOLS extends MainPageBlinx {
+public class MajorStrokeCausedPermanentLossFunctionsOLS extends MainPageBlinx {
 
-    public final String titleExpected = "Have you been diagnosed with any type of diabetes?";
+    public final String titleExpected = "Have you had a major stroke which caused permanent loss of " +
+            "function (for example, loss of function in your hand or difficulty with speech)?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS_BLINX)
     WebElement titleText;
@@ -19,14 +20,13 @@ public class DiagnosedAnyTypeOfDiabetesPageOLS extends MainPageBlinx {
 
 
     @Step
-    public DiagnosedAnyTypeOfDiabetesPageOLS waitForPageLoad() {
-        waitForAnimation();
+    public MajorStrokeCausedPermanentLossFunctionsOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public DiagnosedAnyTypeOfDiabetesPageOLS clickOnAnswer(String answerText) {
+    public MajorStrokeCausedPermanentLossFunctionsOLS clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }
