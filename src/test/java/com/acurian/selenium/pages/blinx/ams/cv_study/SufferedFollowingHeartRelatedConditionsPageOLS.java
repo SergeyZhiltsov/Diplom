@@ -20,6 +20,7 @@ public class SufferedFollowingHeartRelatedConditionsPageOLS extends MainPageBlin
 
     @Step
     public SufferedFollowingHeartRelatedConditionsPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

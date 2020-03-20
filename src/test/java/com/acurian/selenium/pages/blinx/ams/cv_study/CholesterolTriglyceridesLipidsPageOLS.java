@@ -10,8 +10,7 @@ import java.util.List;
 
 public class CholesterolTriglyceridesLipidsPageOLS extends MainPageBlinx {
 
-    private final String titleExpected = "Are you currently taking medication to manage high cholesterol, triglycerides, or lipids?\n" +
-            "This may include statins like Lipitor or Zocor, injectable drugs like Praluent or Repatha, or other options such as niacin, fibrates, Prevalite, or Zetia.";
+    private final String titleExpected = "Are you currently taking any medication to manage high cholesterol, triglycerides, or lipids?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS_BLINX)
     WebElement titleText;
