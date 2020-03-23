@@ -11,7 +11,7 @@ import java.util.List;
 public class AreYouInterestedInVaccineStudyOLS extends MainPageBlinx {
 
     public final String titleExpected = "We may have several vaccine studies accepting new participants.\n" +
-            "Are you interested in any of the following vaccine studies?\n" +
+            "Are you interested in any of the following?\n" +
             "Please select all that apply.";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS_BLINX)

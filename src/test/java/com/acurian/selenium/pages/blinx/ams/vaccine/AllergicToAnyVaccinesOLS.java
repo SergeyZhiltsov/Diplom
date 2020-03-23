@@ -22,6 +22,7 @@ public class AllergicToAnyVaccinesOLS extends MainPageBlinx {
 
     @Step
     public AllergicToAnyVaccinesOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

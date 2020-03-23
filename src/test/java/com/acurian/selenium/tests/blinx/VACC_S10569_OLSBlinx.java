@@ -3,15 +3,15 @@ package com.acurian.selenium.tests.blinx;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.blinx.ams.closes.*;
+import com.acurian.selenium.pages.blinx.ams.cv_study.CholesterolTriglyceridesLipidsPageOLS;
 import com.acurian.selenium.pages.blinx.ams.debug.DebugPageOLS;
 import com.acurian.selenium.pages.blinx.ams.generalHealth.*;
 import com.acurian.selenium.pages.blinx.ams.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.blinx.ams.shared.GenderPageOLS;
+import com.acurian.selenium.pages.blinx.ams.shared.WhatKindOfDiabetesPageOLS;
 import com.acurian.selenium.pages.blinx.ams.shared.ZipCodePageOLS;
-import com.acurian.selenium.pages.blinx.ams.vaccine.AllergicToAnyVaccinesOLS;
-import com.acurian.selenium.pages.blinx.ams.vaccine.AreYouGenerallyInGoodHealthOLS;
-import com.acurian.selenium.pages.blinx.ams.vaccine.AreYouInterestedInVaccineStudyOLS;
-import com.acurian.selenium.pages.blinx.ams.vaccine.CurrentlyPregnantBreastfeedingOLS;
+import com.acurian.selenium.pages.blinx.ams.vaccine.*;
+import com.acurian.selenium.pages.blinx.gmega.WhatKindOfArthritisDoYouHavePageOLS;
 import com.acurian.selenium.pages.blinx.gmega.intro.IdentificationPageOLS;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -19,10 +19,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
-import java.util.Arrays;
-import java.util.List;
-
-public class VACC_S10001_OLSBlinx extends BaseTest {
+public class VACC_S10569_OLSBlinx extends BaseTest {
 
     @BeforeMethod
     public void setUp() {
@@ -37,38 +34,49 @@ public class VACC_S10001_OLSBlinx extends BaseTest {
     @DataProvider
     public Object[][] sites() {
         return new Object[][]{
-                {Site.AUT_S10001}
+                {Site.AUT_S10569}
         };
     }
 
     @Test(dataProvider = "sites", enabled = false)
-    @Description("VACC_S10001_BLINX VLA1553-301 (Valneva CHIKV Vaccine)")
-    public void vaccS10001BlinxTest(Site site) {
-        final String phoneNumber = "AUTAMS1DFU";
-        final String studyName = "a Chikungunya (CHIKV) virus vaccine study";
+    @Description("VACC_S10569_BLINX VAC52416BAC1001 (Janssen E. coli Vaccine)")
+    public void vaccS10569BlinxTest(Site site) {
+        final String phoneNumber = "AUTAMS1ALZ";
+        final String studyName = "an E. coli vaccine study";
         String env = System.getProperty("acurian.env", "STG");
 
         DebugPageOLS debugPageOLS = new DebugPageOLS();
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
 
-        AreYouInterestedInVaccineStudyOLS areYouInterestedInVaccineStudyOLS = dateOfBirthPageOLS
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS =
+                new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS();
+        GenderPageOLS genderPageOLS = dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
-                .waitForPageLoadGMEGA(studyName, "1,000")
+                .waitForPageLoadGMEGA(studyName, "1,500")
                 .clickOnAnswer("Yes")
                 .getPage(new ZipCodePageOLS())
                 .waitForPageLoad()
                 .setZipCode(site.zipCode)
-                .clickNextButton(new GenderPageOLS())
+                .clickNextButton(new GenderPageOLS());
+        genderPageOLS
                 .waitForPageLoad()
-                .setDate("05051990")
+                .setDate("05051985")
                 .clickOnAnswer("Female")
+                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
+
+        AreYouInterestedInVaccineStudyOLS areYouInterestedInVaccineStudyOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
+                .back(genderPageOLS)
+                .waitForPageLoad()
+                .setDate("05051955")
                 .clickNextButton(new AreYouInterestedInVaccineStudyOLS());
 
-        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS =
-                areYouInterestedInVaccineStudyOLS
+        areYouInterestedInVaccineStudyOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
+                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
 
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
@@ -78,10 +86,10 @@ public class VACC_S10001_OLSBlinx extends BaseTest {
 
         AreYouGenerallyInGoodHealthOLS areYouGenerallyInGoodHealthOLS = areYouInterestedInVaccineStudyOLS
                 .waitForPageLoad()
-                .clickOnAnswers("Chikungunya (CHIKV) virus vaccine")
+                .clickOnAnswers("E. coli vaccine")
                 .clickNextButton(new AreYouGenerallyInGoodHealthOLS());
 
-        AllergicToAnyVaccinesOLS allergicToAnyVaccinesOLS = areYouGenerallyInGoodHealthOLS
+        UrinaryTractInfectionOLS urinaryTractInfectionOLS = areYouGenerallyInGoodHealthOLS
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
@@ -91,9 +99,21 @@ public class VACC_S10001_OLSBlinx extends BaseTest {
                 .back(areYouGenerallyInGoodHealthOLS)
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
+                .clickNextButton(new UrinaryTractInfectionOLS());
+
+        AllergicToAnyVaccinesOLS allergicToAnyVaccinesOLS = urinaryTractInfectionOLS
+                .waitForPageLoad()
+                .clickOnAnswer("No")
                 .clickNextButton(new AllergicToAnyVaccinesOLS());
 
         CurrentlyPregnantBreastfeedingOLS currentlyPregnantBreastfeedingOLS = allergicToAnyVaccinesOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS6915", site.activeProtocols)
+                .back(urinaryTractInfectionOLS)
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
+                .clickNextButton(allergicToAnyVaccinesOLS)
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new CurrentlyPregnantBreastfeedingOLS());
@@ -119,34 +139,12 @@ public class VACC_S10001_OLSBlinx extends BaseTest {
                 .clickOnAnswer("No")
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
 
-        //GH
-        WhenDiagnosedWithCancerOLS whenDiagnosedWithCancerOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Cancer")
-                .clickNextButton(new WhenDiagnosedWithCancerOLS());
-
-        DoAnyOftheFollowingAdditionalDiagnosesOLS doAnyOftheFollowingAdditionalDiagnosesOLS = new DoAnyOftheFollowingAdditionalDiagnosesOLS();
-
-        List<String> disqualifyQS42 = Arrays.asList("Within the past 5 years", "6 - 10 years ago", "11 or more years ago");
-        for (String answer : disqualifyQS42) {
-            System.out.println("Select answer for QS42: " + answer);
-            whenDiagnosedWithCancerOLS
-                    .waitForPageLoad()
-                    .clickOnAnswer(answer)
-                    .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
-                    .waitForPageLoad()
-                    .getPage(debugPageOLS)
-                    .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
-                    .back(whenDiagnosedWithCancerOLS);
-        }
-
-        whenDiagnosedWithCancerOLS
-                .waitForPageLoad()
-                .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
+        //-----------GENERAL HEALTH---------------//
+        DoAnyOftheFollowingAdditionalDiagnosesOLS
+                doAnyOftheFollowingAdditionalDiagnosesOLS = new DoAnyOftheFollowingAdditionalDiagnosesOLS();
 
         WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS kidneyProblemsPage = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
-                .clickOnAnswers("None of the above")
                 .clickOnAnswers("Kidney disease")
                 .clickNextButton(new WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS());
 
@@ -169,24 +167,92 @@ public class VACC_S10001_OLSBlinx extends BaseTest {
                 .back(kidneyProblemsPage);
         kidneyProblemsPage
                 .waitForPageLoad()
-                .clickOnAnswers("Neither")
+                .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
+
+        WhatKindOfDiabetesPageOLS whatKindOfDiabetesPageOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Diabetes (type 1 or type 2)")
+                .clickNextButton(new WhatKindOfDiabetesPageOLS());
+
+        whatKindOfDiabetesPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Type 1 diabetes (sometimes called Juvenile diabetes)")
+                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS43", site.activeProtocols)
+                .back(whatKindOfDiabetesPageOLS)
+                .waitForPageLoad()
+                .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
+
+        WhatKindOfArthritisDoYouHavePageOLS whatKindOfArthritisDoYouHavePageOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Arthritis (osteoarthritis, rheumatoid arthritis or RA, psoriatic arthritis)")
+                .clickNextButton(new WhatKindOfArthritisDoYouHavePageOLS());
+
+        whatKindOfArthritisDoYouHavePageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("Rheumatoid arthritis, a serious medical condition caused by your immune system attacking your joints")
+                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS39", site.activeProtocols)
+                .back(whatKindOfArthritisDoYouHavePageOLS)
+                .waitForPageLoad()
+                .clickOnAnswers("Rheumatoid arthritis, a serious medical condition caused by your immune system attacking your joints")
+                .clickOnAnswers("Psoriatic Arthritis")
+                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS39", site.activeProtocols)
+                .back(whatKindOfArthritisDoYouHavePageOLS)
+                .waitForPageLoad()
+                .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
+
+        WhichOfTheFollowingSkinConditionsDoYouSufferOLS whichOfTheFollowingSkinConditionsDoYouSufferOLS =
+                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+                        .waitForPageLoad()
+                        .clickOnAnswers("None of the above")
+                        .clickOnAnswers("Skin problems (eczema or atopic dermatitis, psoriasis)")
+                        .clickNextButton(new WhichOfTheFollowingSkinConditionsDoYouSufferOLS());
+
+        whichOfTheFollowingSkinConditionsDoYouSufferOLS
+                .waitForPageLoad()
+                .clickOnAnswers("Psoriasis")
+                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS55", site.activeProtocols)
+                .back(whichOfTheFollowingSkinConditionsDoYouSufferOLS)
+                .waitForPageLoad()
+                .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
+
+        WhenDiagnosedWithCancerOLS whenDiagnosedWithCancerOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Cancer")
+                .clickNextButton(new WhenDiagnosedWithCancerOLS());
+
+        whenDiagnosedWithCancerOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Within the past 5 years")
+                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
+                .back(whenDiagnosedWithCancerOLS)
+                .waitForPageLoad()
+                .clickOnAnswer("6 - 10 years ago")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS);
 
         ApproximateHeightPageOLS approximateHeightPageOLS = doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickOnAnswers("Cancer in the past 5 years, except skin cancer")
+                .clickOnAnswers("Cirrhosis")
                 .clickNextButton(new ApproximateHeightPageOLS());
         approximateHeightPageOLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
-                .back(doAnyOftheFollowingAdditionalDiagnosesOLS);
-        doAnyOftheFollowingAdditionalDiagnosesOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Cirrhosis")
-                .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
@@ -230,13 +296,45 @@ public class VACC_S10001_OLSBlinx extends BaseTest {
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
+                .clickOnAnswers("Bipolar disorder")
+                .clickNextButton(approximateHeightPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
+                .back(doAnyOftheFollowingAdditionalDiagnosesOLS);
+        doAnyOftheFollowingAdditionalDiagnosesOLS
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
                 .clickOnAnswers("Schizophrenia")
+                .clickNextButton(approximateHeightPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS61", site.activeProtocols)
+                .back(doAnyOftheFollowingAdditionalDiagnosesOLS);
+
+        doAnyOftheFollowingAdditionalDiagnosesOLS
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
                 .clickOnAnswers("Seizure disorder such as epilepsy")
                 .clickNextButton(approximateHeightPageOLS);
 
         IdentificationPageOLS identificationPageOLS = approximateHeightPageOLS
                 .waitForPageLoad()
-                .setAll("5", "5", "190")
+                .setAll("5", "5", "500")
+                .clickNextButton(new CholesterolTriglyceridesLipidsPageOLS())
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS68", site.activeProtocols)
+                .back(approximateHeightPageOLS)
+                .waitForPageLoad()
+                .setAll("3", "3", "29")
+                .clickNextButton(new CholesterolTriglyceridesLipidsPageOLS())
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS68", site.activeProtocols)
+                .back(approximateHeightPageOLS)
+                .waitForPageLoad()
+                .setAll("5", "5", "150")
                 .clickNextButton(new CurrentlyParticipatingInStudyOLS())
                 .waitForPageLoad()
                 .clickOnAnswer("No")
@@ -258,7 +356,10 @@ public class VACC_S10001_OLSBlinx extends BaseTest {
         ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = qualifiedClose2PageOLS
                 .waitForPageLoad3()
                 .clickNextButton(new ThankYouCloseSimplePageOLS());
-        AboutHealthPageOLS aboutHealthPageOLS = thankYouCloseSimplePageOLS
+        AlzheimerClosePageOLS alzheimerClosePageOLS = thankYouCloseSimplePageOLS
+                .waitForPageLoad()
+                .clickNextButton(new AlzheimerClosePageOLS());
+        AboutHealthPageOLS aboutHealthPageOLS = alzheimerClosePageOLS
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS());
         aboutHealthPageOLS

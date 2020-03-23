@@ -19,6 +19,7 @@ public class CurrentlyPregnantBreastfeedingOLS extends MainPageBlinx {
 
     @Step
     public CurrentlyPregnantBreastfeedingOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
