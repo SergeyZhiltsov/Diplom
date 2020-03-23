@@ -23,15 +23,7 @@ import java.util.List;
 
 public class DERM_7036_OLS extends BaseTest {
 
-    @BeforeMethod
-    public void setUp() {
-        super.setUp();
-    }
 
-    @AfterMethod
-    public void tearDown() {
-        super.tearDown();
-    }
 
     @DataProvider(name = "sites")
     public Object[][] getData() {

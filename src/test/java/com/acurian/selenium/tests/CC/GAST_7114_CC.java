@@ -26,15 +26,6 @@ import java.util.Map;
 
 public class GAST_7114_CC extends BaseTest {
 
-    @BeforeMethod
-    public void setUp() {
-        super.setUp();
-    }
-
-    @AfterMethod
-    public void tearDown() {
-        super.tearDown();
-    }
 
     @Test
     @Description("GAST 7114 CC (Neurogastrx Gastroparesis - Diabetic or Idiopathic)")

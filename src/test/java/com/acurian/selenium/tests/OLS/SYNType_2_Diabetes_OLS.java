@@ -23,15 +23,6 @@ import ru.yandex.qatools.allure.annotations.Description;
 
 public class SYNType_2_Diabetes_OLS extends BaseTest {
 
-    @BeforeMethod
-    public void setUp() {
-        super.setUp();
-    }
-
-    @AfterMethod
-    public void tearDown() {
-        super.tearDown();
-    }
 
     @DataProvider
     public Object[][] sites() {

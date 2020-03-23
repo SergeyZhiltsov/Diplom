@@ -34,15 +34,6 @@ import java.util.Map;
 
 public class CV_3140_CC_A_S extends BaseTest {
 
-    @BeforeMethod
-    public void setUp() {
-        super.setUp();
-    }
-
-    @AfterMethod
-    public void tearDown() {
-        super.tearDown();
-    }
 
     @Test(dataProvider = "sites", dataProviderClass = CV_3140_OLS_A_S.class, enabled = false)
     @Description("CV 3140 CC")

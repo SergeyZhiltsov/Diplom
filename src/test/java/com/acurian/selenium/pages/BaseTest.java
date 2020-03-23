@@ -13,9 +13,7 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Listeners;
+import org.testng.annotations.*;
 
 import java.net.ConnectException;
 import java.net.InetAddress;
@@ -38,7 +36,7 @@ public abstract class BaseTest {
 
     public static boolean allureCounterRun = false;
 
-    @BeforeClass
+    @BeforeMethod
     public void setUp() {
 
 //        try {
@@ -71,7 +69,7 @@ public abstract class BaseTest {
         System.out.println("Browser version " + ((RemoteWebDriver) (((EventFiringWebDriver) getDriver()).getWrappedDriver())).getCapabilities().getVersion());
     }
 
-    @AfterClass
+    @AfterMethod
     public void tearDown() {
         if (DRIVER.get() != null) {
             DRIVER.get().quit();

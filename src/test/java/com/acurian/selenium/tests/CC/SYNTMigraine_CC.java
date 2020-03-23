@@ -20,15 +20,7 @@ import org.testng.annotations.Test;
 
 public class SYNTMigraine_CC extends BaseTest {
 
-    @BeforeMethod
-    public void setUp() {
-        super.setUp();
-    }
 
-    @AfterMethod
-    public void tearDown() {
-        super.tearDown();
-    }
 
     @Test(enabled = false, dataProvider = "sites", dataProviderClass = SYNTMigraine_OLS.class)
     public void SYNTMigraine_CC(Site site) {

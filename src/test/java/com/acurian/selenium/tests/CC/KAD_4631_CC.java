@@ -23,15 +23,6 @@ import java.util.List;
 
 public class KAD_4631_CC extends BaseTest {
 
-    @BeforeMethod
-    public void setUp() {
-        super.setUp();
-    }
-
-    @AfterMethod
-    public void tearDown() {
-        super.tearDown();
-    }
 
     @Test(dataProvider = "sites", dataProviderClass = KAD_4631_OLS.class, enabled = false)
     @Description("KAD 4631 Kiniksa Atopic Derm for CC")

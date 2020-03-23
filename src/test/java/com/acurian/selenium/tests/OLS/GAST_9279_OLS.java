@@ -32,15 +32,6 @@ import java.util.Map;
 
 public class GAST_9279_OLS extends BaseTest {
 
-    @BeforeMethod
-    public void setUp() {
-        super.setUp();
-    }
-
-    @AfterMethod
-    public void tearDown() {
-        super.tearDown();
-    }
 
     @Test
     @Description("GAST 9279 OLS (Takeda Gastroparesis - Diagnosed)")

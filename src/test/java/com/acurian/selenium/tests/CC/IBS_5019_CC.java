@@ -23,15 +23,6 @@ import java.util.List;
 
 public class IBS_5019_CC extends BaseTest {
 
-    @BeforeMethod
-    public void setUp() {
-        super.setUp();
-    }
-
-    @AfterMethod
-    public void tearDown() {
-        super.tearDown();
-    }
 
     @DataProvider(name = "sites")
     public Object[][] sites() {

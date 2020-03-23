@@ -25,15 +25,6 @@ import java.util.List;
 
 public class IBS_5019_OLS extends BaseTest {
 
-    @BeforeMethod
-    public void setUp() {
-        super.setUp();
-    }
-
-    @AfterMethod
-    public void tearDown() {
-        super.tearDown();
-    }
 
     @Test(dataProvider = "sites", dataProviderClass = IBS_5019_CC.class)
     @Description("IBS 5019 CC Boston Pharma IBS-D")

@@ -20,15 +20,7 @@ import ru.yandex.qatools.allure.annotations.Description;
 
 public class IBD_Short extends BaseTest{
 
-    @BeforeMethod
-    public void setUp() {
-        super.setUp();
-    }
 
-    @AfterMethod
-    public void tearDown() {
-        super.tearDown();
-    }
 
     @DataProvider
     public Object[][] flareStatus() {

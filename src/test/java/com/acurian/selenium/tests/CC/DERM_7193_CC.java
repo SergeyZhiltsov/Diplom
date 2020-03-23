@@ -23,15 +23,7 @@ import java.util.List;
 
 public class DERM_7193_CC extends BaseTest {
 
-    @BeforeMethod
-    public void setUp() {
-        super.setUp();
-    }
 
-    @AfterMethod
-    public void tearDown() {
-        super.tearDown();
-    }
 
     @Test(enabled = false, dataProvider = "sites", dataProviderClass = DERM_7193_OLS.class) //Deactivated in R79.2
     @Description("DERM_7193_CC_Test")

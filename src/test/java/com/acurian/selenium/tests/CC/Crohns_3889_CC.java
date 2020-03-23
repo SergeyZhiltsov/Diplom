@@ -23,15 +23,6 @@ import java.util.Map;
 
 public class Crohns_3889_CC extends BaseTest {
 
-    @BeforeMethod
-    public void setUp() {
-        super.setUp();
-    }
-
-    @AfterMethod
-    public void tearDown() {
-        super.tearDown();
-    }
 
     @DataProvider(name = "Flare status")
     public Object[][] flareStatus() {

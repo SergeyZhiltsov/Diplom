@@ -16,16 +16,7 @@ import java.util.ArrayList;
 
 public class WLPvalidation extends BaseTest {
 
-    @BeforeMethod
-    public void setUp() {
-        super.setUp();
-    }
 
-
-    @AfterMethod
-    public void tearDown() {
-        super.tearDown();
-    }
 
     @Test
     @Description("WLP URL Validation & Re-direct Validation, only for PROD")

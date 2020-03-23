@@ -23,15 +23,6 @@ public class SBStandAloneTest extends BaseTest {
         setEnvData(env);
     }
 
-    @BeforeMethod
-    public void setUp() {
-        super.setUp();
-    }
-
-    @AfterMethod
-    public void tearDown() {
-        super.tearDown();
-    }
 
     @Test(priority = -1, dataProvider = "SBUserCredentials", dataProviderClass = DataProviderPool.class)
     @Description("Basic project changes test (deletion/addition data)")
