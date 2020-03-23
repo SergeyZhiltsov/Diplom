@@ -45,7 +45,7 @@ public class PS_7469_OLSBlinx extends BaseTest {
 
     @Test(dataProvider = "sites", enabled = true)
     @Description("New Psoriasis S10484(7469) EDP1815-201 (Evelo / PPD Psoriasis)")
-    public void ps7469olsTest(Site site){
+    public void ps7469olsBlinxTest(Site site){
 
         String phoneNumber = "AUTAMS1PSO";
         String studyName = "a psoriasis study";

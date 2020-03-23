@@ -20,6 +20,7 @@ public class WhatKindOfArthritisDoYouHavePageOLS extends MainPageBlinx {
 
     @Step
     public WhatKindOfArthritisDoYouHavePageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

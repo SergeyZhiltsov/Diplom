@@ -34,6 +34,7 @@ public abstract class BasePage {
     private Actions actions;
     private CSVParser csvParser;
     private DBConnection dbConnection;
+    private Dimension dimension;
 
     public BasePage() {
         driver = BaseTest.getDriver();
@@ -42,6 +43,7 @@ public abstract class BasePage {
         ngDriver = new NgWebDriver((JavascriptExecutor) driver);
         csvParser = new CSVParser();
         dbConnection = new DBConnection();
+        dimension = driver.manage().window().getSize();
         PageFactory.initElements(getDriver(), this);
     }
 
@@ -86,6 +88,11 @@ public abstract class BasePage {
                 element);
         threadSleep(500);
         return element;
+    }
+
+    @Step
+    protected void dragAndDropButton(WebElement element, int x, int y){
+        actions.dragAndDropBy(element, x, y).build().perform();
     }
 
     @Step

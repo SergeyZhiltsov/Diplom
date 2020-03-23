@@ -19,6 +19,7 @@ public class UrinaryTractInfectionOLS  extends MainPageBlinx {
 
     @Step
     public UrinaryTractInfectionOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

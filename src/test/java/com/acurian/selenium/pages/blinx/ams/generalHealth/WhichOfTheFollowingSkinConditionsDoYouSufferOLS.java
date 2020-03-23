@@ -27,6 +27,7 @@ public class WhichOfTheFollowingSkinConditionsDoYouSufferOLS extends MainPageBli
 
     @Step
     public WhichOfTheFollowingSkinConditionsDoYouSufferOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
