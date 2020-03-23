@@ -45,7 +45,7 @@ public class PS_7469_OLSBlinx extends BaseTest {
 
     @Test(dataProvider = "sites", enabled = true)
     @Description("New Psoriasis S10484(7469) EDP1815-201 (Evelo / PPD Psoriasis)")
-    public void ps7469olsTest(Site site){
+    public void ps7469olsTest(Site site) {
 
         String phoneNumber = "AUTAMS1PSO";
         String studyName = "a psoriasis study";
@@ -84,7 +84,7 @@ public class PS_7469_OLSBlinx extends BaseTest {
                 .clickNextButton(new HasHealthcareProfessionalEverDiagnosedYouWithPsoriasis_OLS());
 
         HasHealthcareProfessionalEverDiagnosedYouWithEczema_OLS hasHealthcareProfessionalEverDiagnosedYouWithEczema_ols =
-        hasHealthcareProfessionalEverDiagnosedYouWithPsoriasis_ols
+                hasHealthcareProfessionalEverDiagnosedYouWithPsoriasis_ols
                         .waitForPageLoad()
                         .clickOnAnswer("No")
                         .clickNextButton(new HasHealthcareProfessionalEverDiagnosedYouWithEczema_OLS());
@@ -116,9 +116,9 @@ public class PS_7469_OLSBlinx extends BaseTest {
 
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS =
                 whichTypeOfPsoriasisDoYouHaveOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Another type of psoriasis (Guttate, Pustular, Erythtodermic, Inverse)")
-                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
+                        .waitForPageLoad()
+                        .clickOnAnswer("Another type of psoriasis (Guttate, Pustular, Erythtodermic, Inverse)")
+                        .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
 
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
@@ -152,12 +152,12 @@ public class PS_7469_OLSBlinx extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(doesYourPsoriasisLookLikeThisOLS);
-                //head
+        //head
         doesYourPsoriasisLookLikeThisOLS
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(doesYourPsoriasisLookLikeThisOLS);
-                //elbow
+        //elbow
         doesYourPsoriasisLookLikeThisOLS
                 .waitForPageLoad()
                 .clickOnAnswer("No")
@@ -307,7 +307,7 @@ public class PS_7469_OLSBlinx extends BaseTest {
                 .clickNextButton(new SubquestionExperiencedHeartPageOLS());
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected3)
-                .clickOnAnswerForSubQuestion(1,"Less than 30 days ago")
+                .clickOnAnswerForSubQuestion(1, "Less than 30 days ago")
                 .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
@@ -527,7 +527,7 @@ public class PS_7469_OLSBlinx extends BaseTest {
 
         SiteSelectionPageOLS siteSelectionPageOLS = new SiteSelectionPageOLS();
 
-         (env.equals("STG") ? identificationPageOLS.waitForPageLoadSTG() : identificationPageOLS.waitForPageLoad2())
+        (env.equals("STG") ? identificationPageOLS.waitForPageLoadSTG() : identificationPageOLS.waitForPageLoad2())
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageOLS());
 

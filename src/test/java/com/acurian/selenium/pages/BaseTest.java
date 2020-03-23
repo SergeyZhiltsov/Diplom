@@ -46,14 +46,11 @@ public abstract class BaseTest {
 //                    (getHostName().equals(Properties.getHostNameIvan())) ? new EventFiringWebDriver(DriverFactory.initDriver(Properties.getBrowser(), Properties.getGridURLNew())) :
 //                            (getHostName().equals(Properties.getHostName())) ? new EventFiringWebDriver(DriverFactory.initDriver(Properties.getBrowser())) : null;
 //        }catch(Exception e){
-            driver =  new EventFiringWebDriver(DriverFactory.initDriver(Properties.getBrowser()));
+        driver = new EventFiringWebDriver(DriverFactory.initDriver(Properties.getBrowser()));
 //        }
-
-//        driver = new EventFiringWebDriver(DriverFactory.initDriver(Properties.getBrowser()));
         driver.register(new EventHandler());
         driver.manage().timeouts().setScriptTimeout(50, TimeUnit.SECONDS);
-//        driverch.register(new EventHandler());
-//        driver =  new StaleTolerantWebDriver(driverch);
+
         switch (Locators.isEnvWeb) {
             case Platforms.WEB:
                 driver.manage().window().setSize(new Dimension(1400, 1050));
@@ -82,17 +79,13 @@ public abstract class BaseTest {
         }
     }
 
-    public String getHostName(){
+    public String getHostName() {
         String hostname = null;
-
-        try
-        {
+        try {
             InetAddress addr;
             addr = InetAddress.getLocalHost();
             hostname = addr.getHostName();
-        }
-        catch (UnknownHostException ex)
-        {
+        } catch (UnknownHostException ex) {
             System.out.println("Hostname can not be resolved");
         }
         return hostname;
