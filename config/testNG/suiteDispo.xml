@@ -4,7 +4,7 @@
 
     <test name="Dispo Check">
         <packages>
-            <package name="com.acurian.selenium.tests.dispo.*" />
+            <package name="com.acurian.selenium.dispo.*" />
         </packages>
     </test>
 
