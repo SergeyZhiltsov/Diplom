@@ -13,15 +13,6 @@ import org.testng.annotations.Test;
 
 public class ServerStatusOLS extends BaseTest {
 
-    @BeforeMethod
-    public void setUp() {
-        super.setUp();
-    }
-
-    @AfterMethod
-    public void tearDown() {
-        super.tearDown();
-    }
 
     @DataProvider
     public Object[][] testData() {

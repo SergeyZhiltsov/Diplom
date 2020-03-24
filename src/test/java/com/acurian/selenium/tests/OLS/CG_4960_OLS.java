@@ -25,15 +25,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class CG_4960_OLS extends BaseTest {
-    @BeforeMethod
-    public void setUp() {
-        super.setUp();
-    }
 
-    @AfterMethod
-    public void tearDown() {
-        super.tearDown();
-    }
 
     @DataProvider
     public Object[][] sites() {

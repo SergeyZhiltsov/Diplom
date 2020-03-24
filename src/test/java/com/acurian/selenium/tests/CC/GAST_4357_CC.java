@@ -28,15 +28,6 @@ import java.util.*;
 
 public class GAST_4357_CC extends BaseTest {
 
-    @BeforeMethod
-    public void setUp() {
-        super.setUp();
-    }
-
-    @AfterMethod
-    public void tearDown() {
-        super.tearDown();
-    }
 
     @DataProvider
     public Object[][] sites() {

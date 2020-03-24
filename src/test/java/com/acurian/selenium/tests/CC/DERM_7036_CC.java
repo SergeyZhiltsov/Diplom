@@ -27,15 +27,6 @@ import java.util.*;
 
 public class DERM_7036_CC extends BaseTest {
 
-    @BeforeMethod
-    public void setUp() {
-        super.setUp();
-    }
-
-    @AfterMethod
-    public void tearDown() {
-        super.tearDown();
-    }
 
     @DataProvider(name = "sites")
     public Object[][] getData() {

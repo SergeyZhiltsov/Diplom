@@ -24,15 +24,6 @@ import java.util.List;
 
 public class DIA_4483_CC extends BaseTest {
 
-    @BeforeMethod
-    public void setUp() {
-        super.setUp();
-    }
-
-    @AfterMethod
-    public void tearDown() {
-        super.tearDown();
-    }
 
     @Test(dataProvider = "sites", dataProviderClass = DIA_4483_OLS.class)
     public void dia4483ccTest(Site site) {

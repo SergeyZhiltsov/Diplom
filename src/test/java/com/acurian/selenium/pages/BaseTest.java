@@ -13,9 +13,7 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Listeners;
+import org.testng.annotations.*;
 
 import java.net.ConnectException;
 import java.net.InetAddress;
@@ -38,7 +36,7 @@ public abstract class BaseTest {
 
     public static boolean allureCounterRun = false;
 
-    @BeforeClass
+    @BeforeMethod
     public void setUp() {
 
 //        try {
@@ -46,14 +44,11 @@ public abstract class BaseTest {
 //                    (getHostName().equals(Properties.getHostNameIvan())) ? new EventFiringWebDriver(DriverFactory.initDriver(Properties.getBrowser(), Properties.getGridURLNew())) :
 //                            (getHostName().equals(Properties.getHostName())) ? new EventFiringWebDriver(DriverFactory.initDriver(Properties.getBrowser())) : null;
 //        }catch(Exception e){
-            driver =  new EventFiringWebDriver(DriverFactory.initDriver(Properties.getBrowser()));
+        driver = new EventFiringWebDriver(DriverFactory.initDriver(Properties.getBrowser()));
 //        }
-
-//        driver = new EventFiringWebDriver(DriverFactory.initDriver(Properties.getBrowser()));
         driver.register(new EventHandler());
         driver.manage().timeouts().setScriptTimeout(50, TimeUnit.SECONDS);
-//        driverch.register(new EventHandler());
-//        driver =  new StaleTolerantWebDriver(driverch);
+
         switch (Locators.isEnvWeb) {
             case Platforms.WEB:
                 driver.manage().window().setSize(new Dimension(1400, 1050));
@@ -74,7 +69,7 @@ public abstract class BaseTest {
         System.out.println("Browser version " + ((RemoteWebDriver) (((EventFiringWebDriver) getDriver()).getWrappedDriver())).getCapabilities().getVersion());
     }
 
-    @AfterClass
+    @AfterMethod
     public void tearDown() {
         if (DRIVER.get() != null) {
             DRIVER.get().quit();
@@ -82,17 +77,13 @@ public abstract class BaseTest {
         }
     }
 
-    public String getHostName(){
+    public String getHostName() {
         String hostname = null;
-
-        try
-        {
+        try {
             InetAddress addr;
             addr = InetAddress.getLocalHost();
             hostname = addr.getHostName();
-        }
-        catch (UnknownHostException ex)
-        {
+        } catch (UnknownHostException ex) {
             System.out.println("Hostname can not be resolved");
         }
         return hostname;

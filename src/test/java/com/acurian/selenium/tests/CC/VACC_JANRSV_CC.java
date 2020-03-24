@@ -23,15 +23,6 @@ import java.util.List;
 
 public class VACC_JANRSV_CC extends BaseTest {
 
-    @BeforeMethod
-    public void setUp() {
-        super.setUp();
-    }
-
-    @AfterMethod
-    public void tearDown() {
-        super.tearDown();
-    }
 
     @DataProvider
     public Object[][] sites() {

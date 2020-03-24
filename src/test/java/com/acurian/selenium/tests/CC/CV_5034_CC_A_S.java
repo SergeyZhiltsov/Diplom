@@ -26,15 +26,7 @@ import ru.yandex.qatools.allure.annotations.Description;
 
 public class CV_5034_CC_A_S extends BaseTest {
 
-    @BeforeMethod
-    public void setUp() {
-        super.setUp();
-    }
 
-    @AfterMethod
-    public void tearDown() {
-        super.tearDown();
-    }
 
     @Test(dataProvider = "5034Sites", dataProviderClass = CV_5034_OLS_A_S.class, enabled = false)
     @Description("Diabetes_5034_Synexus for CC")

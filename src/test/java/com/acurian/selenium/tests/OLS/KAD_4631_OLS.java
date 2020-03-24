@@ -23,15 +23,6 @@ import java.util.List;
 
 public class KAD_4631_OLS extends BaseTest {
 
-    @BeforeMethod
-    public void setUp() {
-        super.setUp();
-    }
-
-    @AfterMethod
-    public void tearDown() {
-        super.tearDown();
-    }
 
     @DataProvider(name = "sites")
     public Object[][] getData() {

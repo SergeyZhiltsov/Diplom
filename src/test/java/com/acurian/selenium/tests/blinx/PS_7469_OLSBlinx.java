@@ -26,15 +26,6 @@ import java.util.List;
 
 public class PS_7469_OLSBlinx extends BaseTest {
 
-    @BeforeMethod
-    public void setUp() {
-        super.setUp();
-    }
-
-    @AfterMethod
-    public void tearDown() {
-        super.tearDown();
-    }
 
     @DataProvider
     public Object[][] sites() {
@@ -45,7 +36,7 @@ public class PS_7469_OLSBlinx extends BaseTest {
 
     @Test(dataProvider = "sites", enabled = true)
     @Description("New Psoriasis S10484(7469) EDP1815-201 (Evelo / PPD Psoriasis)")
-    public void ps7469olsBlinxTest(Site site){
+    public void ps7469olsBlinxTest(Site site) {
 
         String phoneNumber = "AUTAMS1PSO";
         String studyName = "a psoriasis study";
@@ -84,7 +75,7 @@ public class PS_7469_OLSBlinx extends BaseTest {
                 .clickNextButton(new HasHealthcareProfessionalEverDiagnosedYouWithPsoriasis_OLS());
 
         HasHealthcareProfessionalEverDiagnosedYouWithEczema_OLS hasHealthcareProfessionalEverDiagnosedYouWithEczema_ols =
-        hasHealthcareProfessionalEverDiagnosedYouWithPsoriasis_ols
+                hasHealthcareProfessionalEverDiagnosedYouWithPsoriasis_ols
                         .waitForPageLoad()
                         .clickOnAnswer("No")
                         .clickNextButton(new HasHealthcareProfessionalEverDiagnosedYouWithEczema_OLS());
@@ -152,12 +143,12 @@ public class PS_7469_OLSBlinx extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(doesYourPsoriasisLookLikeThisOLS);
-                //head
+        //head
         doesYourPsoriasisLookLikeThisOLS
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(doesYourPsoriasisLookLikeThisOLS);
-                //elbow
+        //elbow
         doesYourPsoriasisLookLikeThisOLS
                 .waitForPageLoad()
                 .clickOnAnswer("No")
@@ -307,7 +298,7 @@ public class PS_7469_OLSBlinx extends BaseTest {
                 .clickNextButton(new SubquestionExperiencedHeartPageOLS());
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected3)
-                .clickOnAnswerForSubQuestion(1,"Less than 30 days ago")
+                .clickOnAnswerForSubQuestion(1, "Less than 30 days ago")
                 .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
@@ -527,7 +518,7 @@ public class PS_7469_OLSBlinx extends BaseTest {
 
         SiteSelectionPageOLS siteSelectionPageOLS = new SiteSelectionPageOLS();
 
-         (env.equals("STG") ? identificationPageOLS.waitForPageLoadSTG() : identificationPageOLS.waitForPageLoad2())
+        (env.equals("STG") ? identificationPageOLS.waitForPageLoadSTG() : identificationPageOLS.waitForPageLoad2())
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageOLS());
 

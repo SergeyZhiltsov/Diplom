@@ -20,15 +20,6 @@ import java.util.List;
 
 public class OA_4831_CC_A_S extends BaseTest {
 
-    @BeforeMethod
-    public void setUp() {
-        super.setUp();
-    }
-
-    @AfterMethod
-    public void tearDown() {
-        super.tearDown();
-    }
 
     @DataProvider
     public Object[][] sites() {

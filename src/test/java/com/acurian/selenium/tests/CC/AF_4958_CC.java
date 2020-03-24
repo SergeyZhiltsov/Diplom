@@ -30,15 +30,7 @@ import java.util.List;
 
 public class AF_4958_CC extends BaseTest {
 
-    @BeforeMethod
-    public void setUp() {
-        super.setUp();
-    }
 
-    @AfterMethod
-    public void tearDown() {
-        super.tearDown();
-    }
 
     @Test(dataProviderClass = AF_4958_OLS.class, dataProvider = "sites")
     @Description("4958 NYX-2925-2005 Aptinyx Fibromyalgia CC")

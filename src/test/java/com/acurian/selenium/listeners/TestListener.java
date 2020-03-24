@@ -13,7 +13,7 @@ import javax.imageio.ImageIO;
 import java.io.ByteArrayOutputStream;
 import java.util.Arrays;
 
-public class TestListener extends TestListenerAdapter{
+public class TestListener extends TestListenerAdapter {
 
     @Override
     public void onTestFailure(ITestResult result) {
@@ -22,7 +22,7 @@ public class TestListener extends TestListenerAdapter{
 
     @Override
     public void onTestStart(ITestResult result) {
-        System.out.println("Test started on - "+result.getName());
+        System.out.println("Test started on - " + result.getName());
         super.onTestStart(result);
     }
 

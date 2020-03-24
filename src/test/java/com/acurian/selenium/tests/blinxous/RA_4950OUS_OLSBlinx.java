@@ -14,15 +14,6 @@ import ru.yandex.qatools.allure.annotations.Description;
 
 public class RA_4950OUS_OLSBlinx extends BaseTest {
 
-    @BeforeMethod
-    public void setUp() {
-        super.setUp();
-    }
-
-    @AfterMethod
-    public void tearDown() {
-        super.tearDown();
-    }
 
     @DataProvider
     public Object[][] sites() {

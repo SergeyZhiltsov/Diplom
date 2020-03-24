@@ -23,15 +23,6 @@ import org.testng.annotations.Test;
 
 public class SYNType_2_Diabetes_CC extends BaseTest {
 
-    @BeforeMethod
-    public void setUp() {
-        super.setUp();
-    }
-
-    @AfterMethod
-    public void tearDown() {
-        super.tearDown();
-    }
 
     @Test(dataProvider = "sites", dataProviderClass = SYNType_2_Diabetes_OLS.class, enabled = false)
     public void SYNType_2_Diabetes_CC(Site site) {

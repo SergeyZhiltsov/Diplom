@@ -24,15 +24,6 @@ import java.util.Map;
 
 public class IBD_4818_CC_UC extends BaseTest {
 
-    @BeforeMethod
-    public void setUp() {
-        super.setUp();
-    }
-
-    @AfterMethod
-    public void tearDown() {
-        super.tearDown();
-    }
 
     @DataProvider
     public Object[][] flare() {

@@ -29,15 +29,6 @@ import java.util.List;
 
 public class CV_5034_OLSBlinx extends BaseTest {
 
-    @BeforeMethod
-    public void setUp() {
-        super.setUp();
-    }
-
-    @AfterMethod
-    public void tearDown() {
-        super.tearDown();
-    }
 
     @DataProvider(name = "data")
     private Object[][] getTestData() {

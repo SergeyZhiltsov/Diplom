@@ -27,15 +27,7 @@ import java.util.List;
 
 public class DERM_7157_CC extends BaseTest {
 
-    @BeforeMethod
-    public void setUp() {
-        super.setUp();
-    }
 
-    @AfterMethod
-    public void tearDown() {
-        super.tearDown();
-    }
 
     @Test(dataProvider = "sites", dataProviderClass = DERM_7157_OLS.class)
     @Description("DERM 7157 Glenmark Atopic Derm")

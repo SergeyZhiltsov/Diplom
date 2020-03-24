@@ -30,15 +30,6 @@ import java.util.List;
 
 public class CV_5034_OLS_A_S extends BaseTest {
 
-    @BeforeMethod
-    public void setUp() {
-        super.setUp();
-    }
-
-    @AfterMethod
-    public void tearDown() {
-        super.tearDown();
-    }
 
     @DataProvider(name = "5034Sites")
     public static Object[][] getData() {

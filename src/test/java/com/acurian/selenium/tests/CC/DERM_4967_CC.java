@@ -27,15 +27,7 @@ import java.util.List;
 
 public class DERM_4967_CC extends BaseTest {
 
-    @BeforeMethod
-    public void setUp() {
-        super.setUp();
-    }
 
-    @AfterMethod
-    public void tearDown() {
-        super.tearDown();
-    }
 
     @Test(dataProvider = "sites", dataProviderClass = DERM_4967_OLS.class)
     @Description("DERM 4967 Regeneron Atopic Dermatitis")

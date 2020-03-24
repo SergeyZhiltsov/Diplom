@@ -23,15 +23,7 @@ public class SBMegaScreenerTest extends BaseTest {
         setEnvData(env);
     }
 
-    @BeforeMethod
-    public void setUp() {
-        super.setUp();
-    }
 
-    @AfterMethod
-    public void tearDown() {
-        super.tearDown();
-    }
 
     @Test(enabled = false, priority = -1, dataProvider = "SBUserCredentials", dataProviderClass = DataProviderPool.class)
     @Description("Basic MS project changes test (deletion data)")

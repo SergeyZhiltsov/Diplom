@@ -13,15 +13,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class ServerStatusCC extends BaseTest {
-    @BeforeMethod
-    public void setUp() {
-        super.setUp();
-    }
 
-    @AfterMethod
-    public void tearDown() {
-        super.tearDown();
-    }
 
     @DataProvider
     public Object[][] testData() {

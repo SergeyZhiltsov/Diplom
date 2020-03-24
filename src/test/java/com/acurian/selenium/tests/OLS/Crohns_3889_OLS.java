@@ -34,15 +34,6 @@ import java.util.Map;
 
 public class Crohns_3889_OLS extends BaseTest {
 
-    @BeforeMethod
-    public void setUp() {
-        super.setUp();
-    }
-
-    @AfterMethod
-    public void tearDown() {
-        super.tearDown();
-    }
 
     @DataProvider
     public Object[][] flare() {
