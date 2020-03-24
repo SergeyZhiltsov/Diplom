@@ -10,7 +10,7 @@ import java.util.List;
 
 public class HaveYouHadUrinaryTractInfectionCC extends MainPageCC {
 
-    private final String titleExpected = "Have you had a flu vaccine in the past 2 years?";
+    private final String titleExpected = "Have you had a Urinary Tract Infection (UTI) in the past 5 years?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_CC)
     WebElement titleText;

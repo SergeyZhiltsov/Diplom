@@ -257,8 +257,8 @@ public class CV_8983_OLSBlinx extends BaseTest {
 
         healthcareDiagnosedConditionsPageOLS
                 .waitForPageLoad()
-//                .getPage(debugPageOLS) //TODO activate
-//                .checkProtocolsContainsForQNumber("QS68", site.activeProtocols)
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS68", site.activeProtocols)
                 .back(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .setAll("5", "5", "150")
@@ -320,16 +320,6 @@ public class CV_8983_OLSBlinx extends BaseTest {
                 .childPidFromDbToLog(env)
                 .assertGeneratedFul(env, site)
                 .dispoShouldMatch(site.dispo, site.dispo);
-
-
-
-
-
-
-
-
-
-
 
     }
 }

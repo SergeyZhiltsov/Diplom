@@ -14,15 +14,20 @@ import java.util.regex.Pattern;
 
 public class SynexusRadiantDirectScheduleCC extends MainPageCC{
 
-    public final String titleExpected = "The next step is to get you scheduled for an appointment with the study doctor. During this visit, the study doctor will further discuss the study requirements and answer any questions you may have. Let me look at the study doctor’s calendar.\n" +
-            "\n" +
-            "Agent note: Go to Clinical Conductor and enter the required Acurian information";
-    
-    public final String titleSynExpected = "The next step is to get you scheduled for an appointment with the study doctor's team. During this visit, the study doctor's team will further discuss the study requirements and answer any questions you may have. Let me look at the site's calendar. \n" +
-            "\n" +
-            "Agent note: Go to Clinical Conductor and enter the required Acurian information";
+//    public final String titleExpected = "The next step is to get you scheduled for an appointment with the study doctor. During this visit, the study doctor will further discuss the study requirements and answer any questions you may have. Let me look at the study doctor’s calendar.\n" +
+//            "\n" +
+//            "Agent note: Go to Clinical Conductor and enter the required Acurian information";
+//
+//    public final String titleSynExpected = "The next step is to get you scheduled for an appointment with the study doctor's team. During this visit, the study doctor's team will further discuss the study requirements and answer any questions you may have. Let me look at the site's calendar. \n" +
+//            "\n" +
+//            "Agent note: Go to Clinical Conductor and enter the required Acurian information";
 
-    @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_CC)
+    public final String titleExpected = "Agent note: Go to Clinical Conductor and enter the required Acurian information";
+
+    public final String titleSynExpected = "Agent note: Go to Clinical Conductor and enter the required Acurian information";
+
+
+    @FindBy(xpath = "//*[@id='command']/div[1]/span[1]")
     WebElement titleText;
 
     @FindBy(xpath = Locators.RADIO_BUTTON_LIST_CC)
@@ -74,7 +79,7 @@ public class SynexusRadiantDirectScheduleCC extends MainPageCC{
     
     @Step
     public SynexusRadiantDirectScheduleCC waitForPageLoadSyn() {
-        waitForPageLoadMain(titleText, titleExpected);
+        waitForPageLoadMain(titleText, titleSynExpected);
         return this;
     }
     

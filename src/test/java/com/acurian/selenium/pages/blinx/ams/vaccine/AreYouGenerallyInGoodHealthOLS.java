@@ -19,6 +19,7 @@ public class AreYouGenerallyInGoodHealthOLS extends MainPageBlinx {
 
     @Step
     public AreYouGenerallyInGoodHealthOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

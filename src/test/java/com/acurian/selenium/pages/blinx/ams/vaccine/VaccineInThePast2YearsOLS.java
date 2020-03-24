@@ -14,8 +14,8 @@ public class VaccineInThePast2YearsOLS extends MainPageBlinx {
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS_BLINX)
     WebElement titleText;
-    @FindBy(xpath = Locators.CHEKBOX_LIST_OLS_BLINX)
-    List<WebElement> checkBoxList;
+    @FindBy(xpath = Locators.RADIO_BUTTON_LIST_OLS)
+    List<WebElement> radioButtonsList;
 
     @Step
     public VaccineInThePast2YearsOLS waitForPageLoad() {
@@ -25,8 +25,8 @@ public class VaccineInThePast2YearsOLS extends MainPageBlinx {
     }
 
     @Step
-    public VaccineInThePast2YearsOLS clickOnAnswers(String ...answerText) {
-        clickOnCheckBoxes(checkBoxList, answerText);
+    public VaccineInThePast2YearsOLS clickOnAnswer(String answerText) {
+        clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }
 

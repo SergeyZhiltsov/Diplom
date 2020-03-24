@@ -9,6 +9,7 @@ import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 import ru.yandex.qatools.allure.annotations.Step;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,6 +27,8 @@ public class DebugPageOLS extends MainPageBlinx {
     WebElement infoButton;
     @FindBy(xpath = "//div[@id='studyInfo']//a[@role='button']/i[@class='fa fa-times-circle']")
     WebElement infoCloseButton;
+    @FindBy(xpath = "//div[@id='questionHistory']/div[contains(@class, 'ui-icon')]")
+    WebElement expandButton;
 
 //    @FindBy(xpath = "//div[contains(@class,'p-1')][1]//tbody//tr/td[1] | //div[contains(@class,'p-1')][1]//tbody//tr/td/div/div")
 //    List<WebElement> questionNumberList;
@@ -38,8 +41,6 @@ public class DebugPageOLS extends MainPageBlinx {
 
     @FindBy(xpath = "(//*[@id='info-debug-window']/div[contains(.,'Study Status Set:')])[2]")
     WebElement studyStatus;
-
-
 
     @FindBy(xpath = "//*[@id='collapsedContent1']/div[1]")
     WebElement pid;
@@ -84,7 +85,35 @@ public class DebugPageOLS extends MainPageBlinx {
         return this;
     }
 
-    private List<String> getProtocolsForQuestionNumber(String questionNumber) {
+    private List<String> getSlowlyLoadedNumbers(String questionNumber){
+        By locatorForDQNumbers = By.xpath(Locators.DEBUG_DQ_NUMBERS);
+        String xpathForDesiredSection = Locators.DEBUG_QUESTION;
+        WebElement parentOfQuestion;
+        List<WebElement> dqNumberElements;
+        List<String> dqNumbers = new ArrayList<String>(){
+            {
+                add("");
+            }
+        };
+        for(int i = 0; i < 20; i++) {
+            parentOfQuestion = getDriver().findElement(By.xpath(String.format(xpathForDesiredSection,questionNumber)));
+            dqNumberElements = parentOfQuestion.findElements(locatorForDQNumbers);
+            dqNumbers= dqNumberElements.stream().map(WebElement::getText).collect(Collectors.toList());
+            if(dqNumbers.contains("")) {
+                logTextToAllureAndConsole("dq numbers loaded slowly. Attempt #" + (i+1));
+                threadSleep(1000);
+            } else {
+                break;
+            }
+        }
+        if(dqNumbers.contains("")) {
+            logTextToAllureAndConsole("Dq numbers not found  after 20 attempts");
+            dqNumbers = null;
+        }
+        return dqNumbers;
+    }
+
+    private List<String> getProtocolsForQuestionNumber(String questionNumber, String... expectedProtocols) {
         By locatorForDQNumbers = By.xpath(Locators.DEBUG_DQ_NUMBERS);
         String xpathForDesiredSection = Locators.DEBUG_QUESTION;
         openDebugWindow();
@@ -93,6 +122,12 @@ public class DebugPageOLS extends MainPageBlinx {
         WebElement parentOfQuestion = getDriver().findElement(By.xpath(String.format(xpathForDesiredSection,questionNumber)));
         List<WebElement> dqNumberElements = parentOfQuestion.findElements(locatorForDQNumbers);
         List<String> dqNumbers= dqNumberElements.stream().map(WebElement::getText).collect(Collectors.toList());
+        for (String expectedProtocol : expectedProtocols) {
+            if(!dqNumbers.contains(expectedProtocol)){
+                dragAndDropButton(expandButton, 200, 200);
+                dqNumbers= dqNumberElements.stream().map(WebElement::getText).collect(Collectors.toList());
+            }
+        }
         closeDebugWindow();
         logTextToAllure("Protocols = " + dqNumbers);
         return dqNumbers;
@@ -111,7 +146,7 @@ public class DebugPageOLS extends MainPageBlinx {
     @Step
     public DebugPageOLS checkProtocolsContainsForQNumber(String questionNumber, String... expectedProtocols) {
         waitForAnimation();
-        List<String> actualProtocols = getProtocolsForQuestionNumber(questionNumber);
+        List<String> actualProtocols = getProtocolsForQuestionNumber(questionNumber, expectedProtocols);
         Assert.assertTrue(actualProtocols.containsAll(Arrays.asList(expectedProtocols)), "Protocol expected "
                 + Arrays.toString(expectedProtocols) + " are not included in actual " + actualProtocols.toString());
         return this;
@@ -130,13 +165,6 @@ public class DebugPageOLS extends MainPageBlinx {
         closeDebugWindow();
         return this;
     }
-
-
-
-
-
-
-
 
     public DebugPageOLS checkStudyStatusContainsForQNumber(String expectedStudyStatus) {
         String actualStudyStatus = getStudyStatus();

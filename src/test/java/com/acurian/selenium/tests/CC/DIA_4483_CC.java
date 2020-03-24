@@ -844,7 +844,7 @@ public class DIA_4483_CC extends BaseTest {
                     .getPID()
                     .clickOnAnswer(site.name)
                     .clickNextButton(new SynexusRadiantDirectScheduleCC())
-                    .waitForPageLoad()
+                    .waitForPageLoadSyn()
                     .assertVariablesNew("Acurian", "Trial", "09/09/1960", "US",
                             "Blue Bell, PA", site.zipCode, "qa.acurian@gmail.com",
                             "999-999-9999", "aut4483", site.name, "MADPRANAH611 - Madrigal NASH")
