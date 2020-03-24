@@ -21,7 +21,7 @@ public class VACC_S10001_CC extends BaseTest {
 
     @Test(enabled = true)
     @Description("VACC_S10001")
-    public void vaccS10001() {
+    public void vaccS10001CC() {
         final Site site = Site.AUT_S10001;
         String phoneNumber = "AUTAMS1DFU";
         String studyName = "a Chikungunya (CHIKV) virus vaccine study";

@@ -22,7 +22,7 @@ public class VACC_S10569_CC extends BaseTest {
 
     @Test(enabled = true)
     @Description("VACC_S10569")
-    public void vaccS10569() {
+    public void vaccS10569CC() {
         String phoneNumber = "AUTAMS1ALZ";
         String studyName = "an E. coli vaccine study";
 
