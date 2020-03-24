@@ -4,7 +4,7 @@
 
     <test name="Randomness test">
         <classes>
-            <class name="com.acurian.selenium.tests.Randomness.ABRandomnessTest" />
+            <class name="com.acurian.selenium.Randomness.ABRandomnessTest" />
         </classes>
     </test>
 

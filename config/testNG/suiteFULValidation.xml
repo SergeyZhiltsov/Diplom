@@ -4,7 +4,7 @@
 
     <test name="Validate ALL FULs">
         <classes>
-            <class name="com.acurian.selenium.tests.ful.FULsValidation"/>
+            <class name="com.acurian.selenium.ful.FULsValidation"/>
         </classes>
     </test>
 </suite>

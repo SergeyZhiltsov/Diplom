@@ -4,16 +4,16 @@
 
     <test name="Regression1">
         <packages>
-            <package name="com.acurian.selenium.tests.CC.*" />
-            <package name="com.acurian.selenium.tests.OLS.*" />
-            <package name="com.acurian.selenium.tests.blinx.*" />
+            <package name="com.acurian.selenium.CC.*" />
+            <package name="com.acurian.selenium.OLS.*" />
+            <package name="com.acurian.selenium.blinx.*" />
         </packages>
     </test>
 
     <!--<test name="TC inner test">-->
         <!--<classes>-->
-            <!--<class name="com.acurian.selenium.tests.CC.KAD_4631_CC"/>-->
-            <!--&lt;!&ndash;<class name="com.acurian.selenium.tests.OLS.Test2"/>&ndash;&gt;-->
+            <!--<class name="com.acurian.selenium.CC.KAD_4631_CC"/>-->
+            <!--&lt;!&ndash;<class name="com.acurian.selenium.OLS.Test2"/>&ndash;&gt;-->
         <!--</classes>-->
     <!--</test>-->
 

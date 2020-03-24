@@ -4,8 +4,8 @@
     <!--Above line corresponds to running below 2 clasees in parallel threads-->
     <test name="Screen Builder basic regression">
         <classes>
-            <!--<class name="com.acurian.selenium.tests.SB.SBMegaScreenerTest"/>-->
-            <class name="com.acurian.selenium.tests.SB.SBStandAloneTest"/>
+            <!--<class name="com.acurian.selenium.SB.SBMegaScreenerTest"/>-->
+            <class name="com.acurian.selenium.SB.SBStandAloneTest"/>
         </classes>
     </test>
 </suite>

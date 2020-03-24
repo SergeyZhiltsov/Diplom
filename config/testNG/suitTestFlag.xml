@@ -4,7 +4,7 @@
 
     <test name="TestFlag">
         <classes>
-            <class name="com.acurian.selenium.utils.db.CheckTestSiteFlag" />
+            <class name="com.acurian.utils.db.CheckTestSiteFlag" />
         </classes>
     </test>
 
