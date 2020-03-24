@@ -2,17 +2,16 @@ package com.acurian.selenium.blinx;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.blinx.ams.closes.AboutHealthPageOLS;
-import com.acurian.selenium.pages.blinx.ams.shared.DateOfBirthPageOLS;
-import com.acurian.selenium.pages.blinx.ams.ps_7469.*;
-import com.acurian.selenium.pages.blinx.ams.diabetes.SubquestionExperiencedHeartPageOLS;
 import com.acurian.selenium.pages.blinx.ams.closes.*;
 import com.acurian.selenium.pages.blinx.ams.cv_study.HeartRelatedSurgeriesProceduresPageOLS;
 import com.acurian.selenium.pages.blinx.ams.cv_study.MostRecentHeartRelatedSurgeryProcedurePageOLS;
 import com.acurian.selenium.pages.blinx.ams.debug.DebugPageOLS;
-import com.acurian.selenium.pages.blinx.ams.derm.HasHealthcareProfessionalEverDiagnosedYouWithEczema_OLS;
+import com.acurian.selenium.pages.blinx.ams.diabetes.SubquestionExperiencedHeartPageOLS;
 import com.acurian.selenium.pages.blinx.ams.generalHealth.*;
-import com.acurian.selenium.pages.blinx.ams.shared.*;
+import com.acurian.selenium.pages.blinx.ams.glaucoma.*;
+import com.acurian.selenium.pages.blinx.ams.shared.DateOfBirthPageOLS;
+import com.acurian.selenium.pages.blinx.ams.shared.GenderPageOLS;
+import com.acurian.selenium.pages.blinx.ams.shared.ZipCodePageOLS;
 import com.acurian.selenium.pages.blinx.gmega.intro.IdentificationPageOLS;
 import com.acurian.utils.Properties;
 import org.testng.Assert;
@@ -23,31 +22,32 @@ import ru.yandex.qatools.allure.annotations.Description;
 import java.util.Arrays;
 import java.util.List;
 
-public class PS_7469_OLSBlinx extends BaseTest {
-
+public class GLA_9184_OLSBlinx extends BaseTest {
 
     @DataProvider
     public Object[][] sites() {
         return new Object[][]{
-                {Site.AUT_S10484}
+                {Site.AUT_GLA9184}
         };
     }
 
-    @Test(dataProvider = "sites", enabled = true)
-    @Description("New Psoriasis S10484(7469) EDP1815-201 (Evelo / PPD Psoriasis)")
-    public void ps7469olsBlinxTest(Site site) {
+    @Test(dataProvider = "sites", enabled = false)
+    @Description("S10503(9184) 192024-093 (Allergan Glaucoma and Ocular Hypertension R99")
+    public void gla9184olsBlinxTest(Site site) {
 
-        String phoneNumber = "AUTAMS1PSO";
-        String studyName = "a psoriasis study";
+        String phoneNumber = "";
+        String studyName = "";
         String env = System.getProperty("acurian.env", "STG");
         DebugPageOLS debugPageOLS = new DebugPageOLS();
+
+        //----------------------------------INTRO----------------------------------------------
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
-                .waitForPageLoadCrohns(studyName, "300");
+                .waitForPageLoadGMEGA(studyName, "");
         Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS
-                .getExpectedModifiedTitle(studyName, "300"), "Title is diff");
+                .getExpectedModifiedTitle(studyName, ""), "Title is diff");
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
                 .clickOnAnswer("Yes")
                 .getPage(new ZipCodePageOLS());
@@ -57,150 +57,127 @@ public class PS_7469_OLSBlinx extends BaseTest {
                 .setZipCode(site.zipCode)
                 .clickNextButton(new GenderPageOLS());
 
-        genderPageOLS
+        DoctorDiagnosedFollowingEyeConditionsOLS doctorDiagnosedFollowingEyeConditionsOLS = genderPageOLS
                 .waitForPageLoad()
-                .setDate("09091948")
+                .setDate("09091990")
                 .clickOnAnswer("Female")
-                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS())
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
-                .back(genderPageOLS);
+                .clickNextButton(new DoctorDiagnosedFollowingEyeConditionsOLS());
 
-        genderPageOLS
-                .waitForPageLoad();
-        HasHealthcareProfessionalEverDiagnosedYouWithPsoriasis_OLS hasHealthcareProfessionalEverDiagnosedYouWithPsoriasis_ols = genderPageOLS
-                .setDate("09091980")
-                .clickNextButton(new HasHealthcareProfessionalEverDiagnosedYouWithPsoriasis_OLS());
-
-        HasHealthcareProfessionalEverDiagnosedYouWithEczema_OLS hasHealthcareProfessionalEverDiagnosedYouWithEczema_ols =
-                hasHealthcareProfessionalEverDiagnosedYouWithPsoriasis_ols
-                        .waitForPageLoad()
-                        .clickOnAnswer("No")
-                        .clickNextButton(new HasHealthcareProfessionalEverDiagnosedYouWithEczema_OLS());
-        hasHealthcareProfessionalEverDiagnosedYouWithEczema_ols
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS7002", site.activeProtocols)
-                .back(hasHealthcareProfessionalEverDiagnosedYouWithPsoriasis_ols);
-        WhenDiagnosedWithPsoriasisOLS whenDiagnosedWithPsoriasisOLS = hasHealthcareProfessionalEverDiagnosedYouWithPsoriasis_ols
-                .waitForPageLoad()
-                .clickOnAnswer("Yes")
-                .clickNextButton(new WhenDiagnosedWithPsoriasisOLS());
-
-        WhichTypeOfPsoriasisDoYouHaveOLS whichTypeOfPsoriasisDoYouHaveOLS = whenDiagnosedWithPsoriasisOLS
-                .waitForPageLoad()
-                .clickOnAnswer("5 or fewer months ago")
-                .clickNextButton(new WhichTypeOfPsoriasisDoYouHaveOLS());
-
-        whichTypeOfPsoriasisDoYouHaveOLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS7003", site.activeProtocols)
-                .back(whenDiagnosedWithPsoriasisOLS);
-
-        whenDiagnosedWithPsoriasisOLS
-                .waitForPageLoad()
-                .clickOnAnswer("1 year ago or more")
-                .clickNextButton(whichTypeOfPsoriasisDoYouHaveOLS);
+        //-------------------------------FLOW LOGIC---------------------------------------------
 
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS =
-                whichTypeOfPsoriasisDoYouHaveOLS
+                doctorDiagnosedFollowingEyeConditionsOLS
                 .waitForPageLoad()
-                .clickOnAnswer("Another type of psoriasis (Guttate, Pustular, Erythtodermic, Inverse)")
+                .clickOnAnswers("None of the above")
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
 
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS7020", site.activeProtocols)
-                .back(whichTypeOfPsoriasisDoYouHaveOLS);
+                .checkProtocolsContainsForQNumber("QS", site.activeProtocols)
+                .back(doctorDiagnosedFollowingEyeConditionsOLS);
 
-        DoesYourPsoriasisLookLikeThisOLS doesYourPsoriasisLookLikeThisOLS = whichTypeOfPsoriasisDoYouHaveOLS
+        TypeOfGlaucomaOLS typeOfGlaucomaOLS = doctorDiagnosedFollowingEyeConditionsOLS
                 .waitForPageLoad()
-                .clickOnAnswer("I'm not sure")
-                .clickNextButton(new DoesYourPsoriasisLookLikeThisOLS());
+                .clickOnAnswers("Glaucoma – damage to the optic nerve caused by high eye pressure ")
+                .clickNextButton(new TypeOfGlaucomaOLS());
 
-        //knees
-        EnoughPsoriasisToEqualAtLeastOneHandprintOLS enoughPsoriasisToEqualAtLeastOneHandprintOLS = doesYourPsoriasisLookLikeThisOLS
+        WhichEyeGlaucomaOrOcularHypertensionOLS whichEyeGlaucomaOrOcularHypertensionOLS = typeOfGlaucomaOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Closed or narrow angle – less common, caused by rapid blockage of the angle between your iris and cornea")
+                .clickNextButton(new WhichEyeGlaucomaOrOcularHypertensionOLS());
+
+        PrescribedMedicationForGlaucomaOLS prescribedMedicationForGlaucomaOLS = whichEyeGlaucomaOrOcularHypertensionOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS", site.activeProtocols)
+                .back(typeOfGlaucomaOLS)
+                .waitForPageLoad()
+                .clickOnAnswer("Open angle – the most common type, caused by slow clogging of the angle between your iris and cornea")
+                .clickNextButton(whichEyeGlaucomaOrOcularHypertensionOLS)
+                .waitForPageLoad()
+                .clickOnAnswer("Right eye only")
+                .clickNextButton(new PrescribedMedicationForGlaucomaOLS());
+
+        EverBeenDiagnosedFollowingEyeConditionsOLS everBeenDiagnosedFollowingEyeConditionsOLS = prescribedMedicationForGlaucomaOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS", site.activeProtocols)
+                .back(whichEyeGlaucomaOrOcularHypertensionOLS)
+                .waitForPageLoad()
+                .clickOnAnswer("Left eye only")
+                .clickNextButton(prescribedMedicationForGlaucomaOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS", site.activeProtocols)
+                .back(whichEyeGlaucomaOrOcularHypertensionOLS)
+                .waitForPageLoad()
+                .clickOnAnswer("Both eyes")
+                .clickNextButton(prescribedMedicationForGlaucomaOLS)
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new EverBeenDiagnosedFollowingEyeConditionsOLS());
+
+        SurgeryOrImplantToTreatGlaucomaOLS surgeryOrImplantToTreatGlaucomaOLS = everBeenDiagnosedFollowingEyeConditionsOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS", site.activeProtocols)
+                .back(prescribedMedicationForGlaucomaOLS)
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(new EnoughPsoriasisToEqualAtLeastOneHandprintOLS());
+                .clickNextButton(everBeenDiagnosedFollowingEyeConditionsOLS)
+                .waitForPageLoad()
+                .clickOnAnswers("Macular edema – excess fluid in the back of the eye",
+                        "Neovascular or “wet” age related macular degeneration – leaky blood vessels in the back of your eye",
+                        "Cancer of the eye",
+                        "Herpes affecting the eye",
+                        "Shingles affecting the eye")
+                .clickNextButton(new SurgeryOrImplantToTreatGlaucomaOLS());
 
-        enoughPsoriasisToEqualAtLeastOneHandprintOLS
-                .waitForPageLoad()
-                .back(doesYourPsoriasisLookLikeThisOLS);
-
-        //knees
-        doesYourPsoriasisLookLikeThisOLS
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(doesYourPsoriasisLookLikeThisOLS);
-
-        //body
-        doesYourPsoriasisLookLikeThisOLS
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(doesYourPsoriasisLookLikeThisOLS);
-        //head
-        doesYourPsoriasisLookLikeThisOLS
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(doesYourPsoriasisLookLikeThisOLS);
-        //elbow
-        doesYourPsoriasisLookLikeThisOLS
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(enoughPsoriasisToEqualAtLeastOneHandprintOLS);
-
-        TreatYourPsoriasisPageOLS treatYourPsoriasisPageOLS = enoughPsoriasisToEqualAtLeastOneHandprintOLS
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(new TreatYourPsoriasisPageOLS());
-
-        treatYourPsoriasisPageOLS
+        SurgeryOrImplantOnOrAroundEyePastSixMonthsOLS surgeryOrImplantOnOrAroundEyePastSixMonthsOLS = surgeryOrImplantToTreatGlaucomaOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS7026", site.activeProtocols)
-                .back(enoughPsoriasisToEqualAtLeastOneHandprintOLS);
-
-        enoughPsoriasisToEqualAtLeastOneHandprintOLS
-                .waitForPageLoad()
-                .clickOnAnswer("I'm not sure")
-                .clickNextButton(treatYourPsoriasisPageOLS);
-
-        InjectableMedicationToTreatPsoriasisOLS injectableMedicationToTreatPsoriasisOLS = treatYourPsoriasisPageOLS
+                .checkProtocolsContainsForQNumber("QS", site.activeProtocols)
+                .back(everBeenDiagnosedFollowingEyeConditionsOLS)
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
+                .clickNextButton(surgeryOrImplantToTreatGlaucomaOLS)
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
+                .clickNextButton(new SurgeryOrImplantOnOrAroundEyePastSixMonthsOLS());
+
+        InjectionIntoYourEyeOLS injectionIntoYourEyeOLS = surgeryOrImplantOnOrAroundEyePastSixMonthsOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS", site.activeProtocols)
+                .back(surgeryOrImplantToTreatGlaucomaOLS)
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(surgeryOrImplantOnOrAroundEyePastSixMonthsOLS)
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
+                .clickNextButton(new InjectionIntoYourEyeOLS());
+
+        injectionIntoYourEyeOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS", site.activeProtocols)
+                .back(surgeryOrImplantOnOrAroundEyePastSixMonthsOLS)
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(injectionIntoYourEyeOLS)
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
-                .back(treatYourPsoriasisPageOLS)
-                .waitForPageLoad()
-                .clickOnAnswers("Shots or IV infusion (injectable medications)")
-                .clickNextButton(new InjectableMedicationToTreatPsoriasisOLS());
-
-        PsoriaticArthritisConditionPageOLS psoriaticArthritisConditionPageOLS = injectableMedicationToTreatPsoriasisOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Within the last 6 months")
-                .clickNextButton(new PsoriaticArthritisConditionPageOLS());
-
-        psoriaticArthritisConditionPageOLS
-                .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS7013", site.activeProtocols)
-                .back(injectableMedicationToTreatPsoriasisOLS)
-                .waitForPageLoad()
-                .clickOnAnswer("Between 7 months and 1 year ago")
-                .clickNextButton(psoriaticArthritisConditionPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS7013", site.activeProtocols)
-                .back(injectableMedicationToTreatPsoriasisOLS)
-                .waitForPageLoad()
-                .clickOnAnswer("More than 1 year ago")
+                .checkProtocolsContainsForQNumber("QS", site.activeProtocols)
+                .back(injectionIntoYourEyeOLS)
+                .clickOnAnswer("No")
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
 
         //--------------------------------------GENERAL HEALTH QUESTIONS----------------------------------------------
+
         WhenDiagnosedWithCancerOLS whenDiagnosedWithCancerOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Cancer")
@@ -245,21 +222,14 @@ public class PS_7469_OLSBlinx extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back(subquestionExperiencedHeartPageOLS);
-        subquestionExperiencedHeartPageOLS
-                .waitForPageLoad()
-                .clickOnAnswerForAllSubQuestion("4 - 6 months ago")
-                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
-                .back(subquestionExperiencedHeartPageOLS);
+
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad()
                 .back(haveYouEverExperiencedHeartRelatedMedicalCondOLS);
 
         haveYouEverExperiencedHeartRelatedMedicalCondOLS
                 .waitForPageLoad()
-                .clickOnAnswers("Stroke")
+                .clickOnAnswers("Stroke") //deselect
                 .clickOnAnswers("Heart attack")
                 .clickNextButton(new SubquestionExperiencedHeartPageOLS());
         subquestionExperiencedHeartPageOLS
@@ -278,82 +248,9 @@ public class PS_7469_OLSBlinx extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back(subquestionExperiencedHeartPageOLS);
+
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected2)
-                .clickOnAnswerForSubQuestion(1, "4 - 6 months ago")
-                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
-                .back(subquestionExperiencedHeartPageOLS);
-        subquestionExperiencedHeartPageOLS
-                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected2)
-                .back(haveYouEverExperiencedHeartRelatedMedicalCondOLS);
-
-        haveYouEverExperiencedHeartRelatedMedicalCondOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Mini-Stroke or TIA")
-                .clickOnAnswers("Stroke")
-                .clickNextButton(new SubquestionExperiencedHeartPageOLS());
-        subquestionExperiencedHeartPageOLS
-                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected3)
-                .clickOnAnswerForSubQuestion(1, "Less than 30 days ago")
-                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
-                .back(subquestionExperiencedHeartPageOLS);
-        subquestionExperiencedHeartPageOLS
-                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected3)
-                .clickOnAnswerForSubQuestion(1, "1 - 3 months ago")
-                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
-                .back(subquestionExperiencedHeartPageOLS);
-        subquestionExperiencedHeartPageOLS
-                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected3)
-                .clickOnAnswerForSubQuestion(1, "4 - 6 months ago")
-                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
-                .back(subquestionExperiencedHeartPageOLS);
-        subquestionExperiencedHeartPageOLS
-                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected3)
-                .back(haveYouEverExperiencedHeartRelatedMedicalCondOLS);
-
-        haveYouEverExperiencedHeartRelatedMedicalCondOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Angina, or heart-related chest pain, that required you to stay in a hospital overnight")
-                .clickOnAnswers("Mini-Stroke or TIA")
-                .clickNextButton(new SubquestionExperiencedHeartPageOLS());
-        subquestionExperiencedHeartPageOLS
-                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected4)
-                .clickOnAnswerForSubQuestion(1, "Less than 30 days ago")
-                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
-                .back(subquestionExperiencedHeartPageOLS);
-        subquestionExperiencedHeartPageOLS
-                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected4)
-                .clickOnAnswerForSubQuestion(1, "1 - 3 months ago")
-                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
-                .back(subquestionExperiencedHeartPageOLS);
-        subquestionExperiencedHeartPageOLS
-                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected4)
-                .clickOnAnswerForSubQuestion(1, "4 - 6 months ago")
-                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
-                .back(subquestionExperiencedHeartPageOLS);
-        subquestionExperiencedHeartPageOLS
-                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected4)
                 .back(haveYouEverExperiencedHeartRelatedMedicalCondOLS);
 
         HeartRelatedSurgeriesProceduresPageOLS heartRelatedSurgeriesProceduresPageOLS = haveYouEverExperiencedHeartRelatedMedicalCondOLS
@@ -367,7 +264,7 @@ public class PS_7469_OLSBlinx extends BaseTest {
                 .clickNextButton(new MostRecentHeartRelatedSurgeryProcedurePageOLS());
 
 
-        List<String> disqualifyQS49 = Arrays.asList("Less than 30 days ago", "1 - 3 months ago", "4 - 6 months ago");
+        List<String> disqualifyQS49 = Arrays.asList("Less than 30 days ago", "1 - 3 months ago");
         for (String answer : disqualifyQS49) {
             System.out.println("Select answer for QS49: " + answer);
             mostRecentHeartRelatedSurgeryProcedurePageOLS
@@ -388,37 +285,14 @@ public class PS_7469_OLSBlinx extends BaseTest {
                 .waitForPageLoad()
                 .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
 
-        WhichOfFollowingDigestiveConditionPageOLS whichOfFollowingDigestiveConditionPageOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Intestinal disorders (IBS or irritable bowel syndrome, IBD, Crohn's disease, ulcerative colitis)")
-                .clickNextButton(new WhichOfFollowingDigestiveConditionPageOLS());
-
-        DoAnyOftheFollowingAdditionalDiagnosesOLS doAnyOftheFollowingAdditionalDiagnosesOLS = new DoAnyOftheFollowingAdditionalDiagnosesOLS();
-
-        List<String> disqualifyQS44 = Arrays.asList("Crohn's disease", "Ulcerative colitis", "Gastroparesis, or delayed gastric emptying");
-        for (String answer : disqualifyQS44) {
-            System.out.println("Select answer for QS44: " + answer);
-            whichOfFollowingDigestiveConditionPageOLS
-                    .waitForPageLoad()
-                    .clickOnAnswers("None of the above")
-                    .clickOnAnswers(answer)
-                    .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
-                    .waitForPageLoad()
-                    .getPage(debugPageOLS)
-                    .checkProtocolsContainsForQNumber("QS44", site.activeProtocols)
-                    .back(whichOfFollowingDigestiveConditionPageOLS);
-        }
-
-        whichOfFollowingDigestiveConditionPageOLS
-                .waitForPageLoad()
-                .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
-
         WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS kidneyProblemsPage = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Kidney disease")
                 .clickNextButton(new WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS());
+
+        DoAnyOftheFollowingAdditionalDiagnosesOLS doAnyOftheFollowingAdditionalDiagnosesOLS
+                = new DoAnyOftheFollowingAdditionalDiagnosesOLS();
 
         kidneyProblemsPage
                 .waitForPageLoad()
@@ -452,11 +326,13 @@ public class PS_7469_OLSBlinx extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
                 .back(doAnyOftheFollowingAdditionalDiagnosesOLS);
+
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Cirrhosis")
-                .clickNextButton(approximateHeightPageOLS)
+                .clickNextButton(new ApproximateHeightPageOLS());
+        approximateHeightPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
@@ -500,13 +376,33 @@ public class PS_7469_OLSBlinx extends BaseTest {
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
+                .clickOnAnswers("Bipolar disorder")
+                .clickNextButton(approximateHeightPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
+                .back(doAnyOftheFollowingAdditionalDiagnosesOLS);
+        doAnyOftheFollowingAdditionalDiagnosesOLS
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
                 .clickOnAnswers("Schizophrenia")
+                .clickNextButton(approximateHeightPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS61", site.activeProtocols)
+                .back(doAnyOftheFollowingAdditionalDiagnosesOLS);
+
+        doAnyOftheFollowingAdditionalDiagnosesOLS
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
                 .clickOnAnswers("Seizure disorder such as epilepsy")
                 .clickNextButton(approximateHeightPageOLS);
 
+        //--------------------------------CLOSES-------------------------------------------------
+
         IdentificationPageOLS identificationPageOLS = approximateHeightPageOLS
                 .waitForPageLoad()
-                .setAll("5", "5", "190") //BMI > 30
+                .setAll("5", "5", "190")
                 .clickNextButton(new CurrentlyParticipatingInStudyOLS())
                 .waitForPageLoad()
                 .clickOnAnswer("No")

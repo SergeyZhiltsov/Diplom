@@ -13,6 +13,7 @@ import com.acurian.selenium.pages.blinx.ams.vaccine.AreYouGenerallyInGoodHealthO
 import com.acurian.selenium.pages.blinx.ams.vaccine.AreYouInterestedInVaccineStudyOLS;
 import com.acurian.selenium.pages.blinx.ams.vaccine.CurrentlyPregnantBreastfeedingOLS;
 import com.acurian.selenium.pages.blinx.gmega.intro.IdentificationPageOLS;
+import com.acurian.utils.Properties;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
@@ -30,7 +31,7 @@ public class VACC_S10001_OLSBlinx extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "sites", enabled = false)
+    @Test(dataProvider = "sites", enabled = true)
     @Description("VACC_S10001_BLINX VLA1553-301 (Valneva CHIKV Vaccine)")
     public void vaccS10001BlinxTest(Site site) {
         final String phoneNumber = "AUTAMS1DFU";
@@ -250,12 +251,14 @@ public class VACC_S10001_OLSBlinx extends BaseTest {
         AboutHealthPageOLS aboutHealthPageOLS = thankYouCloseSimplePageOLS
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS());
-        aboutHealthPageOLS
-                .waitForPageLoad()
-                .pidFromDbToLog(env)
-                .childPidFromDbToLog(env)
-                .assertGeneratedFul(env, site)
-                .dispoShouldMatch(site.dispo, site.dispo);
 
+        if(aboutHealthPageOLS.getHostName().equals(Properties.getHostName())) {
+            aboutHealthPageOLS
+                    .waitForPageLoad()
+                    .pidFromDbToLog(env)
+                    .childPidFromDbToLog(env)
+                    .assertGeneratedFul(env, site)
+                    .dispoShouldMatch(site.dispo, site.dispo);
+        }
     }
 }

@@ -12,6 +12,7 @@ import com.acurian.selenium.pages.blinx.ams.shared.ZipCodePageOLS;
 import com.acurian.selenium.pages.blinx.ams.vaccine.*;
 import com.acurian.selenium.pages.blinx.gmega.WhatKindOfArthritisDoYouHavePageOLS;
 import com.acurian.selenium.pages.blinx.gmega.intro.IdentificationPageOLS;
+import com.acurian.utils.Properties;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
@@ -26,7 +27,7 @@ public class VACC_S10159_OLSBlinx extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "sites", enabled = false)
+    @Test(dataProvider = "sites", enabled = true)
     @Description("VACC_S10159_BLINX FBP00004 (Sanofi Flu Vaccine)")
     public void vaccS10159BlinxTest(Site site) {
         final String phoneNumber = "AUTAMS1GSK";
@@ -322,12 +323,14 @@ public class VACC_S10159_OLSBlinx extends BaseTest {
         AboutHealthPageOLS aboutHealthPageOLS = thankYouCloseSimplePageOLS
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS());
-        aboutHealthPageOLS
-                .waitForPageLoad()
-                .pidFromDbToLog(env)
-                .childPidFromDbToLog(env)
-                .assertGeneratedFul(env, site)
-                .dispoShouldMatch(site.dispo, site.dispo);
 
+        if(aboutHealthPageOLS.getHostName().equals(Properties.getHostName())) {
+            aboutHealthPageOLS
+                    .waitForPageLoad()
+                    .pidFromDbToLog(env)
+                    .childPidFromDbToLog(env)
+                    .assertGeneratedFul(env, site)
+                    .dispoShouldMatch(site.dispo, site.dispo);
+        }
     }
 }

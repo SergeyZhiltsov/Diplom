@@ -351,12 +351,16 @@ public class VACC_S10001_CC extends BaseTest {
                 .waitForPageLoadSyn()
                 .assertVariablesNew("Acurian", "Trial", "07/01/1995", "US",
                         "Horsham, PA", site.zipCode, "qa.acurian@gmail.com", "999-999-9999",
-                        " %SYN_SITE_NUM% ", " " + site.name, "VNAPRACHI553 - Valneva Chikungunya (CHIKV) Virus Vaccine")
+                        "%SYN_SITE_NUM%", site.name, "VNAPRACHI553 - Valneva Chikungunya (CHIKV) Virus Vaccine")
                 .clickOnAnswer("[Successful direct schedule in clinical conductor]")
-                .clickNextButton(selectActionPageCC)
-                .waitForPageLoad()
-                .pidFromDbToLog(env)
-                .childPidFromDbToLog(env)
-                .dispoShouldMatch(site.dispo, site.dispo);
+                .clickNextButton(selectActionPageCC);
+        if (selectActionPageCC.getHostName().equals(Properties.getHostName())) {
+            selectActionPageCC
+                    .waitForPageLoad()
+                    .pidFromDbToLog(env)
+                    .childPidFromDbToLog(env)
+                    //.assertGeneratedFul(env, site)
+                    .dispoShouldMatch(site.dispo, site.dispo);
+        }
     }
 }

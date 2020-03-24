@@ -386,12 +386,16 @@ public class VACC_S10159_CC extends BaseTest {
                 .waitForPageLoadSyn()
                 .assertVariablesNew("Acurian", "Trial", "01/01/1955", "US",
                         "Blue Bell, PA", site.zipCode, "qa.acurian@gmail.com", "999-999-9999",
-                        " autJANRSVS ", " " + site.name, "JANIQVRSV001 - Janssen RSV Vaccine")
+                        "%SYN_SITE_NUM%", site.name, "JANIQVRSV001 - Janssen RSV Vaccine")
                 .clickOnAnswer("[Successful direct schedule in clinical conductor]")
-                .clickNextButton(selectActionPageCC)
-                .waitForPageLoad()
-                .pidFromDbToLog(env)
-                .childPidFromDbToLog(env)
-                .dispoShouldMatch(site.dispo, site.dispo);
+                .clickNextButton(selectActionPageCC);
+        if (selectActionPageCC.getHostName().equals(Properties.getHostName())) {
+            selectActionPageCC
+                    .waitForPageLoad()
+                    .pidFromDbToLog(env)
+                    .childPidFromDbToLog(env)
+                    //.assertGeneratedFul(env, site)
+                    .dispoShouldMatch(site.dispo, site.dispo);
+        }
     }
 }

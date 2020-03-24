@@ -7,12 +7,15 @@ import com.acurian.selenium.pages.blinx.ams.adg_4357.WithType1DiabetesPageOLS;
 import com.acurian.selenium.pages.blinx.ams.closes.*;
 import com.acurian.selenium.pages.blinx.ams.cv_study.*;
 import com.acurian.selenium.pages.blinx.ams.debug.DebugPageOLS;
+import com.acurian.selenium.pages.blinx.ams.diabetes.SubquestionExperiencedHeartPageOLS;
 import com.acurian.selenium.pages.blinx.ams.diabetes.WithType2DiabetesPageOLS;
 import com.acurian.selenium.pages.blinx.ams.generalHealth.ApproximateHeightPageOLS;
 import com.acurian.selenium.pages.blinx.ams.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS;
 import com.acurian.selenium.pages.blinx.ams.generalHealth.SiteSelectionPageOLS;
+import com.acurian.selenium.pages.blinx.ams.lowt_3017.HasDoctorEverDiagnosedYouMedicalCond_OLS;
 import com.acurian.selenium.pages.blinx.ams.shared.*;
 import com.acurian.selenium.pages.blinx.gmega.intro.IdentificationPageOLS;
+import com.acurian.utils.Properties;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
@@ -30,7 +33,7 @@ public class CV_8983_OLSBlinx extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "sites", enabled = false)
+    @Test(dataProvider = "sites", enabled = true)
     @Description("S10560 (8983) 20170625 (Amgen CV & HC VESALIUS-CV). Added in release 97/98")
     public void cv8983BlinxTest(Site site) {
 
@@ -206,13 +209,13 @@ public class CV_8983_OLSBlinx extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(sufferedFollowingHeartRelatedConditionsPageOLS);
 
-        SubquestionHeartPageOLS subquestionHeartPageOLS = sufferedFollowingHeartRelatedConditionsPageOLS
+        SubquestionExperiencedHeartPageOLS subquestionExperiencedHeartPageOLS = sufferedFollowingHeartRelatedConditionsPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Heart attack")
-                .clickNextButton(new SubquestionHeartPageOLS());
+                .clickNextButton(new SubquestionExperiencedHeartPageOLS());
 
-        subquestionHeartPageOLS
-                .waitForPageLoad(1, subquestionHeartPageOLS.getTitleExpected1())
+        subquestionExperiencedHeartPageOLS
+                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS6736")
                 .back(sufferedFollowingHeartRelatedConditionsPageOLS);
@@ -221,9 +224,9 @@ public class CV_8983_OLSBlinx extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Stroke")
-                .clickNextButton(subquestionHeartPageOLS)
-                .waitForPageLoad(2, subquestionHeartPageOLS.getTitleExpected2())
-                .clickOnAnswerForSubQuestion(2, "1 - 3 months ago")
+                .clickNextButton(subquestionExperiencedHeartPageOLS)
+                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected2)
+                .clickOnAnswerForSubQuestion(1, "1 - 3 months ago")
                 .clickNextButton(new MajorStrokeCausedPermanentLossFunctionsOLS());
 
         majorStrokeCausedPermanentLossFunctionsOLS
@@ -235,11 +238,11 @@ public class CV_8983_OLSBlinx extends BaseTest {
                 .checkProtocolsContainsForQNumber("QS6749", site.activeProtocols)
                 .back(majorStrokeCausedPermanentLossFunctionsOLS)
                 .waitForPageLoad()
-                .back(subquestionHeartPageOLS)
-                .waitForPageLoad(2, subquestionHeartPageOLS.getTitleExpected2())
+                .back(subquestionExperiencedHeartPageOLS)
+                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected2)
                 .back(sufferedFollowingHeartRelatedConditionsPageOLS);
 
-        HealthcareDiagnosedConditionsPageOLS healthcareDiagnosedConditionsPageOLS = sufferedFollowingHeartRelatedConditionsPageOLS
+        HasDoctorEverDiagnosedYouMedicalCond_OLS hasDoctorEverDiagnosedYouMedicalCond_ols = sufferedFollowingHeartRelatedConditionsPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(heartRelatedSurgeriesProceduresPageOLS)
@@ -251,16 +254,17 @@ public class CV_8983_OLSBlinx extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .setAll("7", "7", "500")
-                .clickNextButton(new HealthcareDiagnosedConditionsPageOLS());
+                .clickNextButton(new HasDoctorEverDiagnosedYouMedicalCond_OLS());
 
-        healthcareDiagnosedConditionsPageOLS
+        hasDoctorEverDiagnosedYouMedicalCond_ols
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS68", site.activeProtocols)
-                .back(approximateHeightPageOLS)
+                .checkProtocolsContainsForQNumber("QS6749", site.activeProtocols)
+                .back(approximateHeightPageOLS);
+        HealthcareDiagnosedConditionsPageOLS healthcareDiagnosedConditionsPageOLS = approximateHeightPageOLS
                 .waitForPageLoad()
                 .setAll("5", "5", "150")
-                .clickNextButton(healthcareDiagnosedConditionsPageOLS);
+                .clickNextButton(new HealthcareDiagnosedConditionsPageOLS());
 
         //Q26	Has a healthcare professional ever diagnosed you with any of the following medical conditions?
         List<String> disqualifyQ18 = Arrays.asList("Bipolar disorder",
@@ -278,7 +282,7 @@ public class CV_8983_OLSBlinx extends BaseTest {
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(answer)
-                    .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
+                    .clickNextButton(hasDoctorEverDiagnosedYouMedicalCond_ols)
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS6725", site.activeProtocols)
@@ -312,12 +316,13 @@ public class CV_8983_OLSBlinx extends BaseTest {
         AboutHealthPageOLS aboutHealthPageOLS = thankYouCloseSimplePageOLS
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS());
-        aboutHealthPageOLS
-                .waitForPageLoad()
-                .pidFromDbToLog(env)
-                .childPidFromDbToLog(env)
-                .assertGeneratedFul(env, site)
-                .dispoShouldMatch(site.dispo, site.dispo);
-
+        if(aboutHealthPageOLS.getHostName().equals(Properties.getHostName())) {
+            aboutHealthPageOLS
+                    .waitForPageLoad()
+                    .pidFromDbToLog(env)
+                    .childPidFromDbToLog(env)
+                    .assertGeneratedFul(env, site)
+                    .dispoShouldMatch(site.dispo, site.dispo);
+        }
     }
 }
