@@ -154,7 +154,7 @@ public class DBConnection {
                             + "display_ind: " + displayInd + ", "
                             + "test_site_ind: " + testSiteInd + ".");
                     i++;
-                    if (studyNum.contains("AUT_TEMP")){
+                    if (studyNum.contains("AUT_TEMP")) {
                         i--;
                     }
                 } catch (NullPointerException e) {

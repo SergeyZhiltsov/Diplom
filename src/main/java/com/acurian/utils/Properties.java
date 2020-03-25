@@ -18,7 +18,6 @@ public class Properties {
     }
 
     /**
-     *
      * @return Website frontend.
      */
     public static String getBaseURL() {

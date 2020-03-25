@@ -510,7 +510,7 @@ public class PSA_5071_OLS extends BaseTest {
                 .waitForPageLoad2()
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad();
-        if(aboutHealthPageOLS.getHostName().equals(Properties.getHostName())) {
+        if (aboutHealthPageOLS.getHostName().equals(Properties.getHostName())) {
             aboutHealthPageOLS
                     .waitForPageLoad()
                     .pidFromDbToLog(env)
