@@ -1,4 +1,4 @@
-package com.acurian.selenium.pages.blinx.ams.lowt_3017;
+package com.acurian.selenium.pages.blinx.ams.glaucoma;
 
 import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.blinx.MainPageBlinx;
@@ -8,11 +8,10 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class HasDoctorEverDiagnosedYouMedicalCond_OLS extends MainPageBlinx {
+public class EverBeenDiagnosedFollowingEyeConditionsOLS extends MainPageBlinx {
 
-    public final String titleExpected = "Certain conditions are more closely linked to cardiovascular disease than others.\n" +
-            "Has a doctor ever diagnosed you with any of the following medical conditions or diseases?\n" +
-            "Please select all that apply:";
+    public final String titleExpected = "Have you ever been diagnosed with any of the following eye conditions?\n" +
+            "Please select all that apply.";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS_BLINX)
     WebElement titleText;
@@ -21,13 +20,14 @@ public class HasDoctorEverDiagnosedYouMedicalCond_OLS extends MainPageBlinx {
     List<WebElement> checkBoxList;
 
     @Step
-    public HasDoctorEverDiagnosedYouMedicalCond_OLS waitForPageLoad() {
+    public EverBeenDiagnosedFollowingEyeConditionsOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public HasDoctorEverDiagnosedYouMedicalCond_OLS clickOnAnswers(String... answerText) {
+    public EverBeenDiagnosedFollowingEyeConditionsOLS clickOnAnswers(String ...answerText) {
         clickOnCheckBoxes(checkBoxList, answerText);
         return this;
     }
