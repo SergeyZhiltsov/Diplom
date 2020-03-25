@@ -356,7 +356,7 @@ public class VACC_S10159_CC extends BaseTest {
         letMeSeePageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS68", site.activeProtocols)
                 .back(approximateHeightPageCC)
                 .waitForPageLoad()
                 .setLbs("150")
@@ -388,9 +388,9 @@ public class VACC_S10159_CC extends BaseTest {
 
         synexusRadiantDirectScheduleCC
                 .waitForPageLoadSyn()
-                .assertVariablesNew("Acurian", "Trial", "01/01/1955", "US",
-                        "Blue Bell, PA", site.zipCode, "qa.acurian@gmail.com", "999-999-9999",
-                        "%SYN_SITE_NUM%", site.name, "JANIQVRSV001 - Janssen RSV Vaccine")
+                .assertVariablesNew("Acurian", "Trial", "07/01/1995", "US",
+                        "Dover, DE", site.zipCode, "qa.acurian@gmail.com", "999-999-9999",
+                        "%SYN_SITE_NUM%", site.name, "SNPPPDFLU004 - Sanofi Flu Vaccine")
                 .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                 .clickNextButton(selectActionPageCC);
         if (selectActionPageCC.getHostName().equals(Properties.getHostName())) {

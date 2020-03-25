@@ -10,8 +10,7 @@ import java.util.List;
 
 public class MajorStrokeCausedPermanentLossFunctionsOLS extends MainPageBlinx {
 
-    public final String titleExpected = "Have you had a major stroke which caused permanent loss of " +
-            "function (for example, loss of function in your hand or difficulty with speech)?";
+    public final String titleExpected = "Have you had a major stroke which caused permanent loss of function (for example, loss of function in your hand or difficulty with speech)?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS_BLINX)
     WebElement titleText;
@@ -21,6 +20,7 @@ public class MajorStrokeCausedPermanentLossFunctionsOLS extends MainPageBlinx {
 
     @Step
     public MajorStrokeCausedPermanentLossFunctionsOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

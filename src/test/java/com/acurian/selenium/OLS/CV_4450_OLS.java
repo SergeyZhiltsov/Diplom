@@ -38,7 +38,7 @@ public class CV_4450_OLS extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "sites")
+    @Test(dataProvider = "sites", enabled = false)  //deactivated because we have the same test in Blinx
     @Description("CV 4450 OLS Novo Nordisk CV")
     public void cv4450olsTest(Site site) {
         String phoneNumber = "AUTAMS1CV1";

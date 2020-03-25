@@ -19,6 +19,7 @@ public class CholesterolTriglyceridesLipidsPageOLS extends MainPageBlinx {
 
     @Step
     public CholesterolTriglyceridesLipidsPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

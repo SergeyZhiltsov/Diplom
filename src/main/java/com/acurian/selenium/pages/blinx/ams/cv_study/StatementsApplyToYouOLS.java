@@ -25,6 +25,7 @@ public class StatementsApplyToYouOLS extends MainPageBlinx {
 
     @Step
     public StatementsApplyToYouOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

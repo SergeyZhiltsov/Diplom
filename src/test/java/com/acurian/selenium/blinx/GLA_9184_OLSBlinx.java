@@ -14,20 +14,24 @@ import com.acurian.selenium.pages.blinx.ams.shared.GenderPageOLS;
 import com.acurian.selenium.pages.blinx.ams.shared.ZipCodePageOLS;
 import com.acurian.selenium.pages.blinx.gmega.intro.IdentificationPageOLS;
 import com.acurian.utils.Properties;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import ru.yandex.qatools.allure.annotations.Description;
+import io.qameta.allure.Description;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class GLA_9184_OLSBlinx extends BaseTest {
 
+    private static Logger Log = LogManager.getLogger(GLA_9184_OLSBlinx.class.getName());
+
     @DataProvider
     public Object[][] sites() {
         return new Object[][]{
-                {Site.AUT_GLA9184}
+                {Site.AUT_S10503}
         };
     }
 
@@ -35,8 +39,8 @@ public class GLA_9184_OLSBlinx extends BaseTest {
     @Description("S10503(9184) 192024-093 (Allergan Glaucoma and Ocular Hypertension R99")
     public void gla9184olsBlinxTest(Site site) {
 
-        String phoneNumber = "";
-        String studyName = "";
+        String phoneNumber = "AUTAMS1HTN";
+        String studyName = "a study for people with glaucoma or ocular hypertension";
         String env = System.getProperty("acurian.env", "STG");
         DebugPageOLS debugPageOLS = new DebugPageOLS();
 
@@ -45,9 +49,9 @@ public class GLA_9184_OLSBlinx extends BaseTest {
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
-                .waitForPageLoadGMEGA(studyName, "");
+                .waitForPageLoadGMEGA(studyName, "1,000");
         Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS
-                .getExpectedModifiedTitle(studyName, ""), "Title is diff");
+                .getExpectedModifiedTitle(studyName, "1,000"), "Title is diff");
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
                 .clickOnAnswer("Yes")
                 .getPage(new ZipCodePageOLS());
@@ -74,12 +78,12 @@ public class GLA_9184_OLSBlinx extends BaseTest {
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS8602", site.activeProtocols)
                 .back(doctorDiagnosedFollowingEyeConditionsOLS);
 
         TypeOfGlaucomaOLS typeOfGlaucomaOLS = doctorDiagnosedFollowingEyeConditionsOLS
                 .waitForPageLoad()
-                .clickOnAnswers("Glaucoma – damage to the optic nerve caused by high eye pressure ")
+                .clickOnAnswers("Glaucoma – damage to the optic nerve caused by high eye pressure")
                 .clickNextButton(new TypeOfGlaucomaOLS());
 
         WhichEyeGlaucomaOrOcularHypertensionOLS whichEyeGlaucomaOrOcularHypertensionOLS = typeOfGlaucomaOLS
@@ -90,7 +94,7 @@ public class GLA_9184_OLSBlinx extends BaseTest {
         PrescribedMedicationForGlaucomaOLS prescribedMedicationForGlaucomaOLS = whichEyeGlaucomaOrOcularHypertensionOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS8603", site.activeProtocols)
                 .back(typeOfGlaucomaOLS)
                 .waitForPageLoad()
                 .clickOnAnswer("Open angle – the most common type, caused by slow clogging of the angle between your iris and cornea")
@@ -102,14 +106,14 @@ public class GLA_9184_OLSBlinx extends BaseTest {
         EverBeenDiagnosedFollowingEyeConditionsOLS everBeenDiagnosedFollowingEyeConditionsOLS = prescribedMedicationForGlaucomaOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS8604", site.activeProtocols)
                 .back(whichEyeGlaucomaOrOcularHypertensionOLS)
                 .waitForPageLoad()
                 .clickOnAnswer("Left eye only")
                 .clickNextButton(prescribedMedicationForGlaucomaOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS8604", site.activeProtocols)
                 .back(whichEyeGlaucomaOrOcularHypertensionOLS)
                 .waitForPageLoad()
                 .clickOnAnswer("Both eyes")
@@ -121,14 +125,14 @@ public class GLA_9184_OLSBlinx extends BaseTest {
         SurgeryOrImplantToTreatGlaucomaOLS surgeryOrImplantToTreatGlaucomaOLS = everBeenDiagnosedFollowingEyeConditionsOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS8605", site.activeProtocols)
                 .back(prescribedMedicationForGlaucomaOLS)
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(everBeenDiagnosedFollowingEyeConditionsOLS)
                 .waitForPageLoad()
                 .clickOnAnswers("Macular edema – excess fluid in the back of the eye",
-                        "Neovascular or “wet” age related macular degeneration – leaky blood vessels in the back of your eye",
+                        "Neovascular or \"wet\" age related macular degeneration – leaky blood vessels in the back of your eye",
                         "Cancer of the eye",
                         "Herpes affecting the eye",
                         "Shingles affecting the eye")
@@ -137,7 +141,7 @@ public class GLA_9184_OLSBlinx extends BaseTest {
         SurgeryOrImplantOnOrAroundEyePastSixMonthsOLS surgeryOrImplantOnOrAroundEyePastSixMonthsOLS = surgeryOrImplantToTreatGlaucomaOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS8606", site.activeProtocols)
                 .back(everBeenDiagnosedFollowingEyeConditionsOLS)
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
@@ -149,7 +153,7 @@ public class GLA_9184_OLSBlinx extends BaseTest {
         InjectionIntoYourEyeOLS injectionIntoYourEyeOLS = surgeryOrImplantOnOrAroundEyePastSixMonthsOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS8607", site.activeProtocols)
                 .back(surgeryOrImplantToTreatGlaucomaOLS)
                 .waitForPageLoad()
                 .clickOnAnswer("No")
@@ -161,7 +165,7 @@ public class GLA_9184_OLSBlinx extends BaseTest {
         injectionIntoYourEyeOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS8608", site.activeProtocols)
                 .back(surgeryOrImplantOnOrAroundEyePastSixMonthsOLS)
                 .waitForPageLoad()
                 .clickOnAnswer("No")
@@ -171,8 +175,9 @@ public class GLA_9184_OLSBlinx extends BaseTest {
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS8609", site.activeProtocols)
                 .back(injectionIntoYourEyeOLS)
+                .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
 
@@ -266,7 +271,7 @@ public class GLA_9184_OLSBlinx extends BaseTest {
 
         List<String> disqualifyQS49 = Arrays.asList("Less than 30 days ago", "1 - 3 months ago");
         for (String answer : disqualifyQS49) {
-            System.out.println("Select answer for QS49: " + answer);
+            Log.info("Select answer for QS49: " + answer);
             mostRecentHeartRelatedSurgeryProcedurePageOLS
                     .waitForPageLoad()
                     .clickOnAnswer(answer)
@@ -425,7 +430,7 @@ public class GLA_9184_OLSBlinx extends BaseTest {
                 .waitForPageLoad3()
                 .clickNextButton(new ThankYouCloseSimplePageOLS());
         AboutHealthPageOLS aboutHealthPageOLS = thankYouCloseSimplePageOLS
-                .waitForPageLoad()
+                .waitForPageLoad3()
                 .clickNextButton(new AboutHealthPageOLS());
 
         if(aboutHealthPageOLS.getHostName().equals(Properties.getHostName())) {

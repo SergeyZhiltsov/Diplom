@@ -13,6 +13,8 @@ import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.utils.Properties;
 import io.qameta.allure.Description;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -20,6 +22,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class VACC_S10569_CC extends BaseTest {
+
+    private static Logger Log = LogManager.getLogger(VACC_S10159_CC.class.getName());
 
     @Test(enabled = true)
     @Description("VACC_S10569")
@@ -140,7 +144,7 @@ public class VACC_S10569_CC extends BaseTest {
                 .clickNextButton(allergicToAnyVaccinesCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS6914", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS6915", site.activeProtocols)
                 .back(haveYouHadUrinaryTractInfectionCC)
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
@@ -232,7 +236,7 @@ public class VACC_S10569_CC extends BaseTest {
 
         List<String> disqualifyQ6QS51 = Arrays.asList("Dialysis", "Kidney transplant");
         for (String answer : disqualifyQ6QS51) {
-            System.out.println("Select answer for Q6:QS51: " + answer);
+            Log.info("Select answer for Q6:QS51: " + answer);
             whichOfTheFollowingHaveRequiredForKidneyDiseaseCC
                     .waitForPageLoad()
                     .clickOnAnswers("Neither")
@@ -256,7 +260,7 @@ public class VACC_S10569_CC extends BaseTest {
 
         List<String> disqualifyQ6 = Arrays.asList("Dialysis", "Kidney transplant");
         for (String answer : disqualifyQ6) {
-            System.out.println("Select answer for Q6:QS51: " + answer);
+            Log.info("Select answer for Q6:QS51: " + answer);
             whichOfTheFollowingHaveRequiredForKidneyDiseaseCC
                     .waitForPageLoad()
                     .clickOnAnswers("Neither")
@@ -306,15 +310,14 @@ public class VACC_S10569_CC extends BaseTest {
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC);
 
         ApproximateHeightPageCC approximateHeightPageCC = new ApproximateHeightPageCC();
-        List<String> disqualifyQ24 = Arrays.asList("Cancer in the past 5 years, except skin cancer",
-                "Cirrhosis",
+        List<String> disqualifyQ24 = Arrays.asList("Cirrhosis",
                 "Drug or alcohol abuse within the past year",
                 "Hepatitis B",
                 "Hepatitis C",
                 "HIV or AIDS",
                 "Bipolar disorder");
         for (String answer : disqualifyQ24) {
-            System.out.println("Select answer for Q24QS59: " + answer);
+            Log.info("Select answer for Q24QS59: " + answer);
             doAnyOftheFollowingAdditionalDiagnosesCC
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -327,7 +330,7 @@ public class VACC_S10569_CC extends BaseTest {
         }
         List<String> disqualifyQ24pt2 = Arrays.asList("Kidney disease requiring dialysis", "Schizophrenia");
         for (String answer : disqualifyQ24pt2) {
-            System.out.println("Select answer for Q24QS59: " + answer);
+            Log.info("Select answer for Q24QS59: " + answer);
             doAnyOftheFollowingAdditionalDiagnosesCC
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -346,18 +349,17 @@ public class VACC_S10569_CC extends BaseTest {
         LetMeSeePageCC letMeSeePageCC = approximateHeightPageCC
                 .waitForPageLoad()
                 .setAll("5", "5", "250")
-                .clickNextButton(new LetMeSeePageCC());
-        letMeSeePageCC
+                .clickNextButton(new CurrentlyParticipatingInStudy())
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS68", site.activeProtocols)
                 .back(approximateHeightPageCC)
                 .waitForPageLoad()
                 .setLbs("100")
-                .clickNextButton(new LetMeSeePageCC())
+                .clickNextButton(new CurrentlyParticipatingInStudy())
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS68", site.activeProtocols)
                 .back(approximateHeightPageCC)
                 .waitForPageLoad()
                 .setLbs("150")
@@ -388,9 +390,9 @@ public class VACC_S10569_CC extends BaseTest {
 
         synexusRadiantDirectScheduleCC
                 .waitForPageLoadSyn()
-                .assertVariablesNew("Acurian", "Trial", "01/01/1955", "US",
-                        "Blue Bell, PA", site.zipCode, "qa.acurian@gmail.com", "999-999-9999",
-                        "%SYN_SITE_NUM%", site.name, "JANIQVRSV001 - Janssen RSV Vaccine")
+                .assertVariablesNew("Acurian", "Trial", "07/01/1959", "US",
+                        "Philadelphia, PA", site.zipCode, "qa.acurian@gmail.com", "999-999-9999",
+                        "%SYN_SITE_NUM%", site.name, "JNJXXXECO001 - Janssen E. coli Vaccine")
                 .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                 .clickNextButton(selectActionPageCC);
         if (selectActionPageCC.getHostName().equals(Properties.getHostName())) {

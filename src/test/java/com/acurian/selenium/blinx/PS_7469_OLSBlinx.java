@@ -15,6 +15,7 @@ import com.acurian.selenium.pages.blinx.ams.derm.HasHealthcareProfessionalEverDi
 import com.acurian.selenium.pages.blinx.ams.generalHealth.*;
 import com.acurian.selenium.pages.blinx.ams.shared.*;
 import com.acurian.selenium.pages.blinx.gmega.intro.IdentificationPageOLS;
+import com.acurian.utils.Properties;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
@@ -48,9 +49,9 @@ public class PS_7469_OLSBlinx extends BaseTest {
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
-                .waitForPageLoadCrohns(studyName, "350");
+                .waitForPageLoadCrohns(studyName, "300");
         Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS
-                .getExpectedModifiedTitle(studyName, "350"), "Title is diff");
+                .getExpectedModifiedTitle(studyName, "300"), "Title is diff");
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
                 .clickOnAnswer("Yes")
                 .getPage(new ZipCodePageOLS());
@@ -534,11 +535,13 @@ public class PS_7469_OLSBlinx extends BaseTest {
         AboutHealthPageOLS aboutHealthPageOLS = thankYouCloseSimplePageOLS
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS());
-        aboutHealthPageOLS
-                .waitForPageLoad()
-                .pidFromDbToLog(env)
-                .childPidFromDbToLog(env)
-                .assertGeneratedFul(env, site)
-                .dispoShouldMatch(site.dispo, site.dispo);
+        if(aboutHealthPageOLS.getHostName().equals(Properties.getHostName())) {
+            aboutHealthPageOLS
+                    .waitForPageLoad()
+                    .pidFromDbToLog(env)
+                    .childPidFromDbToLog(env)
+                    .assertGeneratedFul(env, site)
+                    .dispoShouldMatch(site.dispo, site.dispo);
+        }
     }
 }
