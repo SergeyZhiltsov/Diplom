@@ -48,9 +48,9 @@ public class PS_7469_OLSBlinx extends BaseTest {
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
-                .waitForPageLoadCrohns(studyName, "350");
+                .waitForPageLoadCrohns(studyName, "300");
         Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS
-                .getExpectedModifiedTitle(studyName, "350"), "Title is diff");
+                .getExpectedModifiedTitle(studyName, "300"), "Title is diff");
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
                 .clickOnAnswer("Yes")
                 .getPage(new ZipCodePageOLS());
