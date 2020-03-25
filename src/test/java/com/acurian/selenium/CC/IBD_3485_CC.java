@@ -42,7 +42,7 @@ import com.acurian.selenium.pages.CC.shared.SelectActionPageCC;
 import com.acurian.selenium.pages.CC.shared.TransitionStatementCC;
 import com.acurian.selenium.pages.CC.shared.WeightLossSurgeryPageCC;
 import com.acurian.utils.DataProviderPool;
-import ru.yandex.qatools.allure.annotations.Description;
+import io.qameta.allure.Description;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 public class IBD_3485_CC extends BaseTest {

@@ -4,9 +4,12 @@ import com.acurian.selenium.constants.FULType;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BasePage;
 import com.acurian.selenium.pages.FUL_Letters.FollowupLetter;
+import com.acurian.selenium.pages.OLS.generalHealth.SiteSelectionPageOLS;
 import com.acurian.utils.PassPID;
 import com.acurian.utils.db.ChildResult;
 import com.acurian.utils.db.RadiantResults;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
@@ -24,6 +27,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class MainPageCC extends BasePage {
+
+    private static Logger Log = LogManager.getLogger(MainPageCC.class.getName());
 
     @FindBy(xpath = "//button[text()='Next']")
     private WebElement nextButton;
@@ -79,7 +84,7 @@ public class MainPageCC extends BasePage {
         }
         catch (UnknownHostException ex)
         {
-            System.out.println("Hostname can not be resolved");
+            Log.info("Hostname can not be resolved");
         }
         return hostname;
     }
@@ -181,7 +186,7 @@ public class MainPageCC extends BasePage {
         pidNumber = getText(pidNumberPath);
         logTextToAllure("PID = " + pidNumber);
         PassPID.getInstance().setPidNumber(pidNumber);
-        System.out.println("PID = " + pidNumber);
+        Log.info("PID = " + pidNumber);
         return this;
     }
 
@@ -209,8 +214,8 @@ public class MainPageCC extends BasePage {
                 while ((line = br.readLine()) != null) {
                     sb.append(line).append("\n");
                 }
-                System.out.println("Rewriting existing data from file:");
-                System.out.println(sb);
+                Log.info("Rewriting existing data from file:");
+                Log.info(sb);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -218,7 +223,7 @@ public class MainPageCC extends BasePage {
 
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(ful.getFulsToBeVerifiedFile()))) {
             bw.write(sb.toString());
-            System.out.println("Queued new site for FUL validation to file: " + stringQuery);
+            Log.info("Queued new site for FUL validation to file: " + stringQuery);
             bw.write(stringQuery);
         } catch (IOException e) {
             e.printStackTrace();

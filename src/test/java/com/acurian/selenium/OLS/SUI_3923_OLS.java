@@ -14,7 +14,7 @@ import com.acurian.selenium.pages.OLS.shared.HaveYouGoneThroughMenopauseOLS;
 import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import ru.yandex.qatools.allure.annotations.Description;
+import io.qameta.allure.Description;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 public class SUI_3923_OLS extends BaseTest{
@@ -111,7 +111,7 @@ public class SUI_3923_OLS extends BaseTest{
         howLongYouBeenExperiencingUrinaryLeakageOLS
         		.waitForPageLoad();
         Assert.assertEquals(howLongYouBeenExperiencingUrinaryLeakageOLS.getTitleText(), howLongYouBeenExperiencingUrinaryLeakageOLS.titleExpected, "Title is diff");
-        //System.out.println("see there="+debugPageOLS.getProtocolForQuestion(howOldWereYouMigHeadachePageOLS.titleExpected));       
+        //Log.info("see there="+debugPageOLS.getProtocolForQuestion(howOldWereYouMigHeadachePageOLS.titleExpected));       
         howLongYouBeenExperiencingUrinaryLeakageOLS
         .clickOnAnswer("1 month or less")
         .clickNextButton(new HowFrequentlyYouExperienceUrinaryLeakageOLS()); // Click NEXT button and wait for the NEXT page

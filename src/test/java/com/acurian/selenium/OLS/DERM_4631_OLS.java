@@ -13,7 +13,7 @@ import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.*;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import ru.yandex.qatools.allure.annotations.Description;
+import io.qameta.allure.Description;
 
 public class DERM_4631_OLS extends BaseTest {
 
@@ -90,7 +90,7 @@ public class DERM_4631_OLS extends BaseTest {
         HowWouldYouDescribeTheEczemaCurrentlyPageOLS howWouldYouDescribeTheEczemaCurrentlyPageOLS = new HowWouldYouDescribeTheEczemaCurrentlyPageOLS();
 //        List<String> disqualifyQ3 = Arrays.asList("2 months or less", "3 - 6 months", "7 - 11 months");
 //        for (String answer : disqualifyQ3) {
-//            System.out.println(answer);
+//            Log.info(answer);
 //            howLongHaveYouBeenSufferingFromEczema_OLS
 //                    .waitForPageLoad()
 //                    .clickOnAnswer(answer)

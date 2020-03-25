@@ -16,6 +16,8 @@ import com.acurian.selenium.pages.blinx.gmega.AboutHealthPageOLS;
 import com.acurian.selenium.pages.blinx.gmega.ApproximateHeightWeightPageOLS;
 import com.acurian.selenium.pages.blinx.ams.generalHealth.SiteSelectionPageOLS;
 import com.acurian.selenium.pages.blinx.gmega.intro.IdentificationPageOLS;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -23,6 +25,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class CV_4450_OLSblinx extends BaseTest {
+
+    private static Logger Log = LogManager.getLogger(CV_4450_OLSblinx.class.getName());
 
     @DataProvider
     public Object[][] sites() {
@@ -246,7 +250,7 @@ public class CV_4450_OLSblinx extends BaseTest {
 
         List<String> disqualifyQ15 = Arrays.asList("Less than 30 days ago", "1 - 3 months ago");
         for (String answer : disqualifyQ15) {
-            System.out.println("Select answer for Q15.1: " + answer);
+            Log.info("Select answer for Q15.1: " + answer);
             subquestionHeartPageOLS
                     .waitForPageLoad(1, subquestionHeartPageOLS.getTitleExpected1())
                     .clickOnAnswerForSubQuestion(2, answer)
@@ -267,7 +271,7 @@ public class CV_4450_OLSblinx extends BaseTest {
 
         //Q15.2	When was the last time that you experienced had a stroke?
         for (String answer : disqualifyQ15) {
-            System.out.println("Select answer for Q15.2: " + answer);
+            Log.info("Select answer for Q15.2: " + answer);
             subquestionHeartPageOLS
                     .waitForPageLoad(1, subquestionHeartPageOLS.getTitleExpected2())
                     .clickOnAnswerForSubQuestion(2, answer)
@@ -287,7 +291,7 @@ public class CV_4450_OLSblinx extends BaseTest {
                 .clickNextButton(subquestionHeartPageOLS);
 
         for (String answer : disqualifyQ15) {
-            System.out.println("Select answer for Q15.3: " + answer);
+            Log.info("Select answer for Q15.3: " + answer);
             subquestionHeartPageOLS
                     .waitForPageLoad(1, subquestionHeartPageOLS.getTitleExpected3())
                     .clickOnAnswerForSubQuestion(2, answer)
@@ -308,7 +312,7 @@ public class CV_4450_OLSblinx extends BaseTest {
 
         //Q15.4	When was the last time that you experienced suffered from angina or chest pain that required you to stay in a hospital overnight?
         for (String answer : disqualifyQ15) {
-            System.out.println("Select answer for Q15.4: " + answer);
+            Log.info("Select answer for Q15.4: " + answer);
             subquestionHeartPageOLS
                     .waitForPageLoad(1, subquestionHeartPageOLS.getTitleExpected4())
                     .clickOnAnswerForSubQuestion(2, answer)
@@ -335,7 +339,7 @@ public class CV_4450_OLSblinx extends BaseTest {
         AdditionalHeartRelatedConditionsPageOLS additionalHeartRelatedConditionsPageOLS = new AdditionalHeartRelatedConditionsPageOLS();
         List<String> disqualifyQ17 = Arrays.asList("Less than 30 days ago", "1 - 3 months ago");
         for (String answer : disqualifyQ17) {
-            System.out.println("Select answer for Q17: " + answer);
+            Log.info("Select answer for Q17: " + answer);
             mostRecentHeartRelatedSurgeryProcedurePageOLS
                     .waitForPageLoad()
                     .clickOnAnswer(answer)
@@ -474,7 +478,7 @@ public class CV_4450_OLSblinx extends BaseTest {
                 "HIV or AIDS",
                 "Kidney disease requiring dialysis or transplant");
         for (String answer : disqualifyQ26) {
-            System.out.println("Select answer for Q26: " + answer);
+            Log.info("Select answer for Q26: " + answer);
             healthcareDiagnosedConditionsPageOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")

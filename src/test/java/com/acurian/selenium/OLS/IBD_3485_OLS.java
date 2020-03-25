@@ -19,7 +19,7 @@ import com.acurian.selenium.pages.OLS.RA.WhatKindOfArthritisPageOLS;
 import com.acurian.selenium.pages.OLS.shared.WhatKindOfDiabetesPageOLS;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import ru.yandex.qatools.allure.annotations.Description;
+import io.qameta.allure.Description;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 public class IBD_3485_OLS extends BaseTest {

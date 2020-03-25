@@ -17,7 +17,7 @@ import com.acurian.selenium.pages.CC.shared.HaveYouGoneThroughMenopauseCC;
 import com.acurian.utils.DataProviderPool;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import ru.yandex.qatools.allure.annotations.Description;
+import io.qameta.allure.Description;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 
@@ -147,7 +147,7 @@ public class SUI_3923_CC extends BaseTest{
         howLongYouBeenExperiencingUrinaryLeakageCC
         		.waitForPageLoad();
         Assert.assertEquals(howLongYouBeenExperiencingUrinaryLeakageCC.getTitleText(), howLongYouBeenExperiencingUrinaryLeakageCC.titleExpected, "Title is diff");
-        //System.out.println("see there="+debugPageCC.getProtocolForQuestion(howOldWereYouMigHeadachePageCC.titleExpected));       
+        //Log.info("see there="+debugPageCC.getProtocolForQuestion(howOldWereYouMigHeadachePageCC.titleExpected));       
         howLongYouBeenExperiencingUrinaryLeakageCC
         .clickOnAnswer("1 month or less")
         .clickNextButton(new HowFrequentlyYouExperienceUrinaryLeakageCC()); // Click NEXT button and wait for the NEXT page

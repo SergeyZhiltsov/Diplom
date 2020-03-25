@@ -8,11 +8,14 @@ import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
+import com.acurian.selenium.pages.OLS.debug.ConfigPageOLS;
 import com.acurian.utils.Properties;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import ru.yandex.qatools.allure.annotations.Description;
+import io.qameta.allure.Description;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -21,6 +24,7 @@ import java.util.Map;
 
 public class Crohns_3889_CC extends BaseTest {
 
+    private static Logger Log = LogManager.getLogger(Crohns_3889_CC.class.getName());
 
     @DataProvider(name = "Flare status")
     public Object[][] flareStatus() {
@@ -275,7 +279,7 @@ public class Crohns_3889_CC extends BaseTest {
         disqualify.put("IV (parenteral) nutrition (Agent Note: puh-REN-ter-ul)", Arrays.asList(site.activeProtocols));
         disqualify.put("A planned or scheduled surgery for Crohn’s disease", Arrays.asList(site.activeProtocols));
         for (Map.Entry<String, List<String>> entry : disqualify.entrySet()) {
-            System.out.println(entry.getKey());
+            Log.info(entry.getKey());
             currentlyHaveAnyFollowingCC
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")

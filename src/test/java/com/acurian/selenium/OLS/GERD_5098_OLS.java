@@ -1,5 +1,6 @@
 package com.acurian.selenium.OLS;
 
+import com.acurian.selenium.CC.PSA_5071_CC;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.ChronicCough.EverDiagnosedWithFollowingConditionsOLS;
@@ -9,17 +10,19 @@ import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.*;
 import com.acurian.utils.Properties;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import ru.yandex.qatools.allure.annotations.Description;
+import io.qameta.allure.Description;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class GERD_5098_OLS extends BaseTest {
 
-
+    private static Logger Log = LogManager.getLogger(GERD_5098_OLS.class.getName());
 
     @DataProvider
     public Object[][] sites() {
@@ -359,7 +362,7 @@ public class GERD_5098_OLS extends BaseTest {
                         "Duodenal switch", "Lap band or gastric banding",
                         "Gastric balloon", "I had a weight loss surgery, but I am unsure which type");
         for (String answer : disqualifyQ26pt2) {
-            System.out.println("Select answer for Q26: " + answer);
+            Log.info("Select answer for Q26: " + answer);
             weightLossSurgeryPageOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -582,7 +585,7 @@ public class GERD_5098_OLS extends BaseTest {
 //                "Lap band or gastric banding",
 //                "Gastric balloon", "I had a weight loss surgery, but I am unsure which type");
 //        for (String answer : disqualify) {
-//            System.out.println(answer);
+//            Log.info(answer);
 //            weightLossSurgeryPageOLS
 //                    .waitForPageLoad()
 //                    .clickOnAnswers("None of the above")

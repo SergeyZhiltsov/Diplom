@@ -1,5 +1,6 @@
 package com.acurian.selenium.OLS;
 
+import com.acurian.selenium.CC.PSA_5071_CC;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
@@ -14,9 +15,11 @@ import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
 import com.acurian.selenium.pages.OLS.shared.WhatKindOfDiabetesPageOLS;
 import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import ru.yandex.qatools.allure.annotations.Description;
+import io.qameta.allure.Description;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -25,6 +28,7 @@ import java.util.Map;
 
 public class Insomnia_5017_OLS extends BaseTest {
 
+    private static Logger Log = LogManager.getLogger(Insomnia_5017_OLS.class.getName());
 
     @DataProvider
     public Object[][] sites() {
@@ -133,7 +137,7 @@ public class Insomnia_5017_OLS extends BaseTest {
         disqualifyQ5.put("Sleep terrors", Arrays.asList(site.activeProtocols));
         disqualifyQ5.put("Sleepwalking disorder", Arrays.asList(site.activeProtocols));
         for (Map.Entry<String, List<String>> entry : disqualifyQ5.entrySet()) {
-            System.out.println(entry.getKey());
+            Log.info(entry.getKey());
             healthcareDiagnosedAnySleepPageOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -527,7 +531,7 @@ public class Insomnia_5017_OLS extends BaseTest {
         disqualifyQ24.put("Drug or alcohol abuse within the past year", Arrays.asList(site.activeProtocols)); //Disqualify ("Substance abuse")
         disqualifyQ24.put("HIV or AIDS", Arrays.asList(site.activeProtocols)); //Disqualify ("HIV")
         for (Map.Entry<String, List<String>> entry : disqualifyQ24.entrySet()) {
-            System.out.println(entry.getKey());
+            Log.info(entry.getKey());
             doAnyOftheFollowingAdditionalDiagnosesOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")

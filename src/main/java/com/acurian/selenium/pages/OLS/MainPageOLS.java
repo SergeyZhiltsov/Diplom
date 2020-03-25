@@ -3,11 +3,14 @@ package com.acurian.selenium.pages.OLS;
 import com.acurian.selenium.constants.FULType;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BasePage;
+import com.acurian.selenium.pages.CC.MainPageCC;
 import com.acurian.selenium.pages.FUL_Letters.FollowupLetter;
 import com.acurian.utils.PassPID;
 import com.acurian.utils.db.AnomalyResults;
 import com.acurian.utils.db.ChildResult;
 import com.acurian.utils.db.RadiantResults;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.TimeoutException;
@@ -25,6 +28,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class MainPageOLS extends BasePage {
+
+    private static Logger Log = LogManager.getLogger(MainPageOLS.class.getName());
 
     @FindBy(xpath = "//button[@id='submit']")
     WebElement nextButton;
@@ -151,7 +156,7 @@ public class MainPageOLS extends BasePage {
         }
         catch (UnknownHostException ex)
         {
-            System.out.println("Hostname can not be resolved");
+            Log.info("Hostname can not be resolved");
         }
         return hostname;
     }
@@ -255,8 +260,8 @@ public class MainPageOLS extends BasePage {
                 while ((line = br.readLine()) != null) {
                     sb.append(line).append("\n");
                 }
-                System.out.println("Rewriting existing data from file:");
-                System.out.println(sb);
+                Log.info("Rewriting existing data from file:");
+                Log.info(sb);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -264,7 +269,7 @@ public class MainPageOLS extends BasePage {
 
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(ful.getFulsToBeVerifiedFile()))) {
             bw.write(sb.toString());
-            System.out.println("Queued new site for FUL validation to file: " + stringQuery);
+            Log.info("Queued new site for FUL validation to file: " + stringQuery);
             bw.write(stringQuery);
         } catch (IOException e) {
             e.printStackTrace();
@@ -353,7 +358,7 @@ public class MainPageOLS extends BasePage {
         pidNumber = getText(pidNumberPath);
         logTextToAllure("PID = " + pidNumber);
         PassPID.getInstance().setPidNumber(pidNumber);
-        System.out.println("PID = " + pidNumber);
+        Log.info("PID = " + pidNumber);
         return this;
     }
 

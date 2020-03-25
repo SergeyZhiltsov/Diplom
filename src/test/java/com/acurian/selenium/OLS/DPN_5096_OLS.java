@@ -14,7 +14,7 @@ import com.acurian.selenium.pages.OLS.shared.*;
 import com.acurian.utils.Properties;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import ru.yandex.qatools.allure.annotations.Description;
+import io.qameta.allure.Description;
 
 public class DPN_5096_OLS extends BaseTest {
 
@@ -277,7 +277,7 @@ public class DPN_5096_OLS extends BaseTest {
 //        HowWouldYouRateYourPain_OLS howWouldYouRateYourPain_OLS = new HowWouldYouRateYourPain_OLS();
 //        List<String> disqualifyQ9 = Arrays.asList("5 months or less", "6 - 11 months", "1 - 3 years");
 //        for (String answer : disqualifyQ9) {
-//            System.out.println("Select answer for Q9: " + answer);
+//            Log.info("Select answer for Q9: " + answer);
 //            approxHowlongYouBeenExpSymptomsOLS
 //                    .waitForPageLoad()
 //                    .clickOnAnswer(answer)

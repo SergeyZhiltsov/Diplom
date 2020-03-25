@@ -1,5 +1,6 @@
 package com.acurian.selenium.OLS;
 
+import com.acurian.selenium.CC.PSA_5071_CC;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
@@ -12,13 +13,17 @@ import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.*;
 import com.acurian.utils.Properties;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.annotations.Test;
-import ru.yandex.qatools.allure.annotations.Description;
+import io.qameta.allure.Description;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class IBS_4819_OLS extends BaseTest {
+
+    private static Logger Log = LogManager.getLogger(IBS_4819_OLS.class.getName());
 
     @Test()
     @Description("IBS 4819 OLS Urovant IBS")
@@ -278,7 +283,7 @@ public class IBS_4819_OLS extends BaseTest {
         List<String> disqualifyQ12 = Arrays.asList("Less than 3 months ago", "3 - 6 months ago", "7 - 11 months ago",
                 "1 - 2 years ago", "More than 2 years ago");
         for (String answer : disqualifyQ12) {
-            System.out.println("Select answer for Q12: " + answer);
+            Log.info("Select answer for Q12: " + answer);
             procedureForWeightLossPageOLS
                     .waitForPageLoad()
                     .clickOnAnswer(answer)

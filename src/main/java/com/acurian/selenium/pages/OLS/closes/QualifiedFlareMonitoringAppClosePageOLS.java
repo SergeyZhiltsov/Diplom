@@ -1,14 +1,18 @@
 package com.acurian.selenium.pages.OLS.closes;
 
 import com.acurian.selenium.pages.OLS.MainPageOLS;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class QualifiedFlareMonitoringAppClosePageOLS extends MainPageOLS{
+public class QualifiedFlareMonitoringAppClosePageOLS extends MainPageOLS {
     private String activationCode;
     private String emailAddress;
+
+    private static Logger Log = LogManager.getLogger(QualifiedFlareMonitoringAppClosePageOLS.class.getName());
 
     //Qualified Flare Monitoring App Close----------------
     public final String titleExpected = "This research study requires you to be in active disease (also known as flare) with your digestive condition. There is a helpful app called My Colo that you can download to your android or iPhone. The app will help you monitor your symptoms and determine if you are in active disease (or flare). Your information will be sent to the study site once the app determines you are in active disease.";
@@ -17,7 +21,7 @@ public class QualifiedFlareMonitoringAppClosePageOLS extends MainPageOLS{
             "\n" +
             "This research study requires you to be in active disease (also known as flare) with your digestive condition Crohn's Disease. There is a monitoring app called My Colo that you can download to your android or iPhone. The app will monitor your symptoms and determine if you are in active disease (or flare) so you can contact your study site and let them know. Please note that use of this app is not required to take part in the study.";
 
-    public final String titleExpectedCrohns ="Once you download and activate the MyColo app, take time to answer the 3 daily questions. This will measure your disease activity and alert you when you are experiencing active disease (also known as flare). Once the app alerts you to being in flare, you will be prompted to call us so we can connect you to your study site staff who will discuss your qualifications for the study and next steps.";
+    public final String titleExpectedCrohns = "Once you download and activate the MyColo app, take time to answer the 3 daily questions. This will measure your disease activity and alert you when you are experiencing active disease (also known as flare). Once the app alerts you to being in flare, you will be prompted to call us so we can connect you to your study site staff who will discuss your qualifications for the study and next steps.";
 
     public final String titleExpectedQuestion = "Please confirm your email address to ensure you receive your My Colo activation key email.";
 
@@ -38,7 +42,7 @@ public class QualifiedFlareMonitoringAppClosePageOLS extends MainPageOLS{
 
     @FindBy(xpath = "//div[contains(@class,'visible-xs-block')]//u")
     WebElement activationCodePath5;
-    
+
     @FindBy(xpath = "//input[@type='email']")
     WebElement emailidField;
 
@@ -71,42 +75,42 @@ public class QualifiedFlareMonitoringAppClosePageOLS extends MainPageOLS{
     }
 
     @Step
-    public QualifiedFlareMonitoringAppClosePageOLS getActivationCodeCrohns(){
+    public QualifiedFlareMonitoringAppClosePageOLS getActivationCodeCrohns() {
         activationCode = getText(activationCodePath5);
         logTextToAllure("Activation Code " + activationCode);
-        System.out.println("Activation Code = " + activationCode);
+        Log.info("Activation Code = " + activationCode);
         return this;
     }
-    
-    
+
+
     @Step
-    public QualifiedFlareMonitoringAppClosePageOLS getActivationCode(){
+    public QualifiedFlareMonitoringAppClosePageOLS getActivationCode() {
         activationCode = getText(activationCodePath);
         logTextToAllure("Activation Code " + activationCode);
-        System.out.println("Activation Code = " + activationCode);
+        Log.info("Activation Code = " + activationCode);
         return this;
     }
 
     @Step
-    public QualifiedFlareMonitoringAppClosePageOLS getActivationCodeQA(){
+    public QualifiedFlareMonitoringAppClosePageOLS getActivationCodeQA() {
         String titleTextTemp = titleText.getText();
         activationCode = titleTextTemp.substring(titleTextTemp.lastIndexOf("is:") + 4, titleTextTemp.lastIndexOf(":") + 8);
         logTextToAllure("Activation Code " + activationCode);
-        System.out.println("Activation Code = " + activationCode);
+        Log.info("Activation Code = " + activationCode);
         return this;
     }
-    
+
     @Step
     public QualifiedFlareMonitoringAppClosePageOLS enterEmail(String emailid) {
         emailAddress = emailid;
         typeText(emailidField, emailid);
-        logTextToAllure("Email_ID "+emailid);
-        System.out.println("Email_ID = "+emailid);
+        logTextToAllure("Email_ID " + emailid);
+        Log.info("Email_ID = " + emailid);
         return this;
     }
 
     @Step
-    public String getTitleText(){
+    public String getTitleText() {
         return getText(titleText);
     }
 }

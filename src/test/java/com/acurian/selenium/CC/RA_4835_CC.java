@@ -14,12 +14,16 @@ import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.selenium.pages.OLS.generalHealth.WhichOfFollowingHaveYouDiagnosedWith_NeurologicalCC;
 import com.acurian.utils.Properties;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.util.*;
 
 public class RA_4835_CC extends BaseTest {
+
+    private static Logger Log = LogManager.getLogger(RA_4835_CC.class.getName());
 
     @Test(enabled = false)
     public void ra_4835_CC() {
@@ -224,7 +228,7 @@ public class RA_4835_CC extends BaseTest {
         disqualifyQ9.put("Neoral, Gengraf, or Sandimmune (cyclosporine)", Arrays.asList(site.activeProtocols));
         disqualifyQ9.put("Gold salts such as Myochrysine, Solganal, or Ridaura (auranofin)", Arrays.asList(site.activeProtocols));
         for (Map.Entry<String, List<String>> entry : disqualifyQ9.entrySet()) {
-            System.out.println(entry.getKey());
+            Log.info(entry.getKey());
             followingMedicationsToTreatYourRACC
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -418,7 +422,7 @@ public class RA_4835_CC extends BaseTest {
         disqualifyQ14.put("Xeljanz (Agent Note: ZEL-jans)", Arrays.asList(site.activeProtocols));
         TransitionStatementCC transitionStatementCC = new TransitionStatementCC();
         for (Map.Entry<String, List<String>> entry : disqualifyQ14.entrySet()) {
-            System.out.println(entry.getKey());
+            Log.info(entry.getKey());
             eitherOfTheFollowingMedicationsCC
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -493,7 +497,7 @@ public class RA_4835_CC extends BaseTest {
         disqualifyQ6.put("11 or more years ago", Arrays.asList(site.activeProtocols)); //Disqualify ("Cancer > 5 years")
         WhatKindOfDiabetesPageCC whatKindOfDiabetesPageCC = new WhatKindOfDiabetesPageCC();
         for (Map.Entry<String, List<String>> entry : disqualifyQ6.entrySet()) {
-            System.out.println(entry.getKey());
+            Log.info(entry.getKey());
             whenDiagnosedWithCancerCC
                     .waitForPageLoad()
                     .clickOnAnswer(entry.getKey())
@@ -729,7 +733,7 @@ public class RA_4835_CC extends BaseTest {
         disqualifyQ24.put("HIV or AIDS", Arrays.asList(site.activeProtocols)); //Disqualify ("HIV")
         //disqualifyQ24.put("Kidney disease requiring dialysis", Arrays.asList((site.activeProtocols))); //Disqualify ("Dialysis")
         for (Map.Entry<String, List<String>> entry : disqualifyQ24.entrySet()) {
-            System.out.println(entry.getKey());
+            Log.info(entry.getKey());
             doAnyOftheFollowingAdditionalDiagnosesCC
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")

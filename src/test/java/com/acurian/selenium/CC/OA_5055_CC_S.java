@@ -13,14 +13,18 @@ import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.selenium.pages.OLS.generalHealth.WhichOfFollowingHaveYouDiagnosedWith_NeurologicalCC;
 import com.acurian.utils.Properties;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import ru.yandex.qatools.allure.annotations.Description;
+import io.qameta.allure.Description;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class OA_5055_CC_S extends BaseTest {
+
+    private static Logger Log = LogManager.getLogger(OA_5055_CC_S.class.getName());
 
     @Test(enabled = false)
     @Description("OA_5055_CC_S")
@@ -458,7 +462,7 @@ public class OA_5055_CC_S extends BaseTest {
         List<String> disqualifyQ26 = Arrays.asList("Drug or alcohol abuse within the past year", "Hepatitis B",
                 "Hepatitis C", "HIV or AIDS");
         for (String answer : disqualifyQ26) {
-            System.out.println("Select answer for Q26: " + answer);
+            Log.info("Select answer for Q26: " + answer);
             doAnyOftheFollowingAdditionalDiagnosesCC
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")

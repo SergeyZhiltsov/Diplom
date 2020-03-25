@@ -12,6 +12,8 @@ import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.selenium.OLS.DIA_4483_OLS;
 import com.acurian.utils.Properties;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -20,6 +22,7 @@ import java.util.List;
 
 public class DIA_4483_CC extends BaseTest {
 
+    private static Logger Log = LogManager.getLogger(DIA_4483_CC.class.getName());
 
     @Test(dataProvider = "sites", dataProviderClass = DIA_4483_OLS.class)
     public void dia4483ccTest(Site site) {
@@ -154,7 +157,7 @@ public class DIA_4483_CC extends BaseTest {
 //
 //        List<String> disqualify = Arrays.asList("2 - 3 months ago", "4 - 5 months ago", "6 months ago or longer");
 //        for (String answer : disqualify) {
-//            System.out.println("Select answer for Q6: " + answer);
+//            Log.info("Select answer for Q6: " + answer);
 //            lastTimeYouTookPageCC
 //                    .waitForPageLoad()
 //                    .clickOnAnswer(answer)
@@ -331,7 +334,7 @@ public class DIA_4483_CC extends BaseTest {
         conditions.add("Primary sclerosing cholangitis or primary biliary cirrhosis (Agent Note: scler-OH-sing, ko-lanj-EYE-tis, BILL-ee-air-ee)");
         conditions.add("Wilson's disease");
         for (String condition : conditions) {
-            System.out.println("Select answer for Q17:QS4624 " + condition);
+            Log.info("Select answer for Q17:QS4624 " + condition);
             followingLiverRelatedConditionCC
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -376,7 +379,7 @@ public class DIA_4483_CC extends BaseTest {
         List<String> disqualifyQ20 = Arrays.asList("Less than 3 months ago", "3 - 6 months ago", "7 - 11 months ago",
                 "1 - 2 years ago", "More than 2 years ago");
         for (String answer: disqualifyQ20) {
-            System.out.println("Select answer for Q20: " + answer);
+            Log.info("Select answer for Q20: " + answer);
             procedureForWeightLossPageCC
                     .waitForPageLoad()
                     .clickOnAnswer(answer)

@@ -1,7 +1,10 @@
 package com.acurian.selenium.Randomness;
 
+import com.acurian.selenium.blinx.Crohns_4818_OLSBlinx;
 import com.acurian.selenium.listeners.TestListener;
 import com.acurian.selenium.pages.BaseTest;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -21,6 +24,8 @@ public class ABRandomnessTest extends BaseTest {
     private int countB = 0;
     private int totalCount = 0;
 
+    private static Logger Log = LogManager.getLogger(ABRandomnessTest.class.getName());
+
 
     @Test(invocationCount = 100, skipFailedInvocations = true, enabled = true)
     public void abRandomnes() {
@@ -32,7 +37,7 @@ public class ABRandomnessTest extends BaseTest {
         DesiredCapabilities capabilities = DesiredCapabilities.chrome();
         capabilities.setCapability(ChromeOptions.CAPABILITY, options);
         try {
-            System.setProperty("webdriver.chrome.driver", ABRandomnessTest.class.getResource("/chromedriver.exe").toURI().getPath());
+            System.setProperty("webdriver.chrome.driver", ABRandomnessTest.class.getResource("/resources/chromedriver.exe").toURI().getPath());
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
@@ -62,7 +67,7 @@ public class ABRandomnessTest extends BaseTest {
 
     @Step()
     public void logTextToAllureAndConsole(String text) {
-        System.out.println(text);
+        Log.info(text);
     }
 
     @AfterClass

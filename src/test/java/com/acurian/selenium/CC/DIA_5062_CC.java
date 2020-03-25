@@ -14,12 +14,16 @@ import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.utils.Properties;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
 
 public class DIA_5062_CC extends BaseTest {
+
+    private static Logger Log = LogManager.getLogger(DIA_5062_CC.class.getName());
 
     @Test()
     public void dia5062ccTest() {
@@ -286,7 +290,7 @@ public class DIA_5062_CC extends BaseTest {
         conditions.add("Primary sclerosing cholangitis or primary biliary cirrhosis(Agent Note: scler-OH-sing, ko-lanj-EYE-tis, BILL-ee-air-ee)");
         conditions.add("Wilson's disease");
         for (String condition : conditions) {
-            System.out.println("Select answer for Q17:QS4624 " + condition);
+            Log.info("Select answer for Q17:QS4624 " + condition);
             liverRelatedConditionCC
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")

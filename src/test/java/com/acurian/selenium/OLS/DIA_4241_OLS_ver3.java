@@ -1,5 +1,6 @@
 package com.acurian.selenium.OLS;
 
+import com.acurian.selenium.CC.PSA_5071_CC;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.ADG_4357.EverDiagnosedGastroparesisOrStomachEmptyingOLS;
@@ -12,9 +13,11 @@ import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.*;
 import com.acurian.utils.Properties;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import ru.yandex.qatools.allure.annotations.Description;
+import io.qameta.allure.Description;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -22,6 +25,8 @@ import java.util.List;
 import java.util.Map;
 
 public class DIA_4241_OLS_ver3 extends BaseTest {
+
+    private static Logger Log = LogManager.getLogger(DIA_4241_OLS_ver3.class.getName());
 
     @Test()
     @Description("Diabetes 4241 OLS")
@@ -226,7 +231,7 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
         options.put("Synjardy (metformin and empagliflozin)", Arrays.asList(protocol2, protocol4));
         options.put("Xigduo (metformin and dapagliflozin)", Arrays.asList(protocol2, protocol4));
         for (Map.Entry<String, List<String>> entry : options.entrySet()) {
-            System.out.println(entry.getKey());
+            Log.info(entry.getKey());
             metforminMedicationsPageOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -272,7 +277,7 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
         options.put("Starlix (nateglinide)", Arrays.asList(protocol2, protocol4));
         options.put("Tradjenta (linagliptin)", Arrays.asList(protocol2, protocol3, protocol4));
         for (Map.Entry<String, List<String>> entry : options.entrySet()) {
-            System.out.println(entry.getKey());
+            Log.info(entry.getKey());
             apartFromMetforminPageOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")

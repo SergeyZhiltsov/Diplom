@@ -1,5 +1,6 @@
 package com.acurian.selenium.OLS;
 
+import com.acurian.selenium.CC.PSA_5071_CC;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.ADG_4357.EverDiagnosedGastroparesisOrStomachEmptyingOLS;
@@ -14,14 +15,18 @@ import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
 import com.acurian.selenium.pages.OLS.shared.HaveYouGoneThroughMenopauseOLS;
 import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
 import com.acurian.utils.Properties;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import ru.yandex.qatools.allure.annotations.Description;
+import io.qameta.allure.Description;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class RO_7069_OLS extends BaseTest {
+
+    private static Logger Log = LogManager.getLogger(RO_7069_OLS.class.getName());
 
     @Test
     @Description("7069 BA058-05-021 Radius Osteoporosis OLS")
@@ -177,7 +182,7 @@ public class RO_7069_OLS extends BaseTest {
                 new CurrentlyTakingMedicationsOsteoporosisOLS();
         List<String> disqualifyQ5 = Arrays.asList("Within the past year", "1 - 4 years ago");
         for (String answer : disqualifyQ5) {
-            System.out.println("Select answer for Q5: " + answer);
+            Log.info("Select answer for Q5: " + answer);
             howLongAgoReachMenopauseOLS
                     .waitForPageLoad()
                     .clickOnAnswer(answer)
@@ -200,7 +205,7 @@ public class RO_7069_OLS extends BaseTest {
                 "Soltamox (tamoxifen)", "Rayaldee (calcifediol)", "Rocaltrol (calcitriol)",
                 "Prolia or Xgeva (denosumab)", "Miacalcin (calcitonin)");
         for (String answer : disqualifyQ6) {
-            System.out.println("Select answer for Q6: " + answer);
+            Log.info("Select answer for Q6: " + answer);
             currentlyTakingMedicationsOsteoporosisOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -281,7 +286,7 @@ public class RO_7069_OLS extends BaseTest {
         List<String> disqualifyQ6QS42 = Arrays.asList("Within the past 5 years", "6 - 10 years ago",
                 "11 or more years ago");
         for (String answer : disqualifyQ6QS42) {
-            System.out.println("Select answer for Q6:QS42: " + answer);
+            Log.info("Select answer for Q6:QS42: " + answer);
             whenDiagnosedWithCancerOLS
                     .waitForPageLoad()
                     .clickOnAnswer(answer)
@@ -305,7 +310,7 @@ public class RO_7069_OLS extends BaseTest {
 
         List<String> disqualifyQ8QS44 = Arrays.asList("Crohn's disease", "Ulcerative colitis");
         for (String answer : disqualifyQ8QS44) {
-            System.out.println("Select answer for Q8:QS44: " + answer);
+            Log.info("Select answer for Q8:QS44: " + answer);
             whichOfFollowingDigestiveConditionPageOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -337,7 +342,7 @@ public class RO_7069_OLS extends BaseTest {
                 new HeartrelatedMedicalProceduresPageOLS();
         List<String> disqualifyQ12GH = Arrays.asList("Less than 30 days ago", "1 - 3 months ago");
         for (String answer : disqualifyQ12GH) {
-            System.out.println("Select answer for Q12.1GH: " + answer);
+            Log.info("Select answer for Q12.1GH: " + answer);
             subquestionHeartPageOLS
                     .waitForPageLoad(1, subquestionHeartPageOLS.titleExpected1)
                     .clickOnAnswerForSubQuestion(1, answer)
@@ -357,7 +362,7 @@ public class RO_7069_OLS extends BaseTest {
 
 
         for (String answer : disqualifyQ12GH) {
-            System.out.println("Select answer for Q12.2GH: " + answer);
+            Log.info("Select answer for Q12.2GH: " + answer);
             subquestionHeartPageOLS
                     .waitForPageLoad(1, subquestionHeartPageOLS.titleExpected2)
                     .clickOnAnswerForSubQuestion(1, answer)
@@ -377,7 +382,7 @@ public class RO_7069_OLS extends BaseTest {
 
 
         for (String answer : disqualifyQ12GH) {
-            System.out.println("Select answer for Q12.3GH: " + answer);
+            Log.info("Select answer for Q12.3GH: " + answer);
             subquestionHeartPageOLS
                     .waitForPageLoad(1, subquestionHeartPageOLS.titleExpected3)
                     .clickOnAnswerForSubQuestion(1, answer)
@@ -396,7 +401,7 @@ public class RO_7069_OLS extends BaseTest {
                 .clickNextButton(subquestionHeartPageOLS);
 
         for (String answer : disqualifyQ12GH) {
-            System.out.println("Select answer for Q12.4GH: " + answer);
+            Log.info("Select answer for Q12.4GH: " + answer);
             subquestionHeartPageOLS
                     .waitForPageLoad(1, subquestionHeartPageOLS.titleExpected4)
                     .clickOnAnswerForSubQuestion(1, answer)
@@ -420,7 +425,7 @@ public class RO_7069_OLS extends BaseTest {
 
         List<String> disqualifyQ6QS51 = Arrays.asList("Dialysis", "Kidney transplant");
         for (String answer : disqualifyQ6QS51) {
-            System.out.println("Select answer for Q6:QS51: " + answer);
+            Log.info("Select answer for Q6:QS51: " + answer);
             kidneyProblemsPage
                     .waitForPageLoad()
                     .clickOnAnswers("Neither")
@@ -466,7 +471,7 @@ public class RO_7069_OLS extends BaseTest {
         //Q18: QS53
         List<String> disqualifyQ18 = Arrays.asList("Bipolar disorder", "Schizophrenia");
         for (String answer : disqualifyQ18) {
-            System.out.println("Select answer for Q18:QS53: " + answer);
+            Log.info("Select answer for Q18:QS53: " + answer);
             followingMentalEmotionalHealthPageOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -490,7 +495,7 @@ public class RO_7069_OLS extends BaseTest {
                 "Cirrhosis", "Drug or alcohol abuse within the past year", "Hepatitis B",
                 "Hepatitis C", "HIV or AIDS");
         for (String answer : disqualifyQ24_QS59) {
-            System.out.println("Select answer for Q24_QS59: " + answer);
+            Log.info("Select answer for Q24_QS59: " + answer);
             doAnyOftheFollowingAdditionalDiagnosesOLS
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(answer)
@@ -502,7 +507,7 @@ public class RO_7069_OLS extends BaseTest {
         }
         List<String> disqualifyQ24_QS59p2 = Arrays.asList("Kidney disease requiring dialysis", "Schizophrenia");
         for (String answer : disqualifyQ24_QS59p2) {
-            System.out.println("Select answer for Q24_QS59p2: " + answer);
+            Log.info("Select answer for Q24_QS59p2: " + answer);
             doAnyOftheFollowingAdditionalDiagnosesOLS
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(answer)

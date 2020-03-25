@@ -13,16 +13,18 @@ import com.acurian.selenium.pages.blinx.ams.vaccine.AreYouGenerallyInGoodHealthO
 import com.acurian.selenium.pages.blinx.ams.vaccine.AreYouInterestedInVaccineStudyOLS;
 import com.acurian.selenium.pages.blinx.ams.vaccine.CurrentlyPregnantBreastfeedingOLS;
 import com.acurian.selenium.pages.blinx.gmega.intro.IdentificationPageOLS;
-import com.acurian.utils.Properties;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import ru.yandex.qatools.allure.annotations.Description;
+import io.qameta.allure.Description;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class VACC_S10001_OLSBlinx extends BaseTest {
 
+    private static Logger Log = LogManager.getLogger(VACC_S10001_OLSBlinx.class.getName());
 
     @DataProvider
     public Object[][] sites() {
@@ -31,7 +33,7 @@ public class VACC_S10001_OLSBlinx extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "sites", enabled = true)
+    @Test(dataProvider = "sites", enabled = false)
     @Description("VACC_S10001_BLINX VLA1553-301 (Valneva CHIKV Vaccine)")
     public void vaccS10001BlinxTest(Site site) {
         final String phoneNumber = "AUTAMS1DFU";
@@ -119,7 +121,7 @@ public class VACC_S10001_OLSBlinx extends BaseTest {
 
         List<String> disqualifyQS42 = Arrays.asList("Within the past 5 years", "6 - 10 years ago", "11 or more years ago");
         for (String answer : disqualifyQS42) {
-            System.out.println("Select answer for QS42: " + answer);
+            Log.info("Select answer for QS42: " + answer);
             whenDiagnosedWithCancerOLS
                     .waitForPageLoad()
                     .clickOnAnswer(answer)
@@ -251,14 +253,12 @@ public class VACC_S10001_OLSBlinx extends BaseTest {
         AboutHealthPageOLS aboutHealthPageOLS = thankYouCloseSimplePageOLS
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS());
+        aboutHealthPageOLS
+                .waitForPageLoad()
+                .pidFromDbToLog(env)
+                .childPidFromDbToLog(env)
+                .assertGeneratedFul(env, site)
+                .dispoShouldMatch(site.dispo, site.dispo);
 
-        if(aboutHealthPageOLS.getHostName().equals(Properties.getHostName())) {
-            aboutHealthPageOLS
-                    .waitForPageLoad()
-                    .pidFromDbToLog(env)
-                    .childPidFromDbToLog(env)
-                    .assertGeneratedFul(env, site)
-                    .dispoShouldMatch(site.dispo, site.dispo);
-        }
     }
 }

@@ -15,15 +15,18 @@ import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.selenium.pages.OLS.generalHealth.WhichOfFollowingHaveYouDiagnosedWith_NeurologicalCC;
 import com.acurian.selenium.OLS.DERM_7157_OLS;
 import com.acurian.utils.Properties;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import ru.yandex.qatools.allure.annotations.Description;
+import io.qameta.allure.Description;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class DERM_7157_CC extends BaseTest {
 
+    private static Logger Log = LogManager.getLogger(DERM_7157_OLS.class.getName());
 
 
     @Test(dataProvider = "sites", dataProviderClass = DERM_7157_OLS.class)
@@ -123,7 +126,7 @@ public class DERM_7157_CC extends BaseTest {
 //                "3 - 6 months",
 //                "7 - 11 months");
 //        for (String answer : disqualifyQ3) {
-//            System.out.println(answer);
+//            Log.info(answer);
 //            howLongHaveYouBeenSufferingFromEczema_cc
 //                    .waitForPageLoad()
 //                    .clickOnAnswer(answer)
@@ -144,7 +147,7 @@ public class DERM_7157_CC extends BaseTest {
                 new HowWouldYouDescribeTheEczemaCurrentlyPageCC();
         List<String> disqualifyQ4 = Arrays.asList("0", "1", "2", "3", "4", "5");
         for (String answer : disqualifyQ4) {
-            System.out.println("Select answer for Q4: " + answer);
+            Log.info("Select answer for Q4: " + answer);
             howMuchEczemaYouHaveOnYOurBody_CC
                     .waitForPageLoad()
                     .selectFromDropDown(answer)
@@ -157,7 +160,7 @@ public class DERM_7157_CC extends BaseTest {
 //-----------STATUS SET validation:  PATIENT_PRIORITY_YES = 8 14 -------------
         List<String> studyLevelStatus = Arrays.asList("13", "14", "15", "16", "17", "18", "19", "20");
         for (String answer : studyLevelStatus) {
-            System.out.println("Select answer to get study level status logic for Q4: " + answer);
+            Log.info("Select answer to get study level status logic for Q4: " + answer);
             howMuchEczemaYouHaveOnYOurBody_CC
                     .waitForPageLoad()
                     .selectFromDropDown(answer)
@@ -568,7 +571,7 @@ public class DERM_7157_CC extends BaseTest {
                         "IBS, or irritable bowel syndrome");
         List<String> disqualifyGHQ4 = Arrays.asList("Crohn's disease", "Ulcerative colitis");
         for (String answer : disqualifyGHQ4) {
-            System.out.println(answer);
+            Log.info(answer);
             whichOfFollowingDigestiveConditionPageCC
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -591,7 +594,7 @@ public class DERM_7157_CC extends BaseTest {
                 .clickNextButton(new WhichOfTheFollowingHaveRequiredForKidneyDiseaseCC());
         List<String> disqualifyQ16 = Arrays.asList("Dialysis", "Kidney transplant");
         for (String answer : disqualifyQ16) {
-            System.out.println(answer);
+            Log.info(answer);
             whichOfTheFollowingHaveRequiredForKidneyDiseaseCC
                     .waitForPageLoad()
                     .clickOnAnswers("Neither")
@@ -646,7 +649,7 @@ public class DERM_7157_CC extends BaseTest {
         //Q18: QS53
         List<String> disqualifyQ18 = Arrays.asList("Bipolar disorder", "Schizophrenia");
         for (String answer : disqualifyQ18) {
-            System.out.println(answer);
+            Log.info(answer);
             followingMentalEmotionalHealthPageCC
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -755,7 +758,7 @@ public class DERM_7157_CC extends BaseTest {
                 "Hepatitis C",
                 "HIV or AIDS");
         for (String answer : disqualifyQ24GH) {
-            System.out.println(answer);
+            Log.info(answer);
             doAnyOftheFollowingAdditionalDiagnosesCC
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -771,7 +774,7 @@ public class DERM_7157_CC extends BaseTest {
         List<String> disqualifyQ24second = Arrays.asList("Kidney disease requiring dialysis",
                 "Schizophrenia");
         for (String answer : disqualifyQ24second) {
-            System.out.println(answer);
+            Log.info(answer);
             doAnyOftheFollowingAdditionalDiagnosesCC
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")

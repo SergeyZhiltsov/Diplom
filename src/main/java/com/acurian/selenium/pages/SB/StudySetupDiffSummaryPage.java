@@ -1,6 +1,9 @@
 package com.acurian.selenium.pages.SB;
 
+import com.acurian.selenium.pages.OLS.debug.ConfigPageOLS;
 import io.qameta.allure.Step;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -13,6 +16,8 @@ import java.util.List;
 
 
 public class StudySetupDiffSummaryPage extends MainPageSB {
+
+    private static Logger Log = LogManager.getLogger(StudySetupDiffSummaryPage.class.getName());
 
     @FindBy(xpath = "//label[@for='theraputicArea']//following-sibling::div/span")
     List<WebElement> therapeuticArea;
@@ -37,7 +42,7 @@ public class StudySetupDiffSummaryPage extends MainPageSB {
     public StudySetupDiffSummaryPage checkPublishAlertMessage(String expectedMessage) {
         waitForVisibility(alertMessage);
         Assert.assertEquals(expectedMessage, alertMessage.findElement(By.tagName("label")).getText(), "Alert message is different");
-        System.out.println(alertMessage.findElement(By.tagName("label")).getText());
+        Log.info(alertMessage.findElement(By.tagName("label")).getText());
         return this;
     }
 
@@ -113,7 +118,7 @@ public class StudySetupDiffSummaryPage extends MainPageSB {
 
     private boolean compareString(List expected, String... actual) {
         boolean result = Arrays.equals(expected.toArray(), actual);
-        System.out.printf("Comparing strings %s and %s. Result (are they equal?): %s %n",
+        Log.info("Comparing strings %s and %s. Result (are they equal?): %s %n",
                 Arrays.toString(expected.toArray()), Arrays.toString(actual), result);
         return result;
     }

@@ -10,9 +10,11 @@ import com.acurian.selenium.pages.blinx.ams.debug.DebugPageOLS;
 import com.acurian.selenium.pages.blinx.ams.generalHealth.*;
 import com.acurian.selenium.pages.blinx.ams.uc.WhenWereYouDiagnosedWithUCPageOLS;;
 import com.acurian.selenium.pages.blinx.gmega.intro.IdentificationPageOLS;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import ru.yandex.qatools.allure.annotations.Description;
+import io.qameta.allure.Description;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -21,6 +23,7 @@ import java.util.Map;
 
 public class Crohns_4818_OLSBlinx extends BaseTest {
 
+    private static Logger Log = LogManager.getLogger(Crohns_4818_OLSBlinx.class.getName());
 
     @DataProvider
     public Object[][] sites() {
@@ -262,7 +265,7 @@ public class Crohns_4818_OLSBlinx extends BaseTest {
         disqualify.put("Feeding tube", Arrays.asList(site.activeProtocols));
         disqualify.put("IV (parenteral) nutrition", Arrays.asList(site.activeProtocols));
         for (Map.Entry<String, List<String>> entry : disqualify.entrySet()) {
-            System.out.println(entry.getKey());
+            Log.info(entry.getKey());
             currentlyHaveAnyFollowingOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -520,7 +523,7 @@ public class Crohns_4818_OLSBlinx extends BaseTest {
                 "Hepatitis C",
                 "HIV or AIDS"); //Kidney disease requiring dialysis is not displayed
         for (String answer: disqualifyQS59) {
-            System.out.println("Select answer for QS59: " + answer);
+            Log.info("Select answer for QS59: " + answer);
             doAnyOftheFollowingAdditionalDiagnosesOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")

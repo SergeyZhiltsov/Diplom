@@ -1,5 +1,6 @@
 package com.acurian.selenium.OLS;
 
+import com.acurian.selenium.blinx.Crohns_4818_OLSBlinx;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.AMIG_4742.*;
@@ -10,6 +11,8 @@ import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -18,6 +21,9 @@ import java.util.List;
 
 public class AMIG_4742_OLS extends BaseTest {
 //FULs were stopped on AMS1 R68.2
+
+    private static Logger Log = LogManager.getLogger(AMIG_4742_OLS.class.getName());
+
     @Test(enabled = false)
     public void amig4742ols() {
         String phoneNumberMIG = "AUTAMS1MIG";
@@ -217,7 +223,7 @@ public class AMIG_4742_OLS extends BaseTest {
         //        Q10	How satisfied are you with the prescription medications that you take daily to prevent migraines from starting?
         List<String> disqualifyQ10 = Arrays.asList("Satisfied", "Somewhat Satisfied");
         for (String answer: disqualifyQ10) {
-            System.out.println("Select answer for Q10: " + answer);
+            Log.info("Select answer for Q10: " + answer);
             prescriptionMedicationsDailyToPreventMigrainesPageOLS
                     .waitForPageLoad()
                     .clickOnAnswer(answer)
@@ -250,7 +256,7 @@ public class AMIG_4742_OLS extends BaseTest {
 //        //      Q21	When did you last have a Botox (botulinum toxin) injection?
 //        List<String> disqualifyQ21 = Arrays.asList("3 months ago or less", "4 - 6 months ago");
 //        for (String answer: disqualifyQ21) {
-//            System.out.println("Select answer for Q21: " + answer);
+//            Log.info("Select answer for Q21: " + answer);
 //            whenDidYouLastHaveBotoxInjectionOLS
 //                    .waitForPageLoad()
 //                    .clickOnAnswer(answer)
@@ -271,7 +277,7 @@ public class AMIG_4742_OLS extends BaseTest {
 //        List<String> disqualifyQ22 = Arrays.asList("Trigeminal Neuralgia - severe pain in the nerves of the face",
 //                "Temporomandibular Joint Disorders also known as TMD or TMJ");
 //        for (String answer: disqualifyQ22) {
-//            System.out.println("Select answer for Q22: " + answer);
+//            Log.info("Select answer for Q22: " + answer);
 //            haveYouEverDiagnosedByHealthcareProfOLS
 //                    .waitForPageLoad()
 //                    .clickOnAnswers("None 4742of the above")
@@ -360,7 +366,7 @@ public class AMIG_4742_OLS extends BaseTest {
         HeartrelatedMedicalProceduresPageOLS heartrelatedMedicalProceduresPageOLS =
                 new HeartrelatedMedicalProceduresPageOLS();
         for (String answer: disqualifyQ12GH) {
-            System.out.println("Select answer for Q12.1:QS47A: " + answer);
+            Log.info("Select answer for Q12.1:QS47A: " + answer);
             subquestionExperiencedHeartPageOLS
                     .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
                     .clickOnAnswers(answer)
@@ -379,7 +385,7 @@ public class AMIG_4742_OLS extends BaseTest {
                 .clickOnAnswers("Stroke")
                 .clickNextButton(subquestionExperiencedHeartPageOLS);
         for (String answer: disqualifyQ12GH) {
-            System.out.println("Select answer for Q12.2:QS47B: " + answer);
+            Log.info("Select answer for Q12.2:QS47B: " + answer);
             subquestionExperiencedHeartPageOLS
                     .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected2)
                     .clickOnAnswers(answer)
@@ -398,7 +404,7 @@ public class AMIG_4742_OLS extends BaseTest {
                 .clickOnAnswers("Mini-Stroke or TIA")
                 .clickNextButton(subquestionExperiencedHeartPageOLS);
         for (String answer: disqualifyQ12GH) {
-            System.out.println("Select answer for Q12.3:QS47C: " + answer);
+            Log.info("Select answer for Q12.3:QS47C: " + answer);
             subquestionExperiencedHeartPageOLS
                     .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected3)
                     .clickOnAnswers(answer)
@@ -417,7 +423,7 @@ public class AMIG_4742_OLS extends BaseTest {
                 .clickOnAnswers("Angina, or heart-related chest pain, that required you to stay in a hospital overnight")
                 .clickNextButton(subquestionExperiencedHeartPageOLS);
         for (String answer: disqualifyQ12GH) {
-            System.out.println("Select answer for Q12.4:QS47D: " + answer);
+            Log.info("Select answer for Q12.4:QS47D: " + answer);
             subquestionExperiencedHeartPageOLS
                     .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected4)
                     .clickOnAnswers(answer)
@@ -448,7 +454,7 @@ public class AMIG_4742_OLS extends BaseTest {
                 .clickOnAnswers("Generalized anxiety disorder (GAD)",
                         "Major depressive disorder (MDD) or depression");
         for (String answer: disqualifyQ18GH) {
-            System.out.println("Select answer for Q18:QS53: " + answer);
+            Log.info("Select answer for Q18:QS53: " + answer);
             following_MentalEmotionalHealthPageOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -484,7 +490,7 @@ public class AMIG_4742_OLS extends BaseTest {
                 "Hepatitis C",
                 "HIV or AIDS");
         for (String answer: disqualifyQ24GH) {
-            System.out.println("Select answer for Q24GH: " + answer);
+            Log.info("Select answer for Q24GH: " + answer);
             doAnyOftheFollowingAdditionalDiagnosesOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -498,7 +504,7 @@ public class AMIG_4742_OLS extends BaseTest {
         List<String> disqualifyQ24GHPart2 = Arrays.asList("Kidney disease requiring dialysis", "Multiple sclerosis (MS)",
                 "Seizure disorder such as epilepsy",  "Schizophrenia");
         for (String answer: disqualifyQ24GHPart2) {
-            System.out.println("Select answer for Q24GHp2: " + answer);
+            Log.info("Select answer for Q24GHp2: " + answer);
             doAnyOftheFollowingAdditionalDiagnosesOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")

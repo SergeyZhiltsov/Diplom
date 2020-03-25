@@ -9,6 +9,8 @@ import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.utils.Properties;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -18,6 +20,7 @@ import java.util.List;
 
 public class OA_4831_CC_A_S extends BaseTest {
 
+    private static Logger Log = LogManager.getLogger(OA_4831_CC_A_S.class.getName());
 
     @DataProvider
     public Object[][] sites() {
@@ -324,7 +327,7 @@ public class OA_4831_CC_A_S extends BaseTest {
         List<String> disqualifyQ26 = Arrays.asList("Cancer in the past 5 years, except skin cancer",
                 "Drug or alcohol abuse within the past year", "Hepatitis B", "Hepatitis C", "HIV or AIDS");
         for (String answer : disqualifyQ26) {
-            System.out.println("Select answer for Q26: " + answer);
+            Log.info("Select answer for Q26: " + answer);
             doAnyOftheFollowingAdditionalDiagnosesCC
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -338,7 +341,7 @@ public class OA_4831_CC_A_S extends BaseTest {
         List<String> disqualifyQ26pt2 = Arrays.asList("Multiple sclerosis (MS)",
                 "Neuropathy (nerve damage due to diabetes or another condition)");
         for (String answer : disqualifyQ26pt2) {
-            System.out.println("Select answer for Q26: " + answer);
+            Log.info("Select answer for Q26: " + answer);
             doAnyOftheFollowingAdditionalDiagnosesCC
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")

@@ -1,5 +1,6 @@
 package com.acurian.selenium.OLS;
 
+import com.acurian.selenium.CC.PSA_5071_CC;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.ADG_4357.WithType1DiabetesPageOLS;
@@ -11,15 +12,18 @@ import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.*;
 import com.acurian.utils.Properties;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import ru.yandex.qatools.allure.annotations.Description;
+import io.qameta.allure.Description;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class DIA_4483_OLS extends BaseTest {
 
+    private static Logger Log = LogManager.getLogger(DIA_4483_OLS.class.getName());
 
     @DataProvider
     public Object[][] sites() {
@@ -126,7 +130,7 @@ public class DIA_4483_OLS extends BaseTest {
 //
 //        List<String> disqualify = Arrays.asList("2 - 3 months ago", "4 - 5 months ago", "6 months ago or longer");
 //        for (String answer : disqualify) {
-//            System.out.println("Select answer for Q6: " + answer);
+//            Log.info("Select answer for Q6: " + answer);
 //            lastTimeYouTookPageOLS
 //                    .waitForPageLoad()
 //                    .clickOnAnswer("2 - 3 months ago")
@@ -316,7 +320,7 @@ public class DIA_4483_OLS extends BaseTest {
 //                "Hemochromatosis or iron overload ", "Liver cancer or hepatocellular carcinoma ", //this answer sometimes gives another pages (think because of cash)
                 "Primary sclerosing cholangitis or primary biliary cirrhosis", "Wilson's disease");
         for (String answer : options) {
-            System.out.println("Select answer for Q17: QS4624 " + answer);
+            Log.info("Select answer for Q17: QS4624 " + answer);
             liverRelatedConditionOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -363,7 +367,7 @@ public class DIA_4483_OLS extends BaseTest {
         List<String> disqualifyQ20 = Arrays.asList("Less than 3 months ago", "3 - 6 months ago", "7 - 11 months ago",
                 "1 - 2 years ago", "More than 2 years ago");
         for (String answer : disqualifyQ20) {
-            System.out.println("Select answer for Q20: " + answer);
+            Log.info("Select answer for Q20: " + answer);
             procedureForWeightLossPageOLS
                     .waitForPageLoad()
                     .clickOnAnswer(answer)

@@ -10,16 +10,19 @@ import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.utils.Properties;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import ru.yandex.qatools.allure.annotations.Description;
+import io.qameta.allure.Description;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class GERD_5098_CC extends BaseTest {
 
+    private static Logger Log = LogManager.getLogger(GERD_5098_CC.class.getName());
 
     @DataProvider
     public Object[][] sites() {
@@ -357,7 +360,7 @@ public class GERD_5098_CC extends BaseTest {
                 "Duodenal switch", "Lap band or gastric banding",
                 "Gastric balloon", "I had a weight loss surgery, but I am unsure which type");
         for (String answer : disqualifyQ26pt2) {
-            System.out.println("Select answer for Q26: " + answer);
+            Log.info("Select answer for Q26: " + answer);
             weightLossSurgeryPageCC
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -582,7 +585,7 @@ public class GERD_5098_CC extends BaseTest {
 //                "Lap band or gastric banding",
 //                "Gastric balloon", "I had a weight loss surgery, but I am unsure which type");
 //        for (String answer : disqualify) {
-//            System.out.println(answer);
+//            Log.info(answer);
 //            weightLossSurgeryPageCC
 //                    .waitForPageLoad()
 //                    .clickOnAnswers("None of the above")
@@ -702,7 +705,7 @@ public class GERD_5098_CC extends BaseTest {
 
         List<String> disqualifyQS51 = Arrays.asList("Dialysis", "Kidney transplant");
         for (String answer : disqualifyQS51) {
-            System.out.println("Select answer for QS51: " + answer);
+            Log.info("Select answer for QS51: " + answer);
             whichOfTheFollowingHaveRequiredForKidneyDiseaseCC
                     .waitForPageLoad()
                     .clickOnAnswers("Neither")
@@ -744,7 +747,7 @@ public class GERD_5098_CC extends BaseTest {
         //Q18: QS53
         List<String> disqualifyQ18 = Arrays.asList("Bipolar disorder", "Schizophrenia");
         for (String answer : disqualifyQ18) {
-            System.out.println("Select answer for Q18QS53: " + answer);
+            Log.info("Select answer for Q18QS53: " + answer);
             followingMentalEmotionalHealthPageCC
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -778,7 +781,7 @@ public class GERD_5098_CC extends BaseTest {
                 "Hepatitis C",
                 "HIV or AIDS");
         for (String answer : disqualifyQ24) {
-            System.out.println("Select answer for Q24QS59: " + answer);
+            Log.info("Select answer for Q24QS59: " + answer);
             doAnyOftheFollowingAdditionalDiagnosesCC
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -791,7 +794,7 @@ public class GERD_5098_CC extends BaseTest {
         }
         List<String> disqualifyQ24pt2 = Arrays.asList("Kidney disease requiring dialysis", "Schizophrenia");
         for (String answer : disqualifyQ24pt2) {
-            System.out.println("Select answer for Q24QS59: " + answer);
+            Log.info("Select answer for Q24QS59: " + answer);
             doAnyOftheFollowingAdditionalDiagnosesCC
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")

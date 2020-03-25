@@ -7,6 +7,8 @@ import com.acurian.selenium.listeners.TestListener;
 import com.acurian.utils.DriverFactory;
 import com.acurian.utils.Properties;
 import com.acurian.utils.allure.AllureUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -19,6 +21,8 @@ import java.util.concurrent.TimeUnit;
 
 @Listeners(TestListener.class)
 public abstract class BaseTest {
+
+    private Logger Log = LogManager.getLogger(BaseTest.class.getName());
 
     private static final ThreadLocal<WebDriver> DRIVER = new ThreadLocal<>();
 
@@ -61,7 +65,7 @@ public abstract class BaseTest {
             AllureUtils.createProperties(getDriver());
             allureCounterRun = true;
         }
-        System.out.println("Browser version " + ((RemoteWebDriver) (((EventFiringWebDriver) getDriver()).getWrappedDriver())).getCapabilities().getVersion());
+        Log.info("Browser version " + ((RemoteWebDriver) (((EventFiringWebDriver) getDriver()).getWrappedDriver())).getCapabilities().getVersion());
     }
 
     @AfterMethod
@@ -79,7 +83,7 @@ public abstract class BaseTest {
             addr = InetAddress.getLocalHost();
             hostname = addr.getHostName();
         } catch (UnknownHostException ex) {
-            System.out.println("Hostname can not be resolved");
+            Log.info("Hostname can not be resolved");
         }
         return hostname;
     }

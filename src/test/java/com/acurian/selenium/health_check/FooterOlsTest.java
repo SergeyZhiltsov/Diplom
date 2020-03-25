@@ -8,7 +8,7 @@ import com.acurian.selenium.pages.OLS.common_elements.TermOfUsePage;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import ru.yandex.qatools.allure.annotations.Description;
+import io.qameta.allure.Description;
 
 public class FooterOlsTest extends BaseTest {
 

@@ -5,6 +5,8 @@ import com.acurian.selenium.listeners.TestListener;
 import com.acurian.utils.CSVParser;
 import com.acurian.utils.DBConnection;
 import com.paulhammant.ngwebdriver.NgWebDriver;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
@@ -35,6 +37,8 @@ public abstract class BasePage {
     private CSVParser csvParser;
     private DBConnection dbConnection;
     private Dimension dimension;
+    private Logger Log = LogManager.getLogger(BasePage.class.getName());
+
 
     public BasePage() {
         driver = BaseTest.getDriver();
@@ -241,21 +245,21 @@ public abstract class BasePage {
     //waits
 
     protected void waitForNetwork(int timeoutInSeconds) {
-        System.out.println("Checking active ajax calls::");
+        Log.info("Checking active ajax calls::");
         if (driver instanceof JavascriptExecutor) {
             JavascriptExecutor jsDriver = (JavascriptExecutor) driver;
             for (int i = 0; i < timeoutInSeconds; i++) {
                 Object numberOfAjaxConnections = jsDriver.executeScript("return angular.element(document.body).injector().get(\"$http\").pendingRequests.length");
                 if (numberOfAjaxConnections instanceof Long) {
                     Long n = (Long) numberOfAjaxConnections;
-                    System.out.println("Number of active ajax calls: " + n);
+                    Log.info("Number of active ajax calls: " + n);
                     if (n == 0L)
                         break;
                 }
                 threadSleep(1000);
             }
         } else {
-            System.out.println("Web getDriver: " + driver + " cannot execute javascript");
+            Log.info("Web getDriver: " + driver + " cannot execute javascript");
         }
     }
 
@@ -354,7 +358,7 @@ public abstract class BasePage {
 //                }
 //            }
         } catch (Exception e) {
-            System.out.println("Switching tabs failed");
+            Log.info("Switching tabs failed");
         }
     }
 
@@ -366,7 +370,7 @@ public abstract class BasePage {
 
     @Step("{0}")
     public void logTextToAllureAndConsole(String text) {
-        System.out.println(text);
+        Log.info(text);
     }
 
     @Attachment

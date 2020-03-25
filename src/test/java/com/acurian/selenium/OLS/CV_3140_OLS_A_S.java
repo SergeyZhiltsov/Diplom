@@ -1,5 +1,6 @@
 package com.acurian.selenium.OLS;
 
+import com.acurian.selenium.blinx.Crohns_4818_OLSBlinx;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.DY_4356.AreYouCurrentlyTakingStatinMedsOLS;
@@ -19,9 +20,11 @@ import com.acurian.selenium.pages.OLS.generalHealth.ApproximateHeightPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.IdentificationPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.SiteSelectionPageOLS;
 import com.acurian.selenium.pages.OLS.shared.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import ru.yandex.qatools.allure.annotations.Description;
+import io.qameta.allure.Description;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -30,6 +33,7 @@ import java.util.Map;
 
 public class CV_3140_OLS_A_S extends BaseTest {
 
+    private static Logger Log = LogManager.getLogger(CV_3140_OLS_A_S.class.getName());
 
     @DataProvider
     public Object[][] sites() {
@@ -483,7 +487,7 @@ public class CV_3140_OLS_A_S extends BaseTest {
         options.put("HIV or AIDS", Arrays.asList(site.activeProtocols));
         options.put("Kidney disease requiring dialysis or transplant", Arrays.asList(site.activeProtocols));
         for (Map.Entry<String, List<String>> entry : options.entrySet()) {
-            System.out.println(entry.getKey());
+            Log.info(entry.getKey());
             healthcareDiagnosedConditionsPageOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")

@@ -1,5 +1,6 @@
 package com.acurian.selenium.OLS.no_indication;
 
+import com.acurian.selenium.blinx.Crohns_4818_OLSBlinx;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.Crohns_3485.BiologicMedicationsPageOLS;
@@ -11,13 +12,17 @@ import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.annotations.Test;
-import ru.yandex.qatools.allure.annotations.Description;
+import io.qameta.allure.Description;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class NoIndication3889_OLS extends BaseTest {
+
+    private static Logger Log = LogManager.getLogger(NoIndication3889_OLS.class.getName());
 
     @Test(enabled = false)
     @Description("No Indication 3889 OLS")
@@ -589,7 +594,7 @@ public class NoIndication3889_OLS extends BaseTest {
         options.put("IV (parenteral) nutrition", site.activeProtocols);
         options.put("A planned or scheduled surgery for Crohn’s disease", site.activeProtocols);
         for (Map.Entry<String, String[]> entry : options.entrySet()) {
-            System.out.println(entry.getKey());
+            Log.info(entry.getKey());
             currentlyHaveAnyOffFollowingPageOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")

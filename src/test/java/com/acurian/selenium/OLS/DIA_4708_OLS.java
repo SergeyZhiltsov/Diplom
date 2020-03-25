@@ -1,5 +1,6 @@
 package com.acurian.selenium.OLS;
 
+import com.acurian.selenium.CC.PSA_5071_CC;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.ADG_4357.WithType1DiabetesPageOLS;
@@ -13,8 +14,10 @@ import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.annotations.Test;
-import ru.yandex.qatools.allure.annotations.Description;
+import io.qameta.allure.Description;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -22,6 +25,8 @@ import java.util.List;
 import java.util.Map;
 
 public class DIA_4708_OLS extends BaseTest {
+
+    private static Logger Log = LogManager.getLogger(DIA_4708_OLS.class.getName());
 
     @Test(enabled = false) ////Deactivate 4708 Enanta NASH (all protocols: EDP 305-101) R72	72.2	02-May-19
     @Description("NASH study 4708 OLS")
@@ -290,7 +295,7 @@ public class DIA_4708_OLS extends BaseTest {
         options.put("Primary sclerosing cholangitis or primary biliary cirrhosis", Arrays.asList(site.activeProtocols));
         options.put("Wilson's disease", Arrays.asList(site.activeProtocols));
         for (Map.Entry<String, List<String>> entry : options.entrySet()) {
-            System.out.println(entry.getKey());
+            Log.info(entry.getKey());
             liverRelatedConditionOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")

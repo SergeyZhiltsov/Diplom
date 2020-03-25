@@ -2,9 +2,12 @@ package com.acurian.selenium.pages.OLS.closes;
 
 import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.constants.Platforms;
+import com.acurian.selenium.pages.CC.generalHealth.SiteSelectionPageCC;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import com.acurian.utils.PassPID;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -16,7 +19,9 @@ import ru.yandex.qatools.allure.annotations.Step;
 import java.util.List;
 
 public class IncongruentSiteSelectionClose_OLS extends MainPageOLS{
-	
+
+    private static Logger Log = LogManager.getLogger(IncongruentSiteSelectionClose_OLS.class.getName());
+
     @Parameter("My PID OLS")
 	public String pidNumber;
 
@@ -102,7 +107,7 @@ public class IncongruentSiteSelectionClose_OLS extends MainPageOLS{
         pidNumber = getText(pidNumberPath);
         logTextToAllure("PID="+pidNumber);
         PassPID.getInstance().setPidNumber(pidNumber);
-        System.out.println("PID = "+pidNumber);
+        Log.info("PID = "+pidNumber);
         return this;
     }
 

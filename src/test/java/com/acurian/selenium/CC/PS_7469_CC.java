@@ -12,14 +12,18 @@ import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.utils.Properties;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import ru.yandex.qatools.allure.annotations.Description;
+import io.qameta.allure.Description;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class PS_7469_CC extends BaseTest {
+
+    private static Logger Log = LogManager.getLogger(PS_7469_CC.class.getName());
 
     @Test(enabled = true)
     @Description("PS_7469_CC")
@@ -383,7 +387,7 @@ public class PS_7469_CC extends BaseTest {
 
         List<String> disqualifyQS49 = Arrays.asList("Less than 30 days ago", "1 - 3 months ago", "4 - 6 months ago");
         for (String answer : disqualifyQS49) {
-            System.out.println("Select answer for QS49: " + answer);
+            Log.info("Select answer for QS49: " + answer);
             mostRecentHeartRelatedSurgeryProcedurePageCC
                     .waitForPageLoad()
                     .clickOnAnswer(answer)
@@ -414,7 +418,7 @@ public class PS_7469_CC extends BaseTest {
 
         List<String> disqualifyQS44 = Arrays.asList("Crohn's disease", "Ulcerative colitis", "Gastroparesis, or delayed gastric emptying");
         for (String answer : disqualifyQS44) {
-            System.out.println("Select answer for QS44: " + answer);
+            Log.info("Select answer for QS44: " + answer);
             whichOfFollowingDigestiveConditionPageCC
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")

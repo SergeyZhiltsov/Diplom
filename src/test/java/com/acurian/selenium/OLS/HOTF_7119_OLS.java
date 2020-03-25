@@ -1,5 +1,6 @@
 package com.acurian.selenium.OLS;
 
+import com.acurian.selenium.CC.PSA_5071_CC;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.HOTF_7119.AreYouCurrentlyTreatingYourHotFlashesWithPrescriptionMedicationOLS;
@@ -14,15 +15,18 @@ import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
 import com.acurian.selenium.pages.OLS.shared.HaveYouGoneThroughMenopauseOLS;
 import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
 import com.acurian.utils.Properties;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import ru.yandex.qatools.allure.annotations.Description;
+import io.qameta.allure.Description;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class HOTF_7119_OLS extends BaseTest {
 
+    private static Logger Log = LogManager.getLogger(HOTF_7119_OLS.class.getName());
 
     @DataProvider
     public Object[][] sites() {
@@ -105,7 +109,7 @@ public class HOTF_7119_OLS extends BaseTest {
         HowWouldYouDescribeYourHotFlashesOLS howWouldYouDescribeYourHotFlashesOLS = new HowWouldYouDescribeYourHotFlashesOLS();
         List<String> disqualifyQ3 = Arrays.asList("0 (I do not have hot flashes every day)", "1 - 2", "3 - 4", "5 - 6");
         for (String answer : disqualifyQ3) {
-            System.out.println("Select answer for Q3: " + answer);
+            Log.info("Select answer for Q3: " + answer);
             onAvgHowManyHotFlashesDoYouExperiencePerDayOLS
                     .waitForPageLoad()
                     .clickOnAnswer(answer)
@@ -210,7 +214,7 @@ public class HOTF_7119_OLS extends BaseTest {
         List<String> disqualifyQ6QS42 = Arrays.asList("Within the past 5 years", "6 - 10 years ago",
                 "11 or more years ago");
         for (String answer : disqualifyQ6QS42) {
-            System.out.println("Select answer for QS42: " + answer);
+            Log.info("Select answer for QS42: " + answer);
             whenDiagnosedWithCancerOLS
                     .waitForPageLoad()
                     .clickOnAnswer(answer)
@@ -232,7 +236,7 @@ public class HOTF_7119_OLS extends BaseTest {
 
         List<String> disqualifyQ16 = Arrays.asList("Dialysis", "Kidney transplant");
         for (String answer : disqualifyQ16) {
-            System.out.println("Select answer for Q16: " + answer);
+            Log.info("Select answer for Q16: " + answer);
             whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS
                     .waitForPageLoad()
                     .clickOnAnswers("Neither")
@@ -275,7 +279,7 @@ public class HOTF_7119_OLS extends BaseTest {
         //Q18: QS53
         List<String> disqualifyQ18 = Arrays.asList("Bipolar disorder", "Schizophrenia");
         for (String answer : disqualifyQ18) {
-            System.out.println(answer);
+            Log.info(answer);
             followingMentalEmotionalHealthPageOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -302,7 +306,7 @@ public class HOTF_7119_OLS extends BaseTest {
                 "Hepatitis C",
                 "HIV or AIDS");
         for (String answer : disqualifyQ24) {
-            System.out.println("Select answer for Q24QS59: " + answer);
+            Log.info("Select answer for Q24QS59: " + answer);
             doAnyOftheFollowingAdditionalDiagnosesCC
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -315,7 +319,7 @@ public class HOTF_7119_OLS extends BaseTest {
         }
         List<String> disqualifyQ24pt2 = Arrays.asList("Kidney disease requiring dialysis", "Schizophrenia");
         for (String answer : disqualifyQ24pt2) {
-            System.out.println("Select answer for Q24QS59: " + answer);
+            Log.info("Select answer for Q24QS59: " + answer);
             doAnyOftheFollowingAdditionalDiagnosesCC
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")

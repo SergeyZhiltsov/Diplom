@@ -2,6 +2,7 @@ package com.acurian.selenium.blinx;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.OLS.debug.ConfigPageOLS;
 import com.acurian.selenium.pages.blinx.ams.closes.AboutHealthPageOLS;
 import com.acurian.selenium.pages.blinx.ams.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.blinx.ams.ps_7469.*;
@@ -14,17 +15,19 @@ import com.acurian.selenium.pages.blinx.ams.derm.HasHealthcareProfessionalEverDi
 import com.acurian.selenium.pages.blinx.ams.generalHealth.*;
 import com.acurian.selenium.pages.blinx.ams.shared.*;
 import com.acurian.selenium.pages.blinx.gmega.intro.IdentificationPageOLS;
-import com.acurian.utils.Properties;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import ru.yandex.qatools.allure.annotations.Description;
+import io.qameta.allure.Description;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class PS_7469_OLSBlinx extends BaseTest {
 
+    private static Logger Log = LogManager.getLogger(PS_7469_OLSBlinx.class.getName());
 
     @DataProvider
     public Object[][] sites() {
@@ -45,9 +48,9 @@ public class PS_7469_OLSBlinx extends BaseTest {
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
-                .waitForPageLoadCrohns(studyName, "300");
+                .waitForPageLoadCrohns(studyName, "350");
         Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS
-                .getExpectedModifiedTitle(studyName, "300"), "Title is diff");
+                .getExpectedModifiedTitle(studyName, "350"), "Title is diff");
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
                 .clickOnAnswer("Yes")
                 .getPage(new ZipCodePageOLS());
@@ -369,7 +372,7 @@ public class PS_7469_OLSBlinx extends BaseTest {
 
         List<String> disqualifyQS49 = Arrays.asList("Less than 30 days ago", "1 - 3 months ago", "4 - 6 months ago");
         for (String answer : disqualifyQS49) {
-            System.out.println("Select answer for QS49: " + answer);
+            Log.info("Select answer for QS49: " + answer);
             mostRecentHeartRelatedSurgeryProcedurePageOLS
                     .waitForPageLoad()
                     .clickOnAnswer(answer)
@@ -398,7 +401,7 @@ public class PS_7469_OLSBlinx extends BaseTest {
 
         List<String> disqualifyQS44 = Arrays.asList("Crohn's disease", "Ulcerative colitis", "Gastroparesis, or delayed gastric emptying");
         for (String answer : disqualifyQS44) {
-            System.out.println("Select answer for QS44: " + answer);
+            Log.info("Select answer for QS44: " + answer);
             whichOfFollowingDigestiveConditionPageOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -531,14 +534,11 @@ public class PS_7469_OLSBlinx extends BaseTest {
         AboutHealthPageOLS aboutHealthPageOLS = thankYouCloseSimplePageOLS
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS());
-
-        if(aboutHealthPageOLS.getHostName().equals(Properties.getHostName())) {
-            aboutHealthPageOLS
-                    .waitForPageLoad()
-                    .pidFromDbToLog(env)
-                    .childPidFromDbToLog(env)
-                    .assertGeneratedFul(env, site)
-                    .dispoShouldMatch(site.dispo, site.dispo);
-        }
+        aboutHealthPageOLS
+                .waitForPageLoad()
+                .pidFromDbToLog(env)
+                .childPidFromDbToLog(env)
+                .assertGeneratedFul(env, site)
+                .dispoShouldMatch(site.dispo, site.dispo);
     }
 }

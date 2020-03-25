@@ -1,5 +1,6 @@
 package com.acurian.selenium.OLS;
 
+import com.acurian.selenium.CC.PSA_5071_CC;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.Crohns_3485.BiologicMedicationsPageOLS;
@@ -12,15 +13,19 @@ import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
 import com.acurian.selenium.pages.OLS.shared.HasHealthcareProfessionalEverDiagnosedYouWithEczema_OLS;
 import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import ru.yandex.qatools.allure.annotations.Description;
+import io.qameta.allure.Description;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class PS_4656_OLS extends BaseTest {
+
+    private static Logger Log = LogManager.getLogger(PS_4656_OLS.class.getName());
 
     @DataProvider
     public Object[][] sites() {
@@ -108,7 +113,7 @@ public class PS_4656_OLS extends BaseTest {
         TreatYourPsoriasisPageOLS treatYourPsoriasisPageOLS = new TreatYourPsoriasisPageOLS();
         List<String> disqualifyQ5 = Arrays.asList("0", "1", "21 +");
         for (String answer : disqualifyQ5) {
-            System.out.println("Select answer from dropdown for Q5: " + answer);
+            Log.info("Select answer from dropdown for Q5: " + answer);
             howMuchPsoriasisOnYourBodyOLS
                     .waitForPageLoad()
                     .selectFromDropDown(answer)
@@ -230,7 +235,7 @@ public class PS_4656_OLS extends BaseTest {
                 "Kineret", "Orencia", "Prolia or Xgeva", "Raptiva", "Remicade", "Rituxan", "Simponi", "Stelara",
                 "Taltz", "Tysabri");
         for (String answer : disqualifyQ16) {
-            System.out.println("Select answer for Q16: " + answer);
+            Log.info("Select answer for Q16: " + answer);
             biologicMedicationsPageOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -257,7 +262,7 @@ public class PS_4656_OLS extends BaseTest {
         List<String> disqualifyQ6QS42 = Arrays.asList("Within the past 5 years", "6 - 10 years ago",
                 "11 or more years ago");
         for (String answer : disqualifyQ6QS42) {
-            System.out.println("Select answer for Q6QS42: " + answer);
+            Log.info("Select answer for Q6QS42: " + answer);
             whenDiagnosedWithCancerOLS
                     .waitForPageLoad()
                     .clickOnAnswer(answer)
@@ -277,7 +282,7 @@ public class PS_4656_OLS extends BaseTest {
         List<String> disqualifyQ26 = Arrays.asList("Drug or alcohol abuse within the past year", "Hepatitis B",
                 "Hepatitis C", "HIV or AIDS");
         for (String answer : disqualifyQ26) {
-            System.out.println("Select answer for Q26: " + answer);
+            Log.info("Select answer for Q26: " + answer);
             doAnyOftheFollowingAdditionalDiagnosesOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")

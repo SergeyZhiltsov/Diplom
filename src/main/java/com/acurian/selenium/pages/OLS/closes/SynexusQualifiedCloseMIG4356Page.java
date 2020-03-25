@@ -25,9 +25,9 @@ public class SynexusQualifiedCloseMIG4356Page extends MainPageOLS{
     public SynexusQualifiedCloseMIG4356Page waitForPageLoad(String facilityCode) {
         String titleExpectedMig4356 = String.format(titleExpected, facilityCode);
         //threadSleep(2000);
-        //System.out.println(titleText.getText());
-        //System.out.println("=");
-        //System.out.println(titleExpectedMig4356);
+        //Log.info(titleText.getText());
+        //Log.info("=");
+        //Log.info(titleExpectedMig4356);
         waitForPageLoadMain(titleText, titleExpectedMig4356);
         return this;
     }

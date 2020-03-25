@@ -1,5 +1,6 @@
 package com.acurian.selenium.OLS;
 
+import com.acurian.selenium.blinx.Crohns_4818_OLSBlinx;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.OA_3138.SubquestionCurrentlyTakingPainMedicationPageOLS;
@@ -11,6 +12,8 @@ import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -21,6 +24,7 @@ import java.util.Map;
 
 public class OA_4831_OLS_A_S extends BaseTest {
 
+    private static Logger Log = LogManager.getLogger(OA_4831_OLS_A_S.class.getName());
 
     @DataProvider
     public Object[][] sites() {
@@ -395,7 +399,7 @@ public class OA_4831_OLS_A_S extends BaseTest {
         List<String> disqualifyQ26 = Arrays.asList("Cancer in the past 5 years, except skin cancer",
                 "Drug or alcohol abuse within the past year", "Hepatitis B", "Hepatitis C", "HIV or AIDS");
         for (String answer : disqualifyQ26) {
-            System.out.println("Select answer for Q26: " + answer);
+            Log.info("Select answer for Q26: " + answer);
             doAnyOftheFollowingAdditionalDiagnosesOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -409,7 +413,7 @@ public class OA_4831_OLS_A_S extends BaseTest {
         List<String> disqualifyQ26pt2 = Arrays.asList("Kidney disease requiring dialysis", "Multiple sclerosis (MS)",
                 "Neuropathy (nerve damage due to diabetes or another condition)");
         for (String answer : disqualifyQ26pt2) {
-            System.out.println("Select answer for Q26: " + answer);
+            Log.info("Select answer for Q26: " + answer);
             doAnyOftheFollowingAdditionalDiagnosesOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")

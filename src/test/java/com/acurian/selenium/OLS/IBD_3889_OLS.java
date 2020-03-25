@@ -1,5 +1,6 @@
 package com.acurian.selenium.OLS;
 
+import com.acurian.selenium.blinx.Crohns_4818_OLSBlinx;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.Crohns_3485.BiologicMedicationsPageOLS;
@@ -15,16 +16,19 @@ import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
 import com.acurian.selenium.pages.OLS.shared.PersonalDetails;
 import com.acurian.selenium.pages.OLS.shared.WhatKindOfDiabetesPageOLS;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import ru.yandex.qatools.allure.annotations.Description;
+import io.qameta.allure.Description;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class IBD_3889_OLS extends BaseTest {
 
+    private static Logger Log = LogManager.getLogger(IBD_3889_OLS.class.getName());
 
     @DataProvider
     public Object[][] flare() {
@@ -287,7 +291,7 @@ public class IBD_3889_OLS extends BaseTest {
         options.put("IV (parenteral) nutrition", site.activeProtocols);
         options.put("A planned or scheduled surgery for Crohn’s disease", site.activeProtocols);
         for (Map.Entry<String, String[]> entry : options.entrySet()) {
-            System.out.println(entry.getKey());
+            Log.info(entry.getKey());
             currentlyHaveAnyOffFollowingPageOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
