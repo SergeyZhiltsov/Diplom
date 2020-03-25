@@ -12,7 +12,7 @@ import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.utils.Properties;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import ru.yandex.qatools.allure.annotations.Description;
+import io.qameta.allure.Description;
 
 
 public class ClusterHeadache_3237_CC extends BaseTest {

@@ -13,7 +13,7 @@ import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
 import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
 import com.acurian.utils.Properties;
 import org.testng.annotations.Test;
-import ru.yandex.qatools.allure.annotations.Description;
+import io.qameta.allure.Description;
 
 import java.time.Instant;
 

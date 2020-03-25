@@ -13,7 +13,7 @@ import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
 import com.acurian.selenium.pages.OLS.shared.WhereDoYouHaveArthritisPageOLS;
 import org.testng.annotations.Test;
-import ru.yandex.qatools.allure.annotations.Description;
+import io.qameta.allure.Description;
 
 public class Dispo3I extends BaseTest {
 

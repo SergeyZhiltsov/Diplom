@@ -8,7 +8,7 @@ import com.acurian.selenium.pages.outer.OlsLegacyNumberPage;
 import com.acurian.selenium.pages.outer.TheStudyPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import ru.yandex.qatools.allure.annotations.Description;
+import io.qameta.allure.Description;
 
 import java.util.ArrayList;
 

@@ -13,7 +13,7 @@ import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
 import com.acurian.selenium.pages.OLS.shared.PersonalDetails;
 import com.acurian.selenium.pages.OLS.GBAN.ThanksPageOLS;
 import org.testng.annotations.Test;
-import ru.yandex.qatools.allure.annotations.Description;
+import io.qameta.allure.Description;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 public class SB_AUTSBSS extends BaseTest{

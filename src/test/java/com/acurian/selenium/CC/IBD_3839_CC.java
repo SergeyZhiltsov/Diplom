@@ -31,7 +31,7 @@ import com.acurian.selenium.pages.CC.shared.TransitionStatementCC;
 import com.acurian.selenium.pages.CC.shared.WeightLossSurgeryPageCC;
 import com.acurian.selenium.pages.CC.shared.WhatKindOfArthritisPageCC;
 
-import ru.yandex.qatools.allure.annotations.Description;
+import io.qameta.allure.Description;
 
 public class IBD_3839_CC extends BaseTest {
 
