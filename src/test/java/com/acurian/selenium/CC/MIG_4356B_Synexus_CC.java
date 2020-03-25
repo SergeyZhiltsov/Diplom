@@ -131,7 +131,7 @@ public class MIG_4356B_Synexus_CC extends BaseTest{
                 .clickNextButton(new ApproxHowLongSufferingFromMIGСС())
                 .waitForPageLoad();
         //********Validate Question History for DQ and then click BACK button
-        //System.out.println("see there="+debugPageCC.getProtocolForQuestion(howOldWereYouMigHeadachePageCC.titleExpected));
+        //Log.info("see there="+debugPageCC.getProtocolForQuestion(howOldWereYouMigHeadachePageCC.titleExpected));
         Assert.assertTrue(debugPageCC.getProtocolForQuestion(ageWhenDiagnosedWithMigСС.titleExpected).contains(protocol1));
         Assert.assertTrue(debugPageCC.getProtocolForQuestion(ageWhenDiagnosedWithMigСС.titleExpected).contains(protocol2));
         Assert.assertTrue(debugPageCC.getProtocolForQuestion(ageWhenDiagnosedWithMigСС.titleExpected).contains(protocol3));
@@ -151,7 +151,7 @@ public class MIG_4356B_Synexus_CC extends BaseTest{
         approxHowLongSufferingFromMIGСС
         		.waitForPageLoad();
         Assert.assertEquals(approxHowLongSufferingFromMIGСС.getTitleText(), approxHowLongSufferingFromMIGСС.titleExpected, "Title is diff");
-        //System.out.println("see there="+debugPageCC.getProtocolForQuestion(howOldWereYouMigHeadachePageCC.titleExpected));       
+        //Log.info("see there="+debugPageCC.getProtocolForQuestion(howOldWereYouMigHeadachePageCC.titleExpected));
         approxHowLongSufferingFromMIGСС
         .clickOnAnswer("5 months or less")
         .clickNextButton(new StudyQuestionMigPageCC()); // Click NEXT button and wait for the NEXT page

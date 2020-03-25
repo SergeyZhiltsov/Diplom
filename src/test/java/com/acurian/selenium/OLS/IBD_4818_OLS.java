@@ -1,5 +1,6 @@
 package com.acurian.selenium.OLS;
 
+import com.acurian.selenium.blinx.Crohns_4818_OLSBlinx;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.Crohns_3485.BiologicMedicationsPageOLS;
@@ -13,6 +14,8 @@ import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
 import com.acurian.selenium.pages.OLS.shared.PersonalDetails;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
@@ -24,6 +27,7 @@ import java.util.Map;
 
 public class IBD_4818_OLS extends BaseTest {
 
+    private static Logger Log = LogManager.getLogger(IBD_4818_OLS.class.getName());
 
     @DataProvider
     public Object[][] flare() {
@@ -111,7 +115,7 @@ public class IBD_4818_OLS extends BaseTest {
 //Q4	Was your diagnosis of ulcerative colitis made by a doctor or nurse?
         List<String> disqualifyQ4 = Arrays.asList("No", "I am unsure");
         for (String answer: disqualifyQ4) {
-            System.out.println("Select answer for Q4: " + answer);
+            Log.info("Select answer for Q4: " + answer);
             ulcerativeColitisDoctorOrNursePageOLS
                     .waitForPageLoad()
                     .clickOnAnswer(answer)
@@ -220,7 +224,7 @@ public class IBD_4818_OLS extends BaseTest {
                 "Taltz",
                 "Tysabri");
         for (String answer: disqualifyQ14) {
-            System.out.println("Select answer for Q14: " + answer);
+            Log.info("Select answer for Q14: " + answer);
             biologicMedicationsPageOLS
                     .waitForPageLoadNew()
                     .clickOnAnswers("None of the above")
@@ -309,7 +313,7 @@ public class IBD_4818_OLS extends BaseTest {
         disqualifyQ24.put("IV (parenteral) nutrition", Arrays.asList(site.activeProtocols));
         disqualifyQ24.put("A planned or scheduled surgery for Crohn’s disease", Arrays.asList(site.activeProtocols));
         for (Map.Entry<String, List<String>> entry : disqualifyQ24.entrySet()) {
-            System.out.println(entry.getKey());
+            Log.info(entry.getKey());
             currentlyHaveAnyOffFollowingPageOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -559,7 +563,7 @@ public class IBD_4818_OLS extends BaseTest {
                 "Hepatitis C",
                 "HIV or AIDS"); //Kidney disease requiring dialysis is not displayed
         for (String answer: disqualifyQS59) {
-            System.out.println("Select answer for QS59: " + answer);
+            Log.info("Select answer for QS59: " + answer);
             doAnyOftheFollowingAdditionalDiagnosesOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")

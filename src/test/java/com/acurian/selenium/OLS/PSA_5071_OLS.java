@@ -17,6 +17,8 @@ import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
 import com.acurian.selenium.CC.PSA_5071_CC;
 import com.acurian.utils.Properties;
 import io.qameta.allure.Description;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -24,6 +26,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class PSA_5071_OLS extends BaseTest {
+
+    private static Logger Log = LogManager.getLogger(PSA_5071_OLS.class.getName());
 
     @Test(dataProvider = "sites", dataProviderClass = PSA_5071_CC.class)
     @Description("PsA 5071 OLS Gilead Psoriatic Arthritis(PsA)")
@@ -110,7 +114,7 @@ public class PSA_5071_OLS extends BaseTest {
                 new SwollenJointsOfPsoriaticArthritisPageOLS();
         List<String> disqualifyQ3 = Arrays.asList("Less than 1 month ago", "1 - 5 months ago");
         for (String answer : disqualifyQ3) {
-            System.out.println("Select answer for Q3: " + answer);
+            Log.info("Select answer for Q3: " + answer);
             firstDiagnosedPsoriaticArthritisPageOLS
                     .waitForPageLoad()
                     .clickOnAnswer(answer)
@@ -238,7 +242,7 @@ public class PSA_5071_OLS extends BaseTest {
                 "Humira", "Kineret", "Orencia", "Prolia or Xgeva", "Raptiva", "Remicade", "Rituxan", "Simponi",
                 "Stelara", "Taltz", "Tysabri");
         for (String answer : disqualifyQ14) {
-            System.out.println("Select answer for Q14: " + answer);
+            Log.info("Select answer for Q14: " + answer);
             biologicMedicationsPageOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -261,7 +265,7 @@ public class PSA_5071_OLS extends BaseTest {
         HowLongPsoriasisPageOLS howLongPsoriasisPageOLS = new HowLongPsoriasisPageOLS();
         List<String> disqualifyQ15 = Arrays.asList("Jakafi", "Olumiant", "Xeljanz");
         for (String answer : disqualifyQ15) {
-            System.out.println("Select answer for Q15: " + answer);
+            Log.info("Select answer for Q15: " + answer);
             eitherOfFollowingMedicationsOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -338,7 +342,7 @@ public class PSA_5071_OLS extends BaseTest {
 
         List<String> disqualifyQS44 = Arrays.asList("Crohn's disease", "Ulcerative colitis");
         for (String answer : disqualifyQS44) {
-            System.out.println("Select answer for QS44: " + answer);
+            Log.info("Select answer for QS44: " + answer);
             whichOfFollowingDigestiveConditionPageOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -361,7 +365,7 @@ public class PSA_5071_OLS extends BaseTest {
 
         List<String> disqualifyQS51 = Arrays.asList("Dialysis", "Kidney transplant");
         for (String answer : disqualifyQS51) {
-            System.out.println("Select answer for QS51: " + answer);
+            Log.info("Select answer for QS51: " + answer);
             whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS
                     .waitForPageLoad()
                     .clickOnAnswers("Neither")
@@ -404,7 +408,7 @@ public class PSA_5071_OLS extends BaseTest {
 
         List<String> disqualifyQS53 = Arrays.asList("Bipolar disorder", "Schizophrenia");
         for (String answer : disqualifyQS53) {
-            System.out.println("Select answer for Q53: " + answer);
+            Log.info("Select answer for Q53: " + answer);
             followingMentalEmotionalHealthPageOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -452,7 +456,7 @@ public class PSA_5071_OLS extends BaseTest {
                 "Drug or alcohol abuse within the past year",
                 "HIV or AIDS");
         for (String answer : disqualifyQ26) {
-            System.out.println("Select answer for Q26: " + answer);
+            Log.info("Select answer for Q26: " + answer);
             doAnyOftheFollowingAdditionalDiagnosesOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -465,7 +469,7 @@ public class PSA_5071_OLS extends BaseTest {
         }
         List<String> disqualifyQ26pt2 = Arrays.asList("Kidney disease requiring dialysis", "Schizophrenia");
         for (String answer : disqualifyQ26pt2) {
-            System.out.println("Select answer for Q26: " + answer);
+            Log.info("Select answer for Q26: " + answer);
             doAnyOftheFollowingAdditionalDiagnosesOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")

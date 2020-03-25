@@ -1,5 +1,6 @@
 package com.acurian.selenium.OLS;
 
+import com.acurian.selenium.CC.PSA_5071_CC;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.Crohns_3485.BiologicMedicationsPageOLS;
@@ -13,6 +14,8 @@ import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.*;
 import com.acurian.selenium.pages.OLS.RA.WhatKindOfArthritisPageOLS;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
@@ -21,6 +24,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class IBD_3264_OLS_NoPIIemail extends BaseTest {
+
+    private static Logger Log = LogManager.getLogger(IBD_3264_OLS_NoPIIemail.class.getName());
 
     @Test(enabled = false)
     @Description("IBD_3264_OLS")
@@ -265,7 +270,7 @@ public class IBD_3264_OLS_NoPIIemail extends BaseTest {
         options.put("Ileostomy", site.activeProtocols);
         options.put("IV (parenteral) nutrition", site.activeProtocols);
         for (Map.Entry<String, String[]> entry : options.entrySet()) {
-            System.out.println(entry.getKey());
+            Log.info(entry.getKey());
             currentlyHaveAnyOffFollowingPageOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")

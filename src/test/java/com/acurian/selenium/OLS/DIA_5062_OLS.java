@@ -1,5 +1,6 @@
 package com.acurian.selenium.OLS;
 
+import com.acurian.selenium.CC.PSA_5071_CC;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.DIA_4241.*;
@@ -11,6 +12,8 @@ import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.*;
 import com.acurian.utils.Properties;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
@@ -20,6 +23,8 @@ import java.util.List;
 import java.util.Map;
 
 public class DIA_5062_OLS extends BaseTest {
+
+    private static Logger Log = LogManager.getLogger(DIA_5062_OLS.class.getName());
 
     @Test(enabled = true)
     @Description("NASH study 5062 OLS")
@@ -260,7 +265,7 @@ public class DIA_5062_OLS extends BaseTest {
         options.put("Primary sclerosing cholangitis or primary biliary cirrhosis", Arrays.asList(site.activeProtocols));
         options.put("Wilson's disease", Arrays.asList(site.activeProtocols));
         for (Map.Entry<String, List<String>> entry : options.entrySet()) {
-            System.out.println(entry.getKey());
+            Log.info(entry.getKey());
             liverRelatedConditionOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")

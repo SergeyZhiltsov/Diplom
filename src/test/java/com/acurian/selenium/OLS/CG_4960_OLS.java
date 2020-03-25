@@ -1,5 +1,6 @@
 package com.acurian.selenium.OLS;
 
+import com.acurian.selenium.blinx.Crohns_4818_OLSBlinx;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.GERD.CurrentlySufferOfAnyOfFollowingOLS;
@@ -15,6 +16,8 @@ import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
 import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
 import com.acurian.utils.Properties;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
@@ -24,6 +27,7 @@ import java.util.List;
 
 public class CG_4960_OLS extends BaseTest {
 
+    private static Logger Log = LogManager.getLogger(CG_4960_OLS.class.getName());
 
     @DataProvider
     public Object[][] sites() {
@@ -267,7 +271,7 @@ public class CG_4960_OLS extends BaseTest {
         List<String> disqualifyQ15 = Arrays.asList("Less than 30 days ago", "1 - 3 months ago", "4 - 6 months ago",
                 "7 - 12 months ago");
         for (String answer : disqualifyQ15) {
-            System.out.println("Select answer for Q15.1: " + answer);
+            Log.info("Select answer for Q15.1: " + answer);
             subquestionHeartPageOLS
                     .waitForPageLoad(1, subquestionHeartPageOLS.titleExpected1)
                     .clickOnAnswerForSubQuestion(1, answer)
@@ -287,7 +291,7 @@ public class CG_4960_OLS extends BaseTest {
 
         //Q15.2	When was the last time that you experienced had a stroke?
         for (String answer : disqualifyQ15) {
-            System.out.println("Select answer for Q15.2: " + answer);
+            Log.info("Select answer for Q15.2: " + answer);
             subquestionHeartPageOLS
                     .waitForPageLoad(1, subquestionHeartPageOLS.titleExpected2)
                     .clickOnAnswerForSubQuestion(1, answer)
@@ -307,7 +311,7 @@ public class CG_4960_OLS extends BaseTest {
 
         //Q15.4	When was the last time that you experienced suffered from angina or chest pain that required you to stay in a hospital overnight?
         for (String answer : disqualifyQ15) {
-            System.out.println("Select answer for Q15.4: " + answer);
+            Log.info("Select answer for Q15.4: " + answer);
             subquestionHeartPageOLS
                     .waitForPageLoad(1, subquestionHeartPageOLS.titleExpected4)
                     .clickOnAnswerForSubQuestion(1, answer)
@@ -366,7 +370,7 @@ public class CG_4960_OLS extends BaseTest {
         //Q18: QS53
         List<String> disqualifyQ18 = Arrays.asList("Bipolar disorder", "Schizophrenia");
         for (String answer : disqualifyQ18) {
-            System.out.println(answer);
+            Log.info(answer);
             followingMentalEmotionalHealthPageOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -390,7 +394,7 @@ public class CG_4960_OLS extends BaseTest {
                 "Cirrhosis", "Drug or alcohol abuse within the past year", "Hepatitis B",
                 "Hepatitis C", "HIV or AIDS");
         for (String answer : disqualifyQ24_QS59) {
-            System.out.println("Select answer for Q24_QS59: " + answer);
+            Log.info("Select answer for Q24_QS59: " + answer);
             doAnyOftheFollowingAdditionalDiagnosesOLS
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(answer)
@@ -402,7 +406,7 @@ public class CG_4960_OLS extends BaseTest {
         }
         List<String> disqualifyQ24_QS59p2 = Arrays.asList("Kidney disease requiring dialysis", "Schizophrenia");
         for (String answer : disqualifyQ24_QS59p2) {
-            System.out.println("Select answer for Q24_QS59p2: " + answer);
+            Log.info("Select answer for Q24_QS59p2: " + answer);
             doAnyOftheFollowingAdditionalDiagnosesOLS
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(answer)

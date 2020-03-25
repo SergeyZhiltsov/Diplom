@@ -12,6 +12,8 @@ import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.utils.Properties;
 import io.qameta.allure.Description;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -19,6 +21,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class VACC_S10569_CC extends BaseTest {
+
+    private static Logger Log = LogManager.getLogger(VACC_S10569_CC.class.getName());
 
     @Test(enabled = true)
     @Description("VACC_S10569")
@@ -260,7 +264,7 @@ public class VACC_S10569_CC extends BaseTest {
 
             List<String> disqualifyQ6QS51 = Arrays.asList("Dialysis", "Kidney transplant");
             for (String answer : disqualifyQ6QS51) {
-                System.out.println("Select answer for Q6:QS51: " + answer);
+                Log.info("Select answer for Q6:QS51: " + answer);
                 whichOfTheFollowingHaveRequiredForKidneyDiseaseCC
                         .waitForPageLoad()
                         .clickOnAnswers("Neither")
@@ -284,7 +288,7 @@ public class VACC_S10569_CC extends BaseTest {
 
             List<String> disqualifyQ6 = Arrays.asList("Dialysis", "Kidney transplant");
             for (String answer : disqualifyQ6) {
-                System.out.println("Select answer for Q6:QS51: " + answer);
+                Log.info("Select answer for Q6:QS51: " + answer);
                 whichOfTheFollowingHaveRequiredForKidneyDiseaseCC
                         .waitForPageLoad()
                         .clickOnAnswers("Neither")
@@ -312,7 +316,7 @@ public class VACC_S10569_CC extends BaseTest {
                     "HIV or AIDS",
                     "Bipolar disorder");
             for (String answer : disqualifyQ24) {
-                System.out.println("Select answer for Q24QS59: " + answer);
+                Log.info("Select answer for Q24QS59: " + answer);
                 doAnyOftheFollowingAdditionalDiagnosesCC
                         .waitForPageLoad()
                         .clickOnAnswers("None of the above")
@@ -325,7 +329,7 @@ public class VACC_S10569_CC extends BaseTest {
             }
             List<String> disqualifyQ24pt2 = Arrays.asList("Kidney disease requiring dialysis", "Schizophrenia");
             for (String answer : disqualifyQ24pt2) {
-                System.out.println("Select answer for Q24QS59: " + answer);
+                Log.info("Select answer for Q24QS59: " + answer);
                 doAnyOftheFollowingAdditionalDiagnosesCC
                         .waitForPageLoad()
                         .clickOnAnswers("None of the above")

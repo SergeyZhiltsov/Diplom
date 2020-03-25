@@ -1,6 +1,9 @@
 package com.acurian.selenium.pages.SB;
 
+import com.acurian.selenium.pages.OLS.debug.ConfigPageOLS;
 import io.qameta.allure.Step;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
@@ -9,6 +12,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 
 public class LogicBuilderPage extends MainPageSB {
+
+    private static Logger Log = LogManager.getLogger(LogicBuilderPage.class.getName());
 
     @FindBy(css = "#core-link")
     WebElement coreLink;
@@ -30,7 +35,7 @@ public class LogicBuilderPage extends MainPageSB {
             waitForVisibility(blockOverlay);
             waitForAbsence(blockOverlay);
         } catch (NoSuchElementException ex) {
-            System.out.println("Overlay block was not displayed.");
+            Log.info("Overlay block was not displayed.");
         }
         return this;
     }

@@ -16,7 +16,10 @@ import com.acurian.selenium.OLS.CV_5034_OLS_A_S;
 import java.util.Arrays;
 import java.util.List;
 
+import com.acurian.selenium.pages.OLS.debug.ConfigPageOLS;
 import com.acurian.utils.Properties;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
@@ -24,6 +27,7 @@ import ru.yandex.qatools.allure.annotations.Description;
 
 public class CV_5034_CC_A_S extends BaseTest {
 
+    private static Logger Log = LogManager.getLogger(CV_5034_CC_A_S.class.getName());
 
 
     @Test(dataProvider = "5034Sites", dataProviderClass = CV_5034_OLS_A_S.class, enabled = false)
@@ -112,8 +116,8 @@ public class CV_5034_CC_A_S extends BaseTest {
         TransitionStatementCC transitionStatementCC = new TransitionStatementCC();
         List<String> disqualifyQ3 = Arrays.asList("Diabetes or High Blood Sugar", "High cholesterol or high triglycerides",
                 "High blood pressure or hypertension");
-        for (String answer: disqualifyQ3) {
-            System.out.println("Select answer for Q3: " + answer);
+        for (String answer : disqualifyQ3) {
+            Log.info("Select answer for Q3: " + answer);
             cardiovascularDiseaseThanOthersPageCC
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -164,13 +168,12 @@ public class CV_5034_CC_A_S extends BaseTest {
         //-----------Status set validation:  PATIENT_PRIORITY_YES = 8 14 -------------
         if (env.equals("PRD")) {
             whatKindOfDiabetesPageCC
-                .getPage(debugPageCC)
-                .checkStudyStatusContainsForQNumber("QS6735", "12-18");
-        }
-        else if (env.equals("STG")) {
+                    .getPage(debugPageCC)
+                    .checkStudyStatusContainsForQNumber("QS6735", "12-18");
+        } else if (env.equals("STG")) {
             whatKindOfDiabetesPageCC
-                .getPage(debugPageCC)
-                .checkStudyStatusContainsForQNumber("QS6735", "8-14");
+                    .getPage(debugPageCC)
+                    .checkStudyStatusContainsForQNumber("QS6735", "8-14");
         }
 
         WithType1DiabetesPageCC withType1DiabetesPageCC = whatKindOfDiabetesPageCC
@@ -182,10 +185,10 @@ public class CV_5034_CC_A_S extends BaseTest {
                 .checkProtocolsContainsForQNumber("QS6704", site.activeProtocols)
                 .back();
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC =
-        whatKindOfDiabetesPageCC
-                .waitForPageLoad()
-                .clickOnAnswer("Pre-diabetes")
-                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
+                whatKindOfDiabetesPageCC
+                        .waitForPageLoad()
+                        .clickOnAnswer("Pre-diabetes")
+                        .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
@@ -317,8 +320,8 @@ public class CV_5034_CC_A_S extends BaseTest {
                 "Hepatitis C",
                 "HIV or AIDS",
                 "Kidney disease requiring dialysis or transplant");
-        for (String entry: options) {
-            System.out.println(entry);
+        for (String entry : options) {
+            Log.info(entry);
             healthcareDiagnosedConditionsPageCC
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -350,7 +353,7 @@ public class CV_5034_CC_A_S extends BaseTest {
                 .clickOnAnswer(site.name)
                 .clickNextButton(new MedicalRecordsOptionPageCC());
 
-        DoctorInformationCollectionPageCC doctorInformationCollectionPageCC= medicalRecordsOptionPageCC
+        DoctorInformationCollectionPageCC doctorInformationCollectionPageCC = medicalRecordsOptionPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Continue with medical records")
                 .clickNextButton(new DoctorInformationCollectionPageCC());
@@ -372,7 +375,7 @@ public class CV_5034_CC_A_S extends BaseTest {
                         .childPidFromDbToLog(env)
                         .dispoShouldMatch(site.dispo, site.dispo)
                         .assertGeneratedFul(env, site);
-   //                    .assertRmgOrderPriority(env, "5034");
+                //                    .assertRmgOrderPriority(env, "5034");
                 break;
             case AUT_CV_5034S_site: //41C
                 doctorInformationCollectionPageCC
@@ -398,7 +401,7 @@ public class CV_5034_CC_A_S extends BaseTest {
                         .childPidFromDbToLog(env)
                         .getRadiantDbToLog(env, "5034")
                         .dispoShouldMatch(site.dispo, site.dispo);
-         //               .assertRmgOrderPriority(env, "5034");
+                //               .assertRmgOrderPriority(env, "5034");
         }
     }
 }

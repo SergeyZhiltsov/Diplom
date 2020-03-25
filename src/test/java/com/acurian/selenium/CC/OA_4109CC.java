@@ -9,6 +9,8 @@ import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.utils.Properties;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -16,6 +18,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class OA_4109CC extends BaseTest {
+
+    private static Logger Log = LogManager.getLogger(OA_4109CC.class.getName());
 
     @Test(enabled = false)
     public void OA_4109_cc() {
@@ -231,7 +235,7 @@ public class OA_4109CC extends BaseTest {
                 "Cirrhosis", "Drug or alcohol abuse within the past year", "Hepatitis B", "Hepatitis C",
                 "HIV or AIDS");
         for (String answer : disqualifyQ26) {
-            System.out.println("Select answer for Q26: " + answer);
+            Log.info("Select answer for Q26: " + answer);
             doAnyOftheFollowingAdditionalDiagnosesCC
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -245,7 +249,7 @@ public class OA_4109CC extends BaseTest {
         List<String> disqualifyQ26pt2 = Arrays.asList("Kidney disease requiring dialysis", "Multiple sclerosis (MS)",
                 "Neuropathy (nerve damage due to diabetes or another condition)", "Seizure disorder such as epilepsy");
         for (String answer : disqualifyQ26pt2) {
-            System.out.println("Select answer for Q26: " + answer);
+            Log.info("Select answer for Q26: " + answer);
             doAnyOftheFollowingAdditionalDiagnosesCC
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -284,7 +288,7 @@ public class OA_4109CC extends BaseTest {
                 .clickOnAnswer(site.name)
                 .clickNextButton(new QualifiedClose1PageCC())
                 .waitForPageLoad()
-               // .clickOnAnswer("No")
+                // .clickOnAnswer("No")
                 .clickNextButton(new Regular_WarmTransfer1())
                 .waitForPageLoad()
                 .clickOnAnswer("No")

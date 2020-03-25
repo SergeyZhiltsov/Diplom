@@ -9,6 +9,8 @@ import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.utils.Properties;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
@@ -16,6 +18,8 @@ import ru.yandex.qatools.allure.annotations.Description;
 import java.util.*;
 
 public class IBD_3264_CC_NoPIIemail extends BaseTest {
+
+    private static Logger Log = LogManager.getLogger(IBD_3264_CC_NoPIIemail.class.getName());
 
     @Test(enabled = false)
     @Description("IBD 3264 for CC")
@@ -283,7 +287,7 @@ public class IBD_3264_CC_NoPIIemail extends BaseTest {
         flareQ17.put("Severe symptoms that make life difficult", Arrays.asList(site.activeProtocols));
         flareQ17.put("Unsure", Arrays.asList(site.activeProtocols));
         for (Map.Entry<String, List<String>> entry : flareQ17.entrySet()) {
-            System.out.println(entry.getKey());
+            Log.info(entry.getKey());
             crohnsDiseaseOrUlcerativeColitisFlarePageCC
                     .waitForPageLoad()
                     .clickOnAnswer(entry.getKey())
@@ -328,7 +332,7 @@ public class IBD_3264_CC_NoPIIemail extends BaseTest {
         disqualifyQ24.put("Ileostomy", Arrays.asList(site.activeProtocols));
         disqualifyQ24.put("IV (parenteral) nutrition (Agent Note: puh-REN-ter-ul)", Arrays.asList(site.activeProtocols));
         for (Map.Entry<String, List<String>> entry : disqualifyQ24.entrySet()) {
-            System.out.println(entry.getKey());
+            Log.info(entry.getKey());
             haveAnyOfTheFollowingPageCC
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")

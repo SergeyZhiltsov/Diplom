@@ -10,6 +10,8 @@ import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.utils.Properties;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -17,6 +19,9 @@ import java.util.Arrays;
 import java.util.List;
 
 public class AMIG_4742_CC extends BaseTest {
+
+    private static Logger Log = LogManager.getLogger(AMIG_4742_CC.class.getName());
+
     //FULs were stopped on AMS1 R68.2
     @Test(enabled = false)
     public void Amig4742cc() {
@@ -133,7 +138,7 @@ public class AMIG_4742_CC extends BaseTest {
         HowManyDaysYouSufferCC howManyDaysYouSufferCC = new HowManyDaysYouSufferCC();
         List<String> disqualifyQ4 = Arrays.asList("5 months or less", "6 - 11 months");
         for (String answer : disqualifyQ4) {
-            System.out.println("Select answer for Q4: " + answer);
+            Log.info("Select answer for Q4: " + answer);
             approxHowLongSufferingFromMIGСС
                     .waitForPageLoad()
                     .clickOnAnswer(answer)
@@ -153,7 +158,7 @@ public class AMIG_4742_CC extends BaseTest {
                 new HaveYouEverTakenPrescriptionMedsToPreventMigrainesFromStartingPageСС();
         List<String> disqualifyQ5 = Arrays.asList("3", "15");
         for (String answer : disqualifyQ5) {
-            System.out.println("Select answer for Q5: " + answer);
+            Log.info("Select answer for Q5: " + answer);
             howManyDaysYouSufferCC
                     .waitForPageLoad()
                     .selectDay(answer)
@@ -208,7 +213,7 @@ public class AMIG_4742_CC extends BaseTest {
         //        Q10	How satisfied are you with the prescription medications that you take daily to prevent migraines from starting?
         List<String> disqualifyQ10 = Arrays.asList("Satisfied", "Somewhat Satisfied");
         for (String answer : disqualifyQ10) {
-            System.out.println("Select answer for Q10: " + answer);
+            Log.info("Select answer for Q10: " + answer);
             prescriptionMedicationsDailyToPreventMigrainesPageCC
                     .waitForPageLoad()
                     .clickOnAnswer(answer)
@@ -243,7 +248,7 @@ public class AMIG_4742_CC extends BaseTest {
 ////---------------Q21	When did you last have a Botox (botulinum toxin) injection?
 //        List<String> disqualifyQ21 = Arrays.asList("3 months ago or less", "4 - 6 months ago");
 //        for (String answer : disqualifyQ21) {
-//            System.out.println("Select answer for Q21: " + answer);
+//            Log.info("Select answer for Q21: " + answer);
 //            whenYouLastHaveBotoxMigCC
 //                    .waitForPageLoad()
 //                    .clickOnAnswer(answer)
@@ -263,7 +268,7 @@ public class AMIG_4742_CC extends BaseTest {
 //        List<String> disqualifyQ22 = Arrays.asList("Trigeminal Neuralgia - severe pain in the nerves of the face",
 //                "Temporomandibular Joint Disorders also known as TMD or TMJ");
 //        for (String answer : disqualifyQ22) {
-//            System.out.println("Select answer for Q22: " + answer);
+//            Log.info("Select answer for Q22: " + answer);
 //            haveUeverDiagnosedByHealthcareProfesionalCC
 //                    .waitForPageLoad()
 //                    .clickOnAnswers("None of the above")
@@ -439,7 +444,7 @@ public class AMIG_4742_CC extends BaseTest {
                 "Cirrhosis", "Drug or alcohol abuse within the past year", "Hepatitis B", "Hepatitis C", "HIV or AIDS");
         ApproximateHeightPageCC approximateHeightPageCC = new ApproximateHeightPageCC();
         for (String answer : disqualifyQ24) {
-            System.out.println("Select answer for Q24: " + answer);
+            Log.info("Select answer for Q24: " + answer);
             doAnyOftheFollowingAdditionalDiagnosesCC
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -453,7 +458,7 @@ public class AMIG_4742_CC extends BaseTest {
         List<String> disqualifyQ24p2 = Arrays.asList("Seizure disorder such as epilepsy",
                 "Kidney disease requiring dialysis", "Multiple sclerosis (MS)", "Schizophrenia");
         for (String answer : disqualifyQ24p2) {
-            System.out.println("Select answer for Q24: " + answer);
+            Log.info("Select answer for Q24: " + answer);
             doAnyOftheFollowingAdditionalDiagnosesCC
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")

@@ -3,7 +3,10 @@ package com.acurian.selenium.pages.OLS.generalHealth;
 import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.constants.Platforms;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
+import com.acurian.utils.DBConnection;
 import com.acurian.utils.PassPID;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
@@ -14,18 +17,20 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class SiteSelectionPageOLS extends MainPageOLS{
+public class SiteSelectionPageOLS extends MainPageOLS {
+
+    private static Logger Log = LogManager.getLogger(SiteSelectionPageOLS.class.getName());
 
     @Parameter("My PID OLS")
-	public String pidNumber;
+    public String pidNumber;
 
     //%s = studyName variable
     public final String titleExpected = "Good news! You have been matched with the doctor(s) below for %s study!\n" +
             "Please select a doctor and click the \"Next\" button.";
-    
+
     public final String titleExpected1 = "Good news! You have been matched with the doctor(s) below for %s\n" +
             "Please select a doctor and click the \"Next\" button.";
-    
+
     public final String titleAKC = "Good news! You have been matched with the doctor(s) below for a study for diabetics!\n" +
             "Please select a doctor and click the \"Next\" button.";
 
@@ -105,7 +110,7 @@ public class SiteSelectionPageOLS extends MainPageOLS{
             return this;
         }
     }
-    
+
     @Step
     public SiteSelectionPageOLS waitForPageLoad1(String studyName) {
         waitForAnimation();
@@ -136,9 +141,9 @@ public class SiteSelectionPageOLS extends MainPageOLS{
         waitForPageLoadMain(titleText, titleExpectedGBAN);
         return this;
     }
-    
-    private void clickOnAddLocLinkIfExist(){
-        if(isElementPresent(7, By.xpath("//b[@id='additional-sites-toggle']"))){
+
+    private void clickOnAddLocLinkIfExist() {
+        if (isElementPresent(7, By.xpath("//b[@id='additional-sites-toggle']"))) {
             additionalLocationLink.click();
             waitForAnimation();
         }
@@ -159,30 +164,30 @@ public class SiteSelectionPageOLS extends MainPageOLS{
     }
 
     @Step
-    public String getTitleText(){
+    public String getTitleText() {
         return getText(titleText);
     }
 
     @Step
-    public SiteSelectionPageOLS getPID(){
+    public SiteSelectionPageOLS getPID() {
         pidNumber = getText(pidNumberPath);
         logTextToAllure("PID = " + pidNumber);
         PassPID.getInstance().setPidNumber(pidNumber);
-        System.out.println("PID = " + pidNumber);
+        Log.info("PID = " + pidNumber);
         return this;
     }
 
     @Step
-    public SiteSelectionPageOLS GETPIDRegex(){
+    public SiteSelectionPageOLS GETPIDRegex() {
         pidNumber = getText(pidNumberPath);
         pidNumber = pidNumber.split(" ")[1];
         logTextToAllure("PID = " + pidNumber);
         PassPID.getInstance().setPidNumber(pidNumber);
-        System.out.println("PID = " + pidNumber);
+        Log.info("PID = " + pidNumber);
         return this;
     }
 
-    public String getPidNumber(){
+    public String getPidNumber() {
         return pidNumber;
     }
 }

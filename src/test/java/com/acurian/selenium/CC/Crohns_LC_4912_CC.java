@@ -9,7 +9,10 @@ import com.acurian.selenium.pages.CC.cv_study.SubquestionHeartPageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
+import com.acurian.selenium.pages.OLS.debug.ConfigPageOLS;
 import com.acurian.utils.Properties;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -30,6 +33,9 @@ public class Crohns_LC_4912_CC extends BaseTest {
                 {Site.AUT_AMS1_4912S_site}
         };
     }
+
+    private static Logger Log = LogManager.getLogger(Crohns_LC_4912_CC.class.getName());
+
 
     @Test(dataProvider = "sites", enabled = true)
     @Description("Crohns 4912 for CC Allergan UC")
@@ -311,7 +317,7 @@ public class Crohns_LC_4912_CC extends BaseTest {
         disqualify.put("Feeding tube", Arrays.asList(site.activeProtocols));
         disqualify.put("IV (parenteral) nutrition (Agent Note: puh-REN-ter-ul)", Arrays.asList(site.activeProtocols));
         for (Map.Entry<String, List<String>> entry : disqualify.entrySet()) {
-            System.out.println(entry.getKey());
+            Log.info(entry.getKey());
             currentlyHaveAnyFollowingCC
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -361,7 +367,7 @@ public class Crohns_LC_4912_CC extends BaseTest {
         HeartRelatedSurgeriesProceduresPageCC heartRelatedSurgeriesProceduresPageCC = new HeartRelatedSurgeriesProceduresPageCC();
         List<String> disqualifyQ12GH = Arrays.asList("Less than 30 days ago", "1 - 3 months ago", "4 - 6 months ago");
         for (String answer : disqualifyQ12GH) {
-            System.out.println("Select answer for Q12.1GH: " + answer);
+            Log.info("Select answer for Q12.1GH: " + answer);
             subquestionHeartPageCC
                     .waitForPageLoad()
                     .waitForPageLoad(1, subquestionHeartPageCC.titleExpected1)

@@ -13,6 +13,8 @@ import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.utils.Properties;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -22,6 +24,7 @@ import java.util.*;
 
 public class UC_7191_CC extends BaseTest {
 
+    private static Logger Log = LogManager.getLogger(UC_7191_CC.class.getName());
 
     @DataProvider
     public Object[][] sites() {
@@ -242,7 +245,7 @@ public class UC_7191_CC extends BaseTest {
         disqualifyQ8.put("Xeljanz (Agent Note: ZEL-jans)", Arrays.asList(site.activeProtocols[0]));
 
         for (Map.Entry<String, List<String>> entry : disqualifyQ8.entrySet()) {
-            System.out.println(entry.getKey());
+            Log.info(entry.getKey());
             haveYouEverTreatedYourUCWithMedsThatSuppressYourImmuneSystemPageCC
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -291,7 +294,7 @@ public class UC_7191_CC extends BaseTest {
                 "Tysabri");
 
         for (String answer : disqualifyQ9) {
-            System.out.println("Select answer for Q9: " + answer);
+            Log.info("Select answer for Q9: " + answer);
             biologicMedicationsPageCC
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -376,7 +379,7 @@ public class UC_7191_CC extends BaseTest {
         TransitionStatementCC transitionStatementCC = new TransitionStatementCC();
 
         for (Map.Entry<String, List<String>> entry : disqualifyQ18.entrySet()) {
-            System.out.println(entry.getKey());
+            Log.info(entry.getKey());
             currentlyHaveAnyOffFollowingPageCC
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -646,7 +649,7 @@ public class UC_7191_CC extends BaseTest {
                 "HIV or AIDS",
                 "Bipolar disorder"); //Kidney disease requiring dialysis is not displayed
         for (String answer: disqualifyQS59) {
-            System.out.println("Select answer for QS59: " + answer);
+            Log.info("Select answer for QS59: " + answer);
             doAnyOftheFollowingAdditionalDiagnosesCC
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")

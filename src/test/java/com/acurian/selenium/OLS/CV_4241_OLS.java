@@ -1,5 +1,6 @@
 package com.acurian.selenium.OLS;
 
+import com.acurian.selenium.blinx.Crohns_4818_OLSBlinx;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
@@ -11,6 +12,8 @@ import com.acurian.selenium.pages.OLS.cv_study.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
@@ -19,6 +22,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class CV_4241_OLS extends BaseTest {
+
+    private static Logger Log = LogManager.getLogger(CV_4241_OLS.class.getName());
 
 
     @DataProvider(name = "sites")
@@ -183,7 +188,7 @@ public class CV_4241_OLS extends BaseTest {
         "Ozempic (semaglutide)");
 
         for (String answer: disqualify) {
-            System.out.println("Select answer for Q7: " + answer);
+            Log.info("Select answer for Q7: " + answer);
             medicationsForYourDiabetesPageOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")

@@ -13,6 +13,8 @@ import com.acurian.selenium.pages.blinx.ams.vaccine.AreYouGenerallyInGoodHealthO
 import com.acurian.selenium.pages.blinx.ams.vaccine.AreYouInterestedInVaccineStudyOLS;
 import com.acurian.selenium.pages.blinx.ams.vaccine.CurrentlyPregnantBreastfeedingOLS;
 import com.acurian.selenium.pages.blinx.gmega.intro.IdentificationPageOLS;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
@@ -22,6 +24,7 @@ import java.util.List;
 
 public class VACC_S10001_OLSBlinx extends BaseTest {
 
+    private static Logger Log = LogManager.getLogger(VACC_S10001_OLSBlinx.class.getName());
 
     @DataProvider
     public Object[][] sites() {
@@ -118,7 +121,7 @@ public class VACC_S10001_OLSBlinx extends BaseTest {
 
         List<String> disqualifyQS42 = Arrays.asList("Within the past 5 years", "6 - 10 years ago", "11 or more years ago");
         for (String answer : disqualifyQS42) {
-            System.out.println("Select answer for QS42: " + answer);
+            Log.info("Select answer for QS42: " + answer);
             whenDiagnosedWithCancerOLS
                     .waitForPageLoad()
                     .clickOnAnswer(answer)

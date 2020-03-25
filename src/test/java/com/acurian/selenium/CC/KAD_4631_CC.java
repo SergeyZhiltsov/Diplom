@@ -12,6 +12,8 @@ import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.selenium.OLS.KAD_4631_OLS;
 import com.acurian.utils.Properties;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
@@ -21,6 +23,7 @@ import java.util.List;
 
 public class KAD_4631_CC extends BaseTest {
 
+    private static Logger Log = LogManager.getLogger(KAD_4631_CC.class.getName());
 
     @Test(dataProvider = "sites", dataProviderClass = KAD_4631_OLS.class, enabled = false)
     @Description("KAD 4631 Kiniksa Atopic Derm for CC")
@@ -122,7 +125,7 @@ public class KAD_4631_CC extends BaseTest {
 ////                "3 - 6 months",
 ////                "7 - 11 months");
 ////        for (String answer : disqualifyQ3) {
-////            System.out.println(answer);
+////            Log.info(answer);
 ////            howLongHaveYouBeenSufferingFromEczema_CC
 ////                    .waitForPageLoad()
 ////                    .clickOnAnswer(answer)
@@ -142,7 +145,7 @@ public class KAD_4631_CC extends BaseTest {
                 new HowWouldYouDescribeTheEczemaCurrentlyPageCC();
         List<String> disqualifyQ4 = Arrays.asList("0", "1", "2", "3", "4", "5");
         for (String answer : disqualifyQ4) {
-            System.out.println("Select answer for Q4: " + answer);
+            Log.info("Select answer for Q4: " + answer);
             howMuchEczemaYouHaveOnYOurBody_CC
                     .waitForPageLoad()
                     .selectFromDropDown(answer)
@@ -155,7 +158,7 @@ public class KAD_4631_CC extends BaseTest {
 //-----------STATUS SET validation:  PATIENT_PRIORITY_YES = 8 14 -------------
         List<String> studyLevelStatus = Arrays.asList("13", "14", "15", "16", "17", "18", "19", "20");
         for (String answer : studyLevelStatus) {
-            System.out.println("Select answer to get study level status logic for Q4: " + answer);
+            Log.info("Select answer to get study level status logic for Q4: " + answer);
             howMuchEczemaYouHaveOnYOurBody_CC
                     .waitForPageLoad()
                     .selectFromDropDown(answer)

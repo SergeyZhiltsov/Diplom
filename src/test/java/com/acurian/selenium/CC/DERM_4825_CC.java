@@ -14,6 +14,8 @@ import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.selenium.pages.OLS.generalHealth.WhichOfFollowingHaveYouDiagnosedWith_NeurologicalCC;
 import com.acurian.utils.Properties;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
@@ -21,6 +23,8 @@ import ru.yandex.qatools.allure.annotations.Description;
 import java.util.*;
 
 public class DERM_4825_CC extends BaseTest {
+
+    private static Logger Log = LogManager.getLogger(DERM_4825_CC.class.getName());
 
     @Test(enabled = false) //Deactivated in R79.2
     @Description("DERM 4825 Genentech Atopic Derm")
@@ -113,7 +117,7 @@ public class DERM_4825_CC extends BaseTest {
                 "1 year",
                 "2 year");
         for (String answer : disqualifyQ3) {
-            System.out.println(answer);
+            Log.info(answer);
             howLongHaveYouBeenSufferingFromEczema_cc
                     .waitForPageLoad()
                     .clickOnAnswer(answer)
@@ -134,7 +138,7 @@ public class DERM_4825_CC extends BaseTest {
         List<String> disqualifyQ24 = Arrays.asList("Minor: Mostly or almost clear",
                 "Mild: Covers a small amount of total skin on my body");
         for (String answer : disqualifyQ24) {
-            System.out.println("Select answer for Q24: " + answer);
+            Log.info("Select answer for Q24: " + answer);
             howWouldYouDescribeTheEczemaCurrentlyPageCC
                     .waitForPageLoad()
                     .clickOnAnswer(answer)
@@ -410,7 +414,7 @@ public class DERM_4825_CC extends BaseTest {
         HeartrelatedMedicalProceduresPageCC heartrelatedMedicalProceduresPageCC =
                 new HeartrelatedMedicalProceduresPageCC();
         for (Map.Entry<String, List<String>> entry : disqualifyQ121.entrySet()) {
-            System.out.println(entry.getKey());
+            Log.info(entry.getKey());
             subquestionExperiencedHeartPageCC
                     .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
                     .clickOnAnswer(entry.getKey())
@@ -436,7 +440,7 @@ public class DERM_4825_CC extends BaseTest {
         disqualifyQ122.put("4 - 6 months ago", Arrays.asList(site.activeProtocols)); //Disqualify ("Recent MI - Temp 9")
         disqualifyQ122.put("7 - 12 months ago", Arrays.asList(site.activeProtocols)); //Disqualify ("Recent MI - Temp 6")
         for (Map.Entry<String, List<String>> entry : disqualifyQ122.entrySet()) {
-            System.out.println(entry.getKey());
+            Log.info(entry.getKey());
             subquestionExperiencedHeartPageCC
                     .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected2)
                     .clickOnAnswer(entry.getKey())
@@ -463,7 +467,7 @@ public class DERM_4825_CC extends BaseTest {
         disqualifyQ123.put("4 - 6 months ago", Arrays.asList(site.activeProtocols)); //Disqualify ("Recent MI - Temp 9")
         disqualifyQ123.put("7 - 12 months ago", Arrays.asList(site.activeProtocols)); //Disqualify ("Recent MI - Temp 6")
         for (Map.Entry<String, List<String>> entry : disqualifyQ123.entrySet()) {
-            System.out.println(entry.getKey());
+            Log.info(entry.getKey());
             subquestionExperiencedHeartPageCC
                     .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected3)
                     .clickOnAnswer(entry.getKey())
@@ -490,7 +494,7 @@ public class DERM_4825_CC extends BaseTest {
         disqualifyQ124.put("4 - 6 months ago", Arrays.asList(site.activeProtocols)); //Disqualify ("Recent MI - Temp 9")
         disqualifyQ124.put("7 - 12 months ago", Arrays.asList(site.activeProtocols)); //Disqualify ("Recent MI - Temp 6")
         for (Map.Entry<String, List<String>> entry : disqualifyQ124.entrySet()) {
-            System.out.println(entry.getKey());
+            Log.info(entry.getKey());
             subquestionExperiencedHeartPageCC
                     .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected4)
                     .clickOnAnswer(entry.getKey())
@@ -685,7 +689,7 @@ public class DERM_4825_CC extends BaseTest {
                 "Hepatitis C",
                 "HIV or AIDS");
         for (String answer : disqualifyQ24GH) {
-            System.out.println(answer);
+            Log.info(answer);
             doAnyOftheFollowingAdditionalDiagnosesCC
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")

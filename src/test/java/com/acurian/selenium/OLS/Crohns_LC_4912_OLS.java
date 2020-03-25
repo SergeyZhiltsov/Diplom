@@ -1,5 +1,6 @@
 package com.acurian.selenium.OLS;
 
+import com.acurian.selenium.CC.PSA_5071_CC;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.Crohns.*;
@@ -10,6 +11,8 @@ import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.*;
 import com.acurian.utils.Properties;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
@@ -21,6 +24,7 @@ import java.util.Map;
 
 public class Crohns_LC_4912_OLS extends BaseTest {
 
+    private static Logger Log = LogManager.getLogger(Crohns_LC_4912_OLS.class.getName());
 
     @DataProvider
     public Object[][] sites() {
@@ -266,7 +270,7 @@ public class Crohns_LC_4912_OLS extends BaseTest {
         disqualify.put("Feeding tube", Arrays.asList(site.activeProtocols));
         disqualify.put("IV (parenteral) nutrition", Arrays.asList(site.activeProtocols));
         for (Map.Entry<String, List<String>> entry : disqualify.entrySet()) {
-            System.out.println(entry.getKey());
+            Log.info(entry.getKey());
             currentlyHaveAnyFollowingOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -313,7 +317,7 @@ public class Crohns_LC_4912_OLS extends BaseTest {
         HeartrelatedMedicalProceduresPageOLS heartrelatedMedicalProceduresPageOLS = new HeartrelatedMedicalProceduresPageOLS();
         List<String> disqualifyQ12GH = Arrays.asList("Less than 30 days ago", "1 - 3 months ago", "4 - 6 months ago");
         for (String answer : disqualifyQ12GH) {
-            System.out.println("Select answer for Q12.1GH: " + answer);
+            Log.info("Select answer for Q12.1GH: " + answer);
             subquestionHeartPageOLS
                     .waitForPageLoad()
                     .waitForPageLoad(1, subquestionHeartPageOLS.titleExpected1)

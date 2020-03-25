@@ -111,7 +111,7 @@ public class SUI_3923_OLS extends BaseTest{
         howLongYouBeenExperiencingUrinaryLeakageOLS
         		.waitForPageLoad();
         Assert.assertEquals(howLongYouBeenExperiencingUrinaryLeakageOLS.getTitleText(), howLongYouBeenExperiencingUrinaryLeakageOLS.titleExpected, "Title is diff");
-        //System.out.println("see there="+debugPageOLS.getProtocolForQuestion(howOldWereYouMigHeadachePageOLS.titleExpected));       
+        //Log.info("see there="+debugPageOLS.getProtocolForQuestion(howOldWereYouMigHeadachePageOLS.titleExpected));       
         howLongYouBeenExperiencingUrinaryLeakageOLS
         .clickOnAnswer("1 month or less")
         .clickNextButton(new HowFrequentlyYouExperienceUrinaryLeakageOLS()); // Click NEXT button and wait for the NEXT page

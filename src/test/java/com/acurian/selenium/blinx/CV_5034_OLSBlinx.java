@@ -18,6 +18,8 @@ import com.acurian.selenium.pages.blinx.ams.shared.ZipCodePageOLS;
 import com.acurian.selenium.pages.blinx.gmega.AboutHealthPageOLS;
 import com.acurian.selenium.pages.blinx.gmega.ApproximateHeightWeightPageOLS;
 import com.acurian.selenium.pages.blinx.gmega.intro.IdentificationPageOLS;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -26,6 +28,7 @@ import java.util.List;
 
 public class CV_5034_OLSBlinx extends BaseTest {
 
+    private static Logger Log = LogManager.getLogger(CV_5034_OLSBlinx.class.getName());
 
     @DataProvider(name = "data")
     private Object[][] getTestData() {
@@ -90,7 +93,7 @@ public class CV_5034_OLSBlinx extends BaseTest {
         List<String> disqualifyQ3 = Arrays.asList("Diabetes or High Blood Sugar", "High cholesterol or high triglycerides",
                 "High blood pressure or hypertension");
         for (String answer : disqualifyQ3) {
-            System.out.println("Select an swer for Q3: " + answer);
+            Log.info("Select an swer for Q3: " + answer);
             cardiovascularDiseaseThanOthersPageOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -380,7 +383,7 @@ public class CV_5034_OLSBlinx extends BaseTest {
                 "HIV or AIDS",
                 "Kidney disease requiring dialysis or transplant");
         for (String entry : options) {
-            System.out.println(entry);
+            Log.info(entry);
             healthcareDiagnosedConditionsPageOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")

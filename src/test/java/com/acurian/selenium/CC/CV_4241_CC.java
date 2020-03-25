@@ -15,6 +15,8 @@ import com.acurian.selenium.pages.CC.generalHealth.IdentificationPageCC;
 import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.selenium.OLS.CV_4241_OLS;
 import com.acurian.utils.Properties;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
@@ -23,6 +25,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class CV_4241_CC extends BaseTest {
+
+    private static Logger Log = LogManager.getLogger(CV_4241_CC.class.getName());
 
     @Test(enabled = false, dataProvider = "sites", dataProviderClass = CV_4241_OLS.class)
     @Description("CV_4241S_CC")
@@ -206,7 +210,7 @@ public class CV_4241_CC extends BaseTest {
         CholesterolTriglyceridesLipidsPageCC cholesterolTriglyceridesLipidsPageCC =
                 new CholesterolTriglyceridesLipidsPageCC();
         for (String answer: disqualify) {
-            System.out.println("Select answer for Q7: " + answer);
+            Log.info("Select answer for Q7: " + answer);
             medicationsForYourDiabetesPageCC
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")

@@ -1,5 +1,6 @@
 package com.acurian.selenium.CC;
 
+import com.acurian.selenium.blinx.Crohns_4818_OLSBlinx;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.ADG_4357.WithType1DiabetesPageCC;
@@ -11,6 +12,8 @@ import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.utils.Properties;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
@@ -22,6 +25,8 @@ import java.util.Map;
 
 public class AKC_4691_CC_NoPIIemail extends BaseTest {
 
+    private static Logger Log = LogManager.getLogger(AKC_4691_CC_NoPIIemail.class.getName());
+
     @Test(enabled = false)
     @Description("Akcea_4691 for CC")
     public void akc_4691_CC_NoPIIemail() {
@@ -30,6 +35,7 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
         String studyName = "a study for diabetics";
 
         String env = System.getProperty("acurian.env", "STG");
+
 
         LoginPageCC loginPageCC = new LoginPageCC();
         loginPageCC
@@ -243,7 +249,7 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
         options.put("Avandamet (metformin and rosiglitazone)", Arrays.asList(site.activeProtocols));
 
         for (Map.Entry<String, List<String>> entry : options.entrySet()) {
-            System.out.println("Select answer: " + entry.getKey());
+            Log.info("Select answer: " + entry.getKey());
             metforminMedicationsPageCC
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -274,7 +280,7 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
         options.put("Oseni (alogliptin and pioglitazone)", Arrays.asList(site.activeProtocols));
 
         for (Map.Entry<String, List<String>> entry : options.entrySet()) {
-            System.out.println(entry.getKey());
+            Log.info(entry.getKey());
             apartFromMetforminPageCC
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")

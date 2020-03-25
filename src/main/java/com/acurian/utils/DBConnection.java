@@ -4,6 +4,8 @@ import com.acurian.utils.db.AnomalyResults;
 import com.acurian.utils.db.ChildResult;
 import com.acurian.utils.db.RadiantResults;
 import oracle.jdbc.pool.OracleDataSource;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.asserts.SoftAssert;
 import ru.yandex.qatools.allure.annotations.Step;
 
@@ -18,6 +20,8 @@ import java.util.List;
 import java.util.Objects;
 
 public class DBConnection {
+
+    private static Logger Log = LogManager.getLogger(DBConnection.class.getName());
 
 //            String myURL = "jdbc:oracle:thin:@(DESCRIPTION=" +
 //                        "(ADDRESS=(PROTOCOL=TCP)(HOST=dev-db-scan.acurian.com)(PORT=1521))" +
@@ -89,7 +93,7 @@ public class DBConnection {
                 dispoCode = rset.getString("dispo_cd");
                 applicantStatus = rset.getString("applicant_status_cd");
             }
-            //System.out.println("DB parent: dispo = " + dispoCode + applicantStatus +", parent pid =" + pidNumber);
+            //Log.info("DB parent: dispo = " + dispoCode + applicantStatus +", parent pid =" + pidNumber);
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -106,7 +110,7 @@ public class DBConnection {
                 dispoCode = rset.getString("dispo_cd");
                 applicantStatus = rset.getString("applicant_status_cd");
             }
-            System.out.println("DB parent: dispo = " + dispoCode + applicantStatus + ", parent pid =" + pidNumber);
+            Log.info("DB parent: dispo = " + dispoCode + applicantStatus + ", parent pid =" + pidNumber);
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -116,7 +120,7 @@ public class DBConnection {
 
     @Step
     private void logToAllure(String s) {
-        System.out.println(s);
+        Log.info(s);
     }
 
     @Step
@@ -169,7 +173,7 @@ public class DBConnection {
 
     public void convert54Cto1R(String environment, String pidNumber) {
         try {
-            System.out.println("12314231 " + pidNumber);
+            Log.info("12314231 " + pidNumber);
             Connection connTemp = getDbCon(environment);
             stmt = connTemp.createStatement();
             connTemp.setAutoCommit(false);
@@ -181,7 +185,7 @@ public class DBConnection {
             stmt.execute(sql);
             connTemp.commit();
             connTemp.setAutoCommit(true);
-            System.out.println("DB dispo converted from 54C to 1R");
+            Log.info("DB dispo converted from 54C to 1R");
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -200,7 +204,7 @@ public class DBConnection {
                 dobCell = rset.getString("ANSWER_DATE");
                 if (dobCell != null) break;
             }
-            System.out.println("DB fetched child DOB cell: " + dobCell);
+            Log.info("DB fetched child DOB cell: " + dobCell);
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -218,7 +222,7 @@ public class DBConnection {
             while (rset.next()) {
                 fulCell = rset.getString("VALUE");
             }
-            System.out.println("DB fetched value of FUL cell: " + fulCell);
+            Log.info("DB fetched value of FUL cell: " + fulCell);
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -241,7 +245,7 @@ public class DBConnection {
                 radiantResults.setResponseMessage(rset.getString("response_message"));
 
             }
-            System.out.println("DB Radiant: current status = " + radiantResults.getCurrentStatus() +
+            Log.info("DB Radiant: current status = " + radiantResults.getCurrentStatus() +
                     ", study reference = " + radiantResults.getStudyReference() +
                     ", response message = " + radiantResults.getResponseMessage());
             return radiantResults;
@@ -273,7 +277,7 @@ public class DBConnection {
                 childResult.setPhoneNumber(rset.getString("phone_number"));
                 childResult.setChildPid(rset.getString("patient_id"));
             }
-            System.out.println("DB Child: dispo =" + childResult.getDispoCd() + childResult.getApplicantStatus() +
+            Log.info("DB Child: dispo =" + childResult.getDispoCd() + childResult.getApplicantStatus() +
                     ", phone number = " + childResult.getPhoneNumber() +
                     ", child PID = " + childResult.getChildPid());
             return childResult;
@@ -297,7 +301,7 @@ public class DBConnection {
                 anomalyResults.setCurrentStatus(rset.getString("current_status"));
                 anomalyResults.setRequestStatus(rset.getString("request_status_id"));
             }
-            System.out.println("DB Anomaly: current status = " + anomalyResults.getCurrentStatus() +
+            Log.info("DB Anomaly: current status = " + anomalyResults.getCurrentStatus() +
                     ", request status id = " + anomalyResults.getRequestStatus());
             return anomalyResults;
         } catch (SQLException e) {
@@ -317,7 +321,7 @@ public class DBConnection {
             while (rset.next()) {
                 flareStatus = rset.getString("STATUS_SET_MEMBER_ID");
             }
-            System.out.println("DB fetched value of FLARE cell: " + flareStatus);
+            Log.info("DB fetched value of FLARE cell: " + flareStatus);
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -334,12 +338,12 @@ public class DBConnection {
             final String query = String.format("select PATIENT_ID from call where phone_number = '%s' " +
                             "and START_TIME >= to_date('%s','mon/dd/yyyy hh:mi:ss AM')",
                     phoneNumber, formatter.format(date));
-            System.out.println("SQL query: " + query);
+            Log.info("SQL query: " + query);
             rset = stmt.executeQuery(query);
             while (rset.next()) {
                 patient_id = rset.getString("PATIENT_ID");
             }
-            System.out.println("DB fetched value of PID: " + patient_id);
+            Log.info("DB fetched value of PID: " + patient_id);
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -357,7 +361,7 @@ public class DBConnection {
             while (rset.next()) {
                 studyId = rset.getString("study_id");
             }
-            System.out.println("DB fetched value of STUDY_ID: " + studyId + " for projectCode: " + projectCode);
+            Log.info("DB fetched value of STUDY_ID: " + studyId + " for projectCode: " + projectCode);
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -375,7 +379,7 @@ public class DBConnection {
             while (rset.next()) {
                 studyId.add(rset.getString("study_id"));
             }
-            System.out.println("DB fetched value(s) for STUDY_RMG_PRIORITY_CONFIG: " + studyId.toString());
+            Log.info("DB fetched value(s) for STUDY_RMG_PRIORITY_CONFIG: " + studyId.toString());
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {

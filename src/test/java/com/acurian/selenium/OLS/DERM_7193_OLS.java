@@ -1,5 +1,6 @@
 package com.acurian.selenium.OLS;
 
+import com.acurian.selenium.CC.PSA_5071_CC;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.Derm.*;
@@ -16,6 +17,8 @@ import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
 import com.acurian.selenium.pages.OLS.shared.HasHealthcareProfessionalEverDiagnosedYouWithEczema_OLS;
 import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -25,6 +28,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class DERM_7193_OLS extends BaseTest {
+
+    private static Logger Log = LogManager.getLogger(DERM_7193_OLS.class.getName());
 
 
     @DataProvider
@@ -87,7 +92,7 @@ public class DERM_7193_OLS extends BaseTest {
                 new HowWouldYouDescribeTheEczemaCurrentlyPageOLS();
         List<String> disqualifyQ3 = Arrays.asList("2 months or less");
         for(String answer: disqualifyQ3) {
-            System.out.println(answer);
+            Log.info(answer);
             howLongHaveYouBeenSufferingFromEczema_ols
                     .waitForPageLoad()
                     .clickOnAnswer(answer)
@@ -270,7 +275,7 @@ public class DERM_7193_OLS extends BaseTest {
                 "Otezla", "Cosentyx");
 
         for (String answer: disqualifyQ30) {
-            System.out.println(answer);
+            Log.info(answer);
             currentlyTakingFollowingMedicationsOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -301,7 +306,7 @@ public class DERM_7193_OLS extends BaseTest {
                 new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS();
         List<String> disqualifyQ27 = Arrays.asList("Jakafi", "Olumiant", "Xeljanz");
         for (String answer: disqualifyQ27) {
-            System.out.println(answer);
+            Log.info(answer);
             eitherOfFollowingMedicationsOLS
                     .waitForPageLoad()
                     .clickOnAnswers(answer)
@@ -526,7 +531,7 @@ public class DERM_7193_OLS extends BaseTest {
         List<String> disqualifyQ26 = Arrays.asList("Bipolar disorder", "Cancer in the past 5 years, except skin cancer",
                 "Cirrhosis", "Drug or alcohol abuse within the past year", "Hepatitis B", "Hepatitis C", "HIV or AIDS");
         for (String answer : disqualifyQ26) {
-            System.out.println("Select answer for Q26: " + answer);
+            Log.info("Select answer for Q26: " + answer);
             doAnyOftheFollowingAdditionalDiagnosesOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -539,7 +544,7 @@ public class DERM_7193_OLS extends BaseTest {
         }
         List<String> disqualifyQ26pt2 = Arrays.asList("Kidney disease requiring dialysis", "Schizophrenia");
         for (String answer : disqualifyQ26pt2) {
-            System.out.println("Select answer for Q26: " + answer);
+            Log.info("Select answer for Q26: " + answer);
             doAnyOftheFollowingAdditionalDiagnosesOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")

@@ -1,5 +1,6 @@
 package com.acurian.selenium.OLS;
 
+import com.acurian.selenium.CC.PSA_5071_CC;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.ADG_4357.WithType1DiabetesPageOLS;
@@ -16,6 +17,8 @@ import com.acurian.selenium.pages.OLS.shared.WhatKindOfDiabetesPageOLS;
 import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
 import com.acurian.utils.Properties;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -26,6 +29,7 @@ import java.util.List;
 
 public class CV_4450_OLS extends BaseTest {
 
+    private static Logger Log = LogManager.getLogger(CV_4450_OLS.class.getName());
 
     @DataProvider(name = "sites")
     public Object[][] sites() {
@@ -198,7 +202,7 @@ public class CV_4450_OLS extends BaseTest {
         //Q15.1	When was the last time that you experienced had a heart attack?
         List<String> disqualifyQ15 = Arrays.asList("Less than 30 days ago", "1 - 3 months ago");
         for (String answer : disqualifyQ15) {
-            System.out.println("Select answer for Q15.1: " + answer);
+            Log.info("Select answer for Q15.1: " + answer);
             subquestionHeartPageOLS
                     .waitForPageLoad(1, subquestionHeartPageOLS.titleExpected1)
                     .clickOnAnswerForSubQuestion(1, answer)
@@ -218,7 +222,7 @@ public class CV_4450_OLS extends BaseTest {
 
         //Q15.2	When was the last time that you experienced had a stroke?
         for (String answer : disqualifyQ15) {
-            System.out.println("Select answer for Q15.2: " + answer);
+            Log.info("Select answer for Q15.2: " + answer);
             subquestionHeartPageOLS
                     .waitForPageLoad(1, subquestionHeartPageOLS.titleExpected2)
                     .clickOnAnswerForSubQuestion(1, answer)
@@ -238,7 +242,7 @@ public class CV_4450_OLS extends BaseTest {
 
         //Q15.3	When was the last time that you experienced had a mini-stroke or TIA?
         for (String answer : disqualifyQ15) {
-            System.out.println("Select answer for Q15.3: " + answer);
+            Log.info("Select answer for Q15.3: " + answer);
             subquestionHeartPageOLS
                     .waitForPageLoad(1, subquestionHeartPageOLS.titleExpected3)
                     .clickOnAnswerForSubQuestion(1, answer)
@@ -258,7 +262,7 @@ public class CV_4450_OLS extends BaseTest {
 
         //Q15.4	When was the last time that you experienced suffered from angina or chest pain that required you to stay in a hospital overnight?
         for (String answer : disqualifyQ15) {
-            System.out.println("Select answer for Q15.4: " + answer);
+            Log.info("Select answer for Q15.4: " + answer);
             subquestionHeartPageOLS
                     .waitForPageLoad(1, subquestionHeartPageOLS.titleExpected4)
                     .clickOnAnswerForSubQuestion(1, answer)
@@ -288,7 +292,7 @@ public class CV_4450_OLS extends BaseTest {
                 new AdditionalHeartRelatedConditionsPageOLS();
         List<String> disqualifyQ17 = Arrays.asList("Less than 30 days ago", "1 - 3 months ago");
         for (String answer : disqualifyQ17) {
-            System.out.println("Select answer for Q17: " + answer);
+            Log.info("Select answer for Q17: " + answer);
             mostRecentHeartRelatedSurgeryProcedurePageOLS
                     .waitForPageLoad()
                     .clickOnAnswer(answer)
@@ -404,7 +408,7 @@ public class CV_4450_OLS extends BaseTest {
                 "HIV or AIDS",
                 "Kidney disease requiring dialysis or transplant");
         for (String answer : disqualifyQ26) {
-            System.out.println("Select answer for Q26: " + answer);
+            Log.info("Select answer for Q26: " + answer);
             healthcareDiagnosedConditionsPageOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")

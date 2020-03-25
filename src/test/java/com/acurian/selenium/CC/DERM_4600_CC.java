@@ -11,8 +11,11 @@ import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
+import com.acurian.selenium.pages.OLS.debug.ConfigPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.WhichOfFollowingHaveYouDiagnosedWith_NeurologicalCC;
 import com.acurian.utils.Properties;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
@@ -20,6 +23,8 @@ import ru.yandex.qatools.allure.annotations.Description;
 import java.util.*;
 
 public class DERM_4600_CC extends BaseTest {
+
+    private static Logger Log = LogManager.getLogger(DERM_4600_CC.class.getName());
 
     @Test(enabled = false)
     @Description("DERM 4600 CC Pfizer Atopic Derm")
@@ -110,9 +115,8 @@ public class DERM_4600_CC extends BaseTest {
         disqualifyQ3.add("2 months or less"); //Disqualify (“Atopic Derm < 3 years”)
         disqualifyQ3.add("3 - 6 months");
         disqualifyQ3.add("7 - 11 months");
-        for(String answer: disqualifyQ3)
-        {
-            System.out.println(answer);
+        for (String answer : disqualifyQ3) {
+            Log.info(answer);
             howLongHaveYouBeenSufferingFromEczema_cc
                     .waitForPageLoad()
                     .clickOnAnswer(answer)
@@ -285,7 +289,7 @@ public class DERM_4600_CC extends BaseTest {
         disqualifyQ27.put("Olumiant (Agent Note: oh-LOO-me-ant)", Arrays.asList(site.activeProtocols)); //Disqualify (“History of JAK inhibitor use”)
         disqualifyQ27.put("Xeljanz (Agent Note: ZEL-jans)", Arrays.asList(site.activeProtocols)); //Disqualify (“History of JAK inhibitor use”)
         for (Map.Entry<String, List<String>> entry : disqualifyQ27.entrySet()) {
-            System.out.println(entry.getKey());
+            Log.info(entry.getKey());
             haveYouEverTakenEitherAnyOfFollowingMeds_CC
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -430,7 +434,7 @@ public class DERM_4600_CC extends BaseTest {
         HeartrelatedMedicalProceduresPageCC heartrelatedMedicalProceduresPageCC =
                 new HeartrelatedMedicalProceduresPageCC();
         for (Map.Entry<String, List<String>> entry : disqualifyQ121.entrySet()) {
-            System.out.println(entry.getKey());
+            Log.info(entry.getKey());
             subquestionExperiencedHeartPageCC
                     .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
                     .clickOnAnswer(entry.getKey())
@@ -454,7 +458,7 @@ public class DERM_4600_CC extends BaseTest {
         disqualifyQ122.put("Less than 30 days ago", Arrays.asList(site.activeProtocols)); //Disqualify ("Recent stroke - Temp 3")
         disqualifyQ122.put("1 - 3 months ago", Arrays.asList(site.activeProtocols)); //Disqualify ("Recent stroke - Temp 3")
         for (Map.Entry<String, List<String>> entry : disqualifyQ122.entrySet()) {
-            System.out.println(entry.getKey());
+            Log.info(entry.getKey());
             subquestionExperiencedHeartPageCC
                     .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected2)
                     .clickOnAnswer(entry.getKey())
@@ -479,7 +483,7 @@ public class DERM_4600_CC extends BaseTest {
         disqualifyQ123.put("Less than 30 days ago", Arrays.asList(site.activeProtocols)); //Disqualify ("Recent TIA - Temp 3")
         disqualifyQ123.put("1 - 3 months ago", Arrays.asList(site.activeProtocols)); //Disqualify ("Recent TIA - Temp 3")
         for (Map.Entry<String, List<String>> entry : disqualifyQ123.entrySet()) {
-            System.out.println(entry.getKey());
+            Log.info(entry.getKey());
             subquestionExperiencedHeartPageCC
                     .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected3)
                     .clickOnAnswer(entry.getKey())
@@ -504,7 +508,7 @@ public class DERM_4600_CC extends BaseTest {
         disqualifyQ124.put("Less than 30 days ago", Arrays.asList(site.activeProtocols)); //Disqualify ("Recent angina - Temp 3")
         disqualifyQ124.put("1 - 3 months ago", Arrays.asList(site.activeProtocols)); //Disqualify ("Recent angina - Temp 3")
         for (Map.Entry<String, List<String>> entry : disqualifyQ124.entrySet()) {
-            System.out.println(entry.getKey());
+            Log.info(entry.getKey());
             subquestionExperiencedHeartPageCC
                     .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected4)
                     .clickOnAnswer(entry.getKey())
@@ -721,7 +725,7 @@ public class DERM_4600_CC extends BaseTest {
         disqualifyQ24.put("Hepatitis C", Arrays.asList(site.activeProtocols)); //Disqualify ("HCV")
         disqualifyQ24.put("HIV or AIDS", Arrays.asList(site.activeProtocols)); //Disqualify ("HIV")
         for (Map.Entry<String, List<String>> entry : disqualifyQ24.entrySet()) {
-            System.out.println(entry.getKey());
+            Log.info(entry.getKey());
             doAnyOftheFollowingAdditionalDiagnosesCC
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
