@@ -9,7 +9,7 @@ import com.acurian.selenium.pages.blinx.gmega.intro.IdentificationPageOLS;
 import com.acurian.selenium.pages.blinx.gmega.intro.PleaseConfirmYourGenderPageOLS;
 import com.acurian.selenium.pages.blinx.gmega.intro.ProvidingInformationPageOLS;
 import org.testng.annotations.Test;
-import ru.yandex.qatools.allure.annotations.Description;
+import io.qameta.allure.Description;
 
 public class AnomalyDRSBlinx extends BaseTest
     {

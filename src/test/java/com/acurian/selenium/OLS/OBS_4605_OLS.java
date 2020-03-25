@@ -12,7 +12,7 @@ import com.acurian.selenium.pages.OLS.shared.ProcedureForWeightLossPageOLS;
 import com.acurian.selenium.pages.OLS.shared.WeightLossSurgeryPageOLS;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import ru.yandex.qatools.allure.annotations.Description;
+import io.qameta.allure.Description;
 
 public class OBS_4605_OLS extends BaseTest {
 

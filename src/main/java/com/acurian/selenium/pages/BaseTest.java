@@ -22,7 +22,7 @@ import java.util.concurrent.TimeUnit;
 @Listeners(TestListener.class)
 public abstract class BaseTest {
 
-    private static Logger Log = LogManager.getLogger(BaseTest.class.getName());
+    private Logger Log = LogManager.getLogger(BaseTest.class.getName());
 
     private static final ThreadLocal<WebDriver> DRIVER = new ThreadLocal<>();
 
