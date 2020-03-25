@@ -37,7 +37,7 @@ public abstract class BasePage {
     private CSVParser csvParser;
     private DBConnection dbConnection;
     private Dimension dimension;
-    private static Logger Log = LogManager.getLogger(BasePage.class.getName());
+    private Logger Log = LogManager.getLogger(BasePage.class.getName());
 
 
     public BasePage() {

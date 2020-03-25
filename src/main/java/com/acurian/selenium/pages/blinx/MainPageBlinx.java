@@ -23,6 +23,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
 import java.io.*;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -49,6 +51,23 @@ public class MainPageBlinx extends BasePage {
 
     public MainPageBlinx() {
         PageFactory.initElements(getDriver(), this);
+    }
+
+    @Step
+    public String getHostName(){
+        String hostname = null;
+
+        try
+        {
+            InetAddress addr;
+            addr = InetAddress.getLocalHost();
+            hostname = addr.getHostName();
+        }
+        catch (UnknownHostException ex)
+        {
+            System.out.println("Hostname can not be resolved");
+        }
+        return hostname;
     }
 
     protected void waitForPageLoadMain(WebElement titleText, String titleExpected) {

@@ -8,11 +8,10 @@ import com.acurian.selenium.pages.blinx.ams.debug.DebugPageOLS;
 import com.acurian.selenium.pages.blinx.ams.cv_study.*;
 import com.acurian.selenium.pages.blinx.ams.diabetes.CurrentlyTreatingYourDiabetesPageOLS;
 import com.acurian.selenium.pages.blinx.ams.diabetes.WithType2DiabetesPageOLS;
+import com.acurian.selenium.pages.blinx.ams.generalHealth.ApproximateHeightPageOLS;
+import com.acurian.selenium.pages.blinx.ams.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS;
 import com.acurian.selenium.pages.blinx.ams.lowt_3017.CardiovascularDiseaseThanOthersPageOLS;
-import com.acurian.selenium.pages.blinx.ams.shared.DateOfBirthPageOLS;
-import com.acurian.selenium.pages.blinx.ams.shared.GenderPageOLS;
-import com.acurian.selenium.pages.blinx.ams.shared.WhatKindOfDiabetesPageOLS;
-import com.acurian.selenium.pages.blinx.ams.shared.ZipCodePageOLS;
+import com.acurian.selenium.pages.blinx.ams.shared.*;
 import com.acurian.selenium.pages.blinx.gmega.AboutHealthPageOLS;
 import com.acurian.selenium.pages.blinx.gmega.ApproximateHeightWeightPageOLS;
 import com.acurian.selenium.pages.blinx.ams.generalHealth.SiteSelectionPageOLS;
@@ -67,6 +66,8 @@ public class CV_4450_OLSblinx extends BaseTest {
                 .setZipCode(site.zipCode)
                 .clickNextButton(new GenderPageOLS());
 
+        CholesterolTriglyceridesLipidsPageOLS cholesterolTriglyceridesLipidsPageOLS = new CholesterolTriglyceridesLipidsPageOLS();
+
         genderPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Female")
@@ -76,11 +77,11 @@ public class CV_4450_OLSblinx extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
                 .back(genderPageOLS);
-        CardiovascularDiseaseThanOthersPageOLS cardiovascularDiseaseThanOthersPageOLS = genderPageOLS
+        genderPageOLS
                 .waitForPageLoad()
                 .setDate("01081975")//"Disqualify (“Age”) if < 45
-                .clickNextButton(new CardiovascularDiseaseThanOthersPageOLS());
-        cardiovascularDiseaseThanOthersPageOLS
+                .clickNextButton(cholesterolTriglyceridesLipidsPageOLS);
+        cholesterolTriglyceridesLipidsPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
@@ -88,10 +89,74 @@ public class CV_4450_OLSblinx extends BaseTest {
         genderPageOLS
                 .waitForPageLoad()
                 .setDate("01081970")
-                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS);
+                .clickNextButton(cholesterolTriglyceridesLipidsPageOLS);
 
-//        WhatKindOfDiabetesPageOLS whatKindOfDiabetesPageOLS = cardiovascularDiseasePageOLS
-        SufferedFollowingHeartRelatedConditionsPageOLS sufferedFollowingHeartRelatedConditionsPageOLS = cardiovascularDiseaseThanOthersPageOLS
+        TakingFollowingStaticMedicationOLS takingFollowingStaticMedicationOLS = cholesterolTriglyceridesLipidsPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
+                .clickNextButton(new TakingFollowingStaticMedicationOLS());
+
+        DiagnosedAnyTypeOfDiabetesPageOLS diagnosedAnyTypeOfDiabetesPageOLS = takingFollowingStaticMedicationOLS
+                .waitForPageLoad()
+                .clickOnAnswers("Atorvastatin")
+                .clickNextButton(new DiagnosedAnyTypeOfDiabetesPageOLS());
+
+        SufferedFollowingHeartRelatedConditionsPageOLS sufferedFollowingHeartRelatedConditionsPageOLS = diagnosedAnyTypeOfDiabetesPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new SufferedFollowingHeartRelatedConditionsPageOLS());
+
+        HeartRelatedSurgeriesProceduresPageOLS heartRelatedSurgeriesProceduresPageOLS = sufferedFollowingHeartRelatedConditionsPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new HeartRelatedSurgeriesProceduresPageOLS());
+
+        AdditionalHeartRelatedConditionsPageOLS additionalHeartRelatedConditionsPageOLS = heartRelatedSurgeriesProceduresPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new AdditionalHeartRelatedConditionsPageOLS());
+
+        ApproximateHeightPageOLS approximateHeightPageOLS = additionalHeartRelatedConditionsPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new ApproximateHeightPageOLS());
+
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = approximateHeightPageOLS
+                .waitForPageLoad()
+                .setAll("5", "5", "150")
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
+
+        //move back to Q4
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS6722", site.activeProtocols)
+                .back(approximateHeightPageOLS)
+                .waitForPageLoad()
+                .back(additionalHeartRelatedConditionsPageOLS)
+                .waitForPageLoad()
+                .back(heartRelatedSurgeriesProceduresPageOLS)
+                .waitForPageLoad()
+                .back(sufferedFollowingHeartRelatedConditionsPageOLS)
+                .waitForPageLoad()
+                .back(diagnosedAnyTypeOfDiabetesPageOLS);
+
+        WhatKindOfDiabetesPageOLS whatKindOfDiabetesPageOLS = diagnosedAnyTypeOfDiabetesPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
+                .clickNextButton(new WhatKindOfDiabetesPageOLS());
+
+        WithType2DiabetesPageOLS withType2DiabetesPageOLS = whatKindOfDiabetesPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Type 2 diabetes (sometimes called Adult-onset diabetes)")
+                .clickNextButton(new WithType2DiabetesPageOLS());
+
+
+
+
+        /*WhatKindOfDiabetesPageOLS whatKindOfDiabetesPageOLS = cardiovascularDiseasePageOLS
+        SufferedFollowingHeartRelatedConditionsPageOLS sufferedFollowingHeartRelatedConditionsPageOLS
+                = cholesterolTriglyceridesLipidsPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Diabetes or High Blood Sugar",
                         "High cholesterol or high triglycerides",
@@ -107,10 +172,10 @@ public class CV_4450_OLSblinx extends BaseTest {
                 .clickOnAnswers("High cholesterol or high triglycerides")
                 .clickNextButton(new ConfirmsHighCholesterolTriglyceridesPageOLS());
 
-        CholesterolTriglyceridesLipidsPageOLS cholesterolTriglyceridesLipidsPageOLS = confirmsHighCholesterolTriglyceridesPageOLS
+        confirmsHighCholesterolTriglyceridesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Yes, high cholesterol", "Yes, high triglycerides")
-                .clickNextButton(new CholesterolTriglyceridesLipidsPageOLS());
+                .clickNextButton(cholesterolTriglyceridesLipidsPageOLS);
 
         cholesterolTriglyceridesLipidsPageOLS
                 .waitForPageLoad()
@@ -461,6 +526,6 @@ public class CV_4450_OLSblinx extends BaseTest {
                 .waitForPageLoad()
                 .pidFromDbToLog("PRD")
                 .childPidFromDbToLog("PRD")
-                .dispoShouldMatch(site.dispo, site.dispo);
+                .dispoShouldMatch(site.dispo, site.dispo);*/
     }
 }

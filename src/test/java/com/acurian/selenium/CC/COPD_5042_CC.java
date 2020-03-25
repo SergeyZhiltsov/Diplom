@@ -15,7 +15,7 @@ import com.acurian.utils.Properties;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import ru.yandex.qatools.allure.annotations.Description;
+import io.qameta.allure.Description;
 
 
 public class COPD_5042_CC extends BaseTest {

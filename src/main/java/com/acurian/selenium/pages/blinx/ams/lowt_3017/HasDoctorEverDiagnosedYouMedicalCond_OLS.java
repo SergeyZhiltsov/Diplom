@@ -10,7 +10,8 @@ import java.util.List;
 
 public class HasDoctorEverDiagnosedYouMedicalCond_OLS extends MainPageBlinx {
 
-    public final String titleExpected = "Has a doctor ever diagnosed you with any of the following medical conditions or diseases? \n" +
+    public final String titleExpected = "Certain conditions are more closely linked to cardiovascular disease than others.\n" +
+            "Has a doctor ever diagnosed you with any of the following medical conditions or diseases?\n" +
             "Please select all that apply:";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS_BLINX)

@@ -9,6 +9,7 @@ import org.openqa.selenium.support.FindBy;
 import java.util.List;
 
 public class DuringPastThreeMonthsCC extends MainPageCC {
+
     public final String titleExpected = "During the past 3 months, have you had stomach pain or discomfort that lasted 2 weeks or more?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_CC)

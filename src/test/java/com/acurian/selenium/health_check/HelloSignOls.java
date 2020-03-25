@@ -14,7 +14,7 @@ import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.annotations.Test;
-import ru.yandex.qatools.allure.annotations.Description;
+import io.qameta.allure.Description;
 import org.openqa.selenium.TimeoutException;
 
 public class HelloSignOls extends BaseTest {

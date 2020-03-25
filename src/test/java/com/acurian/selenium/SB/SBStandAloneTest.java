@@ -5,7 +5,7 @@ import com.acurian.selenium.pages.SB.*;
 import com.acurian.selenium.SB.dependentScreeners.SB_AUTSBSSmodified;
 import com.acurian.utils.DataProviderPool;
 import org.testng.annotations.Test;
-import ru.yandex.qatools.allure.annotations.Description;
+import io.qameta.allure.Description;
 
 
 public class SBStandAloneTest extends BaseTest {

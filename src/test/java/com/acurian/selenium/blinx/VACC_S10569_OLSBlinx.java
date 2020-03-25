@@ -5,6 +5,7 @@ import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.blinx.ams.closes.*;
 import com.acurian.selenium.pages.blinx.ams.cv_study.CholesterolTriglyceridesLipidsPageOLS;
 import com.acurian.selenium.pages.blinx.ams.debug.DebugPageOLS;
+import com.acurian.selenium.pages.blinx.ams.diabetes.SubquestionExperiencedHeartPageOLS;
 import com.acurian.selenium.pages.blinx.ams.generalHealth.*;
 import com.acurian.selenium.pages.blinx.ams.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.blinx.ams.shared.GenderPageOLS;
@@ -13,11 +14,10 @@ import com.acurian.selenium.pages.blinx.ams.shared.ZipCodePageOLS;
 import com.acurian.selenium.pages.blinx.ams.vaccine.*;
 import com.acurian.selenium.pages.blinx.gmega.WhatKindOfArthritisDoYouHavePageOLS;
 import com.acurian.selenium.pages.blinx.gmega.intro.IdentificationPageOLS;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+import com.acurian.utils.Properties;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import ru.yandex.qatools.allure.annotations.Description;
+import io.qameta.allure.Description;
 
 public class VACC_S10569_OLSBlinx extends BaseTest {
 
@@ -30,7 +30,7 @@ public class VACC_S10569_OLSBlinx extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "sites", enabled = false)
+    @Test(dataProvider = "sites", enabled = true)
     @Description("VACC_S10569_BLINX VAC52416BAC1001 (Janssen E. coli Vaccine)")
     public void vaccS10569BlinxTest(Site site) {
         final String phoneNumber = "AUTAMS1ALZ";
@@ -225,18 +225,35 @@ public class VACC_S10569_OLSBlinx extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Cancer")
+                .clickOnAnswers("Heart or circulation problems (heart attack, heart failure, stroke)")
+                .clickOnAnswers("Lupus")
                 .clickNextButton(new WhenDiagnosedWithCancerOLS());
 
-        whenDiagnosedWithCancerOLS
+        HaveYouEverExperiencedHeartRelatedMedicalCondOLS haveYouEverExperiencedHeartRelatedMedicalCondOLS = whenDiagnosedWithCancerOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Within the past 5 years")
-                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
+                .clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondOLS());
+        haveYouEverExperiencedHeartRelatedMedicalCondOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
                 .back(whenDiagnosedWithCancerOLS)
                 .waitForPageLoad()
                 .clickOnAnswer("6 - 10 years ago")
+                .clickNextButton(haveYouEverExperiencedHeartRelatedMedicalCondOLS);
+
+        SubquestionExperiencedHeartPageOLS subquestionExperiencedHeartPageOLS = haveYouEverExperiencedHeartRelatedMedicalCondOLS
+                .waitForPageLoad()
+                .clickOnAnswers("Heart attack")
+                .clickNextButton(new SubquestionExperiencedHeartPageOLS());
+
+        HeartrelatedMedicalProceduresPageOLS haveYouUndergoneAnyOfFollowingHeartRelatedProcOLS = subquestionExperiencedHeartPageOLS
+                .waitForPageLoad()
+                .clickOnAnswerForAllSubQuestion("Less than 30 days ago")
+                .clickNextButton(new HeartrelatedMedicalProceduresPageOLS());
+        haveYouUndergoneAnyOfFollowingHeartRelatedProcOLS
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS);
 
         ApproximateHeightPageOLS approximateHeightPageOLS = doAnyOftheFollowingAdditionalDiagnosesOLS
@@ -313,14 +330,14 @@ public class VACC_S10569_OLSBlinx extends BaseTest {
         IdentificationPageOLS identificationPageOLS = approximateHeightPageOLS
                 .waitForPageLoad()
                 .setAll("5", "5", "500")
-                .clickNextButton(new CholesterolTriglyceridesLipidsPageOLS())
+                .clickNextButton(new CurrentlyParticipatingInStudyOLS())
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS68", site.activeProtocols)
                 .back(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .setAll("3", "3", "29")
-                .clickNextButton(new CholesterolTriglyceridesLipidsPageOLS())
+                .clickNextButton(new CurrentlyParticipatingInStudyOLS())
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS68", site.activeProtocols)
@@ -348,18 +365,17 @@ public class VACC_S10569_OLSBlinx extends BaseTest {
         ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = qualifiedClose2PageOLS
                 .waitForPageLoad3()
                 .clickNextButton(new ThankYouCloseSimplePageOLS());
-        AlzheimerClosePageOLS alzheimerClosePageOLS = thankYouCloseSimplePageOLS
-                .waitForPageLoad()
-                .clickNextButton(new AlzheimerClosePageOLS());
-        AboutHealthPageOLS aboutHealthPageOLS = alzheimerClosePageOLS
+        AboutHealthPageOLS aboutHealthPageOLS = thankYouCloseSimplePageOLS
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS());
-        aboutHealthPageOLS
-                .waitForPageLoad()
-                .pidFromDbToLog(env)
-                .childPidFromDbToLog(env)
-                .assertGeneratedFul(env, site)
-                .dispoShouldMatch(site.dispo, site.dispo);
 
+        if(aboutHealthPageOLS.getHostName().equals(Properties.getHostName())) {
+            aboutHealthPageOLS
+                    .waitForPageLoad()
+                    .pidFromDbToLog(env)
+                    .childPidFromDbToLog(env)
+                    .assertGeneratedFul(env, site)
+                    .dispoShouldMatch(site.dispo, site.dispo);
+        }
     }
 }
