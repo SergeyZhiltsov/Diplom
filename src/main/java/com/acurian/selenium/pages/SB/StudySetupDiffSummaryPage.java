@@ -118,7 +118,7 @@ public class StudySetupDiffSummaryPage extends MainPageSB {
 
     private boolean compareString(List expected, String... actual) {
         boolean result = Arrays.equals(expected.toArray(), actual);
-        System.out.printf("Comparing strings %s and %s. Result (are they equal?): %s %n",
+        Log.info("Comparing strings %s and %s. Result (are they equal?): %s %n",
                 Arrays.toString(expected.toArray()), Arrays.toString(actual), result);
         return result;
     }
