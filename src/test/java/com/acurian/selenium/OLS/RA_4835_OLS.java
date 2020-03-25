@@ -1,5 +1,6 @@
 package com.acurian.selenium.OLS;
 
+import com.acurian.selenium.CC.PSA_5071_CC;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.Crohns_3485.SubquestionLastReceivedPageOLS;
@@ -11,6 +12,8 @@ import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.annotations.Test;
 
 import java.util.Arrays;
@@ -20,6 +23,8 @@ import java.util.Map;
 
 
 public class RA_4835_OLS extends BaseTest {
+
+    private static Logger Log = LogManager.getLogger(RA_4835_OLS.class.getName());
 
     @Test(enabled = false)
     public void ra_4835_OLS() {
@@ -190,7 +195,7 @@ public class RA_4835_OLS extends BaseTest {
         disqualifyQ9.put("Neoral, Gengraf, or Sandimmune (cyclosporine)", Arrays.asList(site.activeProtocols));
         disqualifyQ9.put("Gold salts such as Myochrysine, Solganal, or Ridaura (auranofin)", Arrays.asList(site.activeProtocols));
        for (Map.Entry<String, List<String>> entry : disqualifyQ9.entrySet()) {
-            System.out.println(entry.getKey());
+            Log.info(entry.getKey());
             medicationsToTreatYourRA
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -381,7 +386,7 @@ public class RA_4835_OLS extends BaseTest {
        disqualifyQ14.put("Olumiant", Arrays.asList(site.activeProtocols));
        disqualifyQ14.put("Xeljanz", Arrays.asList(site.activeProtocols));
        for (Map.Entry<String, List<String>> entry : disqualifyQ14.entrySet()) {
-            System.out.println(entry.getKey());
+            Log.info(entry.getKey());
             haveYouEverTakenEitherAnyOfFollowingMeds_OLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -471,7 +476,7 @@ public class RA_4835_OLS extends BaseTest {
        disqualifyQ6.put("11 or more years ago", Arrays.asList(site.activeProtocols)); //Disqualify ("Cancer > 5 years")
        WhatKindOfDiabetesPageOLS whatKindOfDiabetesPageOLS = new WhatKindOfDiabetesPageOLS();
        for (Map.Entry<String, List<String>> entry : disqualifyQ6.entrySet()) {
-            System.out.println(entry.getKey());
+            Log.info(entry.getKey());
            whenDiagnosedWithCancerOLS
                     .waitForPageLoad()
                     .clickOnAnswer(entry.getKey())
@@ -692,7 +697,7 @@ public class RA_4835_OLS extends BaseTest {
         disqualifyQ24.put("HIV or AIDS", Arrays.asList(site.activeProtocols)); //Disqualify ("HIV")
         //disqualifyQ24.put("Kidney disease requiring dialysis", Arrays.asList((site.activeProtocols))); //Disqualify ("Dialysis")
         for (Map.Entry<String, List<String>> entry : disqualifyQ24.entrySet()) {
-            System.out.println(entry.getKey());
+            Log.info(entry.getKey());
             doAnyOftheFollowingAdditionalDiagnosesOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")

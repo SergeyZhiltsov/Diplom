@@ -11,6 +11,8 @@ import com.acurian.selenium.pages.OLS.generalHealth.WhichOfFollowingHaveYouDiagn
 import com.acurian.selenium.pages.blinx.ams.shared.DRSBlinx;
 import com.acurian.utils.Properties;
 import io.qameta.allure.Description;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -21,6 +23,7 @@ import java.util.List;
 
 public class VACC_JANRSV_CC extends BaseTest {
 
+    private static Logger Log = LogManager.getLogger(VACC_JANRSV_CC.class.getName());
 
     @DataProvider
     public Object[][] sites() {
@@ -426,7 +429,7 @@ public class VACC_JANRSV_CC extends BaseTest {
 
             List<String> disqualifyQ8QS44 = Arrays.asList("Crohn's disease", "Ulcerative colitis");
             for (String answer : disqualifyQ8QS44) {
-                System.out.println("Select answer for Q8:QS44: " + answer);
+                Log.info("Select answer for Q8:QS44: " + answer);
                 whichOfFollowingDigestiveConditionPageCC
                         .waitForPageLoad()
                         .clickOnAnswers("None of the above")
@@ -449,7 +452,7 @@ public class VACC_JANRSV_CC extends BaseTest {
 
             List<String> disqualifyQ6QS51 = Arrays.asList("Dialysis", "Kidney transplant");
             for (String answer : disqualifyQ6QS51) {
-                System.out.println("Select answer for Q6:QS51: " + answer);
+                Log.info("Select answer for Q6:QS51: " + answer);
                 whichOfTheFollowingHaveRequiredForKidneyDiseaseCC
                         .waitForPageLoad()
                         .clickOnAnswers("Neither")
@@ -495,7 +498,7 @@ public class VACC_JANRSV_CC extends BaseTest {
             //Q18: QS53
             List<String> disqualifyQ18 = Arrays.asList("Bipolar disorder", "Schizophrenia");
             for (String answer : disqualifyQ18) {
-                System.out.println("Select answer for Q18:QS53: " + answer);
+                Log.info("Select answer for Q18:QS53: " + answer);
                 followingMentalEmotionalHealthPageCC
                         .waitForPageLoad()
                         .clickOnAnswers("None of the above")
@@ -520,7 +523,7 @@ public class VACC_JANRSV_CC extends BaseTest {
             //Q19: QS54
             List<String> disqualifyQ19 = Arrays.asList("Alzheimer's disease", "Multiple sclerosis (MS)");
             for (String answer : disqualifyQ19) {
-                System.out.println("Select answer for Q19:QS54: " + answer);
+                Log.info("Select answer for Q19:QS54: " + answer);
                 whichOfFollowingHaveYouDiagnosedWith_NeurologicalCC
                         .waitForPageLoad()
                         .clickOnAnswers("None of the above")
@@ -548,7 +551,7 @@ public class VACC_JANRSV_CC extends BaseTest {
                     "Hepatitis C",
                     "HIV or AIDS");
             for (String answer : disqualifyQ24) {
-                System.out.println("Select answer for Q24QS59: " + answer);
+                Log.info("Select answer for Q24QS59: " + answer);
                 doAnyOftheFollowingAdditionalDiagnosesCC
                         .waitForPageLoad()
                         .clickOnAnswers("None of the above")
@@ -562,7 +565,7 @@ public class VACC_JANRSV_CC extends BaseTest {
             List<String> disqualifyQ24pt2 = Arrays.asList("Kidney disease requiring dialysis", "Multiple sclerosis (MS)",
                     "Schizophrenia");
             for (String answer : disqualifyQ24pt2) {
-                System.out.println("Select answer for Q24QS59: " + answer);
+                Log.info("Select answer for Q24QS59: " + answer);
                 doAnyOftheFollowingAdditionalDiagnosesCC
                         .waitForPageLoad()
                         .clickOnAnswers("None of the above")

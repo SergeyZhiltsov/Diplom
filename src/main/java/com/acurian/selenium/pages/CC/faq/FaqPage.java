@@ -1,6 +1,9 @@
 package com.acurian.selenium.pages.CC.faq;
 
 import com.acurian.selenium.pages.CC.MainPageCC;
+import com.acurian.selenium.pages.CC.closes.QualifiedFlareMonitoringAppClosePageCC;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -18,6 +21,8 @@ public class FaqPage extends MainPageCC {
     private List<String[]> expectedFaqData;
     private ArrayList<String> expectedFaqTitles;
     private ArrayList<String> expectedFaqDefinisions;
+    private static Logger Log = LogManager.getLogger(FaqPage.class.getName());
+
 
     @FindBy(xpath = "//div[@class='header']/h1")
     WebElement headerText;
@@ -73,7 +78,7 @@ public class FaqPage extends MainPageCC {
     @Step
     public void assertTerms() {
         for (int i = 0; i < expectedFaqTitles.size(); i++) {
-            System.out.println("Comparing " + "[" + expectedFaqTitles.get(i) + "] with [" + faqTitles.get(i).getText() + "]");
+            Log.info("Comparing " + "[" + expectedFaqTitles.get(i) + "] with [" + faqTitles.get(i).getText() + "]");
             logTextToAllure("Comparing " + "[" + expectedFaqTitles.get(i) + "] with [" + faqTitles.get(i).getText() + "]");
             Assert.assertEquals(faqTitles.get(i).getText(), expectedFaqTitles.get(i),"Glossary term is Diff");
         }
@@ -83,7 +88,7 @@ public class FaqPage extends MainPageCC {
     public void assertDefinitions() {
         filterFaqDefinitions();
         for (int i = 0; i < expectedFaqDefinisions.size(); i++) {
-            System.out.println("Comparing " + "[" + filteredDefinitions.get(i).getText() + "] with [" + expectedFaqDefinisions.get(i) + "]");
+            Log.info("Comparing " + "[" + filteredDefinitions.get(i).getText() + "] with [" + expectedFaqDefinisions.get(i) + "]");
             logTextToAllure("Comparing " + "[" + filteredDefinitions.get(i).getText() + "] with [" + expectedFaqDefinisions.get(i) + "]");
             Assert.assertEquals(filteredDefinitions.get(i).getText(), expectedFaqDefinisions.get(i), " Glossary definision is Diff");
         }

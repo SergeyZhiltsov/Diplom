@@ -2,7 +2,10 @@ package com.acurian.selenium.pages.CC.generalHealth;
 
 import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.CC.MainPageCC;
+import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.utils.PassPID;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
@@ -16,6 +19,8 @@ import ru.yandex.qatools.allure.annotations.Step;
 import java.util.List;
 
 public class SiteSelectionPageCC extends MainPageCC {
+
+    private static Logger Log = LogManager.getLogger(SiteSelectionPageCC.class.getName());
 
     @Parameter("My PID")
     public String pidNumber;
@@ -198,7 +203,7 @@ public class SiteSelectionPageCC extends MainPageCC {
         pidNumber = getText(pidNumberPath);
         logTextToAllure("PID = " + pidNumber);
         PassPID.getInstance().setPidNumber(pidNumber);
-        System.out.println("PID = " + pidNumber);
+        Log.info("PID = " + pidNumber);
         return this;
     }
 

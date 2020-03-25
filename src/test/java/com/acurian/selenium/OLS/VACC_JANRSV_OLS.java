@@ -1,5 +1,6 @@
 package com.acurian.selenium.OLS;
 
+import com.acurian.selenium.blinx.Crohns_4818_OLSBlinx;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.LOWT_3017.HasDoctorEverDiagnosedYouMedicalCond_OLS;
@@ -13,6 +14,8 @@ import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.HaveYouGoneThroughMenopauseOLS;
 import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
 import com.acurian.selenium.pages.blinx.ams.shared.DRSBlinx;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
@@ -23,6 +26,7 @@ import java.util.List;
 
 public class VACC_JANRSV_OLS extends BaseTest {
 
+    private static Logger Log = LogManager.getLogger(VACC_JANRSV_OLS.class.getName());
 
     @DataProvider
     public Object[][] sites() {
@@ -408,7 +412,7 @@ public class VACC_JANRSV_OLS extends BaseTest {
 
             List<String> disqualifyQ8QS44 = Arrays.asList("Crohn's disease", "Ulcerative colitis");
             for (String answer : disqualifyQ8QS44) {
-                System.out.println("Select answer for Q8:QS44: " + answer);
+                Log.info("Select answer for Q8:QS44: " + answer);
                 whichOfFollowingDigestiveConditionPageOLS
                         .waitForPageLoad()
                         .clickOnAnswers("None of the above")
@@ -432,7 +436,7 @@ public class VACC_JANRSV_OLS extends BaseTest {
 
             List<String> disqualifyQ6QS51 = Arrays.asList("Dialysis", "Kidney transplant");
             for (String answer : disqualifyQ6QS51) {
-                System.out.println("Select answer for Q6:QS51: " + answer);
+                Log.info("Select answer for Q6:QS51: " + answer);
                 whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS
                         .waitForPageLoad()
                         .clickOnAnswers("Neither")
@@ -478,7 +482,7 @@ public class VACC_JANRSV_OLS extends BaseTest {
             //Q18: QS53
             List<String> disqualifyQ18 = Arrays.asList("Bipolar disorder", "Schizophrenia");
             for (String answer : disqualifyQ18) {
-                System.out.println("Select answer for Q18:QS53: " + answer);
+                Log.info("Select answer for Q18:QS53: " + answer);
                 followingMentalEmotionalHealthPageOLS
                         .waitForPageLoad()
                         .clickOnAnswers("None of the above")
@@ -503,7 +507,7 @@ public class VACC_JANRSV_OLS extends BaseTest {
             //Q19: QS54
             List<String> disqualifyQ19 = Arrays.asList("Alzheimer's disease", "Multiple sclerosis (MS)");
             for (String answer : disqualifyQ19) {
-                System.out.println("Select answer for Q19:QS54: " + answer);
+                Log.info("Select answer for Q19:QS54: " + answer);
                 whichOfFollowingHaveYouDiagnosedWith_NeurologicalOLS
                         .waitForPageLoad()
                         .clickOnAnswers("None of the above")
@@ -531,7 +535,7 @@ public class VACC_JANRSV_OLS extends BaseTest {
                     "Hepatitis C",
                     "HIV or AIDS");
             for (String answer : disqualifyQ24) {
-                System.out.println("Select answer for Q24QS59: " + answer);
+                Log.info("Select answer for Q24QS59: " + answer);
                 doAnyOftheFollowingAdditionalDiagnosesOLS
                         .waitForPageLoad()
                         .clickOnAnswers("None of the above")
@@ -545,7 +549,7 @@ public class VACC_JANRSV_OLS extends BaseTest {
             List<String> disqualifyQ24pt2 = Arrays.asList("Kidney disease requiring dialysis", "Multiple sclerosis (MS)",
                     "Schizophrenia");
             for (String answer : disqualifyQ24pt2) {
-                System.out.println("Select answer for Q24QS59: " + answer);
+                Log.info("Select answer for Q24QS59: " + answer);
                 doAnyOftheFollowingAdditionalDiagnosesOLS
                         .waitForPageLoad()
                         .clickOnAnswers("None of the above")

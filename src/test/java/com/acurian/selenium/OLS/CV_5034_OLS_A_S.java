@@ -1,5 +1,6 @@
 package com.acurian.selenium.OLS;
 
+import com.acurian.selenium.CC.PSA_5071_CC;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.ADG_4357.WithType1DiabetesPageOLS;
@@ -18,6 +19,8 @@ import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
 import com.acurian.selenium.pages.OLS.shared.WhatKindOfDiabetesPageOLS;
 import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -28,6 +31,7 @@ import java.util.List;
 
 public class CV_5034_OLS_A_S extends BaseTest {
 
+    private static Logger Log = LogManager.getLogger(CV_5034_OLS_A_S.class.getName());
 
     @DataProvider(name = "5034Sites")
     public static Object[][] getData() {
@@ -92,7 +96,7 @@ public class CV_5034_OLS_A_S extends BaseTest {
         List<String> disqualifyQ3 = Arrays.asList("Diabetes or High Blood Sugar", "High cholesterol or high triglycerides",
                 "High blood pressure or hypertension", "Chronic Kidney Disease");
         for (String answer : disqualifyQ3) {
-            System.out.println("Select answer for Q3: " + answer);
+            Log.info("Select answer for Q3: " + answer);
             cardiovascularDiseaseThanOthersPageOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -349,7 +353,7 @@ public class CV_5034_OLS_A_S extends BaseTest {
                 "HIV or AIDS",
                 "Kidney disease requiring dialysis or transplant");
         for (String entry : options) {
-            System.out.println(entry);
+            Log.info(entry);
             healthcareDiagnosedConditionsPageOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")

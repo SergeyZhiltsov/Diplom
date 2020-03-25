@@ -9,7 +9,10 @@ import com.acurian.selenium.pages.CC.cv_study.SufferedFollowingHeartRelatedCondi
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
+import com.acurian.selenium.pages.OLS.debug.ConfigPageOLS;
 import com.acurian.utils.Properties;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -20,6 +23,7 @@ import java.util.List;
 
 public class CG_4960_CC extends BaseTest {
 
+    private static Logger Log = LogManager.getLogger(CG_4960_CC.class.getName());
 
     @DataProvider
     public Object[][] sites() {
@@ -294,7 +298,7 @@ public class CG_4960_CC extends BaseTest {
         List<String> disqualifyQ15 = Arrays.asList("Less than 30 days ago", "1 - 3 months ago", "4 - 6 months ago",
                 "7 - 12 months ago");
         for (String answer : disqualifyQ15) {
-            System.out.println("Select answer for Q15.1: " + answer);
+            Log.info("Select answer for Q15.1: " + answer);
             subquestionHeartPageCC
                     .waitForPageLoad(1, subquestionHeartPageCC.titleExpected1)
                     .clickOnAnswerForSubQuestion(1, answer)
@@ -314,7 +318,7 @@ public class CG_4960_CC extends BaseTest {
 
         //Q15.2	When was the last time that you experienced had a stroke?
         for (String answer : disqualifyQ15) {
-            System.out.println("Select answer for Q15.2: " + answer);
+            Log.info("Select answer for Q15.2: " + answer);
             subquestionHeartPageCC
                     .waitForPageLoad(1, subquestionHeartPageCC.titleExpected2)
                     .clickOnAnswerForSubQuestion(1, answer)
@@ -334,7 +338,7 @@ public class CG_4960_CC extends BaseTest {
 
         //Q15.4	When was the last time that you experienced suffered from angina or chest pain that required you to stay in a hospital overnight?
         for (String answer : disqualifyQ15) {
-            System.out.println("Select answer for Q15.4: " + answer);
+            Log.info("Select answer for Q15.4: " + answer);
             subquestionHeartPageCC
                     .waitForPageLoad(1, subquestionHeartPageCC.titleExpected4)
                     .clickOnAnswerForSubQuestion(1, answer)
@@ -392,7 +396,7 @@ public class CG_4960_CC extends BaseTest {
         //Q18: QS53
         List<String> disqualifyQ18 = Arrays.asList("Bipolar disorder", "Schizophrenia");
         for (String answer : disqualifyQ18) {
-            System.out.println(answer);
+            Log.info(answer);
             followingMentalEmotionalHealthPageCC
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -416,7 +420,7 @@ public class CG_4960_CC extends BaseTest {
                 "Cirrhosis", "Drug or alcohol abuse within the past year", "Hepatitis B",
                 "Hepatitis C", "HIV or AIDS");
         for (String answer : disqualifyQ24_QS59) {
-            System.out.println("Select answer for Q24_QS59: " + answer);
+            Log.info("Select answer for Q24_QS59: " + answer);
             doAnyOftheFollowingAdditionalDiagnosesCC
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(answer)
@@ -428,7 +432,7 @@ public class CG_4960_CC extends BaseTest {
         }
         List<String> disqualifyQ24_QS59p2 = Arrays.asList("Kidney disease requiring dialysis", "Schizophrenia");
         for (String answer : disqualifyQ24_QS59p2) {
-            System.out.println("Select answer for Q24_QS59p2: " + answer);
+            Log.info("Select answer for Q24_QS59p2: " + answer);
             doAnyOftheFollowingAdditionalDiagnosesCC
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(answer)

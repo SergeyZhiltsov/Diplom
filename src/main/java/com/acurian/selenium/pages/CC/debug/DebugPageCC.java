@@ -1,6 +1,9 @@
 package com.acurian.selenium.pages.CC.debug;
 
 import com.acurian.selenium.pages.CC.MainPageCC;
+import com.acurian.selenium.pages.CC.faq.FaqPage;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -14,6 +17,8 @@ import java.util.List;
 import java.util.function.Predicate;
 
 public class DebugPageCC extends MainPageCC {
+
+    private static Logger Log = LogManager.getLogger(DebugPageCC.class.getName());
 
     @FindBy(id = "debug_toolbar_questions_lnk")
     WebElement questionLink;
@@ -206,7 +211,7 @@ public class DebugPageCC extends MainPageCC {
     @Step
     public DebugPageCC checkStudyStatusContainsForQNumber(String questionNumber, String expectedStudyStatus) {
         String actualStudyStatus = getStudyStatusForQuestionNumber(questionNumber);
-        System.out.println("Status Set displayed = " + actualStudyStatus);
+        Log.info("Status Set displayed = " + actualStudyStatus);
         Assert.assertTrue(actualStudyStatus.contains(expectedStudyStatus), "Study status expected "
                 + expectedStudyStatus + " are not included in actual " + actualStudyStatus);
         return this;

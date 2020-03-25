@@ -2,6 +2,7 @@ package com.acurian.selenium.pages.blinx;
 
 import com.acurian.selenium.constants.FULType;
 import com.acurian.selenium.constants.Site;
+import com.acurian.selenium.listeners.TestListener;
 import com.acurian.selenium.pages.BasePage;
 import com.acurian.selenium.pages.FUL_Letters.FollowupLetter;
 import com.acurian.utils.PassPID;
@@ -9,6 +10,8 @@ import com.acurian.utils.db.AnomalyResults;
 import com.acurian.utils.db.ChildResult;
 import com.acurian.utils.db.RadiantResults;
 import io.qameta.allure.Step;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriverException;
@@ -26,11 +29,14 @@ import java.util.stream.Collectors;
 
 public class MainPageBlinx extends BasePage {
 
+    private static Logger Log = LogManager.getLogger(MainPageBlinx.class.getName());
+
     String pid;
     String childPid;
     String dispoParent;
     String dispoChild;
     String pidNumber;
+
 
     @FindBy(xpath = "//*[@id='collapsedContent1']/div[1]")
     WebElement pidNumberPath;
@@ -302,8 +308,8 @@ public class MainPageBlinx extends BasePage {
                 while ((line = br.readLine()) != null) {
                     sb.append(line).append("\n");
                 }
-                System.out.println("Rewriting existing data from file:");
-                System.out.println(sb);
+                Log.info("Rewriting existing data from file:");
+                Log.info(sb);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -311,7 +317,7 @@ public class MainPageBlinx extends BasePage {
 
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(ful.getFulsToBeVerifiedFile()))) {
             bw.write(sb.toString());
-            System.out.println("Queued new site for FUL validation to file: " + stringQuery);
+            Log.info("Queued new site for FUL validation to file: " + stringQuery);
             bw.write(stringQuery);
         } catch (IOException e) {
             e.printStackTrace();
@@ -324,13 +330,13 @@ public class MainPageBlinx extends BasePage {
         pidNumber = pidNumber.split(" ")[1];
         logTextToAllure("PID = " + pidNumber);
         PassPID.getInstance().setPidNumber(pidNumber);
-        System.out.println("PID = " + pidNumber);
+        Log.info("PID = " + pidNumber);
         return this;
     }
 
     @Step
     public MainPageBlinx convert54Cto1R(String env) {
-        System.out.println("PID = " + pid);
+        Log.info("PID = " + pid);
         getDbConnection().convert54Cto1R(env, pid);
         logTextToAllure("54 to 1R conversion completed");
         threadSleep(2000);

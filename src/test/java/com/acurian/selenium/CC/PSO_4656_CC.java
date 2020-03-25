@@ -10,6 +10,8 @@ import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.selenium.OLS.PS_4656_OLS;
 import com.acurian.utils.Properties;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
@@ -18,6 +20,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class PSO_4656_CC extends BaseTest {
+
+    private static Logger Log = LogManager.getLogger(PSO_4656_CC.class.getName());
 
     @Test(dataProvider = "sites", dataProviderClass = PS_4656_OLS.class, enabled = false)
     @Description("PSO_4656_CC")
@@ -137,7 +141,7 @@ public class PSO_4656_CC extends BaseTest {
         TreatYourPsoriasisPageCC treatYourPsoriasisPageCC = new TreatYourPsoriasisPageCC();
         List<String> disqualifyQ5 = Arrays.asList("0", "1", "21 +");
         for (String answer : disqualifyQ5) {
-            System.out.println("Select answer from dropdown for Q5: " + answer);
+            Log.info("Select answer from dropdown for Q5: " + answer);
             howMuchPsoriasisOnYourBodyCC
                     .waitForPageLoad()
                     .selectFromDropDown(answer)
@@ -253,7 +257,7 @@ public class PSO_4656_CC extends BaseTest {
         List<String> disqualifyQ6QS42 = Arrays.asList("Within the past 5 years", "6 - 10 years ago",
                 "11 or more years ago");
         for (String answer : disqualifyQ6QS42) {
-            System.out.println("Select answer for Q6QS42: " + answer);
+            Log.info("Select answer for Q6QS42: " + answer);
             whenDiagnosedWithCancerCC
                     .waitForPageLoad()
                     .clickOnAnswer(answer)

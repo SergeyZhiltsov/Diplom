@@ -12,6 +12,8 @@ import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.selenium.pages.OLS.generalHealth.WhichOfFollowingHaveYouDiagnosedWith_NeurologicalCC;
 import com.acurian.utils.Properties;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -22,6 +24,7 @@ import java.util.List;
 
 public class PSA_5071_CC extends BaseTest {
 
+    private static Logger Log = LogManager.getLogger(PSA_5071_CC.class.getName());
 
     @DataProvider
     public Object[][] sites() {
@@ -141,7 +144,7 @@ public class PSA_5071_CC extends BaseTest {
                 new SwollenJointsOfPsoriaticArthritisPageCC();
         List<String> disqualifyQ3 = Arrays.asList("Less than 1 month ago", "1 - 5 months ago");
         for (String answer : disqualifyQ3) {
-            System.out.println("Select answer for Q3: " + answer);
+            Log.info("Select answer for Q3: " + answer);
             firstDiagnosedPsoriaticArthritisPageCC
                     .waitForPageLoad()
                     .clickOnAnswer(answer)
@@ -284,7 +287,7 @@ public class PSA_5071_CC extends BaseTest {
                 "Taltz (Agent Note: TALTS)",
                 "Tysabri (Agent Note: tie-SAB-ree)");
         for (String answer : disqualifyQ14) {
-            System.out.println("Select answer for Q14: " + answer);
+            Log.info("Select answer for Q14: " + answer);
             biologicMedicationsPageCC
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -308,7 +311,7 @@ public class PSA_5071_CC extends BaseTest {
         List<String> disqualifyQ15 = Arrays.asList("Jakafi (Agent Note: JAK-uh-fie)",
                 "Olumiant (Agent Note: oh-LOO-me-ant)", "Xeljanz (Agent Note: ZEL-jans)");
         for (String answer : disqualifyQ15) {
-            System.out.println("Select answer for Q15: " + answer);
+            Log.info("Select answer for Q15: " + answer);
             eitherOfTheFollowingMedicationsCC
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -390,7 +393,7 @@ public class PSA_5071_CC extends BaseTest {
 
         List<String> disqualifyQS44 = Arrays.asList("Crohn's disease", "Ulcerative colitis");
         for (String answer : disqualifyQS44) {
-            System.out.println("Select answer for QS44: " + answer);
+            Log.info("Select answer for QS44: " + answer);
             whichOfFollowingDigestiveConditionPageCC
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -412,7 +415,7 @@ public class PSA_5071_CC extends BaseTest {
 
         List<String> disqualifyQS51 = Arrays.asList("Dialysis", "Kidney transplant");
         for (String answer : disqualifyQS51) {
-            System.out.println("Select answer for QS51: " + answer);
+            Log.info("Select answer for QS51: " + answer);
             whichOfTheFollowingHaveRequiredForKidneyDiseaseCC
                     .waitForPageLoad()
                     .clickOnAnswers("Neither")
@@ -455,7 +458,7 @@ public class PSA_5071_CC extends BaseTest {
 
         List<String> disqualifyQS53 = Arrays.asList("Bipolar disorder", "Schizophrenia");
         for (String answer : disqualifyQS53) {
-            System.out.println("Select answer for Q53: " + answer);
+            Log.info("Select answer for Q53: " + answer);
             followingMentalEmotionalHealthPageCC
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -503,7 +506,7 @@ public class PSA_5071_CC extends BaseTest {
                 "Drug or alcohol abuse within the past year",
                 "HIV or AIDS");
         for (String answer : disqualifyQ26) {
-            System.out.println("Select answer for Q26: " + answer);
+            Log.info("Select answer for Q26: " + answer);
             doAnyOftheFollowingAdditionalDiagnosesCC
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -516,7 +519,7 @@ public class PSA_5071_CC extends BaseTest {
         }
         List<String> disqualifyQ26pt2 = Arrays.asList("Kidney disease requiring dialysis", "Schizophrenia");
         for (String answer : disqualifyQ26pt2) {
-            System.out.println("Select answer for Q26: " + answer);
+            Log.info("Select answer for Q26: " + answer);
             doAnyOftheFollowingAdditionalDiagnosesCC
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")

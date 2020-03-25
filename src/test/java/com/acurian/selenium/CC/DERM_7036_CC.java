@@ -16,6 +16,8 @@ import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.selenium.pages.OLS.generalHealth.WhichOfFollowingHaveYouDiagnosedWith_NeurologicalCC;
 import com.acurian.utils.Properties;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -25,6 +27,7 @@ import java.util.*;
 
 public class DERM_7036_CC extends BaseTest {
 
+    private static Logger Log = LogManager.getLogger(DERM_7036_CC.class.getName());
 
     @DataProvider(name = "sites")
     public Object[][] getData() {
@@ -124,7 +127,7 @@ public class DERM_7036_CC extends BaseTest {
                 "3 - 6 months",
                 "7 - 11 months");
         for (String answer: disqualifyQ3) {
-            System.out.println(answer);
+            Log.info(answer);
             howLongHaveYouBeenSufferingFromEczema_cc
                     .waitForPageLoad()
                     .clickOnAnswer(answer)
@@ -145,7 +148,7 @@ public class DERM_7036_CC extends BaseTest {
         List<String> disqualifyQ24 = Arrays.asList("Minor: Mostly or almost clear",
                 "Mild: Covers a small amount of total skin on my body");
         for (String answer: disqualifyQ24) {
-            System.out.println("Select answer for Q24: " + answer);
+            Log.info("Select answer for Q24: " + answer);
             howWouldYouDescribeTheEczemaCurrentlyPageCC
                     .waitForPageLoad()
                     .clickOnAnswer(answer)
@@ -287,7 +290,7 @@ public class DERM_7036_CC extends BaseTest {
                 "Olumiant (Agent Note: oh-LOO-me-ant)",
                 "Xeljanz (Agent Note: ZEL-jans)");
         for (String disqualify: disqualifyQ27) {
-            System.out.println(disqualify);
+            Log.info(disqualify);
             haveYouEverTakenEitherAnyOfFollowingMeds_CC
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -654,7 +657,7 @@ public class DERM_7036_CC extends BaseTest {
                 "Hepatitis C",
                 "HIV or AIDS");
         for (String disqualify: disqualifyQ24GH) {
-            System.out.println(disqualify);
+            Log.info(disqualify);
             doAnyOftheFollowingAdditionalDiagnosesCC
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")

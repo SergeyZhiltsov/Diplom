@@ -1,5 +1,6 @@
 package com.acurian.selenium.health_check;
 
+import com.acurian.selenium.CC.PSA_5071_CC;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.pages.CC.shared.CallCenterIntroductionPageCC;
@@ -7,11 +8,15 @@ import com.acurian.selenium.pages.CC.shared.DateOfBirthPageCC;
 import com.acurian.selenium.pages.CC.shared.LoginPageCC;
 import com.acurian.selenium.pages.CC.shared.SelectActionPageCC;
 import com.acurian.utils.Properties;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
 public class OpeningOptionsCC extends BaseTest {
+
+    private static Logger Log = LogManager.getLogger(OpeningOptionsCC.class.getName());
 
     @Test
     @Description("Opening Options CC check")
@@ -45,7 +50,7 @@ public class OpeningOptionsCC extends BaseTest {
                 .waitForPageLoad()
                 .activateDebugOnProd(env);
 
-        System.out.println("Clicking Call Back");
+        Log.info("Clicking Call Back");
         DateOfBirthPageCC dateOfBirthPageCC = callCenterIntroductionPageCC
                 .clickOnAnswer("Call Back")
                 .clickNextButton(new DateOfBirthPageCC());
@@ -54,7 +59,7 @@ public class OpeningOptionsCC extends BaseTest {
                 .waitForPageLoadGmega()
                 .back();
 
-        System.out.println("Clicking General Information");
+        Log.info("Clicking General Information");
         ThankYouCloseGeneralInformationPageCC thankYouCloseGeneralInformationPageCC = callCenterIntroductionPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("General Information")
@@ -64,7 +69,7 @@ public class OpeningOptionsCC extends BaseTest {
                 .waitForPageLoad()
                 .back();
 
-        System.out.println("Clicking Media");
+        Log.info("Clicking Media");
         callCenterIntroductionPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Media")
@@ -72,7 +77,7 @@ public class OpeningOptionsCC extends BaseTest {
                 .waitForPageLoad()
                 .back();
 
-        System.out.println("Clicking Physician");
+        Log.info("Clicking Physician");
         callCenterIntroductionPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Physician")
@@ -80,7 +85,7 @@ public class OpeningOptionsCC extends BaseTest {
                 .waitForPageLoad()
                 .back();
 
-        System.out.println("Clicking Site Has Not Contacted Patient");
+        Log.info("Clicking Site Has Not Contacted Patient");
         callCenterIntroductionPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Site Has Not Contacted Patient")
@@ -88,7 +93,7 @@ public class OpeningOptionsCC extends BaseTest {
                 .waitForPageLoad()
                 .back();
 
-        System.out.println("Clicking Opt-Out of Database");
+        Log.info("Clicking Opt-Out of Database");
         OptOutOfDatabaseClosePageCC optOutOfDatabaseClosePageCC = callCenterIntroductionPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Opt-Out of Database")
@@ -115,7 +120,7 @@ public class OpeningOptionsCC extends BaseTest {
                 .waitForPageLoad()
                 .back();
 
-        System.out.println("Clicking Auto-Call Opt out");
+        Log.info("Clicking Auto-Call Opt out");
         AutoCallOptOutIdentificationClosePageCC autoCallOptOutIdentificationClosePageCC = callCenterIntroductionPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Auto-Call Opt out")
@@ -129,7 +134,7 @@ public class OpeningOptionsCC extends BaseTest {
                 .waitForPageLoad()
                 .back();
 
-        System.out.println("Clicking Person with Condition is Deceased");
+        Log.info("Clicking Person with Condition is Deceased");
         DeceasedIdentificationClosePageCC deceasedIdentificationClosePageCC = callCenterIntroductionPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Person with Condition is Deceased")
@@ -144,7 +149,7 @@ public class OpeningOptionsCC extends BaseTest {
                 .waitForPageLoad()
                 .back();
 
-        System.out.println("Clicking Other - Write reason in Notes Section");
+        Log.info("Clicking Other - Write reason in Notes Section");
         callCenterIntroductionPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Other - Write reason in Notes Section")

@@ -1,5 +1,6 @@
 package com.acurian.selenium.CC;
 
+import com.acurian.selenium.blinx.Crohns_4818_OLSBlinx;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.SubquestionExperiencedHeartPageCC;
@@ -11,6 +12,8 @@ import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.utils.Properties;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
@@ -19,6 +22,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class IBS_4819_CC extends BaseTest {
+
+    private static Logger Log = LogManager.getLogger(IBS_4819_CC.class.getName());
 
     @Test()
     @Description("IBS 4819 CC")
@@ -288,7 +293,7 @@ public class IBS_4819_CC extends BaseTest {
         List<String> disqualifyQ12 = Arrays.asList("Less than 3 months ago", "3 - 6 months ago", "7 - 11 months ago",
                 "1 - 2 years ago", "More than 2 years ago");
         for (String answer: disqualifyQ12) {
-            System.out.println("Select answer for Q12: " + answer);
+            Log.info("Select answer for Q12: " + answer);
             procedureForWeightLossPageCC
                     .waitForPageLoad()
                     .clickOnAnswer(answer)

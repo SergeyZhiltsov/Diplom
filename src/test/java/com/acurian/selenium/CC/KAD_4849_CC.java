@@ -11,6 +11,8 @@ import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.utils.Properties;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
@@ -18,6 +20,8 @@ import ru.yandex.qatools.allure.annotations.Description;
 import java.util.*;
 
 public class KAD_4849_CC extends BaseTest {
+
+    private static Logger Log = LogManager.getLogger(KAD_4849_CC.class.getName());
 
     @Test(enabled = false)
     @Description("KAD 4849 for CC")
@@ -126,7 +130,7 @@ public class KAD_4849_CC extends BaseTest {
         disqualifyQ3.add("3 - 6 months");
         for(String answer: disqualifyQ3)
         {
-            System.out.println(answer);
+            Log.info(answer);
             howLongHaveYouBeenSufferingFromEczema_CC
                     .waitForPageLoad()
                     .clickOnAnswer(answer)
@@ -236,7 +240,7 @@ public class KAD_4849_CC extends BaseTest {
         disqualifyQ23.put("Nucala, also known as mepolizumab (Agent Note: new-CA-la, MEP-oh-LIZ-oo-mab)", Arrays.asList(site.activeProtocols));
         disqualifyQ23.put("Otezla, also known as apremilast (Agent Note: oh-TEZ-la, a-PRE-mi-last)", Arrays.asList(site.activeProtocols));
         for (Map.Entry<String, List<String>> entry : disqualifyQ23.entrySet()) {
-            System.out.println(entry.getKey());
+            Log.info(entry.getKey());
             whichofthefollowingMedicationsTherapies_CC
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")

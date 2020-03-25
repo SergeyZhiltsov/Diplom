@@ -10,6 +10,8 @@ import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.utils.Properties;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -22,11 +24,12 @@ import java.util.Map;
 
 public class IBD_3889_CC extends BaseTest {
 
+    private static Logger Log = LogManager.getLogger(IBD_3889_CC.class.getName());
 
     @DataProvider(name = "Flare status")
     public Object[][] flareStatus() {
         return new Object[][]{
-              //  {"Not in Flare"},
+                //  {"Not in Flare"},
                 {"In Flare"}
         };
     }
@@ -135,9 +138,9 @@ public class IBD_3889_CC extends BaseTest {
         //Q6
         PartOfDiagnosisFollowingProceduresDonePageCC partOfDiagnosisFollowingProceduresDonePageCC =
                 whenDiagnosedCrohnsPageCC
-                .waitForPageLoadULC()
-                .clickOnAnswer("Less than 3 months ago") //Otherwise, Skip to Q8
-                .clickNextButton(new PartOfDiagnosisFollowingProceduresDonePageCC());
+                        .waitForPageLoadULC()
+                        .clickOnAnswer("Less than 3 months ago") //Otherwise, Skip to Q8
+                        .clickNextButton(new PartOfDiagnosisFollowingProceduresDonePageCC());
         partOfDiagnosisFollowingProceduresDonePageCC
                 .waitForPageLoad()
                 .back(whenDiagnosedCrohnsPageCC)
@@ -236,10 +239,10 @@ public class IBD_3889_CC extends BaseTest {
         EverTreatedCrohnOrColitisCC everTreatedCrohnOrColitisCC = followingMedicationsCrohnsPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("Mesalamine (Agent Note: MEZ-uh-luh-meen) medications, which include Apriso, Asacol, Canasa, Delzicol, Lialda, Pentasa, and Rowasa",
-                                "Azulfidine, also known as sulfasalazine (Agent Note: ay-ZULF-i-deen, sulf-uh-SAL-uh-zeen)",
-                                "Colazal or Giazo, also known as balsalazide (Agent Note: COLE-uh-zal, gee-AH-zo, bal-SAL-uh-zide)",
-                                "Dipentum, also known as olsalazine (Agent Note: di-PENT-um, ol-SAL-uh-zeen)",
-                                "Unsure")
+                        "Azulfidine, also known as sulfasalazine (Agent Note: ay-ZULF-i-deen, sulf-uh-SAL-uh-zeen)",
+                        "Colazal or Giazo, also known as balsalazide (Agent Note: COLE-uh-zal, gee-AH-zo, bal-SAL-uh-zide)",
+                        "Dipentum, also known as olsalazine (Agent Note: di-PENT-um, ol-SAL-uh-zeen)",
+                        "Unsure")
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new EverTreatedCrohnOrColitisCC());
         //Q12
@@ -407,7 +410,7 @@ public class IBD_3889_CC extends BaseTest {
         disqualifyQ24.put("IV (parenteral) nutrition (Agent Note: puh-REN-ter-ul)", Arrays.asList(site.activeProtocols));
         disqualifyQ24.put("A planned or scheduled surgery for Crohn’s disease", Arrays.asList(site.activeProtocols));
         for (Map.Entry<String, List<String>> entry : disqualifyQ24.entrySet()) {
-            System.out.println(entry.getKey());
+            Log.info(entry.getKey());
             haveAnyOfTheFollowingPageCC
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -621,7 +624,7 @@ public class IBD_3889_CC extends BaseTest {
         subquestionExperiencedHeartPageCC.back();
         haveYouEverExperiencedHeartRelatedMedicalCondCC.back();
 
-    WhichOfTheFollowingHaveRequiredForKidneyDiseaseCC whichOfTheFollowingHaveRequiredForKidneyDiseaseCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+        WhichOfTheFollowingHaveRequiredForKidneyDiseaseCC whichOfTheFollowingHaveRequiredForKidneyDiseaseCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Kidney disease")
@@ -714,7 +717,7 @@ public class IBD_3889_CC extends BaseTest {
                 .waitForPageLoad()
                 .setAll("5", "7", "170")
                 .clickNextButton(new LetMeSeePageCC());
-        HSMedicalRecordsPageCC hsMedicalRecordsPageCC  = letMeSeePageCC
+        HSMedicalRecordsPageCC hsMedicalRecordsPageCC = letMeSeePageCC
                 .waitForPageLoad()
                 .clickNextButton(identificationPageCC)
                 .waitForPageLoad()
@@ -729,7 +732,7 @@ public class IBD_3889_CC extends BaseTest {
                 .waitForPageLoadIBD("Crohn's Disease")
                 .clickNextButton(new HSMedicalRecordsPageCC())
                 .waitForPageLoad();
-        if(flareStatus.equals("Not in Flare")) {
+        if (flareStatus.equals("Not in Flare")) {
             hsMedicalRecordsPageCC
                     .clickNextButton(new QualifiedFlareMonitoringAppClosePageCC())
                     .waitForPageLoad()

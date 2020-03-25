@@ -13,6 +13,8 @@ import com.acurian.selenium.pages.blinx.ams.generalHealth.HaveYouEverBeenDiagnos
 import com.acurian.selenium.pages.blinx.ams.generalHealth.SiteSelectionPageOLS;
 import com.acurian.selenium.pages.blinx.ams.shared.*;
 import com.acurian.selenium.pages.blinx.gmega.intro.IdentificationPageOLS;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
@@ -22,6 +24,7 @@ import java.util.List;
 
 public class CV_8983_OLSBlinx extends BaseTest {
 
+    private static Logger Log = LogManager.getLogger(CV_8983_OLSBlinx.class.getName());
 
     @DataProvider
     public Object[][] sites() {
@@ -273,7 +276,7 @@ public class CV_8983_OLSBlinx extends BaseTest {
                 "Kidney disease requiring dialysis or transplant",
                 "Schizophrenia");
         for (String answer : disqualifyQ18) {
-            System.out.println("Select answer for Q18: " + answer);
+            Log.info("Select answer for Q18: " + answer);
             healthcareDiagnosedConditionsPageOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")

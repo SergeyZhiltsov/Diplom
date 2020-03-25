@@ -4,6 +4,9 @@ package com.acurian.selenium.pages.OLS.shared;
 import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.constants.Platforms;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
+import com.acurian.selenium.pages.OLS.debug.ConfigPageOLS;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -11,7 +14,9 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class GenderPageOLS extends MainPageOLS{
+public class GenderPageOLS extends MainPageOLS {
+
+    private static Logger Log = LogManager.getLogger(GenderPageOLS.class.getName());
 
     public final String titleExpected = "Please select your gender:";
 
@@ -59,9 +64,9 @@ public class GenderPageOLS extends MainPageOLS{
 
     @Step
     public GenderPageOLS waitForPageLoad() {
-            waitForPageLoadMain(titleText, titleExpected);
-            System.out.println("usual xpath working");
-            return this;
+        waitForPageLoadMain(titleText, titleExpected);
+        Log.info("usual xpath working");
+        return this;
     }
 
     @Step
@@ -83,7 +88,7 @@ public class GenderPageOLS extends MainPageOLS{
     }
 
     @Step
-    public String getTitleText(){
+    public String getTitleText() {
         return getText(titleText);
     }
 }

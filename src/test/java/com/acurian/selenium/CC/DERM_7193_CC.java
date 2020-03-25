@@ -12,6 +12,8 @@ import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.selenium.OLS.DERM_7193_OLS;
 import com.acurian.utils.Properties;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
@@ -21,6 +23,7 @@ import java.util.List;
 
 public class DERM_7193_CC extends BaseTest {
 
+    private static Logger Log = LogManager.getLogger(DERM_7193_CC.class.getName());
 
 
     @Test(enabled = false, dataProvider = "sites", dataProviderClass = DERM_7193_OLS.class) //Deactivated in R79.2
@@ -117,7 +120,7 @@ public class DERM_7193_CC extends BaseTest {
                 "7 - 11 months",
                 "1 year");
         for (String answer: disqualifyQ3) {
-            System.out.println("Select answer for Q3: " + answer);
+            Log.info("Select answer for Q3: " + answer);
             howLongHaveYouBeenSufferingFromEczema_cc
                     .waitForPageLoad()
                     .clickOnAnswer(answer)
@@ -179,7 +182,7 @@ public class DERM_7193_CC extends BaseTest {
         //Q27
         List<String> disqualifyQ27 = Arrays.asList("0 - No itch", "1");
         for (String answer: disqualifyQ27) {
-            System.out.println("Select answer for Q27: " + answer);
+            Log.info("Select answer for Q27: " + answer);
             rateAverageItchinessEczemaPageCC
                     .waitForPageLoad()
                     .selectFromDropDown(answer)
@@ -239,7 +242,7 @@ public class DERM_7193_CC extends BaseTest {
         List<String> disqualifyQ32 = Arrays.asList("Cosentyx (Agent Note: co-SEN-tix)", "Fasenra (Agent Note: fa-SEN-ra)",
                 "Nucala (Agent Note: new-CA-la)", "Otezla (Agent Note: oh-TEZ-la)");
         for (String answer: disqualifyQ32) {
-            System.out.println("Select answer for Q32: " + answer);
+            Log.info("Select answer for Q32: " + answer);
             currentlyTakingFollowingMedicationsCC
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -276,7 +279,7 @@ public class DERM_7193_CC extends BaseTest {
                 "Olumiant (Agent Note: oh-LOO-me-ant)",
                 "Xeljanz (Agent Note: ZEL-jans)")
         for (String disqualify: disqualifyQ34) {
-            System.out.println("Select answer for Q34: " + disqualify);
+            Log.info("Select answer for Q34: " + disqualify);
             haveYouEverTakenEitherAnyOfFollowingMeds_CC
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -535,7 +538,7 @@ public class DERM_7193_CC extends BaseTest {
                 "Drug or alcohol abuse within the past year",
                 "Hepatitis B", "Hepatitis C", "HIV or AIDS");
         for(String answer: disqualifyQ24QS59) {
-            System.out.println("Select answer for Q24: " + answer);
+            Log.info("Select answer for Q24: " + answer);
             doAnyOftheFollowingAdditionalDiagnosesCC
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -548,7 +551,7 @@ public class DERM_7193_CC extends BaseTest {
         }
         List<String> disqualifyQ24QS61 = Arrays.asList("Kidney disease requiring dialysis", "Schizophrenia");
         for(String answer: disqualifyQ24QS61) {
-            System.out.println("Select answer for Q24(2): " + answer);
+            Log.info("Select answer for Q24(2): " + answer);
             doAnyOftheFollowingAdditionalDiagnosesCC
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")

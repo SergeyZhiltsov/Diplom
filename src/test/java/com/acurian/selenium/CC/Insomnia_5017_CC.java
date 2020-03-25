@@ -12,6 +12,8 @@ import com.acurian.selenium.pages.CC.insomnia_5017.*;
 import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.selenium.pages.OLS.generalHealth.WhichOfFollowingHaveYouDiagnosedWith_NeurologicalCC;
 import com.acurian.utils.Properties;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -25,6 +27,7 @@ import java.util.Map;
 
 public class Insomnia_5017_CC extends BaseTest {
 
+    private static Logger Log = LogManager.getLogger(Insomnia_5017_CC.class.getName());
 
     @DataProvider
     public Object[][] sites() {
@@ -172,7 +175,7 @@ public class Insomnia_5017_CC extends BaseTest {
         disqualifyQ5.put("Sleep terrors", Arrays.asList(site.activeProtocols));
         disqualifyQ5.put("Sleepwalking disorder", Arrays.asList(site.activeProtocols));
         for (Map.Entry<String, List<String>> entry : disqualifyQ5.entrySet()) {
-            System.out.println(entry.getKey());
+            Log.info(entry.getKey());
             healthcareDiagnosedAnySleepPageCC
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -566,7 +569,7 @@ public class Insomnia_5017_CC extends BaseTest {
         disqualifyQ24.put("Drug or alcohol abuse within the past year", Arrays.asList(site.activeProtocols)); //Disqualify ("Substance abuse")
         disqualifyQ24.put("HIV or AIDS", Arrays.asList(site.activeProtocols)); //Disqualify ("HIV")
         for (Map.Entry<String, List<String>> entry : disqualifyQ24.entrySet()) {
-            System.out.println(entry.getKey());
+            Log.info(entry.getKey());
             doAnyOftheFollowingAdditionalDiagnosesCC
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")

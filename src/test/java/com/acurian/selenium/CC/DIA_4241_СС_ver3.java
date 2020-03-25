@@ -14,6 +14,8 @@ import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.utils.Properties;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
@@ -23,7 +25,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class DIA_4241_СС_ver3 extends BaseTest{
+public class DIA_4241_СС_ver3 extends BaseTest {
+
+    private static Logger Log = LogManager.getLogger(DIA_4241_СС_ver3.class.getName());
 
     @Test()
     @Description("Diabetes_4241 CC")
@@ -37,14 +41,14 @@ public class DIA_4241_СС_ver3 extends BaseTest{
 //        String AKC = "ISIS 703802_CS2";
         String[] protocols = {protocol2, protocol3, protocol4};
         String studyName = "a study for diabetics";
-        
+
         String env = System.getProperty("acurian.env", "STG");
 
         LoginPageCC loginPageCC = new LoginPageCC();
         loginPageCC
                 .openPage(env)
                 .waitForPageLoad();
-        Assert.assertEquals(loginPageCC.getTitleText(),"Please enter your username and password to login:","Title text is diff");
+        Assert.assertEquals(loginPageCC.getTitleText(), "Please enter your username and password to login:", "Title text is diff");
         SelectActionPageCC selectActionPageCC = loginPageCC
                 .typeUsername(Properties.getUsername())
                 .typePassword(Properties.getPassword())
@@ -107,7 +111,7 @@ public class DIA_4241_СС_ver3 extends BaseTest{
         WithType1DiabetesPageCC withType1DiabetesPageCC = whatKindOfDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Type 1 diabetes (sometimes called Juvenile diabetes)")
-                .clickNextButton(new  WithType1DiabetesPageCC());
+                .clickNextButton(new WithType1DiabetesPageCC());
         withType1DiabetesPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
@@ -236,7 +240,7 @@ public class DIA_4241_СС_ver3 extends BaseTest{
         options.put("Synjardy (metformin and empagliflozin)", Arrays.asList(protocol2, protocol4));
         options.put("Xigduo (metformin and dapagliflozin)", Arrays.asList(protocol2, protocol4));
         for (Map.Entry<String, List<String>> entry : options.entrySet()) {
-            System.out.println("Select answer: " + entry.getKey());
+            Log.info("Select answer: " + entry.getKey());
             metforminMedicationsPageCC
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -269,19 +273,19 @@ public class DIA_4241_СС_ver3 extends BaseTest{
         options.put("Duetact (pioglitazone and glimepiride)", Arrays.asList(protocol2, protocol4));
         options.put("Farxiga (dapagliflozin)", Arrays.asList(protocol2, protocol4));
         options.put("Glyset (miglitol)", Arrays.asList(protocol2, protocol4));
-        options.put("Glyxambi (empagliflozin and linagliptin)", Arrays.asList(protocol2,protocol3, protocol4));
+        options.put("Glyxambi (empagliflozin and linagliptin)", Arrays.asList(protocol2, protocol3, protocol4));
         options.put("Invokana (canagliflozin)", Arrays.asList(protocol2, protocol4));
-        options.put("Januvia (sitagliptin)", Arrays.asList(protocol2,protocol3, protocol4));
+        options.put("Januvia (sitagliptin)", Arrays.asList(protocol2, protocol3, protocol4));
         options.put("Jardiance (empagliflozin)", Arrays.asList(protocol2, protocol4));
-        options.put("Nesina (alogliptin)", Arrays.asList(protocol2,protocol3, protocol4));
-        options.put("Onglyza (saxagliptin)", Arrays.asList(protocol2,protocol3, protocol4));
-        options.put("Oseni (alogliptin and pioglitazone)", Arrays.asList(protocol2,protocol3, protocol4));
+        options.put("Nesina (alogliptin)", Arrays.asList(protocol2, protocol3, protocol4));
+        options.put("Onglyza (saxagliptin)", Arrays.asList(protocol2, protocol3, protocol4));
+        options.put("Oseni (alogliptin and pioglitazone)", Arrays.asList(protocol2, protocol3, protocol4));
         options.put("Prandin (repaglinide)", Arrays.asList(protocol2, protocol4));
         options.put("Precose (acarbose)", Arrays.asList(protocol2, protocol4));
         options.put("Starlix (nateglinide)", Arrays.asList(protocol2, protocol4));
-        options.put("Tradjenta (linagliptin)", Arrays.asList(protocol2,protocol3, protocol4));
+        options.put("Tradjenta (linagliptin)", Arrays.asList(protocol2, protocol3, protocol4));
         for (Map.Entry<String, List<String>> entry : options.entrySet()) {
-            System.out.println(entry.getKey());
+            Log.info(entry.getKey());
             apartFromMetforminPageCC
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -676,9 +680,9 @@ public class DIA_4241_СС_ver3 extends BaseTest{
                 .clickNextButton(new TransitionStatementCC());
 
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC =
-        transitionStatementCC
-                .waitForPageLoad("diabetes")
-                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
+                transitionStatementCC
+                        .waitForPageLoad("diabetes")
+                        .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
@@ -707,14 +711,14 @@ public class DIA_4241_СС_ver3 extends BaseTest{
                         "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageCC())
                 .waitForPageLoad(studyName)
-        		.getPID()
-        		.clickOnAnswer(site.name)
-        		.clickNextButton(new SynexusRadiantDirectScheduleCC())
+                .getPID()
+                .clickOnAnswer(site.name)
+                .clickNextButton(new SynexusRadiantDirectScheduleCC())
                 .waitForPageLoad()
                 .assertVariablesNew("Acurian", "Trial", "09/09/1980", "US",
                         "Dover, DE", site.zipCode, "qa.acurian@gmail.com", "999-999-9999",
                         env.equals("STG") ? "010151" : "TA4722S", site.name, "SANPPDDIA893 - Sanofi type 2 diabetes")
-                .clickOnAnswer("[Successful direct schedule in clinical conductor]")                
+                .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad();
         if (selectActionPageCC.getHostName().equals(Properties.getHostName())) {

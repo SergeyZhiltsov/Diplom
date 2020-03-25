@@ -18,6 +18,8 @@ import com.acurian.selenium.pages.CC.pediatric.TheStudySitePageCC;
 import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.selenium.pages.OLS.generalHealth.WhichOfFollowingHaveYouDiagnosedWith_NeurologicalCC;
 import com.acurian.utils.Properties;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -27,6 +29,8 @@ import java.util.List;
 import java.util.Map;
 
 public class End_4385_CC extends BaseTest {
+
+    private static Logger Log = LogManager.getLogger(End_4385_CC.class.getName());
 
     @Test(enabled = false)
     public void end4385cc() {
@@ -454,7 +458,7 @@ public class End_4385_CC extends BaseTest {
         HeartrelatedMedicalProceduresPageCC heartrelatedMedicalProceduresPageCC =
                 new HeartrelatedMedicalProceduresPageCC();
         for (Map.Entry<String, List<String>> entry : disqualifyQ121.entrySet()) {
-            System.out.println(entry.getKey());
+            Log.info(entry.getKey());
             subquestionExperiencedHeartPageCC
                     .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
                     .clickOnAnswer(entry.getKey())
@@ -481,7 +485,7 @@ public class End_4385_CC extends BaseTest {
         disqualifyQ122.put("7 - 12 months ago", Arrays.asList(site.activeProtocols));
         disqualifyQ122.put("More than 1 year ago", Arrays.asList(site.activeProtocols));
         for (Map.Entry<String, List<String>> entry : disqualifyQ122.entrySet()) {
-            System.out.println(entry.getKey());
+            Log.info(entry.getKey());
             subquestionExperiencedHeartPageCC
                     .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected2)
                     .clickOnAnswer(entry.getKey())
@@ -531,7 +535,7 @@ public class End_4385_CC extends BaseTest {
         disqualifyQ124.put("7 - 12 months ago", Arrays.asList(site.activeProtocols));
         disqualifyQ124.put("More than 1 year ago", Arrays.asList(site.activeProtocols));
         for (Map.Entry<String, List<String>> entry : disqualifyQ124.entrySet()) {
-            System.out.println(entry.getKey());
+            Log.info(entry.getKey());
             subquestionExperiencedHeartPageCC
                     .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected4)
                     .clickOnAnswer(entry.getKey())
@@ -756,7 +760,7 @@ public class End_4385_CC extends BaseTest {
         disqualifyQ24.put("Hepatitis C", Arrays.asList(site.activeProtocols)); //Disqualify ("HCV")
         disqualifyQ24.put("HIV or AIDS", Arrays.asList(site.activeProtocols)); //Disqualify ("HIV")
         for (Map.Entry<String, List<String>> entry : disqualifyQ24.entrySet()) {
-            System.out.println(entry.getKey());
+            Log.info(entry.getKey());
             doAnyOftheFollowingAdditionalDiagnosesCC
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")

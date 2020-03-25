@@ -147,7 +147,7 @@ public class SUI_3923_CC extends BaseTest{
         howLongYouBeenExperiencingUrinaryLeakageCC
         		.waitForPageLoad();
         Assert.assertEquals(howLongYouBeenExperiencingUrinaryLeakageCC.getTitleText(), howLongYouBeenExperiencingUrinaryLeakageCC.titleExpected, "Title is diff");
-        //System.out.println("see there="+debugPageCC.getProtocolForQuestion(howOldWereYouMigHeadachePageCC.titleExpected));       
+        //Log.info("see there="+debugPageCC.getProtocolForQuestion(howOldWereYouMigHeadachePageCC.titleExpected));       
         howLongYouBeenExperiencingUrinaryLeakageCC
         .clickOnAnswer("1 month or less")
         .clickNextButton(new HowFrequentlyYouExperienceUrinaryLeakageCC()); // Click NEXT button and wait for the NEXT page

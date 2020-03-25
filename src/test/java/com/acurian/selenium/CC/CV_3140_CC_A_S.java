@@ -21,6 +21,8 @@ import com.acurian.selenium.pages.CC.generalHealth.SiteSelectionPageCC;
 import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.selenium.OLS.CV_3140_OLS_A_S;
 import com.acurian.utils.Properties;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
@@ -32,6 +34,7 @@ import java.util.Map;
 
 public class CV_3140_CC_A_S extends BaseTest {
 
+    private static Logger Log = LogManager.getLogger(CV_3140_CC_A_S.class.getName());
 
     @Test(dataProvider = "sites", dataProviderClass = CV_3140_OLS_A_S.class, enabled = false)
     @Description("CV 3140 CC")
@@ -141,7 +144,7 @@ public class CV_3140_CC_A_S extends BaseTest {
         optionsQ8.put("Vytorin (simvastatin and ezetimibe)", Arrays.asList(site.activeProtocols));
         optionsQ8.put("Zocor (simvastatin)", Arrays.asList(site.activeProtocols));
         for (Map.Entry<String, List<String>> entry : optionsQ8.entrySet()) {
-            System.out.println(entry.getKey());
+            Log.info(entry.getKey());
             statinMedicationsOnPageCC
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -562,7 +565,7 @@ public class CV_3140_CC_A_S extends BaseTest {
         options.put("HIV or AIDS", Arrays.asList(site.activeProtocols));
         options.put("Kidney disease requiring dialysis or transplant", Arrays.asList(site.activeProtocols));
         for (Map.Entry<String, List<String>> entry : options.entrySet()) {
-            System.out.println(entry.getKey());
+            Log.info(entry.getKey());
             healthcareDiagnosedConditionsPageCC
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")

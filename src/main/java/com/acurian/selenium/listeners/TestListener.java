@@ -3,6 +3,8 @@ package com.acurian.selenium.listeners;
 import com.acurian.selenium.pages.BaseTest;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.ITestResult;
 import org.testng.TestListenerAdapter;
 import ru.yandex.qatools.allure.annotations.Attachment;
@@ -15,15 +17,24 @@ import java.util.Arrays;
 
 public class TestListener extends TestListenerAdapter {
 
+    private static Logger Log = LogManager.getLogger(TestListener.class.getName());
+
     @Override
     public void onTestFailure(ITestResult result) {
+        Log.error("Test is unsuccessful. Test case - " + result.getMethod().getMethodName() + " has failed");
         attachScreenshot();
     }
 
     @Override
     public void onTestStart(ITestResult result) {
-        System.out.println("Test started on - " + result.getName());
+        Log.info("Test - " + result.getName() + " started");
         super.onTestStart(result);
+    }
+
+    @Override
+    public void onTestSuccess(ITestResult result) {
+        Log.info("Test is successful. Test case - " + result.getMethod().getMethodName() + " has passed");
+        super.onTestSuccess(result);
     }
 
     @Attachment(value = "Page screenshot", type = "image/png")

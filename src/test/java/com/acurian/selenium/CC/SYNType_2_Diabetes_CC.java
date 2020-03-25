@@ -178,7 +178,7 @@ public class SYNType_2_Diabetes_CC extends BaseTest {
 
 //        List<String> disqualify = Arrays.asList("2 - 3 months ago", "4 - 5 months ago", "6 months ago or longer");
 //        for (String answer : disqualify) {
-//            System.out.println("Select answer for Q6: " + answer);
+//            Log.info("Select answer for Q6: " + answer);
 //            lastTimeYouTookPageCC
 //                    .waitForPageLoad()
 //                    .clickOnAnswer(answer)
@@ -323,7 +323,7 @@ public class SYNType_2_Diabetes_CC extends BaseTest {
         conditions.add("Primary sclerosing cholangitis or primary biliary cirrhosis (Agent Note: scler-OH-sing, ko-lanj-EYE-tis, BILL-ee-air-ee)");
         conditions.add("Wilson's disease");
         for (String condition : conditions) {
-            System.out.println("Select answer for Q17:QS4624 " + condition);
+            Log.info("Select answer for Q17:QS4624 " + condition);
             followingLiverRelatedConditionCC
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -368,7 +368,7 @@ public class SYNType_2_Diabetes_CC extends BaseTest {
 //        List<String> disqualifyQ20 = Arrays.asList("Less than 3 months ago", "3 - 6 months ago", "7 - 11 months ago",
 //                "1 - 2 years ago", "More than 2 years ago");
 //        for (String answer: disqualifyQ20) {
-//            System.out.println("Select answer for Q20: " + answer);
+//            Log.info("Select answer for Q20: " + answer);
 //            procedureForWeightLossPageCC
 //                    .waitForPageLoad()
 //                    .clickOnAnswer(answer)

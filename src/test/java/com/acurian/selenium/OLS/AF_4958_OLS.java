@@ -1,5 +1,6 @@
 package com.acurian.selenium.OLS;
 
+import com.acurian.selenium.blinx.Crohns_4818_OLSBlinx;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.ChronicCough.EverDiagnosedWithFollowingConditionsOLS;
@@ -18,6 +19,8 @@ import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.*;
 import com.acurian.utils.Properties;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
@@ -27,6 +30,7 @@ import java.util.List;
 
 public class AF_4958_OLS extends BaseTest {
 
+    private static Logger Log = LogManager.getLogger(AF_4958_OLS.class.getName());
 
     @DataProvider
     public Object[][] sites() {
@@ -118,7 +122,7 @@ public class AF_4958_OLS extends BaseTest {
                 new TypeOfDoctorDiagnosedWithFibromyalgiaOLS();
         List<String> disqualifyQ3 = Arrays.asList("Less than 3 months", "3 - 6 months", "7 - 11 months");
         for (String answer : disqualifyQ3) {
-            System.out.println("Select answer for Q3: " + answer);
+            Log.info("Select answer for Q3: " + answer);
             howLongBeenHavingSymptomsFibromyalgiaOLS
                     .waitForPageLoad()
                     .clickOnAnswer(answer)
@@ -152,7 +156,7 @@ public class AF_4958_OLS extends BaseTest {
 //                "Ongoing shingles pain (post-herpetic neuralgia)", "Ongoing pain related to a traumatic injury or prior surgery",
 //                "Long-lasting pain that affects an arm or leg after an injury, surgery, stroke, or heart attack (complex regional pain syndrome)");
 //        for (String answer : disqualifyQ5) {
-//            System.out.println("Select answer for Q5: " + answer);
+//            Log.info("Select answer for Q5: " + answer);
 //            anyFollowingPainfulConditionsOLS
 //                    .waitForPageLoad()
 //                    .clickOnAnswers("None of the above")
@@ -255,7 +259,7 @@ public class AF_4958_OLS extends BaseTest {
 
         List<String> disqualifyQ4QS40 = Arrays.asList("Ankylosing spondylitis or axial spondyloarthritis", "Gout");
         for (String answer : disqualifyQ4QS40) {
-            System.out.println("Select answer for Q4QS40: " + answer);
+            Log.info("Select answer for Q4QS40: " + answer);
             whichOfTheFollowingHaveYouBeenDiagnosedBonesJoints_OLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -300,7 +304,7 @@ public class AF_4958_OLS extends BaseTest {
 
         List<String> disqualifyQ8QS44 = Arrays.asList("Crohn's disease", "Ulcerative colitis");
         for (String answer : disqualifyQ8QS44) {
-            System.out.println("Select answer for Q8:QS44: " + answer);
+            Log.info("Select answer for Q8:QS44: " + answer);
             whichOfFollowingDigestiveConditionPageOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -342,7 +346,7 @@ public class AF_4958_OLS extends BaseTest {
         List<String> disqualifyQ12GH = Arrays.asList("Less than 30 days ago", "1 - 3 months ago", "4 - 6 months ago",
                 "7 - 12 months ago");
         for (String answer : disqualifyQ12GH) {
-            System.out.println("Select answer for Q12.1GH: " + answer);
+            Log.info("Select answer for Q12.1GH: " + answer);
             subquestionHeartPageOLS
                     .waitForPageLoad(1, subquestionHeartPageOLS.titleExpected1)
                     .clickOnAnswerForSubQuestion(1, answer)
@@ -362,7 +366,7 @@ public class AF_4958_OLS extends BaseTest {
 
 
         for (String answer : disqualifyQ12GH) {
-            System.out.println("Select answer for Q12.3GH: " + answer);
+            Log.info("Select answer for Q12.3GH: " + answer);
             subquestionHeartPageOLS
                     .waitForPageLoad(1, subquestionHeartPageOLS.titleExpected3)
                     .clickOnAnswerForSubQuestion(1, answer)
@@ -381,7 +385,7 @@ public class AF_4958_OLS extends BaseTest {
                 .clickNextButton(subquestionHeartPageOLS);
 
         for (String answer : disqualifyQ12GH) {
-            System.out.println("Select answer for Q12.4GH: " + answer);
+            Log.info("Select answer for Q12.4GH: " + answer);
             subquestionHeartPageOLS
                     .waitForPageLoad(1, subquestionHeartPageOLS.titleExpected4)
                     .clickOnAnswerForSubQuestion(1, answer)
@@ -406,7 +410,7 @@ public class AF_4958_OLS extends BaseTest {
 
         List<String> disqualifyQ6QS51 = Arrays.asList("Dialysis", "Kidney transplant");
         for (String answer : disqualifyQ6QS51) {
-            System.out.println("Select answer for Q6:QS51: " + answer);
+            Log.info("Select answer for Q6:QS51: " + answer);
             whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS
                     .waitForPageLoad()
                     .clickOnAnswers("Neither")
@@ -452,7 +456,7 @@ public class AF_4958_OLS extends BaseTest {
         //Q18: QS53
         List<String> disqualifyQ18 = Arrays.asList("Bipolar disorder", "Schizophrenia");
         for (String answer : disqualifyQ18) {
-            System.out.println("Select answer for Q18:QS53: " + answer);
+            Log.info("Select answer for Q18:QS53: " + answer);
             followingMentalEmotionalHealthPageOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -478,7 +482,7 @@ public class AF_4958_OLS extends BaseTest {
         List<String> disqualifyQ19 = Arrays.asList("Alzheimer's disease", "Parkinson's disease",
                 "Multiple sclerosis (MS)", "Seizure disorder, such as epilepsy");
         for (String answer : disqualifyQ19) {
-            System.out.println("Select answer for Q19:QS54: " + answer);
+            Log.info("Select answer for Q19:QS54: " + answer);
             whichOfFollowingHaveYouDiagnosedWith_NeurologicalOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -506,7 +510,7 @@ public class AF_4958_OLS extends BaseTest {
 //                "Hepatitis C",
                 "HIV or AIDS");
         for (String answer : disqualifyQ24) {
-            System.out.println("Select answer for Q24QS59: " + answer);
+            Log.info("Select answer for Q24QS59: " + answer);
             doAnyOftheFollowingAdditionalDiagnosesOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -520,7 +524,7 @@ public class AF_4958_OLS extends BaseTest {
         List<String> disqualifyQ24pt2 = Arrays.asList("Kidney disease requiring dialysis", "Multiple sclerosis (MS)",
                 "Seizure disorder such as epilepsy", "Schizophrenia");
         for (String answer : disqualifyQ24pt2) {
-            System.out.println("Select answer for Q24QS59: " + answer);
+            Log.info("Select answer for Q24QS59: " + answer);
             doAnyOftheFollowingAdditionalDiagnosesOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")

@@ -1,5 +1,6 @@
 package com.acurian.selenium.OLS;
 
+import com.acurian.selenium.CC.PSA_5071_CC;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.Derm.*;
@@ -11,6 +12,8 @@ import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -21,6 +24,7 @@ import java.util.List;
 
 public class DERM_4815_OLS_A_S extends BaseTest {
 
+    private static Logger Log = LogManager.getLogger(DERM_4815_OLS_A_S.class.getName());
 
     @DataProvider(name = "sites")
     public Object[][] getData() {
@@ -289,7 +293,7 @@ public class DERM_4815_OLS_A_S extends BaseTest {
 
         List<String> disqualifyQ32 = Arrays.asList("Jakafi", "Olumiant", "Xeljanz");
         for (String answer: disqualifyQ32) {
-            System.out.println(answer);
+            Log.info(answer);
             eitherOfFollowingMedicationsOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")

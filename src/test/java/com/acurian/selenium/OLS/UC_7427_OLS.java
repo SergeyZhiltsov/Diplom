@@ -1,5 +1,6 @@
 package com.acurian.selenium.OLS;
 
+import com.acurian.selenium.CC.PSA_5071_CC;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.Crohns_3485.BiologicMedicationsPageOLS;
@@ -12,6 +13,8 @@ import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
@@ -23,6 +26,7 @@ import java.util.Map;
 
 public class UC_7427_OLS extends BaseTest {
 
+    private static Logger Log = LogManager.getLogger(UC_7427_OLS.class.getName());
 
 
     @DataProvider
@@ -207,7 +211,7 @@ public class UC_7427_OLS extends BaseTest {
                 "Tysabri");
 
         for (String answer : disqualifyQ9) {
-            System.out.println("Select answer for Q9: " + answer);
+            Log.info("Select answer for Q9: " + answer);
             biologicMedicationsPageOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -274,7 +278,7 @@ public class UC_7427_OLS extends BaseTest {
         WeightLossSurgeryPageOLS weightLossSurgeryPageOLS = new WeightLossSurgeryPageOLS();
 
         for (Map.Entry<String, List<String>> entry : disqualifyQ18.entrySet()) {
-            System.out.println(entry.getKey());
+            Log.info(entry.getKey());
             currentlyHaveAnyOffFollowingPageOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -305,7 +309,7 @@ public class UC_7427_OLS extends BaseTest {
                 "More than 2 years ago");
 
         for (String answer : disqualifyQ20) {
-            System.out.println("Select answer for Q20: " + answer);
+            Log.info("Select answer for Q20: " + answer);
             procedureForWeightLossPageOLS
                     .waitForPageLoad()
                     .clickOnAnswer(answer)
@@ -532,7 +536,7 @@ public class UC_7427_OLS extends BaseTest {
                 "Hepatitis C",
                 "HIV or AIDS"); //Kidney disease requiring dialysis is not displayed
         for (String answer : disqualifyQS59) {
-            System.out.println("Select answer for QS59: " + answer);
+            Log.info("Select answer for QS59: " + answer);
             doAnyOftheFollowingAdditionalDiagnosesOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")

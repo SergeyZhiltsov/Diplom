@@ -1,8 +1,11 @@
 package com.acurian.selenium.pages.blinx.ams.generalHealth;
 
 import com.acurian.selenium.constants.Locators;
+import com.acurian.selenium.pages.OLS.MainPageOLS;
 import com.acurian.selenium.pages.blinx.MainPageBlinx;
 import com.acurian.utils.PassPID;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
@@ -11,6 +14,8 @@ import ru.yandex.qatools.allure.annotations.Parameter;
 import ru.yandex.qatools.allure.annotations.Step;
 
 public class SiteSelectionPageOLS extends MainPageBlinx {
+
+    private static Logger Log = LogManager.getLogger(SiteSelectionPageOLS.class.getName());
 
     @Parameter("My PID OLS")
     public String pidNumber;
@@ -72,7 +77,7 @@ public class SiteSelectionPageOLS extends MainPageBlinx {
         pidNumber = getText(pidNumberPath);
         logTextToAllure("PID = " + pidNumber);
         PassPID.getInstance().setPidNumber(pidNumber);
-        System.out.println("PID = " + pidNumber);
+        Log.info("PID = " + pidNumber);
         return this;
     }
 

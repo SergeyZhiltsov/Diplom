@@ -1,5 +1,6 @@
 package com.acurian.selenium.health_check;
 
+import com.acurian.selenium.CC.PSA_5071_CC;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.RA.WhatKindOfArthritisPageOLS;
@@ -10,11 +11,15 @@ import com.acurian.selenium.pages.OLS.gmega.WhenYouDiagnosedWithRaGmegaPageOLS;
 import com.acurian.selenium.pages.OLS.shared.BehalfOfSomeoneElsePageOLS;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 import org.openqa.selenium.TimeoutException;
 
 public class HelloSignOls extends BaseTest {
+
+    private static Logger Log = LogManager.getLogger(HelloSignOls.class.getName());
 
     @Test(enabled = true)
     @Description("Test for Hello Sign")
@@ -109,7 +114,7 @@ public class HelloSignOls extends BaseTest {
                     .waitForPageLoad()
                     .clickNextButton(new AboutHealthPageOLS());
         } catch (TimeoutException ex) {
-            System.out.println("Page ThankYouCloseGmegaOLS was skipped.");
+            Log.info("Page ThankYouCloseGmegaOLS was skipped.");
         }
         new AboutHealthPageOLS()
                 .waitForPageLoad()
