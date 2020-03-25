@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All" verbose="4" parallel="methods" thread-count="7">
+
+    <test name="Regression1">
+        <packages>
+            <package name="com.acurian.selenium.SB" />
+        </packages>
+    </test>
+
+    <!--<test name="TC inner test">-->
+        <!--<classes>-->
+            <!--<class name="com.acurian.selenium.CC.KAD_4631_CC"/>-->
+            <!--&lt;!&ndash;<class name="com.acurian.selenium.OLS.Test2"/>&ndash;&gt;-->
+        <!--</classes>-->
+    <!--</test>-->
+
+    <!--<test name="TC C 020">-->
+        <!--<classes>-->
+            <!--<class name="ch."/>-->
+        <!--</classes>-->
+    <!--</test>-->
+</suite>
