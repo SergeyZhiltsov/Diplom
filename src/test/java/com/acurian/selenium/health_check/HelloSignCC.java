@@ -117,8 +117,10 @@ public class HelloSignCC extends BaseTest {
                 .waitForPageLoad3()
                 .clickNextButton(selectActionPageCC);
 
-        selectActionPageCC
-                .waitForPageLoad()
-                .pidFromDbToLog(env);
+        if (selectActionPageCC.getHostName().equals(Properties.getHostName())) {
+            selectActionPageCC
+                    .waitForPageLoad()
+                    .pidFromDbToLog(env);
+        }
     }
 }
