@@ -2,6 +2,10 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="All" verbose="4">
 
+    <listeners>
+        <listener class-name="com.acurian.selenium.listeners.AnnotationTransformer"/>
+    </listeners>
+
     <test name="Validate ALL FULs">
         <classes>
             <class name="com.acurian.selenium.ful.FULsValidation"/>
