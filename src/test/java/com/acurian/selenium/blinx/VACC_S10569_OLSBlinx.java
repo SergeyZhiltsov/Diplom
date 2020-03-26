@@ -21,8 +21,6 @@ import io.qameta.allure.Description;
 
 public class VACC_S10569_OLSBlinx extends BaseTest {
 
-
-
     @DataProvider
     public Object[][] sites() {
         return new Object[][]{

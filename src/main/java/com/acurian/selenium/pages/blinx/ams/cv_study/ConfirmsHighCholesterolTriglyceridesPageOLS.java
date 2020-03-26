@@ -20,6 +20,7 @@ public class ConfirmsHighCholesterolTriglyceridesPageOLS extends MainPageBlinx {
 
     @Step
     public ConfirmsHighCholesterolTriglyceridesPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

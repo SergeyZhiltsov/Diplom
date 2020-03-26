@@ -20,6 +20,7 @@ public class AdditionalHeartRelatedConditionsPageOLS extends MainPageBlinx {
 
     @Step
     public AdditionalHeartRelatedConditionsPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
