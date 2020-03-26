@@ -110,7 +110,7 @@ public class Derm_4967_OLSblinx extends BaseTest {
                 new HowWouldYouDescribeTheEczemaCurrentlyPageOLS();
         List<String> disqualifyQ4 = Arrays.asList("0", "1", "2", "3", "4", "5");
         for (String answer : disqualifyQ4) {
-            System.out.println("Select answer for Q4: " + answer);
+            Log.error("Select answer for Q4: " + answer);
             howMuchEczemaYouHaveOnYourBody_OLS
                     .waitForPageLoad()
                     .selectFromDropDown(answer)
@@ -123,7 +123,7 @@ public class Derm_4967_OLSblinx extends BaseTest {
 //-----------STATUS SET validation:  PATIENT_PRIORITY_YES = 8 14 -------------
         List<String> studyLevelStatus = Arrays.asList("13", "14", "15", "16", "17", "18", "19", "20");
         for (String answer : studyLevelStatus) {
-            System.out.println("Select answer to get study level status logic for Q4: " + answer);
+            Log.info("Select answer to get study level status logic for Q4: " + answer);
             howMuchEczemaYouHaveOnYourBody_OLS
                     .waitForPageLoad()
                     .selectFromDropDown(answer)
@@ -422,7 +422,7 @@ public class Derm_4967_OLSblinx extends BaseTest {
                         "IBS, or irritable bowel syndrome");
         List<String> disqualifyGHQ4 = Arrays.asList("Crohn's disease", "Ulcerative colitis");
         for (String answer : disqualifyGHQ4) {
-            System.out.println("Select answer for GHQ4: " + answer);
+            Log.info("Select answer for GHQ4: " + answer);
             whichOfFollowingDigestiveConditionPageOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -447,7 +447,7 @@ public class Derm_4967_OLSblinx extends BaseTest {
 
         List<String> disqualifyQ16 = Arrays.asList("Dialysis", "Kidney transplant");
         for (String answer : disqualifyQ16) {
-            System.out.println(answer);
+            Log.info(answer);
             WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS
                     .waitForPageLoad()
                     .clickOnAnswers("Neither")
@@ -503,7 +503,7 @@ public class Derm_4967_OLSblinx extends BaseTest {
         //Q18: QS53
         List<String> disqualifyQ18 = Arrays.asList("Bipolar disorder", "Schizophrenia");
         for (String answer : disqualifyQ18) {
-            System.out.println(answer);
+            Log.info(answer);
             followingMentalEmotionalHealthPageOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -623,7 +623,7 @@ public class Derm_4967_OLSblinx extends BaseTest {
                 "Hepatitis C",
                 "HIV or AIDS");
         for (String answer : disqualifyQ24) {
-            System.out.println(answer);
+            Log.info(answer);
             doAnyOftheFollowingAdditionalDiagnosesOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -640,7 +640,7 @@ public class Derm_4967_OLSblinx extends BaseTest {
                 "Schizophrenia",
                 "Multiple sclerosis (MS)");
         for (String answer : disqualifyQ24second) {
-            System.out.println(answer);
+            Log.info(answer);
             doAnyOftheFollowingAdditionalDiagnosesOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
