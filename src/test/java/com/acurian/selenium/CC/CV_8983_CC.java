@@ -353,6 +353,5 @@ public class CV_8983_CC extends BaseTest {
                     //.assertGeneratedFul(env, site)
                     .dispoShouldMatch(site.dispo, site.dispo);
         }
-
     }
 }
