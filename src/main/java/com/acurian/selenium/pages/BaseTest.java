@@ -29,7 +29,6 @@ public abstract class BaseTest {
     private EventFiringWebDriver driver;
 
     public static WebDriver getDriver() {
-//        return driver;
         return DRIVER.get();
     }
 

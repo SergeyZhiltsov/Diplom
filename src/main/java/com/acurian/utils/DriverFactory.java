@@ -47,7 +47,7 @@ public class DriverFactory {
      * @param resourceName The name of the resource ex /chromedriver
      * @return Path to resource
      */
-    private static String getResourceByName(String resourceName){
+    private static String getResourceByName(String resourceName) {
         try {
             return new File(DriverFactory.class.getResource(resourceName + getExecutableExtension()).toURI()).getPath();
         } catch (URISyntaxException e) {

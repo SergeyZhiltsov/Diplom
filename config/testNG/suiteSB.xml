@@ -2,6 +2,9 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Screen Builder regression">
     <!--Above line corresponds to running below 2 clasees in parallel threads-->
+    <listeners>
+        <listener class-name="com.acurian.selenium.listeners.AnnotationTransformer"/>
+    </listeners>
     <test name="Screen Builder basic regression">
         <classes>
             <!--<class name="com.acurian.selenium.SB.SBMegaScreenerTest"/>-->

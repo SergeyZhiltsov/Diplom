@@ -24,7 +24,7 @@ public class CSVParser {
     }
 
     /**
-    Applicable only for csv files with 2 columns
+     * Applicable only for csv files with 2 columns
      */
     public LinkedHashMap<String, String> getDataAsMap(String csvFileName, boolean withHeader) throws IOException {
         setupParser(csvFileName, withHeader);

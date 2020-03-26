@@ -65,7 +65,7 @@ public class MainPageBlinx extends BasePage {
         }
         catch (UnknownHostException ex)
         {
-            System.out.println("Hostname can not be resolved");
+            Log.error("Hostname can not be resolved");
         }
         return hostname;
     }

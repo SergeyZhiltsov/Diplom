@@ -168,6 +168,10 @@
               <name>usedefaultlisteners</name>
               <value>false</value>
             </property>
+            <property>
+              <name>retryCount</name>
+              <value>1</value>
+            </property>
 <!--            <property>-->
 <!--              <name>listener</name>-->
 <!--              &lt;!&ndash;<value>com.acurian.selenium.listeners.TestListener</value>&ndash;&gt;-->
