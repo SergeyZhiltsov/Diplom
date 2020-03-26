@@ -20,6 +20,7 @@ public class CurrentlyParticipatingInStudyOLS extends MainPageBlinx {
 
     @Step
     public CurrentlyParticipatingInStudyOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

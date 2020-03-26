@@ -83,6 +83,8 @@ public class CV_4450_OLSblinx extends BaseTest {
                 .setDate("01081970")
                 .clickNextButton(cholesterolTriglyceridesLipidsPageOLS);
 
+        //-------------------------------------------Flow--------------------------------------------------
+
         TakingFollowingStaticMedicationOLS takingFollowingStaticMedicationOLS = cholesterolTriglyceridesLipidsPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
@@ -325,6 +327,8 @@ public class CV_4450_OLSblinx extends BaseTest {
                     .checkProtocolsContainsForQNumber("QS6725", site.activeProtocols)
                     .back(healthcareDiagnosedConditionsPageOLS);
         }
+
+        //----------------------------------------Closes------------------------------------------
 
         IdentificationPageOLS identificationPageOLS = healthcareDiagnosedConditionsPageOLS
                 .waitForPageLoad()
