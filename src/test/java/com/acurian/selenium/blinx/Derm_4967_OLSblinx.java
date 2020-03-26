@@ -14,6 +14,7 @@ import com.acurian.selenium.pages.blinx.ams.ps.HasHealthCareProfessionalDiagnose
 import com.acurian.selenium.pages.blinx.ams.shared.*;
 import com.acurian.selenium.pages.blinx.gmega.AboutHealthPageOLS;
 import com.acurian.selenium.pages.blinx.gmega.intro.IdentificationPageOLS;
+import com.acurian.utils.Properties;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
@@ -702,10 +703,13 @@ public class Derm_4967_OLSblinx extends BaseTest {
                 .clickNextButton(new AboutHealthPageOLS());
 
         aboutHealthPageOLS
-                .waitForPageLoad()
-               .pidFromDbToLog(env)
-                .childPidFromDbToLog(env)
-                .dispoShouldMatch(site.dispo, site.dispo);
+                .waitForPageLoad();
+        if(aboutHealthPageOLS.getHostName().equals(Properties.getHostName())) {
+            aboutHealthPageOLS
+                    .pidFromDbToLog(env)
+                    .childPidFromDbToLog(env)
+                    .dispoShouldMatch(site.dispo, site.dispo);
+        }
 
 
     }

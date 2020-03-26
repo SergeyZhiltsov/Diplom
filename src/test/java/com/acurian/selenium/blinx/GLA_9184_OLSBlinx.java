@@ -35,7 +35,7 @@ public class GLA_9184_OLSBlinx extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "sites", enabled = false)
+    @Test(dataProvider = "sites")
     @Description("S10503(9184) 192024-093 (Allergan Glaucoma and Ocular Hypertension R99")
     public void gla9184olsBlinxTest(Site site) {
 

@@ -32,7 +32,7 @@ public class GLA_9184_CC extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "sites", enabled = false)
+    @Test(dataProvider = "sites", enabled = true)
     @Description("S10503(9184) 192024-093 (Allergan Glaucoma and Ocular Hypertension R99")
     public void gla9184ccTest(Site site) {
 
