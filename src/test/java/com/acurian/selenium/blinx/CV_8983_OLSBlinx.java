@@ -16,20 +16,24 @@ import com.acurian.selenium.pages.blinx.ams.lowt_3017.HasDoctorEverDiagnosedYouM
 import com.acurian.selenium.pages.blinx.ams.shared.*;
 import com.acurian.selenium.pages.blinx.gmega.intro.IdentificationPageOLS;
 import com.acurian.utils.Properties;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import ru.yandex.qatools.allure.annotations.Description;
+import io.qameta.allure.Description;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class CV_8983_OLSBlinx extends BaseTest {
 
+    private static Logger Log = LogManager.getLogger(CV_8983_OLSBlinx.class.getName());
 
     @DataProvider
     public Object[][] sites() {
         return new Object[][]{
-                {Site.AUT_CV_8983}
+                {Site.AUT_CV_8983},
+                {Site.AUT_CV_8983S}
         };
     }
 
@@ -277,7 +281,7 @@ public class CV_8983_OLSBlinx extends BaseTest {
                 "Kidney disease requiring dialysis or transplant",
                 "Schizophrenia");
         for (String answer : disqualifyQ18) {
-            System.out.println("Select answer for Q18: " + answer);
+            Log.info("Select answer for Q18: " + answer);
             healthcareDiagnosedConditionsPageOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")

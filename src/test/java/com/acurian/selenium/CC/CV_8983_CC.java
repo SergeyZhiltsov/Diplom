@@ -7,32 +7,40 @@ import com.acurian.selenium.pages.CC.ADG_4357.WithType1DiabetesPageCC;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.DiagnosedAnyTypeOfDiabetesPageCC;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.WhatKindOfDiabetesPageCC;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.WithType2DiabetesPageCC;
+import com.acurian.selenium.pages.CC.LOWT.HasDoctorEverDiagnosedYouMedicalCondCC;
+import com.acurian.selenium.pages.CC.LOWT.HealthcareDiagnosedConditionsPageСС;
+import com.acurian.selenium.pages.CC.closes.CurrentlyParticipatingInStudy;
+import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
+import com.acurian.selenium.pages.CC.closes.RequirePassDrugTest;
+import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
 import com.acurian.selenium.pages.CC.cv_study.*;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.ApproximateHeightPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC;
-import com.acurian.selenium.pages.CC.generalHealth.HeartRelatedSurgeriesProceduresPageCC;
+import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.utils.Properties;
 import io.qameta.allure.Description;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class CV_8983_CC extends BaseTest {
 
-
+    private static Logger Log = LogManager.getLogger(CV_8983_CC.class.getName());
 
     @DataProvider
     public Object[][] sites() {
         return new Object[][]{
-                {Site.AUT_CV_8983}
+                {Site.AUT_CV_8983},
+//                {Site.AUT_CV_8983S}
         };
     }
 
-    @Test(dataProvider = "sites", enabled = false)
+    @Test(dataProvider = "sites", enabled = true)
     @Description("CV 4450 CC")
     public void cv8983ccTest(Site site) {
         String phoneNumber = "AUTAMS1CV1";
@@ -87,8 +95,8 @@ public class CV_8983_CC extends BaseTest {
         //DQ if <18, DQ if >81, DQ if Male <50, DQ if Female <55
         genderPageCC
                 .waitForPageLoad()
-                .setDay("01")
-                .setMonth("01")
+                .setDay("1")
+                .setMonth("Jan")
                 .setYear("1940")
                 .clickOnAnswer("Female")
                 .clickNextButton(cholesterolTriglyceridesLipidsPageCC)
@@ -163,14 +171,14 @@ public class CV_8983_CC extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new ApproximateHeightPageCC());
 
-        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = approximateHeightPageCC
+        TransitionStatementCC transitionStatementCC = approximateHeightPageCC
                 .waitForPageLoad()
                 .setAll("5", "5", "150")
-                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
+                .clickNextButton(new TransitionStatementCC());
 
         //move back to Q4
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
-                .waitForPageLoad()
+        transitionStatementCC
+                .waitForPageLoadDYS(studyName)
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS6722", site.activeProtocols)
                 .back(approximateHeightPageCC)
@@ -244,8 +252,8 @@ public class CV_8983_CC extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Stroke")
                 .clickNextButton(subquestionHeartPageCC)
-                .waitForPageLoad(2, subquestionHeartPageCC.titleExpected2)
-                .clickOnAnswerForSubQuestion(2, "1 - 3 months ago")
+                .waitForPageLoad(1, subquestionHeartPageCC.titleExpected2)
+                .clickOnAnswerForSubQuestion(1, "1 - 3 months ago")
                 .clickNextButton(new MajorStrokeCausedPermanentLossFunctionsCC());
 
         majorStrokeCausedPermanentLossFunctionsCC
@@ -258,33 +266,93 @@ public class CV_8983_CC extends BaseTest {
                 .back(majorStrokeCausedPermanentLossFunctionsCC)
                 .waitForPageLoad()
                 .back(subquestionHeartPageCC)
-                .waitForPageLoad(2, subquestionHeartPageCC.titleExpected2)
+                .waitForPageLoad(1, subquestionHeartPageCC.titleExpected2)
                 .back(sufferedFollowingHeartRelatedConditionsPageCC);
 
-        HealthcareDiagnosedConditionsPageCC healthcareDiagnosedConditionsPageCC = sufferedFollowingHeartRelatedConditionsPageCC
+        HasDoctorEverDiagnosedYouMedicalCondCC hasDoctorEverDiagnosedYouMedicalCondCC = sufferedFollowingHeartRelatedConditionsPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(heartRelatedSurgeriesProceduresPageCC)
                 .waitForPageLoad()
-                .clickOnAnswers("None of the above")
+//                .clickOnAnswers("None of the above")
                 .clickNextButton(additionalHeartRelatedConditionsPageCC)
                 .waitForPageLoad()
                 .clickOnAnswers("Stenosis (narrowing of the blood vessels or arteries)")
                 .clickNextButton(approximateHeightPageCC)
                 .waitForPageLoad()
                 .setAll("7", "7", "500")
-                .clickNextButton(new HealthcareDiagnosedConditionsPageCC());
+                .clickNextButton(new HasDoctorEverDiagnosedYouMedicalCondCC());
 
-        healthcareDiagnosedConditionsPageCC
+        hasDoctorEverDiagnosedYouMedicalCondCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS68", site.activeProtocols)
-                .back(approximateHeightPageCC)
+                .checkProtocolsContainsForQNumber("QS6743", site.activeProtocols)
+                .back(approximateHeightPageCC);
+        HealthcareDiagnosedConditionsPageСС healthcareDiagnosedConditionsPageCC = approximateHeightPageCC
                 .waitForPageLoad()
                 .setAll("5", "5", "150")
-                .clickNextButton(healthcareDiagnosedConditionsPageCC);
+                .clickNextButton(new HealthcareDiagnosedConditionsPageСС());
 
-        //TODO
+        //Q26	Has a healthcare professional ever diagnosed you with any of the following medical conditions?
+        List<String> disqualifyQ18 = Arrays.asList("Bipolar disorder",
+                "Cancer in the past 5 years, except skin cancer",
+                "Cirrhosis of the liver",
+                "Drug or alcohol abuse within the past year",
+                "Hepatitis B",
+                "Hepatitis C",
+                "HIV or AIDS",
+                "Kidney disease requiring dialysis or transplant",
+                "Schizophrenia");
+        for (String answer : disqualifyQ18) {
+            Log.info("Select answer for Q18: " + answer);
+            healthcareDiagnosedConditionsPageCC
+                    .waitForPageLoad()
+                    .clickOnAnswers("None of the above")
+                    .clickOnAnswers(answer)
+                    .clickNextButton(hasDoctorEverDiagnosedYouMedicalCondCC)
+                    .waitForPageLoad()
+                    .getPage(debugPageCC)
+                    .checkProtocolsContainsForQNumber("QS6725", site.activeProtocols)
+                    .back(healthcareDiagnosedConditionsPageCC);
+        }
+
+        IdentificationPageCC identificationPageCC = healthcareDiagnosedConditionsPageCC
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new CurrentlyParticipatingInStudy())
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new RequirePassDrugTest())
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
+                .clickNextButton(new IdentificationPageCC());
+        //----------PII (IdentificationPageOLS) Page--------------------
+        SiteSelectionPageCC siteSelectionPageCC = identificationPageCC
+                .waitForPageLoad()
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
+                        "9999999999", site.zipCode)
+                .clickNextButton(new SiteSelectionPageCC());
+
+        siteSelectionPageCC
+                .waitForPageLoad(studyName)
+                .getPID();
+
+        siteSelectionPageCC
+                .clickOnAnswer(site.name)
+                .clickNextButton(new QualifiedClose2PageCC())
+                .waitForPageLoad()
+                .clickNextButton(new ThankYouCloseSimplePageCC())
+                .waitForPageLoad3()
+                .clickNextButton(selectActionPageCC);
+
+        if (selectActionPageCC.getHostName().equals(Properties.getHostName())) {
+            selectActionPageCC
+                    .waitForPageLoad()
+                    .pidFromDbToLog(env)
+                    .childPidFromDbToLog(env)
+                    //.assertGeneratedFul(env, site)
+                    .dispoShouldMatch(site.dispo, site.dispo);
+        }
 
     }
 }

@@ -15,7 +15,7 @@ public class TakingFollowingStaticMedicationCC extends MainPageCC {
             "triglycerides, or lipids is called a statin. Most people with these conditions are prescribed this kind of medicine. Statins are prescribed under many different names.\n" +
             "\n" +
             "Are you currently taking any of the following statin medications?\n" +
-            "Please select all that apply.";
+            "Agent Note: Select all that apply";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC)
     WebElement titleText;

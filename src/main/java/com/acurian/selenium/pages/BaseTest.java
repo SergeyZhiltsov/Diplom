@@ -44,7 +44,7 @@ public abstract class BaseTest {
 //        }catch(Exception e){
         driver = new EventFiringWebDriver(DriverFactory.initDriver(Properties.getBrowser()));
 //        }
-        driver.register(new EventHandler());
+//        driver.register(new EventHandler());
         driver.manage().timeouts().setScriptTimeout(50, TimeUnit.SECONDS);
 
         switch (Locators.isEnvWeb) {

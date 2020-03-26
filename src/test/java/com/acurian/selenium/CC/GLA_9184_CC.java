@@ -3,10 +3,7 @@ package com.acurian.selenium.CC;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.SubquestionExperiencedHeartPageCC;
-import com.acurian.selenium.pages.CC.closes.CurrentlyParticipatingInStudy;
-import com.acurian.selenium.pages.CC.closes.DoesNotGivePermissionToProceedClosePageCC;
-import com.acurian.selenium.pages.CC.closes.RequirePassDrugTest;
-import com.acurian.selenium.pages.CC.closes.SynexusRadiantDirectScheduleCC;
+import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.pages.CC.cv_study.MostRecentHeartRelatedSurgeryProcedurePageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
@@ -14,6 +11,8 @@ import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.selenium.pages.CC.glaucoma.*;
 import com.acurian.utils.Properties;
 import io.qameta.allure.Description;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -24,10 +23,12 @@ import java.util.List;
 
 public class GLA_9184_CC extends BaseTest {
 
+    private static Logger Log = LogManager.getLogger(GLA_9184_CC.class.getName());
+
     @DataProvider
     public Object[][] sites() {
         return new Object[][]{
-                {Site.AUT_GLA9184}
+                {Site.AUT_S10503}
         };
     }
 
@@ -35,8 +36,8 @@ public class GLA_9184_CC extends BaseTest {
     @Description("S10503(9184) 192024-093 (Allergan Glaucoma and Ocular Hypertension R99")
     public void gla9184ccTest(Site site) {
 
-        String phoneNumber = "";
-        String studyName = "heartburn, reflux, or GERD history";
+        String phoneNumber = "AUTAMS1HTN";
+        String studyName = "a study for people with glaucoma or ocular hypertension";
         String env = System.getProperty("acurian.env", "STG");
         DebugPageCC debugPageCC = new DebugPageCC();
 
@@ -68,7 +69,7 @@ public class GLA_9184_CC extends BaseTest {
 
         //Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.getExpectedModifiedTitle(site_Indication, "500"), "Title is diff");
         dateOfBirthPageCC
-                .waitForPageLoad(studyName, "500")
+                .waitForPageLoad(studyName, "1,000")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "No")//If "No", go to Does Not Give Permission to Proceed Close
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
                 .clickNextButton(new DoesNotGivePermissionToProceedClosePageCC())
@@ -76,7 +77,7 @@ public class GLA_9184_CC extends BaseTest {
                 .back(dateOfBirthPageCC);
 
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
-                .waitForPageLoad(studyName, "500")
+                .waitForPageLoad(studyName, "1,000")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
                 .clickNextButton(new ZipCodePageCC());
 
@@ -87,8 +88,8 @@ public class GLA_9184_CC extends BaseTest {
 
         DoctorDiagnosedFollowingEyeConditionsCC doctorDiagnosedFollowingEyeConditionsCC = genderPageCC
                 .waitForPageLoad()
-                .setDay("09")
-                .setMonth("09")
+                .setMonth("Aug")
+                .setDay("9")
                 .setYear("1990")
                 .clickOnAnswer("Female")
                 .clickNextButton(new DoctorDiagnosedFollowingEyeConditionsCC());
@@ -104,12 +105,12 @@ public class GLA_9184_CC extends BaseTest {
         nonQRtransitionPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS8602", site.activeProtocols)
                 .back(doctorDiagnosedFollowingEyeConditionsCC);
 
         TypeOfGlaucomaCC typeOfGlaucomaCC = doctorDiagnosedFollowingEyeConditionsCC
                 .waitForPageLoad()
-                .clickOnAnswers("Glaucoma – damage to the optic nerve caused by high eye pressure ")
+                .clickOnAnswers("Glaucoma – damage to the optic nerve caused by high eye pressure")
                 .clickNextButton(new TypeOfGlaucomaCC());
 
         WhichEyeGlaucomaOrOcularHypertensionCC whichEyeGlaucomaOrOcularHypertensionCC = typeOfGlaucomaCC
@@ -120,7 +121,7 @@ public class GLA_9184_CC extends BaseTest {
         PrescribedMedicationForGlaucomaCC prescribedMedicationForGlaucomaCC = whichEyeGlaucomaOrOcularHypertensionCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS8603", site.activeProtocols)
                 .back(typeOfGlaucomaCC)
                 .waitForPageLoad()
                 .clickOnAnswer("Open angle – the most common type, caused by slow clogging of the angle between your iris and cornea")
@@ -132,14 +133,14 @@ public class GLA_9184_CC extends BaseTest {
         EverBeenDiagnosedFollowingEyeConditionsCC everBeenDiagnosedFollowingEyeConditionsCC = prescribedMedicationForGlaucomaCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS8604", site.activeProtocols)
                 .back(whichEyeGlaucomaOrOcularHypertensionCC)
                 .waitForPageLoad()
                 .clickOnAnswer("Left eye only")
                 .clickNextButton(prescribedMedicationForGlaucomaCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS8604", site.activeProtocols)
                 .back(whichEyeGlaucomaOrOcularHypertensionCC)
                 .waitForPageLoad()
                 .clickOnAnswer("Both eyes")
@@ -151,14 +152,14 @@ public class GLA_9184_CC extends BaseTest {
         SurgeryOrImplantToTreatGlaucomaCC surgeryOrImplantToTreatGlaucomaCC = everBeenDiagnosedFollowingEyeConditionsCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS8605", site.activeProtocols)
                 .back(prescribedMedicationForGlaucomaCC)
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(everBeenDiagnosedFollowingEyeConditionsCC)
                 .waitForPageLoad()
                 .clickOnAnswers("Macular edema – excess fluid in the back of the eye",
-                        "Neovascular or “wet” age related macular degeneration – leaky blood vessels in the back of your eye",
+                        "Neovascular or \"wet\" age related macular degeneration – leaky blood vessels in the back of your eye",
                         "Cancer of the eye",
                         "Herpes affecting the eye",
                         "Shingles affecting the eye")
@@ -167,7 +168,7 @@ public class GLA_9184_CC extends BaseTest {
         SurgeryOrImplantOnOrAroundEyePastSixMonthsCC surgeryOrImplantOnOrAroundEyePastSixMonthsCC = surgeryOrImplantToTreatGlaucomaCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS8606", site.activeProtocols)
                 .back(everBeenDiagnosedFollowingEyeConditionsCC)
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
@@ -179,7 +180,7 @@ public class GLA_9184_CC extends BaseTest {
         InjectionIntoYourEyeCC injectionIntoYourEyeCC = surgeryOrImplantOnOrAroundEyePastSixMonthsCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS8607", site.activeProtocols)
                 .back(surgeryOrImplantToTreatGlaucomaCC)
                 .waitForPageLoad()
                 .clickOnAnswer("No")
@@ -191,7 +192,7 @@ public class GLA_9184_CC extends BaseTest {
         TransitionStatementCC transitionStatementCC = injectionIntoYourEyeCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS8608", site.activeProtocols)
                 .back(surgeryOrImplantOnOrAroundEyePastSixMonthsCC)
                 .waitForPageLoad()
                 .clickOnAnswer("No")
@@ -200,15 +201,16 @@ public class GLA_9184_CC extends BaseTest {
                 .clickOnAnswer("Yes")
                 .clickNextButton(new TransitionStatementCC());
         transitionStatementCC
-                .waitForPageLoad(studyName)
+                .waitForPageLoadGLAUCOMA(studyName)
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS8609", site.activeProtocols)
                 .back(injectionIntoYourEyeCC)
+                .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(transitionStatementCC);
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 = transitionStatementCC
-                .waitForPageLoad(studyName)
+                .waitForPageLoadGLAUCOMA(studyName)
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
 
         //--------------------------------------GENERAL HEALTH QUESTIONS----------------------------------------------
@@ -301,7 +303,7 @@ public class GLA_9184_CC extends BaseTest {
 
         List<String> disqualifyQS49 = Arrays.asList("Less than 30 days ago", "1 - 3 months ago");
         for (String answer : disqualifyQS49) {
-            System.out.println("Select answer for QS49: " + answer);
+            Log.info("Select answer for QS49: " + answer);
             mostRecentHeartRelatedSurgeryProcedurePageCC
                     .waitForPageLoad()
                     .clickOnAnswer(answer)
@@ -458,17 +460,13 @@ public class GLA_9184_CC extends BaseTest {
                 .getPID();
 
         siteSelectionPageCC
-                .clickOnAnswer(site.name);
-        SynexusRadiantDirectScheduleCC synexusRadiantDirectScheduleCC = siteSelectionPageCC
-                .clickNextButton(new SynexusRadiantDirectScheduleCC());
-
-        synexusRadiantDirectScheduleCC
-                .waitForPageLoadSyn()
-//                .assertVariablesNew("Acurian", "Trial", "07/01/1995", "US", //TODO Change variables
-//                        "Horsham, PA", site.zipCode, "qa.acurian@gmail.com", "999-999-9999",
-//                        "%SYN_SITE_NUM%", site.name, "VNAPRACHI553 - Valneva Chikungunya (CHIKV) Virus Vaccine")
-                .clickOnAnswer("[Successful direct schedule in clinical conductor]")
+                .clickOnAnswer(site.name)
+                .clickNextButton(new QualifiedClose2PageCC())
+                .waitForPageLoad()
+                .clickNextButton(new ThankYouCloseSimplePageCC())
+                .waitForPageLoad3()
                 .clickNextButton(selectActionPageCC);
+
         if (selectActionPageCC.getHostName().equals(Properties.getHostName())) {
             selectActionPageCC
                     .waitForPageLoad()

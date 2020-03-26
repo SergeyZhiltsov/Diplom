@@ -101,6 +101,20 @@ public class TransitionStatementCC extends MainPageCC {
     }
 
     @Step
+    public TransitionStatementCC waitForPageLoadGLAUCOMA(String studyName) {
+        String titleExpectedMod = String.format(titleInitialQuestionsExpected, studyName);
+        waitForPageLoadMain(titleText, titleExpectedMod);
+        return this;
+    }
+
+    @Step
+    public TransitionStatementCC waitForPageLoadDYS(String studyName) {
+        String titleExpectedMod = String.format(titleExpectedDYS, studyName);
+        waitForPageLoadMain(titleText, titleExpectedMod);
+        return this;
+    }
+
+    @Step
     public TransitionStatementCC waitForPageLoadWithTitle(String titleExpected) {
         waitForPageLoadMain(titleText, titleExpected);
         return this;

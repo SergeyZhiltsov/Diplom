@@ -69,7 +69,7 @@ public enum Site {
     AUT_CV1_4450S_Syn("AUT_CV1_4450S_Syn", "19901", "41C", false, false, "EX9536_4388"),
     //S10560(8983)
     AUT_CV_8983("AUT_CV_8983", "19044", "1R", true, false, "20170625"),
-    AUT_CV_8983S("AUT_CV_8983S", "08204", "1R", true, false, "20170625"),
+    AUT_CV_8983S("AUT_CV_8983S", "08204", "41C", true, false, "20170625"),
     //4471
     AUT_MCC("AUT_MCC", "19341", "1R", false, true, "MK_7264_030"),
     //4533
@@ -188,7 +188,7 @@ public enum Site {
     //UC release 88.0
     AUT_AMS1_BI_UC_site("AUT_AMS1_BI_UC_site", "19422", "1R", true, true, "1368_0005"),
     AUT_AMS1_BI_UCS_site("AUT_AMS1_BI_UCS_site", "19044", "41C", true, true, "1368_0005"),
-    AUT_GLA9184("AUT_9184", "19044", "1R", false, false, "192024_093");
+    AUT_S10503("AUT_S10503", "19044", "1R", true, false, "192024_093");
 
 
 
