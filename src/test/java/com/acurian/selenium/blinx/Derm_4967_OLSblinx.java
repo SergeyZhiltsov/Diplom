@@ -683,7 +683,7 @@ public class Derm_4967_OLSblinx extends BaseTest {
         SiteSelectionPageOLS siteSelectionPageOLS = identificationPageOLS
                 .waitForPageLoadNew()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
-                        "9999999999", site.zipCode)
+                        "9999999999")
                 .clickNextButton(new SiteSelectionPageOLS());
 
 
