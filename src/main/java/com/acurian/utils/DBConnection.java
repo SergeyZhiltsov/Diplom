@@ -60,9 +60,11 @@ public class DBConnection {
             ods.setURL(getUrlByEnv(environment));
             ods.setUser(userName);
             ods.setPassword(password);
+            ods.setLoginTimeout(120);
             conn = ods.getConnection();
         } catch (SQLException e) {
-            e.printStackTrace();
+            Log.error(e.getMessage());
+            throw new RuntimeException();
         }
         return conn;
     }
@@ -104,6 +106,7 @@ public class DBConnection {
     public void dbReadPID(String environment, String pidNumber) {
         try {
             stmt = getDbCon(environment).createStatement();
+            stmt.setQueryTimeout(120);
             String sql = "select * from call where patient_id in (" + pidNumber + ")";
             rset = stmt.executeQuery(sql);
             while (rset.next()) {
@@ -112,7 +115,8 @@ public class DBConnection {
             }
             Log.info("DB parent: dispo = " + dispoCode + applicantStatus + ", parent pid =" + pidNumber);
         } catch (SQLException e) {
-            e.printStackTrace();
+            Log.error(e.getMessage());
+            throw new RuntimeException();
         } finally {
             closeResources();
         }
@@ -154,7 +158,7 @@ public class DBConnection {
                             + "display_ind: " + displayInd + ", "
                             + "test_site_ind: " + testSiteInd + ".");
                     i++;
-                    if (studyNum.contains("AUT_TEMP")){
+                    if (studyNum.contains("AUT_TEMP")) {
                         i--;
                     }
                 } catch (NullPointerException e) {

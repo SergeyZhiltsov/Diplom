@@ -2,6 +2,10 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="All" verbose="4" parallel="methods" thread-count="7">
 
+    <listeners>
+        <listener class-name="com.acurian.selenium.listeners.AnnotationTransformer"/>
+    </listeners>
+
     <test name="Regression1">
         <packages>
             <package name="com.acurian.selenium.CC.*" />

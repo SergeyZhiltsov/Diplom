@@ -8,11 +8,11 @@ public class PassPID {
     private PassPID() {
     }
 
-    private static class SingletonHolder{
+    private static class SingletonHolder {
         private final static PassPID instance = new PassPID();
     }
 
-    public static PassPID getInstance(){
+    public static PassPID getInstance() {
         return SingletonHolder.instance;
     }
 

@@ -4,7 +4,8 @@ public class OSValidator {
 
     private static String OS = System.getProperty("os.name").toLowerCase();
 
-    private OSValidator() {}
+    private OSValidator() {
+    }
 
     public static boolean isWindows() {
         return (OS.contains("win"));
@@ -15,7 +16,7 @@ public class OSValidator {
     }
 
     public static boolean isUnix() {
-        return (OS.contains("nix") || OS.contains("nux") || OS.indexOf("aix") > 0 );
+        return (OS.contains("nix") || OS.contains("nux") || OS.indexOf("aix") > 0);
     }
 
     public static boolean isSolaris() {
