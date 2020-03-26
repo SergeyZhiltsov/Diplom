@@ -527,6 +527,7 @@ public class PS_7469_OLSBlinx extends BaseTest {
         QualifiedClose2PageOLS qualifiedClose2PageOLS = siteSelectionPageOLS
                 .waitForPageLoad5(studyName + "!")
                 .clickOnFacilityName(site.name)
+                .getPID()
                 .clickNextButton(new QualifiedClose2PageOLS());
         ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = qualifiedClose2PageOLS
                 .waitForPageLoad3()
