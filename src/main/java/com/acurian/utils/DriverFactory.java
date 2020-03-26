@@ -59,7 +59,7 @@ public class DriverFactory {
     public static WebDriver initDriver(String browser, String gridUrl) {
         // prepare capabilities for required browser
         DesiredCapabilities capabilities;
-        switch (browser) {
+            switch (browser) {
             case "android":
                 capabilities = DesiredCapabilities.android();
                 break;

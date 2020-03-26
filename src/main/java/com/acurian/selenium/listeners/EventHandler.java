@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.events.WebDriverEventListener;
 
 
-public class EventHandler implements WebDriverEventListener {
+public abstract class EventHandler implements WebDriverEventListener {
 
 
     @Override
