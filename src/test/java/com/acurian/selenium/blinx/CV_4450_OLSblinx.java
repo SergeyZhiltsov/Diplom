@@ -340,7 +340,7 @@ public class CV_4450_OLSblinx extends BaseTest {
         SiteSelectionPageOLS siteSelectionPageOLS = new SiteSelectionPageOLS();
 
         (env.equals("STG") ? identificationPageOLS.waitForPageLoadSTG() : identificationPageOLS.waitForPageLoad2())
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999")
                 .clickNextButton(new SiteSelectionPageOLS());
 
         QualifiedClose2PageOLS qualifiedClose2PageOLS = siteSelectionPageOLS

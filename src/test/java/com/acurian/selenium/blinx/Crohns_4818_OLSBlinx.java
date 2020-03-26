@@ -560,7 +560,7 @@ public class Crohns_4818_OLSBlinx extends BaseTest {
 
         SiteSelectionPageOLS siteSelectionPageOLS = identificationPageOLS
                 .waitForPageLoad2()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999")
                 .clickNextButton(new SiteSelectionPageOLS());
 
         MedicalRecordsOptionPageOLS medicalRecordsOptionPageOLS = siteSelectionPageOLS

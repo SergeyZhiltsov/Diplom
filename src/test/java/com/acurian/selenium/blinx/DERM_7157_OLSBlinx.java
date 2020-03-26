@@ -69,7 +69,7 @@ public class DERM_7157_OLSBlinx extends BaseTest {
         GenderPageOLS genderPageOLS = identificationPageOLS
                 .waitForPageLoadNotQ()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
-                        "9999999999", site.zipCode)
+                        "9999999999")
                 .clickNextButton(new GenderPageOLS());
 
         HasHealthcareProfessionalEverDiagnosedYouWithEczema_OLS hasHealthcareProfessionalEverDiagnosedYouWithEczema_ols =
