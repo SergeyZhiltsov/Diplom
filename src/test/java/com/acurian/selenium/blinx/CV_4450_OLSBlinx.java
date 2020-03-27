@@ -7,14 +7,11 @@ import com.acurian.selenium.pages.blinx.ams.adg_4357.WithType1DiabetesPageOLS;
 import com.acurian.selenium.pages.blinx.ams.closes.*;
 import com.acurian.selenium.pages.blinx.ams.debug.DebugPageOLS;
 import com.acurian.selenium.pages.blinx.ams.cv_study.*;
-import com.acurian.selenium.pages.blinx.ams.diabetes.CurrentlyTreatingYourDiabetesPageOLS;
 import com.acurian.selenium.pages.blinx.ams.diabetes.SubquestionExperiencedHeartPageOLS;
 import com.acurian.selenium.pages.blinx.ams.diabetes.WithType2DiabetesPageOLS;
 import com.acurian.selenium.pages.blinx.ams.generalHealth.*;
-import com.acurian.selenium.pages.blinx.ams.lowt_3017.CardiovascularDiseaseThanOthersPageOLS;
 import com.acurian.selenium.pages.blinx.ams.lowt_3017.HasDoctorEverDiagnosedYouMedicalCond_OLS;
 import com.acurian.selenium.pages.blinx.ams.shared.*;
-import com.acurian.selenium.pages.blinx.gmega.ApproximateHeightWeightPageOLS;
 import com.acurian.selenium.pages.blinx.gmega.intro.IdentificationPageOLS;
 import com.acurian.utils.Properties;
 import org.apache.logging.log4j.LogManager;
@@ -25,9 +22,9 @@ import org.testng.annotations.Test;
 import java.util.Arrays;
 import java.util.List;
 
-public class CV_4450_OLSblinx extends BaseTest {
+public class CV_4450_OLSBlinx extends BaseTest {
 
-    private static Logger Log = LogManager.getLogger(CV_4450_OLSblinx.class.getName());
+    private static Logger Log = LogManager.getLogger(CV_4450_OLSBlinx.class.getName());
 
     @DataProvider
     public Object[][] sites() {

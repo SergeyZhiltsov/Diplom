@@ -28,7 +28,7 @@ import java.util.Arrays;
 import java.util.List;
 
 
-public class Derm_4967_OLSblinx extends BaseTest {
+public class Derm_4967_OLSBlinx extends BaseTest {
 
     private static Logger Log = LogManager.getLogger(CV_8983_OLSBlinx.class.getName());
 
