@@ -19,6 +19,7 @@ public class DuringPastThreeMonthsOLS extends MainPageBlinx {
 
     @Step
     public DuringPastThreeMonthsOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

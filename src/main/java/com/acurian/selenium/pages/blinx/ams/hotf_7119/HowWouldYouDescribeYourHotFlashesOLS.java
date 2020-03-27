@@ -25,6 +25,7 @@ public class HowWouldYouDescribeYourHotFlashesOLS extends MainPageBlinx {
 
     @Step
     public HowWouldYouDescribeYourHotFlashesOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

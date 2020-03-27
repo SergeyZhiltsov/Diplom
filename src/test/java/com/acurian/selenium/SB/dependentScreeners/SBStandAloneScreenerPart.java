@@ -4,9 +4,13 @@ import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.RA.standalone.ExperiencedAnyOfTheFollowingConditionsInPast6Months;
 import com.acurian.selenium.pages.CC.RA.standalone.HasAHealtcareDiagnosedWithAnyTypeOfArthritisCC;
+import com.acurian.selenium.pages.CC.closes.QualifiedClose1PageCC;
+import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
+import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
 import com.acurian.selenium.pages.CC.closes.standalone.UnqualifiedStudySwitchCloseOldCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.IdentificationPageCC;
+import com.acurian.selenium.pages.CC.generalHealth.SiteSelectionPageCC;
 import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.utils.Properties;
 import io.qameta.allure.Description;
@@ -14,12 +18,12 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
 
-public class CCTest extends BaseTest {
+public class SBStandAloneScreenerPart extends BaseTest {
 
     @Test(enabled = true)
     @TestCaseId("001124")
     @Description("SB_Standalone test Screener")
-    public void sb_AUTSBSSmodified() {
+    public void sbSTandAloneScreenerPartTest() {
         String phoneNumber = "AUTSBSS001";
         String studyName = "AUTSBSS - Rheumatoid Arthritis (RA)";
         String env = System.getProperty("acurian.env", "QA");
@@ -53,9 +57,9 @@ public class CCTest extends BaseTest {
                 .clickNextButton(new GenderPageCC());
 
         UnqualifiedStudySwitchCloseOldCC unqualifiedStudySwitchCloseOldCC = genderPageCC
-                .waitForPageLoad()
+                .waitForPageLoadStandAlone()
                 .setMonth("Sep")
-                .setDay("01")
+                .setDay("1")
                 .setYear("2005")
                 .clickNextButton(new UnqualifiedStudySwitchCloseOldCC());
 
@@ -66,7 +70,7 @@ public class CCTest extends BaseTest {
                 .back(genderPageCC);
 
         IdentificationPageCC identificationPageCC =  genderPageCC
-                .waitForPageLoad()
+                .waitForPageLoadStandAlone()
                 .setYear("1985")
                 .clickNextButton(new IdentificationPageCC());
 
@@ -75,7 +79,7 @@ public class CCTest extends BaseTest {
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
         "9999999999", site.zipCode)
                 .clickNextButton(genderPageCC)
-                .waitForPageLoad()
+                .waitForPageLoadSelectGenderStandAlone()
                 .clickOnAnswer("Female")
                 .clickNextButton(new HasAHealtcareDiagnosedWithAnyTypeOfArthritisCC());
 
@@ -92,15 +96,15 @@ public class CCTest extends BaseTest {
                         "attacking your joints, which can cause fatigue with pain and swelling of multiple joints throughout your body")
                 .clickNextButton(new ExperiencedAnyOfTheFollowingConditionsInPast6Months());
 
-        experiencedAnyOfTheFollowingConditionsInPast6Months
+        BasedOnInformationGmegaPageCC basedOnInformationGmegaPageCC = experiencedAnyOfTheFollowingConditionsInPast6Months
                 .waitForPageLoad()
-                .clickOnAnswers("Heart Attack" +
-                        "Stroke" +
-                        "TIA or \"Mini-Stroke\"" +
-                        "Angina (heart-related chest pain) that required an overnight stay in a hospital" +
-                        "Angioplasty, which is a \"balloon procedure\" to open blood vessels" +
-                        "Atherectomy, which is plaque \"shaving\" to remove build-up of plaque from blood vessels" +
-                        "Coronary Artery Bypass Graft, also known as CABG, \"cabbage,\" or heart bypass surgery" +
+                .clickOnAnswers("Heart Attack",
+                        "Stroke",
+                        "TIA or \"Mini-Stroke\"",
+                        "Angina (heart-related chest pain) that required an overnight stay in a hospital",
+                        "Angioplasty, which is a \"balloon procedure\" to open blood vessels",
+                        "Atherectomy, which is plaque \"shaving\" to remove build-up of plaque from blood vessels",
+                        "Coronary Artery Bypass Graft, also known as CABG, \"cabbage,\" or heart bypass surgery",
                         "Heart failure or Congestive Heart Failure (CHF) that required an overnight stay in a hospital")
                 .clickNextButton(unqualifiedStudySwitchCloseOldCC)
                 .waitForPageLoad()
@@ -110,13 +114,20 @@ public class CCTest extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(identificationPageCC)
-                .waitForPageLoadStandAloneQ();
-        //TODO finish this test
+                .waitForPageLoadStandAloneQ()
+                .clickNextButton(new BasedOnInformationGmegaPageCC());
 
+        ThankYouCloseSimplePageCC thankYouCloseSimplePageCC = basedOnInformationGmegaPageCC
+                .waitForPageLoad()
+                .clickNextButton(new ThankYouCloseSimplePageCC());
+        thankYouCloseSimplePageCC
+                .waitForPageLoad()
+                .clickNextButton(selectActionPageCC);
 
-
-
-
-
+        if (selectActionPageCC.getHostName().equals(Properties.getHostName())) {
+            selectActionPageCC
+                    .waitForPageLoad()
+                    .pidFromDbToLog(env);
+        }
     }
 }

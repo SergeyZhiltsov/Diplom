@@ -25,6 +25,7 @@ public class InjectableMedicationToTreatPsoriasisOLS extends MainPageBlinx {
 
     @Step
     public InjectableMedicationToTreatPsoriasisOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

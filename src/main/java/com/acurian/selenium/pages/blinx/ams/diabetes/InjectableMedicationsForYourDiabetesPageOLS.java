@@ -27,6 +27,7 @@ public class InjectableMedicationsForYourDiabetesPageOLS extends MainPageBlinx {
 
     @Step
     public InjectableMedicationsForYourDiabetesPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

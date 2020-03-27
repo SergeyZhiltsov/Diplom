@@ -19,6 +19,7 @@ public class TypeOfDoctorDiagnosedWithFibromyalgiaOLS extends MainPageBlinx {
 
     @Step
     public TypeOfDoctorDiagnosedWithFibromyalgiaOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

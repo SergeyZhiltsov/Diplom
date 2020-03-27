@@ -28,6 +28,7 @@ public class SufferFromIrritablePageOLS extends MainPageBlinx {
 
     @Step
     public SufferFromIrritablePageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

@@ -23,6 +23,7 @@ public class LevelOrHypogonadismPageOLS extends MainPageBlinx {
 
     @Step
     public LevelOrHypogonadismPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

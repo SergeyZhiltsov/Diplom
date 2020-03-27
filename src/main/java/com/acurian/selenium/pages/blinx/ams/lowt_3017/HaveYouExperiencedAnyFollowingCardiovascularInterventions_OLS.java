@@ -21,6 +21,7 @@ public class HaveYouExperiencedAnyFollowingCardiovascularInterventions_OLS exten
 
     @Step
     public HaveYouExperiencedAnyFollowingCardiovascularInterventions_OLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

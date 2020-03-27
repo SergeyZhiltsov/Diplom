@@ -24,6 +24,7 @@ public class AreYouCurrentlyTakingAnyInhaledNebulizedMedstoCopdOLS extends MainP
 
     @Step
     public AreYouCurrentlyTakingAnyInhaledNebulizedMedstoCopdOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

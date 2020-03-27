@@ -38,6 +38,7 @@ public class BiologicMedications extends MainPageBlinx {
 
     @Step
     public BiologicMedications waitForPageLoadKAD() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpectedKAD);
         return this;
     }

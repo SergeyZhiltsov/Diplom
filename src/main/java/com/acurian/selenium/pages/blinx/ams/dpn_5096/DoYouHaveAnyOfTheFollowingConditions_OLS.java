@@ -21,6 +21,7 @@ public class DoYouHaveAnyOfTheFollowingConditions_OLS extends MainPageBlinx {
 
     @Step
     public DoYouHaveAnyOfTheFollowingConditions_OLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

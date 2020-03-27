@@ -21,6 +21,7 @@ public class HasDoctorEverDiagnosedYouWithLowTestosterone_OLS extends MainPageBl
 
     @Step
     public HasDoctorEverDiagnosedYouWithLowTestosterone_OLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

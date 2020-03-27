@@ -26,6 +26,7 @@ public class DigestiveConditionsAffectDiabetesPageOLS extends MainPageBlinx {
 
     @Step
     public DigestiveConditionsAffectDiabetesPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

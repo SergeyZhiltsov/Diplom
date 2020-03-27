@@ -20,6 +20,7 @@ public class PastThreeMonthsTakenKrystexxaOLS extends MainPageBlinx {
 
     @Step
     public PastThreeMonthsTakenKrystexxaOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

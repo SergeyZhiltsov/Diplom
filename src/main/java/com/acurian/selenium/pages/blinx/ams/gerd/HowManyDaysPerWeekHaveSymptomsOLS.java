@@ -19,6 +19,7 @@ public class HowManyDaysPerWeekHaveSymptomsOLS extends MainPageBlinx {
 
     @Step
     public HowManyDaysPerWeekHaveSymptomsOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

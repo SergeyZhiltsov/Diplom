@@ -25,6 +25,7 @@ public class ExperienceExcessiveHungerOrIncreasedAppetiteOLS extends MainPageBli
 
     @Step
     public ExperienceExcessiveHungerOrIncreasedAppetiteOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

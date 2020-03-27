@@ -27,6 +27,7 @@ public class AbdominalPainOverPastPageOLS extends MainPageBlinx {
 
     @Step
     public AbdominalPainOverPastPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

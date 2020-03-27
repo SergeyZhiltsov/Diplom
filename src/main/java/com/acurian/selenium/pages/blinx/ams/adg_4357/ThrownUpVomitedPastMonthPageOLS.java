@@ -26,6 +26,7 @@ public class ThrownUpVomitedPastMonthPageOLS extends MainPageBlinx {
 
     @Step
     public ThrownUpVomitedPastMonthPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

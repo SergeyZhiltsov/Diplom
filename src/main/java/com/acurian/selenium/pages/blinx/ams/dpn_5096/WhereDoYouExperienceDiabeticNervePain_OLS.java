@@ -23,12 +23,14 @@ public class WhereDoYouExperienceDiabeticNervePain_OLS extends MainPageBlinx {
 
     @Step
     public WhereDoYouExperienceDiabeticNervePain_OLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
     public WhereDoYouExperienceDiabeticNervePain_OLS waitForPageLoadDPN() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpectedDPN);
         return this;
     }

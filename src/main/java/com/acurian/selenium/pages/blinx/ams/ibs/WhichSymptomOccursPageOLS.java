@@ -25,6 +25,7 @@ public class WhichSymptomOccursPageOLS extends MainPageBlinx {
 
     @Step
     public WhichSymptomOccursPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

@@ -25,6 +25,7 @@ public class TypicalWeekBowelMovementsOLS extends MainPageBlinx {
 
     @Step
     public TypicalWeekBowelMovementsOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

@@ -33,6 +33,7 @@ public class SubquestionExperiencedHeartPageOLS extends MainPageBlinx {
 
     @Step
     public SubquestionExperiencedHeartPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected1);
         return this;
     }

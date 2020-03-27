@@ -26,6 +26,7 @@ public class InThePastDaysFollowingMedicationsOLS extends MainPageBlinx {
 
     @Step
     public InThePastDaysFollowingMedicationsOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

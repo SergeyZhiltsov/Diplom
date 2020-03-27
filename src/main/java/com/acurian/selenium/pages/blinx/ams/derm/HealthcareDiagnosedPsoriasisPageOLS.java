@@ -21,6 +21,7 @@ public class HealthcareDiagnosedPsoriasisPageOLS extends MainPageBlinx {
 
     @Step
     public HealthcareDiagnosedPsoriasisPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

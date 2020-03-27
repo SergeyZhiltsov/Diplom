@@ -20,6 +20,7 @@ public class UseMarijuanaOrCannabisOLS extends MainPageBlinx {
 
     @Step
     public UseMarijuanaOrCannabisOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

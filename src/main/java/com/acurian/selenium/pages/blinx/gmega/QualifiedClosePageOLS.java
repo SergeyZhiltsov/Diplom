@@ -15,6 +15,7 @@ public class QualifiedClosePageOLS extends MainPageBlinx {
 
     @Step
     public QualifiedClosePageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

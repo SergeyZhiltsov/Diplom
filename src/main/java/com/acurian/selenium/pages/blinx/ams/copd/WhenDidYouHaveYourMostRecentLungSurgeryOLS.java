@@ -24,6 +24,7 @@ public class WhenDidYouHaveYourMostRecentLungSurgeryOLS extends MainPageBlinx {
 
     @Step
     public WhenDidYouHaveYourMostRecentLungSurgeryOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

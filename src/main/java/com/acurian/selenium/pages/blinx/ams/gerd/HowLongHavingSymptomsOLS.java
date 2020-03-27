@@ -19,6 +19,7 @@ public class HowLongHavingSymptomsOLS extends MainPageBlinx {
 
     @Step
     public HowLongHavingSymptomsOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
