@@ -26,6 +26,7 @@ public class DoYouTakeAnyMedicationsControlHypertension_OLS extends MainPageBlin
 
     @Step
     public DoYouTakeAnyMedicationsControlHypertension_OLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

@@ -17,6 +17,7 @@ public class HowWouldYouRateYourPain_OLSTODO extends MainPageBlinx {
 
     @Step
     public HowWouldYouRateYourPain_OLSTODO waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

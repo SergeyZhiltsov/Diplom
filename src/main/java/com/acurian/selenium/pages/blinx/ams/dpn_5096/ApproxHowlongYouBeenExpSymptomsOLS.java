@@ -20,6 +20,7 @@ public class ApproxHowlongYouBeenExpSymptomsOLS extends MainPageBlinx {
 
     @Step
     public ApproxHowlongYouBeenExpSymptomsOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

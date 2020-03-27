@@ -24,6 +24,7 @@ public class WhenWereYouDiagnosedWithCopdOLS extends MainPageBlinx {
 
     @Step
     public WhenWereYouDiagnosedWithCopdOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

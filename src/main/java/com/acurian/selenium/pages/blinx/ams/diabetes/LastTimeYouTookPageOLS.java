@@ -25,6 +25,7 @@ public class LastTimeYouTookPageOLS extends MainPageBlinx {
 
     @Step
     public LastTimeYouTookPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

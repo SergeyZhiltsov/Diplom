@@ -20,6 +20,7 @@ public class EverDiagnosedWithOsteoporosisOLS extends MainPageBlinx {
 
     @Step
     public EverDiagnosedWithOsteoporosisOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

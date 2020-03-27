@@ -27,6 +27,7 @@ public class WhichOfTheFollowingHaveYouBeenDiagnosedBonesJoints_OLS extends Main
 
     @Step
     public WhichOfTheFollowingHaveYouBeenDiagnosedBonesJoints_OLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

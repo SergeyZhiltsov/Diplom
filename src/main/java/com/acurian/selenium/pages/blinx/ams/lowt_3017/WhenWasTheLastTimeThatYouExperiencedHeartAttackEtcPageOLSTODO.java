@@ -23,6 +23,7 @@ public class WhenWasTheLastTimeThatYouExperiencedHeartAttackEtcPageOLSTODO exten
 
     @Step
     public WhenWasTheLastTimeThatYouExperiencedHeartAttackEtcPageOLSTODO waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected1);
         return this;
     }

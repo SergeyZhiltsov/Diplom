@@ -21,6 +21,7 @@ public class ExperiencedAnyOfFollowingOLS extends MainPageBlinx {
 
     @Step
     public ExperiencedAnyOfFollowingOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

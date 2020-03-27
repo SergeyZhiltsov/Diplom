@@ -30,6 +30,7 @@ public class HasHealthcareProfessionalDiagnosedLungCondOLS extends MainPageBlinx
 
     @Step
     public HasHealthcareProfessionalDiagnosedLungCondOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

@@ -27,6 +27,7 @@ public class HowMuchUrgencyDidYouFeelToHaveABowelMovementPageOLS extends MainPag
 
     @Step
     public HowMuchUrgencyDidYouFeelToHaveABowelMovementPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

@@ -25,6 +25,7 @@ public class HaveYouTakenAnyLaxativesOLS extends MainPageBlinx {
 
     @Step
     public HaveYouTakenAnyLaxativesOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

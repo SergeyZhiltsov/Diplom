@@ -21,6 +21,7 @@ public class WhichOfTheFollowingHadAmputatedSurgically_OLS extends MainPageBlinx
 
     @Step
     public WhichOfTheFollowingHadAmputatedSurgically_OLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

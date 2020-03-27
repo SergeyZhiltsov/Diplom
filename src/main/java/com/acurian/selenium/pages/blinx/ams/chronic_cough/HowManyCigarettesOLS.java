@@ -28,6 +28,7 @@ public class HowManyCigarettesOLS extends MainPageBlinx {
 
     @Step
     public HowManyCigarettesOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

@@ -21,6 +21,7 @@ public class EitherOfFollowingMedicationsOLS extends MainPageBlinx {
 
     @Step
     public EitherOfFollowingMedicationsOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

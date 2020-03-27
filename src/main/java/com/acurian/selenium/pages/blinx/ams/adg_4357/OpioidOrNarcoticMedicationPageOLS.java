@@ -27,6 +27,7 @@ public class OpioidOrNarcoticMedicationPageOLS extends MainPageBlinx {
 
     @Step
     public OpioidOrNarcoticMedicationPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

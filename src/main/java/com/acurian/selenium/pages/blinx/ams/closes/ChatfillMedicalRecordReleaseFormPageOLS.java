@@ -31,6 +31,7 @@ public class ChatfillMedicalRecordReleaseFormPageOLS extends MainPageBlinx {
 
     @Step
     public ChatfillMedicalRecordReleaseFormPageOLS waitForPageLoad() {
+        waitForAnimation();
         try {
             acceptAlert();
         } catch (Exception ex) {

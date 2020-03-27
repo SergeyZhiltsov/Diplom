@@ -31,6 +31,7 @@ public class DoyouExperienceHotFlashesOLS extends MainPageBlinx {
 
     @Step
     public DoyouExperienceHotFlashesOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

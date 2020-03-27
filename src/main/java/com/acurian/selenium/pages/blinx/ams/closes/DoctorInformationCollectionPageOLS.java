@@ -31,6 +31,7 @@ public class DoctorInformationCollectionPageOLS extends MainPageBlinx {
 
     @Step
     public DoctorInformationCollectionPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

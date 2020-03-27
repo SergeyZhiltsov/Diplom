@@ -27,6 +27,7 @@ public class SymptomsGetBetterOLS extends MainPageBlinx {
 
     @Step
     public SymptomsGetBetterOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

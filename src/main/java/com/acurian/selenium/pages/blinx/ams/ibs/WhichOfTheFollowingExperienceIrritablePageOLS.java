@@ -25,6 +25,7 @@ public class WhichOfTheFollowingExperienceIrritablePageOLS extends MainPageBlinx
 
     @Step
     public WhichOfTheFollowingExperienceIrritablePageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

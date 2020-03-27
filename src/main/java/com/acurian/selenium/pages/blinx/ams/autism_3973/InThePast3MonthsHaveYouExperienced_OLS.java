@@ -27,6 +27,7 @@ public class InThePast3MonthsHaveYouExperienced_OLS extends MainPageBlinx {
 
     @Step
     public InThePast3MonthsHaveYouExperienced_OLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

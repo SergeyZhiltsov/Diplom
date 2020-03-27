@@ -22,6 +22,7 @@ public class PersonalQuestionsOLS extends MainPageBlinx {
 
     @Step
     public PersonalQuestionsOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

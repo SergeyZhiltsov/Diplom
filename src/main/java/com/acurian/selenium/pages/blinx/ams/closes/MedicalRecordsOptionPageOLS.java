@@ -25,6 +25,7 @@ public class MedicalRecordsOptionPageOLS extends MainPageBlinx {
 
     @Step
     public MedicalRecordsOptionPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText1, titleExpected1);
         waitForPageLoadMain(titleText2, titleExpected2);
         return this;

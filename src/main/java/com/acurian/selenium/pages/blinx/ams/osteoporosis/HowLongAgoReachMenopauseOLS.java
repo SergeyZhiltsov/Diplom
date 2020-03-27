@@ -19,6 +19,7 @@ public class HowLongAgoReachMenopauseOLS extends MainPageBlinx {
 
     @Step
     public HowLongAgoReachMenopauseOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

@@ -27,6 +27,7 @@ public class HowWouldYouRateYourGeneralWellBeingPageOLS extends MainPageBlinx {
 
     @Step
     public HowWouldYouRateYourGeneralWellBeingPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

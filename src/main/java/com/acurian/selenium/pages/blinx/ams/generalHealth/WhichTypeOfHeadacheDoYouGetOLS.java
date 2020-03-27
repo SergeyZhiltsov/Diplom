@@ -27,6 +27,7 @@ public class WhichTypeOfHeadacheDoYouGetOLS extends MainPageBlinx {
 
     @Step
     public WhichTypeOfHeadacheDoYouGetOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

@@ -26,6 +26,7 @@ public class HaveYouEverHadFollowingLungSurgeriesOLS extends MainPageBlinx {
 
     @Step
     public HaveYouEverHadFollowingLungSurgeriesOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

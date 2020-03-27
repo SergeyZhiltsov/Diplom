@@ -20,6 +20,7 @@ public class EverDiagnosedWithGoutOLS extends MainPageBlinx {
 
     @Step
     public EverDiagnosedWithGoutOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

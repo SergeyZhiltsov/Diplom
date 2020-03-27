@@ -21,6 +21,7 @@ public class CurrentlyTakingMedicationsOsteoporosisOLS extends MainPageBlinx {
 
     @Step
     public CurrentlyTakingMedicationsOsteoporosisOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

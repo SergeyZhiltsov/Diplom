@@ -26,6 +26,7 @@ public class HaveYouTriedAnyFollowingTreatmentsForEczemaPageOLS extends MainPage
 
     @Step
     public HaveYouTriedAnyFollowingTreatmentsForEczemaPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

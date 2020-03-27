@@ -25,6 +25,7 @@ public class OtherThanSkinCancerPageOLS extends MainPageBlinx {
 
     @Step
     public OtherThanSkinCancerPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
