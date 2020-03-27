@@ -27,6 +27,7 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 public class MainPageBlinx extends BasePage {
@@ -51,6 +52,7 @@ public class MainPageBlinx extends BasePage {
 
     public MainPageBlinx() {
         PageFactory.initElements(getDriver(), this);
+        getDriver().manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
     }
 
     @Step
@@ -224,7 +226,7 @@ public class MainPageBlinx extends BasePage {
     public boolean isElementPresent(By locator) {
         try {
             WebElement element = getDriver().findElement(locator);
-            element.getTagName();
+//            element.getTagName();
             return true;
         } catch (WebDriverException ignored) {
             return false;
