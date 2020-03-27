@@ -67,6 +67,8 @@ public enum Site {
     LPS_4442("LPS_4442", "08204", "1R", true, false, "I4V_MC_JAHZ", "I4V_MC_JAHZ"),
     //4450
     AUT_CV1_4450S_Syn("AUT_CV1_4450S_Syn", "19901", "41C", false, false, "EX9536_4388"),
+    //stand alone sb
+    AUT_SB_SS_site("AUT_SB_SS_site", "19901", "1R", false, false, "RA01_Generic"), // STAND ALONE SB SCREENER
     //S10560(8983)
     AUT_CV_8983("AUT_CV_8983", "19044", "1R", true, false, "20170625"),
     AUT_CV_8983S("AUT_CV_8983S", "08204", "41C", true, false, "20170625"),
