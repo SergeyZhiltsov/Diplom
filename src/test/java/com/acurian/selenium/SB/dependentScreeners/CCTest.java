@@ -118,7 +118,5 @@ public class CCTest extends BaseTest {
 
 
 
-        System.out.println("Hello");
-
     }
 }
