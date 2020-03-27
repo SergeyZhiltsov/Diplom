@@ -25,7 +25,7 @@ public class SurgicalProceduresOLS extends MainPageOLS {
     @Step
     public SurgicalProceduresOLS waitForPageLoad() {
         waitForAnimation();
-        driverWait.waitforVisibility(titleText);
+        waitforVisibility(titleText);
         return this;
     }
 

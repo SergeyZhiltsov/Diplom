@@ -30,10 +30,10 @@ public class AboutHealthPageOLS extends MainPageOLS{
                 waitForPageLoadMain(titleText, titleExpected);
                 break;
             case Platforms.TABLET:
-                driverWait.waitforVisibility(titleText2);
+                waitforVisibility(titleText2);
                 break;
             case Platforms.MOBILE:
-                driverWait.waitforVisibility(titleText2);
+                waitforVisibility(titleText2);
                 break;
         }
         return this;

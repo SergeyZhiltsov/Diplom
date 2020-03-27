@@ -25,7 +25,7 @@ public class HaveYouEverTakenAnyOtherPrescriptionMedicinesToTreatYourCrohns_OLS 
     @Step
     public HaveYouEverTakenAnyOtherPrescriptionMedicinesToTreatYourCrohns_OLS waitForPageLoad() {
         waitForAnimation();
-        driverWait.waitforVisibility(titleText);
+        waitforVisibility(titleText);
         return this;
     }
 

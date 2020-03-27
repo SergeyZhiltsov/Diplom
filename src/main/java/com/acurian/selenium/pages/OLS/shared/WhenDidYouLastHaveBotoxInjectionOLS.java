@@ -25,7 +25,7 @@ public class WhenDidYouLastHaveBotoxInjectionOLS extends MainPageOLS {
     @Step
     public WhenDidYouLastHaveBotoxInjectionOLS waitForPageLoad() {
         waitForAnimation();
-        driverWait.waitforVisibility(titleText);
+        waitforVisibility(titleText);
         return this;
     }
 

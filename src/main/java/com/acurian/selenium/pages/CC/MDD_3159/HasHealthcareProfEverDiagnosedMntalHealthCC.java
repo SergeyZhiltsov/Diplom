@@ -30,7 +30,7 @@ public class HasHealthcareProfEverDiagnosedMntalHealthCC extends MainPageCC{
     @Step
     public HasHealthcareProfEverDiagnosedMntalHealthCC waitForPageLoad() {
         waitForAnimation();
-        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
+        wait.until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
         return this;
     }
 

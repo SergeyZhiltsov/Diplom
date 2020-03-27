@@ -27,7 +27,7 @@ public class SubquestionHeartPageOLS extends MainPageBlinx {
     @Step
     public SubquestionHeartPageOLS waitForPageLoad(int actualTitleIndex, String expectedTitle) {
         waitForAnimation();
-        driverWait.getWaitDriver().until(ExpectedConditions.numberOfElementsToBeMoreThan(By
+        wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(By
                 .xpath("//div[@class='question-text']"), actualTitleIndex));
         waitForPageLoadMain(titlesText.get(actualTitleIndex), expectedTitle);
         return this;

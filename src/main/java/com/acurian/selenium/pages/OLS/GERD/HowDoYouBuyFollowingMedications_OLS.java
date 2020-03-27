@@ -43,14 +43,14 @@ public class HowDoYouBuyFollowingMedications_OLS extends MainPageOLS{
     @Step
     public HowDoYouBuyFollowingMedications_OLS waitForMainPageLoad() {
         waitForAnimation();
-        driverWait.waitforVisibility(titleText);
+        waitforVisibility(titleText);
         return this;
     }
     
     @Step
     public HowDoYouBuyFollowingMedications_OLS waitForPageLoad(int actualTitleIndex, String expectedTitle) {
         waitForAnimation();
-        driverWait.waitforVisibility(titleText);
+        waitforVisibility(titleText);
         waitForPageLoadMain(titlesText.get(actualTitleIndex-1), expectedTitle);
         return this;
     }

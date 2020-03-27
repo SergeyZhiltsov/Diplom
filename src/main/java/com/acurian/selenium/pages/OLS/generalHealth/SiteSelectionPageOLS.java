@@ -143,7 +143,7 @@ public class SiteSelectionPageOLS extends MainPageOLS {
     }
 
     private void clickOnAddLocLinkIfExist() {
-        if (isElementPresent(7, By.xpath("//b[@id='additional-sites-toggle']"))) {
+        if (isElementPresent(By.xpath("//b[@id='additional-sites-toggle']"))) {
             additionalLocationLink.click();
             waitForAnimation();
         }
@@ -171,7 +171,7 @@ public class SiteSelectionPageOLS extends MainPageOLS {
     @Step
     public SiteSelectionPageOLS getPID() {
         pidNumber = getText(pidNumberPath);
-        logTextToAllure("PID = " + pidNumber);
+        textToAttachment("PID = " + pidNumber);
         PassPID.getInstance().setPidNumber(pidNumber);
         Log.info("PID = " + pidNumber);
         return this;
@@ -181,7 +181,7 @@ public class SiteSelectionPageOLS extends MainPageOLS {
     public SiteSelectionPageOLS GETPIDRegex() {
         pidNumber = getText(pidNumberPath);
         pidNumber = pidNumber.split(" ")[1];
-        logTextToAllure("PID = " + pidNumber);
+        textToAttachment("PID = " + pidNumber);
         PassPID.getInstance().setPidNumber(pidNumber);
         Log.info("PID = " + pidNumber);
         return this;

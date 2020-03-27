@@ -23,7 +23,7 @@ public class TakenXeljanz extends MainPageOLS {
     @Step
     public TakenXeljanz waitForPageLoad() {
         waitForAnimation();
-        driverWait.waitforVisibility(titleText);
+        waitforVisibility(titleText);
         return this;
     }
 

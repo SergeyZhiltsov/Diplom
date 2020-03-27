@@ -10,11 +10,11 @@ import ru.yandex.qatools.allure.annotations.Step;
 public class MainPageAS extends BasePage {
 
     protected WebElement waitToBeClickable(By locator) {
-        return driverWait.getWaitDriver().until(ExpectedConditions.elementToBeClickable(locator));
+        return wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
 
     protected WebElement waitToBeClickable(WebElement element) {
-        return driverWait.getWaitDriver().until(ExpectedConditions.elementToBeClickable(element));
+        return wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
     @Step()
@@ -31,11 +31,11 @@ public class MainPageAS extends BasePage {
     }
 
     public WebElement waitForPresence(By locator) {
-        return driverWait.getWaitDriver().until(ExpectedConditions.presenceOfElementLocated(locator));
+        return wait.until(ExpectedConditions.presenceOfElementLocated(locator));
     }
 
     public void waitForAbsence(WebElement element) {
-        driverWait.getWaitDriver().until(driver -> !isElementPresent(element));
+        wait.until(driver -> !isElementPresent(element));
         waitForAnimation();
     }
 

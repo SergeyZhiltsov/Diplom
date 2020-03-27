@@ -50,7 +50,7 @@ public class SiteSelectionPageOLS extends MainPageBlinx {
 
     @Step
     public SiteSelectionPageOLS waitForPageLoad(String studyName) {
-        driverWait.waitforVisibility(loadingAnimation);
+        waitforVisibility(loadingAnimation);
         waitForAbsence(loadingAnimation);
         waitForPageLoadMain(titleText, String.format(titleExpected, studyName));
         attachPageScreenshot();
@@ -75,7 +75,7 @@ public class SiteSelectionPageOLS extends MainPageBlinx {
     @Step
     public SiteSelectionPageOLS getPID(){
         pidNumber = getText(pidNumberPath);
-        logTextToAllure("PID = " + pidNumber);
+        textToAttachment("PID = " + pidNumber);
         PassPID.getInstance().setPidNumber(pidNumber);
         Log.info("PID = " + pidNumber);
         return this;

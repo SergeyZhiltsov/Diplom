@@ -36,7 +36,6 @@ public class ChatfillMedicalRecordReleaseFormPageOLS extends MainPageOLS {
             acceptAlert();
         } catch (Exception ex) {
             logTextToAllureAndConsole("Alert was not appeared. Retry in 10 seconds");
-            threadSleep(10000);
             try {
                 acceptAlert();
             } catch (Exception exeption) {
@@ -118,12 +117,12 @@ public class ChatfillMedicalRecordReleaseFormPageOLS extends MainPageOLS {
 
     @Step()
     private WebElement waitAndClickWebElement(WebElement element) {
-        driverWait.getWaitDriver().until(ExpectedConditions.elementToBeClickable(element)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(element)).click();
         return element;
     }
 
     @Step()
     private WebElement waitForVisibility(WebElement element) {
-        return driverWait.getWaitDriver().until(ExpectedConditions.visibilityOf(element));
+        return wait.until(ExpectedConditions.visibilityOf(element));
     }
 }

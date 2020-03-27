@@ -26,7 +26,7 @@ public class DoYouKnowSomeoneStudyPartner_CC extends MainPageCC{
     @Step
     public DoYouKnowSomeoneStudyPartner_CC waitForPageLoad() {
         waitForAnimation();
-        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
+        wait.until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
         return this;
     }
 

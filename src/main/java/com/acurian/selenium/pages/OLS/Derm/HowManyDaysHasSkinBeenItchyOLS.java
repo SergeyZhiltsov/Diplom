@@ -26,7 +26,7 @@ public class HowManyDaysHasSkinBeenItchyOLS extends MainPageOLS {
     public HowManyDaysHasSkinBeenItchyOLS waitForPageLoad() {
         waitForAnimation();
         waitForImagesToLoad();
-        driverWait.waitforVisibility(titleText);
+        waitforVisibility(titleText);
         return this;
     }
 

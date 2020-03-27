@@ -38,7 +38,7 @@ public class SubquestionExperiencedHeartPageOLS extends MainPageOLS{
     @Step
     public SubquestionExperiencedHeartPageOLS waitForPageLoad(int actualTitleIndex, String expectedTitle) {
         waitForAnimation();
-        driverWait.waitforVisibility(titleText);
+        waitforVisibility(titleText);
         waitForPageLoadMain(titlesText.get(actualTitleIndex - 1), expectedTitle);
         return this;
     }

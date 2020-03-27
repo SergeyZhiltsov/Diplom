@@ -26,7 +26,7 @@ public class CurrentlyTakingMethotrexate extends MainPageOLS {
     @Step
     public CurrentlyTakingMethotrexate waitForPageLoad() {
         waitForAnimation();
-        driverWait.waitforVisibility(titleText);
+        waitforVisibility(titleText);
         return this;
     }
 

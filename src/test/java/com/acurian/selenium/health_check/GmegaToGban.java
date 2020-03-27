@@ -108,7 +108,6 @@ public class GmegaToGban extends BaseTest {
                 .waitForPageLoadGBAN();
 //                .waitForPageLoadByTitle(dateOfBirthPageOLS.titleExpectedGBAN1);
         Assert.assertEquals(debugPageOLS.getProjectNameText(), "GBAN1", "Project name is diff");
-        dateOfBirthPageOLS.threadSleep(2000);
         dateOfBirthPageOLS.setDate("09/09/1955")
                 .clickNextButton(behalfOfSomeoneElsePageOLS);
 

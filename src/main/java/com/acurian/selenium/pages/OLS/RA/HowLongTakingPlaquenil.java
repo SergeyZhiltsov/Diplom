@@ -26,7 +26,7 @@ public class HowLongTakingPlaquenil extends MainPageOLS {
     @Step
     public HowLongTakingPlaquenil waitForPageLoad() {
         waitForAnimation();
-        driverWait.waitforVisibility(titleText);
+        waitforVisibility(titleText);
         return this;
     }
 

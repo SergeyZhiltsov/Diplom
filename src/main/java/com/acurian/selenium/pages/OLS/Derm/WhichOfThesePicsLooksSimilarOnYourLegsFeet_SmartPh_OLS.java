@@ -25,7 +25,7 @@ public class WhichOfThesePicsLooksSimilarOnYourLegsFeet_SmartPh_OLS extends Main
     @Step
     public WhichOfThesePicsLooksSimilarOnYourLegsFeet_SmartPh_OLS waitForPageLoad() {
         waitForAnimation();
-        driverWait.waitforVisibility(titleText);
+        waitforVisibility(titleText);
         return this;
     }
 

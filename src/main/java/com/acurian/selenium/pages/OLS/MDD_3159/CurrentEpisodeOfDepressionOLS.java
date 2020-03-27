@@ -26,7 +26,7 @@ public class CurrentEpisodeOfDepressionOLS extends MainPageOLS {
     @Step
     public CurrentEpisodeOfDepressionOLS waitForPageLoad() {
         waitForAnimation();
-        driverWait.waitforVisibility(titleText);
+        waitforVisibility(titleText);
         return this;
     }
 

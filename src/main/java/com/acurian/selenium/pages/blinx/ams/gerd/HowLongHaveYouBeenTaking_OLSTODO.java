@@ -42,14 +42,14 @@ public class HowLongHaveYouBeenTaking_OLSTODO extends MainPageBlinx {
     @Step
     public HowLongHaveYouBeenTaking_OLSTODO waitForMainPageLoad() {
         waitForAnimation();
-        driverWait.waitforVisibility(maintitleText);
+        waitforVisibility(maintitleText);
         return this;
     }
 
     @Step
     public HowLongHaveYouBeenTaking_OLSTODO waitForPageLoad(int actualTitleIndex, String expectedTitle) {
         waitForAnimation();
-        driverWait.waitforVisibility(titleText);
+        waitforVisibility(titleText);
         waitForPageLoadMain(titlesText.get(actualTitleIndex-1), expectedTitle);
         return this;
     }

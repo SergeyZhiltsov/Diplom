@@ -82,7 +82,7 @@ public class DebugPageCC extends MainPageCC {
                 .findElement(By.xpath("following-sibling::*[3]"))
                 .getText();
         closeDebugWindow();
-        logTextToAllure("Protocol=" + temp);
+        textToAttachment("Protocol=" + temp);
         return temp;
     }
 
@@ -103,7 +103,7 @@ public class DebugPageCC extends MainPageCC {
                 .getText();
         String[] tempArr = temp.split("\n");
         closeDebugWindow();
-        logTextToAllure("Protocol(s) got =" + Arrays.toString(tempArr));
+        textToAttachment("Protocol(s) got =" + Arrays.toString(tempArr));
         return tempArr;
     }
 
@@ -142,7 +142,7 @@ public class DebugPageCC extends MainPageCC {
                 .getText();
         String[] tempArr = temp.split("\n");
         closeDebugWindow();
-        logTextToAllure("Protocol(s) got =" + Arrays.toString(tempArr));
+        textToAttachment("Protocol(s) got =" + Arrays.toString(tempArr));
         return tempArr;
     }
 
@@ -204,7 +204,7 @@ public class DebugPageCC extends MainPageCC {
                 .findElement(By.xpath("following-sibling::*[6]"))
                 .getText();
         closeDebugWindow();
-        logTextToAllure("Study status got = " + temp);
+        textToAttachment("Study status got = " + temp);
         return temp;
     }
 

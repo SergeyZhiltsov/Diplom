@@ -26,7 +26,7 @@ public class AreYouCurrentlyPregnantCC extends MainPageCC{
     @Step
     public AreYouCurrentlyPregnantCC waitForPageLoad() {
         waitForAnimation();
-        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
+        wait.until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
         return this;
     }
 

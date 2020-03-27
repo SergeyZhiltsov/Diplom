@@ -27,7 +27,7 @@ public class WhichTypeOfUrinaryLeakageYouExperienceCC extends MainPageCC{
     @Step
     public WhichTypeOfUrinaryLeakageYouExperienceCC waitForPageLoad() {
         waitForAnimation();
-        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
+        wait.until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
         return this;
     }
 

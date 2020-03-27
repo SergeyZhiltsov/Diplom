@@ -58,21 +58,21 @@ public class MainPageOLS extends BasePage {
 
     @Step
     protected void waitForPageLoadMain(WebElement titleText, String titleExpected) {
-        logTextToAllure(this.getClass().getSimpleName() + " class with:");
+        textToAttachment(this.getClass().getSimpleName() + " class with:");
         textToAttachment(titleExpected, "Title text expected");
         waitForAnimation();
-        driverWait.waitforVisibility(titleText);
+        waitforVisibility(titleText);
         try {
-            driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w -> titleText.getText().contains(titleExpected));
+            wait.until((ExpectedCondition<Boolean>) w -> titleText.getText().contains(titleExpected));
         } catch (TimeoutException ex) {
             Assert.assertEquals(titleText.getText(), titleExpected, "Failed after timeout wait cause Title is diff");
             throw ex;
         }
 //        try {
-//            driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w -> titleText.getText().contains(titleExpected));
+//            wait.until((ExpectedCondition<Boolean>) w -> titleText.getText().contains(titleExpected));
 //        }
 //        catch (NullPointerException ex){
-//            driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w -> titleText.getText().contains(titleExpected));
+//            wait.until((ExpectedCondition<Boolean>) w -> titleText.getText().contains(titleExpected));
 //        }
         waitForAnimation();
     }
@@ -85,7 +85,7 @@ public class MainPageOLS extends BasePage {
     protected void waitForImagesToLoad() {
         try {
             for (WebElement image : images) {
-                driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) webDriver -> (Boolean) ((JavascriptExecutor) webDriver).executeScript("return arguments[0].complete", image));
+                wait.until((ExpectedCondition<Boolean>) webDriver -> (Boolean) ((JavascriptExecutor) webDriver).executeScript("return arguments[0].complete", image));
             }
         } catch (TimeoutException e) {
             Assert.fail("Failed to load images");
@@ -115,9 +115,7 @@ public class MainPageOLS extends BasePage {
 //            for (WebElement el : checkBoxList) {
 //                if (answerTextList.contains(el.getText())) {
 ////                scrollToElement(el, true);
-//                    threadSleep(1000);
 //                    getActions().moveToElement(el.findElement(By.xpath("ancestor::label")), 5, 5).click().perform();
-//                    threadSleep(5000);
 //                }
 //            }
         waitForAnimation();
@@ -131,7 +129,7 @@ public class MainPageOLS extends BasePage {
     public MainPageOLS assertChildDOBIsNull(String env, String studyId) {
         String childDOBCell = getDbConnection().dbReadChildDOB(env, pid, studyId);
         Assert.assertNull(childDOBCell, "Child DOB is not NULL");
-        logTextToAllure("Child DOB cell: " + childDOBCell);
+        textToAttachment("Child DOB cell: " + childDOBCell);
         return this;
     }
 
@@ -140,7 +138,7 @@ public class MainPageOLS extends BasePage {
         pid = PassPID.getInstance().getPidNumber();
         getDbConnection().dbReadPID(env, pid);
         dispoParent = getDbConnection().getDispo();
-        logTextToAllure("Parent dispo = " + dispoParent + " for PID " + pid);
+        textToAttachment("Parent dispo = " + dispoParent + " for PID " + pid);
         return this;
     }
 
@@ -239,7 +237,7 @@ public class MainPageOLS extends BasePage {
     public MainPageOLS copyRun(String env) {
         getDbConnection().dbCOPYProc(env, pid);
         //dispoParent = getDbConnection().getDispo();
-        //logTextToAllure("Parent dispo = " + dispoParent + " for PID " + pid);
+        //textToAttachment("Parent dispo = " + dispoParent + " for PID " + pid);
         return this;
     }
 
@@ -282,7 +280,7 @@ public class MainPageOLS extends BasePage {
         ChildResult childResult = getDbConnection().dbReadChildPID(env, pid, firstPartOfChildPhoneNumber);
         dispoChild = childResult.getDispoCd() + childResult.getApplicantStatus();
         childPid = childResult.getChildPid();
-        logTextToAllure("Child dispo =" + childResult.getDispoCd() + childResult.getApplicantStatus() + " for PID " + pid +
+        textToAttachment("Child dispo =" + childResult.getDispoCd() + childResult.getApplicantStatus() + " for PID " + pid +
         " with child pid = "+ childResult.getChildPid());
         return this;
     }
@@ -294,7 +292,7 @@ public class MainPageOLS extends BasePage {
         ChildResult childResult = getDbConnection().dbReadChildPID(env, pid, firstPartOfChildPhoneNumber);
         dispoChild = childResult.getDispoCd() + childResult.getApplicantStatus();
         childPid = childResult.getChildPid();
-        logTextToAllure("Child dispo =" + childResult.getDispoCd() + childResult.getApplicantStatus() + " for PID " + pid +
+        textToAttachment("Child dispo =" + childResult.getDispoCd() + childResult.getApplicantStatus() + " for PID " + pid +
                 " with child pid = "+ childResult.getChildPid());
         return this;
     }
@@ -302,11 +300,10 @@ public class MainPageOLS extends BasePage {
     @Step
     public MainPageOLS convert54Cto1R(String env) {
         getDbConnection().convert54Cto1R(env, pid);
-        logTextToAllure("54 to 1R conversion completed");
-        threadSleep(2000);
+        textToAttachment("54 to 1R conversion completed");
         getDbConnection().dbReadPID(env, pid);
         dispoParent = getDbConnection().getDispo();
-        logTextToAllure("Dispo = " + dispoParent + " for PID " + pid + "  after conversion");
+        textToAttachment("Dispo = " + dispoParent + " for PID " + pid + "  after conversion");
         return this;
     }
 
@@ -314,7 +311,7 @@ public class MainPageOLS extends BasePage {
     public MainPageOLS getRadiantDbToLog(String env, String ... assertStudyReference) {
         if(env.equals("QA")) {
             RadiantResults radiantResults = getDbConnection().dbReadRadiant(env, pid);
-            logTextToAllure("Radiant : current status = " + radiantResults.getCurrentStatus() +
+            textToAttachment("Radiant : current status = " + radiantResults.getCurrentStatus() +
                     ", response message = " + radiantResults.getResponseMessage() +
                     ", study reference = " + radiantResults.getStudyReference() +
                     " for PID " + pid);
@@ -338,7 +335,7 @@ public class MainPageOLS extends BasePage {
     @Step
     public MainPageOLS getAnomalyDbToLog(String env) {
         AnomalyResults anomalyResults = getDbConnection().dbReadAnomaly(env, pid);
-        logTextToAllure("Anomaly : current status = " + anomalyResults.getCurrentStatus() +
+        textToAttachment("Anomaly : current status = " + anomalyResults.getCurrentStatus() +
                         ", request status id = " + anomalyResults.getRequestStatus() + " for PID " + pid);
         Assert.assertEquals(anomalyResults.getCurrentStatus(), "SENT", "Current status is not SENT");
         Assert.assertEquals(anomalyResults.getRequestStatus(), "2", "Request status is not 2");
@@ -348,7 +345,7 @@ public class MainPageOLS extends BasePage {
     @Step
     public MainPageOLS flareCodeShouldMatch(String env, String statusCode) {
         String flareStatus = getDbConnection().dbGetStatusFlare(env, pid);
-        logTextToAllure("Flare : current status = "+ flareStatus + " for childPID " + pid);
+        textToAttachment("Flare : current status = "+ flareStatus + " for childPID " + pid);
         Assert.assertEquals(flareStatus, statusCode, "Current status for Flare is diff");
         return this;
     }
@@ -356,7 +353,7 @@ public class MainPageOLS extends BasePage {
     @Step
     public MainPageOLS getPID(){
         pidNumber = getText(pidNumberPath);
-        logTextToAllure("PID = " + pidNumber);
+        textToAttachment("PID = " + pidNumber);
         PassPID.getInstance().setPidNumber(pidNumber);
         Log.info("PID = " + pidNumber);
         return this;

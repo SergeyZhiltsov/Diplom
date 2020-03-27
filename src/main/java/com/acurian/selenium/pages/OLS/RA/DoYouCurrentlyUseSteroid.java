@@ -25,7 +25,7 @@ public class DoYouCurrentlyUseSteroid extends MainPageOLS {
     @Step
     public DoYouCurrentlyUseSteroid waitForPageLoad() {
         waitForAnimation();
-        driverWait.waitforVisibility(titleText);
+        waitforVisibility(titleText);
         return this;
     }
 

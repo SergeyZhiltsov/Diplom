@@ -73,11 +73,11 @@ public class MainPageBlinx extends BasePage {
     protected void waitForPageLoadMain(WebElement titleText, String titleExpected) {
         waitForAbsence(By.xpath("//*[@id='questions-form'][contains(@class, 'animated fadeOutUp fast')]"));
         waitForAbsence(By.xpath("//*[@id='questions-form'][contains(@class, 'animated fadeInUp fast')]"));
-        logTextToAllure(this.getClass().getSimpleName() + " class with: ");
+        textToAttachment(this.getClass().getSimpleName() + " class with: ");
         textToAttachment(titleExpected, "Title text expected");
-        driverWait.waitforVisibility(titleText);
+        waitforVisibility(titleText);
         try {
-            driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w -> titleText.getText().contains(titleExpected));
+            wait.until((ExpectedCondition<Boolean>) w -> titleText.getText().contains(titleExpected));
         } catch (TimeoutException ex) {
             Assert.assertEquals(titleText.getText(), titleExpected, "Failed after timeout wait cause Title is diff");
             throw ex;
@@ -163,7 +163,7 @@ public class MainPageBlinx extends BasePage {
     @Step
     public MainPageBlinx getAnomalyDbToLog(String env) {
         AnomalyResults anomalyResults = getDbConnection().dbReadAnomaly(env, pid);
-        logTextToAllure("Anomaly : current status = " + anomalyResults.getCurrentStatus() +
+        textToAttachment("Anomaly : current status = " + anomalyResults.getCurrentStatus() +
                 ", request status id = " + anomalyResults.getRequestStatus() + " for PID " + pid);
         Assert.assertEquals(anomalyResults.getCurrentStatus(), "SENT", "Current status is not SENT");
         if (env.equals("STG")) {
@@ -186,11 +186,11 @@ public class MainPageBlinx extends BasePage {
     }
 
     protected WebElement waitToBeClickable(WebElement element) {
-        return driverWait.getWaitDriver().until(ExpectedConditions.elementToBeClickable(element));
+        return wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
     protected WebElement waitToBeClickable(By locator) {
-        return driverWait.getWaitDriver().until(ExpectedConditions.elementToBeClickable(locator));
+        return wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
 
     protected WebElement waitAndClickWebElement(WebElement element) {
@@ -205,11 +205,11 @@ public class MainPageBlinx extends BasePage {
     }
 
     public void waitForAbsence(WebElement element) {
-        driverWait.getWaitDriver().until(driver -> !isElementPresent(element));
+        wait.until(driver -> !isElementPresent(element));
     }
 
     public void waitForAbsence(By locator) {
-        driverWait.getWaitDriver().until(driver -> !isElementPresent(locator));
+        wait.until(driver -> !isElementPresent(locator));
     }
 
     protected boolean isElementPresent(WebElement element) {
@@ -241,7 +241,7 @@ public class MainPageBlinx extends BasePage {
         pid = PassPID.getInstance().getPidNumber();
         getDbConnection().dbReadPID(env, pid);
         dispoParent = getDbConnection().getDispo();
-        logTextToAllure("Parent dispo = " + dispoParent + " for PID " + pid);
+        textToAttachment("Parent dispo = " + dispoParent + " for PID " + pid);
         return this;
     }
 
@@ -250,7 +250,7 @@ public class MainPageBlinx extends BasePage {
         ChildResult childResult = getDbConnection().dbReadChildPID(env, pid, firstPartOfChildPhoneNumber);
         dispoChild = childResult.getDispoCd() + childResult.getApplicantStatus();
         childPid = childResult.getChildPid();
-        logTextToAllure("Child dispo = " + childResult.getDispoCd() + childResult.getApplicantStatus() + " for PID " + pid +
+        textToAttachment("Child dispo = " + childResult.getDispoCd() + childResult.getApplicantStatus() + " for PID " + pid +
                 " with child pid = " + childResult.getChildPid());
         return this;
     }
@@ -293,7 +293,7 @@ public class MainPageBlinx extends BasePage {
     public MainPageBlinx getRadiantDbToLog(String env, String ... assertStudyReference) {
         if(env.equals("QA")) {
             RadiantResults radiantResults = getDbConnection().dbReadRadiant(env, pid);
-            logTextToAllure("Radiant : current status = " + radiantResults.getCurrentStatus() +
+            textToAttachment("Radiant : current status = " + radiantResults.getCurrentStatus() +
                     ", response message = " + radiantResults.getResponseMessage() +
                     ", study reference = " + radiantResults.getStudyReference() +
                     " for PID " + pid);
@@ -347,7 +347,7 @@ public class MainPageBlinx extends BasePage {
     public MainPageBlinx getPID(){
         pidNumber = getText(pidNumberPath);
         pidNumber = pidNumber.split(" ")[1];
-        logTextToAllure("PID = " + pidNumber);
+        textToAttachment("PID = " + pidNumber);
         PassPID.getInstance().setPidNumber(pidNumber);
         Log.info("PID = " + pidNumber);
         return this;
@@ -357,11 +357,10 @@ public class MainPageBlinx extends BasePage {
     public MainPageBlinx convert54Cto1R(String env) {
         Log.info("PID = " + pid);
         getDbConnection().convert54Cto1R(env, pid);
-        logTextToAllure("54 to 1R conversion completed");
-        threadSleep(2000);
+        textToAttachment("54 to 1R conversion completed");
         getDbConnection().dbReadPID(env, pid);
         dispoParent = getDbConnection().getDispo();
-        logTextToAllure("Dispo = " + dispoParent + " for PID " + pid + "  after conversion");
+        textToAttachment("Dispo = " + dispoParent + " for PID " + pid + "  after conversion");
         return this;
     }
 
@@ -369,7 +368,7 @@ public class MainPageBlinx extends BasePage {
     public MainPageBlinx copyRun(String env) {
         getDbConnection().dbCOPYProc(env, pid);
         //dispoParent = getDbConnection().getDispo();
-        //logTextToAllure("Parent dispo = " + dispoParent + " for PID " + pid);
+        //textToAttachment("Parent dispo = " + dispoParent + " for PID " + pid);
         return this;
     }
 
@@ -380,7 +379,7 @@ public class MainPageBlinx extends BasePage {
         ChildResult childResult = getDbConnection().dbReadChildPID(env, pid, firstPartOfChildPhoneNumber);
         dispoChild = childResult.getDispoCd() + childResult.getApplicantStatus();
         childPid = childResult.getChildPid();
-        logTextToAllure("Child dispo =" + childResult.getDispoCd() + childResult.getApplicantStatus() + " for PID " + pid +
+        textToAttachment("Child dispo =" + childResult.getDispoCd() + childResult.getApplicantStatus() + " for PID " + pid +
                 " with child pid = "+ childResult.getChildPid());
         return this;
     }

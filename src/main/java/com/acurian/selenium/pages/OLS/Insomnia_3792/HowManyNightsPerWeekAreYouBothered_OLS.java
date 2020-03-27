@@ -23,7 +23,7 @@ public class HowManyNightsPerWeekAreYouBothered_OLS extends MainPageOLS {
     @Step
     public HowManyNightsPerWeekAreYouBothered_OLS waitForPageLoad() {
         waitForAnimation();
-        driverWait.waitforVisibility(titleText);
+        waitforVisibility(titleText);
         return this;
     }
 

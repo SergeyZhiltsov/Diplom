@@ -54,7 +54,7 @@ public class HeaderMenuPage extends BasePage {
 
     @Step
     public FaqPage clickFaqTab(){
-        driverWait.waitforVisibility(faqTab);
+        waitforVisibility(faqTab);
         faqTab.click();
         return new FaqPage();
     }

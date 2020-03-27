@@ -37,14 +37,14 @@ public class DashBoardPage extends MainPageAS {
 
     @Step
     public DashBoardPage setSearchAppFilter(String appName) {
-        driverWait.waitforVisibility(searchAppList);
+        waitforVisibility(searchAppList);
         selectDropDownListOptionByText(searchAppList, appName);
         return this;
     }
 
     @Step
     public DashBoardPage setRequestedByFilter(String requestedBy) {
-        driverWait.waitforVisibility(searchRequestByList);
+        waitforVisibility(searchRequestByList);
         selectDropDownListOptionByText(searchRequestByList, requestedBy);
         return this;
     }
@@ -52,7 +52,7 @@ public class DashBoardPage extends MainPageAS {
     @Step
     public DashBoardPage clickSearchButtonAndWaitResults() {
         waitAndClickWebElement(searchAuditButton);
-        driverWait.waitforVisibility(searchResultsBlockOverlay);
+        waitforVisibility(searchResultsBlockOverlay);
         waitForAbsence(searchResultsBlockOverlay);
         return this;
     }
@@ -65,13 +65,13 @@ public class DashBoardPage extends MainPageAS {
 
     @Step
     public String getPatientIdFromRequestBody() {
-        driverWait.waitforVisibility(patientIdFromRequestBody);
+        waitforVisibility(patientIdFromRequestBody);
         return patientIdFromRequestBody.getText();
     }
 
     @Step
     public String getResponseCodeFromResponseBody() {
-        driverWait.waitforVisibility(codeFromResponseBody);
+        waitforVisibility(codeFromResponseBody);
         return codeFromResponseBody.getText();
     }
 }
