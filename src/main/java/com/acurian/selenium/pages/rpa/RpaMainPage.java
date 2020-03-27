@@ -16,7 +16,7 @@ public class RpaMainPage extends BasePage {
     }
 
     public void waitForAnimation() {
-        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) wdriver -> ((JavascriptExecutor) getDriver()).executeScript(
+        wait.until((ExpectedCondition<Boolean>) wdriver -> ((JavascriptExecutor) getDriver()).executeScript(
                 "return document.readyState"
         ).equals("complete"));
     }

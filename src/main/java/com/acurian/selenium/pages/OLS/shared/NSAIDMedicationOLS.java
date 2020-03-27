@@ -27,7 +27,7 @@ public class NSAIDMedicationOLS extends MainPageOLS {
     @Step
     public NSAIDMedicationOLS waitForPageLoad() {
         waitForAnimation();
-        driverWait.waitforVisibility(titleText);
+        waitforVisibility(titleText);
         return this;
     }
 

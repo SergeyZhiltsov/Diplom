@@ -25,7 +25,7 @@ public class MedicationsToTreatYourRA extends MainPageOLS {
     @Step
     public MedicationsToTreatYourRA waitForPageLoad() {
         waitForAnimation();
-        driverWait.waitforVisibility(titleText);
+        waitforVisibility(titleText);
         return this;
     }
 

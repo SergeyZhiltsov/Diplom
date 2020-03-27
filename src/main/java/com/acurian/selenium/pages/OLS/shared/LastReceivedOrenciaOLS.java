@@ -23,7 +23,7 @@ public class LastReceivedOrenciaOLS extends MainPageOLS {
     @Step
     public LastReceivedOrenciaOLS waitForPageLoad() {
         waitForAnimation();
-        driverWait.waitforVisibility(titleText);
+        waitforVisibility(titleText);
         return this;
     }
 

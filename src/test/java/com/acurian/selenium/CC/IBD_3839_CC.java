@@ -165,7 +165,6 @@ public class IBD_3839_CC extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new EverTreatedCrohnOrColitisCC());
 
-        everTreatedCrohnOrColitisCC.threadSleep(2000);
         BiologicMedicationsPageCC biologicMedicationsPageCC = everTreatedCrohnOrColitisCC
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new BiologicMedicationsPageCC());

@@ -26,7 +26,7 @@ public class WhereYouHaveArthritisOLS extends MainPageOLS {
     @Step
     public WhereYouHaveArthritisOLS waitForPageLoad() {
         waitForAnimation();
-        driverWait.waitforVisibility(titleText);
+        waitforVisibility(titleText);
         return this;
     }
 

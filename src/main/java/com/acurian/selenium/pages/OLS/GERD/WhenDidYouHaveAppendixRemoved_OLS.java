@@ -29,14 +29,14 @@ public class WhenDidYouHaveAppendixRemoved_OLS extends MainPageOLS {
     @Step
     public WhenDidYouHaveAppendixRemoved_OLS waitForMainPageLoad() {
         waitForAnimation();
-        driverWait.waitforVisibility(maintitleText);
+        waitforVisibility(maintitleText);
         return this;
     }
 
     @Step
     public WhenDidYouHaveAppendixRemoved_OLS waitForPageLoad(int actualTitleIndex, String expectedTitle) {
         waitForAnimation();
-        driverWait.waitforVisibility(titleText);
+        waitforVisibility(titleText);
         waitForPageLoadMain(titlesText.get(actualTitleIndex - 1), expectedTitle);
         return this;
     }

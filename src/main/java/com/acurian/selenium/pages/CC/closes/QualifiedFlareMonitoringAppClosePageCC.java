@@ -66,7 +66,7 @@ public class QualifiedFlareMonitoringAppClosePageCC extends MainPageCC {
     @Step
     public QualifiedFlareMonitoringAppClosePageCC getActivationCode() {
         String activationCode = getText(activationCodePath);
-        logTextToAllure("Activation Code " + activationCode);
+        textToAttachment("Activation Code " + activationCode);
         Log.info("Activation Code = " + activationCode);
         return this;
     }
@@ -74,7 +74,7 @@ public class QualifiedFlareMonitoringAppClosePageCC extends MainPageCC {
     @Step
     public QualifiedFlareMonitoringAppClosePageCC enterEmail(String emailid) {
         typeText(emailidField, emailid);
-        logTextToAllure("Email_ID " + emailid);
+        textToAttachment("Email_ID " + emailid);
         Log.info("Email_ID = " + emailid);
         return this;
     }

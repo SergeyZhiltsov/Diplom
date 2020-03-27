@@ -25,7 +25,6 @@ public class DoesYourPsoriasisLookLikeThisBodyOLS extends MainPageBlinx {
 
     @Step
     public DoesYourPsoriasisLookLikeThisBodyOLS waitForPageLoad() {
-        threadSleep(3000);
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

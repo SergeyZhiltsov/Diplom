@@ -25,7 +25,7 @@ public class InPast3MonthsMedicationToStopActiveMIG extends MainPageOLS {
     @Step
     public InPast3MonthsMedicationToStopActiveMIG waitForPageLoad() {
         waitForAnimation();
-        driverWait.waitforVisibility(titleText);
+        waitforVisibility(titleText);
         return this;
     }
 

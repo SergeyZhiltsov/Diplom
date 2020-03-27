@@ -24,7 +24,7 @@ public class AreYouCurrentlyExperiencing extends MainPageOLS {
     @Step
     public AreYouCurrentlyExperiencing waitForPageLoad() {
         waitForAnimation();
-        driverWait.waitforVisibility(titleText);
+        waitforVisibility(titleText);
         return this;
     }
 

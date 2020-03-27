@@ -50,10 +50,10 @@ public class HS1PageOLS extends MainPageBlinx {
 
 
     private void waitJQuery(){
-        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) wdriver -> ((JavascriptExecutor) getDriver()).executeScript(
+        wait.until((ExpectedCondition<Boolean>) wdriver -> ((JavascriptExecutor) getDriver()).executeScript(
                 "return document.readyState"
         ).equals("complete"));
-        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) wdriver -> (boolean)((JavascriptExecutor) getDriver()).executeScript(
+        wait.until((ExpectedCondition<Boolean>) wdriver -> (boolean)((JavascriptExecutor) getDriver()).executeScript(
                 "return jQuery.active == 0"
         ));
     }
@@ -66,7 +66,7 @@ public class HS1PageOLS extends MainPageBlinx {
             acceptAlert();
         }
         catch (Exception ex){
-            logTextToAllure("alerts was not appeared");
+            textToAttachment("alerts was not appeared");
         }
         waitForAnimation();
         return this;
@@ -76,7 +76,7 @@ public class HS1PageOLS extends MainPageBlinx {
     public HS1PageOLS clickOkInPopUp() {
         waitForAnimation();
         getDriver().switchTo().frame("hsEmbeddedFrame");
-        driverWait.waitforVisibility(popButtonOk);
+        waitforVisibility(popButtonOk);
         popButtonOk.click();
         return this;
     }
@@ -86,30 +86,28 @@ public class HS1PageOLS extends MainPageBlinx {
         waitForAnimation();
         firstNameField.click();
         for (int i = 0; i < 18; i++) {
-            threadSleep(500);
+            threadSleep(5);
             getActions().sendKeys(Keys.TAB).build().perform();
         }
         waitForAnimation();
-        threadSleep(1000);
         nameField.click();
         typeTextWithoutClear(nameField,"Acurian trial");
         waitForAnimation();
         waitJQuery();
-        threadSleep(1000);
         clickToSignButton.click();
         waitJQuery();
         waitForAnimation();
-        driverWait.waitforVisibility(typeItInButton);
+        waitforVisibility(typeItInButton);
         typeItInButton.click();
         waitJQuery();
         waitForAnimation();
-        driverWait.waitforVisibility(insertButton);
+        waitforVisibility(insertButton);
         insertButton.click();
         waitForAnimation();
-        driverWait.waitforVisibility(continueButton);
+        waitforVisibility(continueButton);
         continueButton.click();
         waitForAnimation();
-        driverWait.waitforVisibility(agreeButton);
+        waitforVisibility(agreeButton);
         agreeButton.click();
         waitForAnimation();
         return this;
@@ -117,10 +115,10 @@ public class HS1PageOLS extends MainPageBlinx {
 
     @Step
     public HS1PageOLS waitToClickNext() {
-        driverWait.getWaitDriver().withTimeout(1, TimeUnit.MINUTES).until(ExpectedConditions
+        wait.until(ExpectedConditions
                 .visibilityOf(titleText));
         waitForAnimation();
-        driverWait.getWaitDriver().withTimeout(15, TimeUnit.SECONDS).until(ExpectedConditions
+        wait.until(ExpectedConditions
                 .invisibilityOfElementWithText(By.xpath(Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS), titleExpected));
         return this;
     }

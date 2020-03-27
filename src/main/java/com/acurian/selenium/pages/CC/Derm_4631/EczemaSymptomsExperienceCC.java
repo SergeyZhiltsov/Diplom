@@ -27,7 +27,7 @@ public class EczemaSymptomsExperienceCC extends MainPageCC {
     @Step
     public EczemaSymptomsExperienceCC waitForPageLoad() {
         waitForAnimation();
-        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
+        wait.until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
         return this;
     }
 

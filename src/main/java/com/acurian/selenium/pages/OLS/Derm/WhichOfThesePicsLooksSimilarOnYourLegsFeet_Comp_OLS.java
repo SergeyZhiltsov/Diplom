@@ -26,7 +26,7 @@ public class WhichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS extends MainPag
     public WhichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS waitForPageLoad() {
         waitForAnimation();
         waitForImagesToLoad();
-        driverWait.waitforVisibility(titleText);
+        waitforVisibility(titleText);
         return this;
     }
 

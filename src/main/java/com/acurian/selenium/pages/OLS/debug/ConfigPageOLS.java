@@ -67,7 +67,7 @@ public class ConfigPageOLS extends MainPageOLS {
 
     public ConfigPageOLS getPID() {
         pid = getText(pidNumberPath);
-        logTextToAllure("PID of studySwitch standalone =" + pid);
+        textToAttachment("PID of studySwitch standalone =" + pid);
         PassPID.getInstance().setPidNumber(pid);
         Log.info("Standalone Switch 4733 PID = " + pid);
         return this;

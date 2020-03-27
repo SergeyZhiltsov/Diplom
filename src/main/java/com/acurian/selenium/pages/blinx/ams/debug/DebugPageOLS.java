@@ -53,7 +53,7 @@ public class DebugPageOLS extends MainPageBlinx {
 
     @Step
     public DebugPageOLS getPID(){
-        driverWait.waitforVisibility(pid);
+        waitforVisibility(pid);
         pidNumber = pid.getText().replace("pid: ", "");
         logTextToAllureAndConsole("PID from page = " + pidNumber);
         PassPID.getInstance().setPidNumber(pidNumber);
@@ -101,7 +101,7 @@ public class DebugPageOLS extends MainPageBlinx {
             dqNumbers= dqNumberElements.stream().map(WebElement::getText).collect(Collectors.toList());
             if(dqNumbers.contains("")) {
                 logTextToAllureAndConsole("dq numbers loaded slowly. Attempt #" + (i+1));
-                threadSleep(1000);
+                threadSleep(1);
             } else {
                 break;
             }
@@ -129,7 +129,7 @@ public class DebugPageOLS extends MainPageBlinx {
             }
         }
         closeDebugWindow();
-        logTextToAllure("Protocols = " + dqNumbers);
+        textToAttachment("Protocols = " + dqNumbers);
         return dqNumbers;
 
         /*List<String> temp = dqNumberElements.stream()

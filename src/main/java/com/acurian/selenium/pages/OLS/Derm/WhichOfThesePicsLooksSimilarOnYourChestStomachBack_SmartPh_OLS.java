@@ -25,7 +25,7 @@ public class WhichOfThesePicsLooksSimilarOnYourChestStomachBack_SmartPh_OLS exte
     @Step
     public WhichOfThesePicsLooksSimilarOnYourChestStomachBack_SmartPh_OLS waitForPageLoad() {
         waitForAnimation();
-        driverWait.waitforVisibility(titleText);
+        waitforVisibility(titleText);
         return this;
     }
 

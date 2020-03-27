@@ -22,8 +22,7 @@ public class AboutHealthPageOLS extends MainPageBlinx {
         } catch (Exception ex) {
             logTextToAllureAndConsole("Alert was not appeared.");
         }
-        driverWait.getWaitDriver().withTimeout(60, TimeUnit.SECONDS)
-                .until(ExpectedConditions.visibilityOf(titleText));
+        wait.until(ExpectedConditions.visibilityOf(titleText));
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

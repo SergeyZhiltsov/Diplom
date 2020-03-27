@@ -28,7 +28,7 @@ public class HowManyDifferentPrescriptionAntidepresMedsOLS extends MainPageOLS {
     @Step
     public HowManyDifferentPrescriptionAntidepresMedsOLS waitForPageLoad() {
         waitForAnimation();
-        driverWait.waitforVisibility(titleText);
+        waitforVisibility(titleText);
         return this;
     }
 

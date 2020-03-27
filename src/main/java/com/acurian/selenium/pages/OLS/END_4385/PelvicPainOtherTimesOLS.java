@@ -24,7 +24,7 @@ public class PelvicPainOtherTimesOLS extends MainPageOLS {
     @Step
     public PelvicPainOtherTimesOLS waitForPageLoad() {
         waitForAnimation();
-        driverWait.waitforVisibility(titleText);
+        waitforVisibility(titleText);
         return this;
     }
 

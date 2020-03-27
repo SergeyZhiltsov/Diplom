@@ -25,7 +25,7 @@ public class HowManyDifferentMedicationsOLS extends MainPageOLS {
     @Step
     public HowManyDifferentMedicationsOLS waitForPageLoad() {
         waitForAnimation();
-        driverWait.waitforVisibility(titleText);
+        waitforVisibility(titleText);
         return this;
     }
 

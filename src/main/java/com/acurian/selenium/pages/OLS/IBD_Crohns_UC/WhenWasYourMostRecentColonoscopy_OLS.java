@@ -24,7 +24,7 @@ public class WhenWasYourMostRecentColonoscopy_OLS extends MainPageOLS {
     @Step
     public WhenWasYourMostRecentColonoscopy_OLS waitForPageLoad() {
         waitForAnimation();
-        driverWait.waitforVisibility(titleText);
+        waitforVisibility(titleText);
         return this;
     }
 

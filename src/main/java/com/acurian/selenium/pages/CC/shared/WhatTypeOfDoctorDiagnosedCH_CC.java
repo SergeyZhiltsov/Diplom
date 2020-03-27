@@ -30,7 +30,7 @@ public class WhatTypeOfDoctorDiagnosedCH_CC extends MainPageCC{
     @Step
     public WhatTypeOfDoctorDiagnosedCH_CC waitForPageLoad() {
         waitForAnimation();
-        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
+        wait.until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
         return this;
     }
 

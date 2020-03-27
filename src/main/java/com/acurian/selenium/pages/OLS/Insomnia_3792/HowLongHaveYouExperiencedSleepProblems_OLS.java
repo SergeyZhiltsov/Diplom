@@ -23,7 +23,7 @@ public class HowLongHaveYouExperiencedSleepProblems_OLS extends MainPageOLS {
     @Step
     public HowLongHaveYouExperiencedSleepProblems_OLS waitForPageLoad() {
         waitForAnimation();
-        driverWait.waitforVisibility(titleText);
+        waitforVisibility(titleText);
         return this;
     }
 

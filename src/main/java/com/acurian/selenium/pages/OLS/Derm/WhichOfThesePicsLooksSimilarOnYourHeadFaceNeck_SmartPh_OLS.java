@@ -25,7 +25,7 @@ public class WhichOfThesePicsLooksSimilarOnYourHeadFaceNeck_SmartPh_OLS extends 
     @Step
     public WhichOfThesePicsLooksSimilarOnYourHeadFaceNeck_SmartPh_OLS waitForPageLoad() {
         waitForAnimation();
-        driverWait.waitforVisibility(titleText);
+        waitforVisibility(titleText);
         return this;
     }
 

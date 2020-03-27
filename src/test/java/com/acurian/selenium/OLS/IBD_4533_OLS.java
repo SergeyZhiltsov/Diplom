@@ -672,7 +672,6 @@ public class IBD_4533_OLS extends BaseTest {
                 .clickNextButton(new SiteSelectionPageOLS());
 
         //----------SiteSelection Page--------------------
-        siteSelectionPageOLS.threadSleep(5000);
         siteSelectionPageOLS.waitForPageLoad(studyName)
                 .getPID()
                 .clickOnFacilityName(site.name)

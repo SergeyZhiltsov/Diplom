@@ -49,7 +49,7 @@ public class SiteSelectionPageInsomniaOLS extends MainPageOLS{
     }
 
     private void clickOnAddLocLinkIfExist(){
-        if(isElementPresent(7, By.xpath("//b[@id='additional-sites-toggle']"))){
+        if(isElementPresent(By.xpath("//b[@id='additional-sites-toggle']"))){
             additionalLocationLink.click();
             waitForAnimation();
         }
@@ -77,7 +77,7 @@ public class SiteSelectionPageInsomniaOLS extends MainPageOLS{
     @Step
     public SiteSelectionPageInsomniaOLS getPID(){
         pidNumber = getText(pidNumberPath);
-        logTextToAllure("PID="+pidNumber);
+        textToAttachment("PID="+pidNumber);
         return this;
     }
 }

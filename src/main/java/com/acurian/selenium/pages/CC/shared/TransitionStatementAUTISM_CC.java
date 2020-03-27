@@ -25,7 +25,7 @@ public class TransitionStatementAUTISM_CC extends MainPageCC {
     public TransitionStatementAUTISM_CC waitForPageLoad() {
         waitForAnimation();
         String titleExpectedMod = String.format(titleExpected);
-        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpectedMod));
+        wait.until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpectedMod));
         return this;
     }
 

@@ -842,7 +842,7 @@ public class GAST_4357_OLS extends BaseTest {
                                     .dispoShouldMatch(site.dispo, site.dispo);
                         }
                 }catch(TimeoutException e){
-                    siteSelectionPageOLS.logTextToAllure("No appointpments");
+                    siteSelectionPageOLS.textToAttachment("No appointpments");
                 }
             }
         }

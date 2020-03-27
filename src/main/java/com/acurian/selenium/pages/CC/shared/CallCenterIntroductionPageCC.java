@@ -38,7 +38,7 @@ public class CallCenterIntroductionPageCC extends MainPageCC {
     @Step
     public CallCenterIntroductionPageCC waitForPageLoad() {
         waitForAnimation();
-        driverWait.waitforVisibility(titleText);
+        waitforVisibility(titleText);
         return this;
     }
 

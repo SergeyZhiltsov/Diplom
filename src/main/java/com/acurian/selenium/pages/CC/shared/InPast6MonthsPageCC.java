@@ -29,7 +29,7 @@ public class InPast6MonthsPageCC extends MainPageCC {
     @Step
     public InPast6MonthsPageCC waitForPageLoad() {
         waitForAnimation();
-        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
+        wait.until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
         return this;
     }
 

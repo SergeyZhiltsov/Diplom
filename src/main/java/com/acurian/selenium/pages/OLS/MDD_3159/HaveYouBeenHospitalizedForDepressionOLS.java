@@ -25,7 +25,7 @@ public class HaveYouBeenHospitalizedForDepressionOLS extends MainPageOLS {
     @Step
     public HaveYouBeenHospitalizedForDepressionOLS waitForPageLoad() {
         waitForAnimation();
-        driverWait.waitforVisibility(titleText);
+        waitforVisibility(titleText);
         return this;
     }
 

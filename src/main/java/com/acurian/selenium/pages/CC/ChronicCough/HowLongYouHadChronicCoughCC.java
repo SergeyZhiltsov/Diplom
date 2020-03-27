@@ -29,7 +29,7 @@ public class HowLongYouHadChronicCoughCC extends MainPageCC{
     @Step
     public HowLongYouHadChronicCoughCC waitForPageLoad() {
         waitForAnimation();
-        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
+        wait.until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
         return this;
     }
 

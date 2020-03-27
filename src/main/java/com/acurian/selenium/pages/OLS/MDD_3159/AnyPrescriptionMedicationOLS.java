@@ -26,7 +26,7 @@ public class AnyPrescriptionMedicationOLS extends MainPageOLS {
     @Step
     public AnyPrescriptionMedicationOLS waitForPageLoad() {
         waitForAnimation();
-        driverWait.waitforVisibility(titleText);
+        waitforVisibility(titleText);
         return this;
     }
 

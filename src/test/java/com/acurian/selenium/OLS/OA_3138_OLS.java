@@ -259,7 +259,7 @@ public class OA_3138_OLS extends BaseTest {
         aboutHealthPageOLS
         		.clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()
-                .threadSleep(8000);
+                .threadSleep(8);
         aboutHealthPageOLS
                 .pidFromDbToLog(env)
                 .getRadiantDbToLog(env)
