@@ -295,7 +295,8 @@ public abstract class BasePage {
         }
     }
 
-    public void waitforVisibility(WebElement element){
+    public void waitforVisibility(WebElement element) {
+        if (element.isDisplayed() || element.isEnabled()) return;
         wait.until(ExpectedConditions.visibilityOf(element));
     }
 
