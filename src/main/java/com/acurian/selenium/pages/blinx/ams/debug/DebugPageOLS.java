@@ -124,7 +124,7 @@ public class DebugPageOLS extends MainPageBlinx {
         List<String> dqNumbers= dqNumberElements.stream().map(WebElement::getText).collect(Collectors.toList());
         for (String expectedProtocol : expectedProtocols) {
             if(!dqNumbers.contains(expectedProtocol)){
-                dragAndDropButton(expandButton, 200, 200);
+                dragAndDropButton(expandButton, 200, 50);
                 dqNumbers= dqNumberElements.stream().map(WebElement::getText).collect(Collectors.toList());
             }
         }
@@ -145,7 +145,6 @@ public class DebugPageOLS extends MainPageBlinx {
 
     @Step
     public DebugPageOLS checkProtocolsContainsForQNumber(String questionNumber, String... expectedProtocols) {
-        waitForAnimation();
         List<String> actualProtocols = getProtocolsForQuestionNumber(questionNumber, expectedProtocols);
         Assert.assertTrue(actualProtocols.containsAll(Arrays.asList(expectedProtocols)), "Protocol expected "
                 + Arrays.toString(expectedProtocols) + " are not included in actual " + actualProtocols.toString());

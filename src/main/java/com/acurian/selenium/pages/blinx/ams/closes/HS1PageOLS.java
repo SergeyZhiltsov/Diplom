@@ -23,14 +23,14 @@ public class HS1PageOLS extends MainPageBlinx {
     @FindBy(xpath = "//div[@id='signer-mobile-application']//button[span/text()='OK']")
     WebElement popButtonOk;
 
-    @FindBy(xpath = "//div[@id='signer-mobile-application']//div[@class='m-signature-document-field--component']/div[contains(@class,'m-document-text-input-field')]/textarea[@tabindex='1'] | //*[@id='page-0']/div[1]/div/div[1]/div/textarea")
+    @FindBy(xpath = "//textarea[@placeholder='Enter First Name'] | //*[@id='page-0']/div[1]/div/div[1]/div/textarea")
     WebElement firstNameField;
 
-    @FindBy(xpath = "//div[@id='signer-mobile-application']//div[@class='m-signature-document-field--component']/div[contains(@class,'m-document-text-input-field')]/textarea[@tabindex='22'] | //*[@id='page-1']/div[5]/div/div[1]/div/textarea")
+    @FindBy(xpath = "(//textarea[@data-qa-ref='text-input'])[18] | //*[@id='page-1']/div[5]/div/div[1]/div/textarea")
     WebElement nameField;
 
     //@FindBy(xpath = "//div[@id='signer-mobile-application']//div[@class='m-document-signature-field input']/span[text()='Click to sign']")
-    @FindBy (xpath = "//div[@class = 'm-signature-document-field signature'] | //*[@id='page-1']/div[6]/div/div[1]")
+    @FindBy (xpath = "//div[@data-qa-ref = 'signature-input'] | //*[@id='page-1']/div[6]/div/div[1]")
     WebElement clickToSignButton;
 
     @FindBy(xpath = "//body[@id='signer-mobile-body']//div[@role='dialog']//div[@class='m-sign-modal--menu']/div[3]/span[@class='m-sign-modal--menu--item--label']")
@@ -42,7 +42,7 @@ public class HS1PageOLS extends MainPageBlinx {
     @FindBy(xpath = "//div[@id='signer-mobile-application']//div[@class='m-signer-mobile-header-alert-message']")
     WebElement messageAllRequred;
 
-    @FindBy(xpath = "//div[@id='signer-mobile-application']//button[//text()='Continue']")
+    @FindBy(xpath = "//div[@id='signer-mobile-application']//button[//text()='Continue'] | //button[@data-qa-ref='button-next']")
     WebElement continueButton;
 
     @FindBy(xpath = "//div[@id='signer-mobile-application']//button[//text()='I agree']")
@@ -86,7 +86,7 @@ public class HS1PageOLS extends MainPageBlinx {
         waitForAnimation();
         firstNameField.click();
         for (int i = 0; i < 18; i++) {
-            threadSleep(5);
+            threadSleep(1);
             getActions().sendKeys(Keys.TAB).build().perform();
         }
         waitForAnimation();
