@@ -31,7 +31,7 @@ public class SB_AUTSBSSmodified extends BaseTest{
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
                 .waitForPageLoad1();
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleTextGH(), "What is your date of birth? (some text modified)",
+        Assert.assertEquals(dateOfBirthPageOLS.getTitleTextGH(), "What is your date of birth?",
                 "Question is diff");
         PersonalDetails personalDetails = dateOfBirthPageOLS
                 .setDate("09091980")

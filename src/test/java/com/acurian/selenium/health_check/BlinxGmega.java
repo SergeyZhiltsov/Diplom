@@ -43,7 +43,7 @@ public class BlinxGmega extends BaseTest {
         PleaseConfirmYourGenderPageOLS pleaseConfirmYourGenderPageOLS = new PleaseConfirmYourGenderPageOLS();
                 (env.equals("PRD") ? identificationPageOLS.waitForPageLoad2() : identificationPageOLS.waitForPageLoadSTG())
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
-                        "9999999999", "08204")
+                        "9999999999")
                 .clickNextButton(pleaseConfirmYourGenderPageOLS);
         identificationPageOLS
                 .waitForAnimation();

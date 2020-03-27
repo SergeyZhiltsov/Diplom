@@ -2,6 +2,7 @@ package com.acurian.selenium.blinx;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.blinx.ams.ps.HasHealthCareProfessionalDiagnosedPsoriasisOLS;
 import com.acurian.selenium.pages.blinx.ams.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.blinx.ams.oab_4867.DoYouTakeAnyMedicationsControlHypertension_OLS;
 import com.acurian.selenium.pages.blinx.ams.MostRecentHeartProcedurePageOLS;
@@ -12,6 +13,7 @@ import com.acurian.selenium.pages.blinx.ams.debug.DebugPageOLS;
 import com.acurian.selenium.pages.blinx.ams.generalHealth.*;
 import com.acurian.selenium.pages.blinx.ams.shared.GenderPageOLS;
 import com.acurian.selenium.pages.blinx.ams.shared.WhatKindOfDiabetesPageOLS;
+import com.acurian.selenium.pages.blinx.ams.shared.ZipCodePageOLS;
 import com.acurian.selenium.pages.blinx.gmega.AboutHealthPageOLS;
 import com.acurian.selenium.pages.blinx.gmega.ApproximateHeightWeightPageOLS;
 import com.acurian.selenium.pages.blinx.gmega.intro.IdentificationPageOLS;
@@ -37,13 +39,15 @@ public class DERM_7157_OLSBlinx extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "sites", enabled = false)
+    @Test(dataProvider = "sites", enabled = true)
     @Description("DERM 7157 Glenmark Atopic Derm")
     public void DERM_7157_Blinx(Site site) {
         final String phoneNumber = "AUTAMS1KAD";
         DebugPageOLS debugPageOLS = new DebugPageOLS();
         String studyName = "an eczema (atopic dermatitis) study";
         String env = System.getProperty("acurian.env", "STG");
+
+        IdentificationPageOLS identificationPageOLS = new IdentificationPageOLS();
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
@@ -61,15 +65,14 @@ public class DERM_7157_OLSBlinx extends BaseTest {
                 .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
                 .back(dateOfBirthPageOLS);
 
-        IdentificationPageOLS identificationPageOLS = dateOfBirthPageOLS
+        ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
                 .waitForPageLoad0("an eczema (atopic dermatitis) study", "600")
                 .clickOnAnswer("Yes")
-                .getPage(new IdentificationPageOLS());
+                .getPage(new ZipCodePageOLS());
 
-        GenderPageOLS genderPageOLS = identificationPageOLS
-                .waitForPageLoadNotQ()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
-                        "9999999999", site.zipCode)
+        GenderPageOLS genderPageOLS = zipCodePageOLS
+                .waitForPageLoad()
+                .setZipCode(site.zipCode)
                 .clickNextButton(new GenderPageOLS());
 
         HasHealthcareProfessionalEverDiagnosedYouWithEczema_OLS hasHealthcareProfessionalEverDiagnosedYouWithEczema_ols =
@@ -79,13 +82,13 @@ public class DERM_7157_OLSBlinx extends BaseTest {
                         .clickOnAnswer("Female")
                         .clickNextButton(new HasHealthcareProfessionalEverDiagnosedYouWithEczema_OLS());
 
-        HealthcareDiagnosedPsoriasisPageOLS healthcareDiagnosedPsoriasisPageOLS =
+        HasHealthCareProfessionalDiagnosedPsoriasisOLS hasHealthCareProfessionalDiagnosedPsoriasisOLS =
                 hasHealthcareProfessionalEverDiagnosedYouWithEczema_ols
                         .waitForPageLoad()
                         .clickOnAnswer("No")
-                        .clickNextButton(new HealthcareDiagnosedPsoriasisPageOLS());
+                        .clickNextButton(new HasHealthCareProfessionalDiagnosedPsoriasisOLS());
 
-        healthcareDiagnosedPsoriasisPageOLS
+        hasHealthCareProfessionalDiagnosedPsoriasisOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5802", site.activeProtocols)
@@ -98,24 +101,21 @@ public class DERM_7157_OLSBlinx extends BaseTest {
                         .clickNextButton(new HowLongHaveYouBeenSufferingFromEczema_OLS());
 
         HowMuchEczemaYouHaveOnYourBody_OLS howMuchEczemaYouHaveOnYourBody_OLS = new HowMuchEczemaYouHaveOnYourBody_OLS();
-//        List<String> disqualifyQ3 = Arrays.asList("2 months or less",
-//                "3 - 6 months",
-//                "7 - 11 months");
-//        for (String answer : disqualifyQ3) {
-//            Log.info(answer);
-//            howLongHaveYouBeenSufferingFromEczema_OLS
-//                    .waitForPageLoad()
-//                    .clickOnAnswer(answer)
-//                    .clickNextButton(howMuchEczemaYouHaveOnYourBody_OLS)
-//                    .waitForPageLoad()
-//                    .getPage(debugPageOLS)
-//                    .checkProtocolsContainsForQNumber("QS5831", site.activeProtocols)
-//                    .back(howLongHaveYouBeenSufferingFromEczema_OLS);
-//        }
-        howLongHaveYouBeenSufferingFromEczema_OLS
-                .waitForPageLoad()
-                .clickOnAnswer("3 years or more")
-                .clickNextButton(howMuchEczemaYouHaveOnYourBody_OLS);
+        List<String> answerList = Arrays.asList(
+                "2 months or less",
+                "3 - 6 months",
+                "7 - 11 months",
+                "1 year",
+                "2 years",
+                "3 years or more");
+        for (String answer : answerList) {
+            Log.info("Select answer for Q3: " + answer);
+            howLongHaveYouBeenSufferingFromEczema_OLS
+                    .waitForPageLoad()
+                    .clickOnAnswer(answer);
+        }
+        howLongHaveYouBeenSufferingFromEczema_OLS.
+                clickNextButton(howMuchEczemaYouHaveOnYourBody_OLS);
 
         HowWouldYouDescribeTheEczemaCurrentlyPageOLS howWouldYouDescribeTheEczemaCurrentlyPageOLS =
                 new HowWouldYouDescribeTheEczemaCurrentlyPageOLS();
@@ -150,35 +150,43 @@ public class DERM_7157_OLSBlinx extends BaseTest {
                 .selectFromDropDown("21+")
                 .clickNextButton(new HaveYouTriedAnyFollowingTreatmentsForEczemaPageOLS());
 
-        HaveYouTriedAnyFollowingTreatmentsForEczemaPageOLS haveYouTriedAnyFollowingTreatmentsForEczemaPageOLS =
-                howWouldYouDescribeTheEczemaCurrentlyPageOLS
-                        .waitForPageLoad()
-                        .clickOnAnswer("Minor: Mostly clear or almost clear")
-                        .clickNextButton(new HaveYouTriedAnyFollowingTreatmentsForEczemaPageOLS());
-
-        SatisfiedEczemaTreatmentsOLS satisfiedEczemaTreatmentsOLS = haveYouTriedAnyFollowingTreatmentsForEczemaPageOLS
+        HaveYouTriedAnyFollowingTreatmentsForEczemaPageOLS haveYouTriedAnyFollowingTreatmentsForEczemaPageOLS = new HaveYouTriedAnyFollowingTreatmentsForEczemaPageOLS();
+        howWouldYouDescribeTheEczemaCurrentlyPageOLS
                 .waitForPageLoad()
-                .clickOnAnswers("Creams, ointments, or sprays applied directly to the skin (topical treatments)",
-                        "Medications taken by mouth (oral medications)",
-                        "Shots or IV infusions (injectable medications)",
-                        "Self-treatment with tanning beds or sunbathing",
-                        "Phototherapy (Ultraviolet or UV light treatment)")
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Self-treatment with tanning beds or sunbathing",
-                        "Phototherapy (Ultraviolet or UV light treatment)")
-                .clickNextButton(new SatisfiedEczemaTreatmentsOLS());
-
-
-        satisfiedEczemaTreatmentsOLS
+                .clickOnAnswer("None: Skin is completely clear / eczema is not active now")
+                .clickNextButton(haveYouTriedAnyFollowingTreatmentsForEczemaPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5845", site.activeProtocols)
-                .back(haveYouTriedAnyFollowingTreatmentsForEczemaPageOLS)
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Shots or IV infusions (injectable medications)")
-                .clickNextButton(satisfiedEczemaTreatmentsOLS);
+                .checkProtocolsContainsForQNumber("QS5848", site.activeProtocols)
+                .back(howWouldYouDescribeTheEczemaCurrentlyPageOLS);
 
+        howWouldYouDescribeTheEczemaCurrentlyPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Mild: Covers a small amount of total skin on my body")
+                .clickNextButton(haveYouTriedAnyFollowingTreatmentsForEczemaPageOLS);
+
+        SatisfiedEczemaTreatmentsOLS satisfiedEczemaTreatmentsOLS = new SatisfiedEczemaTreatmentsOLS();
+        List<String> listTreatmentsDQ = Arrays.asList(
+                "Self-treatment with tanning beds or sunbathing",
+                "Phototherapy (Ultraviolet or UV light treatment)",
+                "None of the above");
+        for (String answer : listTreatmentsDQ) {
+            Log.info("Select answer disqualify for Q29: " + answer);
+            haveYouTriedAnyFollowingTreatmentsForEczemaPageOLS
+                    .waitForPageLoad()
+                    .clickOnAnswers(answer)
+                    .clickNextButton(satisfiedEczemaTreatmentsOLS)
+                    .waitForPageLoad()
+                    .getPage(debugPageOLS)
+                    .checkProtocolsContainsForQNumber("QS5845", site.activeProtocols)
+                    .back(haveYouTriedAnyFollowingTreatmentsForEczemaPageOLS);
+        }
+        haveYouTriedAnyFollowingTreatmentsForEczemaPageOLS.
+                waitForPageLoad().
+                clickOnAnswers("Creams, ointments, or sprays applied directly to the skin (topical treatments)").
+                clickOnAnswers("Medications taken by mouth (oral medications)").
+                clickOnAnswers("Shots or IV infusions (injectable medications)").
+                clickNextButton(satisfiedEczemaTreatmentsOLS);
 
         AreYouCurrentlyReceivingRegularDosesOfAnyBiologicMedsPageOLS areYouCurrentlyReceivingRegularDosesOfAnyBiologicMedsPageOLS =
                 satisfiedEczemaTreatmentsOLS
@@ -188,37 +196,28 @@ public class DERM_7157_OLSBlinx extends BaseTest {
                         .clickOnAnswer("I am not using any treatments right now")
                         .clickNextButton(new AreYouCurrentlyReceivingRegularDosesOfAnyBiologicMedsPageOLS());
 
-
-        //-------------------------------------QS31 "bilolgics" with radiobuttons -------------------------------------
         DupixentInjectionPageOLS dupixentInjectionPageOLS = areYouCurrentlyReceivingRegularDosesOfAnyBiologicMedsPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
+                .clickOnAnswer("No")
                 .clickNextButton(new DupixentInjectionPageOLS());
+
+
         dupixentInjectionPageOLS
                 .waitForPageLoad()
-                //.getPage(debugPageOLS)
-                //.checkProtocolsContainsForQNumber("QS5850", site.activeProtocols)
-                .back(areYouCurrentlyReceivingRegularDosesOfAnyBiologicMedsPageOLS);
-
-
-        areYouCurrentlyReceivingRegularDosesOfAnyBiologicMedsPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(dupixentInjectionPageOLS);
-
-        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS =
-                dupixentInjectionPageOLS
-                        .waitForPageLoad()
-                        .clickOnAnswer("Yes, currently taking")
-                        .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+                .clickOnAnswer("Yes, currently taking")
+                .clickNextButton(hasHealthCareProfessionalDiagnosedPsoriasisOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5847", site.activeProtocols)
-                .back(dupixentInjectionPageOLS)
+                .back(dupixentInjectionPageOLS);
+
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = dupixentInjectionPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("No, never took")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
+
 
         WhatKindOfArthritisPageOLS whatKindOfArthritisPageOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
@@ -253,7 +252,7 @@ public class DERM_7157_OLSBlinx extends BaseTest {
         //Q2: QS38
 
         DoAnyOftheFollowingAdditionalDiagnosesOLS doAnyOftheFollowingAdditionalDiagnosesOLS =
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                         .waitForPageLoad()
                         .clickOnAnswers("None of the above")
                         .clickOnAnswers("ADHD or attention deficit hyperactivity disorder") //skip to Q24
@@ -369,7 +368,7 @@ public class DERM_7157_OLSBlinx extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("Stent placement in your heart, neck or legs",
                         "Heart bypass surgery or Coronary Artery Bypass Graft (CABG)",
-                        "Any other surgery on the arteries in your legs, neck or heart")
+                        "Any other surgery on the arteries in your legs, neck, abdomen, or heart")
                 .clickNextButton(new MostRecentHeartProcedurePageOLS());
         //Q14: QS49
         mostRecentHeartProcedurePageOLS
@@ -541,7 +540,7 @@ public class DERM_7157_OLSBlinx extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS);
         //Q24: QS59
-        ApproximateHeightWeightPageOLS approximateHeightWeightPageOLS = doAnyOftheFollowingAdditionalDiagnosesOLS
+        ApproximateHeightPageOLS approximateHeightPageOLS = doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Bipolar disorder",
                         "Cancer in the past 5 years, except skin cancer",
@@ -556,9 +555,9 @@ public class DERM_7157_OLSBlinx extends BaseTest {
                         "Seizure disorder such as epilepsy",
                         "Schizophrenia",
                         "None of the above")
-                .clickNextButton(new ApproximateHeightWeightPageOLS());
+                .clickNextButton(new ApproximateHeightPageOLS());
         //Q28: QS60
-        approximateHeightWeightPageOLS
+        approximateHeightPageOLS
                 .waitForPageLoad()
                 .back(doAnyOftheFollowingAdditionalDiagnosesOLS);
         //Q24: QS59
@@ -575,7 +574,7 @@ public class DERM_7157_OLSBlinx extends BaseTest {
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(answer)
-                    .clickNextButton(approximateHeightWeightPageOLS)
+                    .clickNextButton(approximateHeightPageOLS)
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
@@ -590,7 +589,7 @@ public class DERM_7157_OLSBlinx extends BaseTest {
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(answer)
-                    .clickNextButton(approximateHeightWeightPageOLS)
+                    .clickNextButton(approximateHeightPageOLS)
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS61", site.activeProtocols)
@@ -600,10 +599,10 @@ public class DERM_7157_OLSBlinx extends BaseTest {
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(approximateHeightWeightPageOLS);
-        approximateHeightWeightPageOLS
+                .clickNextButton(approximateHeightPageOLS);
+        approximateHeightPageOLS
                 .waitForPageLoad()
-                .setAllFields("3", "2", "33")
+                .setAll("3", "2", "33")
                 .clickNextButton(new CurrentlyParticipatingInStudyOLS())
                 .waitForPageLoad()
                 .clickOnAnswer("No")
@@ -614,31 +613,20 @@ public class DERM_7157_OLSBlinx extends BaseTest {
                 .clickNextButton(identificationPageOLS);
 
         SiteSelectionPageOLS siteSelectionPageOLS = identificationPageOLS
-                .waitForPageLoad2()
-//                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
-//                        "9999999999", site.zipCode)
+                .waitForPageLoadNew()
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
+                        "9999999999")
                 .clickNextButton(new SiteSelectionPageOLS());
 
-        MedicalRecordsOptionPageOLS medicalRecordsOptionPageOLS = siteSelectionPageOLS
+        QualifiedClose2PageOLS qualifiedClose2PageOLS = siteSelectionPageOLS
                 .waitForPageLoad5("an eczema (atopic dermatitis) study!")
                 .getPID()
                 .clickOnFacilityName(site.name)
-                .clickNextButton(new MedicalRecordsOptionPageOLS());
+                .clickNextButton(new QualifiedClose2PageOLS());
 
-        DoctorInformationCollectionPageOLS doctorInformationCollectionPageOLS = medicalRecordsOptionPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Continue with medical records")
-                .clickNextButton(new DoctorInformationCollectionPageOLS());
-
-        HS1PageOLS hs1PageOLS = doctorInformationCollectionPageOLS
-                .waitForPageLoad()
-                .clickNextButton(new HS1PageOLS());
-
-        hs1PageOLS
-                .waitForPageLoad()
-                .clickOkInPopUp()
-                .setSignature();
-        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = new ThankYouCloseSimplePageOLS();
+        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = qualifiedClose2PageOLS
+                .waitForPageLoad3()
+                .clickNextButton(new ThankYouCloseSimplePageOLS());
 
         AboutHealthPageOLS aboutHealthPageOLS = thankYouCloseSimplePageOLS
                 .waitForPageLoad()

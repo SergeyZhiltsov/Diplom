@@ -23,6 +23,14 @@ public class IdentificationPageCC extends MainPageCC {
 
     public final String titleExpectedNotQ = "Personal details (*required fields)";
 
+    public final String titleExpectedStandAloneQ = "Thank you! You have prequalified for the research study. The next step " +
+            "is to select a doctor's office in your area so that they can contact you. They will probably ask you some additional questions " +
+            "over the phone, and may invite you to come in to the office for an in-person evaluation. Before you select a study doctor, " +
+            "please confirm that your name and contact information were entered correctly.\n" +
+            "\n" +
+            "Agent Note: Read the name, address and phone number to the caller. Make any corrections noted by the caller.\n" +
+            "Personal details (*required fields)";
+
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC)
     WebElement titleText;
 
@@ -60,6 +68,12 @@ public class IdentificationPageCC extends MainPageCC {
     @Step
     public IdentificationPageCC waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
+        return this;
+    }
+
+    @Step
+    public IdentificationPageCC waitForPageLoadStandAloneQ() {
+        waitForPageLoadMain(titleText, titleExpectedStandAloneQ);
         return this;
     }
 

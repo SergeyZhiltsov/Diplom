@@ -35,7 +35,7 @@ public class GLA_9184_OLSBlinx extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "sites", enabled = false)
+    @Test(dataProvider = "sites")
     @Description("S10503(9184) 192024-093 (Allergan Glaucoma and Ocular Hypertension R99")
     public void gla9184olsBlinxTest(Site site) {
 
@@ -419,7 +419,7 @@ public class GLA_9184_OLSBlinx extends BaseTest {
         SiteSelectionPageOLS siteSelectionPageOLS = new SiteSelectionPageOLS();
 
         (env.equals("STG") ? identificationPageOLS.waitForPageLoadSTG() : identificationPageOLS.waitForPageLoad2())
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999")
                 .clickNextButton(new SiteSelectionPageOLS());
 
         QualifiedClose2PageOLS qualifiedClose2PageOLS = siteSelectionPageOLS

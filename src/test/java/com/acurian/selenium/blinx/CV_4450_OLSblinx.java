@@ -83,6 +83,8 @@ public class CV_4450_OLSblinx extends BaseTest {
                 .setDate("01081970")
                 .clickNextButton(cholesterolTriglyceridesLipidsPageOLS);
 
+        //-------------------------------------------Flow--------------------------------------------------
+
         TakingFollowingStaticMedicationOLS takingFollowingStaticMedicationOLS = cholesterolTriglyceridesLipidsPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
@@ -326,6 +328,8 @@ public class CV_4450_OLSblinx extends BaseTest {
                     .back(healthcareDiagnosedConditionsPageOLS);
         }
 
+        //----------------------------------------Closes------------------------------------------
+
         IdentificationPageOLS identificationPageOLS = healthcareDiagnosedConditionsPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
@@ -340,7 +344,7 @@ public class CV_4450_OLSblinx extends BaseTest {
         SiteSelectionPageOLS siteSelectionPageOLS = new SiteSelectionPageOLS();
 
         (env.equals("STG") ? identificationPageOLS.waitForPageLoadSTG() : identificationPageOLS.waitForPageLoad2())
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999")
                 .clickNextButton(new SiteSelectionPageOLS());
 
         QualifiedClose2PageOLS qualifiedClose2PageOLS = siteSelectionPageOLS
