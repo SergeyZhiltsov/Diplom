@@ -27,6 +27,7 @@ public class HowManyBowelMovementsDidYouHaveDuringTheDayPageOLS extends MainPage
 
     @Step
     public HowManyBowelMovementsDidYouHaveDuringTheDayPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

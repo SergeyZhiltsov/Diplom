@@ -21,6 +21,7 @@ public class WhichOfFollowingHaveYouDiagnosedWith_NeurologicalOLS extends MainPa
 
     @Step
     public WhichOfFollowingHaveYouDiagnosedWith_NeurologicalOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

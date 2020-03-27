@@ -27,6 +27,7 @@ public class MetforminMedicationsPageOLS extends MainPageBlinx {
 
     @Step
     public MetforminMedicationsPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

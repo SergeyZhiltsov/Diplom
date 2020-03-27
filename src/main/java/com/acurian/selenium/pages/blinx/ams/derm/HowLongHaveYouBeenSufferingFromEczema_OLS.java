@@ -25,6 +25,7 @@ public class HowLongHaveYouBeenSufferingFromEczema_OLS extends MainPageBlinx {
 
     @Step
     public HowLongHaveYouBeenSufferingFromEczema_OLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

@@ -26,6 +26,7 @@ public class DupixentInjectionPageOLS extends MainPageBlinx {
 
     @Step
     public DupixentInjectionPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

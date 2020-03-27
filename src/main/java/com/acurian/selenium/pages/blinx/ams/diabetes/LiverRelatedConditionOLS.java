@@ -26,6 +26,7 @@ public class LiverRelatedConditionOLS extends MainPageBlinx {
 
     @Step
     public LiverRelatedConditionOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

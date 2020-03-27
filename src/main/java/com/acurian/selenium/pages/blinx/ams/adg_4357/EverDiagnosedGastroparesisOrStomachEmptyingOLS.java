@@ -27,6 +27,7 @@ public class EverDiagnosedGastroparesisOrStomachEmptyingOLS extends MainPageBlin
 
     @Step
     public EverDiagnosedGastroparesisOrStomachEmptyingOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

@@ -19,6 +19,7 @@ public class DoYouRegularlyTakeOLS extends MainPageBlinx {
 
     @Step
     public DoYouRegularlyTakeOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

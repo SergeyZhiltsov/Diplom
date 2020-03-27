@@ -36,12 +36,14 @@ public class PersonalDetails extends MainPageBlinx {
 
     @Step
     public PersonalDetails waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
     public PersonalDetails waitForPageLoadByTitle(String titleExpected) {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

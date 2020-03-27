@@ -22,6 +22,7 @@ public class OsteoporosisRelatedFracturesOLS extends MainPageBlinx {
 
     @Step
     public OsteoporosisRelatedFracturesOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

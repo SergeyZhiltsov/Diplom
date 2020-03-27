@@ -26,6 +26,7 @@ public class AsPartOfYourUCDiagnosisHaveYouHadFollowingProceduresDonePageOLS ext
 
     @Step
     public AsPartOfYourUCDiagnosisHaveYouHadFollowingProceduresDonePageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

@@ -28,6 +28,7 @@ public class FollowingAreCommonSymptomsOLS extends MainPageBlinx {
 
     @Step
     public FollowingAreCommonSymptomsOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

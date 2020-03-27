@@ -26,6 +26,7 @@ public class HaveYouEverTreatedYourUCWithMedsThatSuppressYourImmuneSystemPageOLS
 
     @Step
     public HaveYouEverTreatedYourUCWithMedsThatSuppressYourImmuneSystemPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

@@ -21,6 +21,7 @@ public class CurrentlyHaveUlcersOrSoresOLS extends MainPageBlinx {
 
     @Step
     public CurrentlyHaveUlcersOrSoresOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

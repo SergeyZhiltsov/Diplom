@@ -25,6 +25,7 @@ public class CurrentlyTakingPrescriptionMedicationsOLS extends MainPageBlinx {
 
     @Step
     public CurrentlyTakingPrescriptionMedicationsOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

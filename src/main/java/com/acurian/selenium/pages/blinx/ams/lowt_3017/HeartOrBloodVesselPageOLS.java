@@ -21,6 +21,7 @@ public class HeartOrBloodVesselPageOLS extends MainPageBlinx {
 
     @Step
     public HeartOrBloodVesselPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

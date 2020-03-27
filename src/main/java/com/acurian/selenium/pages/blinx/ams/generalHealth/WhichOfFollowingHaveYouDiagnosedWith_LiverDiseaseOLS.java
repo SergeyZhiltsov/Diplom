@@ -24,6 +24,7 @@ public class WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS extends MainPa
 
     @Step
     public WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

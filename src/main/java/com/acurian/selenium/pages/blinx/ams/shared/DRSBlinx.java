@@ -115,6 +115,7 @@ public class DRSBlinx extends MainPageBlinx {
 
     @Step
     public DRSBlinx waitForPageLoad() {
+        waitForAnimation();
         getDriver().switchTo().frame(frame);
         threadSleep(5);
         waitForAnimation();

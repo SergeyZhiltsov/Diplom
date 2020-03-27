@@ -24,6 +24,7 @@ public class HowDidYouScoreOnTheTest_OLS extends MainPageBlinx {
 
     @Step
     public HowDidYouScoreOnTheTest_OLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

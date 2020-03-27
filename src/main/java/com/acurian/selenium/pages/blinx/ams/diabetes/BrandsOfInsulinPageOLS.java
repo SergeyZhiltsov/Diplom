@@ -26,6 +26,7 @@ public class BrandsOfInsulinPageOLS extends MainPageBlinx {
 
     @Step
     public BrandsOfInsulinPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

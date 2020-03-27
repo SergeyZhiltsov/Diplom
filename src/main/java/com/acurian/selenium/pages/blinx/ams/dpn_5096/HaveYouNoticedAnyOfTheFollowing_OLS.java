@@ -21,6 +21,7 @@ public class HaveYouNoticedAnyOfTheFollowing_OLS extends MainPageBlinx {
 
     @Step
     public HaveYouNoticedAnyOfTheFollowing_OLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

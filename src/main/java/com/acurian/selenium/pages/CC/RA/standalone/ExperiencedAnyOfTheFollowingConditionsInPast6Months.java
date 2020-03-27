@@ -30,7 +30,7 @@ public class ExperiencedAnyOfTheFollowingConditionsInPast6Months extends MainPag
     }
 
     @Step
-    public ExperiencedAnyOfTheFollowingConditionsInPast6Months clickOnAnswers(String answerText) {
+    public ExperiencedAnyOfTheFollowingConditionsInPast6Months clickOnAnswers(String... answerText) {
         clickOnCheckBoxes(checkBoxList, answerText);
         return this;
     }
