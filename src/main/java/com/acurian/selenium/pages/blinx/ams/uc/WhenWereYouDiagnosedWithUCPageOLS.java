@@ -26,6 +26,7 @@ public class WhenWereYouDiagnosedWithUCPageOLS extends MainPageBlinx {
 
     @Step
     public WhenWereYouDiagnosedWithUCPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

@@ -30,7 +30,7 @@ public class HaveYouEverUsedTherapiesTreatCC extends MainPageCC{
     @Step
     public HaveYouEverUsedTherapiesTreatCC waitForPageLoad() {
         waitForAnimation();
-        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
+        wait.until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
         return this;
     }
 

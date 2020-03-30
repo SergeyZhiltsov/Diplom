@@ -31,7 +31,7 @@ public class AcurianHealthPage extends BasePage {
     @Step
     public AcurianHealthPage waitForPageLoad() {
         waitForAnimation();
-        driverWait.waitforVisibility(projectHeader);
+        waitforVisibility(projectHeader);
         Assert.assertEquals(getTitleText(), "AcurianHealth is your guide for getting connected to clinical research studies.",
                 "Title is diff");
         return this;
@@ -39,7 +39,7 @@ public class AcurianHealthPage extends BasePage {
 
     @Step
     public DateOfBirthPageOLS clickSeeIfYouQualifyButton(){
-        driverWait.waitforVisibility(seeIfYouQualifyButton);
+        waitforVisibility(seeIfYouQualifyButton);
         seeIfYouQualifyButton.click();
         return new DateOfBirthPageOLS();
     }

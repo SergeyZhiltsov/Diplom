@@ -21,6 +21,7 @@ public class EverTreatedYourCronsOLS extends MainPageBlinx {
 
     @Step
     public EverTreatedYourCronsOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

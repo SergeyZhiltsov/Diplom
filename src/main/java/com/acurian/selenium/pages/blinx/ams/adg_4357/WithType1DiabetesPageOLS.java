@@ -18,6 +18,7 @@ public class WithType1DiabetesPageOLS extends MainPageBlinx {
 
     @Step
     public WithType1DiabetesPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

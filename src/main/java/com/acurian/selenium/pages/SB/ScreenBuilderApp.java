@@ -35,7 +35,6 @@ public class ScreenBuilderApp extends MainPageSB {
     public ScreenBuilderApp() {
         PageFactory.initElements(getDriver(), this);
         driver = getDriver();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.manage().timeouts().setScriptTimeout(5, TimeUnit.SECONDS);
     }
 

@@ -20,6 +20,7 @@ public class LessThan18YearsOldPageOLS extends MainPageBlinx {
 
     @Step
     public LessThan18YearsOldPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

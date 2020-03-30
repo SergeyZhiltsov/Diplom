@@ -1,8 +1,6 @@
 package com.acurian.selenium.pages.OLS.Vaccine;
 
-import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
-import com.acurian.selenium.pages.WebDriverWaitLogged;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import ru.yandex.qatools.allure.annotations.Step;
@@ -72,7 +70,7 @@ public class DRSOLS extends MainPageOLS {
     @Step
     public DRSOLS waitForPageLoad() {
         getDriver().switchTo().frame(frame);
-        threadSleep(10000);
+        threadSleep(10);
         waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
@@ -80,8 +78,7 @@ public class DRSOLS extends MainPageOLS {
 
     @Step
     public DRSOLS clickOnDay() {
-        WebDriverWaitLogged webDriverWaitLogged = new WebDriverWaitLogged(getDriver());
-        webDriverWaitLogged.waitforVisibility(dayBtn);
+        waitforVisibility(dayBtn);
         dayBtn.click();
         waitForAnimation();
         return this;
@@ -89,8 +86,8 @@ public class DRSOLS extends MainPageOLS {
 
     @Step
     public DRSOLS clickOnTime() {
-        WebDriverWaitLogged webDriverWaitLogged = new WebDriverWaitLogged(getDriver());
-        webDriverWaitLogged.waitforVisibility(timeBtn);
+
+        waitforVisibility(timeBtn);
         timeBtn.click();
         waitForAnimation();
         return this;
@@ -98,8 +95,8 @@ public class DRSOLS extends MainPageOLS {
 
     @Step
     public DRSOLS clickOnAgree() {
-        WebDriverWaitLogged webDriverWaitLogged = new WebDriverWaitLogged(getDriver());
-        webDriverWaitLogged.waitforVisibility(agreeBtn);
+
+        waitforVisibility(agreeBtn);
         agreeBtn.click();
         waitForAnimation();
         return this;

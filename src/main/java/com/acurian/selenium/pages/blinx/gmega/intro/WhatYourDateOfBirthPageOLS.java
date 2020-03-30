@@ -23,6 +23,7 @@ public class WhatYourDateOfBirthPageOLS extends MainPageBlinx {
 
     @Step
     public WhatYourDateOfBirthPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleTextPart1, titleExpectedPart1);
         waitForPageLoadMain(titleTextPart2, titleExpectedPart2);
         return this;

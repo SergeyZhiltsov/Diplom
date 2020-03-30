@@ -39,7 +39,7 @@ public class SelectActionPageCC extends MainPageCC {
     @Step
     public SelectActionPageCC waitForPageLoad() {
         waitForAnimation();
-        driverWait.waitforVisibility(beginButton);
+        waitforVisibility(beginButton);
         return this;
     }
 
@@ -57,7 +57,7 @@ public class SelectActionPageCC extends MainPageCC {
 
     @Step
     public SelectActionPageCC clickPopupStudy(String studyName) {
-        driverWait.waitforVisibility(popUpBlockStudy);
+        waitforVisibility(popUpBlockStudy);
         popUpListStudy.stream().filter(el -> el.getText().contains(studyName))
                 .findFirst()
                 .get()
@@ -68,7 +68,7 @@ public class SelectActionPageCC extends MainPageCC {
 
     @Step
     public SelectActionPageCC clickPopupPhoneNumber(String phoneNumber) {
-        driverWait.waitforVisibility(popUpBlockPhone);
+        waitforVisibility(popUpBlockPhone);
         popUpListPhone.stream().filter(el -> el.getText().contains(phoneNumber))
                 .findFirst()
                 .get()

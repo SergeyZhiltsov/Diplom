@@ -27,6 +27,7 @@ public class HaveYourEverTakenFollowingMedicationsUCPageOLS extends MainPageBlin
 
     @Step
     public HaveYourEverTakenFollowingMedicationsUCPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

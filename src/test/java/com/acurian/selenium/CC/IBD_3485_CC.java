@@ -92,7 +92,6 @@ public class IBD_3485_CC extends BaseTest {
 
      /*   dateOfBirthPageCC
                 .waitForPageLoadIBD();*/
-        dateOfBirthPageCC.threadSleep(2000);
         //Assert.assertEquals(dateOfBirthPageCC.getTitleTextIBD(), "May I have your date of birth?", "Question text is diff");
         //Assert.assertEquals(dateOfBirthPageCC.getQuestionTextIBD(), dateOfBirthPageCC.titleIBD3264, "Title is diff");
 
@@ -182,7 +181,6 @@ public class IBD_3485_CC extends BaseTest {
                 .clickOnAnswers("Dipentum, also known as olsalazine (Agent Note: di-PENT-um, ol-SAL-uh-zeen)")
                 .clickNextButton(new EverTreatedCrohnOrColitisCC());
 
-        everTreatedCrohnOrColitisCC.threadSleep(2000);
         BiologicMedicationsPageCC biologicMedicationsPageCC = everTreatedCrohnOrColitisCC
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new BiologicMedicationsPageCC());
@@ -200,7 +198,6 @@ public class IBD_3485_CC extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new EverTreatedCrohnOrColitisCC());
 
-        everTreatedCrohnOrColitisCC.threadSleep(2000);
         everTreatedCrohnOrColitisCC
                 .clickOnAnswers("Xeljanz (Agent Note: ZEL-jans)", "Jakafi (Agent Note: JAK-uh-fie)", "CellCept or Myfortic, also known as mycophenolate (Agent Note: my-co-FEN-o-late)")
                 .clickOnAnswers("Astagraf, Envarsus, or Prograf, also known as tacrolimus (Agent Note: tah-CRO-li-mus)", "Rapamune, also known as sirolimus (Agent Note: RAP-uh-mune, sir-OH-li-mus)")

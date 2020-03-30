@@ -23,7 +23,7 @@ public class LoginPageAS extends MainPageAS {
     @Step
     public LoginPageAS waitForPageLoad() {
         waitForAnimation();
-        driverWait.waitforVisibility(pageTitle);
+        waitforVisibility(pageTitle);
         pageTitle.getText().equals("Dashboard");
         return this;
     }
@@ -52,14 +52,14 @@ public class LoginPageAS extends MainPageAS {
 
     @Step
     public LoginPageAS typeUsername(String username) {
-        driverWait.waitforVisibility(userNameInput);
+        waitforVisibility(userNameInput);
         typeTextWithoutClear(userNameInput, username);
         return this;
     }
 
     @Step
     public LoginPageAS typePassword(String password) {
-        driverWait.waitforVisibility(userPasswordInput);
+        waitforVisibility(userPasswordInput);
         typeTextWithoutClear(userPasswordInput, password);
         return this;
     }

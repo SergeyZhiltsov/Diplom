@@ -30,7 +30,7 @@ public class NSAIDMedicationsForArthritisPainCC extends MainPageCC {
     @Step
     public NSAIDMedicationsForArthritisPainCC waitForPageLoad() {
         waitForAnimation();
-        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
+        wait.until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
         return this;
     }
 

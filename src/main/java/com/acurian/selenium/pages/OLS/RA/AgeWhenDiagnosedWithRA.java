@@ -23,7 +23,7 @@ public class AgeWhenDiagnosedWithRA extends MainPageOLS {
     @Step
     public AgeWhenDiagnosedWithRA waitForPageLoad() {
         waitForAnimation();
-        driverWait.waitforVisibility(titleText);
+        waitforVisibility(titleText);
         return this;
     }
 

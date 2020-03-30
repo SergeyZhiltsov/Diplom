@@ -29,7 +29,7 @@ public class FollowingDevicesInYourBodyOLS extends MainPageOLS {
     @Step
     public FollowingDevicesInYourBodyOLS waitForPageLoad() {
         waitForAnimation();
-        driverWait.waitforVisibility(titleText);
+        waitforVisibility(titleText);
         return this;
     }
 

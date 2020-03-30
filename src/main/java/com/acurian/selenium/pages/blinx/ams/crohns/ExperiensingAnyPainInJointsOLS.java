@@ -21,6 +21,7 @@ public class ExperiensingAnyPainInJointsOLS extends MainPageBlinx {
 
     @Step
     public ExperiensingAnyPainInJointsOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

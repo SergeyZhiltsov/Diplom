@@ -30,7 +30,7 @@ public class AreYouCurrentlyFeelingSadDepressedOLS extends MainPageOLS {
     @Step
     public AreYouCurrentlyFeelingSadDepressedOLS waitForPageLoad() {
         waitForAnimation();
-        driverWait.waitforVisibility(titleText);
+        waitforVisibility(titleText);
         return this;
     }
 

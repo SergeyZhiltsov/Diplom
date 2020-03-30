@@ -23,6 +23,7 @@ public class DiagnosedWithFibromyalgiaOLS extends MainPageBlinx {
 
     @Step
     public DiagnosedWithFibromyalgiaOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

@@ -26,7 +26,7 @@ public class HowLongHaveYouExperiencedSleepProblems_CC extends MainPageCC{
     @Step
     public HowLongHaveYouExperiencedSleepProblems_CC waitForPageLoad() {
         waitForAnimation();
-        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
+        wait.until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
         return this;
     }
 

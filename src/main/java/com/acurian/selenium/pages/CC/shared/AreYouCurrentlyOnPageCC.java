@@ -27,7 +27,7 @@ public class AreYouCurrentlyOnPageCC extends MainPageCC {
     @Step
     public AreYouCurrentlyOnPageCC waitForPageLoad() {
         waitForAnimation();
-        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
+        wait.until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
         return this;
     }
 

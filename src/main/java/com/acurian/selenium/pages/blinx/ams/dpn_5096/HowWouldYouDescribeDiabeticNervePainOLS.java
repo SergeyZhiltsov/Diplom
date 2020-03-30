@@ -19,6 +19,7 @@ public class HowWouldYouDescribeDiabeticNervePainOLS extends MainPageBlinx {
 
     @Step
     public HowWouldYouDescribeDiabeticNervePainOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

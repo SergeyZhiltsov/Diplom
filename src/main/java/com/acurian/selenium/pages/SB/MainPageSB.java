@@ -19,26 +19,26 @@ public class MainPageSB extends BasePage {
 
     @Override
     public void waitForAnimation() {
-        driverWait.getWaitDriver().withTimeout(60, TimeUnit.SECONDS).until((ExpectedCondition<Boolean>) wdriver
+        wait.until((ExpectedCondition<Boolean>) wdriver
                 -> ((JavascriptExecutor) getDriver()).executeScript(
                 "return document.readyState"
         ).equals("complete"));
     }
 
     public WebElement waitForVisibility(WebElement element) {
-        return driverWait.getWaitDriver().until(ExpectedConditions.visibilityOf(element));
+        return wait.until(ExpectedConditions.visibilityOf(element));
     }
 
     public WebElement waitForVisibility(By locator) {
-        return driverWait.getWaitDriver().until(ExpectedConditions.visibilityOfElementLocated(locator));
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
     protected WebElement waitToBeClickable(By locator) {
-        return driverWait.getWaitDriver().until(ExpectedConditions.elementToBeClickable(locator));
+        return wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
 
     protected WebElement waitToBeClickable(WebElement element) {
-        return driverWait.getWaitDriver().until(ExpectedConditions.elementToBeClickable(element));
+        return wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
     @Step()
@@ -56,11 +56,11 @@ public class MainPageSB extends BasePage {
     }
 
     public WebElement waitForPresence(By locator) {
-        return driverWait.getWaitDriver().until(ExpectedConditions.presenceOfElementLocated(locator));
+        return wait.until(ExpectedConditions.presenceOfElementLocated(locator));
     }
 
     public void waitForAbsence(WebElement element) {
-        driverWait.getWaitDriver().until(driver -> !isElementPresent(element));
+        wait.until(driver -> !isElementPresent(element));
         waitForAnimation();
     }
 

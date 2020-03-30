@@ -35,7 +35,7 @@ public class SiteSelectionPageOLS extends MainPageBlinx {
     @Step
 
     public SiteSelectionPageOLS waitForPageLoad(String studyName) {
-        driverWait.waitforVisibility(loadingAnimation);
+        waitforVisibility(loadingAnimation);
         waitForAbsence(loadingAnimation);
         waitForPageLoadMain(titleText, String.format(titleExpected, studyName));
         attachPageScreenshot();

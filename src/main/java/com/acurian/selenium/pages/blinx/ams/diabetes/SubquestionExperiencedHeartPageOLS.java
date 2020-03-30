@@ -33,6 +33,7 @@ public class SubquestionExperiencedHeartPageOLS extends MainPageBlinx {
 
     @Step
     public SubquestionExperiencedHeartPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected1);
         return this;
     }
@@ -40,7 +41,7 @@ public class SubquestionExperiencedHeartPageOLS extends MainPageBlinx {
     @Step
     public SubquestionExperiencedHeartPageOLS waitForPageLoad(int actualTitleIndex, String expectedTitle) {
         waitForAnimation();
-        driverWait.waitforVisibility(titleText);
+        waitforVisibility(titleText);
         waitForPageLoadMain(titlesText.get(actualTitleIndex), expectedTitle);
         return this;
     }

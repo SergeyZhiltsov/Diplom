@@ -21,6 +21,7 @@ public class CardiovascularDiseaseThanOthersPageOLS extends MainPageBlinx {
 
     @Step
     public CardiovascularDiseaseThanOthersPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

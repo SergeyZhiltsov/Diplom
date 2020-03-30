@@ -25,6 +25,7 @@ public class HowOftenAbdominalPainPageOLS extends MainPageBlinx {
 
     @Step
     public HowOftenAbdominalPainPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

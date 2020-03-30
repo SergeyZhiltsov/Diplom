@@ -24,7 +24,7 @@ public class RateAverageItchinessEczemaPageCC extends MainPageCC {
     @Step
     public RateAverageItchinessEczemaPageCC waitForPageLoad() {
         waitForAnimation();
-        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
+        wait.until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
         return this;
     }
 

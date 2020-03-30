@@ -23,7 +23,7 @@ public class AreYouCurrentlyTakingAnyOverTheCounterMedications_OLS extends MainP
     @Step
     public AreYouCurrentlyTakingAnyOverTheCounterMedications_OLS waitForPageLoad() {
         waitForAnimation();
-        driverWait.waitforVisibility(titleText);
+        waitforVisibility(titleText);
         return this;
     }
 

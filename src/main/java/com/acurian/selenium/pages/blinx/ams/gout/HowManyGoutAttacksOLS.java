@@ -20,6 +20,7 @@ public class HowManyGoutAttacksOLS extends MainPageBlinx {
 
     @Step
     public HowManyGoutAttacksOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

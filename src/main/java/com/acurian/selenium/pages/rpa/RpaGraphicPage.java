@@ -33,7 +33,7 @@ public class RpaGraphicPage extends RpaMainPage {
     @Step
     public RpaGraphicPage waitForPageLoad() {
         waitForAnimation();
-        driverWait.waitforVisibility(indexLink);
+        waitforVisibility(indexLink);
         return this;
     }
 

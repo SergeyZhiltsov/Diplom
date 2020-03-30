@@ -20,6 +20,7 @@ public class ReceivedHeartProcedurePageOLS extends MainPageBlinx {
 
     @Step
     public ReceivedHeartProcedurePageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

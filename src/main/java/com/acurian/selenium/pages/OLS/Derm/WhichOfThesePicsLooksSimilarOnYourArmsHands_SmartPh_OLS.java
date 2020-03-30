@@ -25,7 +25,7 @@ public class WhichOfThesePicsLooksSimilarOnYourArmsHands_SmartPh_OLS extends Mai
     @Step
     public WhichOfThesePicsLooksSimilarOnYourArmsHands_SmartPh_OLS waitForPageLoad() {
         waitForAnimation();
-        driverWait.waitforVisibility(titleText);
+        waitforVisibility(titleText);
         return this;
     }
 

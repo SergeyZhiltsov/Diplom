@@ -58,7 +58,6 @@ public class LogicBuilderPage extends MainPageSB {
 
     @Step
     public LogicBuilderPage clickFlowLogicOption(int coreNumber) {
-        threadSleep(2000);
         waitAndClickWebElement(By.cssSelector(String.format("#headingFlowLogicCore-QS%d > h4 > a", coreNumber)));
         return this;
     }

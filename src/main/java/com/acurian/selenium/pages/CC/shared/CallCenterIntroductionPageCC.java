@@ -21,6 +21,9 @@ public class CallCenterIntroductionPageCC extends MainPageCC {
             "\n" +
             "May I ask your name please?";
 
+    public final String titleExpectedStandAloneTest = "Thank you for calling Acurian's rheumatoid arthritis research line." +
+            " My name is AUTOTEST AUTOTEST and I'll be able to help you. Are you calling about a research study today?";
+
 
     @FindBy(xpath = "//div[@class='question_text']")
     WebElement titleText;
@@ -38,7 +41,7 @@ public class CallCenterIntroductionPageCC extends MainPageCC {
     @Step
     public CallCenterIntroductionPageCC waitForPageLoad() {
         waitForAnimation();
-        driverWait.waitforVisibility(titleText);
+        waitforVisibility(titleText);
         return this;
     }
 

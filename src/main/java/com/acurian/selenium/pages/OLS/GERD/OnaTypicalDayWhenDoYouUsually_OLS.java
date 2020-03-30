@@ -46,14 +46,14 @@ public class OnaTypicalDayWhenDoYouUsually_OLS extends MainPageOLS {
     @Step
     public OnaTypicalDayWhenDoYouUsually_OLS waitForMainPageLoad() {
         waitForAnimation();
-        driverWait.waitforVisibility(maintitleText);
+        waitforVisibility(maintitleText);
         return this;
     }
     
     @Step
     public OnaTypicalDayWhenDoYouUsually_OLS waitForPageLoad(int actualTitleIndex, String expectedTitle) {
         waitForAnimation();
-        driverWait.waitforVisibility(titleText);
+        waitforVisibility(titleText);
         waitForPageLoadMain(titlesText.get(actualTitleIndex-1), expectedTitle);
         return this;
     }

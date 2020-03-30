@@ -45,6 +45,7 @@ public class IdentificationPageOLS extends MainPageBlinx {
 
     @Step
     public IdentificationPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleTextPart2, titleExpectedPart2);
         waitForPageLoadMain(titleTextPart4, titleExpectedPart3);
         return this;
@@ -58,6 +59,7 @@ public class IdentificationPageOLS extends MainPageBlinx {
 
     @Step
     public IdentificationPageOLS waitForPageLoadNew() {
+        waitForAnimation();
         waitForPageLoadMain(titleTextPart2, titleExpectedPart2);
         waitForPageLoadMain(titleTextPart4, titleExpectedNew);
         return this;
@@ -65,6 +67,7 @@ public class IdentificationPageOLS extends MainPageBlinx {
 
     @Step
     public IdentificationPageOLS waitForPageLoad2() {
+        waitForAnimation();
         waitForAnimation();
         waitForPageLoadMain(titleTextPart2, titleExpectedPart2);
         waitForPageLoadMain(titleTextPart4, titleExpectedPart4);
@@ -81,6 +84,7 @@ public class IdentificationPageOLS extends MainPageBlinx {
 
     @Step
     public IdentificationPageOLS waitForPageLoadPrequalified() {
+        waitForAnimation();
         waitForPageLoadMain(titleTextPart1, titleExpectedPart1);
         waitForPageLoadMain(titleTextPart2, titleExpectedPart2);
         waitForPageLoadMain(titleTextPart4, titleExpectedPart4);

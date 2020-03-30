@@ -140,7 +140,7 @@ public class SiteSelectionPageCC extends MainPageCC {
     public SiteSelectionPageCC waitForPageLoadMCC(String studyName) {
         waitForAnimation();
         String titleExpected = String.format(titleExpectedMCC, studyName);
-        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w -> titleText.getText().contains(titleExpected));
+        wait.until((ExpectedCondition<Boolean>) w -> titleText.getText().contains(titleExpected));
         return this;
     }
 
@@ -201,14 +201,14 @@ public class SiteSelectionPageCC extends MainPageCC {
     @Step
     public SiteSelectionPageCC getPID() {
         pidNumber = getText(pidNumberPath);
-        logTextToAllure("PID = " + pidNumber);
+        textToAttachment("PID = " + pidNumber);
         PassPID.getInstance().setPidNumber(pidNumber);
         Log.info("PID = " + pidNumber);
         return this;
     }
 
 //    @Step("{0}")
-//    private void logTextToAllure(String text) {
+//    private void textToAttachment(String text) {
 //        //empty method
 //    }
 }

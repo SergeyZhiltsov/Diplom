@@ -895,7 +895,7 @@ public class GAST_4357_CC extends BaseTest {
                                     .dispoShouldMatch(site.dispo, site.dispo);
                         }
         }catch(TimeoutException e){
-                        selectActionPageCC.logTextToAllure("No appointpments");
+                        selectActionPageCC.textToAttachment("No appointpments");
         }
 
 

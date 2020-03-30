@@ -25,6 +25,7 @@ public class PoundsOrMorePageOLS extends MainPageBlinx {
 
     @Step
     public PoundsOrMorePageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

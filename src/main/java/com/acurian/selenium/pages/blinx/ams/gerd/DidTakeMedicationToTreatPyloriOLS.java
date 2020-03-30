@@ -20,6 +20,7 @@ public class DidTakeMedicationToTreatPyloriOLS extends MainPageBlinx {
 
     @Step
     public DidTakeMedicationToTreatPyloriOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

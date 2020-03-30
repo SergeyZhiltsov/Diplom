@@ -28,7 +28,7 @@ public class HowOldWereUWhenDiagnosedWithRACC extends MainPageCC{
     @Step
     public HowOldWereUWhenDiagnosedWithRACC waitForPageLoad() {
         waitForAnimation();
-        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
+        wait.until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
         return this;
     }
 

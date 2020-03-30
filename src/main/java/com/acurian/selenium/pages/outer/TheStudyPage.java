@@ -29,7 +29,7 @@ public class TheStudyPage extends BasePage {
     @Step
     public TheStudyPage waitForPageLoad() {
         waitForAnimation();
-        driverWait.waitforVisibility(projectHeader);
+        waitforVisibility(projectHeader);
         return this;
     }
 

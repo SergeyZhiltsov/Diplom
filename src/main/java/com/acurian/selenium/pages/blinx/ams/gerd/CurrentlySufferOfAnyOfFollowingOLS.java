@@ -21,6 +21,7 @@ public class CurrentlySufferOfAnyOfFollowingOLS extends MainPageBlinx {
 
     @Step
     public CurrentlySufferOfAnyOfFollowingOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

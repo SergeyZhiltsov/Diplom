@@ -1,14 +1,10 @@
 package com.acurian.selenium.pages.blinx.ams.shared;
 
-import com.acurian.selenium.pages.WebDriverWaitLogged;
 import com.acurian.selenium.pages.blinx.MainPageBlinx;
 import io.qameta.allure.Step;
-import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
-
-import java.beans.Visibility;
 
 public class DRSBlinx extends MainPageBlinx {
 
@@ -119,8 +115,9 @@ public class DRSBlinx extends MainPageBlinx {
 
     @Step
     public DRSBlinx waitForPageLoad() {
+        waitForAnimation();
         getDriver().switchTo().frame(frame);
-        threadSleep(10000);
+        threadSleep(5);
         waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
@@ -128,7 +125,7 @@ public class DRSBlinx extends MainPageBlinx {
 
     @Step
     public DRSBlinx waitForPageLoad2() {
-        threadSleep(3000);
+        threadSleep(3);
         waitForAnimation();
         getDriver().switchTo().frame(frame2);
         waitForAnimation();
@@ -138,7 +135,7 @@ public class DRSBlinx extends MainPageBlinx {
 
     @Step
     public DRSBlinx waitForPageLoadBlinx() {
-            threadSleep(10000);
+            threadSleep(5);
             waitForAnimation();
             waitForPageLoadMain(titleText, titleExpected);
             return this;
@@ -146,8 +143,8 @@ public class DRSBlinx extends MainPageBlinx {
 
     @Step
     public DRSBlinx clickOnDay() {
-        WebDriverWaitLogged webDriverWaitLogged = new WebDriverWaitLogged(getDriver());
-        webDriverWaitLogged.waitforVisibility(dayBtn);
+
+        waitforVisibility(dayBtn);
         dayBtn.click();
         waitForAnimation();
         return this;
@@ -155,8 +152,8 @@ public class DRSBlinx extends MainPageBlinx {
 
     @Step
     public DRSBlinx clickOnTime() {
-        WebDriverWaitLogged webDriverWaitLogged = new WebDriverWaitLogged(getDriver());
-        webDriverWaitLogged.waitforVisibility(timeBtn);
+
+        waitforVisibility(timeBtn);
         timeBtn.click();
         waitForAnimation();
         return this;
@@ -164,8 +161,8 @@ public class DRSBlinx extends MainPageBlinx {
 
     @Step
     public DRSBlinx clickOnAgree() {
-        WebDriverWaitLogged webDriverWaitLogged = new WebDriverWaitLogged(getDriver());
-        webDriverWaitLogged.waitforVisibility(agreeBtn);
+
+        waitforVisibility(agreeBtn);
         agreeBtn.click();
         waitForAnimation();
         return this;
@@ -173,8 +170,8 @@ public class DRSBlinx extends MainPageBlinx {
 
     @Step
     public DRSBlinx clickOnSendSMS() {
-        WebDriverWaitLogged webDriverWaitLogged = new WebDriverWaitLogged(getDriver());
-        webDriverWaitLogged.waitforVisibility(sendSMS);
+
+        waitforVisibility(sendSMS);
         sendSMS.click();
         waitForAnimation();
         return this;
@@ -182,10 +179,9 @@ public class DRSBlinx extends MainPageBlinx {
 
     @Step
     public DRSBlinx assertClientData(String emailExpected, String phoneNumberExpected) {
-        WebDriverWaitLogged webDriverWaitLogged = new WebDriverWaitLogged(getDriver());
-        threadSleep(3000);
-        webDriverWaitLogged.waitforVisibility(email);
-        webDriverWaitLogged.waitforVisibility(phoneNumber);
+
+        waitforVisibility(email);
+        waitforVisibility(phoneNumber);
         Assert.assertEquals(email.getText(), emailExpected, "not expected email");
         Assert.assertEquals(phoneNumber.getText(), phoneNumberExpected, "not expected phone number");
         return this;
@@ -193,8 +189,8 @@ public class DRSBlinx extends MainPageBlinx {
 
     @Step
     public DRSBlinx clickOnNext() {
-        WebDriverWaitLogged webDriverWaitLogged = new WebDriverWaitLogged(getDriver());
-        webDriverWaitLogged.waitforVisibility(nextBtn);
+
+        waitforVisibility(nextBtn);
         nextBtn.click();
         waitForAnimation();
         return this;
@@ -202,8 +198,8 @@ public class DRSBlinx extends MainPageBlinx {
 
     @Step
     public DRSBlinx clickBook() {
-        WebDriverWaitLogged webDriverWaitLogged = new WebDriverWaitLogged(getDriver());
-        webDriverWaitLogged.waitforVisibility(bookBtn);
+
+        waitforVisibility(bookBtn);
         bookBtn.click();
         waitForAnimation();
         return this;
@@ -211,7 +207,6 @@ public class DRSBlinx extends MainPageBlinx {
 
     @Step
     public DRSBlinx waitForPageLoadSuccess() {
-        threadSleep(5000);
         waitForAnimation();
         waitForPageLoadMain(modalTitleText, modalTitleExpected);
         return this;
@@ -219,8 +214,8 @@ public class DRSBlinx extends MainPageBlinx {
 
     @Step
     public DRSBlinx clickOnBtnNext() {
-        WebDriverWaitLogged webDriverWaitLogged = new WebDriverWaitLogged(getDriver());
-        webDriverWaitLogged.waitforVisibility(modalNextBtn);
+
+        waitforVisibility(modalNextBtn);
         modalNextBtn.click();
         waitForAnimation();
         return this;
@@ -242,8 +237,8 @@ public class DRSBlinx extends MainPageBlinx {
 
     @Step
     public DRSBlinx clickOnBtnNoApp() {
-        WebDriverWaitLogged webDriverWaitLogged = new WebDriverWaitLogged(getDriver());
-        webDriverWaitLogged.waitforVisibility(noAppTime);
+
+        waitforVisibility(noAppTime);
         noAppTime.click();
         waitForAnimation();
         return this;
@@ -251,8 +246,8 @@ public class DRSBlinx extends MainPageBlinx {
 
     @Step
     public DRSBlinx clickOnUnfNext() {
-        WebDriverWaitLogged webDriverWaitLogged = new WebDriverWaitLogged(getDriver());
-        webDriverWaitLogged.waitforVisibility(unfNextBtn);
+
+        waitforVisibility(unfNextBtn);
         unfNextBtn.click();
         waitForAnimation();
         return this;
@@ -260,8 +255,8 @@ public class DRSBlinx extends MainPageBlinx {
 
     @Step
     public DRSBlinx clickOnBtnPrev() {
-        WebDriverWaitLogged webDriverWaitLogged = new WebDriverWaitLogged(getDriver());
-        webDriverWaitLogged.waitforVisibility(prevPage);
+
+        waitforVisibility(prevPage);
         prevPage.click();
         waitForAnimation();
         return this;

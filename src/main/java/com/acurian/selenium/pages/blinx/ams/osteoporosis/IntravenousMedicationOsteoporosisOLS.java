@@ -19,6 +19,7 @@ public class IntravenousMedicationOsteoporosisOLS extends MainPageBlinx {
 
     @Step
     public IntravenousMedicationOsteoporosisOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

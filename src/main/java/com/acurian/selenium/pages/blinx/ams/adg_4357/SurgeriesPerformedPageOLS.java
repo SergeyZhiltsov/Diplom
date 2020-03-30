@@ -21,6 +21,7 @@ public class SurgeriesPerformedPageOLS extends MainPageBlinx {
 
     @Step
     public SurgeriesPerformedPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

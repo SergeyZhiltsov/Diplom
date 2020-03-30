@@ -27,7 +27,7 @@ public class InTotalHowLongAreYouUsuallyAwakeDuringNight_CC extends MainPageCC{
     @Step
     public InTotalHowLongAreYouUsuallyAwakeDuringNight_CC waitForPageLoad() {
         waitForAnimation();
-        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
+        wait.until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
         return this;
     }
 

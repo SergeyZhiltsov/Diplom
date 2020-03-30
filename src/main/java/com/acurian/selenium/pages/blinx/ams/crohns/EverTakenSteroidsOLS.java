@@ -21,6 +21,7 @@ public class EverTakenSteroidsOLS extends MainPageBlinx {
 
     @Step
     public EverTakenSteroidsOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

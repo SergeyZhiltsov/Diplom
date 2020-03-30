@@ -27,6 +27,7 @@ public class WhichOfTheFollowingBreathingLungPageOLS extends MainPageBlinx {
 
     @Step
     public WhichOfTheFollowingBreathingLungPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

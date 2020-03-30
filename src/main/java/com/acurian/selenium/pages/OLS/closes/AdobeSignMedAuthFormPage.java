@@ -50,12 +50,12 @@ public class AdobeSignMedAuthFormPage extends MainPageOLS {
 
     @Step()
     private WebElement waitAndClickWebElement(WebElement element) {
-        driverWait.getWaitDriver().until(ExpectedConditions.elementToBeClickable(element)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(element)).click();
         return element;
     }
 
     @Step()
     private WebElement waitForVisibility(WebElement element) {
-        return driverWait.getWaitDriver().until(ExpectedConditions.visibilityOf(element));
+        return wait.until(ExpectedConditions.visibilityOf(element));
     }
 }

@@ -17,7 +17,7 @@ public class PrivacyPolicyPage extends BasePage {
 
     @Step
     public String getHeaderText(){
-        driverWait.waitforVisibility(header);
+        waitforVisibility(header);
         return getText(header);
     }
 }

@@ -30,14 +30,14 @@ public class HowManyCigarettesCC extends MainPageCC{
     @Step
     public HowManyCigarettesCC waitForPageLoad() {
         waitForAnimation();
-        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
+        wait.until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
         return this;
     }
     
     @Step
     public HowManyCigarettesCC waitForPageLoad1() {
         waitForAnimation();
-        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected1));
+        wait.until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected1));
         return this;
     }
 

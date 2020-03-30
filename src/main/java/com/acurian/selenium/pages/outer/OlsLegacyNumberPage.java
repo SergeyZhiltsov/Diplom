@@ -32,7 +32,7 @@ public class OlsLegacyNumberPage extends BasePage {
     @Step
     public OlsLegacyNumberPage waitForPageLoad() {
         waitForAnimation();
-        driverWait.waitforVisibility(header);
+        waitforVisibility(header);
         Assert.assertEquals(getTitleText(), "Welcome to the\n" +
                 "Acurian Clinical Trial Center", "Title text is diff");
         return this;

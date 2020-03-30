@@ -77,7 +77,7 @@ public class IncongruentSiteSelectionClose_OLS extends MainPageOLS{
     }
     
     private void clickOnAddLocLinkIfExist(){
-        if(isElementPresent(7, By.xpath("//b[@id='additional-sites-toggle']"))){
+        if(isElementPresent(By.xpath("//b[@id='additional-sites-toggle']"))){
             additionalLocationLink.click();
             waitForAnimation();
         }
@@ -105,7 +105,7 @@ public class IncongruentSiteSelectionClose_OLS extends MainPageOLS{
     @Step
     public IncongruentSiteSelectionClose_OLS getPID(){
         pidNumber = getText(pidNumberPath);
-        logTextToAllure("PID="+pidNumber);
+        textToAttachment("PID="+pidNumber);
         PassPID.getInstance().setPidNumber(pidNumber);
         Log.info("PID = "+pidNumber);
         return this;

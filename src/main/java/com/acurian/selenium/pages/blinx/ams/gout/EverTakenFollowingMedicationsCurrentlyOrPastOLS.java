@@ -21,6 +21,7 @@ public class EverTakenFollowingMedicationsCurrentlyOrPastOLS extends MainPageBli
 
     @Step
     public EverTakenFollowingMedicationsCurrentlyOrPastOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

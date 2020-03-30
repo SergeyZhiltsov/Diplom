@@ -26,7 +26,7 @@ public class DoYouHaveRegularMenstrualCyclesUF_CC extends MainPageCC{
     @Step
     public DoYouHaveRegularMenstrualCyclesUF_CC waitForPageLoad() {
         waitForAnimation();
-        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
+        wait.until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
         return this;
     }
 

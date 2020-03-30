@@ -26,6 +26,7 @@ public class AreYouCurrentlyTreatingYourHotFlashesWithPrescriptionMedicationOLS 
 
     @Step
     public AreYouCurrentlyTreatingYourHotFlashesWithPrescriptionMedicationOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

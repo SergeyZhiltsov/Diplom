@@ -26,6 +26,7 @@ public class HaveYouEverTakenAnyMedicationsToTreatYourUCPageOLS extends MainPage
 
     @Step
     public HaveYouEverTakenAnyMedicationsToTreatYourUCPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

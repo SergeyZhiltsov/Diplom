@@ -27,7 +27,7 @@ public class WhichOfThesePicsLooksSimilarOnYourChestStomachBack_Comp_OLS extends
     public WhichOfThesePicsLooksSimilarOnYourChestStomachBack_Comp_OLS waitForPageLoad() {
         waitForAnimation();
         waitForImagesToLoad();
-        driverWait.waitforVisibility(titleText);
+        waitforVisibility(titleText);
         return this;
     }
 

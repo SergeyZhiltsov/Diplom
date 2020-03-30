@@ -81,7 +81,7 @@ public class IncongruentSiteSelectionCloseCC extends MainPageCC {
     public IncongruentSiteSelectionCloseCC waitForPageLoad(String studyName) {
         waitForAnimation();
         String titleExpectedMod = String.format(titleExpected, studyName);
-        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpectedMod));
+        wait.until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpectedMod));
         return this;
     }
 
@@ -91,7 +91,7 @@ public class IncongruentSiteSelectionCloseCC extends MainPageCC {
         waitForAnimation();
         String titleExpectedMod = String.format(titleIBDShort, studyName);
         waitForPageLoadMain(titleText,titleExpectedMod);
-//        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpectedMod));
+//        wait.until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpectedMod));
         return this;
     }
 
@@ -135,7 +135,7 @@ public class IncongruentSiteSelectionCloseCC extends MainPageCC {
     }
 
 //    @Step("{0}")
-//    private void logTextToAllure(String text) {
+//    private void textToAttachment(String text) {
 //        //empty method
 //    }
     }

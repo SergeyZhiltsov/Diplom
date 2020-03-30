@@ -26,7 +26,7 @@ public class WhichOfThesePicsLooksSimilarOnYourArmsHands_Comp_OLS extends MainPa
     public WhichOfThesePicsLooksSimilarOnYourArmsHands_Comp_OLS waitForPageLoad() {
         waitForAnimation();
         waitForImagesToLoad();
-        driverWait.waitforVisibility(titleText);
+        waitforVisibility(titleText);
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
