@@ -8,7 +8,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class WhenDidYouHaveAppendixRemoved_OLSTODO extends MainPageBlinx {
+public class WhenDidYouHaveAppendixRemoved_OLS extends MainPageBlinx {
 
     public final String titleExpected1 = "When did you have your appendix removed (appendectomy)?";
     public final String titleExpected2 = "When did you have your gallbladder removed (cholecystectomy)?";
@@ -28,14 +28,14 @@ public class WhenDidYouHaveAppendixRemoved_OLSTODO extends MainPageBlinx {
     List<WebElement> titlesText;
 
     @Step
-    public WhenDidYouHaveAppendixRemoved_OLSTODO waitForMainPageLoad() {
+    public WhenDidYouHaveAppendixRemoved_OLS waitForMainPageLoad() {
         waitForAnimation();
         waitforVisibility(maintitleText);
         return this;
     }
 
     @Step
-    public WhenDidYouHaveAppendixRemoved_OLSTODO waitForPageLoad(int actualTitleIndex, String expectedTitle) {
+    public WhenDidYouHaveAppendixRemoved_OLS waitForPageLoad(int actualTitleIndex, String expectedTitle) {
         waitForAnimation();
         waitforVisibility(titleText);
         waitForPageLoadMain(titlesText.get(actualTitleIndex - 1), expectedTitle);
@@ -43,7 +43,7 @@ public class WhenDidYouHaveAppendixRemoved_OLSTODO extends MainPageBlinx {
     }
 
     @Step
-    public WhenDidYouHaveAppendixRemoved_OLSTODO clickOnAnswerForSubQuestion(int questionNumber, String answerText) {
+    public WhenDidYouHaveAppendixRemoved_OLS clickOnAnswerForSubQuestion(int questionNumber, String answerText) {
         List<WebElement> checkBoxListFromTitle = titlesText.get(questionNumber - 1)
                 .findElements(By.xpath("ancestor::div[contains(@class,'subquestion')]//span[contains(@class,'visible-md-inline')]"));
         clickOnRadioButton(checkBoxListFromTitle, answerText);
@@ -51,7 +51,7 @@ public class WhenDidYouHaveAppendixRemoved_OLSTODO extends MainPageBlinx {
     }
 
     @Step
-    public WhenDidYouHaveAppendixRemoved_OLSTODO clickOnAnswerForSubQuestion(String questionText, String answerText) {
+    public WhenDidYouHaveAppendixRemoved_OLS clickOnAnswerForSubQuestion(String questionText, String answerText) {
         List<WebElement> checkBoxListFromTitle = titlesText.stream().filter(el -> questionText.contains(el.getText()))
                 .findFirst()
                 .get()
@@ -61,7 +61,7 @@ public class WhenDidYouHaveAppendixRemoved_OLSTODO extends MainPageBlinx {
     }
 
     @Step
-    public WhenDidYouHaveAppendixRemoved_OLSTODO clickOnAnswersForSubQuestion(int questionNumber, String... answerText) {
+    public WhenDidYouHaveAppendixRemoved_OLS clickOnAnswersForSubQuestion(int questionNumber, String... answerText) {
         List<WebElement> checkBoxListFromTitle = titlesText.get(questionNumber - 1)
                 .findElements(By.xpath("//ancestor::div[contains(@class,'subquestion')]//span[contains(@class,'visible-md-inline')]"));
         clickOnCheckBoxes(checkBoxListFromTitle, answerText);
@@ -69,7 +69,7 @@ public class WhenDidYouHaveAppendixRemoved_OLSTODO extends MainPageBlinx {
     }
 
     @Step
-    public WhenDidYouHaveAppendixRemoved_OLSTODO clickOnAnswersForSubQuestion(String questionText, String... answerText) {
+    public WhenDidYouHaveAppendixRemoved_OLS clickOnAnswersForSubQuestion(String questionText, String... answerText) {
         List<WebElement> checkBoxListFromTitle = titlesText.stream().filter(el -> questionText.contains(el.getText()))
                 .findFirst()
                 .get()
