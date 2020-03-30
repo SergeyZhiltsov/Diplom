@@ -26,6 +26,7 @@ public class OnAvgHowManyHotFlashesDoYouExperiencePerDayOLS extends MainPageBlin
 
     @Step
     public OnAvgHowManyHotFlashesDoYouExperiencePerDayOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

@@ -21,6 +21,7 @@ public class DoYouExperienceAnyOfFollowingSymptoms_OLS extends MainPageBlinx {
 
     @Step
     public DoYouExperienceAnyOfFollowingSymptoms_OLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

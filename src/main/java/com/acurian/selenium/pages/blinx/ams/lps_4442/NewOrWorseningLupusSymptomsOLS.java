@@ -25,6 +25,7 @@ public class NewOrWorseningLupusSymptomsOLS extends MainPageBlinx {
 
     @Step
     public NewOrWorseningLupusSymptomsOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

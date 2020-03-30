@@ -25,6 +25,7 @@ public class HowLongExperiencingIrritablePageOLS extends MainPageBlinx {
 
     @Step
     public HowLongExperiencingIrritablePageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

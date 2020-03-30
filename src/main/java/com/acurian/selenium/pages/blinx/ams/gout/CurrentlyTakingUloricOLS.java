@@ -19,6 +19,7 @@ public class CurrentlyTakingUloricOLS extends MainPageBlinx {
 
     @Step
     public CurrentlyTakingUloricOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

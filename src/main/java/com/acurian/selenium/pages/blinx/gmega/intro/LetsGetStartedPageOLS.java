@@ -25,6 +25,7 @@ public class LetsGetStartedPageOLS extends MainPageBlinx {
 
     @Step
     public LetsGetStartedPageOLS waitForPageLoad(String indication, String compensation) {
+        waitForAnimation();
         waitForPageLoadMain(titleTextPart1, String.format(titleExpectedPart1, indication, compensation));
         waitForPageLoadMain(titleTextPart2, titleExpectedPart2);
         return this;

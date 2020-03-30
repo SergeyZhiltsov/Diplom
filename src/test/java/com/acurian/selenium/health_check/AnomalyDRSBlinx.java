@@ -37,6 +37,7 @@ public class AnomalyDRSBlinx extends BaseTest
             PleaseConfirmYourGenderPageOLS pleaseConfirmYourGenderPageOLS = identificationPageOLS
                 .waitForPageLoadNotQ()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999")
+                    .setZipCode(zipCode)
                 .clickNextButton(new PleaseConfirmYourGenderPageOLS());
 
             ApproximateHeightWeightPageOLS approximateHeightWeightPageOLS = pleaseConfirmYourGenderPageOLS

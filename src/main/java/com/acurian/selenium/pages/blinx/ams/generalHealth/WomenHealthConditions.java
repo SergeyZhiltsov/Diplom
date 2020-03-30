@@ -26,6 +26,7 @@ public class WomenHealthConditions extends MainPageBlinx {
 
     @Step
     public WomenHealthConditions waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

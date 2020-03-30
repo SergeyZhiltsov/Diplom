@@ -27,6 +27,7 @@ public class HowManyBowelMovementsDidYouHaveAtNightPageOLS extends MainPageBlinx
 
     @Step
     public HowManyBowelMovementsDidYouHaveAtNightPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

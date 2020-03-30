@@ -2,7 +2,7 @@ package com.acurian.selenium.blinx;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.blinx.ams.MostRecentHeartProcedurePageOLS;
+import com.acurian.selenium.pages.blinx.ams.shared.MostRecentHeartProcedurePageOLS;
 import com.acurian.selenium.pages.blinx.ams.closes.*;
 import com.acurian.selenium.pages.blinx.ams.debug.DebugPageOLS;
 import com.acurian.selenium.pages.blinx.ams.derm.*;
@@ -18,11 +18,7 @@ import com.acurian.utils.Properties;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import ru.yandex.qatools.allure.annotations.Description;
 
 import java.util.Arrays;
 import java.util.List;

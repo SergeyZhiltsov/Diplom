@@ -26,6 +26,7 @@ public class KindOfTestsOrEvaluationHaveYouHadPageOLS extends MainPageBlinx {
 
     @Step
     public KindOfTestsOrEvaluationHaveYouHadPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

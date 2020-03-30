@@ -20,6 +20,7 @@ public class AreYouCurrentlyReceivingRegularDosesOfAnyBiologicMedsPageOLS extend
 
     @Step
     public AreYouCurrentlyReceivingRegularDosesOfAnyBiologicMedsPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

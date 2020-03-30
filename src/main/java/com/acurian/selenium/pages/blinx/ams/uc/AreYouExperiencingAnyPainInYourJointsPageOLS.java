@@ -27,6 +27,7 @@ public class AreYouExperiencingAnyPainInYourJointsPageOLS extends MainPageBlinx 
 
     @Step
     public AreYouExperiencingAnyPainInYourJointsPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

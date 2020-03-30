@@ -25,6 +25,7 @@ public class InThePastYearHowManyUrgentMedicalforCopdOLS extends MainPageBlinx {
 
     @Step
     public InThePastYearHowManyUrgentMedicalforCopdOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

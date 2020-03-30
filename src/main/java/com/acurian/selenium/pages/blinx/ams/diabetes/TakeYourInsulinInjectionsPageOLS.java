@@ -25,6 +25,7 @@ public class TakeYourInsulinInjectionsPageOLS extends MainPageBlinx {
 
     @Step
     public TakeYourInsulinInjectionsPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

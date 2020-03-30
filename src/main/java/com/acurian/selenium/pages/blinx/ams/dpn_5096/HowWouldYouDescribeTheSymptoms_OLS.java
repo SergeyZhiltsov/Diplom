@@ -21,6 +21,7 @@ public class HowWouldYouDescribeTheSymptoms_OLS extends MainPageBlinx {
 
     @Step
     public HowWouldYouDescribeTheSymptoms_OLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

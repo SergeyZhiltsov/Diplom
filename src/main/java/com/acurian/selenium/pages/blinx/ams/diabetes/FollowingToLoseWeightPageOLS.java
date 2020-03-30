@@ -25,6 +25,7 @@ public class FollowingToLoseWeightPageOLS extends MainPageBlinx {
 
     @Step
     public FollowingToLoseWeightPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

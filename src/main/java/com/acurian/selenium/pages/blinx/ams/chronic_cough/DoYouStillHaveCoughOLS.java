@@ -25,6 +25,7 @@ public class DoYouStillHaveCoughOLS extends MainPageBlinx {
 
     @Step
     public DoYouStillHaveCoughOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

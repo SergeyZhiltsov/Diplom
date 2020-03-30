@@ -22,7 +22,7 @@ public class DoctorInformationCollectionPageOLS extends MainPageBlinx {
             "\n" +
             "Please be assured that your records will be kept confidential and only shared with the study doctor's office, except as required by law.";
 
-    @FindBy(xpath = "//div[@id='questions']/div[1]//div[@class='show-in-ols']")
+    @FindBy(xpath = "//div[@id='questions']/div[1]//span[@class='show-in-ols']")
     WebElement titleText;
 
     public DoctorInformationCollectionPageOLS() {
@@ -31,6 +31,7 @@ public class DoctorInformationCollectionPageOLS extends MainPageBlinx {
 
     @Step
     public DoctorInformationCollectionPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

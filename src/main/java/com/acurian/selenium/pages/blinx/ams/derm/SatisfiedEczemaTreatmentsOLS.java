@@ -19,6 +19,7 @@ public class SatisfiedEczemaTreatmentsOLS extends MainPageBlinx {
 
     @Step
     public SatisfiedEczemaTreatmentsOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

@@ -22,6 +22,7 @@ public class HasDoctorEverDiagnosedYouMedicalCond_OLS extends MainPageBlinx {
 
     @Step
     public HasDoctorEverDiagnosedYouMedicalCond_OLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

@@ -35,7 +35,7 @@ public class SubquestionHeartPageOLS extends MainPageBlinx {
 
     @Step
     public SubquestionHeartPageOLS clickOnAnswerForSubQuestion(int questionNumber, String answerText) {
-        List<WebElement> radiobuttonListFromTitle = titlesText.get(questionNumber-1)
+        List<WebElement> radiobuttonListFromTitle = titlesText.get(questionNumber)
                 .findElements(By.xpath("following-sibling::div[@class='answers-container']" +
                         "//div[@class='single-choice-answers-container w-100']/button"));
         clickOnRadioButton(radiobuttonListFromTitle, answerText);

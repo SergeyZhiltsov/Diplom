@@ -20,6 +20,7 @@ public class HowWouldYouDescribeTheEczemaCurrentlyPageOLS extends MainPageBlinx 
 
     @Step
     public HowWouldYouDescribeTheEczemaCurrentlyPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

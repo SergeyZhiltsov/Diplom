@@ -27,6 +27,7 @@ public class ExperienceWithYourLupusOLS extends MainPageBlinx {
 
     @Step
     public ExperienceWithYourLupusOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

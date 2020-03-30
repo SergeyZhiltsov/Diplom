@@ -27,6 +27,7 @@ public class DidYouHaveBloodInYourStoolPageOLS extends MainPageBlinx {
 
     @Step
     public DidYouHaveBloodInYourStoolPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
