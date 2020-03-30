@@ -10,40 +10,31 @@ import com.acurian.selenium.pages.blinx.ams.diabetes.*;
 import com.acurian.selenium.pages.blinx.ams.generalHealth.*;
 import com.acurian.selenium.pages.blinx.ams.lowt_3017.CardiovascularDiseaseThanOthersPageOLS;
 import com.acurian.selenium.pages.blinx.ams.shared.*;
-import com.acurian.selenium.pages.blinx.gmega.AboutHealthPageOLS;
 import com.acurian.selenium.pages.blinx.gmega.intro.IdentificationPageOLS;
+import io.qameta.allure.Description;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import io.qameta.allure.Description;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class DIA_4483_OLSBlinx extends BaseTest {
+public class DIA_5062_OLSBlinx extends BaseTest {
 
-    private static Logger Log = LogManager.getLogger(DIA_4483_OLSBlinx.class.getName());
+    private static Logger Log = LogManager.getLogger(DIA_5062_OLSBlinx.class.getName());
 
-    @DataProvider
-    public Object[][] sites() {
-        return new Object[][]{
-                {Site.AUT_NASH4483_site},
-                {Site.AUT_NASH4483S_site}
-        };
-    }
-
-    @Test(dataProvider = "sites", enabled = true)
-    @Description("NASH study 4483 OLS")
-    public void dia4483olsTest(Site site) {
+    @Test(enabled = true)
+    @Description("NASH study 5062 OLS")
+    public void dia5062olsTest() {
         String phoneNumber = "AUTAMSNASH";
+        Site site = Site.AUT_NASH5062_site;
         String studyName = "a fatty liver study for diabetics!";//"a NASH";
 
         String env = System.getProperty("acurian.env", "STG");
 
-        DebugPageOLS debugPageOLS = new DebugPageOLS();
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
+        DebugPageOLS debugPageOLS = new DebugPageOLS();
 
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
@@ -70,13 +61,11 @@ public class DIA_4483_OLSBlinx extends BaseTest {
                 .setZipCode(site.zipCode)
                 .clickNextButton(new GenderPageOLS());
 
-
         DiagnosedAnyTypeOfDiabetesPageOLS diagnosedAnyTypeOfDiabetesPageOLS = genderPageOLS
                 .waitForPageLoad()
                 .setDate("09091968")
                 .clickOnAnswer("Male")
                 .clickNextButton(new DiagnosedAnyTypeOfDiabetesPageOLS());
-
 
 
         WhatKindOfDiabetesPageOLS whatKindOfDiabetesPageOLS = diagnosedAnyTypeOfDiabetesPageOLS
@@ -126,19 +115,19 @@ public class DIA_4483_OLSBlinx extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new NoOfAlcoholicDrinkOLS());
 
-        LiverRelatedConditionOLS liverRelatedConditionOLS =  noOfAlcoholicDrinkOLS
+        LiverRelatedConditionOLS liverRelatedConditionOLS = noOfAlcoholicDrinkOLS
                 .waitForPageLoad()
-                .setDrinks("15")
+                .setDrinks("22")
                 .clickNextButton(new LiverRelatedConditionOLS());
         liverRelatedConditionOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS8509",site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS8509", site.activeProtocols)
                 .back(noOfAlcoholicDrinkOLS);
 
-         noOfAlcoholicDrinkOLS
+        noOfAlcoholicDrinkOLS
                 .waitForPageLoad()
-                .setDrinks("14")
+                .setDrinks("21")
                 .clickNextButton(liverRelatedConditionOLS);
 
         List<String> options = Arrays.asList("Alcoholic liver disease",
@@ -173,51 +162,10 @@ public class DIA_4483_OLSBlinx extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new PoundsOrMorePageOLS());
 
-        poundsOrMorePageOLS
-                .waitForPageLoad()
-                .back(weightLossSurgeryPageOLS);
-
-        ProcedureForWeightLossPageOLS procedureForWeightLossPageOLS = weightLossSurgeryPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Gastric bypass")
-                .clickNextButton(new ProcedureForWeightLossPageOLS());
-
-        List<String> disqualifyQ20 = Arrays.asList("Less than 3 months ago", "3 - 6 months ago", "7 - 11 months ago",
-                "1 - 2 years ago", "More than 2 years ago");
-        for (String answer: disqualifyQ20) {
-            Log.info("Select answer for Q20: " + answer);
-            procedureForWeightLossPageOLS
-                    .waitForPageLoad()
-                    .clickOnAnswer(answer)
-                    .clickNextButton(poundsOrMorePageOLS)
-                    .waitForPageLoad()
-                    .getPage(debugPageOLS)
-                    .checkProtocolsContainsForQNumber("QS8512", site.activeProtocols)
-                    .back(procedureForWeightLossPageOLS);
-        }
-        procedureForWeightLossPageOLS
-                .waitForPageLoad()
-                .back(weightLossSurgeryPageOLS);
-
-        weightLossSurgeryPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(poundsOrMorePageOLS);
-
-        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS =
-                new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS();
-        poundsOrMorePageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Yes")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS8518", site.activeProtocols)
-                .back(poundsOrMorePageOLS);
-        poundsOrMorePageOLS
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = poundsOrMorePageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("No")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
 
         WhenDiagnosedWithCancerOLS whenDiagnosedWithCancerOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
@@ -302,7 +250,7 @@ public class DIA_4483_OLSBlinx extends BaseTest {
                 .clickNextButton(new SubquestionExperiencedHeartPageOLS());
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected3)
-                .clickOnAnswerForSubQuestion(1,"Less than 30 days ago")
+                .clickOnAnswerForSubQuestion(1, "Less than 30 days ago")
                 .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
@@ -476,28 +424,18 @@ public class DIA_4483_OLSBlinx extends BaseTest {
                 .waitForPageLoad()
                 .clickNextButton(new AlzheimerClosePageOLS());
 
-        AboutHealthPageOLS aboutHealthPageOLS = alzheimerClosePageOLS
+        com.acurian.selenium.pages.blinx.gmega.AboutHealthPageOLS aboutHealthPageOLS = alzheimerClosePageOLS
                 .waitForPageLoadPRD()
-                .clickNextButton(new AboutHealthPageOLS());
+                .clickNextButton(new com.acurian.selenium.pages.blinx.gmega.AboutHealthPageOLS());
 
         /*aboutHealthPageOLS
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
                 .getRadiantDbToLog(env)
-                .childPidFromDbToLog(env, "4483")
+                .childPidFromDbToLog(env, "5062")
                 .dispoShouldMatch(site.dispo, site.dispo)
                 .assertGeneratedFul(env, site)
-                .queueSiteForFULCheck(site.name);
-        switch (site) {
-            case AUT_NASH4483_site: //1R
-                break;
-            case AUT_NASH4483S_site: //41C
-                aboutHealthPageOLS
-                        .getAnomalyDbToLog(env);
-                break;
-        }*/
-
+                .queueSiteForFULCheck(site.name);*/
 
     }
 }
-
