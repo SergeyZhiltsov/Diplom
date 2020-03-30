@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="All" verbose="4" parallel="methods" thread-count="15">
+<suite name="All" verbose="4" parallel="methods" thread-count="20">
 
     <listeners>
         <listener class-name="com.acurian.selenium.listeners.AnnotationTransformer"/>

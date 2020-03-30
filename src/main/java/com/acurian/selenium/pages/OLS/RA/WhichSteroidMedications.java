@@ -29,7 +29,7 @@ public class WhichSteroidMedications extends BasePage{
     @Step
     public WhichSteroidMedications waitForPageLoad() {
         waitForAnimation();
-        driverWait.waitforVisibility(titleText);
+        waitforVisibility(titleText);
         return this;
     }
 

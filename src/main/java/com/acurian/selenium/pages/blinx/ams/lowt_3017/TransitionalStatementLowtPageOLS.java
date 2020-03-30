@@ -18,6 +18,7 @@ public class TransitionalStatementLowtPageOLS extends MainPageBlinx {
 
     @Step
     public TransitionalStatementLowtPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

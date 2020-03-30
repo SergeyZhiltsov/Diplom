@@ -26,6 +26,7 @@ public class GastroparesisSymptomsCausedByFollowingPageOLS extends MainPageBlinx
 
     @Step
     public GastroparesisSymptomsCausedByFollowingPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

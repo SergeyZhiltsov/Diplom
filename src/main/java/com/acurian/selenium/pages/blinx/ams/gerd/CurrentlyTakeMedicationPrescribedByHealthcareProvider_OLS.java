@@ -21,6 +21,7 @@ public class CurrentlyTakeMedicationPrescribedByHealthcareProvider_OLS extends M
 
     @Step
     public CurrentlyTakeMedicationPrescribedByHealthcareProvider_OLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

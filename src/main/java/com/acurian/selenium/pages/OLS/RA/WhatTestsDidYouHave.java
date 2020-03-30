@@ -27,7 +27,7 @@ public class WhatTestsDidYouHave extends MainPageOLS {
     @Step
     public WhatTestsDidYouHave waitForPageLoad() {
         waitForAnimation();
-        driverWait.waitforVisibility(titleText);
+        waitforVisibility(titleText);
         return this;
     }
 

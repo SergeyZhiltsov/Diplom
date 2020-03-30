@@ -26,12 +26,14 @@ public class WhatTypeOfLupusOLS extends MainPageBlinx {
 
     @Step
     public WhatTypeOfLupusOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
     public WhatTypeOfLupusOLS waitForPageLoad2() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected2);
         return this;
     }

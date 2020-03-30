@@ -24,7 +24,7 @@ public class InPastDidYouTakeSteroids extends MainPageOLS {
     @Step
     public InPastDidYouTakeSteroids waitForPageLoad() {
         waitForAnimation();
-        driverWait.waitforVisibility(titleText);
+        waitforVisibility(titleText);
         return this;
     }
 

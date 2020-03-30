@@ -21,6 +21,7 @@ public class WhatTypeOfSurgeryDidYouHave_OLS extends MainPageBlinx {
 
     @Step
     public WhatTypeOfSurgeryDidYouHave_OLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

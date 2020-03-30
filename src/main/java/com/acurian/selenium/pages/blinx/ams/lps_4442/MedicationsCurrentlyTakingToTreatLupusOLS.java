@@ -26,6 +26,7 @@ public class MedicationsCurrentlyTakingToTreatLupusOLS extends MainPageBlinx {
 
     @Step
     public MedicationsCurrentlyTakingToTreatLupusOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

@@ -27,7 +27,7 @@ public class SubquestionHeartPageOLS extends MainPageBlinx {
     @Step
     public SubquestionHeartPageOLS waitForPageLoad(int actualTitleIndex, String expectedTitle) {
         waitForAnimation();
-        driverWait.getWaitDriver().until(ExpectedConditions.numberOfElementsToBeMoreThan(By
+        wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(By
                 .xpath("//div[@class='question-text']"), actualTitleIndex));
         waitForPageLoadMain(titlesText.get(actualTitleIndex), expectedTitle);
         return this;
@@ -35,7 +35,7 @@ public class SubquestionHeartPageOLS extends MainPageBlinx {
 
     @Step
     public SubquestionHeartPageOLS clickOnAnswerForSubQuestion(int questionNumber, String answerText) {
-        List<WebElement> radiobuttonListFromTitle = titlesText.get(questionNumber-1)
+        List<WebElement> radiobuttonListFromTitle = titlesText.get(questionNumber)
                 .findElements(By.xpath("following-sibling::div[@class='answers-container']" +
                         "//div[@class='single-choice-answers-container w-100']/button"));
         clickOnRadioButton(radiobuttonListFromTitle, answerText);

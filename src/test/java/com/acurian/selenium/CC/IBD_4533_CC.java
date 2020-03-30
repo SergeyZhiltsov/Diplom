@@ -162,7 +162,6 @@ public class IBD_4533_CC extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new EverTreatedCrohnOrColitisCC());
 
-        everTreatedCrohnOrColitisCC.threadSleep(2000);
         BiologicMedicationsPageCC biologicMedicationsPageCC = everTreatedCrohnOrColitisCC
                 .clickOnAnswers("Jakafi (Agent Note: JAK-uh-fie)")
                 .clickNextButton(new BiologicMedicationsPageCC());
@@ -513,7 +512,7 @@ public class IBD_4533_CC extends BaseTest {
                 .getPID()
                 .clickOnAnswer(site.name)
                 .clickNextButton(new QualifiedFlareMonitoringAppClosePageCC())
-                .threadSleep(5000);
+                .threadSleep(5);
         //.waitForPageLoad()
         QualifiedFlareMonitoringAppClosePageCC qualified = new QualifiedFlareMonitoringAppClosePageCC();
         qualified.getActivationCode()

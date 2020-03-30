@@ -19,6 +19,7 @@ public class EverSmokedCigarettesPageOLS extends MainPageBlinx {
 
     @Step
     public EverSmokedCigarettesPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

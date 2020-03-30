@@ -26,6 +26,7 @@ public class ApartFromMetforminPageOLS extends MainPageBlinx {
 
     @Step
     public ApartFromMetforminPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

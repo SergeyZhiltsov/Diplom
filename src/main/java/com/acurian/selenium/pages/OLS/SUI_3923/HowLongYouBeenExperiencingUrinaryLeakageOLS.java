@@ -24,7 +24,7 @@ public class HowLongYouBeenExperiencingUrinaryLeakageOLS extends MainPageOLS {
     @Step
     public HowLongYouBeenExperiencingUrinaryLeakageOLS waitForPageLoad() {
         waitForAnimation();
-        driverWait.waitforVisibility(titleText);
+        waitforVisibility(titleText);
         return this;
     }
 

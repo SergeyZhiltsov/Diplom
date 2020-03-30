@@ -28,14 +28,14 @@ public class HaveYouSmokedCigarettesCC extends MainPageCC {
     @Step
     public HaveYouSmokedCigarettesCC waitForPageLoad() {
         waitForAnimation();
-        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
+        wait.until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
         return this;
     }
     
     @Step
     public HaveYouSmokedCigarettesCC waitForPageLoadNew() {
         waitForAnimation();
-        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected1));
+        wait.until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected1));
         return this;
     }
 

@@ -5,16 +5,14 @@ import com.acurian.selenium.listeners.TestListener;
 import com.acurian.utils.CSVParser;
 import com.acurian.utils.DBConnection;
 import com.paulhammant.ngwebdriver.NgWebDriver;
+import io.qameta.allure.Attachment;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.*;
 import org.testng.Assert;
-import ru.yandex.qatools.allure.annotations.Attachment;
 import ru.yandex.qatools.allure.annotations.Step;
 import ru.yandex.qatools.ashot.AShot;
 import ru.yandex.qatools.ashot.Screenshot;
@@ -22,6 +20,8 @@ import ru.yandex.qatools.ashot.comparison.ImageDiff;
 import ru.yandex.qatools.ashot.comparison.ImageDiffer;
 import ru.yandex.qatools.ashot.coordinates.WebDriverCoordsProvider;
 
+import java.time.Duration;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -30,8 +30,33 @@ import java.util.stream.Collectors;
 
 
 public abstract class BasePage {
+
+    /**
+     * The wait.
+     */
+    protected Wait<WebDriver> wait;
+
+    /**
+     * The minimal wait.
+     */
+    protected Wait<WebDriver> minimalWait;
+
+    /**
+     * The short wait.
+     */
+    protected Wait<WebDriver> shortWait;
+
+    /**
+     * The long wait.
+     */
+    protected Wait<WebDriver> longWait;
+
+    /**
+     * The no wait.
+     */
+    protected Wait<WebDriver> noWait;
+
     protected NgWebDriver ngDriver;
-    protected WebDriverWaitLogged driverWait;
     private WebDriver driver;
     private Actions actions;
     private CSVParser csvParser;
@@ -43,11 +68,16 @@ public abstract class BasePage {
     public BasePage() {
         driver = BaseTest.getDriver();
         actions = new Actions(driver);
-        driverWait = new WebDriverWaitLogged(driver);
         ngDriver = new NgWebDriver((JavascriptExecutor) driver);
         csvParser = new CSVParser();
         dbConnection = new DBConnection();
         dimension = driver.manage().window().getSize();
+        wait = new WebDriverWait(driver, 20);
+        minimalWait = new WebDriverWait(driver, 5);
+        shortWait = new WebDriverWait(driver, 10);
+        longWait = new WebDriverWait(driver, 60);
+        noWait = new FluentWait<>(driver).withTimeout(Duration.of(200, ChronoUnit.MILLIS));
+
         PageFactory.initElements(getDriver(), this);
     }
 
@@ -55,7 +85,7 @@ public abstract class BasePage {
         return driver;
     }
 
-    protected Actions getActions(){
+    protected Actions getActions() {
         return actions;
     }
 
@@ -72,12 +102,12 @@ public abstract class BasePage {
         driver.navigate().to(url);
     }
 
-    protected void clickByActions(WebElement element){
+    protected void clickByActions(WebElement element) {
         actions.moveToElement(element).click().build().perform();
     }
 
     protected void clickSimpleWithJS(WebElement element) {
-        JavascriptExecutor executor = (JavascriptExecutor)driver;
+        JavascriptExecutor executor = (JavascriptExecutor) driver;
         executor.executeScript("arguments[0].click();", element);
     }
 
@@ -90,12 +120,12 @@ public abstract class BasePage {
     protected WebElement scrollToElement(WebElement element, boolean isIntoView) {
         ((JavascriptExecutor) driver).executeScript(String.format("arguments[0].scrollIntoView(%b);", isIntoView),
                 element);
-        threadSleep(500);
+        Log.info("scrolled to element");
         return element;
     }
 
     @Step
-    protected void dragAndDropButton(WebElement element, int x, int y){
+    protected void dragAndDropButton(WebElement element, int x, int y) {
         actions.dragAndDropBy(element, x, y).build().perform();
     }
 
@@ -167,14 +197,15 @@ public abstract class BasePage {
         webElement.sendKeys(text);
     }
 
-    protected void typeTextByActions(WebElement element, String text){
+    protected void typeTextByActions(WebElement element, String text) {
         actions.moveToElement(element).click().sendKeys(text).build().perform();
     }
 
-    protected void typeTextWithTime(WebElement webElement, String text, int timeInMilis) {
-        for (char sign: text.toCharArray()) {
+    //rewrite bad method
+    protected void typeTextSlow(WebElement webElement, String text) {
+        for (char sign : text.toCharArray()) {
             webElement.sendKeys(String.valueOf(sign));
-            threadSleep(timeInMilis);
+            threadSleep(1);
         }
     }
 
@@ -223,14 +254,15 @@ public abstract class BasePage {
     }
 
     /**
-     *  Select item from navigation menu
+     * Select item from navigation menu
+     *
      * @param menuButtom to open navigation menu
-     * @param menuItems navigation menu items
-     * @param item navigation menu item
+     * @param menuItems  navigation menu items
+     * @param item       navigation menu item
      */
     protected void selectFromNavigationMenu(WebElement menuButtom, List<WebElement> menuItems, String item) {
         try {
-            driverWait.waitforVisibility(menuButtom);
+            waitforVisibility(menuButtom);
             actions.moveToElement(menuButtom).perform();
             menuItems.stream().filter(webElement -> webElement.getText().equals(item))
                     .findFirst()
@@ -256,19 +288,23 @@ public abstract class BasePage {
                     if (n == 0L)
                         break;
                 }
-                threadSleep(1000);
+                threadSleep(1);
             }
         } else {
             Log.info("Web getDriver: " + driver + " cannot execute javascript");
         }
     }
 
+    public void waitforVisibility(WebElement element) {
+        if (element.isDisplayed() || element.isEnabled()) return;
+        wait.until(ExpectedConditions.visibilityOf(element));
+    }
+
     public void waitForAnimation() {
-//        threadSleep(3000);
-        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) wdriver -> ((JavascriptExecutor) driver).executeScript(
+        wait.until((ExpectedCondition<Boolean>) wdriver -> ((JavascriptExecutor) driver).executeScript(
                 "return document.readyState"
         ).equals("complete"));
-        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) wdriver -> (boolean)((JavascriptExecutor) driver).executeScript(
+        wait.until((ExpectedCondition<Boolean>) wdriver -> (boolean) ((JavascriptExecutor) driver).executeScript(
                 "return jQuery.active == 0"
         ));
     }
@@ -278,13 +314,13 @@ public abstract class BasePage {
      * <p><b>Does not work in Safari!</b></p>
      */
     protected void acceptAlert() {
-        driverWait.getWaitDriver().until(ExpectedConditions.alertIsPresent());
+        wait.until(ExpectedConditions.alertIsPresent());
         Alert alert = driver.switchTo().alert();
         alert.accept();
     }
 
     protected void typeAndAcceptAlert(String text) {
-        driverWait.getWaitDriver().until(ExpectedConditions.alertIsPresent());
+        wait.until(ExpectedConditions.alertIsPresent());
         Alert alert = driver.switchTo().alert();
         alert.sendKeys(text);
         alert.accept();
@@ -295,24 +331,22 @@ public abstract class BasePage {
     }
 
 
-    protected boolean isElementPresent(int timeout, By by) {
+    protected boolean isElementPresent(By by) {
         boolean isPresent = false;
         try {
-//            driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
-            driverWait.getWaitDriver().withTimeout(timeout, TimeUnit.SECONDS).until(ExpectedConditions.presenceOfElementLocated(by));
+            longWait.until(ExpectedConditions.presenceOfElementLocated(by));
             isPresent = true;
         } catch (WebDriverException e) {
-        } finally {
-//            driver().manage().timeouts().implicitlyWait(ELEMENT_TIMEOUT_SECONDS, TimeUnit.SECONDS);
         }
         return isPresent;
     }
 
 
     @Step
-    public void threadSleep(int miliseconds) {
+    public void threadSleep(int seconds) {
+        if (seconds >= 1000) seconds /= 1000;
         try {
-            Thread.sleep(miliseconds);
+            Thread.sleep(seconds * 1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -324,7 +358,7 @@ public abstract class BasePage {
     public <T extends BasePage> T switchTab() {
         ArrayList<String> windowHandles = new ArrayList<>(driver.getWindowHandles());
         driver.switchTo().window(windowHandles.get(1));
-        return (T)this;
+        return (T) this;
     }
 
     @Step
@@ -362,29 +396,20 @@ public abstract class BasePage {
         }
     }
 
-    //logs
-    @Step("{0}")
-    public void logTextToAllure(String text) {
-        //empty method
-    }
 
-    @Step("{0}")
+    @Step()
     public void logTextToAllureAndConsole(String text) {
+        textToAttachment(text);
         Log.info(text);
     }
 
-    @Attachment
-    public String textToAttachment(String textToAttachment) {
-        return textToAttachment;
-    }
-
-    @Attachment("{1}")
-    public String textToAttachment(String textToAttachment, String header) {
-        return textToAttachment;
+    @Attachment(value = "Attachment", type = "plain/text", fileExtension = ".txt")
+    public String textToAttachment(String... textToAttachment) {
+        return textToAttachment[0];
     }
 
     @Step
-    public void back(){
+    public void back() {
         driver.navigate().back();
     }
 

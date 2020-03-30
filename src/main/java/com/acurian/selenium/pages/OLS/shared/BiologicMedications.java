@@ -30,7 +30,7 @@ public class BiologicMedications extends MainPageOLS {
     @Step
     public BiologicMedications waitForPageLoad() {
         waitForAnimation();
-        driverWait.waitforVisibility(titleText);
+        waitforVisibility(titleText);
         return this;
     }
     

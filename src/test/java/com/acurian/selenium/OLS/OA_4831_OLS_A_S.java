@@ -455,8 +455,7 @@ public class OA_4831_OLS_A_S extends BaseTest {
         AboutHealthPageOLS aboutHealthPageOLS = new AboutHealthPageOLS();
         aboutHealthPageOLS
                 .clickNextButton(new AboutHealthPageOLS())
-                .waitForPageLoad()
-                .threadSleep(2000);
+                .waitForPageLoad();
 
         switch (site) {
             case AUT_OA_4831_Syn: //41C

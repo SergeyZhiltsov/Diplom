@@ -45,7 +45,7 @@ public class SubquestionLastReceivedPageOLS extends MainPageOLS{
     @Step
     public SubquestionLastReceivedPageOLS waitForPageLoad(int actualTitleIndex, String expectedTitle) {
         waitForAnimation();
-        driverWait.waitforVisibility(titleText);
+        waitforVisibility(titleText);
         waitForPageLoadMain(titlesText.get(actualTitleIndex-1), expectedTitle);
         return this;
     }

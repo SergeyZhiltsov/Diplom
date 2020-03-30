@@ -26,6 +26,7 @@ public class CurrentlyTakeTreatIBSPageOLS extends MainPageBlinx {
 
     @Step
     public CurrentlyTakeTreatIBSPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

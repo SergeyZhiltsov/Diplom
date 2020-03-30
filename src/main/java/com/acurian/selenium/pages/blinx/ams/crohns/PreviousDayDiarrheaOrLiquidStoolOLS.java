@@ -20,6 +20,7 @@ public class PreviousDayDiarrheaOrLiquidStoolOLS extends MainPageBlinx {
 
     @Step
     public PreviousDayDiarrheaOrLiquidStoolOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

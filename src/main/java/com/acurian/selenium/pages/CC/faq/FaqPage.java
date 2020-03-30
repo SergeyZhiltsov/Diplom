@@ -79,7 +79,7 @@ public class FaqPage extends MainPageCC {
     public void assertTerms() {
         for (int i = 0; i < expectedFaqTitles.size(); i++) {
             Log.info("Comparing " + "[" + expectedFaqTitles.get(i) + "] with [" + faqTitles.get(i).getText() + "]");
-            logTextToAllure("Comparing " + "[" + expectedFaqTitles.get(i) + "] with [" + faqTitles.get(i).getText() + "]");
+            textToAttachment("Comparing " + "[" + expectedFaqTitles.get(i) + "] with [" + faqTitles.get(i).getText() + "]");
             Assert.assertEquals(faqTitles.get(i).getText(), expectedFaqTitles.get(i),"Glossary term is Diff");
         }
     }
@@ -89,7 +89,7 @@ public class FaqPage extends MainPageCC {
         filterFaqDefinitions();
         for (int i = 0; i < expectedFaqDefinisions.size(); i++) {
             Log.info("Comparing " + "[" + filteredDefinitions.get(i).getText() + "] with [" + expectedFaqDefinisions.get(i) + "]");
-            logTextToAllure("Comparing " + "[" + filteredDefinitions.get(i).getText() + "] with [" + expectedFaqDefinisions.get(i) + "]");
+            textToAttachment("Comparing " + "[" + filteredDefinitions.get(i).getText() + "] with [" + expectedFaqDefinisions.get(i) + "]");
             Assert.assertEquals(filteredDefinitions.get(i).getText(), expectedFaqDefinisions.get(i), " Glossary definision is Diff");
         }
     }

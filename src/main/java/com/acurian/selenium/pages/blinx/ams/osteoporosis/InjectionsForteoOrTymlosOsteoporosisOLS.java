@@ -19,6 +19,7 @@ public class InjectionsForteoOrTymlosOsteoporosisOLS extends MainPageBlinx {
 
     @Step
     public InjectionsForteoOrTymlosOsteoporosisOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

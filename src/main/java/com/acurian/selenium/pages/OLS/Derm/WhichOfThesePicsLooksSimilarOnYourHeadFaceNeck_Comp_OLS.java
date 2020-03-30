@@ -27,7 +27,7 @@ public class WhichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS extends Mai
     public WhichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS waitForPageLoad() {
         waitForAnimation();
         waitForImagesToLoad();
-        driverWait.waitforVisibility(titleText);
+        waitforVisibility(titleText);
         return this;
     }
 

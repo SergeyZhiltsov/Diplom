@@ -29,7 +29,7 @@ public class LongTermSteroidPrescription extends MainPageOLS {
     @Step
     public LongTermSteroidPrescription waitForPageLoad() {
         waitForAnimation();
-        driverWait.waitforVisibility(titleText);
+        waitforVisibility(titleText);
         return this;
     }
 

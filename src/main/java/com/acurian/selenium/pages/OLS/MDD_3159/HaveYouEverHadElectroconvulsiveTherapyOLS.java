@@ -25,7 +25,7 @@ public class HaveYouEverHadElectroconvulsiveTherapyOLS extends MainPageOLS {
     @Step
     public HaveYouEverHadElectroconvulsiveTherapyOLS waitForPageLoad() {
         waitForAnimation();
-        driverWait.waitforVisibility(titleText);
+        waitforVisibility(titleText);
         return this;
     }
 

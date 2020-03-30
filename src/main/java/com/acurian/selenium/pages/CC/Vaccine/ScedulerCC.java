@@ -1,8 +1,6 @@
 package com.acurian.selenium.pages.CC.Vaccine;
 
-import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.CC.MainPageCC;
-import com.acurian.selenium.pages.WebDriverWaitLogged;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import ru.yandex.qatools.allure.annotations.Step;
@@ -72,7 +70,6 @@ public class ScedulerCC extends MainPageCC {
     @Step
     public ScedulerCC waitForPageLoad() {
         getDriver().switchTo().frame(frame);
-        threadSleep(10000);
         waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
@@ -80,8 +77,8 @@ public class ScedulerCC extends MainPageCC {
 
     @Step
     public ScedulerCC clickOnDay() {
-        WebDriverWaitLogged webDriverWaitLogged = new WebDriverWaitLogged(getDriver());
-        webDriverWaitLogged.waitforVisibility(dayBtn);
+
+        waitforVisibility(dayBtn);
         dayBtn.click();
         waitForAnimation();
         return this;
@@ -89,8 +86,8 @@ public class ScedulerCC extends MainPageCC {
 
     @Step
     public ScedulerCC clickOnTime() {
-        WebDriverWaitLogged webDriverWaitLogged = new WebDriverWaitLogged(getDriver());
-        webDriverWaitLogged.waitforVisibility(timeBtn);
+
+        waitforVisibility(timeBtn);
         timeBtn.click();
         waitForAnimation();
         return this;
@@ -98,8 +95,8 @@ public class ScedulerCC extends MainPageCC {
 
     @Step
     public ScedulerCC clickOnAgree() {
-        WebDriverWaitLogged webDriverWaitLogged = new WebDriverWaitLogged(getDriver());
-        webDriverWaitLogged.waitforVisibility(agreeBtn);
+
+        waitforVisibility(agreeBtn);
         agreeBtn.click();
         waitForAnimation();
         return this;

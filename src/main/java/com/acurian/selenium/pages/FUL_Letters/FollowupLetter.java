@@ -90,7 +90,6 @@ public class FollowupLetter extends BasePage {
 
     public FollowupLetter() {
         PageFactory.initElements(getDriver(), this);
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.manage().timeouts().pageLoadTimeout(15, TimeUnit.SECONDS);
         wait = new WebDriverWait(driver, 20);
         fluentWait = new FluentWait<>(driver)
@@ -132,9 +131,7 @@ public class FollowupLetter extends BasePage {
         try {
             emailTitle = fluentWait.until(ExpectedConditions.visibilityOfElementLocated(emailLocator));
             logTextToAllureAndConsole("Recieved email: " + emailTitle.getText());
-            threadSleep(750);
             driver.findElement(emailLocator).click();
-            threadSleep(750);
         } catch (TimeoutException e) {
             Assert.fail("Email wasn't received within 15 mins timeout");
         }

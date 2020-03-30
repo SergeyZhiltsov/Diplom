@@ -27,6 +27,7 @@ public class EverDiagnosedWithFollowingConditionsOLS extends MainPageBlinx {
 
     @Step
     public EverDiagnosedWithFollowingConditionsOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

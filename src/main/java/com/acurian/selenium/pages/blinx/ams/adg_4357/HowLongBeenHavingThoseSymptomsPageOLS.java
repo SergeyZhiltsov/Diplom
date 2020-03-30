@@ -25,6 +25,7 @@ public class HowLongBeenHavingThoseSymptomsPageOLS extends MainPageBlinx {
 
     @Step
     public HowLongBeenHavingThoseSymptomsPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

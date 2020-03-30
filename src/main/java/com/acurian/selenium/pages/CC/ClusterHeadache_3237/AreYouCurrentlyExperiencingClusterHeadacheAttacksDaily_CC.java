@@ -26,7 +26,7 @@ public class AreYouCurrentlyExperiencingClusterHeadacheAttacksDaily_CC extends M
     @Step
     public AreYouCurrentlyExperiencingClusterHeadacheAttacksDaily_CC waitForPageLoad() {
         waitForAnimation();
-        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
+        wait.until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
         return this;
     }
 

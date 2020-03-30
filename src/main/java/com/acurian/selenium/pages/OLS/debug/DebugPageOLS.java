@@ -104,7 +104,7 @@ public class DebugPageOLS extends MainPageOLS {
                 break;
         }
         waitForAnimation();
-//        driverWait.getWaitDriver().withTimeout(15, TimeUnit.SECONDS).until(ExpectedConditions
+//        wait.withTimeout(15, TimeUnit.SECONDS).until(ExpectedConditions
 //                .attributeToBe(By.xpath("/html/body/div[3]"), "display", "none"));
         return this;
     }
@@ -158,7 +158,7 @@ public class DebugPageOLS extends MainPageOLS {
                 .findElement(By.xpath("following-sibling::*[2]//tbody"))
                 .getText();
         closeDebugWindow();
-        logTextToAllure("Protocol=" + temp);
+        textToAttachment("Protocol=" + temp);
         return temp;
     }
 
@@ -174,7 +174,7 @@ public class DebugPageOLS extends MainPageOLS {
                 .findElement(By.xpath("following-sibling::td[2]"))
                 .getText();
         closeDebugWindow();
-        logTextToAllure("Protocol=" + temp);
+        textToAttachment("Protocol=" + temp);
         return temp;
     }
 
@@ -190,7 +190,7 @@ public class DebugPageOLS extends MainPageOLS {
                 .findElements(By.xpath("following-sibling::*[2]//tbody/tr/td"))
                 .stream().map(el -> el.getText()).collect(Collectors.toList());
         closeDebugWindow();
-        logTextToAllure("Protocol=" + temp);
+        textToAttachment("Protocol=" + temp);
         return temp;
     }
 
@@ -212,7 +212,7 @@ public class DebugPageOLS extends MainPageOLS {
                 .findElements(By.xpath("following-sibling::*[4]//tbody/tr/td"))
                 .stream().map(el -> el.getText()).collect(Collectors.toList());
         closeDebugWindow();
-        logTextToAllure("Protocol = " + temp);
+        textToAttachment("Protocol = " + temp);
         return temp;
     }
 

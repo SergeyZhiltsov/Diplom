@@ -39,7 +39,7 @@ public class AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC extends MainP
     @Step
     public AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC waitForPageLoad() {
         waitForAnimation();
-        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
+        wait.until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
         return this;
     }
     

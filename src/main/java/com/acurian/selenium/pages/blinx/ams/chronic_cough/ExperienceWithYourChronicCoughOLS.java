@@ -27,6 +27,7 @@ public class ExperienceWithYourChronicCoughOLS extends MainPageBlinx {
 
     @Step
     public ExperienceWithYourChronicCoughOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

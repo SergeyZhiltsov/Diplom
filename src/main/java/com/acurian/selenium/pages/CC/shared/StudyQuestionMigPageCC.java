@@ -50,7 +50,7 @@ public class StudyQuestionMigPageCC<Just> extends MainPageCC {
     @Step
     public StudyQuestionMigPageCC waitForPageLoad() {
         waitForAnimation();
-        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> questionText1.getText().contains(titleExpected));
+        wait.until((ExpectedCondition<Boolean>) w-> questionText1.getText().contains(titleExpected));
         return this;
     }
 

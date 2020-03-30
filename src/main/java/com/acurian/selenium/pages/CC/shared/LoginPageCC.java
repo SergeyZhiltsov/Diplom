@@ -55,7 +55,7 @@ public class LoginPageCC extends MainPageCC {
     @Step
     public LoginPageCC waitForPageLoad() {
         waitForAnimation();
-        driverWait.waitforVisibility(loginButton);
+        waitforVisibility(loginButton);
         Assert.assertEquals(this.getTitleText(), "Please enter your username and password to login:", "Title text is diff");
         return this;
     }

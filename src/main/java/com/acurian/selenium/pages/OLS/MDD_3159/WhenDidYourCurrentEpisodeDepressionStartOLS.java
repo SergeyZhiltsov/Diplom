@@ -25,7 +25,7 @@ public class WhenDidYourCurrentEpisodeDepressionStartOLS extends MainPageOLS {
     @Step
     public WhenDidYourCurrentEpisodeDepressionStartOLS waitForPageLoad() {
         waitForAnimation();
-        driverWait.waitforVisibility(titleText);
+        waitforVisibility(titleText);
         return this;
     }
 

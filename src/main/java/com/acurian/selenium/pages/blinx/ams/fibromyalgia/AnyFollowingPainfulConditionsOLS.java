@@ -21,6 +21,7 @@ public class AnyFollowingPainfulConditionsOLS extends MainPageBlinx {
 
     @Step
     public AnyFollowingPainfulConditionsOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

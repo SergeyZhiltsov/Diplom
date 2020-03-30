@@ -26,7 +26,7 @@ public class WhenYouAreExperiencingCHattackIsTheLocationPain_CC extends MainPage
     @Step
     public WhenYouAreExperiencingCHattackIsTheLocationPain_CC waitForPageLoad() {
         waitForAnimation();
-        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
+        wait.until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
         return this;
     }
 

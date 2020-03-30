@@ -29,7 +29,7 @@ public class AffectingYourMetabolismPageCC extends MainPageCC{
     @Step
     public AffectingYourMetabolismPageCC waitForPageLoad() {
         waitForAnimation();
-        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
+        wait.until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
         return this;
     }
 

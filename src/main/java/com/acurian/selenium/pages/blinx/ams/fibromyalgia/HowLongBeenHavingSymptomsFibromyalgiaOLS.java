@@ -19,6 +19,7 @@ public class HowLongBeenHavingSymptomsFibromyalgiaOLS extends MainPageBlinx {
 
     @Step
     public HowLongBeenHavingSymptomsFibromyalgiaOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

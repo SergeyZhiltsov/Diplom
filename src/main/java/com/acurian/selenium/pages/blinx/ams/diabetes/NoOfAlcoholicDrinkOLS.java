@@ -27,6 +27,7 @@ public class NoOfAlcoholicDrinkOLS extends MainPageBlinx {
 
     @Step
     public NoOfAlcoholicDrinkOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

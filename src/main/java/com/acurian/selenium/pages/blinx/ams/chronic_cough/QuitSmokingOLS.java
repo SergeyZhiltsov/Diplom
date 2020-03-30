@@ -25,6 +25,7 @@ public class QuitSmokingOLS extends MainPageBlinx {
 
     @Step
     public QuitSmokingOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

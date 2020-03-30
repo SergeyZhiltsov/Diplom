@@ -77,7 +77,7 @@ public class QualifiedFlareMonitoringAppClosePageOLS extends MainPageOLS {
     @Step
     public QualifiedFlareMonitoringAppClosePageOLS getActivationCodeCrohns() {
         activationCode = getText(activationCodePath5);
-        logTextToAllure("Activation Code " + activationCode);
+        textToAttachment("Activation Code " + activationCode);
         Log.info("Activation Code = " + activationCode);
         return this;
     }
@@ -86,7 +86,7 @@ public class QualifiedFlareMonitoringAppClosePageOLS extends MainPageOLS {
     @Step
     public QualifiedFlareMonitoringAppClosePageOLS getActivationCode() {
         activationCode = getText(activationCodePath);
-        logTextToAllure("Activation Code " + activationCode);
+        textToAttachment("Activation Code " + activationCode);
         Log.info("Activation Code = " + activationCode);
         return this;
     }
@@ -95,7 +95,7 @@ public class QualifiedFlareMonitoringAppClosePageOLS extends MainPageOLS {
     public QualifiedFlareMonitoringAppClosePageOLS getActivationCodeQA() {
         String titleTextTemp = titleText.getText();
         activationCode = titleTextTemp.substring(titleTextTemp.lastIndexOf("is:") + 4, titleTextTemp.lastIndexOf(":") + 8);
-        logTextToAllure("Activation Code " + activationCode);
+        textToAttachment("Activation Code " + activationCode);
         Log.info("Activation Code = " + activationCode);
         return this;
     }
@@ -104,7 +104,7 @@ public class QualifiedFlareMonitoringAppClosePageOLS extends MainPageOLS {
     public QualifiedFlareMonitoringAppClosePageOLS enterEmail(String emailid) {
         emailAddress = emailid;
         typeText(emailidField, emailid);
-        logTextToAllure("Email_ID " + emailid);
+        textToAttachment("Email_ID " + emailid);
         Log.info("Email_ID = " + emailid);
         return this;
     }

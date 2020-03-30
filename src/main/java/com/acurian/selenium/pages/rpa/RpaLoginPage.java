@@ -43,7 +43,7 @@ public class RpaLoginPage extends RpaMainPage {
     @Step
     public RpaLoginPage waitForPageLoad() {
         waitForAnimation();
-        driverWait.waitforVisibility(loginButton);
+        waitforVisibility(loginButton);
         return this;
     }
 

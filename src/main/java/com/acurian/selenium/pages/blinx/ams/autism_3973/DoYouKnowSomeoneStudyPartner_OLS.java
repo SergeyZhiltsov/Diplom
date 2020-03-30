@@ -24,6 +24,7 @@ public class DoYouKnowSomeoneStudyPartner_OLS extends MainPageBlinx {
 
     @Step
     public DoYouKnowSomeoneStudyPartner_OLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

@@ -26,6 +26,7 @@ public class WhichFollowingInhalersdoYouUseCopdOLS extends MainPageBlinx {
 
     @Step
     public WhichFollowingInhalersdoYouUseCopdOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

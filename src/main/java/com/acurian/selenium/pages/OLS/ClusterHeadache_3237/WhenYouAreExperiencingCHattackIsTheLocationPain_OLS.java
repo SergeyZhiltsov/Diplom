@@ -24,7 +24,7 @@ public class WhenYouAreExperiencingCHattackIsTheLocationPain_OLS extends MainPag
     @Step
     public WhenYouAreExperiencingCHattackIsTheLocationPain_OLS waitForPageLoad() {
         waitForAnimation();
-        driverWait.waitforVisibility(titleText);
+        waitforVisibility(titleText);
         return this;
     }
 

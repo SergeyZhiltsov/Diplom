@@ -46,10 +46,10 @@ public class MainPageCC extends BasePage {
     }
 
     public void waitForAnimation() {
-        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) wdriver -> ((JavascriptExecutor) getDriver()).executeScript(
+        wait.until((ExpectedCondition<Boolean>) wdriver -> ((JavascriptExecutor) getDriver()).executeScript(
                 "return document.readyState"
         ).equals("complete"));
-        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) wdriver -> (boolean) ((JavascriptExecutor) getDriver()).executeScript(
+        wait.until((ExpectedCondition<Boolean>) wdriver -> (boolean) ((JavascriptExecutor) getDriver()).executeScript(
                 "return jQuery.active == 0"
         ));
     }
@@ -58,7 +58,7 @@ public class MainPageCC extends BasePage {
     public MainPageCC assertChildDOBIsNull(String env, String studyId) {
         String childDOBCell = getDbConnection().dbReadChildDOB(env, pid, studyId);
         Assert.assertNull(childDOBCell,"Child DOB is not NULL");
-        logTextToAllure("Child DOB cell: " + childDOBCell);
+        textToAttachment("Child DOB cell: " + childDOBCell);
         return this;
     }
 
@@ -68,7 +68,7 @@ public class MainPageCC extends BasePage {
         pid = PassPID.getInstance().getPidNumber();
         getDbConnection().dbReadPID(env, pid);
         dispoParent = getDbConnection().getDispo();
-        logTextToAllure("Parent dispo = " + dispoParent + " for PID " + pid);
+        textToAttachment("Parent dispo = " + dispoParent + " for PID " + pid);
         return this;
     }
 
@@ -151,7 +151,7 @@ public class MainPageCC extends BasePage {
         ChildResult childResult = getDbConnection().dbReadChildPID(env, pid, firstPartOfChildPhoneNumber);
         dispoChild = childResult.getDispoCd() + childResult.getApplicantStatus();
         childPid = childResult.getChildPid();
-        logTextToAllure("Child dispo =" + childResult.getDispoCd() + childResult.getApplicantStatus() + " for PID " + pid +
+        textToAttachment("Child dispo =" + childResult.getDispoCd() + childResult.getApplicantStatus() + " for PID " + pid +
                 " with child pid = "+ childResult.getChildPid());
         return this;
     }
@@ -160,7 +160,7 @@ public class MainPageCC extends BasePage {
     public MainPageCC getRadiantDbToLog(String env, String ... assertStudyReference) {
         if(env.equals("QA")) {
             RadiantResults radiantResults = getDbConnection().dbReadRadiant(env, pid);
-            logTextToAllure("Radiant : current status = " + radiantResults.getCurrentStatus() +
+            textToAttachment("Radiant : current status = " + radiantResults.getCurrentStatus() +
                     ", response message = " + radiantResults.getResponseMessage() +
                     ", study reference = " + radiantResults.getStudyReference() +
                     " for PID " + pid);
@@ -184,7 +184,7 @@ public class MainPageCC extends BasePage {
     @Step
     public MainPageCC getPID(){
         pidNumber = getText(pidNumberPath);
-        logTextToAllure("PID = " + pidNumber);
+        textToAttachment("PID = " + pidNumber);
         PassPID.getInstance().setPidNumber(pidNumber);
         Log.info("PID = " + pidNumber);
         return this;
@@ -193,7 +193,7 @@ public class MainPageCC extends BasePage {
 //    @Step
 //    public MainPageCC getAnomalyDbToLog(String env) {
 //        AnomalyResults anomalyResults = getDbConnection().dbReadAnomaly(env, pid);
-//        logTextToAllure("Anomaly : Current Status=" + anomalyResults.getCurrentStatus() + " Request Status id=" + anomalyResults.getRequestStatus() + " for pid " + pid);
+//        textToAttachment("Anomaly : Current Status=" + anomalyResults.getCurrentStatus() + " Request Status id=" + anomalyResults.getRequestStatus() + " for pid " + pid);
 //        return this;
 //    }
 
@@ -233,7 +233,7 @@ public class MainPageCC extends BasePage {
     @Step
     public MainPageCC flareCodeShouldMatch(String env, String statusCode) {
         String flareStatus = getDbConnection().dbGetStatusFlare(env, pid);
-        logTextToAllure("Flare : current status = "+ flareStatus + " for childPID " + pid);
+        textToAttachment("Flare : current status = "+ flareStatus + " for childPID " + pid);
         Assert.assertEquals(flareStatus, statusCode, "Current status for Flare is diff");
         return this;
     }
@@ -280,17 +280,17 @@ public class MainPageCC extends BasePage {
     }
 
     protected void waitForPageLoadMain(WebElement titleText, String titleExpected) {
-        logTextToAllure(this.getClass().getSimpleName() + " class with:");
+        textToAttachment(this.getClass().getSimpleName() + " class with:");
         textToAttachment(titleExpected, "Title text");
         waitForAnimation();
-        driverWait.waitforVisibility(titleText);
+        waitforVisibility(titleText);
         try {
-            driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w -> titleText.getText().contains(titleExpected));
+            wait.until((ExpectedCondition<Boolean>) w -> titleText.getText().contains(titleExpected));
         } catch (TimeoutException ex) {
             Assert.assertEquals(titleText.getText(), titleExpected, "Failed after timeout wait cause Title is diff");
             throw ex;
         }
-//        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
+//        wait.until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
     }
 
     protected void clickOnRadioButton(List<WebElement> radioButtonList, String answerText) {

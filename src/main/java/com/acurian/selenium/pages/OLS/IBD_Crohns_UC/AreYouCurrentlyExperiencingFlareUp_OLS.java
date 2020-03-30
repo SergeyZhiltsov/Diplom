@@ -25,7 +25,7 @@ public class AreYouCurrentlyExperiencingFlareUp_OLS extends MainPageOLS {
     @Step
     public AreYouCurrentlyExperiencingFlareUp_OLS waitForPageLoad() {
         waitForAnimation();
-        driverWait.waitforVisibility(titleText);
+        waitforVisibility(titleText);
         return this;
     }
 

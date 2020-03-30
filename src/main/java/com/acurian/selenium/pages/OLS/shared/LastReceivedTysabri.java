@@ -23,7 +23,7 @@ public class LastReceivedTysabri extends MainPageOLS {
     @Step
     public LastReceivedTysabri waitForPageLoad() {
         waitForAnimation();
-        driverWait.waitforVisibility(titleText);
+        waitforVisibility(titleText);
         return this;
     }
 

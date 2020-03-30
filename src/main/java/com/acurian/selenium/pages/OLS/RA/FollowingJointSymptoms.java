@@ -25,7 +25,7 @@ public class FollowingJointSymptoms  extends MainPageOLS {
     @Step
     public FollowingJointSymptoms waitForPageLoad() {
         waitForAnimation();
-        driverWait.waitforVisibility(titleText);
+        waitforVisibility(titleText);
         return this;
     }
 

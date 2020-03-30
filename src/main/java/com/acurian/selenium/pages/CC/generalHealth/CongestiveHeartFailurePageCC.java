@@ -30,7 +30,7 @@ public class CongestiveHeartFailurePageCC extends MainPageCC {
     public CongestiveHeartFailurePageCC waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
 //        waitForAnimation();
-//        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
+//        wait.until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
         return this;
     }
 

@@ -25,6 +25,7 @@ public class CeliacDiseasePageOLS extends MainPageBlinx {
 
     @Step
     public CeliacDiseasePageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

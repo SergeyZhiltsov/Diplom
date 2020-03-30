@@ -36,13 +36,13 @@ public class RpaGeneratePage extends RpaMainPage {
     @Step
     public RpaGeneratePage waitForPageLoad() {
         waitForAnimation();
-        driverWait.waitforVisibility(projectHeader);
+        waitforVisibility(projectHeader);
         return this;
     }
 
     @Step
     public RpaGeneratePage clickSelectProjectByName(String projectName){
-        driverWait.waitforVisibility(projectHeader);
+        waitforVisibility(projectHeader);
         selectDropDownListOptionByText(selectProject, projectName);
         return this;
     }
@@ -50,7 +50,7 @@ public class RpaGeneratePage extends RpaMainPage {
     @Step
     public RpaGeneratePage clickSelectSiteByName(String projectName){
         waitForAnimation();
-        driverWait.waitforVisibility(siteHeader);
+        waitforVisibility(siteHeader);
         selectDropDownListOptionByText(selectSite, projectName);
         return this;
     }
@@ -70,6 +70,6 @@ public class RpaGeneratePage extends RpaMainPage {
     @Step
     public boolean isSubmitButtonPresent(){
         waitForAnimation();
-        return isElementPresent(15,By.xpath("//input[@id='submit_button']"));
+        return isElementPresent(By.xpath("//input[@id='submit_button']"));
     }
 }

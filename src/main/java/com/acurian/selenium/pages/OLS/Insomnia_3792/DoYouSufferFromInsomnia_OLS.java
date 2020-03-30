@@ -23,7 +23,7 @@ public class DoYouSufferFromInsomnia_OLS extends MainPageOLS {
     @Step
     public DoYouSufferFromInsomnia_OLS waitForPageLoad() {
         waitForAnimation();
-        driverWait.waitforVisibility(titleText);
+        waitforVisibility(titleText);
         return this;
     }
 

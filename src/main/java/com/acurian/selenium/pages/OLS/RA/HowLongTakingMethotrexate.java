@@ -25,7 +25,7 @@ public class HowLongTakingMethotrexate extends MainPageOLS{
     @Step
     public HowLongTakingMethotrexate waitForPageLoad() {
         waitForAnimation();
-        driverWait.waitforVisibility(titleText);
+        waitforVisibility(titleText);
         return this;
     }
 
