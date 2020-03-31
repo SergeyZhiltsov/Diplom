@@ -44,7 +44,7 @@ public class BlinxGmega extends BaseTest {
                 (env.equals("PRD") ? identificationPageOLS.waitForPageLoad2() : identificationPageOLS.waitForPageLoadSTG())
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
                         "9999999999")
-                        .setZipCode("19044")
+                        .setZipCode("08204")
                 .clickNextButton(pleaseConfirmYourGenderPageOLS);
         identificationPageOLS
                 .waitForAnimation();
