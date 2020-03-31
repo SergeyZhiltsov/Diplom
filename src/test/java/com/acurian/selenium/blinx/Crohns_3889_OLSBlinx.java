@@ -32,7 +32,8 @@ import java.util.Map;
 
 public class Crohns_3889_OLSBlinx extends BaseTest {
 
-    private static Logger Log = LogManager.getLogger(Crohns_3889_OLS.class.getName());
+
+    private static Logger Log = LogManager.getLogger(Crohns_3889_OLSBlinx.class.getName());
 
     @DataProvider
     public Object[][] flare() {
@@ -44,7 +45,7 @@ public class Crohns_3889_OLSBlinx extends BaseTest {
 
     @Test(dataProvider = "flare")
     @Description("Crohns_3889_OLSBlinx")
-    public void Crohns_3889_OLS(boolean inFlare) {
+    public void Crohns_3889_OLSTest(boolean inFlare) {
         Site site = Site.AUT_CRN_3889_HS;
         String phoneNumber = "AUTAMS1IBD";
         String protocol1 = "M14_431";
@@ -275,7 +276,7 @@ public class Crohns_3889_OLSBlinx extends BaseTest {
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS8117", entry.getValue())
-                    .back();
+                    .back(currentlyHaveAnyFollowingOLS);
         }
         currentlyHaveAnyFollowingOLS
                 .waitForPageLoad()
@@ -333,7 +334,7 @@ public class Crohns_3889_OLSBlinx extends BaseTest {
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
-                    .back();
+                    .back(subquestionHeartPageOLS);
         }
         WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS kidneyProblemsPage = subquestionHeartPageOLS
                 .waitForPageLoad()
@@ -352,7 +353,7 @@ public class Crohns_3889_OLSBlinx extends BaseTest {
                 .waitForPageLoad()
                 //.getPage(debugPageOLS)
                 //.checkProtocolsContainsForQNumber("QS51", site.activeProtocols[0], site.activeProtocols[1])
-                .back();
+                .back(kidneyProblemsPage);
         kidneyProblemsPage
                 .waitForPageLoad()
                 .clickOnAnswers("Kidney transplant")
@@ -361,7 +362,7 @@ public class Crohns_3889_OLSBlinx extends BaseTest {
                 .waitForPageLoad()
                 //.getPage(debugPageOLS)
                 //.checkProtocolsContainsForQNumber("QS51", site.activeProtocols[0], site.activeProtocols[1])
-                .back();
+                .back(kidneyProblemsPage);
 
         kidneyProblemsPage
                 .waitForPageLoad()
@@ -407,7 +408,7 @@ public class Crohns_3889_OLSBlinx extends BaseTest {
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
-                .back();
+                .back(approximateHeightPageOLS);
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
@@ -416,7 +417,7 @@ public class Crohns_3889_OLSBlinx extends BaseTest {
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
-                .back();
+                .back(doAnyOftheFollowingAdditionalDiagnosesOLS);
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
@@ -425,7 +426,7 @@ public class Crohns_3889_OLSBlinx extends BaseTest {
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
-                .back();
+                .back(doAnyOftheFollowingAdditionalDiagnosesOLS);
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
@@ -434,7 +435,7 @@ public class Crohns_3889_OLSBlinx extends BaseTest {
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
-                .back();
+                .back(doAnyOftheFollowingAdditionalDiagnosesOLS);
 
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
@@ -444,7 +445,7 @@ public class Crohns_3889_OLSBlinx extends BaseTest {
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
-                .back();
+                .back(doAnyOftheFollowingAdditionalDiagnosesOLS);
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
@@ -453,7 +454,7 @@ public class Crohns_3889_OLSBlinx extends BaseTest {
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS61", site.activeProtocols)
-                .back();
+                .back(doAnyOftheFollowingAdditionalDiagnosesOLS);
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
@@ -500,8 +501,9 @@ public class Crohns_3889_OLSBlinx extends BaseTest {
                 .clickNextButton(new IdentificationPageOLS());
         //----------PII (IdentificationPageOLS) Page--------------------
         SiteSelectionPageOLS siteSelectionPageOLS = identificationPageOLS
-                .waitForPageLoad()
+                .waitForPageLoad2()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999")
+                .setCity("Jersey City")
                 .clickNextButton(new SiteSelectionPageOLS());
 
         QualifiedFlareMonitoringAppClosePageOLS qualifiedFlareMonitoringAppClosePageOLS = new QualifiedFlareMonitoringAppClosePageOLS();

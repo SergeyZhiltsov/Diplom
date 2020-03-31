@@ -52,7 +52,7 @@ public class MainPageBlinx extends BasePage {
 
     public MainPageBlinx() {
         PageFactory.initElements(getDriver(), this);
-        getDriver().manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+        getDriver().manage().timeouts().implicitlyWait(501, TimeUnit.MILLISECONDS);
     }
 
     @Step
@@ -77,7 +77,7 @@ public class MainPageBlinx extends BasePage {
         waitForAbsence(By.xpath("//*[@id='questions-form'][contains(@class, 'animated fadeInUp fast')]"));
         textToAttachment(this.getClass().getSimpleName() + " class with: ");
         textToAttachment(titleExpected, "Title text expected");
-        waitforVisibility(titleText);
+//      waitforVisibility(titleText);
         try {
             wait.until((ExpectedCondition<Boolean>) w -> titleText.getText().contains(titleExpected));
         } catch (TimeoutException ex) {
@@ -158,6 +158,7 @@ public class MainPageBlinx extends BasePage {
     }
     @Step
     public <T extends MainPageBlinx> T back(T page) {
+        scrollPageDown();
         waitAndClickWebElement(previousQuestion);
         return (T) page;
     }

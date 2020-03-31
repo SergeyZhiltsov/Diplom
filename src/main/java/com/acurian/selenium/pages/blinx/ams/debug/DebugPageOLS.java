@@ -145,6 +145,7 @@ public class DebugPageOLS extends MainPageBlinx {
 
     @Step
     public DebugPageOLS checkProtocolsContainsForQNumber(String questionNumber, String... expectedProtocols) {
+        threadSleep(1);
         List<String> actualProtocols = getProtocolsForQuestionNumber(questionNumber, expectedProtocols);
         Assert.assertTrue(actualProtocols.containsAll(Arrays.asList(expectedProtocols)), "Protocol expected "
                 + Arrays.toString(expectedProtocols) + " are not included in actual " + actualProtocols.toString());

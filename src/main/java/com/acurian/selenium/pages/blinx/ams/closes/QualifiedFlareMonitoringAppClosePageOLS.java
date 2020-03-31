@@ -32,7 +32,7 @@ public class QualifiedFlareMonitoringAppClosePageOLS extends MainPageBlinx {
     @FindBy(xpath = "//div[@class='question']")
     WebElement titleText;
 
-    @FindBy(xpath = "(//*[contains(@class, 'visible-md-block')])[2]")
+    @FindBy(xpath = "(//div[contains(@class, 'question-text')])[2]")
     WebElement titleText2;
 
     @FindBy(xpath = "(//*[contains(@class, 'visible-xs-block')])[2]")
