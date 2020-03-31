@@ -1,4 +1,4 @@
-package com.acurian.selenium.pages.blinx.ams.adg_4357;
+package com.acurian.selenium.pages.blinx.ams.ibd_crohns_uc;
 
 import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.blinx.MainPageBlinx;
@@ -9,37 +9,35 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class GastroparesisSymptomsCausedByFollowingPageOLS extends MainPageBlinx {
+public class HaveYouEverBeenOfficiallyDiagnosedByDoctor_OLS extends MainPageBlinx {
 
-    public final String titleExpected = "Has a healthcare professional told you that your gastroparesis symptoms are caused by any of the following?\n" +
+    public final String titleExpected = "Have you ever been officially diagnosed with any of the following digestive conditions?\n" +
             "Please select all that apply.";
 
-    @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS_BLINX)
+    @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_OLS)
     WebElement titleText;
 
-    @FindBy(xpath = Locators.CHEKBOX_LIST_OLS_BLINX)
+    @FindBy(xpath = Locators.CHEKBOX_LIST_OLS)
     List<WebElement> checkBoxList;
 
-    public GastroparesisSymptomsCausedByFollowingPageOLS() {
+    public HaveYouEverBeenOfficiallyDiagnosedByDoctor_OLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public GastroparesisSymptomsCausedByFollowingPageOLS waitForPageLoad() {
-        waitForAnimation();
+    public HaveYouEverBeenOfficiallyDiagnosedByDoctor_OLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public GastroparesisSymptomsCausedByFollowingPageOLS clickOnAnswers(String ...answerText) {
+    public HaveYouEverBeenOfficiallyDiagnosedByDoctor_OLS clickOnAnswers(String... answerText) {
         clickOnCheckBoxes(checkBoxList, answerText);
         return this;
     }
 
     @Step
-    public String getTitleText(){
+    public String getTitleText() {
         return getText(titleText);
     }
-
 }

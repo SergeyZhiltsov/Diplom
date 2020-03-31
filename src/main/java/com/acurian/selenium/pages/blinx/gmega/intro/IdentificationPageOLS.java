@@ -61,7 +61,6 @@ public class IdentificationPageOLS extends MainPageBlinx {
     @Step
     public IdentificationPageOLS waitForPageLoad2() {
         waitForAnimation();
-        waitForAnimation();
         waitForPageLoadMain(titleTextPart2, titleExpectedPart2);
         waitForPageLoadMain(titleTextPart4, titleExpectedPart4);
         return this;
