@@ -28,6 +28,7 @@ public class AreYouCurrentlyReceivingWorkersPageOLS extends MainPageBlinx {
 
     @Step
     public AreYouCurrentlyReceivingWorkersPageOLS waitForPageLoad2() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected2);
         return this;
     }

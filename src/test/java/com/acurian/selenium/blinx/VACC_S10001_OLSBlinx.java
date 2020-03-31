@@ -46,7 +46,7 @@ public class VACC_S10001_OLSBlinx extends BaseTest {
 
         AreYouInterestedInVaccineStudyOLS areYouInterestedInVaccineStudyOLS = dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
-                .waitForPageLoadGMEGA(studyName, "1,000")
+                .waitForPageLoad(studyName, "1,000")
                 .clickOnAnswer("Yes")
                 .getPage(new ZipCodePageOLS())
                 .waitForPageLoad()

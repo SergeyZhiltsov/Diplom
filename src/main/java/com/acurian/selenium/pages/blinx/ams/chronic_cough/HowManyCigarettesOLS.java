@@ -2,6 +2,7 @@ package com.acurian.selenium.pages.blinx.ams.chronic_cough;
 
 import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.blinx.MainPageBlinx;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -9,18 +10,21 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 public class HowManyCigarettesOLS extends MainPageBlinx {
 
-    public final String titleExpected = "About how many cigarettes per day do you smoke?";
+    public final String titleExpected = "How many years have you been smoking cigarettes?";
 
-    public final String titleExpected1 = "About how many cigarettes per day did you smoke?";
+    public final String titleExpected1 = "How many years did you smoke cigarettes?";
 
-    @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS_BLINX)
+    @FindBy(xpath = "(//div[@class='question-text'])[2]")
     WebElement titleText;
 
-    @FindBy(xpath = "//input[@id='QS6208B']")
+    @FindBy(xpath = "(//input[@class='noTelephone'])[1]")
     WebElement year;
 
-    @FindBy(xpath = "//input[@id='QS6208D']")
+    @FindBy(xpath = "//input[@class='noTelephone'] | //input[@class='noTelephone error']")
     WebElement cigarettes;
+
+    @FindBy(xpath = "(//input[@class='noTelephone valid'])[1]")
+    WebElement yearNotForFirstTime;
 
     public HowManyCigarettesOLS() {
         PageFactory.initElements(getDriver(), this);
@@ -29,13 +33,11 @@ public class HowManyCigarettesOLS extends MainPageBlinx {
     @Step
     public HowManyCigarettesOLS waitForPageLoad() {
         waitForAnimation();
-        waitForPageLoadMain(titleText, titleExpected);
-        return this;
-    }
-
-    @Step
-    public HowManyCigarettesOLS waitForPageLoad1() {
-        waitForPageLoadMain(titleText, titleExpected1);
+        try {
+            waitForPageLoadMain(titleText, titleExpected);
+        } catch (AssertionError e) {
+            waitForPageLoadMain(titleText, titleExpected1);
+        }
         return this;
     }
 
@@ -53,9 +55,12 @@ public class HowManyCigarettesOLS extends MainPageBlinx {
 
     @Step
     public HowManyCigarettesOLS howManyCigarettes(String number) {
-        typeText(cigarettes, number);
+        try {
+            typeText(cigarettes, number);
+        } catch (NoSuchElementException e) {
+            typeText(cigarettes, number);
+        }
         waitForAnimation();
         return this;
     }
-
 }

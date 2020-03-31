@@ -2,6 +2,8 @@ package com.acurian.selenium.pages.blinx.gmega;
 
 import com.acurian.selenium.pages.blinx.MainPageBlinx;
 import com.acurian.utils.PassPID;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
@@ -12,6 +14,8 @@ import ru.yandex.qatools.allure.annotations.Step;
 import java.util.List;
 
 public class SiteSelectionPageOLS extends MainPageBlinx {
+
+    private static Logger Log = LogManager.getLogger(SiteSelectionPageOLS.class.getName());
 
     @Parameter("My PID OLS")
     public String pidNumber;
@@ -30,13 +34,31 @@ public class SiteSelectionPageOLS extends MainPageBlinx {
 
     @FindBy(xpath = "//*[@id='collapsedContent1']/div[1]")
     WebElement pidNumberPath;
-
+    @FindBy(xpath = "//div[contains(@class,'debug-question-helper')]")
+    List<WebElement> debuqQuestionList;
+    @FindBy(xpath = "//b[@id='additional-sites-toggle']")
+    WebElement additionalLocationLink;
 
     @Step
+    public SiteSelectionPageOLS clickOnDebugSiteName(String debugSiteName) {
+        clickOnAddLocLinkIfExist();
+        clickOnRadioButton(debuqQuestionList, debugSiteName);
+        return this;
+    }
 
+    private void clickOnAddLocLinkIfExist() {
+        if (isElementPresent(By.xpath("//b[@id='additional-sites-toggle']"))) {
+            additionalLocationLink.click();
+            waitForAnimation();
+        }
+    }
+
+    @Step
     public SiteSelectionPageOLS waitForPageLoad(String studyName) {
+        waitForAnimation();
         waitforVisibility(loadingAnimation);
         waitForAbsence(loadingAnimation);
+        waitForAnimation();
         waitForPageLoadMain(titleText, String.format(titleExpected, studyName));
         attachPageScreenshot();
         return this;
@@ -59,4 +81,14 @@ public class SiteSelectionPageOLS extends MainPageBlinx {
         }
         return this;
     }
+
+    @Step
+    public SiteSelectionPageOLS getPID(){
+        pidNumber = getText(pidNumberPath);
+        textToAttachment("PID = " + pidNumber);
+        PassPID.getInstance().setPidNumber(pidNumber);
+        Log.info("PID = " + pidNumber);
+        return this;
+    }
+
 }
