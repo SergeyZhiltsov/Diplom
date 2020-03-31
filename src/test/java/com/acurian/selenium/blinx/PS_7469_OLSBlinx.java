@@ -2,7 +2,6 @@ package com.acurian.selenium.blinx;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.OLS.debug.ConfigPageOLS;
 import com.acurian.selenium.pages.blinx.ams.closes.AboutHealthPageOLS;
 import com.acurian.selenium.pages.blinx.ams.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.blinx.ams.ps_7469.*;
@@ -50,7 +49,7 @@ public class PS_7469_OLSBlinx extends BaseTest {
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
                 .waitForPageLoadCrohns(studyName, "300");
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS
+        Assert.assertEquals(dateOfBirthPageOLS.getTitleText2(), dateOfBirthPageOLS
                 .getExpectedModifiedTitle(studyName, "300"), "Title is diff");
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
                 .clickOnAnswer("Yes")

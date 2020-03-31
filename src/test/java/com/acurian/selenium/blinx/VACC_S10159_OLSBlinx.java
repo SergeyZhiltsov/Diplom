@@ -41,7 +41,7 @@ public class VACC_S10159_OLSBlinx extends BaseTest {
                 new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS();
         GenderPageOLS genderPageOLS = dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
-                .waitForPageLoadGMEGA(studyName, "1,100")
+                .waitForPageLoad(studyName, "1,100")
                 .clickOnAnswer("Yes")
                 .getPage(new ZipCodePageOLS())
                 .waitForPageLoad()

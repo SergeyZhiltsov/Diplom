@@ -36,6 +36,8 @@ public class DateOfBirthPageOLS extends MainPageBlinx {
 
     private final String titleExpectedPart2 = "Are you age 18 or older?";
 
+    public final String titleAHExpected = "Let's get started to see if there is a study that’s right for you!";
+
     @FindBy(xpath = "//div[@id='questions']/div[1]//span[@class='show-in-ols']")
     WebElement titleTextPart;
     @FindBy(xpath = "//input[@placeholder='MM/DD/YYYY']")
@@ -53,12 +55,21 @@ public class DateOfBirthPageOLS extends MainPageBlinx {
 //    @FindBy(xpath = "//*[@id='QSI8002']/div/div")
 //    WebElement titleText;
     @FindBy(xpath = "//*[@id='QSI8002']/div/span")
+    WebElement titleText2;
+    @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS_BLINX)
     WebElement titleText;
 
     @Step
     public DateOfBirthPageOLS waitForPageLoad0(String indication, String compensation) {
         waitForAnimation();
         waitForPageLoadMain(titleTextPart, getExpectedModifiedTitle(indication, compensation));
+        return this;
+    }
+
+    @Step
+    public DateOfBirthPageOLS waitForPageLoadGMEGA(String indication, String compensation) {
+        waitForAnimation();
+        waitForPageLoadMain(titleText, getExpectedModifiedTitle2(indication, compensation));
         return this;
     }
 
@@ -72,12 +83,12 @@ public class DateOfBirthPageOLS extends MainPageBlinx {
     @Step
     public DateOfBirthPageOLS waitForPageLoad2(String indication, String compensation) {
         waitForAnimation();
-        waitForPageLoadMain(titleText, getExpectedModifiedTitle2(indication, compensation));
+        waitForPageLoadMain(titleText2, getExpectedModifiedTitle2(indication, compensation));
         return this;
     }
 
     @Step
-    public DateOfBirthPageOLS waitForPageLoad(String indication, String compensation) {
+    public DateOfBirthPageOLS waitForPageLoadCV5034(String indication, String compensation) {
         waitForAnimation();
         waitForPageLoadMain(titleTextPart1, String.format(titleExpectedPart1, indication, compensation));
         waitForPageLoadMain(titleTextPart2, titleExpectedPart2);
@@ -85,7 +96,7 @@ public class DateOfBirthPageOLS extends MainPageBlinx {
     }
 
     @Step
-    public DateOfBirthPageOLS waitForPageLoadGMEGA(String indication, String compensation) {
+    public DateOfBirthPageOLS waitForPageLoad(String indication, String compensation) {
         waitForAnimation();
         waitForPageLoadMain(titleTextPartGMEGA1, String.format(titleExpectedPart1, indication, compensation));
         waitForPageLoadMain(titleTextPartGMEGA2, titleExpectedPart2);
@@ -93,9 +104,20 @@ public class DateOfBirthPageOLS extends MainPageBlinx {
     }
 
     @Step
+    public DateOfBirthPageOLS waitForPageAHLoad() {
+        waitForPageLoadMain(titleText, titleAHExpected);
+        return this;
+    }
+
+    @Step
     public DateOfBirthPageOLS clickOnAnswer(String answerText) {
         clickOnRadioButton(singleChoiceButtonsList, answerText);
         return this;
+    }
+
+    @Step
+    public String getTitleTextAH() {
+        return getText(titleText);
     }
 
     @Step
@@ -110,6 +132,12 @@ public class DateOfBirthPageOLS extends MainPageBlinx {
             case "QA":
                 openURL(String.format(URLs.BLINX_QA, phoneNumber));
                 break;
+            case "AH_STG":
+                openURL(String.format(URLs.AH_STG, phoneNumber));
+                break;
+            case "AH_PROD":
+                openURL(String.format(URLs.AH_PROD_BLINX, phoneNumber, URLs.CODE_FOR_DEBUG_BLINX));
+                break;
             default:
                 openURL(Properties.getBaseURL());
                 break;
@@ -118,7 +146,7 @@ public class DateOfBirthPageOLS extends MainPageBlinx {
     }
 
     @Step
-    public String getTitleText() {
+    public String getTitleText2() {
         return getText(titleTextPart);
     }
 

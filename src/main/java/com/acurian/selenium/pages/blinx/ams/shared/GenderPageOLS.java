@@ -10,8 +10,9 @@ import java.util.List;
 
 public class GenderPageOLS extends MainPageBlinx {
 
-    private final String titleExpectedPart1 = "What is your date of birth?";
+    public final String titleExpectedPart1 = "What is your date of birth?";
     private final String titleExpectedPart2 = "Please select your gender:";
+    public final String titleExpectedGmega = "Please confirm your gender:";
 
     @FindBy(xpath = "(//div[@class='question-text']/span)[1]")
     WebElement titleTextPart1;
@@ -21,12 +22,21 @@ public class GenderPageOLS extends MainPageBlinx {
     WebElement dateField;
     @FindBy(xpath = Locators.RADIO_BUTTON_LIST_OLS)
     List<WebElement> singleChoiceButtonsList;
+    @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS_BLINX)
+    WebElement titleText4;
 
     @Step
     public GenderPageOLS waitForPageLoad() {
         waitForAnimation();
         waitForPageLoadMain(titleTextPart1, titleExpectedPart1);
         waitForPageLoadMain(titleTextPart2, titleExpectedPart2);
+        return this;
+    }
+
+    @Step
+    public GenderPageOLS waitForPageLoadByTitle(String titleExpected) {
+        waitForAnimation();
+        waitForPageLoadMain(titleText4, titleExpected);
         return this;
     }
 
@@ -40,6 +50,11 @@ public class GenderPageOLS extends MainPageBlinx {
     public GenderPageOLS clickOnAnswer(String answerText) {
         clickOnRadioButton(singleChoiceButtonsList, answerText);
         return this;
+    }
+
+    @Step
+    public String getTitleText() {
+        return getText(titleTextPart1);
     }
 
 }

@@ -49,8 +49,8 @@ public class GLA_9184_OLSBlinx extends BaseTest {
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
-                .waitForPageLoadGMEGA(studyName, "1,000");
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS
+                .waitForPageLoad(studyName, "1,000");
+        Assert.assertEquals(dateOfBirthPageOLS.getTitleText2(), dateOfBirthPageOLS
                 .getExpectedModifiedTitle(studyName, "1,000"), "Title is diff");
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
                 .clickOnAnswer("Yes")

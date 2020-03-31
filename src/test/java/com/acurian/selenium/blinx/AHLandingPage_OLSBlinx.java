@@ -1,7 +1,16 @@
 package com.acurian.selenium.blinx;
 
 import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.blinx.ams.closes.LessThan18YearsOldPageOLS;
+import com.acurian.selenium.pages.blinx.ams.common_elements.FooterPageBlinx;
+import com.acurian.selenium.pages.blinx.ams.common_elements.MoreAboutPage;
+import com.acurian.selenium.pages.blinx.ams.common_elements.PrivacyPolicyPage;
+import com.acurian.selenium.pages.blinx.ams.common_elements.TermOfUsePage;
+import com.acurian.selenium.pages.blinx.ams.debug.DebugPageOLS;
+import com.acurian.selenium.pages.blinx.ams.generalHealth.SiteSelectionPageOLS;
 import com.acurian.selenium.pages.blinx.ams.shared.DateOfBirthPageOLS;
+import com.acurian.selenium.pages.blinx.ams.shared.GenderPageOLS;
+import com.acurian.selenium.pages.blinx.ams.shared.ZipCodePageOLS;
 import com.acurian.utils.Properties;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -12,6 +21,7 @@ public class AHLandingPage_OLSBlinx extends BaseTest {
     public void AH_landingPage_OLS() {
         String phoneNumberAH = "AUTAMS1GEN";
         String zipCode = "19044";
+        DebugPageOLS debugPageOLS = new DebugPageOLS();
 
         String env = System.getProperty("acurian.env", "STG");
 
@@ -23,61 +33,57 @@ public class AHLandingPage_OLSBlinx extends BaseTest {
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
-                .openPage(env, phoneNumberAH);
-
-        System.out.println("hello");
-                /*.waitForPageAHLoad();
+                .openPage(env, phoneNumberAH)
+                .waitForPageAHLoad();
         Assert.assertEquals(dateOfBirthPageOLS.getTitleTextAH(), dateOfBirthPageOLS.titleAHExpected, "Title is diff");
 
 
         //---Validate Footer, and links : 'Privacy Policy','More about Acurian, Inc', 'Terms of Use'
-        FooterPageOls footerPageOls = new FooterPageOls();
-        Assert.assertEquals(footerPageOls.getFooterText(), "* In a research study, the participants may receive " +
+        FooterPageBlinx footerPageBlinx = new FooterPageBlinx();
+        Assert.assertEquals(footerPageBlinx.getFooterText(), "* In a research study, the participants may receive " +
                 "investigational study product or may receive an inactive substance, or placebo, depending on the " +
                 "study design. Participants receive study-related care from a doctor/research team for the duration " +
                 "of the study. For studies that offer compensation, reasonable payments will be made for participation. " +
                 "The length of the study may vary.");
 
-        PrivacyPolicyPage privacyPolicyPage = footerPageOls.clickPrivacyPolicyLink();
+        PrivacyPolicyPage privacyPolicyPage = footerPageBlinx.clickPrivacyPolicyLink();
         privacyPolicyPage.switchTab();
         Assert.assertEquals(privacyPolicyPage.getHeaderText(), "Privacy Policy");
         privacyPolicyPage.getDriver().close();
         privacyPolicyPage.switchToMainTab();
 
-        MoreAboutPage moreAboutPage = footerPageOls.clickMoreAboutLink();
+        MoreAboutPage moreAboutPage = footerPageBlinx.clickMoreAboutLink();
         moreAboutPage.switchTab();
         Assert.assertEquals(privacyPolicyPage.getHeaderText(), "When you can’t afford a delay in patient enrollment");
         moreAboutPage.getDriver().close();
         privacyPolicyPage.switchToMainTab();
 
-        TermOfUsePage termOfUsePage = footerPageOls.clickTermOfUseLink();
+        TermOfUsePage termOfUsePage = footerPageBlinx.clickTermOfUseLink();
         termOfUsePage.switchTab();
         Assert.assertEquals(termOfUsePage.getHeaderText(), "Terms of Use");
         termOfUsePage.getDriver().close();
         privacyPolicyPage.switchToMainTab();
 
-
         //------------Disqualify (“Age < 18 years old”) if <18 -----------------------------------------
         LessThan18YearsOldPageOLS lessThan18YearsOldPage_OLS = dateOfBirthPageOLS
                 .clickOnAnswer("No")
-                .clickNextButton(new LessThan18YearsOldPageOLS());
+                .getPage(new LessThan18YearsOldPageOLS());
         lessThan18YearsOldPage_OLS
-                .waitForPageLoad();
-        DebugPageOLS debugPageOLS = new DebugPageOLS();
-        lessThan18YearsOldPage_OLS.getPage(debugPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
                 //.checkProtocolsContainsForQNumber("QSI8006", protocol1, protocol2)
-                .back();
+                .back(dateOfBirthPageOLS);
         dateOfBirthPageOLS
                 .waitForPageAHLoad();
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
                 .clickOnAnswer("Yes")
-                .clickNextButton(new ZipCodePageOLS());
+                .getPage(new ZipCodePageOLS());
 
         zipCodePageOLS
                 .waitForPageLoad();
         Assert.assertEquals(zipCodePageOLS.getTitleText(), zipCodePageOLS.titleExpected, "Title is diff");
         GenderPageOLS genderPageOLS = zipCodePageOLS
-                .typeZipCode(zipCode)
+                .setZipCode(zipCode)
                 .clickNextButton(new GenderPageOLS());
 
         genderPageOLS
@@ -85,8 +91,7 @@ public class AHLandingPage_OLSBlinx extends BaseTest {
                 .setDate("09091980")
                 .clickOnAnswer("Female");
 
-        Assert.assertEquals(genderPageOLS.getTitleText(), genderPageOLS.titleExpected, "Title is diff");
-
+        Assert.assertEquals(genderPageOLS.getTitleText(), genderPageOLS.titleExpectedPart1, "Title is diff");
 
         //----------SiteSelection Page--------------------
 
@@ -95,6 +100,5 @@ public class AHLandingPage_OLSBlinx extends BaseTest {
             siteSelectionPageOLS
                     .getPID();
         }
-*/
     }
 }
