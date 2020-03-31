@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class FooterPageOLS extends BasePage {
+public class FooterPageOLs extends BasePage {
 
     public final String titleExpected = "When do you take your insulin injections?";
 
@@ -22,7 +22,7 @@ public class FooterPageOLS extends BasePage {
     @FindBy(xpath = "//div[@translate='first_question.disclaimer_text']")
     WebElement footerText;
 
-    public FooterPageOLS() {
+    public FooterPageOLs() {
         PageFactory.initElements(getDriver(), this);
     }
 

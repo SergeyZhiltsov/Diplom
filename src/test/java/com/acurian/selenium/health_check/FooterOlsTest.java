@@ -1,7 +1,7 @@
 package com.acurian.selenium.health_check;
 
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.OLS.common_elements.FooterPageOLS;
+import com.acurian.selenium.pages.OLS.common_elements.FooterPageOLs;
 import com.acurian.selenium.pages.OLS.common_elements.MoreAboutPage;
 import com.acurian.selenium.pages.OLS.common_elements.PrivacyPolicyPage;
 import com.acurian.selenium.pages.OLS.common_elements.TermOfUsePage;
@@ -28,7 +28,7 @@ public class FooterOlsTest extends BaseTest {
                 dateOfBirthPageOLS.waitForPageLoadServer();
             }
 
-        FooterPageOLS footerPageOls = new FooterPageOLS();
+        FooterPageOLs footerPageOls = new FooterPageOLs();
 
         if(env.equals("QA")) Assert.assertEquals(footerPageOls.getFooterText(), "* In a clinical research study, " +
                 "the participants may receive investigational study product or may receive an inactive substance, " +
