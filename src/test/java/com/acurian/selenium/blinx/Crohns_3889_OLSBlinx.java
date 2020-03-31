@@ -32,7 +32,6 @@ import java.util.Map;
 
 public class Crohns_3889_OLSBlinx extends BaseTest {
 
-
     private static Logger Log = LogManager.getLogger(Crohns_3889_OLSBlinx.class.getName());
 
     @DataProvider
