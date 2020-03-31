@@ -4,7 +4,6 @@ import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.blinx.ams.adg_4357.WithType1DiabetesPageOLS;
 import com.acurian.selenium.pages.blinx.ams.closes.*;
-import com.acurian.selenium.pages.blinx.ams.cv_study.CholesterolTriglyceridesLipidsPageOLS;
 import com.acurian.selenium.pages.blinx.ams.debug.DebugPageOLS;
 import com.acurian.selenium.pages.blinx.ams.diabetes.*;
 import com.acurian.selenium.pages.blinx.ams.generalHealth.*;
@@ -14,7 +13,6 @@ import com.acurian.selenium.pages.blinx.gmega.AboutHealthPageOLS;
 import com.acurian.selenium.pages.blinx.gmega.intro.IdentificationPageOLS;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import io.qameta.allure.Description;
@@ -34,7 +32,7 @@ public class DIA_4483_OLSBlinx extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "sites", enabled = true)
+    @Test(dataProvider = "sites", enabled = false)
     @Description("NASH study 4483 OLS")
     public void dia4483olsTest(Site site) {
         String phoneNumber = "AUTAMSNASH";
@@ -42,26 +40,10 @@ public class DIA_4483_OLSBlinx extends BaseTest {
 
         String env = System.getProperty("acurian.env", "STG");
 
-        DebugPageOLS debugPageOLS = new DebugPageOLS();
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
-
-        dateOfBirthPageOLS
-                .openPage(env, phoneNumber)
-                .waitForPageLoad0("a fatty liver study for diabetics", "750");
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS
-                        .getExpectedModifiedTitle("a fatty liver study for diabetics", "750"),
-                "Title is diff");
-        LessThan18YearsOldPageOLS lessThan18YearsOldPage_OLS = dateOfBirthPageOLS
-                .clickOnAnswer("No")
-                .getPage(new LessThan18YearsOldPageOLS());
-        lessThan18YearsOldPage_OLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
-                .back(dateOfBirthPageOLS);
-
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
-                .waitForPageLoadGMEGA("a fatty liver study for diabetics", "750")
+                .openPage(env, phoneNumber)
+                .waitForPageLoadCrohns("a fatty liver study for diabetics", "750")
                 .clickOnAnswer("Yes")
                 .getPage(new ZipCodePageOLS());
 
@@ -70,22 +52,20 @@ public class DIA_4483_OLSBlinx extends BaseTest {
                 .setZipCode(site.zipCode)
                 .clickNextButton(new GenderPageOLS());
 
-
+        genderPageOLS
+                .waitForPageLoad();
         DiagnosedAnyTypeOfDiabetesPageOLS diagnosedAnyTypeOfDiabetesPageOLS = genderPageOLS
-                .waitForPageLoad()
                 .setDate("09091968")
                 .clickOnAnswer("Male")
                 .clickNextButton(new DiagnosedAnyTypeOfDiabetesPageOLS());
 
-
+        DebugPageOLS debugPageOLS = new DebugPageOLS();
 
         WhatKindOfDiabetesPageOLS whatKindOfDiabetesPageOLS = diagnosedAnyTypeOfDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new WhatKindOfDiabetesPageOLS());
-
         WithType1DiabetesPageOLS withType1DiabetesPageOLS = new WithType1DiabetesPageOLS();
-
         CardiovascularDiseaseThanOthersPageOLS cardiovascularDiseaseThanOthersPageOLS = whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Type 1 diabetes (sometimes called Juvenile diabetes)")
@@ -111,11 +91,11 @@ public class DIA_4483_OLSBlinx extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS());
 
-        CholesterolTriglyceridesLipidsPageOLS cholesterolTriglyceridesLipidsPageOLS = whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS
+        CurrentlyTreatingYourDiabetesPageOLS currentlyTreatingYourDiabetesPageOLS = whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Cirrhosis")
-                .clickNextButton(new CholesterolTriglyceridesLipidsPageOLS());
-        cholesterolTriglyceridesLipidsPageOLS
+                .clickNextButton(new CurrentlyTreatingYourDiabetesPageOLS());
+        currentlyTreatingYourDiabetesPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS8506", site.activeProtocols)
@@ -126,20 +106,10 @@ public class DIA_4483_OLSBlinx extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new NoOfAlcoholicDrinkOLS());
 
-        LiverRelatedConditionOLS liverRelatedConditionOLS =  noOfAlcoholicDrinkOLS
-                .waitForPageLoad()
-                .setDrinks("15")
-                .clickNextButton(new LiverRelatedConditionOLS());
-        liverRelatedConditionOLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS8509",site.activeProtocols)
-                .back(noOfAlcoholicDrinkOLS);
-
-         noOfAlcoholicDrinkOLS
+        LiverRelatedConditionOLS liverRelatedConditionOLS = noOfAlcoholicDrinkOLS
                 .waitForPageLoad()
                 .setDrinks("14")
-                .clickNextButton(liverRelatedConditionOLS);
+                .clickNextButton(new LiverRelatedConditionOLS());
 
         List<String> options = Arrays.asList("Alcoholic liver disease",
                 "Autoimmune hepatitis, which is not the same as hepatitis caused by a virus",
@@ -151,7 +121,7 @@ public class DIA_4483_OLSBlinx extends BaseTest {
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(answer)
-                    .clickNextButton(cholesterolTriglyceridesLipidsPageOLS)
+                    .clickNextButton(new CurrentlyTreatingYourDiabetesPageOLS())
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS8510", site.activeProtocols)
@@ -203,7 +173,6 @@ public class DIA_4483_OLSBlinx extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(poundsOrMorePageOLS);
-
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS =
                 new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS();
         poundsOrMorePageOLS
@@ -459,7 +428,7 @@ public class DIA_4483_OLSBlinx extends BaseTest {
                 .clickNextButton(new IdentificationPageOLS());
 
         SiteSelectionPageOLS siteSelectionPageOLS = identificationPageOLS
-                .waitForPageLoadNewPRD()
+                .waitForPageLoad2()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999")
                 .clickNextButton(new SiteSelectionPageOLS());
 
@@ -467,20 +436,16 @@ public class DIA_4483_OLSBlinx extends BaseTest {
                 .waitForPageLoad5(studyName)
                 .clickOnFacilityName(site.name)
                 .clickNextButton(new QualifiedClose2PageOLS());
-
         ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = qualifiedClose2PageOLS
                 .waitForPageLoad3()
                 .clickNextButton(new ThankYouCloseSimplePageOLS());
-
         AlzheimerClosePageOLS alzheimerClosePageOLS = thankYouCloseSimplePageOLS
                 .waitForPageLoad()
                 .clickNextButton(new AlzheimerClosePageOLS());
-
         AboutHealthPageOLS aboutHealthPageOLS = alzheimerClosePageOLS
-                .waitForPageLoadPRD()
+                .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS());
-
-        /*aboutHealthPageOLS
+        aboutHealthPageOLS
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
                 .getRadiantDbToLog(env)
@@ -495,7 +460,7 @@ public class DIA_4483_OLSBlinx extends BaseTest {
                 aboutHealthPageOLS
                         .getAnomalyDbToLog(env);
                 break;
-        }*/
+        }
 
 
     }

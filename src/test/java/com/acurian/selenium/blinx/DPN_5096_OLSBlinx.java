@@ -57,6 +57,7 @@ public class DPN_5096_OLSBlinx extends BaseTest {
         Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS
                         .getExpectedModifiedTitle("a study for diabetics", "300"),
                 "Title is diff");
+
         LessThan18YearsOldPageOLS lessThan18YearsOldPage_OLS = dateOfBirthPageOLS
                 .clickOnAnswer("No")
                 .getPage(new LessThan18YearsOldPageOLS());
@@ -551,13 +552,13 @@ public class DPN_5096_OLSBlinx extends BaseTest {
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad();
 
-        /*if (aboutHealthPageOLS.getHostName().equals(Properties.getHostName())) {
+        if (aboutHealthPageOLS.getHostName().equals(Properties.getHostName())) {
             aboutHealthPageOLS
                     .waitForPageLoad()
                     .pidFromDbToLog(env)
                     .childPidFromDbToLog(env, "5096")
                     //  .assertGeneratedFul(env, site)
                     .dispoShouldMatch(site.dispo, site.dispo);
-        }*/
+        }
     }
 }

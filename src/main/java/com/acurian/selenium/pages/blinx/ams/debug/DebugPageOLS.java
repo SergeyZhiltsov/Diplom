@@ -142,6 +142,13 @@ public class DebugPageOLS extends MainPageBlinx {
 
         return temp;*/
     }
+    @Step
+    public DebugPageOLS checkProtocolsEquals(String previousPageTitle, String... expectedProtocols) {
+        Object[] actualProtocols = getProtocolsForQuestionNumber(previousPageTitle).toArray();
+        Assert.assertEqualsNoOrder(actualProtocols, expectedProtocols, "Protocol expected "
+                + Arrays.toString(expectedProtocols) + "not equal in actual " + Arrays.toString(actualProtocols));
+        return this;
+    }
 
     @Step
     public DebugPageOLS checkProtocolsContainsForQNumber(String questionNumber, String... expectedProtocols) {

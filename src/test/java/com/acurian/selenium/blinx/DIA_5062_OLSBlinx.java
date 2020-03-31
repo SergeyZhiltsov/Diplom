@@ -16,7 +16,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
 import java.util.Arrays;
 import java.util.List;
 
@@ -52,7 +51,8 @@ public class DIA_5062_OLSBlinx extends BaseTest {
                 .back(dateOfBirthPageOLS);
 
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
-                .waitForPageLoadGMEGA("a fatty liver study for diabetics", "750")
+                .openPage(env, phoneNumber)
+                .waitForPageLoadCrohns("a fatty liver study for diabetics", "750")
                 .clickOnAnswer("Yes")
                 .getPage(new ZipCodePageOLS());
 
@@ -66,7 +66,6 @@ public class DIA_5062_OLSBlinx extends BaseTest {
                 .setDate("09091968")
                 .clickOnAnswer("Male")
                 .clickNextButton(new DiagnosedAnyTypeOfDiabetesPageOLS());
-
 
         WhatKindOfDiabetesPageOLS whatKindOfDiabetesPageOLS = diagnosedAnyTypeOfDiabetesPageOLS
                 .waitForPageLoad()
@@ -428,14 +427,14 @@ public class DIA_5062_OLSBlinx extends BaseTest {
                 .waitForPageLoadPRD()
                 .clickNextButton(new com.acurian.selenium.pages.blinx.gmega.AboutHealthPageOLS());
 
-        /*aboutHealthPageOLS
+        aboutHealthPageOLS
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
                 .getRadiantDbToLog(env)
                 .childPidFromDbToLog(env, "5062")
                 .dispoShouldMatch(site.dispo, site.dispo)
                 .assertGeneratedFul(env, site)
-                .queueSiteForFULCheck(site.name);*/
+                .queueSiteForFULCheck(site.name);
 
     }
 }
