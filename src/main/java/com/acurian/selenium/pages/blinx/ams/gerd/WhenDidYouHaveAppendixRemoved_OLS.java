@@ -10,6 +10,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
+
 public class WhenDidYouHaveAppendixRemoved_OLS extends MainPageBlinx {
 
     public final String titleExpected1 = "When did you have your appendix removed (appendectomy)?";
