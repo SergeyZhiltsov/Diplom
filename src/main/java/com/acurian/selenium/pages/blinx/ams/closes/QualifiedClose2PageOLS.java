@@ -19,6 +19,9 @@ public class QualifiedClose2PageOLS extends MainPageBlinx {
 
     public final String titleExpectedGMEGA = "We're glad the location is convenient for you.\n" +
             "We will forward your contact information to the doctor's office that you selected so they may contact you about your condition Low Back Pain, Arthritis, Rheumatoid Arthritis, Diabetes";
+
+    public final String titleExpectedGMEGA2 = "We're glad the location is convenient for you.\n" +
+            "We will forward your contact information to the doctor's office that you selected so they may contact you about your condition Low Back Pain, Arthritis, Rheumatoid Arthritis, Diabetes";
 //    private final String titleExpectedPart2 = "We are also enrolling children and teens between the ages of 12-17 in eczema studies going on around the world.\n" +
 //            "\n" +
 //            "If your child has eczema, you know it can make your child feel physically uncomfortable and self-conscious. Plus, your child’s current lotions, creams or medications may not be helping.\n" +
@@ -49,6 +52,12 @@ public class QualifiedClose2PageOLS extends MainPageBlinx {
     public QualifiedClose2PageOLS waitForPageLoad3() {
         waitForAnimation();
         waitForPageLoadMain(titleTextPart3, titleExpectedPart3);
+        return this;
+    }
+
+    @Step
+    public QualifiedClose2PageOLS waitForPageLoadGMEGA2() {
+        waitForPageLoadMain(titleText, titleExpectedGMEGA2);
         return this;
     }
 

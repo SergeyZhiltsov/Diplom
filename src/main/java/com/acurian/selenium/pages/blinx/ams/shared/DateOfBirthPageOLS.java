@@ -37,6 +37,7 @@ public class DateOfBirthPageOLS extends MainPageBlinx {
     private final String titleExpectedPart2 = "Are you age 18 or older?";
 
     public final String titleAHExpected = "Let's get started to see if there is a study that’s right for you!";
+    public final String titleExpected1 = "The Generation Study is enrolling now.";
 
     @FindBy(xpath = "//div[@id='questions']/div[1]//span[@class='show-in-ols']")
     WebElement titleTextPart;
@@ -106,6 +107,12 @@ public class DateOfBirthPageOLS extends MainPageBlinx {
     @Step
     public DateOfBirthPageOLS waitForPageAHLoad() {
         waitForPageLoadMain(titleText, titleAHExpected);
+        return this;
+    }
+
+    @Step
+    public DateOfBirthPageOLS waitForPageLoad1() {
+        waitForPageLoadMain(titleText, titleExpected1);
         return this;
     }
 

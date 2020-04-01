@@ -22,6 +22,7 @@ public class SiteSelectionPageOLS extends MainPageBlinx {
 
     public final String titleExpected = "Good news! You have been matched with the doctor(s) below for %s\n" +
             "Please select a doctor and click the \"Next\" button.";
+    public final String titleExpectedGBAN = "Please select a research site that is convenient to you and click the next button.";
 
     @FindBy(xpath = "//span[@class='show-in-ols'][contains(., 'Matching You With a Study Doctor...')]")
     WebElement loadingAnimation;
@@ -62,7 +63,13 @@ public class SiteSelectionPageOLS extends MainPageBlinx {
         waitForPageLoadMain(titleText, String.format(titleExpected, studyName));
         attachPageScreenshot();
         return this;
+    }
 
+    @Step
+    public SiteSelectionPageOLS waitForPageLoadGBAN() {
+        waitForAnimation();
+        waitForPageLoadMain(titleText, titleExpectedGBAN);
+        return this;
     }
 
     @Step
@@ -91,4 +98,7 @@ public class SiteSelectionPageOLS extends MainPageBlinx {
         return this;
     }
 
+    public String getPidNumber() {
+        return pidNumber;
+    }
 }

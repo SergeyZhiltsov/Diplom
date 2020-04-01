@@ -49,15 +49,13 @@ public class PersonalDetails extends MainPageBlinx {
     }
 
     @Step
-    public PersonalDetails setAllFields(String firstName, String lastName, String email, String phoneNumber, String zipCode, String city, String state) {
+    public PersonalDetails setAllFields(String firstName, String lastName, String email, String phoneNumber, String zipCode) {
         setFirstName(firstName);
         setLastName(lastName);
         setEmailAddress(email);
         setPhone(phoneNumber);
         setZipCode(zipCode);
         waitForAnimation();
-        setCity(city);
-        setState(state);
         return this;
     }
 

@@ -13,6 +13,7 @@ public class GenderPageOLS extends MainPageBlinx {
     public final String titleExpectedPart1 = "What is your date of birth?";
     private final String titleExpectedPart2 = "Please select your gender:";
     public final String titleExpectedGmega = "Please confirm your gender:";
+    public final String titleExpected = "Please select your gender:";
 
     @FindBy(xpath = "(//div[@class='question-text']/span)[1]")
     WebElement titleTextPart1;
