@@ -24,6 +24,7 @@ public class BoneOrJointConditionsPageOLS extends MainPageBlinx {
 
     @Step
     public BoneOrJointConditionsPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

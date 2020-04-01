@@ -27,6 +27,8 @@ public class DebugPageOLS extends MainPageBlinx {
     WebElement infoButton;
     @FindBy(xpath = "//div[@id='studyInfo']//a[@role='button']/i[@class='fa fa-times-circle']")
     WebElement infoCloseButton;
+    @FindBy(xpath = "//div[@id='studyInfo']//a[(contains(@class,'btnClose'))]")
+    WebElement infoCloseButton1;
     @FindBy(xpath = "//div[@id='questionHistory']/div[contains(@class, 'ui-icon')]")
     WebElement expandButton;
 
@@ -44,6 +46,14 @@ public class DebugPageOLS extends MainPageBlinx {
 
     @FindBy(xpath = "//*[@id='collapsedContent1']/div[1]")
     WebElement pid;
+
+    @FindBy(xpath = "//div[@id='studyInfoContent']//strong[contains(text(),'Patient LatLong:')]/..")
+    WebElement patientLatLongText;
+
+    @FindBy(xpath = "//div[@id='studyInfoContent']//strong[contains(text(),'Design(not used):')]/..")
+    WebElement themeField;
+    @FindBy(xpath = "//div[@id='studyInfoContent']//strong[contains(text(),'Verity Score')]/..")
+    WebElement verity4Field;
 
 //    public DebugPageBlinxOLS() {
 //        PageFactory.initElements(getDriver(), this);
@@ -82,6 +92,11 @@ public class DebugPageOLS extends MainPageBlinx {
 
     public DebugPageOLS closeInfoWindow() {
         infoCloseButton.click();
+        return this;
+    }
+
+    public DebugPageOLS closeInfoWindow1() {
+        infoCloseButton1.click();
         return this;
     }
 
@@ -180,5 +195,21 @@ public class DebugPageOLS extends MainPageBlinx {
         return statusSetParts[1].replaceAll("[^0-9]", "") + "-"
                 + statusSetParts[2].replaceAll("[^0-9]", "");
     }
+    public String getPatientLatLongText() {
+        return getTextFromInfoRowByElement(patientLatLongText);
+    }
+
+    public String getThemeText() {return getTextFromInfoRowByElement(themeField); }
+
+    public String getVerityText() { return getTextFromInfoRowByElement(verity4Field);
+    }
+    private String getTextFromInfoRowByElement(WebElement el) {
+        openInfoWindow();
+        waitForAnimation();
+        String text = getText(el);
+        closeInfoWindow1();
+        return text;
+    }
+
 
 }

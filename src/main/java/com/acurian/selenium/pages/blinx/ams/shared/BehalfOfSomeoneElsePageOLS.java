@@ -25,6 +25,7 @@ public class BehalfOfSomeoneElsePageOLS extends MainPageBlinx {
 
     @Step
     public BehalfOfSomeoneElsePageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
