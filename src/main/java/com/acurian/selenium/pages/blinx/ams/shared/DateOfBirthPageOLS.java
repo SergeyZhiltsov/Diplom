@@ -150,6 +150,10 @@ public class DateOfBirthPageOLS extends MainPageBlinx {
         return getText(titleTextPart);
     }
 
+    public String getTitleText() {
+        return getText(titleTextPart);
+    }
+
     public String getExpectedModifiedTitle(String indication, String compensation) {
         return String.format(titleExpected, compensation, indication);
     }
