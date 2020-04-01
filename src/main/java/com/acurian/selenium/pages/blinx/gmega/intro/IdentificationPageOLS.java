@@ -111,6 +111,7 @@ public class IdentificationPageOLS extends MainPageBlinx {
         return this;
     }
 
+    //Method without zipcode
     @Step
     public IdentificationPageOLS setAllFields(String firstName, String lastName, String email, String phoneNumber/*,
                                               String zipCode*/) {
@@ -119,6 +120,19 @@ public class IdentificationPageOLS extends MainPageBlinx {
         setEmailAddress(email);
         setPhone(phoneNumber);
         //setZipCode(zipCode);
+        waitForAnimation();
+        return this;
+    }
+
+    //Method with zipcode
+    @Step
+    public IdentificationPageOLS setAllFields(String firstName, String lastName, String email, String phoneNumber,
+                                              String zipCode) {
+        setFirstName(firstName);
+        setLastName(lastName);
+        setEmailAddress(email);
+        setPhone(phoneNumber);
+        setZipCode(zipCode);
         waitForAnimation();
         return this;
     }

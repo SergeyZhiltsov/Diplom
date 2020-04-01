@@ -43,8 +43,7 @@ public class Dispo3CdisqualifyType2Blinx extends BaseTest {
         GenderPageOLS genderPageOLS = identificationPageOLS
                 .waitForPageLoadNotQ()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
-                        "9999999999")
-                .setZipCode(zipCode)
+                        "9999999999", zipCode)
                 .clickNextButton(new GenderPageOLS());
 
         ApproximateHeightPageOLS approximateHeightPageOLS = genderPageOLS

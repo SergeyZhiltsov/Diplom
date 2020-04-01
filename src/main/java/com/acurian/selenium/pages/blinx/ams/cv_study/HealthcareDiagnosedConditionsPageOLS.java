@@ -12,6 +12,7 @@ public class HealthcareDiagnosedConditionsPageOLS extends MainPageBlinx {
 
     private final String titleExpected = "Has a healthcare professional ever diagnosed you with any of the following medical conditions?\n" +
             "Please select all that apply.";
+    public final String titleExpectedGBAN = "Has a healthcare professional ever diagnosed you with any of the following medical conditions? Select all that apply.";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS_BLINX)
     WebElement titleText;
@@ -22,6 +23,13 @@ public class HealthcareDiagnosedConditionsPageOLS extends MainPageBlinx {
     public HealthcareDiagnosedConditionsPageOLS waitForPageLoad() {
         waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
+        return this;
+    }
+
+    @Step
+    public HealthcareDiagnosedConditionsPageOLS waitForPageLoadGBAN() {
+        waitForAnimation();
+        waitForPageLoadMain(titleText, titleExpectedGBAN);
         return this;
     }
 

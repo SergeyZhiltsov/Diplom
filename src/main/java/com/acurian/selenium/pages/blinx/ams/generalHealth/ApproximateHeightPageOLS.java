@@ -22,6 +22,8 @@ public class ApproximateHeightPageOLS extends MainPageBlinx {
     WebElement inchesField;
     @FindBy(xpath = "//div[@data-question-basis='WEIGHT']//input")
     WebElement poundsField;
+    @FindBy(xpath = "//div[@class='show-in-ols' and contains(text(),'What is your approximate height?')]")
+    WebElement titleTextPartGMEGA;
 
     public ApproximateHeightPageOLS() {
         PageFactory.initElements(getDriver(), this);
@@ -32,6 +34,12 @@ public class ApproximateHeightPageOLS extends MainPageBlinx {
         waitForAnimation();
         waitForPageLoadMain(titleTextPart1, titleExpectedPart1);
         waitForPageLoadMain(titleTextPart2, titleExpectedPart2);
+        return this;
+    }
+
+    @Step
+    public ApproximateHeightPageOLS waitForPageLoadGMEGA() {
+        waitForPageLoadMain(titleTextPartGMEGA, titleExpectedPart1);
         return this;
     }
 
