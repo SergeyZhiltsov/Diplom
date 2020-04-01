@@ -76,7 +76,7 @@ public class IBS_4684_OLSBlinx extends BaseTest {
                 .waitForPageLoad();
         SufferFromIrritablePageOLS sufferFromIrritablePageOLS = genderPageOLS
                 .setDate("09091980")
-                .clickOnAnswer("Female")
+                .clickOnAnswer("Male")
                 .clickNextButton(new SufferFromIrritablePageOLS());
 
         //DebugPageOLS debugPageOLS = new DebugPageOLS();
@@ -679,22 +679,22 @@ public class IBS_4684_OLSBlinx extends BaseTest {
                 .back(followingMentalEmotionalHealthPageOLS);
         whichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS
                 .waitForPageLoad()
-                .back();
+                .back(whichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS);
         whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS
                 .waitForPageLoad()
-                .back();
+                .back(whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS);
         heartrelatedMedicalProceduresPageOLS
                 .waitForPageLoad()
-                .back();
+                .back(heartrelatedMedicalProceduresPageOLS);
         haveYouEverExperiencedHeartRelatedMedicalCondOLS
                 .waitForPageLoad()
-                .back();
+                .back(haveYouEverExperiencedHeartRelatedMedicalCondOLS);
         whichOfFollowingDigestiveConditionPageOLS
                 .waitForPageLoad()
-                .back();
+                .back(whichOfFollowingDigestiveConditionPageOLS);
         whenDiagnosedWithCancerOLS
                 .waitForPageLoad()
-                .back();
+                .back(whenDiagnosedWithCancerOLS);
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
@@ -713,7 +713,7 @@ public class IBS_4684_OLSBlinx extends BaseTest {
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
-                    .back();
+                    .back(doAnyOftheFollowingAdditionalDiagnosesOLS);
         }
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
@@ -741,7 +741,7 @@ public class IBS_4684_OLSBlinx extends BaseTest {
 
 
         AboutHealthPageOLS aboutHealthPageOLS = identificationPageOLS
-                .waitForPageLoad()
+                .waitForPageLoadNew()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999")
                 .clickNextButton(new SiteSelectionPageOLS())
                 .waitForPageLoad(studyName)

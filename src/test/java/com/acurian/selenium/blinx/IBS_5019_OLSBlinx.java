@@ -654,7 +654,7 @@ public class IBS_5019_OLSBlinx extends BaseTest {
                 .checkProtocolsContainsForQNumber("QS68", site.activeProtocols)
                 .back(approximateHeightPageOLS)
                 .waitForPageLoad()
-                .setInches("95") //Disqualify (""Low BMI"") if < 16"
+                .setPounds("95") //Disqualify (""Low BMI"") if < 16"
                 .clickNextButton(currentlySufferOfAnyOfFollowingOLS);
         IdentificationPageOLS identificationPageOLS = currentlySufferOfAnyOfFollowingOLS
                 .waitForPageLoad()
@@ -662,7 +662,7 @@ public class IBS_5019_OLSBlinx extends BaseTest {
                 .checkProtocolsContainsForQNumber("QS68", site.activeProtocols)
                 .back(approximateHeightPageOLS)
                 .waitForPageLoad()
-                .setInches("120")
+                .setPounds("120")
                 .clickNextButton(new CurrentlyParticipatingInStudyOLS())
                 .waitForPageLoad()
                 .clickOnAnswer("No")
@@ -672,7 +672,7 @@ public class IBS_5019_OLSBlinx extends BaseTest {
                 .clickNextButton(new IdentificationPageOLS());
 
         AboutHealthPageOLS aboutHealthPageOLS = identificationPageOLS
-                .waitForPageLoad()
+                .waitForPageLoadNew()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999")
                 .clickNextButton(new SiteSelectionPageOLS())
                 .waitForPageLoad("an irritable bowel syndrome (IBS)")

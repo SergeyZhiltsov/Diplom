@@ -28,32 +28,32 @@ public class FooterOlsTest extends BaseTest {
                 dateOfBirthPageOLS.waitForPageLoadServer();
             }
 
-        FooterPageOLs footerPageOls = new FooterPageOLs();
+        FooterPageOLs FooterPageOLS = new FooterPageOLs();
 
-        if(env.equals("QA")) Assert.assertEquals(footerPageOls.getFooterText(), "* In a clinical research study, " +
+        if(env.equals("QA")) Assert.assertEquals(FooterPageOLS.getFooterText(), "* In a clinical research study, " +
                 "the participants may receive investigational study product or may receive an inactive substance, " +
                 "or placebo, depending on the study design. Participants receive study-related care from a " +
                 "doctor/research team for the duration of the study. Reasonable payments will be made for participation " +
                 "and the length of the study may vary.");
-        else Assert.assertEquals(footerPageOls.getFooterText(), "* In a research study, the participants may receive " +
+        else Assert.assertEquals(FooterPageOLS.getFooterText(), "* In a research study, the participants may receive " +
                 "investigational study product or may receive an inactive substance, or placebo, depending on the study " +
                 "design. Participants receive study-related care from a doctor/research team for the duration of the " +
                 "study. For studies that offer compensation, reasonable payments will be made for participation. " +
                 "The length of the study may vary.");
 
-        PrivacyPolicyPage privacyPolicyPage = footerPageOls.clickPrivacyPolicyLink();
+        PrivacyPolicyPage privacyPolicyPage = FooterPageOLS.clickPrivacyPolicyLink();
         privacyPolicyPage.switchTab();
         Assert.assertEquals(privacyPolicyPage.getHeaderText(), "Privacy Policy");
         privacyPolicyPage.getDriver().close();
         privacyPolicyPage.switchToMainTab();
 
-        MoreAboutPage moreAboutPage = footerPageOls.clickMoreAboutLink();
+        MoreAboutPage moreAboutPage = FooterPageOLS.clickMoreAboutLink();
         moreAboutPage.switchTab();
         Assert.assertEquals(privacyPolicyPage.getHeaderText(), "When you can’t afford a delay in patient enrollment");
         moreAboutPage.getDriver().close();
         privacyPolicyPage.switchToMainTab();
 
-        TermOfUsePage termOfUsePage = footerPageOls.clickTermOfUseLink();
+        TermOfUsePage termOfUsePage = FooterPageOLS.clickTermOfUseLink();
         termOfUsePage.switchTab();
         Assert.assertEquals(termOfUsePage.getHeaderText(), "Terms of Use");
         termOfUsePage.getDriver().close();
