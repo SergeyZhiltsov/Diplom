@@ -1,4 +1,4 @@
-package com.acurian.selenium.pages.blinx.ams.shared;
+package com.acurian.selenium.pages.blinx.ams.ra;
 
 import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.blinx.MainPageBlinx;
@@ -9,29 +9,28 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class BehalfOfSomeoneElsePageOLS extends MainPageBlinx {
+public class StudiesThatAreCurrentlyEnrollingPageOLS extends MainPageBlinx {
 
-    public final String titleExpected = "Are you providing information for yourself or on behalf of someone else?";
+    public final String titleExpected = "We may have other research studies that are currently enrolling patients in your area. Would you like to see if we have another study that you are interested in?";
 
-    @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS_BLINX)
+    @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
     WebElement titleText;
 
     @FindBy(xpath = Locators.RADIO_BUTTON_LIST_OLS)
     List<WebElement> radioButtonsList;
 
-    public BehalfOfSomeoneElsePageOLS() {
+    public StudiesThatAreCurrentlyEnrollingPageOLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public BehalfOfSomeoneElsePageOLS waitForPageLoad() {
-        waitForAnimation();
+    public StudiesThatAreCurrentlyEnrollingPageOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public BehalfOfSomeoneElsePageOLS clickOnAnswer(String answerText) {
+    public StudiesThatAreCurrentlyEnrollingPageOLS clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }
@@ -40,5 +39,4 @@ public class BehalfOfSomeoneElsePageOLS extends MainPageBlinx {
     public String getTitleText() {
         return getText(titleText);
     }
-
 }
