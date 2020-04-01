@@ -3,7 +3,6 @@ package com.acurian.selenium.blinx;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.blinx.ams.closes.*;
-import com.acurian.selenium.pages.blinx.ams.cv_study.CholesterolTriglyceridesLipidsPageOLS;
 import com.acurian.selenium.pages.blinx.ams.debug.DebugPageOLS;
 import com.acurian.selenium.pages.blinx.ams.diabetes.SubquestionExperiencedHeartPageOLS;
 import com.acurian.selenium.pages.blinx.ams.generalHealth.*;
@@ -42,7 +41,7 @@ public class VACC_S10569_OLSBlinx extends BaseTest {
                 new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS();
         GenderPageOLS genderPageOLS = dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
-                .waitForPageLoadGMEGA(studyName, "1,500")
+                .waitForPageLoad(studyName, "1,500")
                 .clickOnAnswer("Yes")
                 .getPage(new ZipCodePageOLS())
                 .waitForPageLoad()

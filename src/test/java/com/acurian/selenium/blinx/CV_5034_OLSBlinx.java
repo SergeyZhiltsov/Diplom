@@ -47,7 +47,7 @@ public class CV_5034_OLSBlinx extends BaseTest {
 
         LessThan18YearsOldPageOLS lessThan18YearsOldPageOLS = dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
-                .waitForPageLoad("a heart health study", "750")
+                .waitForPageLoadCV5034("a heart health study", "750")
                 .clickOnAnswer("No")
                 .getPage(new LessThan18YearsOldPageOLS());
 
@@ -58,7 +58,7 @@ public class CV_5034_OLSBlinx extends BaseTest {
                 .back(dateOfBirthPageOLS);
 
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
-                .waitForPageLoad("a heart health study", "750")
+                .waitForPageLoadCV5034("a heart health study", "750")
                 .clickOnAnswer("Yes")
                 .getPage(new ZipCodePageOLS());
 
@@ -298,10 +298,10 @@ public class CV_5034_OLSBlinx extends BaseTest {
                 .waitForPageLoad(2, subquestionHeartPageOLS.getTitleExpected2())
                 .waitForPageLoad(3, subquestionHeartPageOLS.getTitleExpected3())
                 .waitForPageLoad(4, subquestionHeartPageOLS.getTitleExpected4())
+                .clickOnAnswerForSubQuestion(1, "Less than 30 days ago")
                 .clickOnAnswerForSubQuestion(2, "Less than 30 days ago")
                 .clickOnAnswerForSubQuestion(3, "Less than 30 days ago")
                 .clickOnAnswerForSubQuestion(4, "Less than 30 days ago")
-                .clickOnAnswerForSubQuestion(5, "Less than 30 days ago")
                 .clickNextButton(heartRelatedSurgeriesProceduresPageOLS);
 
         heartRelatedSurgeriesProceduresPageOLS

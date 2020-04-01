@@ -42,7 +42,7 @@ public class AF_4958_OLSBlinx extends BaseTest {
 
     @Test(dataProvider = "sites")
     @Description("4958 NYX-2925-2005 Aptinyx Fibromyalgia OLS")
-    public void af4958OLSTest(Site site) {
+    public void af4958BlinxTest(Site site) {
         final String phoneNumber = "AUTAMS1FIB";
         final String studyName = "a fibromyalgia study";
         String env = System.getProperty("acurian.env", "STG");
@@ -52,7 +52,7 @@ public class AF_4958_OLSBlinx extends BaseTest {
 
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
-                .waitForPageLoadGMEGA(studyName, "350");
+                .waitForPageLoad(studyName, "350");
 //        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS
 //                .getExpectedModifiedTitle(studyName, "350"), "Title is diff");
         LessThan18YearsOldPageOLS lessThan18YearsOldPageOLS = dateOfBirthPageOLS
@@ -66,7 +66,7 @@ public class AF_4958_OLSBlinx extends BaseTest {
 
 
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
-                .waitForPageLoadGMEGA(studyName, "350")
+                .waitForPageLoad(studyName, "350")
                 .clickOnAnswer("Yes")
                 .getPage(new ZipCodePageOLS());
 
@@ -241,8 +241,7 @@ public class AF_4958_OLSBlinx extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
                 .back(whenDiagnosedWithCancerOLS)
-                .clickOnAnswer("6 - 10 years ago")
-                .clickOnAnswer("11 or more years ago")
+                .waitForPageLoad()
                 .clickOnAnswer("Diagnosed with skin cancer only")
                 .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
         WhichOfFollowingDigestiveConditionPageOLS whichOfFollowingDigestiveConditionPageOLS =
@@ -549,14 +548,14 @@ public class AF_4958_OLSBlinx extends BaseTest {
         }
 
         SiteSelectionPageOLS siteSelectionPageCC = identificationPageOLS
-                .waitForPageLoad()
+                .waitForPageLoad2()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
                         "9999999999")
                 .clickNextButton(new SiteSelectionPageOLS());
 
 
         QualifiedClose2PageOLS qualifiedClose2PageOLS = siteSelectionPageCC
-                .waitForPageLoad("a fibromyalgia")
+                .waitForPageLoad("a fibromyalgia study!")
                 .getPID()
                 .clickOnFacilityName(site.name)
                 .clickNextButton(new QualifiedClose2PageOLS());
@@ -571,8 +570,7 @@ public class AF_4958_OLSBlinx extends BaseTest {
 
         AboutHealthPageOLS aboutHealthPageOLS = alzheimerClosePageOLS
                 .waitForPageLoad()
-                .clickNextButton(new AboutHealthPageOLS())
-                .waitForPageLoad();
+                .clickNextButton(new AboutHealthPageOLS());
         if(aboutHealthPageOLS.getHostName().equals(Properties.getHostName())) {
             aboutHealthPageOLS
                     .waitForPageLoad()
