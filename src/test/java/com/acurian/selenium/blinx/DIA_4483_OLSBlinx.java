@@ -4,6 +4,7 @@ import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.blinx.ams.adg_4357.WithType1DiabetesPageOLS;
 import com.acurian.selenium.pages.blinx.ams.closes.*;
+import com.acurian.selenium.pages.blinx.ams.cv_study.CholesterolTriglyceridesLipidsPageOLS;
 import com.acurian.selenium.pages.blinx.ams.debug.DebugPageOLS;
 import com.acurian.selenium.pages.blinx.ams.diabetes.*;
 import com.acurian.selenium.pages.blinx.ams.generalHealth.*;
@@ -32,7 +33,7 @@ public class DIA_4483_OLSBlinx extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "sites", enabled = false)
+    @Test(dataProvider = "sites", enabled = true)
     @Description("NASH study 4483 OLS")
     public void dia4483olsTest(Site site) {
         String phoneNumber = "AUTAMSNASH";
@@ -91,11 +92,11 @@ public class DIA_4483_OLSBlinx extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS());
 
-        CurrentlyTreatingYourDiabetesPageOLS currentlyTreatingYourDiabetesPageOLS = whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS
+        CholesterolTriglyceridesLipidsPageOLS cholesterolTriglyceridesLipidsPageOLS = whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Cirrhosis")
-                .clickNextButton(new CurrentlyTreatingYourDiabetesPageOLS());
-        currentlyTreatingYourDiabetesPageOLS
+                .clickNextButton(new CholesterolTriglyceridesLipidsPageOLS());
+        cholesterolTriglyceridesLipidsPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS8506", site.activeProtocols)
@@ -121,7 +122,7 @@ public class DIA_4483_OLSBlinx extends BaseTest {
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(answer)
-                    .clickNextButton(new CurrentlyTreatingYourDiabetesPageOLS())
+                    .clickNextButton(cholesterolTriglyceridesLipidsPageOLS)
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS8510", site.activeProtocols)

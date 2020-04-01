@@ -34,7 +34,7 @@ public class GAST_4357_OLSBlinx extends BaseTest {
     @DataProvider
     public Object[][] sites() {
         return new Object[][]{
-//                {Site.AUT_GAS4357ds, true},
+                {Site.AUT_GAS4357ds, true},
                 {Site.AUT_GAST4357_site, false},
                 {Site.AUT_GAST4357_site, true},
                 {Site.AUT_GAST4357S_site, true}
@@ -764,7 +764,8 @@ public class GAST_4357_OLSBlinx extends BaseTest {
                             .clickNextButton(new ThankYouCloseSimplePageOLS());
                     thankYouCloseSimplePageOLS
                             .waitForPageLoad()
-                            .clickNextButton(aboutHealthPageOLS).waitForPageLoad();
+                            .clickNextButton(aboutHealthPageOLS)
+                            .waitForPageLoad();
                     if (aboutHealthPageOLS.getHostName().equals(Properties.getHostName())) {
                         aboutHealthPageOLS
                                 .waitForPageLoad()
@@ -793,49 +794,27 @@ public class GAST_4357_OLSBlinx extends BaseTest {
                                 .dispoShouldMatch(site.dispo, site.dispo);
                     }
                     break;
-            }
-        }
-                /*case AUT_GAS4357ds: {
+
+                case AUT_GAS4357ds: {
                     try {
-                        com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS qualifiedClose2PageOLS3 = new com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS();
+                        QualifiedClose2PageOLS qualifiedClose2PageOLS3 = new QualifiedClose2PageOLS();
                         DRSBlinx dRSBlinx = new DRSBlinx();
-                        DirectSheduleVaccOLS directSheduleVaccOLS = new DirectSheduleVaccOLS();
-                        DRSOLS scedulerOLS = new DRSOLS();
                         siteSelectionPageOLS
-                                .clickNextButton(directSheduleVaccOLS);
-                        if (env.equals("PRD")) {
-                            directSheduleVaccOLS
-                                    .waitForPageLoad();
-                        }
-                        if (env.equals("STG")) {
-                            qualifiedClose2PageOLS3
-                                    .waitForPageLoad();
-                        }
-                        directSheduleVaccOLS
-                                .clickSheduleBtnBlinx(dRSBlinx);
-                        ArrayList<String> tabs = new ArrayList<String>(getDriver().getWindowHandles());
-                        getDriver().switchTo().window(tabs.get(1));
+                                .clickNextButton(dRSBlinx);
                         dRSBlinx
-                                .waitForPageLoadBlinx()
+                                .waitForPageLoad2()
                                 .clickOnDay()
                                 .clickOnTime()
                                 .clickOnNext()
                                 .waitForPageLoadClientDetails()
                                 .dateCheck()
                                 .startsAtCheck()
-                                .serviceProviderCheck();
-                        getDriver().switchTo().window(tabs.get(0));
-                        if (env.equals("PRD")) {
-                            directSheduleVaccOLS
-                                    .waitForPageLoad();
-                        }
-                        if (env.equals("STG")) {
-                            directSheduleVaccOLS
-                                    .waitForPageLoadSTG();
-                        }
-                        directSheduleVaccOLS
-                                .clickNextButton(new QualifiedClose2PageOLS())
-                                .waitForPageLoad()
+                                .serviceProviderCheck()
+                                .clickBook()
+                                .waitForPageLoadSuccess()
+                                .clickOnBtnNext();
+                        qualifiedClose2PageOLS3
+                                .waitForPageLoad3()
                                 .clickNextButton(new ThankYouCloseSimplePageOLS())
                                 .waitForPageLoad()
                                 .clickNextButton(aboutHealthPageOLS)
@@ -847,13 +826,18 @@ public class GAST_4357_OLSBlinx extends BaseTest {
                                     .childPidFromDbToLog(env)
                                     .dispoShouldMatch(site.dispo, site.dispo);
                         }
-                    }catch(TimeoutException e){
+                    } catch (TimeoutException e) {
                         siteSelectionPageOLS.textToAttachment("No appointpments");
                     }
-                }*/
-        else {
+                }
+            }
+        } else {
+            QualifiedCloseGastroPageOLS qualifiedCloseGastroPageOLS = new QualifiedCloseGastroPageOLS();
             siteSelectionPageOLS
-                    .clickNextButton(new QualifiedCloseGastroPageOLS())
+                    .clickOnFacilityName(site.name);
+            siteSelectionPageOLS
+                    .clickNextButton(qualifiedCloseGastroPageOLS);
+            qualifiedCloseGastroPageOLS
                     .waitForPageLoad()
                     .clickNextButton(new ThankYouCloseSimplePageOLS())
                     .waitForPageLoad()

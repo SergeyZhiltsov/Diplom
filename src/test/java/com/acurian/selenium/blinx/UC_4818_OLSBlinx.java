@@ -678,8 +678,8 @@ public class UC_4818_OLSBlinx extends BaseTest {
                         "9999999999")
                 .clickNextButton(new SiteSelectionPageOLS());
 
-        MedicalRecordsOptionPageOLS medicalRecordsOptionPageOLS = siteSelectionPageOLS
-                .waitForPageLoad("a colitis")
+        QualifiedClose2PageOLS qualifiedClose2PageOLS = siteSelectionPageOLS
+                .waitForPageLoad("a colitis!")
                 .getPID()
                 .clickOnFacilityName(site.name)
 //                    .clickNextButton(new QualifiedClose2PageOLS())
@@ -687,22 +687,11 @@ public class UC_4818_OLSBlinx extends BaseTest {
 //                    .clickNextButton(new ThankYouCloseSimplePageOLS())
 //                    .waitForPageLoad()
 //                    .clickNextButton(new AboutHealthPageOLS());
-                .clickNextButton(new MedicalRecordsOptionPageOLS());
+                .clickNextButton(new QualifiedClose2PageOLS());
 
-        DoctorInformationCollectionPageOLS doctorInformationCollectionPageOLS = medicalRecordsOptionPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Continue with medical records")
-                .clickNextButton(new DoctorInformationCollectionPageOLS());
-        HS1PageOLS hs1PageOLS = doctorInformationCollectionPageOLS
-                .waitForPageLoadIBD("Ulcerative Colitis")
-                .clickNextButton(new HS1PageOLS());
-        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = hs1PageOLS
-                .waitForPageLoad()
-                .clickOkInPopUp()
-                .waitForPageLoad()
-                .setSignature()
-                .waitToClickNext()
-                .getPage(new ThankYouCloseSimplePageOLS());
+        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = qualifiedClose2PageOLS
+                .waitForPageLoad3()
+                .clickNextButton(new ThankYouCloseSimplePageOLS());
         AboutHealthPageOLS aboutHealthPageOLS = thankYouCloseSimplePageOLS
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())

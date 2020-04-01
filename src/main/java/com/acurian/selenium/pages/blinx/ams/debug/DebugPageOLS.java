@@ -124,7 +124,7 @@ public class DebugPageOLS extends MainPageBlinx {
         List<String> dqNumbers= dqNumberElements.stream().map(WebElement::getText).collect(Collectors.toList());
         for (String expectedProtocol : expectedProtocols) {
             if(!dqNumbers.contains(expectedProtocol)){
-                dragAndDropButton(expandButton, 200, 50);
+                dragAndDropButton(expandButton, 70, 150);
                 dqNumbers= dqNumberElements.stream().map(WebElement::getText).collect(Collectors.toList());
             }
         }

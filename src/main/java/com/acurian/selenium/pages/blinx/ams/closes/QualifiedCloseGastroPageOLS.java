@@ -21,21 +21,20 @@ public class QualifiedCloseGastroPageOLS extends MainPageBlinx {
             "\n" +
             "Thank you for your help in advancing research for Diabetic Gastroparesis!";
 
-    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]")
+    @FindBy(xpath = "(//div[@class='question-text'])[1]")
     WebElement titleText;
 
-    @FindBy(xpath = "//div[contains(@class,'subquestion')][1]//div[contains(@class,'visible-md-block')]")
+    @FindBy(xpath = "(//div[@class='question-text'])[2]")
     WebElement titleText2;
 
-    @FindBy(xpath = "//div[contains(@class,'subquestion')][2]//div[contains(@class,'visible-md-block')]")
+    @FindBy(xpath = "(//div[@class='question-text'])[3]")
     WebElement titleText3;
 
-    public QualifiedCloseGastroPageOLS() {
-        PageFactory.initElements(getDriver(), this);
-    }
+    public QualifiedCloseGastroPageOLS() { PageFactory.initElements(getDriver(), this); }
 
     @Step
     public QualifiedCloseGastroPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         waitForPageLoadMain(titleText2, titleExpected2);
         waitForPageLoadMain(titleText3, titleExpected3);
