@@ -53,7 +53,7 @@ public class GAST_4357_OLSBlinx extends BaseTest {
 
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
-                .waitForPageLoadGMEGA(studyName, "500");
+                .waitForPageLoad0(studyName, "500");
         Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.getExpectedModifiedTitle(studyName, "500"), "Title is diff");
 
         LessThan18YearsOldPageOLS lessThan18YearsOldPage_OLS = dateOfBirthPageOLS
@@ -67,7 +67,7 @@ public class GAST_4357_OLSBlinx extends BaseTest {
                 .back(dateOfBirthPageOLS);
 
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
-                .waitForPageLoadGMEGA(studyName, "500")
+                .waitForPageLoad0(studyName, "500")
                 .clickOnAnswer("Yes")
                 .getPage(new ZipCodePageOLS());
 

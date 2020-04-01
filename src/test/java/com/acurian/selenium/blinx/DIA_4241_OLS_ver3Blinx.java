@@ -54,12 +54,12 @@ public class DIA_4241_OLS_ver3Blinx extends BaseTest {
 
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
-                .waitForPageLoadGMEGA("a study for diabetics", "600");
+                .waitForPageLoad0("a study for diabetics", "600");
         Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS
                 .getExpectedModifiedTitle("a study for diabetics", "600"), "Title is diff");
 
         LessThan18YearsOldPageOLS lessThan18YearsOldPageOLS = dateOfBirthPageOLS
-                .waitForPageLoadGMEGA("a study for diabetics", "600")
+                .waitForPageLoad0("a study for diabetics", "600")
                 .clickOnAnswer("No")
                 .getPage(new LessThan18YearsOldPageOLS());
 
@@ -68,7 +68,7 @@ public class DIA_4241_OLS_ver3Blinx extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
                 .back(dateOfBirthPageOLS)
-                .waitForPageLoadGMEGA("a study for diabetics", "600")
+                .waitForPageLoad0("a study for diabetics", "600")
                 .clickOnAnswer("Yes")
                 .getPage(new ZipCodePageOLS());
 
@@ -181,7 +181,7 @@ public class DIA_4241_OLS_ver3Blinx extends BaseTest {
         doYouExperienceDPN_ols
                 .waitForPageLoadNew()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals("QS4631", protocol2, protocol3, protocol4)
+                .checkProtocolsContainsForQNumber("QS4631", protocol2, protocol3, protocol4)
                 .back(currentlyTreatingYourDiabetesPageOLS);
 
         currentlyTreatingYourDiabetesPageOLS
@@ -190,7 +190,7 @@ public class DIA_4241_OLS_ver3Blinx extends BaseTest {
                 .clickNextButton(doYouExperienceDPN_ols)
                 .waitForPageLoadNew()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals("QS4631", protocol2, protocol3, protocol4)
+                .checkProtocolsContainsForQNumber("QS4631", protocol2, protocol3, protocol4)
                 .back(currentlyTreatingYourDiabetesPageOLS);
 
         MetforminMedicationsPageOLS metforminMedicationsPageOLS = currentlyTreatingYourDiabetesPageOLS
@@ -390,7 +390,7 @@ public class DIA_4241_OLS_ver3Blinx extends BaseTest {
                 .clickNextButton(weightLossSurgeryPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals("QS4611", protocol3, protocol2, protocol4)
+                .checkProtocolsContainsForQNumber("QS4611", protocol3, protocol2, protocol4)
                 .back(injectableMedicationsForYourDiabetesPageOLS);
         injectableMedicationsForYourDiabetesPageOLS
                 .waitForPageLoad()
@@ -399,7 +399,7 @@ public class DIA_4241_OLS_ver3Blinx extends BaseTest {
                 .clickNextButton(weightLossSurgeryPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals("QS4611", protocol3, protocol2, protocol4)
+                .checkProtocolsContainsForQNumber("QS4611", protocol3, protocol2, protocol4)
                 .back(injectableMedicationsForYourDiabetesPageOLS);
         injectableMedicationsForYourDiabetesPageOLS
                 .waitForPageLoad()
@@ -408,7 +408,7 @@ public class DIA_4241_OLS_ver3Blinx extends BaseTest {
                 .clickNextButton(weightLossSurgeryPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals("QS4611", protocol3, protocol2, protocol4)
+                .checkProtocolsContainsForQNumber("QS4611", protocol3, protocol2, protocol4)
                 .back(injectableMedicationsForYourDiabetesPageOLS);
         injectableMedicationsForYourDiabetesPageOLS
                 .waitForPageLoad()

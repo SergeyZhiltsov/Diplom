@@ -47,7 +47,7 @@ public class UC_4818_OLSBlinx extends BaseTest {
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
-                .waitForPageLoadGMEGA("a colitis study", "300");
+                .waitForPageLoad0("a colitis study", "300");
         Assert.assertEquals(dateOfBirthPageOLS.getTitleText(),
                 dateOfBirthPageOLS.
                         getExpectedModifiedTitle("a colitis study", "300"), "Title is diff");
@@ -63,7 +63,7 @@ public class UC_4818_OLSBlinx extends BaseTest {
                 .back(dateOfBirthPageOLS);
 
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
-                .waitForPageLoadGMEGA("a colitis study", "300")
+                .waitForPageLoad0("a colitis study", "300")
                 .clickOnAnswer("Yes")
                 .getPage(new ZipCodePageOLS());
 

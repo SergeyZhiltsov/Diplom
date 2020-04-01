@@ -68,7 +68,7 @@ public class DPN_5096_OLSBlinx extends BaseTest {
                 .back(dateOfBirthPageOLS);
 
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
-                .waitForPageLoadGMEGA("a study for diabetics", "300")
+                .waitForPageLoad0("a study for diabetics", "300")
                 .clickOnAnswer("Yes")
                 .getPage(new ZipCodePageOLS());
 
