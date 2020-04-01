@@ -2,7 +2,7 @@ package com.acurian.selenium.OLS;
 
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.closes.LessThan18YearsOldPageOLS;
-import com.acurian.selenium.pages.OLS.common_elements.FooterPageOls;
+import com.acurian.selenium.pages.OLS.common_elements.FooterPageOLs;
 import com.acurian.selenium.pages.OLS.common_elements.MoreAboutPage;
 import com.acurian.selenium.pages.OLS.common_elements.PrivacyPolicyPage;
 import com.acurian.selenium.pages.OLS.common_elements.TermOfUsePage;
@@ -38,7 +38,7 @@ public class AHLandingPage_OLS extends BaseTest {
 
 
         //---Validate Footer, and links : 'Privacy Policy','More about Acurian, Inc', 'Terms of Use'
-        FooterPageOls footerPageOls = new FooterPageOls();
+        FooterPageOLs footerPageOls = new FooterPageOLs();
         Assert.assertEquals(footerPageOls.getFooterText(), "* In a research study, the participants may receive " +
                 "investigational study product or may receive an inactive substance, or placebo, depending on the " +
                 "study design. Participants receive study-related care from a doctor/research team for the duration " +

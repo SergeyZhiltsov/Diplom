@@ -14,6 +14,9 @@ public class HasDoctorEverDiagnosedYouMedicalCond_OLS extends MainPageBlinx {
             "Has a doctor ever diagnosed you with any of the following medical conditions or diseases?\n" +
             "Please select all that apply:";
 
+    public final String titleExpected2 = "Has a doctor ever diagnosed you with any of the following medical conditions or diseases?\n" +
+            "Please select all that apply:";
+
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS_BLINX)
     WebElement titleText;
 
@@ -24,6 +27,13 @@ public class HasDoctorEverDiagnosedYouMedicalCond_OLS extends MainPageBlinx {
     public HasDoctorEverDiagnosedYouMedicalCond_OLS waitForPageLoad() {
         waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
+        return this;
+    }
+
+    @Step
+    public HasDoctorEverDiagnosedYouMedicalCond_OLS waitForPageLoad2() {
+        waitForAnimation();
+        waitForPageLoadMain(titleText, titleExpected2);
         return this;
     }
 

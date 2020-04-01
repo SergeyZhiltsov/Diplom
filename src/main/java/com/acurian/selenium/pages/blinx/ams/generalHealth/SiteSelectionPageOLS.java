@@ -1,7 +1,6 @@
 package com.acurian.selenium.pages.blinx.ams.generalHealth;
 
 import com.acurian.selenium.constants.Locators;
-import com.acurian.selenium.pages.OLS.MainPageOLS;
 import com.acurian.selenium.pages.blinx.MainPageBlinx;
 import com.acurian.utils.PassPID;
 import org.apache.logging.log4j.LogManager;
@@ -10,8 +9,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import ru.yandex.qatools.allure.annotations.Parameter;
 import ru.yandex.qatools.allure.annotations.Step;
+
+import java.util.List;
 
 public class SiteSelectionPageOLS extends MainPageBlinx {
 
@@ -33,6 +35,24 @@ public class SiteSelectionPageOLS extends MainPageBlinx {
     @FindBy(xpath = "//div[@id='collapsedContent1']/div[1]")
     WebElement pidNumberPath;
 
+    @FindBy(xpath = "//div[contains(@class,'debug-question-helper')]")
+    List<WebElement> debuqQuestionList;
+    @FindBy(xpath = "//b[@id='additional-sites-toggle']")
+    WebElement additionalLocationLink;
+
+    @Step
+    public SiteSelectionPageOLS clickOnDebugSiteName(String debugSiteName) {
+        clickOnAddLocLinkIfExist();
+        clickOnRadioButton(debuqQuestionList, debugSiteName);
+        return this;
+    }
+
+    private void clickOnAddLocLinkIfExist() {
+        if (isElementPresent(By.xpath("//b[@id='additional-sites-toggle']"))) {
+            additionalLocationLink.click();
+            waitForAnimation();
+        }
+    }
 
     @Step
     public SiteSelectionPageOLS waitForPageLoad5(String studyName) {
@@ -80,5 +100,18 @@ public class SiteSelectionPageOLS extends MainPageBlinx {
         Log.info("PID = " + pidNumber);
         return this;
     }
+
+    @Step
+    public String getPidNumber() {
+        return pidNumber;
+    }
+
+    @Step
+    public String getTitleText() {
+        return getText(titleText);
+    }
+
+    public SiteSelectionPageOLS() {
+        PageFactory.initElements(getDriver(), this);}
 
 }

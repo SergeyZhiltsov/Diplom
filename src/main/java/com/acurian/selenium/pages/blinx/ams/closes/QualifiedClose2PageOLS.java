@@ -1,5 +1,6 @@
 package com.acurian.selenium.pages.blinx.ams.closes;
 
+import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.blinx.MainPageBlinx;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
@@ -15,6 +16,9 @@ public class QualifiedClose2PageOLS extends MainPageBlinx {
     private final String titleExpectedPart3 = "We're glad the location is convenient for you.\n" +
             "\n" +
             "We will forward your contact information to the doctor's office that you selected so they can contact you.";
+
+    public final String titleExpectedGMEGA = "We're glad the location is convenient for you.\n" +
+            "We will forward your contact information to the doctor's office that you selected so they may contact you about your condition Low Back Pain, Arthritis, Rheumatoid Arthritis, Diabetes";
 //    private final String titleExpectedPart2 = "We are also enrolling children and teens between the ages of 12-17 in eczema studies going on around the world.\n" +
 //            "\n" +
 //            "If your child has eczema, you know it can make your child feel physically uncomfortable and self-conscious. Plus, your child’s current lotions, creams or medications may not be helping.\n" +
@@ -38,6 +42,8 @@ public class QualifiedClose2PageOLS extends MainPageBlinx {
     List<WebElement> singleChoiceButtonsList;
     @FindBy(xpath = "//div[@class='question-text']")
     WebElement titleTextPart3;
+    @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS_BLINX)
+    WebElement titleText;
 
     @Step
     public QualifiedClose2PageOLS waitForPageLoad3() {
@@ -50,6 +56,12 @@ public class QualifiedClose2PageOLS extends MainPageBlinx {
     public QualifiedClose2PageOLS waitForPageLoad1() {
         waitForAnimation();
         waitForPageLoadMain(titleTextPart3, titleExpectedPart1);
+        return this;
+    }
+
+    @Step
+    public QualifiedClose2PageOLS waitForPageLoadGMEGA() {
+        waitForPageLoadMain(titleText, titleExpectedGMEGA);
         return this;
     }
 
