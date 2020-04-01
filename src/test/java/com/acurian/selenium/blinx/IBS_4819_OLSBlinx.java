@@ -410,6 +410,10 @@ public class IBS_4819_OLSBlinx extends BaseTest {
                 .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
                 .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
                 .clickOnAnswerForSubQuestion(2, "Less than 30 days ago")
+                // for unselected
+                .clickOnAnswerForSubQuestion(3, "Less than 30 days ago")
+                .clickOnAnswerForSubQuestion(4, "Less than 30 days ago")
+                //
                 .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
                 .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageOLS)
@@ -419,6 +423,12 @@ public class IBS_4819_OLSBlinx extends BaseTest {
                 .back(subquestionExperiencedHeartPageOLS);
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
+                //
+                .clickOnAnswerForSubQuestion(1, "Less than 30 days ago")
+                .clickOnAnswerForSubQuestion(2, "Less than 30 days ago")
+                .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
+                .clickOnAnswerForSubQuestion(4, "Less than 30 days ago")
+                //
                 .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
                 .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
                 .clickOnAnswerForSubQuestion(3, "Less than 30 days ago")
@@ -430,6 +440,12 @@ public class IBS_4819_OLSBlinx extends BaseTest {
                 .back(subquestionExperiencedHeartPageOLS);
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
+                //
+                .clickOnAnswerForSubQuestion(1, "Less than 30 days ago")
+                .clickOnAnswerForSubQuestion(2, "Less than 30 days ago")
+                .clickOnAnswerForSubQuestion(3, "Less than 30 days ago")
+                .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
+                //
                 .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
                 .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
                 .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
@@ -462,7 +478,7 @@ public class IBS_4819_OLSBlinx extends BaseTest {
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
-                .back();
+                .back(whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS);
         whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Neither")
@@ -471,7 +487,7 @@ public class IBS_4819_OLSBlinx extends BaseTest {
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
-                .back();
+                .back(whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS);
         whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Neither")
@@ -482,11 +498,12 @@ public class IBS_4819_OLSBlinx extends BaseTest {
                         .waitForPageLoad()
                         .clickOnAnswers("Cirrhosis")
                         .clickNextButton(new FollowingMentalEmotionalHealthPageOLS());
+
         following_mentalEmotionalHealthPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS52", site.activeProtocols)
-                .back();
+                .back(following_mentalEmotionalHealthPageOLS);
         whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Unsure which type of liver disease")
@@ -501,7 +518,7 @@ public class IBS_4819_OLSBlinx extends BaseTest {
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS53", site.activeProtocols)
-                .back();
+                .back(doAnyOftheFollowingAdditionalDiagnosesOLS);
         following_mentalEmotionalHealthPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
@@ -510,7 +527,7 @@ public class IBS_4819_OLSBlinx extends BaseTest {
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS53", site.activeProtocols)
-                .back();
+                .back(following_mentalEmotionalHealthPageOLS);
         following_mentalEmotionalHealthPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
@@ -518,28 +535,28 @@ public class IBS_4819_OLSBlinx extends BaseTest {
 
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
-                .back();
+                .back(doAnyOftheFollowingAdditionalDiagnosesOLS);
         following_mentalEmotionalHealthPageOLS
                 .waitForPageLoad()
-                .back();
+                .back(following_mentalEmotionalHealthPageOLS);
         whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS
                 .waitForPageLoad()
-                .back();
+                .back(whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS);
         whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS
                 .waitForPageLoad()
-                .back();
+                .back(whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS);
         heartrelatedMedicalProceduresPageOLS
                 .waitForPageLoad()
-                .back();
+                .back(heartrelatedMedicalProceduresPageOLS);
         haveYouEverExperiencedHeartRelatedMedicalCondOLS
                 .waitForPageLoad()
-                .back();
+                .back(haveYouEverExperiencedHeartRelatedMedicalCondOLS);
         whichOfFollowingDigestiveConditionPageOLS
                 .waitForPageLoad()
-                .back();
+                .back(whichOfFollowingDigestiveConditionPageOLS);
         whenDiagnosedWithCancerOLS
                 .waitForPageLoad()
-                .back();
+                .back(whenDiagnosedWithCancerOLS);
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
@@ -553,7 +570,7 @@ public class IBS_4819_OLSBlinx extends BaseTest {
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
-                .back();
+                .back(approximateHeightPageOLS);
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
@@ -562,7 +579,7 @@ public class IBS_4819_OLSBlinx extends BaseTest {
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
-                .back();
+                .back(doAnyOftheFollowingAdditionalDiagnosesOLS);
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
@@ -571,7 +588,7 @@ public class IBS_4819_OLSBlinx extends BaseTest {
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
-                .back();
+                .back(doAnyOftheFollowingAdditionalDiagnosesOLS);
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
@@ -580,7 +597,7 @@ public class IBS_4819_OLSBlinx extends BaseTest {
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
-                .back();
+                .back(doAnyOftheFollowingAdditionalDiagnosesOLS);
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
@@ -589,7 +606,7 @@ public class IBS_4819_OLSBlinx extends BaseTest {
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
-                .back();
+                .back(doAnyOftheFollowingAdditionalDiagnosesOLS);
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
@@ -598,7 +615,7 @@ public class IBS_4819_OLSBlinx extends BaseTest {
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
-                .back();
+                .back(doAnyOftheFollowingAdditionalDiagnosesOLS);
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
@@ -607,7 +624,7 @@ public class IBS_4819_OLSBlinx extends BaseTest {
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
-                .back();
+                .back(doAnyOftheFollowingAdditionalDiagnosesOLS);
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
@@ -616,7 +633,7 @@ public class IBS_4819_OLSBlinx extends BaseTest {
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS61", site.activeProtocols)
-                .back();
+                .back(doAnyOftheFollowingAdditionalDiagnosesOLS);
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
@@ -625,7 +642,7 @@ public class IBS_4819_OLSBlinx extends BaseTest {
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS61", site.activeProtocols)
-                .back();
+                .back(doAnyOftheFollowingAdditionalDiagnosesOLS);
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
@@ -640,7 +657,7 @@ public class IBS_4819_OLSBlinx extends BaseTest {
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS68", site.activeProtocols)
-                .back();
+                .back(currentlySufferOfAnyOfFollowingOLS);
         IdentificationPageOLS identificationPageOLS = approximateHeightPageOLS
                 .waitForPageLoad()
                 .setAll("5", "5", "260")
@@ -652,7 +669,7 @@ public class IBS_4819_OLSBlinx extends BaseTest {
                 .clickOnAnswer("Yes")
                 .clickNextButton(new IdentificationPageOLS());
         AboutHealthPageOLS aboutHealthPageOLS = identificationPageOLS
-                .waitForPageLoad()
+                .waitForPageLoadNew()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999")
                 .clickNextButton(new SiteSelectionPageOLS())
                 .waitForPageLoad(studyName)

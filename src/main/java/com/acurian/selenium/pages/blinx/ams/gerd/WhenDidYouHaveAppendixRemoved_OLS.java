@@ -27,8 +27,11 @@ public class WhenDidYouHaveAppendixRemoved_OLS extends MainPageBlinx {
     @FindBy(xpath = "(//div[contains(@class,'visible-md-block')])[1]")
     WebElement maintitleText;
 
-    @FindBy(xpath = "//div[contains(@data-answer-type, 'RADIO')]//div[contains(@class,'question-text')]")
+    @FindBy(xpath = "//div[@class='answers-container']")
     List<WebElement> titlesText;
+
+    @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS_BLINX)
+    List<WebElement> titlesQuestionText;
 
     @FindBy(xpath = Locators.CHEKBOX_LIST_OLS_BLINX)
     List<WebElement> checkBoxList;
@@ -44,15 +47,14 @@ public class WhenDidYouHaveAppendixRemoved_OLS extends MainPageBlinx {
     public WhenDidYouHaveAppendixRemoved_OLS waitForPageLoad(int actualTitleIndex, String expectedTitle) {
         waitForAnimation();
 //      waitforVisibility(titleText);
-        waitForPageLoadMain(titlesText.get(actualTitleIndex - 1), expectedTitle);
+        waitForPageLoadMain(titlesQuestionText.get(actualTitleIndex), expectedTitle);
         return this;
     }
 
     @Step
     public WhenDidYouHaveAppendixRemoved_OLS clickOnAnswerForSubQuestion(int questionNumber, String answerText) {
-        List<WebElement> checkBoxListFromTitle = titlesText.get(questionNumber)
-                .findElements(By.xpath("following-sibling:://div[@class='answers-container']" +
-                        "//div[@class='single-choice-answers-container w-100']//button"));
+        List<WebElement> checkBoxListFromTitle = titlesText.get(questionNumber - 1)
+                .findElements(By.xpath("//div[@class='single-choice-answers-container w-100']//button"));
         clickOnRadioButton(checkBoxListFromTitle, answerText);
         return this;
     }
@@ -62,8 +64,7 @@ public class WhenDidYouHaveAppendixRemoved_OLS extends MainPageBlinx {
         List<WebElement> checkBoxListFromTitle = titlesText.stream().filter(el -> questionText.contains(el.getText()))
                 .findFirst()
                 .get()
-                .findElements(By.xpath("following-sibling:://div[@class='answers-container']" +
-                        "//div[@class='single-choice-answers-container w-100']//button"));
+                .findElements(By.xpath("//div[@class='single-choice-answers-container w-100']//button"));
         clickOnRadioButton(checkBoxListFromTitle, answerText);
         return this;
     }
@@ -71,8 +72,7 @@ public class WhenDidYouHaveAppendixRemoved_OLS extends MainPageBlinx {
     @Step
     public WhenDidYouHaveAppendixRemoved_OLS clickOnAnswersForSubQuestion(int questionNumber, String... answerText) {
         List<WebElement> checkBoxListFromTitle = titlesText.get(questionNumber - 1)
-                .findElements(By.xpath("following-sibling:://div[@class='answers-container']" +
-                        "//div[@class='single-choice-answers-container w-100']//button"));
+                .findElements(By.xpath("//div[@class='single-choice-answers-container w-100']//button"));
         clickOnCheckBoxes(checkBoxListFromTitle, answerText);
         return this;
     }
@@ -82,8 +82,7 @@ public class WhenDidYouHaveAppendixRemoved_OLS extends MainPageBlinx {
         List<WebElement> checkBoxListFromTitle = titlesText.stream().filter(el -> questionText.contains(el.getText()))
                 .findFirst()
                 .get()
-                .findElements(By.xpath("following-sibling:://div[@class='answers-container']" +
-                        "//div[@class='single-choice-answers-container w-100']//button"));
+                .findElements(By.xpath("//div[@class='single-choice-answers-container w-100']//button"));
         clickOnCheckBoxes(checkBoxListFromTitle, answerText);
         return this;
     }
