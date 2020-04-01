@@ -86,7 +86,7 @@ public class HS1PageOLS extends MainPageBlinx {
         waitForAnimation();
         firstNameField.click();
         for (int i = 0; i < 18; i++) {
-            threadSleep(1);
+            threadSleep(5);
             getActions().sendKeys(Keys.TAB).build().perform();
         }
         waitForAnimation();

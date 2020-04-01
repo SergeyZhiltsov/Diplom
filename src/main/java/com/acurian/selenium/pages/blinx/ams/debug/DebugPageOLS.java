@@ -85,28 +85,28 @@ public class DebugPageOLS extends MainPageBlinx {
         return this;
     }
 
-    private List<String> getSlowlyLoadedNumbers(String questionNumber){
+    private List<String> getSlowlyLoadedNumbers(String questionNumber) {
         By locatorForDQNumbers = By.xpath(Locators.DEBUG_DQ_NUMBERS);
         String xpathForDesiredSection = Locators.DEBUG_QUESTION;
         WebElement parentOfQuestion;
         List<WebElement> dqNumberElements;
-        List<String> dqNumbers = new ArrayList<String>(){
+        List<String> dqNumbers = new ArrayList<String>() {
             {
                 add("");
             }
         };
-        for(int i = 0; i < 20; i++) {
-            parentOfQuestion = getDriver().findElement(By.xpath(String.format(xpathForDesiredSection,questionNumber)));
+        for (int i = 0; i < 20; i++) {
+            parentOfQuestion = getDriver().findElement(By.xpath(String.format(xpathForDesiredSection, questionNumber)));
             dqNumberElements = parentOfQuestion.findElements(locatorForDQNumbers);
-            dqNumbers= dqNumberElements.stream().map(WebElement::getText).collect(Collectors.toList());
-            if(dqNumbers.contains("")) {
-                logTextToAllureAndConsole("dq numbers loaded slowly. Attempt #" + (i+1));
+            dqNumbers = dqNumberElements.stream().map(WebElement::getText).collect(Collectors.toList());
+            if (dqNumbers.contains("")) {
+                logTextToAllureAndConsole("dq numbers loaded slowly. Attempt #" + (i + 1));
                 threadSleep(1);
             } else {
                 break;
             }
         }
-        if(dqNumbers.contains("")) {
+        if (dqNumbers.contains("")) {
             logTextToAllureAndConsole("Dq numbers not found  after 20 attempts");
             dqNumbers = null;
         }
@@ -119,13 +119,13 @@ public class DebugPageOLS extends MainPageBlinx {
         openDebugWindow();
         waitForAnimation();
         //WebElement parentOfQuestion = getDriver().findElement(By.xpath("//table[@id='questionHistoryTable']//a[text()='"+questionNumber+"']/ancestor::tr"));
-        WebElement parentOfQuestion = getDriver().findElement(By.xpath(String.format(xpathForDesiredSection,questionNumber)));
+        WebElement parentOfQuestion = getDriver().findElement(By.xpath(String.format(xpathForDesiredSection, questionNumber)));
         List<WebElement> dqNumberElements = parentOfQuestion.findElements(locatorForDQNumbers);
-        List<String> dqNumbers= dqNumberElements.stream().map(WebElement::getText).collect(Collectors.toList());
+        List<String> dqNumbers = dqNumberElements.stream().map(WebElement::getText).collect(Collectors.toList());
         for (String expectedProtocol : expectedProtocols) {
-            if(!dqNumbers.contains(expectedProtocol)){
+            if (!dqNumbers.contains(expectedProtocol)) {
                 dragAndDropButton(expandButton, 70, 150);
-                dqNumbers= dqNumberElements.stream().map(WebElement::getText).collect(Collectors.toList());
+                dqNumbers = dqNumberElements.stream().map(WebElement::getText).collect(Collectors.toList());
             }
         }
         closeDebugWindow();
@@ -142,16 +142,10 @@ public class DebugPageOLS extends MainPageBlinx {
 
         return temp;*/
     }
-    @Step
-    public DebugPageOLS checkProtocolsEquals(String previousPageTitle, String... expectedProtocols) {
-        Object[] actualProtocols = getProtocolsForQuestionNumber(previousPageTitle).toArray();
-        Assert.assertEqualsNoOrder(actualProtocols, expectedProtocols, "Protocol expected "
-                + Arrays.toString(expectedProtocols) + "not equal in actual " + Arrays.toString(actualProtocols));
-        return this;
-    }
 
     @Step
     public DebugPageOLS checkProtocolsContainsForQNumber(String questionNumber, String... expectedProtocols) {
+        threadSleep(1);
         List<String> actualProtocols = getProtocolsForQuestionNumber(questionNumber, expectedProtocols);
         Assert.assertTrue(actualProtocols.containsAll(Arrays.asList(expectedProtocols)), "Protocol expected "
                 + Arrays.toString(expectedProtocols) + " are not included in actual " + actualProtocols.toString());

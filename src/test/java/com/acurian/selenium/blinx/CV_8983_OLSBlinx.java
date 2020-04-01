@@ -49,7 +49,7 @@ public class CV_8983_OLSBlinx extends BaseTest {
 
         LessThan18YearsOldPageOLS lessThan18YearsOldPageOLS = dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
-                .waitForPageLoadGMEGA(studyName, "750")
+                .waitForPageLoad(studyName, "750")
                 .clickOnAnswer("No")
                 .getPage(new LessThan18YearsOldPageOLS());
 
@@ -60,7 +60,7 @@ public class CV_8983_OLSBlinx extends BaseTest {
                 .back(dateOfBirthPageOLS);
 
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
-                .waitForPageLoadGMEGA(studyName, "750")
+                .waitForPageLoad(studyName, "750")
                 .clickOnAnswer("Yes")
                 .getPage(new ZipCodePageOLS());
 

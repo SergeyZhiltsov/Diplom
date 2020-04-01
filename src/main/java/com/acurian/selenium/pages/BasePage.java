@@ -313,13 +313,13 @@ public abstract class BasePage {
      * Wait alert and accept.
      * <p><b>Does not work in Safari!</b></p>
      */
-    protected void acceptAlert() {
+    public void acceptAlert() {
         wait.until(ExpectedConditions.alertIsPresent());
         Alert alert = driver.switchTo().alert();
         alert.accept();
     }
 
-    protected void typeAndAcceptAlert(String text) {
+    public void typeAndAcceptAlert(String text) {
         wait.until(ExpectedConditions.alertIsPresent());
         Alert alert = driver.switchTo().alert();
         alert.sendKeys(text);

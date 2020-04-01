@@ -1,5 +1,6 @@
 package com.acurian.selenium.pages.blinx.gmega.intro;
 
+import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.blinx.MainPageBlinx;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
@@ -14,6 +15,10 @@ public class IdentificationPageOLS extends MainPageBlinx {
     private final String titleExpectedPart1 = "Thank you for answering these questions.\n" +
             "\n" +
             "Please complete the following information so that we can match you with a study doctor in your area.";
+
+    public final String titleExpected_GMEGA = "Congratulations, you have prequalified!\n" +
+            "\n" +
+            "Enrollment is limited. Please complete the following information so that we may match you with a study doctor.";
 
     private final String titleExpectedPart2 = "Personal details (*required fields)";
     private final String titleExpectedPart3 = "Your privacy is important to us. By clicking \"Next,\" you agree to our Privacy Policy and Terms of Use, and agree that we may share your information with personnel involved in conducting the study and we or our affiliates may contact you by phone using automated technology or pre-recorded voicemail or other means regarding research studies.";
@@ -42,6 +47,8 @@ public class IdentificationPageOLS extends MainPageBlinx {
     WebElement cityField;
     @FindBy(xpath = "//div[@data-question-basis='STATE']//select")
     WebElement stateDropdown;
+    @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS_BLINX)
+    WebElement titleText;
 
     @Step
     public IdentificationPageOLS waitForPageLoad() {
@@ -68,9 +75,15 @@ public class IdentificationPageOLS extends MainPageBlinx {
     @Step
     public IdentificationPageOLS waitForPageLoad2() {
         waitForAnimation();
-        waitForAnimation();
         waitForPageLoadMain(titleTextPart2, titleExpectedPart2);
         waitForPageLoadMain(titleTextPart4, titleExpectedPart4);
+        return this;
+    }
+
+    @Step
+    public IdentificationPageOLS waitForPageLoadGMEGA() {
+        waitForAnimation();
+        waitForPageLoadMain(titleText, titleExpected_GMEGA);
         return this;
     }
 

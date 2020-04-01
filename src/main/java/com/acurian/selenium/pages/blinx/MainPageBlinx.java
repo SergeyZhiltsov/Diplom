@@ -52,7 +52,7 @@ public class MainPageBlinx extends BasePage {
 
     public MainPageBlinx() {
         PageFactory.initElements(getDriver(), this);
-        getDriver().manage().timeouts().implicitlyWait(500, TimeUnit.MILLISECONDS);
+        getDriver().manage().timeouts().implicitlyWait(501, TimeUnit.MILLISECONDS);
     }
 
     @Step

@@ -13,7 +13,9 @@ public class WhenWereYouDiagnosedWithCopdOLS extends MainPageBlinx {
 
     public final String titleExpected = "When were you diagnosed with COPD?";
 
-    @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS_BLINX)
+    /*on page presented empty element and required element
+    that's why we can't use standard lacotor for this page*/
+    @FindBy(xpath = "//div[@id='QS7403A']/div[contains(@class,'question-text')]")
     WebElement titleText;
     @FindBy(xpath = Locators.RADIO_BUTTON_LIST_OLS)
     List<WebElement> radioButtonsList;

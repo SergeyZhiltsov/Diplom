@@ -59,6 +59,7 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
                 .clickOnAnswer("No")
                 .clickNextButton(new LessThan18YearsOldPageOLS());
 
+
         ZipCodePageOLS zipCodePageOLS = lessThan18YearsOldPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)

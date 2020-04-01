@@ -29,7 +29,7 @@ public interface URLs {
     //String AH_PROD = "https://acurianhealth.com/questionnaire/welcome?show_debug=1&testing_key=%2$s&up[]=AHLandingPage&pn=%1$s"; //changed to avoid Blinx provider
     String AH_PROD = "https://acurianhealth.com/questionnaire/patient/welcome?show_debug=1&testing_key=%2$s&up[]=AHLandingPage&pn=%1$s";
     String AH_STG = "https://test-screener.acurian.com/questionnaire_test_staging/welcome?method=beginCall&up[]=AHLandingPage&phoneNumber=%1$s";
-
+    String AH_PROD_BLINX = "https://acurianhealth.com/questionnaire/welcome?show_debug=1&testing_key=%2$s&up[]=AHLandingPage&pn=%1$s";
 
     //RPA
     String RPA_STG = "https://stg-appservice.acurian.com/rpa/login.htm";
