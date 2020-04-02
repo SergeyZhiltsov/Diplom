@@ -430,7 +430,7 @@ public class GLA_9184_OLSBlinx extends BaseTest {
                 .waitForPageLoad3()
                 .clickNextButton(new ThankYouCloseSimplePageOLS());
         AboutHealthPageOLS aboutHealthPageOLS = thankYouCloseSimplePageOLS
-                .waitForPageLoad3()
+                .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS());
 
         if(aboutHealthPageOLS.getHostName().equals(Properties.getHostName())) {
