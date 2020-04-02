@@ -3,11 +3,11 @@
 <suite name="All" verbose="4" parallel="methods" thread-count="1">
 
     <listeners>
-        <listener class-name="com.acurian.selenium.SB.dependentScreeners.SBStandAloneScreenerPart"/>
+        <listener class-name="com.acurian.selenium.listeners.AnnotationTransformer"/>
     </listeners>
     <test name="Regression1">
         <packages>
-            <package name="com.acurian.selenium.SB" />
+            <package name="com.acurian.selenium.SB.dependentScreeners.SBStandAloneScreenerPart"/>
         </packages>
     </test>
 
