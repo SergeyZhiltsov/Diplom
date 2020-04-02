@@ -8,7 +8,7 @@
 
     <test name="Health Check">
         <packages>
-            <package name="com.acurian.selenium.health_checkBlinx*" />
+            <package name="com.acurian.selenium.health_checkBlinx.*" />
         </packages>
     </test>
 
