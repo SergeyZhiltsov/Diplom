@@ -8,7 +8,7 @@
 
     <test name="Randomness test">
         <classes>
-            <class name="com.acurian.selenium.Randomness.ABRandomnessTest" />
+            <class name="com.acurian.selenium.listeners.AnnotationTransformer"/>
         </classes>
     </test>
 
