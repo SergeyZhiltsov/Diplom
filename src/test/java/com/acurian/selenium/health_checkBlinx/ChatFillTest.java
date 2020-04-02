@@ -1,4 +1,4 @@
-package com.acurian.selenium.blinx.health_check;
+package com.acurian.selenium.health_checkBlinx;
 
 import com.acurian.selenium.pages.AS.DashBoardPage;
 import com.acurian.selenium.pages.AS.LoginPageAS;

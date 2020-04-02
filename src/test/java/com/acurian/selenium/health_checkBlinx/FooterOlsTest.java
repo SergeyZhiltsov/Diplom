@@ -1,24 +1,11 @@
-package com.acurian.selenium.blinx.health_check;
+package com.acurian.selenium.health_checkBlinx;
 
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.blinx.ams.closes.AboutHealthPageOLS;
-import com.acurian.selenium.pages.blinx.ams.closes.QualifiedClose2PageOLS;
 import com.acurian.selenium.pages.blinx.ams.common_elements.FooterPageBlinx;
 import com.acurian.selenium.pages.blinx.ams.common_elements.MoreAboutPage;
 import com.acurian.selenium.pages.blinx.ams.common_elements.PrivacyPolicyPage;
 import com.acurian.selenium.pages.blinx.ams.common_elements.TermOfUsePage;
-import com.acurian.selenium.pages.blinx.ams.derm.WhatKindOfArthritisPageOLS;
-import com.acurian.selenium.pages.blinx.ams.generalHealth.ApproximateHeightPageOLS;
-import com.acurian.selenium.pages.blinx.ams.generalHealth.BoneOrJointConditionsPageOLS;
-import com.acurian.selenium.pages.blinx.ams.generalHealth.FollowingNeurologicalConditionsPageOLS;
-import com.acurian.selenium.pages.blinx.ams.shared.BehalfOfSomeoneElsePageOLS;
 import com.acurian.selenium.pages.blinx.ams.shared.DateOfBirthPageOLS;
-import com.acurian.selenium.pages.blinx.ams.shared.GenderPageOLS;
-import com.acurian.selenium.pages.blinx.gmega.DigestiveConditionsPageOLS;
-import com.acurian.selenium.pages.blinx.gmega.SiteSelectionPageOLS;
-import com.acurian.selenium.pages.blinx.gmega.ThankYouCloseGmegaOLS;
-import com.acurian.selenium.pages.blinx.gmega.WhenYouDiagnosedWithRaGmegaPageOLS;
-import com.acurian.selenium.pages.blinx.gmega.intro.IdentificationPageOLS;
 import io.qameta.allure.Description;
 import org.testng.Assert;
 import org.testng.annotations.Test;

@@ -1,16 +1,13 @@
-package com.acurian.selenium.blinx.health_check;
+package com.acurian.selenium.health_checkBlinx;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.blinx.ams.closes.*;
 import com.acurian.selenium.pages.blinx.ams.derm.WhatKindOfArthritisPageOLS;
-import com.acurian.selenium.pages.blinx.ams.generalHealth.ApproximateHeightPageOLS;
 import com.acurian.selenium.pages.blinx.ams.generalHealth.BoneOrJointConditionsPageOLS;
-import com.acurian.selenium.pages.blinx.ams.generalHealth.FollowingNeurologicalConditionsPageOLS;
 import com.acurian.selenium.pages.blinx.ams.shared.BehalfOfSomeoneElsePageOLS;
 import com.acurian.selenium.pages.blinx.ams.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.blinx.ams.shared.GenderPageOLS;
-import com.acurian.selenium.pages.blinx.gmega.DigestiveConditionsPageOLS;
 import com.acurian.selenium.pages.blinx.gmega.SiteSelectionPageOLS;
 import com.acurian.selenium.pages.blinx.gmega.ThankYouCloseGmegaOLS;
 import com.acurian.selenium.pages.blinx.gmega.WhenYouDiagnosedWithRaGmegaPageOLS;

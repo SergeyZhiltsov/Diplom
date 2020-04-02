@@ -1,6 +1,8 @@
-package com.acurian.selenium.blinx.dispo;
+package com.acurian.selenium.health_checkBlinx;
 
+import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.blinx.ams.closes.AboutHealthPageOLS;
 import com.acurian.selenium.pages.blinx.ams.closes.QualifiedClose2PageOLS;
 import com.acurian.selenium.pages.blinx.ams.derm.WhatKindOfArthritisPageOLS;
 import com.acurian.selenium.pages.blinx.ams.generalHealth.ApproximateHeightPageOLS;
@@ -11,26 +13,37 @@ import com.acurian.selenium.pages.blinx.ams.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.blinx.ams.shared.GenderPageOLS;
 import com.acurian.selenium.pages.blinx.gmega.DigestiveConditionsPageOLS;
 import com.acurian.selenium.pages.blinx.gmega.SiteSelectionPageOLS;
+import com.acurian.selenium.pages.blinx.gmega.ThankYouCloseGmegaOLS;
 import com.acurian.selenium.pages.blinx.gmega.WhenYouDiagnosedWithRaGmegaPageOLS;
 import com.acurian.selenium.pages.blinx.gmega.intro.IdentificationPageOLS;
-import com.acurian.utils.Properties;
 import io.qameta.allure.Description;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-public class Dispo54C extends BaseTest {
+public class InstantFUL extends BaseTest {
 
-    @Test(enabled= true)
-    @Description("Dispo 54C")
-    public void dispo54C() {
-        String phoneNumber = "AUTGMEGA01";
-        String env = System.getProperty("acurian.env", "STG");
-        String siteName = "AUT_GMEGA_New"; //"AUT_GMEGA_Site";
-        String zipCode = "08204";
+    @DataProvider(name = "sites")
+    public static Object[][] getData() {
+        return new Object[][]{
+                {Site.AUT_GRA_FUL_Site},
+                {Site.AUT_GRA_FULm_Site}
+        };
+    }
+
+    private String env = System.getProperty("acurian.env", "QA");
+
+    @Test(dataProvider = "sites")
+    @Description("Test for Instant Follow-Up Letter (FUL) Validation")
+    public void instantFUL(Site site) {
+        final String phoneNumber = "GMEGA00001";
+        final String studyName = "a rheumatoid arthritis (RA)";
+        final String studyNameClose = env.equals("QA") ? "Arthritis,a low back pain study,a rheumatoid arthritis (RA) study!" :
+                "Arthritis, a low back pain study, a rheumatoid arthritis (RA) study!";
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         BehalfOfSomeoneElsePageOLS behalfOfSomeoneElsePageOLS = dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
-                .waitForPageLoadGMEGA("a rheumatoid arthritis (RA)", "625")
+                .waitForPageLoadGMEGA(studyName, "625")
                 .setDate("09091980")
                 .clickNextButton(new BehalfOfSomeoneElsePageOLS());
 
@@ -41,8 +54,8 @@ public class Dispo54C extends BaseTest {
 
         GenderPageOLS genderPageOLS = identificationPageOLS
                 .waitForPageLoadNotQ()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
-                        "9999999999", zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999",
+                        site.zipCode)
                 .clickNextButton(new GenderPageOLS());
 
         ApproximateHeightPageOLS approximateHeightPageOLS = genderPageOLS
@@ -50,12 +63,13 @@ public class Dispo54C extends BaseTest {
                 .clickOnAnswer("Female")
                 .clickNextButton(new ApproximateHeightPageOLS());
 
-        FollowingNeurologicalConditionsPageOLS followingNeurologicalConditionsPageOLS = approximateHeightPageOLS
-                .waitForPageLoad()
+        approximateHeightPageOLS
+                .waitForPageLoad();
+        FollowingNeurologicalConditionsPageOLS followingNeurologicalConditionsOLS = approximateHeightPageOLS
                 .setAll("5", "5", "160")
                 .clickNextButton(new FollowingNeurologicalConditionsPageOLS());
 
-        DigestiveConditionsPageOLS digestiveConditionsPageOLS = followingNeurologicalConditionsPageOLS
+        DigestiveConditionsPageOLS digestiveConditionsPageOLS = followingNeurologicalConditionsOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new DigestiveConditionsPageOLS());
@@ -75,23 +89,30 @@ public class Dispo54C extends BaseTest {
                 .clickOnAnswers("Rheumatoid arthritis, a serious medical condition caused by your immune system attacking your joints")
                 .clickNextButton(new WhenYouDiagnosedWithRaGmegaPageOLS());
 
-        QualifiedClose2PageOLS qualifiedClose2PageOLS = whenYouDiagnosedWithRaGmegaPageOLS
+        SiteSelectionPageOLS siteSelectionPageOLS = whenYouDiagnosedWithRaGmegaPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("7 - 11 months ago")
                 .clickNextButton(identificationPageOLS)
-                .waitForPageLoadGMEGA()
-                .clickNextButton(new SiteSelectionPageOLS())
-                .waitForPageLoad(env.equals("QA") ? "Arthritis,a low back pain study,a rheumatoid arthritis (RA)" :
-                        "Arthritis, a low back pain study, a rheumatoid arthritis (RA)")
-                .getPID()
-                .clickOnFacilityName(siteName)
-                .clickNextButton(new QualifiedClose2PageOLS())
-                .waitForPageLoadGMEGA();
-        if (qualifiedClose2PageOLS.getHostName().equals(Properties.getHostName())) {
-            qualifiedClose2PageOLS
-                    .waitForPageLoadGMEGA()
-                    .pidFromDbToLog(env)
-                    .dispoShouldMatch("54C");
-        }
+                .waitForPageLoad()
+                .clickNextButton(new SiteSelectionPageOLS());
+
+        siteSelectionPageOLS
+                .waitForPageLoad(studyNameClose)
+                .clickOnFacilityName(site.name);
+//                .getPID();
+        QualifiedClose2PageOLS qualifiedClose2PageOLS = siteSelectionPageOLS
+                .clickNextButton(new QualifiedClose2PageOLS());
+
+        ThankYouCloseGmegaOLS thankYouCloseGmegaOLS = qualifiedClose2PageOLS
+                .waitForPageLoadGMEGA2()
+                .clickNextButton(new ThankYouCloseGmegaOLS());
+
+        AboutHealthPageOLS aboutHealthPageOLS = thankYouCloseGmegaOLS
+                .waitForPageLoad()
+                .clickNextButton(new AboutHealthPageOLS());
+        aboutHealthPageOLS
+                .waitForPageLoad()
+                .pidFromDbToLog(env)
+                .assertGeneratedFul(env, site);
     }
 }

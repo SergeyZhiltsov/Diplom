@@ -1,36 +1,25 @@
-package com.acurian.selenium.blinx.health_check;
+package com.acurian.selenium.dispoBlinx;
 
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.blinx.ams.closes.AboutHealthPageOLS;
-import com.acurian.selenium.pages.blinx.ams.closes.QualifiedClose2PageOLS;
 import com.acurian.selenium.pages.blinx.ams.derm.WhatKindOfArthritisPageOLS;
 import com.acurian.selenium.pages.blinx.ams.generalHealth.ApproximateHeightPageOLS;
 import com.acurian.selenium.pages.blinx.ams.generalHealth.BoneOrJointConditionsPageOLS;
 import com.acurian.selenium.pages.blinx.ams.generalHealth.FollowingNeurologicalConditionsPageOLS;
-import com.acurian.selenium.pages.blinx.ams.shared.BehalfOfSomeoneElsePageOLS;
-import com.acurian.selenium.pages.blinx.ams.shared.DateOfBirthPageOLS;
-import com.acurian.selenium.pages.blinx.ams.shared.GenderPageOLS;
-import com.acurian.selenium.pages.blinx.gmega.DigestiveConditionsPageOLS;
-import com.acurian.selenium.pages.blinx.gmega.SiteSelectionPageOLS;
-import com.acurian.selenium.pages.blinx.gmega.ThankYouCloseGmegaOLS;
-import com.acurian.selenium.pages.blinx.gmega.WhenYouDiagnosedWithRaGmegaPageOLS;
+import com.acurian.selenium.pages.blinx.ams.shared.*;
+import com.acurian.selenium.pages.blinx.gmega.*;
 import com.acurian.selenium.pages.blinx.gmega.intro.IdentificationPageOLS;
 import com.acurian.utils.Properties;
 import io.qameta.allure.Description;
 import org.testng.annotations.Test;
 
-public class AnomalyTest extends BaseTest {
+public class Dispo3I extends BaseTest {
 
-    @Test
-    @Description("Test for 41C Anomaly")
-    public void anomalyTest() {
-        String phoneNumber = "AUTGMEG41C";
-        String siteName = "AUT_GEMGA_01A";
-        String zipCode = "19422";
+    @Test(enabled = true)
+    @Description("Dispo_3I_NonQRDisq")
+    public void dispo3I() {
+        String phoneNumber = "AUTGMEGA01";
         String env = System.getProperty("acurian.env", "STG");
-        String studyName = env.equals("QA") ?
-                "Arthritis,a low back pain study,a rheumatoid arthritis (RA)" : "Arthritis, a low back pain study, a rheumatoid arthritis (RA)";
-
+        String zipCode = "08204";
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         BehalfOfSomeoneElsePageOLS behalfOfSomeoneElsePageOLS = dateOfBirthPageOLS
@@ -46,7 +35,8 @@ public class AnomalyTest extends BaseTest {
 
         GenderPageOLS genderPageOLS = identificationPageOLS
                 .waitForPageLoadNotQ()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
+                        "9999999999", zipCode)
                 .clickNextButton(new GenderPageOLS());
 
         ApproximateHeightPageOLS approximateHeightPageOLS = genderPageOLS
@@ -79,19 +69,27 @@ public class AnomalyTest extends BaseTest {
                 .clickOnAnswers("Rheumatoid arthritis, a serious medical condition caused by your immune system attacking your joints")
                 .clickNextButton(new WhenYouDiagnosedWithRaGmegaPageOLS());
 
-        AboutHealthPageOLS aboutHealthPageOLS = whenYouDiagnosedWithRaGmegaPageOLS
+        WhereDoYouHaveArthritisPageOLS whereDoYouHaveArthritisPageOLS = whenYouDiagnosedWithRaGmegaPageOLS
                 .waitForPageLoad()
-                .clickOnAnswer("7 - 11 months ago")
-                .clickNextButton(identificationPageOLS)
-                .waitForPageLoadGMEGA()
-                .clickNextButton(new SiteSelectionPageOLS())
-                .waitForPageLoad(studyName + "!")
+                .clickOnAnswer("Within the past 2 months")
+                .clickNextButton(new WhereDoYouHaveArthritisPageOLS());
+
+        TakingAcetaminophenTylenolPageOLS takingAcetaminophenTylenolPageOLS = whereDoYouHaveArthritisPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("Left Knee")
+                .clickNextButton(new TakingAcetaminophenTylenolPageOLS());
+
+        UnqualifiedCloseOLS_GMEGA unqualifiedCloseOLS_gmega = takingAcetaminophenTylenolPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
+                .clickNextButton(new UnqualifiedCloseOLS_GMEGA());
+
+        AboutHealthPageOLS aboutHealthPageOLS = unqualifiedCloseOLS_gmega
+                .waitForPageLoad()
+                .getPage(new SiteSelectionPageOLS())
                 .getPID()
-                .clickOnFacilityName(siteName)
-//                .clickNextButton(new DirectSheduleVaccOLS())
-//                .waitForPageLoad()
-                .clickNextButton(new QualifiedClose2PageOLS())
-                .waitForPageLoadGMEGA2()
+                .getPage(unqualifiedCloseOLS_gmega)
+                .clickOnAnswer("No")
                 .clickNextButton(new ThankYouCloseGmegaOLS())
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS());
@@ -99,7 +97,9 @@ public class AnomalyTest extends BaseTest {
             aboutHealthPageOLS
                     .waitForPageLoad()
                     .pidFromDbToLog(env)
-                    .getAnomalyDbToLog(env);
+                    .dispoShouldMatch("3I")
+                    .copyRun(env)
+                    .childPidFromDbToLog(env);
         }
     }
 }

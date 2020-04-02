@@ -333,7 +333,7 @@ public class VACC_4556_OLS extends BaseTest {
 //                        .waitForPageLoad()
 //                        .pidFromDbToLog(env)
 //                        .childPidFromDbToLog(env)
-//                        .dispoShouldMatch(site.dispo, site.dispo)
+//                        .dispoShouldMatch(site.dispoBlinx, site.dispoBlinx)
 //                        .queueSiteForFULCheck(site.name);
         }
     }

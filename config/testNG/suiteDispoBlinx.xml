@@ -8,7 +8,7 @@
 
     <test name="Dispo Check">
         <packages>
-            <package name="com.acurian.selenium.dispo.*" />
+            <package name="com.acurian.selenium.dispoBlinx*" />
         </packages>
     </test>
 

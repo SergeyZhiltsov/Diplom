@@ -1,22 +1,27 @@
-package com.acurian.selenium.blinx.dispo;
+package com.acurian.selenium.dispoBlinx;
 
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.blinx.ams.derm.WhatKindOfArthritisPageOLS;
+import com.acurian.selenium.pages.blinx.ams.closes.AboutHealthPageOLS;
 import com.acurian.selenium.pages.blinx.ams.generalHealth.ApproximateHeightPageOLS;
 import com.acurian.selenium.pages.blinx.ams.generalHealth.BoneOrJointConditionsPageOLS;
 import com.acurian.selenium.pages.blinx.ams.generalHealth.FollowingNeurologicalConditionsPageOLS;
-import com.acurian.selenium.pages.blinx.ams.shared.*;
-import com.acurian.selenium.pages.blinx.gmega.*;
+import com.acurian.selenium.pages.blinx.ams.shared.BehalfOfSomeoneElsePageOLS;
+import com.acurian.selenium.pages.blinx.ams.shared.DateOfBirthPageOLS;
+import com.acurian.selenium.pages.blinx.ams.shared.GenderPageOLS;
+import com.acurian.selenium.pages.blinx.gmega.DigestiveConditionsPageOLS;
+import com.acurian.selenium.pages.blinx.gmega.SiteSelectionPageOLS;
+import com.acurian.selenium.pages.blinx.gmega.ThankYouCloseGmegaOLS;
+import com.acurian.selenium.pages.blinx.gmega.UnqualifiedCloseOLS_GMEGA;
 import com.acurian.selenium.pages.blinx.gmega.intro.IdentificationPageOLS;
 import com.acurian.utils.Properties;
 import io.qameta.allure.Description;
 import org.testng.annotations.Test;
 
-public class Dispo3I extends BaseTest {
+public class Dispo3CdisqualifyType1Blinx extends BaseTest {
 
-    @Test(enabled = true)
-    @Description("Dispo_3I_NonQRDisq")
-    public void dispo3I() {
+    @Test(enabled= true)
+    @Description("Dispo_3C_DisQualify_Type1")
+    public void dispo3Ctype1() {
         String phoneNumber = "AUTGMEGA01";
         String env = System.getProperty("acurian.env", "STG");
         String zipCode = "08204";
@@ -59,47 +64,35 @@ public class Dispo3I extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new BoneOrJointConditionsPageOLS());
 
-        WhatKindOfArthritisPageOLS whatKindOfArthritisPageOLS = boneOrJointConditionsPageOLS
+        boneOrJointConditionsPageOLS
                 .waitForPageLoad()
-                .clickOnAnswers("Any type of arthritis")
-                .clickNextButton(new WhatKindOfArthritisPageOLS());
-
-        WhenYouDiagnosedWithRaGmegaPageOLS whenYouDiagnosedWithRaGmegaPageOLS = whatKindOfArthritisPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Rheumatoid arthritis, a serious medical condition caused by your immune system attacking your joints")
-                .clickNextButton(new WhenYouDiagnosedWithRaGmegaPageOLS());
-
-        WhereDoYouHaveArthritisPageOLS whereDoYouHaveArthritisPageOLS = whenYouDiagnosedWithRaGmegaPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Within the past 2 months")
-                .clickNextButton(new WhereDoYouHaveArthritisPageOLS());
-
-        TakingAcetaminophenTylenolPageOLS takingAcetaminophenTylenolPageOLS = whereDoYouHaveArthritisPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Left Knee")
-                .clickNextButton(new TakingAcetaminophenTylenolPageOLS());
-
-        UnqualifiedCloseOLS_GMEGA unqualifiedCloseOLS_gmega = takingAcetaminophenTylenolPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Yes")
-                .clickNextButton(new UnqualifiedCloseOLS_GMEGA());
-
-        AboutHealthPageOLS aboutHealthPageOLS = unqualifiedCloseOLS_gmega
-                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
                 .getPage(new SiteSelectionPageOLS())
-                .getPID()
-                .getPage(unqualifiedCloseOLS_gmega)
-                .clickOnAnswer("No")
-                .clickNextButton(new ThankYouCloseGmegaOLS())
-                .waitForPageLoad()
-                .clickNextButton(new AboutHealthPageOLS());
-        if (aboutHealthPageOLS.getHostName().equals(Properties.getHostName())) {
-            aboutHealthPageOLS
+                .getPID();
+        if (env.equals("QA")) {
+            boneOrJointConditionsPageOLS
+                    .clickNextButton(new AboutHealthPageOLS())
                     .waitForPageLoad()
                     .pidFromDbToLog(env)
-                    .dispoShouldMatch("3I")
+                    .dispoShouldMatch("3C")
                     .copyRun(env)
                     .childPidFromDbToLog(env);
+        } else {
+            AboutHealthPageOLS aboutHealthPageOLS = boneOrJointConditionsPageOLS
+                    .clickNextButton(new UnqualifiedCloseOLS_GMEGA())
+                    .waitForPageLoad()
+                    .clickOnAnswer("No")
+                    .clickNextButton(new ThankYouCloseGmegaOLS())
+                    .waitForPageLoad()
+                    .clickNextButton(new AboutHealthPageOLS());
+            if (aboutHealthPageOLS.getHostName().equals(Properties.getHostName())) {
+                aboutHealthPageOLS
+                        .waitForPageLoad()
+                        .pidFromDbToLog(env)
+                        .dispoShouldMatch("3C")
+                        .copyRun(env)
+                        .childPidFromDbToLog(env);
+            }
         }
     }
 }

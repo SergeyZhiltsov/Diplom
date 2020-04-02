@@ -1,4 +1,4 @@
-package com.acurian.selenium.blinx.health_check;
+package com.acurian.selenium.dispoBlinx;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
@@ -16,34 +16,23 @@ import com.acurian.selenium.pages.blinx.gmega.SiteSelectionPageOLS;
 import com.acurian.selenium.pages.blinx.gmega.ThankYouCloseGmegaOLS;
 import com.acurian.selenium.pages.blinx.gmega.WhenYouDiagnosedWithRaGmegaPageOLS;
 import com.acurian.selenium.pages.blinx.gmega.intro.IdentificationPageOLS;
+import com.acurian.utils.Properties;
 import io.qameta.allure.Description;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-public class InstantFUL extends BaseTest {
+public class Dispo1RqualifiedReferralBlinx extends BaseTest {
 
-    @DataProvider(name = "sites")
-    public static Object[][] getData() {
-        return new Object[][]{
-                {Site.AUT_GRA_FUL_Site},
-                {Site.AUT_GRA_FULm_Site}
-        };
-    }
-
-    private String env = System.getProperty("acurian.env", "QA");
-
-    @Test(dataProvider = "sites")
-    @Description("Test for Instant Follow-Up Letter (FUL) Validation")
-    public void instantFUL(Site site) {
-        final String phoneNumber = "GMEGA00001";
-        final String studyName = "a rheumatoid arthritis (RA)";
-        final String studyNameClose = env.equals("QA") ? "Arthritis,a low back pain study,a rheumatoid arthritis (RA) study!" :
-                "Arthritis, a low back pain study, a rheumatoid arthritis (RA) study!";
+    @Test(enabled = true)
+    @Description("Dispo 1R QualifiedReferral")
+    public void dispo1R() {
+        Site site = Site.AUT_GMEGA_New;
+        String phoneNumber = "AUTGMEGA01";
+        String env = System.getProperty("acurian.env", "STG");
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         BehalfOfSomeoneElsePageOLS behalfOfSomeoneElsePageOLS = dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
-                .waitForPageLoadGMEGA(studyName, "625")
+                .waitForPageLoadGMEGA("a rheumatoid arthritis (RA)", "625")
                 .setDate("09091980")
                 .clickNextButton(new BehalfOfSomeoneElsePageOLS());
 
@@ -54,22 +43,20 @@ public class InstantFUL extends BaseTest {
 
         GenderPageOLS genderPageOLS = identificationPageOLS
                 .waitForPageLoadNotQ()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999",
-                        site.zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
                 .clickNextButton(new GenderPageOLS());
 
         ApproximateHeightPageOLS approximateHeightPageOLS = genderPageOLS
-                .waitForPageLoadByTitle(genderPageOLS.titleExpectedGmega)
+                .waitForPageLoad()
                 .clickOnAnswer("Female")
                 .clickNextButton(new ApproximateHeightPageOLS());
 
-        approximateHeightPageOLS
-                .waitForPageLoad();
-        FollowingNeurologicalConditionsPageOLS followingNeurologicalConditionsOLS = approximateHeightPageOLS
+        FollowingNeurologicalConditionsPageOLS followingNeurologicalConditionsPageOLS = approximateHeightPageOLS
+                .waitForPageLoad()
                 .setAll("5", "5", "160")
                 .clickNextButton(new FollowingNeurologicalConditionsPageOLS());
 
-        DigestiveConditionsPageOLS digestiveConditionsPageOLS = followingNeurologicalConditionsOLS
+        DigestiveConditionsPageOLS digestiveConditionsPageOLS = followingNeurologicalConditionsPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new DigestiveConditionsPageOLS());
@@ -89,30 +76,27 @@ public class InstantFUL extends BaseTest {
                 .clickOnAnswers("Rheumatoid arthritis, a serious medical condition caused by your immune system attacking your joints")
                 .clickNextButton(new WhenYouDiagnosedWithRaGmegaPageOLS());
 
-        SiteSelectionPageOLS siteSelectionPageOLS = whenYouDiagnosedWithRaGmegaPageOLS
+        AboutHealthPageOLS aboutHealthPageOLS = whenYouDiagnosedWithRaGmegaPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("7 - 11 months ago")
                 .clickNextButton(identificationPageOLS)
-                .waitForPageLoad()
-                .clickNextButton(new SiteSelectionPageOLS());
-
-        siteSelectionPageOLS
-                .waitForPageLoad(studyNameClose)
-                .clickOnFacilityName(site.name);
-//                .getPID();
-        QualifiedClose2PageOLS qualifiedClose2PageOLS = siteSelectionPageOLS
-                .clickNextButton(new QualifiedClose2PageOLS());
-
-        ThankYouCloseGmegaOLS thankYouCloseGmegaOLS = qualifiedClose2PageOLS
-                .waitForPageLoadGMEGA2()
-                .clickNextButton(new ThankYouCloseGmegaOLS());
-
-        AboutHealthPageOLS aboutHealthPageOLS = thankYouCloseGmegaOLS
+                .waitForPageLoadGMEGA()
+                .clickNextButton(new SiteSelectionPageOLS())
+                .waitForPageLoad(env.equals("QA") ? "Arthritis,a low back pain study,a rheumatoid arthritis (RA)" :
+                        "Arthritis, a low back pain study, a rheumatoid arthritis (RA)")
+                .getPID()
+                .clickOnFacilityName(site.name)
+                .clickNextButton(new QualifiedClose2PageOLS())
+                .waitForPageLoadGMEGA()
+                .clickNextButton(new ThankYouCloseGmegaOLS())
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS());
-        aboutHealthPageOLS
-                .waitForPageLoad()
-                .pidFromDbToLog(env)
-                .assertGeneratedFul(env, site);
+        if(aboutHealthPageOLS.getHostName().equals(Properties.getHostName())) {
+            aboutHealthPageOLS
+                    .waitForPageLoad()
+                    .pidFromDbToLog(env)
+                    .dispoShouldMatch(site.dispo)
+                    .childPidFromDbToLogWithCopy(env);
+        }
     }
 }

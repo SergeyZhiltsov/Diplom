@@ -213,7 +213,7 @@ public class OA_3138_CC extends BaseTest {
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
-                .getRadiantDbToLog(env); //In CC, it generates 1R dispo. and Radiant accepts CC with 1R dispo (child_pid)
+                .getRadiantDbToLog(env); //In CC, it generates 1R dispoBlinx. and Radiant accepts CC with 1R dispoBlinx (child_pid)
                 //.getAnomalyDbToLog(env); //Anomoly NOT applicable for Call center
     }
 }

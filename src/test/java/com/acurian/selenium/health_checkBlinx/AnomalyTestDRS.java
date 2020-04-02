@@ -1,6 +1,5 @@
-package com.acurian.selenium.blinx.dispo;
+package com.acurian.selenium.health_checkBlinx;
 
-import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.blinx.ams.closes.AboutHealthPageOLS;
 import com.acurian.selenium.pages.blinx.ams.closes.QualifiedClose2PageOLS;
@@ -9,8 +8,10 @@ import com.acurian.selenium.pages.blinx.ams.generalHealth.ApproximateHeightPageO
 import com.acurian.selenium.pages.blinx.ams.generalHealth.BoneOrJointConditionsPageOLS;
 import com.acurian.selenium.pages.blinx.ams.generalHealth.FollowingNeurologicalConditionsPageOLS;
 import com.acurian.selenium.pages.blinx.ams.shared.BehalfOfSomeoneElsePageOLS;
+import com.acurian.selenium.pages.blinx.ams.shared.DRSBlinx;
 import com.acurian.selenium.pages.blinx.ams.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.blinx.ams.shared.GenderPageOLS;
+import com.acurian.selenium.pages.blinx.ams.vaccine.DirectSheduleVaccOLS;
 import com.acurian.selenium.pages.blinx.gmega.DigestiveConditionsPageOLS;
 import com.acurian.selenium.pages.blinx.gmega.SiteSelectionPageOLS;
 import com.acurian.selenium.pages.blinx.gmega.ThankYouCloseGmegaOLS;
@@ -20,14 +21,20 @@ import com.acurian.utils.Properties;
 import io.qameta.allure.Description;
 import org.testng.annotations.Test;
 
-public class Dispo1RqualifiedReferralBlinx extends BaseTest {
+import java.util.ArrayList;
+
+public class AnomalyTestDRS extends BaseTest {
 
     @Test(enabled = true)
-    @Description("Dispo 1R QualifiedReferral")
-    public void dispo1R() {
-        Site site = Site.AUT_GMEGA_New;
-        String phoneNumber = "AUTGMEGA01";
+    @Description("Test for 41C Anomaly DRS")
+    public void anomalyTestDRS() {
+        String phoneNumber = "AUTGMEG41C";
+        String siteName = "AUT_GEMGA_01A";
+        String zipCode = "19422";
         String env = System.getProperty("acurian.env", "STG");
+        String studyName = env.equals("QA") ?
+                "Arthritis,a low back pain study,a rheumatoid arthritis (RA)" : "Arthritis, a low back pain study, a rheumatoid arthritis (RA)";
+
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         BehalfOfSomeoneElsePageOLS behalfOfSomeoneElsePageOLS = dateOfBirthPageOLS
@@ -43,11 +50,11 @@ public class Dispo1RqualifiedReferralBlinx extends BaseTest {
 
         GenderPageOLS genderPageOLS = identificationPageOLS
                 .waitForPageLoadNotQ()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
                 .clickNextButton(new GenderPageOLS());
 
         ApproximateHeightPageOLS approximateHeightPageOLS = genderPageOLS
-                .waitForPageLoad()
+                .waitForPageLoadByTitle(genderPageOLS.titleExpectedGmega)
                 .clickOnAnswer("Female")
                 .clickNextButton(new ApproximateHeightPageOLS());
 
@@ -76,27 +83,66 @@ public class Dispo1RqualifiedReferralBlinx extends BaseTest {
                 .clickOnAnswers("Rheumatoid arthritis, a serious medical condition caused by your immune system attacking your joints")
                 .clickNextButton(new WhenYouDiagnosedWithRaGmegaPageOLS());
 
-        AboutHealthPageOLS aboutHealthPageOLS = whenYouDiagnosedWithRaGmegaPageOLS
+        DirectSheduleVaccOLS directSheduleBlinx = new DirectSheduleVaccOLS();
+        DRSBlinx dRSBlinx = new DRSBlinx();
+        whenYouDiagnosedWithRaGmegaPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("7 - 11 months ago")
                 .clickNextButton(identificationPageOLS)
                 .waitForPageLoadGMEGA()
                 .clickNextButton(new SiteSelectionPageOLS())
-                .waitForPageLoad(env.equals("QA") ? "Arthritis,a low back pain study,a rheumatoid arthritis (RA)" :
-                        "Arthritis, a low back pain study, a rheumatoid arthritis (RA)")
+                .waitForPageLoad(studyName + "!")
                 .getPID()
-                .clickOnFacilityName(site.name)
+                .clickOnFacilityName("Acurian-1234")
+                .clickNextButton(new DirectSheduleVaccOLS());
+        if (env.equals("PRD")) {
+            directSheduleBlinx
+                    .waitForPageLoadSTG();
+        }
+        if (env.equals("STG")) {
+            directSheduleBlinx
+                    .waitForPageLoadSTG();
+        }
+        directSheduleBlinx
+                .clickSheduleBtnBlinx(dRSBlinx);
+        ArrayList<String> tabs = new ArrayList<String>(getDriver().getWindowHandles());
+        getDriver().switchTo().window(tabs.get(1));
+        dRSBlinx
+                .waitForPageLoadBlinx()
+                .clickOnDay()
+                .clickOnTime()
+                .clickOnNext()
+                .waitForPageLoadClientDetails()
+                .dateCheck()
+                .startsAtCheck()
+                .serviceProviderCheck();
+        //.assertClientData("qa.acurian@gmail.com", "9999999999")
+//                .clickBook()
+//                .waitForPageLoadSuccess();
+//                .clickOnBtnNext()
+//                .waitForThankYou();
+
+
+        getDriver().switchTo().window(tabs.get(0));
+        if (env.equals("PRD")) {
+            directSheduleBlinx
+                    .waitForPageLoadSTG();
+        }
+        if (env.equals("STG")) {
+            directSheduleBlinx
+                    .waitForPageLoadSTG();
+        }
+        AboutHealthPageOLS aboutHealthPageOLS = directSheduleBlinx
                 .clickNextButton(new QualifiedClose2PageOLS())
-                .waitForPageLoadGMEGA()
+                .waitForPageLoadGMEGA2()
                 .clickNextButton(new ThankYouCloseGmegaOLS())
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS());
-        if(aboutHealthPageOLS.getHostName().equals(Properties.getHostName())) {
+        if (aboutHealthPageOLS.getHostName().equals(Properties.getHostName())) {
             aboutHealthPageOLS
                     .waitForPageLoad()
                     .pidFromDbToLog(env)
-                    .dispoShouldMatch(site.dispo)
-                    .childPidFromDbToLogWithCopy(env);
+                    .getAnomalyDbToLog(env);
         }
     }
 }

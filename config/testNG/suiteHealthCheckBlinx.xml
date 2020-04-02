@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="All" verbose="4" parallel="methods" thread-count="10">
+<suite name="All" verbose="4" parallel="methods" thread-count="7">
 
     <listeners>
         <listener class-name="com.acurian.selenium.listeners.AnnotationTransformer"/>
     </listeners>
 
-    <test name="Dispo Check">
+    <test name="Health Check">
         <packages>
-            <package name="com.acurian.selenium.dispo.*" />
+            <package name="com.acurian.selenium.health_checkBlinx*" />
         </packages>
     </test>
 

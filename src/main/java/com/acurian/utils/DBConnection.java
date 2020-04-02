@@ -95,7 +95,7 @@ public class DBConnection {
                 dispoCode = rset.getString("dispo_cd");
                 applicantStatus = rset.getString("applicant_status_cd");
             }
-            //Log.info("DB parent: dispo = " + dispoCode + applicantStatus +", parent pid =" + pidNumber);
+            //Log.info("DB parent: dispoBlinx = " + dispoCode + applicantStatus +", parent pid =" + pidNumber);
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -113,7 +113,7 @@ public class DBConnection {
                 dispoCode = rset.getString("dispo_cd");
                 applicantStatus = rset.getString("applicant_status_cd");
             }
-            Log.info("DB parent: dispo = " + dispoCode + applicantStatus + ", parent pid =" + pidNumber);
+            Log.info("DB parent: dispoBlinx = " + dispoCode + applicantStatus + ", parent pid =" + pidNumber);
         } catch (SQLException e) {
             Log.error(e.getMessage());
             throw new RuntimeException();
@@ -189,7 +189,7 @@ public class DBConnection {
             stmt.execute(sql);
             connTemp.commit();
             connTemp.setAutoCommit(true);
-            Log.info("DB dispo converted from 54C to 1R");
+            Log.info("DB dispoBlinx converted from 54C to 1R");
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -281,7 +281,7 @@ public class DBConnection {
                 childResult.setPhoneNumber(rset.getString("phone_number"));
                 childResult.setChildPid(rset.getString("patient_id"));
             }
-            Log.info("DB Child: dispo =" + childResult.getDispoCd() + childResult.getApplicantStatus() +
+            Log.info("DB Child: dispoBlinx =" + childResult.getDispoCd() + childResult.getApplicantStatus() +
                     ", phone number = " + childResult.getPhoneNumber() +
                     ", child PID = " + childResult.getChildPid());
             return childResult;

@@ -411,7 +411,7 @@ public class CV_5034_OLS_A_S extends BaseTest {
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
                 .childPidFromDbToLog(env)
-                .dispoShouldMatch(site.dispo, site.dispo);
+                .dispoShouldMatch(site.dispoBlinx, site.dispoBlinx);
 
         switch (site) {
             case AUT_CV_5034A_site:

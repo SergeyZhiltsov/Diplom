@@ -1,7 +1,9 @@
-package com.acurian.selenium.blinx.dispo;
+package com.acurian.selenium.dispoBlinx;
 
+import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.blinx.MainPageBlinx;
+import com.acurian.selenium.pages.blinx.ams.closes.AboutHealthPageOLS;
+import com.acurian.selenium.pages.blinx.ams.closes.QualifiedClose2PageOLS;
 import com.acurian.selenium.pages.blinx.ams.derm.WhatKindOfArthritisPageOLS;
 import com.acurian.selenium.pages.blinx.ams.generalHealth.ApproximateHeightPageOLS;
 import com.acurian.selenium.pages.blinx.ams.generalHealth.BoneOrJointConditionsPageOLS;
@@ -9,20 +11,23 @@ import com.acurian.selenium.pages.blinx.ams.generalHealth.FollowingNeurologicalC
 import com.acurian.selenium.pages.blinx.ams.shared.BehalfOfSomeoneElsePageOLS;
 import com.acurian.selenium.pages.blinx.ams.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.blinx.ams.shared.GenderPageOLS;
-import com.acurian.selenium.pages.blinx.gmega.*;
+import com.acurian.selenium.pages.blinx.gmega.DigestiveConditionsPageOLS;
+import com.acurian.selenium.pages.blinx.gmega.SiteSelectionPageOLS;
+import com.acurian.selenium.pages.blinx.gmega.ThankYouCloseGmegaOLS;
+import com.acurian.selenium.pages.blinx.gmega.WhenYouDiagnosedWithRaGmegaPageOLS;
 import com.acurian.selenium.pages.blinx.gmega.intro.IdentificationPageOLS;
 import com.acurian.utils.Properties;
 import io.qameta.allure.Description;
 import org.testng.annotations.Test;
 
-public class Dispo2CsiteProximityBlinx extends BaseTest {
+public class Dispo41C extends BaseTest {
 
     @Test(enabled = true)
-    @Description("Dispo_2C_SiteProximity")
-    public void dispo2C() {
-        String phoneNumber = "AUTGMEGA01";
+    @Description("Dispo 41C RefVerificationFlag")
+    public void dispo41C() {
+        Site site = Site.AUT_GMEGA_New;
+        String phoneNumber = "AUTGMEG41C";
         String env = System.getProperty("acurian.env", "STG");
-        String zipCode = "99546";
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         BehalfOfSomeoneElsePageOLS behalfOfSomeoneElsePageOLS = dateOfBirthPageOLS
@@ -39,7 +44,7 @@ public class Dispo2CsiteProximityBlinx extends BaseTest {
         GenderPageOLS genderPageOLS = identificationPageOLS
                 .waitForPageLoadNotQ()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
-                        "9999999999", zipCode)
+                        "9999999999", site.zipCode)
                 .clickNextButton(new GenderPageOLS());
 
         ApproximateHeightPageOLS approximateHeightPageOLS = genderPageOLS
@@ -72,31 +77,28 @@ public class Dispo2CsiteProximityBlinx extends BaseTest {
                 .clickOnAnswers("Rheumatoid arthritis, a serious medical condition caused by your immune system attacking your joints")
                 .clickNextButton(new WhenYouDiagnosedWithRaGmegaPageOLS());
 
-        BasedOnInformationGmegaPageOLS basedOnInformationGmegaPageOLS = whenYouDiagnosedWithRaGmegaPageOLS
+        AboutHealthPageOLS aboutHealthPageOLS = whenYouDiagnosedWithRaGmegaPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("7 - 11 months ago")
-                .clickNextButton(new BasedOnInformationGmegaPageOLS());
-        if (env.equals("QA")) {
-            basedOnInformationGmegaPageOLS
-                    .waitForPageLoadByTitle(basedOnInformationGmegaPageOLS.titleExpectedQA)
-                    .clickOnAnswer("No");
-        } else {
-            basedOnInformationGmegaPageOLS
-                    .waitForPageLoad();
-        }
-        AboutHealthPageOLS aboutHealthPageOLS = basedOnInformationGmegaPageOLS
-                .getPage(new SiteSelectionPageOLS())
+                .clickNextButton(identificationPageOLS)
+                .waitForPageLoadGMEGA()
+                .clickNextButton(new SiteSelectionPageOLS())
+                .waitForPageLoad(env.equals("QA") ? "Arthritis,a low back pain study,a rheumatoid arthritis (RA)" :
+                        "Arthritis, a low back pain study, a rheumatoid arthritis (RA)")
                 .getPID()
+                .clickOnFacilityName(site.name)
+                .clickNextButton(new QualifiedClose2PageOLS())
+                .waitForPageLoadGMEGA()
                 .clickNextButton(new ThankYouCloseGmegaOLS())
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS());
-        if(aboutHealthPageOLS.getHostName().equals(Properties.getHostName())) {
+        if (aboutHealthPageOLS.getHostName().equals(Properties.getHostName())) {
             aboutHealthPageOLS
                     .waitForPageLoad()
                     .pidFromDbToLog(env)
-                    .dispoShouldMatch("2C")
-                    .copyRun(env)
-                    .childPidFromDbToLog(env);
+                    .assertGeneratedFul(env, site)
+                    .dispoShouldMatch("41C")
+                    .childPidFromDbToLogWithCopy(env);
         }
     }
 }

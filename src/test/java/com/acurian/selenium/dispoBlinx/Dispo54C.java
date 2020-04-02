@@ -1,7 +1,7 @@
-package com.acurian.selenium.blinx.dispo;
+package com.acurian.selenium.dispoBlinx;
 
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.blinx.ams.closes.AboutHealthPageOLS;
+import com.acurian.selenium.pages.blinx.ams.closes.QualifiedClose2PageOLS;
 import com.acurian.selenium.pages.blinx.ams.derm.WhatKindOfArthritisPageOLS;
 import com.acurian.selenium.pages.blinx.ams.generalHealth.ApproximateHeightPageOLS;
 import com.acurian.selenium.pages.blinx.ams.generalHealth.BoneOrJointConditionsPageOLS;
@@ -11,21 +11,21 @@ import com.acurian.selenium.pages.blinx.ams.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.blinx.ams.shared.GenderPageOLS;
 import com.acurian.selenium.pages.blinx.gmega.DigestiveConditionsPageOLS;
 import com.acurian.selenium.pages.blinx.gmega.SiteSelectionPageOLS;
-import com.acurian.selenium.pages.blinx.gmega.ThankYouCloseGmegaOLS;
-import com.acurian.selenium.pages.blinx.gmega.UnqualifiedCloseOLS_GMEGA;
+import com.acurian.selenium.pages.blinx.gmega.WhenYouDiagnosedWithRaGmegaPageOLS;
 import com.acurian.selenium.pages.blinx.gmega.intro.IdentificationPageOLS;
 import com.acurian.utils.Properties;
 import io.qameta.allure.Description;
 import org.testng.annotations.Test;
 
-public class Dispo3CdisqualifyType2Blinx extends BaseTest {
+public class Dispo54C extends BaseTest {
 
     @Test(enabled= true)
-    @Description("Dispo 3C DisQualify Type2")
-    public void dispo3Ctype2() {
+    @Description("Dispo 54C")
+    public void dispo54C() {
         String phoneNumber = "AUTGMEGA01";
         String env = System.getProperty("acurian.env", "STG");
-        String zipCode = "99546";
+        String siteName = "AUT_GMEGA_New"; //"AUT_GMEGA_Site";
+        String zipCode = "08204";
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         BehalfOfSomeoneElsePageOLS behalfOfSomeoneElsePageOLS = dateOfBirthPageOLS
@@ -38,7 +38,6 @@ public class Dispo3CdisqualifyType2Blinx extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("Self")
                 .clickNextButton(new IdentificationPageOLS());
-
 
         GenderPageOLS genderPageOLS = identificationPageOLS
                 .waitForPageLoadNotQ()
@@ -71,27 +70,28 @@ public class Dispo3CdisqualifyType2Blinx extends BaseTest {
                 .clickOnAnswers("Any type of arthritis")
                 .clickNextButton(new WhatKindOfArthritisPageOLS());
 
-        UnqualifiedCloseOLS_GMEGA unqualifiedCloseOLS_gmega = whatKindOfArthritisPageOLS
+        WhenYouDiagnosedWithRaGmegaPageOLS whenYouDiagnosedWithRaGmegaPageOLS = whatKindOfArthritisPageOLS
                 .waitForPageLoad()
-                .clickOnAnswers("Psoriatic Arthritis")
-                .clickNextButton(new UnqualifiedCloseOLS_GMEGA());
+                .clickOnAnswers("Rheumatoid arthritis, a serious medical condition caused by your immune system attacking your joints")
+                .clickNextButton(new WhenYouDiagnosedWithRaGmegaPageOLS());
 
-        AboutHealthPageOLS aboutHealthPageOLS = unqualifiedCloseOLS_gmega
+        QualifiedClose2PageOLS qualifiedClose2PageOLS = whenYouDiagnosedWithRaGmegaPageOLS
                 .waitForPageLoad()
-                .getPage(new SiteSelectionPageOLS())
+                .clickOnAnswer("7 - 11 months ago")
+                .clickNextButton(identificationPageOLS)
+                .waitForPageLoadGMEGA()
+                .clickNextButton(new SiteSelectionPageOLS())
+                .waitForPageLoad(env.equals("QA") ? "Arthritis,a low back pain study,a rheumatoid arthritis (RA)" :
+                        "Arthritis, a low back pain study, a rheumatoid arthritis (RA)")
                 .getPID()
-                .getPage(unqualifiedCloseOLS_gmega)
-                .clickOnAnswer("No")
-                .clickNextButton(new ThankYouCloseGmegaOLS())
-                .waitForPageLoad()
-                .clickNextButton(new AboutHealthPageOLS());
-        if (aboutHealthPageOLS.getHostName().equals(Properties.getHostName())) {
-            aboutHealthPageOLS
-                    .waitForPageLoad()
+                .clickOnFacilityName(siteName)
+                .clickNextButton(new QualifiedClose2PageOLS())
+                .waitForPageLoadGMEGA();
+        if (qualifiedClose2PageOLS.getHostName().equals(Properties.getHostName())) {
+            qualifiedClose2PageOLS
+                    .waitForPageLoadGMEGA()
                     .pidFromDbToLog(env)
-                    .dispoShouldMatch("3C")
-                    .copyRun(env)
-                    .childPidFromDbToLog(env);
+                    .dispoShouldMatch("54C");
         }
     }
 }

@@ -1,12 +1,13 @@
-package com.acurian.selenium.blinx.dispo;
+package com.acurian.selenium.health_checkBlinx;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
+
 import com.acurian.selenium.pages.blinx.ams.closes.AboutHealthPageOLS;
-import com.acurian.selenium.pages.blinx.ams.closes.QualifiedClose2PageOLS;
-import com.acurian.selenium.pages.blinx.ams.derm.WhatKindOfArthritisPageOLS;
+import com.acurian.selenium.pages.blinx.ams.closes.QualifiedFlareMonitoringAppClosePageOLS;
+import com.acurian.selenium.pages.blinx.ams.flare.ChooseTheMatterYouAreHereOLS;
+import com.acurian.selenium.pages.blinx.ams.flare.MostImportantChoiceOLS;
 import com.acurian.selenium.pages.blinx.ams.generalHealth.ApproximateHeightPageOLS;
-import com.acurian.selenium.pages.blinx.ams.generalHealth.BoneOrJointConditionsPageOLS;
 import com.acurian.selenium.pages.blinx.ams.generalHealth.FollowingNeurologicalConditionsPageOLS;
 import com.acurian.selenium.pages.blinx.ams.shared.BehalfOfSomeoneElsePageOLS;
 import com.acurian.selenium.pages.blinx.ams.shared.DateOfBirthPageOLS;
@@ -14,22 +15,23 @@ import com.acurian.selenium.pages.blinx.ams.shared.GenderPageOLS;
 import com.acurian.selenium.pages.blinx.gmega.DigestiveConditionsPageOLS;
 import com.acurian.selenium.pages.blinx.gmega.SiteSelectionPageOLS;
 import com.acurian.selenium.pages.blinx.gmega.ThankYouCloseGmegaOLS;
-import com.acurian.selenium.pages.blinx.gmega.WhenYouDiagnosedWithRaGmegaPageOLS;
 import com.acurian.selenium.pages.blinx.gmega.intro.IdentificationPageOLS;
-import com.acurian.utils.Properties;
 import io.qameta.allure.Description;
 import org.testng.annotations.Test;
 
-public class Dispo43C extends BaseTest {
+import java.time.Instant;
 
-    @Test(enabled= true)
-    @Description("Dispo 43C BucketedPatients")
-    public void dispo43C() {
-        Site site = Site.AUT_GRA_43C_Site;
+public class FlareActivationCode extends BaseTest {
+
+    @Test
+    @Description("Flare Activation Code verification")
+    public void flareActivationCode() {
+
         String phoneNumber = "AUTGMEGA01";
-        String env = System.getProperty("acurian.env", "STG");
-//        String siteName = "AUT_GRA_43C_Site";
-//        String zipCode = "73159";
+        Site site = Site.AUT_GFLR1_site;
+        String env = System.getProperty("acurian.env", "QA");
+        String studyName = env.equals("QA") ?
+                "Arthritis,a Crohn's study,a low back pain study,a rheumatoid arthritis (RA) study,an arthritis" : "Arthritis, a Crohn's study, a low back pain study, a rheumatoid arthritis (RA) study, an osteoarthritis";
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         BehalfOfSomeoneElsePageOLS behalfOfSomeoneElsePageOLS = dateOfBirthPageOLS
@@ -55,7 +57,7 @@ public class Dispo43C extends BaseTest {
 
         FollowingNeurologicalConditionsPageOLS followingNeurologicalConditionsPageOLS = approximateHeightPageOLS
                 .waitForPageLoad()
-                .setAll("5", "5", "160")
+                .setAll("5", "5", "150")
                 .clickNextButton(new FollowingNeurologicalConditionsPageOLS());
 
         DigestiveConditionsPageOLS digestiveConditionsPageOLS = followingNeurologicalConditionsPageOLS
@@ -63,43 +65,42 @@ public class Dispo43C extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new DigestiveConditionsPageOLS());
 
-        BoneOrJointConditionsPageOLS boneOrJointConditionsPageOLS = digestiveConditionsPageOLS
+        ChooseTheMatterYouAreHereOLS chooseTheMatterYouAreHereOLS = digestiveConditionsPageOLS
                 .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new BoneOrJointConditionsPageOLS());
+                .clickOnAnswers("Crohn's disease")
+                .clickNextButton(new ChooseTheMatterYouAreHereOLS());
 
-        WhatKindOfArthritisPageOLS whatKindOfArthritisPageOLS = boneOrJointConditionsPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Any type of arthritis")
-                .clickNextButton(new WhatKindOfArthritisPageOLS());
+        MostImportantChoiceOLS mostImportantChoiceOLS = chooseTheMatterYouAreHereOLS
+                .waitForPageLoadQA()
+                .clickOnAnswers("B")
+                .clickNextButton(new MostImportantChoiceOLS());
 
-        WhenYouDiagnosedWithRaGmegaPageOLS whenYouDiagnosedWithRaGmegaPageOLS = whatKindOfArthritisPageOLS
+        mostImportantChoiceOLS
                 .waitForPageLoad()
-                .clickOnAnswers("Rheumatoid arthritis, a serious medical condition caused by your immune system attacking your joints")
-                .clickNextButton(new WhenYouDiagnosedWithRaGmegaPageOLS());
+                .clickOnAnswers("B")
+                .clickNextButton(identificationPageOLS);
 
-        AboutHealthPageOLS aboutHealthPageOLS = whenYouDiagnosedWithRaGmegaPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("7 - 11 months ago")
-                .clickNextButton(identificationPageOLS)
+        SiteSelectionPageOLS siteSelectionPageOLS = identificationPageOLS
                 .waitForPageLoadGMEGA()
-                .clickNextButton(new SiteSelectionPageOLS())
-                .waitForPageLoad(env.equals("QA") ? "Arthritis,a low back pain study,a rheumatoid arthritis (RA)" :
-                        "Arthritis, a low back pain study, a rheumatoid arthritis (RA)")
-                .getPID()
+                .clickNextButton(new SiteSelectionPageOLS());
+
+        QualifiedFlareMonitoringAppClosePageOLS qualifiedFlareMonitoringAppClosePageOLS = siteSelectionPageOLS
+//              .waitForPageLoad("a Crohn's")
                 .clickOnFacilityName(site.name)
-                .clickNextButton(new QualifiedClose2PageOLS())
-                .waitForPageLoadGMEGA()
-                .clickNextButton(new ThankYouCloseGmegaOLS())
+//              .getPID()
+                .clickNextButton(new QualifiedFlareMonitoringAppClosePageOLS());
+
+        ThankYouCloseGmegaOLS thankYouCloseGmegaOLS = qualifiedFlareMonitoringAppClosePageOLS
+                .waitForPageLoadHealthCheck()
+                .getActivationCodeQA()
+                .clickNextButton(new QualifiedFlareMonitoringAppClosePageOLS())
+//                .enterEmail(Instant.now().getEpochSecond() + "@gmail.com")
+                .getPage(new ThankYouCloseGmegaOLS());
+
+        thankYouCloseGmegaOLS
                 .waitForPageLoad()
-                .clickNextButton(new AboutHealthPageOLS());
-        if (aboutHealthPageOLS.getHostName().equals(Properties.getHostName())) {
-            aboutHealthPageOLS
-                    .waitForPageLoad()
-                    .pidFromDbToLog(env)
-                    .assertGeneratedFul(env, site)
-                    .dispoShouldMatch(site.dispo)
-                    .childPidFromDbToLog(env);
-        }
+                .clickNextButton(new AboutHealthPageOLS())
+                .waitForPageLoad()
+                .pidFromDbToLog(env);
     }
 }

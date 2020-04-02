@@ -678,7 +678,7 @@ public class Insomnia_5017_CC extends BaseTest {
 //                        .waitForPageLoad()
 //                        .pidFromDbToLog(env)
 //                        .childPidFromDbToLog(env)
-//                        .dispoShouldMatch(site.dispo, site.dispo);
+//                        .dispoShouldMatch(site.dispoBlinx, site.dispoBlinx);
         }
     }
 }

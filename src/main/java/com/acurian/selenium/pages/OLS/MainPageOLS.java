@@ -138,7 +138,7 @@ public class MainPageOLS extends BasePage {
         pid = PassPID.getInstance().getPidNumber();
         getDbConnection().dbReadPID(env, pid);
         dispoParent = getDbConnection().getDispo();
-        textToAttachment("Parent dispo = " + dispoParent + " for PID " + pid);
+        textToAttachment("Parent dispoBlinx = " + dispoParent + " for PID " + pid);
         return this;
     }
 
@@ -237,7 +237,7 @@ public class MainPageOLS extends BasePage {
     public MainPageOLS copyRun(String env) {
         getDbConnection().dbCOPYProc(env, pid);
         //dispoParent = getDbConnection().getDispo();
-        //textToAttachment("Parent dispo = " + dispoParent + " for PID " + pid);
+        //textToAttachment("Parent dispoBlinx = " + dispoParent + " for PID " + pid);
         return this;
     }
 
@@ -280,7 +280,7 @@ public class MainPageOLS extends BasePage {
         ChildResult childResult = getDbConnection().dbReadChildPID(env, pid, firstPartOfChildPhoneNumber);
         dispoChild = childResult.getDispoCd() + childResult.getApplicantStatus();
         childPid = childResult.getChildPid();
-        textToAttachment("Child dispo =" + childResult.getDispoCd() + childResult.getApplicantStatus() + " for PID " + pid +
+        textToAttachment("Child dispoBlinx =" + childResult.getDispoCd() + childResult.getApplicantStatus() + " for PID " + pid +
         " with child pid = "+ childResult.getChildPid());
         return this;
     }
@@ -292,7 +292,7 @@ public class MainPageOLS extends BasePage {
         ChildResult childResult = getDbConnection().dbReadChildPID(env, pid, firstPartOfChildPhoneNumber);
         dispoChild = childResult.getDispoCd() + childResult.getApplicantStatus();
         childPid = childResult.getChildPid();
-        textToAttachment("Child dispo =" + childResult.getDispoCd() + childResult.getApplicantStatus() + " for PID " + pid +
+        textToAttachment("Child dispoBlinx =" + childResult.getDispoCd() + childResult.getApplicantStatus() + " for PID " + pid +
                 " with child pid = "+ childResult.getChildPid());
         return this;
     }

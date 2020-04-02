@@ -941,7 +941,7 @@ public class SYNType_2_Diabetes_CC extends BaseTest {
 //                        .getRadiantDbToLog(env)
 //                        .childPidFromDbToLog(env, "4483")
 //                        .assertGeneratedFul(env, site)
-//                        .dispoShouldMatch(site.dispo, site.dispo);
+//                        .dispoShouldMatch(site.dispoBlinx, site.dispoBlinx);
 //                break;
 //            case AUT_AMS1_DIABS_site: //41C
 

@@ -1,37 +1,32 @@
-package com.acurian.selenium.blinx.health_check;
+package com.acurian.selenium.dispoBlinx;
 
 import com.acurian.selenium.pages.BaseTest;
-
-import com.acurian.selenium.pages.blinx.ams.debug.DebugPageOLS;
+import com.acurian.selenium.pages.blinx.ams.closes.AboutHealthPageOLS;
 import com.acurian.selenium.pages.blinx.ams.derm.WhatKindOfArthritisPageOLS;
 import com.acurian.selenium.pages.blinx.ams.generalHealth.ApproximateHeightPageOLS;
 import com.acurian.selenium.pages.blinx.ams.generalHealth.BoneOrJointConditionsPageOLS;
 import com.acurian.selenium.pages.blinx.ams.generalHealth.FollowingNeurologicalConditionsPageOLS;
-import com.acurian.selenium.pages.blinx.ams.generalHealth.SiteSelectionPageOLS;
 import com.acurian.selenium.pages.blinx.ams.shared.BehalfOfSomeoneElsePageOLS;
 import com.acurian.selenium.pages.blinx.ams.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.blinx.ams.shared.GenderPageOLS;
 import com.acurian.selenium.pages.blinx.gmega.DigestiveConditionsPageOLS;
-import com.acurian.selenium.pages.blinx.gmega.WhenYouDiagnosedWithRaGmegaPageOLS;
+import com.acurian.selenium.pages.blinx.gmega.SiteSelectionPageOLS;
+import com.acurian.selenium.pages.blinx.gmega.ThankYouCloseGmegaOLS;
+import com.acurian.selenium.pages.blinx.gmega.UnqualifiedCloseOLS_GMEGA;
 import com.acurian.selenium.pages.blinx.gmega.intro.IdentificationPageOLS;
+import com.acurian.utils.Properties;
 import io.qameta.allure.Description;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class SiteLatLong extends BaseTest {
+public class Dispo3CdisqualifyType2Blinx extends BaseTest {
 
-    @Test
-    @Description("Test for user lat long after zip")
-    public void patientLatLongTest() {
+    @Test(enabled= true)
+    @Description("Dispo 3C DisQualify Type2")
+    public void dispo3Ctype2() {
         String phoneNumber = "AUTGMEGA01";
-//        String studyName = "Arthritis, a low back pain study, a rheumatoid arthritis (RA)";
-        String siteName = "AUT_GRA1_Site";
-        String zipCode = "19901";
         String env = System.getProperty("acurian.env", "STG");
-        String studyName = env.equals("QA") ?
-                "Arthritis,a low back pain study,a rheumatoid arthritis (RA)" : "Arthritis, a low back pain study, a rheumatoid arthritis (RA)";
+        String zipCode = "99546";
 
-        DebugPageOLS debugPageOLS = new DebugPageOLS();
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         BehalfOfSomeoneElsePageOLS behalfOfSomeoneElsePageOLS = dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
@@ -44,9 +39,11 @@ public class SiteLatLong extends BaseTest {
                 .clickOnAnswer("Self")
                 .clickNextButton(new IdentificationPageOLS());
 
+
         GenderPageOLS genderPageOLS = identificationPageOLS
                 .waitForPageLoadNotQ()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
+                        "9999999999", zipCode)
                 .clickNextButton(new GenderPageOLS());
 
         ApproximateHeightPageOLS approximateHeightPageOLS = genderPageOLS
@@ -74,22 +71,27 @@ public class SiteLatLong extends BaseTest {
                 .clickOnAnswers("Any type of arthritis")
                 .clickNextButton(new WhatKindOfArthritisPageOLS());
 
-        WhenYouDiagnosedWithRaGmegaPageOLS whenYouDiagnosedWithRaGmegaPageOLS = whatKindOfArthritisPageOLS
+        UnqualifiedCloseOLS_GMEGA unqualifiedCloseOLS_gmega = whatKindOfArthritisPageOLS
                 .waitForPageLoad()
-                .clickOnAnswers("Rheumatoid arthritis, a serious medical condition caused by your immune system attacking your joints")
-                .clickNextButton(new WhenYouDiagnosedWithRaGmegaPageOLS());
+                .clickOnAnswers("Psoriatic Arthritis")
+                .clickNextButton(new UnqualifiedCloseOLS_GMEGA());
 
-        whenYouDiagnosedWithRaGmegaPageOLS
+        AboutHealthPageOLS aboutHealthPageOLS = unqualifiedCloseOLS_gmega
                 .waitForPageLoad()
-                .clickOnAnswer("7 - 11 months ago")
-                .clickNextButton(identificationPageOLS)
-                .waitForPageLoadGMEGA()
-                .clickNextButton(new SiteSelectionPageOLS())
-                .waitForPageLoad(studyName)
-                //.waitForPageLoadNONE()
+                .getPage(new SiteSelectionPageOLS())
                 .getPID()
-                .clickOnFacilityName(siteName);
-        //bug, fix after fix :D
-        Assert.assertEquals(debugPageOLS.getPatientLatLongText(), "Patient LatLong: 0, 0", "Patient lat long is diff");
+                .getPage(unqualifiedCloseOLS_gmega)
+                .clickOnAnswer("No")
+                .clickNextButton(new ThankYouCloseGmegaOLS())
+                .waitForPageLoad()
+                .clickNextButton(new AboutHealthPageOLS());
+        if (aboutHealthPageOLS.getHostName().equals(Properties.getHostName())) {
+            aboutHealthPageOLS
+                    .waitForPageLoad()
+                    .pidFromDbToLog(env)
+                    .dispoShouldMatch("3C")
+                    .copyRun(env)
+                    .childPidFromDbToLog(env);
+        }
     }
 }
