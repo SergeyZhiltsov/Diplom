@@ -48,6 +48,7 @@ public class AlzheimerClosePageOLS extends MainPageBlinx {
     }
     @Step
     public AlzheimerClosePageOLS waitForPageLoadPRD() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpectedPRD);
         return this;
     }

@@ -25,7 +25,7 @@ public class ChatFillTest extends BaseTest {
 
     String env = System.getProperty("acurian.env", "QA");
 
-    @Test(dataProvider = "SBUserCredentials", dataProviderClass = DataProviderPool.class)
+    @Test(dataProvider = "SBUserCredentials", dataProviderClass = DataProviderPool.class, enabled = false)
     public void chatFillTest(String userName, String password) {
         String phoneNumber = "GBAN100001";
         //String testUrl = "https://test-screener.acurian.com/questionnaire_test_qa_chartfill/welcome?pn=" + phoneNumber;
