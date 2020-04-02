@@ -15,10 +15,10 @@ public class MostImportantChoiceOLS extends MainPageBlinx {
     public final String titleExpected = "Most important choice will be. Select \"A\" and You IN_FLARE.\n" +
             "Select \"B\" or \"C\" and You get NON_FLARE";
 
-    @FindBy(xpath = "//div[contains(@class, 'question_text')]//div[contains(@class, 'visible-md-block')]")
+    @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS_BLINX)
     WebElement titleText;
 
-    @FindBy(xpath = Locators.CHEKBOX_LIST2_OLS)
+    @FindBy(xpath = "//div[@class='answer-text']")
     List<WebElement> checkBoxList;
 
     public MostImportantChoiceOLS() {

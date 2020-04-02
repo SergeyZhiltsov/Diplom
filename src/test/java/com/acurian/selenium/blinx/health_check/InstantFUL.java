@@ -93,13 +93,13 @@ public class InstantFUL extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("7 - 11 months ago")
                 .clickNextButton(identificationPageOLS)
-                .waitForPageLoadGMEGA()
+                .waitForPageLoad()
                 .clickNextButton(new SiteSelectionPageOLS());
 
         siteSelectionPageOLS
                 .waitForPageLoad(studyNameClose)
-                .clickOnFacilityName(site.name)
-                .getPID();
+                .clickOnFacilityName(site.name);
+//                .getPID();
         QualifiedClose2PageOLS qualifiedClose2PageOLS = siteSelectionPageOLS
                 .clickNextButton(new QualifiedClose2PageOLS());
 

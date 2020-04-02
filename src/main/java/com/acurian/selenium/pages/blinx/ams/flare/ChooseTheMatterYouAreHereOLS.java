@@ -15,10 +15,10 @@ public class ChooseTheMatterYouAreHereOLS  extends MainPageBlinx {
     public final String titleExpected = "Choose the matter you are here, Your opinion is free. Q with options A or B, DQ with option C !!!";
     public final String titleExpectedQA = "Choose the matter you are here, Your opinion is free:  Q if options A or B, DQ with option C !!!";
 
-    @FindBy(xpath = "//div[contains(@class, 'question_text')]//div[contains(@class, 'visible-md-block')]")
+    @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS_BLINX)
     WebElement titleText;
 
-    @FindBy(xpath = Locators.CHEKBOX_LIST2_OLS)
+    @FindBy(xpath = Locators.CHEKBOX_LIST_OLS_BLINX)
     List<WebElement> checkBoxList;
 
     public ChooseTheMatterYouAreHereOLS() {

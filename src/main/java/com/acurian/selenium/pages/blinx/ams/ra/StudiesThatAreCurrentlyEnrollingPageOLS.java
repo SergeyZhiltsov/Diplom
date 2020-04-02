@@ -13,10 +13,10 @@ public class StudiesThatAreCurrentlyEnrollingPageOLS extends MainPageBlinx {
 
     public final String titleExpected = "We may have other research studies that are currently enrolling patients in your area. Would you like to see if we have another study that you are interested in?";
 
-    @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
+    @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS_BLINX)
     WebElement titleText;
 
-    @FindBy(xpath = Locators.RADIO_BUTTON_LIST_OLS)
+    @FindBy(xpath = "//div[@class='answer-text']")
     List<WebElement> radioButtonsList;
 
     public StudiesThatAreCurrentlyEnrollingPageOLS() {

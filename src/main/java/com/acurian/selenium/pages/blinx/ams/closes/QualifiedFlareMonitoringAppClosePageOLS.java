@@ -26,10 +26,10 @@ public class QualifiedFlareMonitoringAppClosePageOLS extends MainPageBlinx {
 
     public final String titleExpectedQuestion = "Please confirm your email address to ensure you receive your My Colo activation key email.";
 
-    @FindBy(xpath = "(//*[contains(@class, 'visible-md-block')][contains(@class, 'ng-scope')])[2]")
+    @FindBy(xpath = "//div[@class='question-text']")
     WebElement titleTextQuestion;
 
-    @FindBy(xpath = "//div[@class='question']")
+    @FindBy(xpath = "//div[@class='question-text']")
     WebElement titleText;
 
     @FindBy(xpath = "(//div[contains(@class, 'question-text')])[2]")
@@ -71,7 +71,7 @@ public class QualifiedFlareMonitoringAppClosePageOLS extends MainPageBlinx {
 
     @Step
     public QualifiedFlareMonitoringAppClosePageOLS waitForPageLoadHealthCheck() {
-        waitForPageLoadMain(titleTextQuestion, titleExpectedQuestion);
+        waitForPageLoadMain(titleTextQuestion, titleExpectedHealthCheck);
         return this;
     }
 
