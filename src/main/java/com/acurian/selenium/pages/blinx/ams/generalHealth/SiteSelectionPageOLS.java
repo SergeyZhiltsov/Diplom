@@ -22,6 +22,9 @@ public class SiteSelectionPageOLS extends MainPageBlinx {
     @Parameter("My PID OLS")
     public String pidNumber;
 
+    public final String titleNONE = "Good news! You have been matched with the doctor(s) below for None!\n" +
+            "Please select a doctor and click the \"Next\" button.";
+
     public final String titleExpected = "Good news! You have been matched with the doctor(s) below for %s\n" +
             "Please select a doctor and click the \"Next\" button.";
 
@@ -72,6 +75,7 @@ public class SiteSelectionPageOLS extends MainPageBlinx {
     public SiteSelectionPageOLS waitForPageLoad(String studyName) {
 //        waitforVisibility(loadingAnimation);
 //        waitForAbsence(loadingAnimation);
+        waitForAnimation();
         waitForPageLoadMain(titleText, String.format(titleExpected, studyName));
         attachPageScreenshot();
         return this;
@@ -89,6 +93,14 @@ public class SiteSelectionPageOLS extends MainPageBlinx {
 
     private SiteSelectionPageOLS clickShowOthersAdditionalLocations() {
         waitAndClickWebElement(showOthersAdditionalLocations);
+        return this;
+    }
+
+    @Step
+    public SiteSelectionPageOLS waitForPageLoadNONE() {
+        waitForAnimation();
+        String titleExpectedMod1 = String.format(titleNONE);
+        waitForPageLoadMain(titleText, titleExpectedMod1);
         return this;
     }
 

@@ -41,12 +41,12 @@ public class IBS_5019_OLSBlinx extends BaseTest {
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
-                .waitForPageLoadGMEGA(studyName, "300");
+                .waitForPageLoadCrohnsNew(studyName, "300");
 //        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS
 //                .getExpectedModifiedTitle(studyName, "300"), "Title is diff");
 
         dateOfBirthPageOLS
-                .waitForPageLoadGMEGA(studyName, "300")
+                .waitForPageLoadCrohnsNew(studyName, "300")
                 .clickOnAnswer("No");
 
         LessThan18YearsOldPageOLS lessThan18YearsOldPageOLS = new LessThan18YearsOldPageOLS();
@@ -56,7 +56,7 @@ public class IBS_5019_OLSBlinx extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
                 .back(dateOfBirthPageOLS)
-                .waitForPageLoadGMEGA(studyName, "300")
+                .waitForPageLoadCrohnsNew(studyName, "300")
                 .clickOnAnswer("Yes");
 
         ZipCodePageOLS zipCodePageOLS = new ZipCodePageOLS();
@@ -672,10 +672,10 @@ public class IBS_5019_OLSBlinx extends BaseTest {
                 .clickNextButton(new IdentificationPageOLS());
 
         AboutHealthPageOLS aboutHealthPageOLS = identificationPageOLS
-                .waitForPageLoadNew()
+                .waitForPageLoad2()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999")
                 .clickNextButton(new SiteSelectionPageOLS())
-                .waitForPageLoad("an irritable bowel syndrome (IBS)")
+                .waitForPageLoad("an irritable bowel syndrome (IBS) study")
                 .getPID()
                 .clickOnFacilityName(site.name)
                 .clickNextButton(new QualifiedClose2PageOLS())

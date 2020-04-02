@@ -50,7 +50,7 @@ public class Crohns_LC_4912_OLSBlinx extends BaseTest {
         DebugPageOLS debugPageOLS = new DebugPageOLS();
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS.openPage(env, phoneNumber)
-                .waitForPageLoadGMEGA("a Crohn's study", "700")
+                .waitForPageLoadCrohnsNew("a Crohn's study", "700")
                 .clickOnAnswer("No");
 
         LessThan18YearsOldPageOLS lessThan18YearsOldPage_OLS = new LessThan18YearsOldPageOLS();
@@ -63,7 +63,7 @@ public class Crohns_LC_4912_OLSBlinx extends BaseTest {
                 .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
                 .back(dateOfBirthPageOLS);
         dateOfBirthPageOLS
-                .waitForPageLoadGMEGA("a Crohn's study", "700")
+                .waitForPageLoadCrohnsNew("a Crohn's study", "700")
                 .clickOnAnswer("Yes");
         ZipCodePageOLS zipCodePageOLS = new ZipCodePageOLS();
 //                .clickOnAnswer("Yes");

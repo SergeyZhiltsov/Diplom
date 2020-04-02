@@ -28,7 +28,7 @@ public class Derm_4967_OLSBlinx extends BaseTest {
 
     private static Logger Log = LogManager.getLogger(CV_8983_OLSBlinx.class.getName());
 
-    @Test()
+    @Test(enabled = false)
     public void derm4967blinx() {
         Site site = Site.AUT_AMS1_4967_site;
         final String phoneNumber = "AUTAMS1KAD";

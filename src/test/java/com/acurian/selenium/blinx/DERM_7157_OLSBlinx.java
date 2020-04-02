@@ -58,6 +58,7 @@ public class DERM_7157_OLSBlinx extends BaseTest {
         LessThan18YearsOldPageOLS lessThan18YearsOldPage_OLS = dateOfBirthPageOLS
                 .clickOnAnswer("No")
                 .getPage(new LessThan18YearsOldPageOLS());
+
         lessThan18YearsOldPage_OLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
@@ -612,7 +613,7 @@ public class DERM_7157_OLSBlinx extends BaseTest {
                 .clickNextButton(identificationPageOLS);
 
         SiteSelectionPageOLS siteSelectionPageOLS = identificationPageOLS
-                .waitForPageLoadNew()
+                .waitForPageLoad2()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
                         "9999999999")
                 .clickNextButton(new SiteSelectionPageOLS());

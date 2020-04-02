@@ -7,7 +7,7 @@
     </listeners>
     <test name="Regression1">
         <packages>
-            <package name="com.acurian.selenium.SB" />
+            <package name="com.acurian.selenium.SB.dependentScreeners.SBStandAloneScreenerPart"/>
         </packages>
     </test>
 

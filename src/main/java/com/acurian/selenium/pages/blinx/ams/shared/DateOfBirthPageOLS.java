@@ -34,9 +34,11 @@ public class DateOfBirthPageOLS extends MainPageBlinx {
             "No-cost study medication";
 
 
+
     private final String titleExpectedPart2 = "Are you age 18 or older?";
 
     public final String titleAHExpected = "Let's get started to see if there is a study that’s right for you!";
+
     public final String titleExpected1 = "The Generation Study is enrolling now.";
 
     @FindBy(xpath = "//div[@id='questions']/div[1]//span[@class='show-in-ols']")
@@ -70,7 +72,6 @@ public class DateOfBirthPageOLS extends MainPageBlinx {
     @Step
     public DateOfBirthPageOLS waitForPageLoadGMEGA(String indication, String compensation) {
         waitForAnimation();
-        waitForAnimation();
         waitForPageLoadMain(titleText, getExpectedModifiedTitle2(indication, compensation));
         return this;
     }
@@ -92,13 +93,21 @@ public class DateOfBirthPageOLS extends MainPageBlinx {
     @Step
     public DateOfBirthPageOLS waitForPageLoadCV5034(String indication, String compensation) {
         waitForAnimation();
-        waitForPageLoadMain(titleTextPart1, String.format(titleExpectedPart1, indication, compensation));
+        waitForPageLoadMain(titleTextPart1, String.format(titleExpected, indication, compensation));
         waitForPageLoadMain(titleTextPart2, titleExpectedPart2);
         return this;
     }
 
     @Step
     public DateOfBirthPageOLS waitForPageLoad(String indication, String compensation) {
+        waitForAnimation();
+        waitForPageLoadMain(titleTextPartGMEGA1, String.format(titleExpectedPart1, indication, compensation));
+        waitForPageLoadMain(titleTextPartGMEGA2, titleExpectedPart2);
+        return this;
+    }
+
+    @Step
+    public DateOfBirthPageOLS waitForPageLoadCrohnsNew(String indication, String compensation) {
         waitForAnimation();
         waitForPageLoadMain(titleTextPartGMEGA1, String.format(titleExpectedPart1, indication, compensation));
         waitForPageLoadMain(titleTextPartGMEGA2, titleExpectedPart2);
@@ -155,6 +164,10 @@ public class DateOfBirthPageOLS extends MainPageBlinx {
 
     @Step
     public String getTitleText2() {
+        return getText(titleTextPart);
+    }
+
+    public String getTitleText() {
         return getText(titleTextPart);
     }
 

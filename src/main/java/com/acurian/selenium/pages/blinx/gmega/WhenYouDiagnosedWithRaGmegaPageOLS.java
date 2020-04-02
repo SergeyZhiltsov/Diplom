@@ -25,6 +25,7 @@ public class WhenYouDiagnosedWithRaGmegaPageOLS extends MainPageBlinx {
 
     @Step
     public WhenYouDiagnosedWithRaGmegaPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
