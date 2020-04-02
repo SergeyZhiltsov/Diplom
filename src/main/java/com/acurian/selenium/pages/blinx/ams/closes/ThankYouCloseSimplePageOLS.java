@@ -27,6 +27,7 @@ public class ThankYouCloseSimplePageOLS extends MainPageBlinx {
 
     @Step
     public ThankYouCloseSimplePageOLS waitForPageLoad2() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected2);
         return this;
     }

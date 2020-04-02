@@ -25,12 +25,14 @@ public class ThankYouCloseGmegaOLS extends MainPageBlinx {
 
     @Step
     public ThankYouCloseGmegaOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
     public ThankYouCloseGmegaOLS waitForPageLoadByTitle(String title) {
+        waitForAnimation();
         waitForPageLoadMain(titleText, title);
         return this;
     }

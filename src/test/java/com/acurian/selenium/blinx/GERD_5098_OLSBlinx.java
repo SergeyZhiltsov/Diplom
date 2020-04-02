@@ -258,6 +258,8 @@ public class GERD_5098_OLSBlinx extends BaseTest {
                 .clickOnAnswers("Erosive esophagitis or esophageal erosions, sores or breaks in the lining of the esophagus")
                 .clickNextButton(new WhatTypeOfSurgeryDidYouHave_OLS());
 
+        UseMarijuanaOrCannabisOLS useMarijuanaOrCannabisOLS = new UseMarijuanaOrCannabisOLS();
+
         WhenDidYouHaveAppendixRemoved_OLS whenDidYouHaveAppendixRemoved_OLS = whatTypeOfSurgeryDidYouHave_OLS
                 .waitForPageLoad()
                 .clickOnAnswers("Appendix removed - Appendectomy",
@@ -266,24 +268,8 @@ public class GERD_5098_OLSBlinx extends BaseTest {
                         "Tonsils removed - Tonsillectomy",
                         "Hemorrhoids removed - Hemorrhoidectomy")
                 .clickNextButton(new WhenDidYouHaveAppendixRemoved_OLS());
-        whenDidYouHaveAppendixRemoved_OLS
-                .waitForPageLoad(1, whenDidYouHaveAppendixRemoved_OLS.titleExpected1)
-                .waitForPageLoad(2, whenDidYouHaveAppendixRemoved_OLS.titleExpected2)
-                .waitForPageLoad(3, whenDidYouHaveAppendixRemoved_OLS.titleExpected3);
-//        WeightLossSurgeryPageOLS weightLossSurgeryPageOLS = whenDidYouHaveAppendixRemoved_OLS
-//                .clickOnAnswerForSubQuestion(1, "1 - 3 months ago")
-//                .clickOnAnswerForSubQuestion(2, "4 - 6 months ago")
-//                .clickOnAnswerForSubQuestion(3, "Less than 1 month ago")
-//                .clickNextButton(new WeightLossSurgeryPageOLS())
-//                .waitForPageLoad()
-//                .getPage(debugPageOLS)
-//                .checkProtocolsContainsForQNumber("QS6311", site.activeProtocols)
-//                .back(new WeightLossSurgeryPageOLS());
-
-        UseMarijuanaOrCannabisOLS useMarijuanaOrCannabisOLS = new UseMarijuanaOrCannabisOLS();
-
         WeightLossSurgeryPageOLS weightLossSurgeryPageOLS = whenDidYouHaveAppendixRemoved_OLS
-                .waitForPageLoad(1, whenDidYouHaveAppendixRemoved_OLS.titleExpected1)
+                .waitForPageLoad()
                 .clickOnAnswerForSubQuestion(1, "4 - 6 months ago")
                 .clickOnAnswerForSubQuestion(2, "More than 6 months ago")
                 .clickOnAnswerForSubQuestion(3, "More than 6 months ago")
@@ -297,9 +283,7 @@ public class GERD_5098_OLSBlinx extends BaseTest {
                 .back(weightLossSurgeryPageOLS)
                 .waitForPageLoad()
                 .back(whenDidYouHaveAppendixRemoved_OLS)
-                .waitForPageLoad(1, whenDidYouHaveAppendixRemoved_OLS.titleExpected1)
-                .waitForPageLoad(2, whenDidYouHaveAppendixRemoved_OLS.titleExpected2)
-                .waitForPageLoad(3, whenDidYouHaveAppendixRemoved_OLS.titleExpected3)
+                .waitForPageLoad()
                 .back(whatTypeOfSurgeryDidYouHave_OLS);
 
 //        whatTypeOfSurgeryDidYouHave_OLS
@@ -312,6 +296,7 @@ public class GERD_5098_OLSBlinx extends BaseTest {
 //                .checkProtocolsContainsForQNumber("QS6310", site.activeProtocols)
 //                .back();
         whatTypeOfSurgeryDidYouHave_OLS
+                .waitForPageLoad()
                 .back(everDiagnosedWithFollowingConditionsOLS);
 
         everDiagnosedWithFollowingConditionsOLS
@@ -709,20 +694,20 @@ public class GERD_5098_OLSBlinx extends BaseTest {
         // ----------PII (IdentificationPageOLS)
 
         identificationPageOLS
-                .waitForPageLoad()
+                .waitForPageLoad2()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999");
         SiteSelectionPageOLS siteSelectionPageOLS = identificationPageOLS
                 .clickNextButton(new SiteSelectionPageOLS());
 
         //----------SiteSelection Page--------------------
         AboutHealthPageOLS aboutHealthPageOLS = siteSelectionPageOLS
-                .waitForPageLoad5("a heartburn or reflux study, " + studyName)
+                .waitForPageLoad5("a heartburn or reflux study, " + studyName + " study!")
                 .getPID()
                 .clickOnFacilityName(site.name)
                 .clickNextButton(new QualifiedClose2PageOLS())
-                .waitForPageLoad1()
+                .waitForPageLoad3()
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
-                .waitForPageLoad2()
+                .waitForPageLoad3()
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad();
         if (aboutHealthPageOLS.getHostName().equals(Properties.getHostName())) {

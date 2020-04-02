@@ -692,6 +692,7 @@ public class GAST_9279_OLSBlinx extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Kidney disease requiring dialysis")
                 .clickNextButton(approximateHeightPageOLS)
+                .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS61", site.activeProtocols)
                 .back(doAnyOftheFollowingAdditionalDiagnosesOLS);

@@ -324,9 +324,10 @@ public class Chronic_4471_OLSBlinx extends BaseTest {
         AboutHealthPageOLS aboutHealthPageOLS = thankYouCloseSimplePageOLS
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS());
+        aboutHealthPageOLS
+                .waitForPageLoad();
         if(aboutHealthPageOLS.getHostName().equals(Properties.getHostName())) {
             aboutHealthPageOLS
-                    .waitForPageLoad()
                     .pidFromDbToLog(env)
                     .childPidFromDbToLog(env)
                     .assertGeneratedFul(env, site)

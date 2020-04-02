@@ -25,6 +25,7 @@ public class AdobeSignMedAuthFormPage extends MainPageBlinx {
 
     @Step
     public AdobeSignMedAuthFormPage waitForPageLoad() {
+        waitForAnimation();
         getDriver().switchTo().frame("adobeSign");
         waitForPageLoadMain(titleText, titleTextExpected);
         return this;

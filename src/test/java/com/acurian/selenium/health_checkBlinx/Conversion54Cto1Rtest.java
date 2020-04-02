@@ -2,34 +2,29 @@ package com.acurian.selenium.health_checkBlinx;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.blinx.ams.closes.*;
+import com.acurian.selenium.pages.blinx.ams.closes.HSGeneralPageOLS;
 import com.acurian.selenium.pages.blinx.ams.derm.WhatKindOfArthritisPageOLS;
 import com.acurian.selenium.pages.blinx.ams.generalHealth.BoneOrJointConditionsPageOLS;
 import com.acurian.selenium.pages.blinx.ams.shared.BehalfOfSomeoneElsePageOLS;
 import com.acurian.selenium.pages.blinx.ams.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.blinx.ams.shared.GenderPageOLS;
 import com.acurian.selenium.pages.blinx.gmega.SiteSelectionPageOLS;
-import com.acurian.selenium.pages.blinx.gmega.ThankYouCloseGmegaOLS;
 import com.acurian.selenium.pages.blinx.gmega.WhenYouDiagnosedWithRaGmegaPageOLS;
 import com.acurian.selenium.pages.blinx.gmega.intro.IdentificationPageOLS;
 import com.acurian.utils.Properties;
 import io.qameta.allure.Description;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.testng.annotations.Test;
 
-public class HelloSignOls extends BaseTest {
-
-    private static Logger Log = LogManager.getLogger(com.acurian.selenium.health_check.HelloSignOls.class.getName());
+public class Conversion54Cto1Rtest extends BaseTest {
 
     @Test(enabled = true)
-    @Description("Test for Hello Sign")
-    public void helloSignOlsTest() {
+    @Description("Conversion 54 to 1R test")
+    public void conversion54Cto1R() {
         Site site = Site.AUT_GRA1_Site;
         String phoneNumber = "AUTGMEGA03"; //Indication RA
         String studyName = "a rheumatoid arthritis (RA)";
 
-        String env = System.getProperty("acurian.env", "QA");
+        String env = System.getProperty("acurian.env", "STG");
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         BehalfOfSomeoneElsePageOLS behalfOfSomeoneElsePageOLS = dateOfBirthPageOLS
@@ -49,7 +44,7 @@ public class HelloSignOls extends BaseTest {
                 .clickNextButton(new GenderPageOLS());
 
         WhatKindOfArthritisPageOLS whatKindOfArthritisPageOLS = genderPageOLS
-                .waitForPageLoadGMEGASelect()
+                .waitForPageLoadGMEGAConfirm()
                 .clickOnAnswer("Female")
                 .clickNextButton(new WhatKindOfArthritisPageOLS()); //BoneOrJointConditionsPageOLS
 
@@ -69,34 +64,20 @@ public class HelloSignOls extends BaseTest {
                 .clickNextButton(identificationPageOLS);
 
         HSGeneralPageOLS hsGeneralPageOLS = identificationPageOLS
-                .waitForPageLoad2()
+                .waitForPageLoadGMEGA()
                 .clickNextButton(new SiteSelectionPageOLS())
                 .waitForPageLoad2(studyName + " study!")
                 .getPID()
                 .clickOnFacilityName(site.name)
                 .clickNextButton(new HSGeneralPageOLS());
 
-        DoctorInformationCollectionPageOLS doctorInformationCollectionPageOLS = hsGeneralPageOLS
-                .waitForPageLoad()
-                .clickNextButton(new DoctorInformationCollectionPageOLS());
-
-        HS1PageOLS hs1PageOLS = doctorInformationCollectionPageOLS
-                .waitForPageLoad()
-                .clickNextButton(new HS1PageOLS());
-
-        hs1PageOLS
-                .waitForPageLoad()
-                .clickOkInPopUp()
-                .setSignature();
-
-        ThankYouCloseGmegaOLS thankYouCloseGmegaOLS = new ThankYouCloseGmegaOLS();
-        AboutHealthPageOLS aboutHealthPageOLS = thankYouCloseGmegaOLS
-                .waitForPageLoad()
-                .clickNextButton(new AboutHealthPageOLS());
-        if (aboutHealthPageOLS.getHostName().equals(Properties.getHostName())) {
-            aboutHealthPageOLS
-                    .waitForPageLoad()
-                    .pidFromDbToLog(env);
+        hsGeneralPageOLS
+                .waitForPageLoadByTitle(hsGeneralPageOLS.titleRaExpectedQA);
+        if (hsGeneralPageOLS.getHostName().equals(Properties.getHostName())) {
+            hsGeneralPageOLS
+                    .pidFromDbToLog(env)
+                    .convert54Cto1R(env)
+                    .dispoShouldMatch(site.dispo);
         }
     }
 }

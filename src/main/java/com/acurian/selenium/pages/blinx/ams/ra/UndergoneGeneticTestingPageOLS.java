@@ -25,6 +25,7 @@ public class UndergoneGeneticTestingPageOLS extends MainPageBlinx {
 
     @Step
     public UndergoneGeneticTestingPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
