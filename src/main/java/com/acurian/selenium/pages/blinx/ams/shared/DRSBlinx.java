@@ -20,7 +20,7 @@ public class DRSBlinx extends MainPageBlinx {
 
     public final String titleExpectedUnf= "Unfortunately there are no available or convenient appointments at this site at the moment.";
 
-    @FindBy(xpath = "//*[@id='siteScheduler']/div[1]/div/div[1]")
+    @FindBy(xpath = "//div[@class='col-12 p-0']/div[@class='row no-gutters translation']")
     WebElement titleText;
 
     @FindBy(xpath = "//*[@id='noAppointmentsSubmit']")
@@ -135,7 +135,6 @@ public class DRSBlinx extends MainPageBlinx {
 
     @Step
     public DRSBlinx waitForPageLoadBlinx() {
-            threadSleep(5);
             waitForAnimation();
             waitForPageLoadMain(titleText, titleExpected);
             return this;

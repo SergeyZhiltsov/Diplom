@@ -52,7 +52,7 @@ public class VerityScoreTest extends BaseTest {
                 .clickNextButton(new GenderPageOLS());
 
         WhatKindOfArthritisPageOLS whatKindOfArthritisPageOLS = genderPageOLS
-                .waitForPageLoadByTitle(genderPageOLS.titleExpected)
+                .waitForPageLoadGMEGAConfirm()
                 .clickOnAnswer("Female")
                 .clickNextButton(new WhatKindOfArthritisPageOLS());
 
@@ -74,8 +74,8 @@ public class VerityScoreTest extends BaseTest {
         identificationPageOLS
                 .waitForPageLoadGMEGA()
                 .clickNextButton(new SiteSelectionPageOLS())
-                //.waitForPageLoad(studyName)
-                .waitForPageLoadNONE()
+                .waitForPageLoad(studyName)
+//                .waitForPageLoadNONE()
                 .getPID()
                 .clickOnFacilityName(site.name);
         HSGeneralPageOLS hsGeneralPageOLS = identificationPageOLS

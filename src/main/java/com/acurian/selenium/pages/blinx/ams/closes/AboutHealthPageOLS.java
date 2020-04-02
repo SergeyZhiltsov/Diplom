@@ -14,8 +14,12 @@ public class AboutHealthPageOLS extends MainPageBlinx {
 
     @Step
     public AboutHealthPageOLS waitForPageLoad() {
-        waitForAnimation();
-        waitForPageLoadMain(titleText, titleExpected);
+        try {
+            waitForPageLoadMain(titleText, titleExpected);
+        } catch (Exception e) {
+            logTextToAllureAndConsole("AboutHealth Page uploaded for more than 20 seconds");
+            waitForPageLoadMain(titleText, titleExpected);
+        }
         return this;
     }
 
