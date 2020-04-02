@@ -47,7 +47,7 @@ public class Dispo1RqualifiedReferralBlinx extends BaseTest {
                 .clickNextButton(new GenderPageOLS());
 
         ApproximateHeightPageOLS approximateHeightPageOLS = genderPageOLS
-                .waitForPageLoadGMEGA()
+                .waitForPageLoad()
                 .clickOnAnswer("Female")
                 .clickNextButton(new ApproximateHeightPageOLS());
 
