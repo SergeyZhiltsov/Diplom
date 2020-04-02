@@ -36,7 +36,7 @@ public class DERM_4967_OLS extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "sites")
+    @Test(dataProvider = "sites", enabled = false)
     @Description("DERM 4967 Regeneron Atopic Derm")
     public void derm4967Ols(Site site) {
         final String phoneNumber = "AUTAMS1KAD";

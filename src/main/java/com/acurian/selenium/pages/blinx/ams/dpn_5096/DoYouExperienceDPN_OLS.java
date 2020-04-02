@@ -36,6 +36,7 @@ public class DoYouExperienceDPN_OLS extends MainPageBlinx {
 
     @Step
     public DoYouExperienceDPN_OLS waitForPageLoadNew() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpectedNew);
         return this;
     }

@@ -38,6 +38,12 @@ public class HSGeneralPageOLS extends MainPageBlinx {
             "\n" +
             "You will need to provide us with some information on the doctors who are treating or have treated your condition.  We will then email you a link where you can verify your information and e-sign a release form so that we can obtain your records.";
 
+    public final String titleRaExpectedNew = "Your medical records related to your Low Back Pain, Arthritis, Rheumatoid Arthritis, Diabetes history are required for the study doctor to evaluate you for participation.  In order to help make this process easier for you, we have a free service that will obtain these records on your behalf.\n" +
+            "\n" +
+            "Please be assured that your records will be kept confidential and only shared with the research facility.\n" +
+            "\n" +
+            "You will need to provide us with some information on the doctors who are treating or have treated your condition.  We will then email you a link where you can verify your information and e-sign a release form so that we can obtain your records.";
+
     public final String titleRaExpectedSTGGMEGA3 = "Your medical records related to your Diabetes, Low Back Pain, Arthritis, Rheumatoid Arthritis history are required for the study doctor to evaluate you for participation.  In order to help make this process easier for you, we have a free service that will obtain these records on your behalf.\n" +
             "\n" +
             "Please be assured that your records will be kept confidential and only shared with the research facility.\n" +
@@ -67,6 +73,10 @@ public class HSGeneralPageOLS extends MainPageBlinx {
 
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
     WebElement titleTextGMEGA;
+
+    @FindBy(xpath = "//div[@id='questions']//div[@class='show-in-ols']")
+    WebElement titleTextNew;
+
 
     @FindBy(xpath = "//input[@type='email']")
     WebElement emailBox;
@@ -110,6 +120,12 @@ public class HSGeneralPageOLS extends MainPageBlinx {
     public HSGeneralPageOLS waitForPageLoadByTitleGMEGA(String titleExpected) {
         waitForAnimation();
         waitForPageLoadMain(titleTextGMEGA, titleExpected);
+        return this;
+    }
+    @Step
+    public HSGeneralPageOLS waitForPageLoadByTitleNew(String titleExpected) {
+        waitForAnimation();
+        waitForPageLoadMain(titleTextNew, titleExpected);
         return this;
     }
 

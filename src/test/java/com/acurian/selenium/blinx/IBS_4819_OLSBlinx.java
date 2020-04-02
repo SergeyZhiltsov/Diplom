@@ -42,7 +42,7 @@ public class IBS_4819_OLSBlinx extends BaseTest {
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
-                .waitForPageLoadGMEGA("an irritable bowel syndrome (IBS) study", "300");
+                .waitForPageLoadCrohnsNew("an irritable bowel syndrome (IBS) study", "300");
 //        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.
 //                        getExpectedModifiedTitle("an irritable bowel syndrome (IBS) study", "300"),
 //                "Title is diff");
@@ -55,7 +55,7 @@ public class IBS_4819_OLSBlinx extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
                 .back(dateOfBirthPageOLS)
-                .waitForPageLoadGMEGA("an irritable bowel syndrome (IBS) study", "300")
+                .waitForPageLoadCrohnsNew("an irritable bowel syndrome (IBS) study", "300")
                 .clickOnAnswer("Yes");
 
         ZipCodePageOLS zipCodePageOLS = new ZipCodePageOLS();

@@ -344,6 +344,13 @@ public class MainPageBlinx extends BasePage {
             e.printStackTrace();
         }
     }
+    @Step
+    public MainPageBlinx flareCodeShouldMatch(String env, String statusCode) {
+        String flareStatus = getDbConnection().dbGetStatusFlare(env, pid);
+        textToAttachment("Flare : current status = "+ flareStatus + " for childPID " + pid);
+        Assert.assertEquals(flareStatus, statusCode, "Current status for Flare is diff");
+        return this;
+    }
 
     @Step
     public MainPageBlinx getPID(){
