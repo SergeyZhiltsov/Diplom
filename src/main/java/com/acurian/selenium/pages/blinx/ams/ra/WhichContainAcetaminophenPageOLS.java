@@ -14,10 +14,10 @@ public class WhichContainAcetaminophenPageOLS extends MainPageBlinx {
     public final String titleExpected = "Have you ever treated your arthritis pain with any of the following medications which contain acetaminophen?";
 
 
-    @FindBy(xpath = Locators.BASIC_TITLE2_WITH_CHECKBOXES_BUTTON_OLS)
+    @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS_BLINX)
     WebElement titleText;
 
-    @FindBy(xpath = Locators.CHEKBOX_LIST2_OLS)
+    @FindBy(xpath = Locators.CHEKBOX_LIST_OLS_BLINX)
     List<WebElement> checkBoxList;
 
     public WhichContainAcetaminophenPageOLS() {

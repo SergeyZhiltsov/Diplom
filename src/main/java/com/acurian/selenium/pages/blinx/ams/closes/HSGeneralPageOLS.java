@@ -50,7 +50,7 @@ public class HSGeneralPageOLS extends MainPageBlinx {
             "\n" +
             "You will need to provide us with some information on the doctors who are treating or have treated your condition.  We will then email you a link where you can verify your information and e-sign a release form so that we can obtain your records.";
 
-    public final String titleRaExpectedQA = "Your medical records related to your ";
+    public final String titleRaExpectedQA =  "Your medical records related to your Low Back Pain, Diabetes, Arthritis, Rheumatoid Arthritis history are required for the study doctor to evaluate you for participation.  In order to help make this process easier for you, we have a free service that will obtain these records on your behalf.";
 
     public final String titleRa1Expected = "Your medical records related to your Low Back Pain, Diabetes, Arthritis, " +
             "Rheumatoid Arthritis history are required for the study doctor to evaluate you for participation. " +
@@ -86,10 +86,10 @@ public class HSGeneralPageOLS extends MainPageBlinx {
     }
 
     @Step
-    public HSGeneralPageOLS waitForPageLoad(String siteIndication) {
+    public HSGeneralPageOLS waitForPageLoad() {
         waitForAnimation();
-        String titleExpectedMod = String.format(titleExpected, siteIndication);
-        waitForPageLoadMain(titleText, titleExpectedMod);
+//        String titleExpectedMod = String.format(titleExpected, siteIndication);
+        waitForPageLoadMain(titleText, titleRaExpectedQA);
         return this;
     }
 

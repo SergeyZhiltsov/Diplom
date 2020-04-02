@@ -17,7 +17,7 @@ public class HS1PageOLS extends MainPageBlinx {
 
     public final String titleExpected = "If the e-signature form did not appear or if you were unable to complete the Medical Record Release process please do not worry. We will contact you if additional information is needed.";
 
-    @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
+    @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS_BLINX)
     WebElement titleText;
 
     @FindBy(xpath = "//div[@id='signer-mobile-application']//button[span/text()='OK']")
@@ -69,6 +69,7 @@ public class HS1PageOLS extends MainPageBlinx {
             textToAttachment("alerts was not appeared");
         }
         waitForAnimation();
+        waitForAnimation();
         return this;
     }
 
@@ -83,6 +84,7 @@ public class HS1PageOLS extends MainPageBlinx {
 
     @Step
     public HS1PageOLS setSignature() {
+        waitForAnimation();
         waitForAnimation();
         firstNameField.click();
         for (int i = 0; i < 18; i++) {
@@ -119,7 +121,7 @@ public class HS1PageOLS extends MainPageBlinx {
                 .visibilityOf(titleText));
         waitForAnimation();
         wait.until(ExpectedConditions
-                .invisibilityOfElementWithText(By.xpath(Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS), titleExpected));
+                .invisibilityOfElementWithText(By.xpath(Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS_BLINX), titleExpected));
         return this;
     }
 

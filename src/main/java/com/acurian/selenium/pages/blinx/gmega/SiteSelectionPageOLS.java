@@ -1,5 +1,6 @@
 package com.acurian.selenium.pages.blinx.gmega;
 
+import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.blinx.MainPageBlinx;
 import com.acurian.utils.PassPID;
 import org.apache.logging.log4j.LogManager;
@@ -26,7 +27,7 @@ public class SiteSelectionPageOLS extends MainPageBlinx {
 
     @FindBy(xpath = "//span[@class='show-in-ols'][contains(., 'Matching You With a Study Doctor...')]")
     WebElement loadingAnimation;
-    @FindBy(xpath = "//div[@class='question-text']")
+    @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS_BLINX)
     WebElement titleText;
     @FindBy(xpath = "//div[contains(@class,'address2')]")
     List<WebElement> radioButtonsList;

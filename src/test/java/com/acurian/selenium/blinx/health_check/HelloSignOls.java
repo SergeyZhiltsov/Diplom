@@ -74,13 +74,13 @@ public class HelloSignOls extends BaseTest {
         HSGeneralPageOLS hsGeneralPageOLS = identificationPageOLS
                 .waitForPageLoad2()
                 .clickNextButton(new SiteSelectionPageOLS())
-//                .waitForPageLoad(studyName)
-//                .getPID()
+                .waitForPageLoad(studyName)
+                .getPID()
                 .clickOnFacilityName(site.name)
                 .clickNextButton(new HSGeneralPageOLS());
 
         DoctorInformationCollectionPageOLS doctorInformationCollectionPageOLS = hsGeneralPageOLS
-                .waitForPageLoad(hsGeneralPageOLS.titleRaExpectedQA)
+                .waitForPageLoad()
                 .clickNextButton(new DoctorInformationCollectionPageOLS());
 
         HS1PageOLS hs1PageOLS = doctorInformationCollectionPageOLS
@@ -91,34 +91,11 @@ public class HelloSignOls extends BaseTest {
                 .waitForPageLoad()
                 .clickOkInPopUp()
                 .setSignature();
-//        if (env.equals("QA")) {
-//            HumanAPIOLS humanAPIOLS = new HumanAPIOLS();
-//            humanAPIOLS
-//                    .getPage(new HumanAPIOLS())
-//                    .waitForPageLoadGmega()
-//                    .connectBTN()
-//                    .switchToAPI()
-//                    .waitForProvider()
-//                    .clickANY()
-//                    .waitSearchAll()
-//                    .search("cleveland clinic")
-//                    .waitProvider()
-//                    .clickProvider()
-//                    .typeUserName("democlinical@gmail.com")
-//                    .typePWD("password")
-//                    .clickConnect();
-//        }
+
         ThankYouCloseGmegaOLS thankYouCloseGmegaOLS = hs1PageOLS
                 .waitToClickNext()
                 .clickNextButton(new ThankYouCloseGmegaOLS());
 
-        try {
-            thankYouCloseGmegaOLS
-                    .waitForPageLoad()
-                    .clickNextButton(new AboutHealthPageOLS());
-        } catch (TimeoutException ex) {
-            Log.info("Page ThankYouCloseGmegaOLS was skipped.");
-        }
         new AboutHealthPageOLS()
                 .waitForPageLoad()
                 .pidFromDbToLog(env);
