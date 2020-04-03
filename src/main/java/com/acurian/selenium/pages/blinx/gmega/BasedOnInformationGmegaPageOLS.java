@@ -31,12 +31,14 @@ public class BasedOnInformationGmegaPageOLS extends MainPageBlinx {
 
     @Step
     public BasedOnInformationGmegaPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
     public BasedOnInformationGmegaPageOLS waitForPageLoadByTitle(String titleExpected) {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

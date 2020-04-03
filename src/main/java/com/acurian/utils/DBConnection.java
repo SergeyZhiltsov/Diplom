@@ -116,14 +116,9 @@ public class DBConnection {
 
     public void dbReadPID(String environment, String pidNumber) {
         try {
-            String pidWithoutChars = pidNumber.replaceAll("[^0-9]", "");
-            logToAllure(pidWithoutChars);
-            logToAllure(extractNumberFromString(pidNumber));
             stmt = getDbCon(environment).createStatement();
             stmt.setQueryTimeout(120);
             String sql = "select * from call where patient_id in (" + extractNumberFromString(pidNumber) + ")";
-            String sql2 = "select * from call where patient_id in (" + pidWithoutChars + ")";
-            logToAllure("sql2: " + sql2);
             logToAllure("Initiated sql is: " + sql);
             rset = stmt.executeQuery(sql);
             while (rset.next()) {
@@ -238,7 +233,8 @@ public class DBConnection {
         String fulCell = null;
         try {
             stmt = getDbCon(env).createStatement();
-            final String query = "SELECT VALUE from S_CALL.CALL_ATTRIBUTE a where a.PATIENT_ID IN '" + pid + "' AND a.KEY = 'FOLLOW_UP_LETTER'";
+            final String query = "SELECT VALUE from S_CALL.CALL_ATTRIBUTE a where a.PATIENT_ID IN '" + extractNumberFromString(pid) + "' AND a.KEY = 'FOLLOW_UP_LETTER'";
+            logToAllure(query);
             rset = stmt.executeQuery(query);
             while (rset.next()) {
                 fulCell = rset.getString("VALUE");
@@ -282,9 +278,10 @@ public class DBConnection {
         try {
             stmt = getDbCon(environment).createStatement();
 
-            String sql = "select * from CALL where old_Patient_ID ='" + pidNumber + "'";
+            String sql = "select * from CALL where old_Patient_ID ='" + extractNumberFromString(pidNumber) + "'";
+            logToAllure(sql);
             if (firstPartOfChildPhoneNumber.length == 1) {
-                sql = "select * from CALL where old_Patient_ID ='" + pidNumber + "'" +
+                sql = "select * from CALL where old_Patient_ID ='" + extractNumberFromString(pidNumber) + "'" +
                         " and PHONE_NUMBER like '" + firstPartOfChildPhoneNumber[0] + "%'";
             }
 
