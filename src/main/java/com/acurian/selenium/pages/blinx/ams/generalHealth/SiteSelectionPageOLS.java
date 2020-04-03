@@ -95,7 +95,7 @@ public class SiteSelectionPageOLS extends MainPageBlinx {
     }
 
     @Step
-    public SiteSelectionPageOLS getPID(){
+    public SiteSelectionPageOLS getPID() {
         pidNumber = getText(pidNumberPath);
         textToAttachment("PID = " + pidNumber);
         PassPID.getInstance().setPidNumber(pidNumber);
@@ -114,6 +114,7 @@ public class SiteSelectionPageOLS extends MainPageBlinx {
     }
 
     public SiteSelectionPageOLS() {
-        PageFactory.initElements(getDriver(), this);}
+        PageFactory.initElements(getDriver(), this);
+    }
 
 }

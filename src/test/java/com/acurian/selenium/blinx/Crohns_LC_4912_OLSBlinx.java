@@ -13,6 +13,7 @@ import com.acurian.selenium.pages.blinx.ams.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.blinx.ams.shared.GenderPageOLS;
 import com.acurian.selenium.pages.blinx.ams.shared.ZipCodePageOLS;
 import com.acurian.selenium.pages.blinx.ams.uc.WhenWereYouDiagnosedWithUCPageOLS;
+import com.acurian.selenium.pages.blinx.gmega.ThankYouCloseGmegaOLS;
 import com.acurian.selenium.pages.blinx.gmega.intro.IdentificationPageOLS;
 import com.acurian.utils.Properties;
 import io.qameta.allure.Description;
@@ -517,7 +518,7 @@ public class Crohns_LC_4912_OLSBlinx extends BaseTest {
                 break;
             case AUT_AMS1_4912_site:
                 MedicalRecordsOptionPageOLS medicalRecordsOptionPageOLS = siteSelectionPageOLS
-                        .waitForPageLoad("a Crohn's")
+                        .waitForPageLoad("a Crohn's" + " study!")
                         .getPID()
                         .clickOnFacilityName(site.name)
                         .clickNextButton(new MedicalRecordsOptionPageOLS());
@@ -527,7 +528,7 @@ public class Crohns_LC_4912_OLSBlinx extends BaseTest {
                         .clickNextButton(new DoctorInformationCollectionPageOLS());
 
                 HS1PageOLS hs1PageOLS = doctorInformationCollectionPageOLS
-                        .waitForPageLoadIBD("Crohn's Disease")
+//                      .waitForPageLoadIBD("Crohn's Disease")
                         .clickNextButton(new HS1PageOLS());
                 hs1PageOLS
                         .waitForPageLoad()
@@ -540,8 +541,7 @@ public class Crohns_LC_4912_OLSBlinx extends BaseTest {
                         .clickNextButton(new ThankYouCloseSimplePageOLS());
                 thankYouCloseSimplePageOLS
                         .waitForPageLoad()
-                        .clickNextButton(new AboutHealthPageOLS())
-                        .waitForPageLoad();
+                        .clickNextButton(new AboutHealthPageOLS());
                 if(aboutHealthPageOLS.getHostName().equals(Properties.getHostName())) {
                     aboutHealthPageOLS
                             .waitForPageLoad()
