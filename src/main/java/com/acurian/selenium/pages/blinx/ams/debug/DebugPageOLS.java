@@ -54,6 +54,8 @@ public class DebugPageOLS extends MainPageBlinx {
     WebElement themeField;
     @FindBy(xpath = "//div[@id='studyInfoContent']//strong[contains(text(),'Verity Score')]/..")
     WebElement verity4Field;
+    @FindBy(xpath = "//div[@id='studyInfoContent']/strong[1]")
+    WebElement projectInfoNameField;
 
 //    public DebugPageBlinxOLS() {
 //        PageFactory.initElements(getDriver(), this);
@@ -211,5 +213,8 @@ public class DebugPageOLS extends MainPageBlinx {
         return text;
     }
 
+    public String getProjectNameText() {
+        return getTextFromInfoRowByElement(projectInfoNameField);
+    }
 
 }

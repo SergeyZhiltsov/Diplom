@@ -16,6 +16,7 @@ import com.acurian.selenium.pages.blinx.gmega.DigestiveConditionsPageOLS;
 import com.acurian.selenium.pages.blinx.gmega.SiteSelectionPageOLS;
 import com.acurian.selenium.pages.blinx.gmega.ThankYouCloseGmegaOLS;
 import com.acurian.selenium.pages.blinx.gmega.intro.IdentificationPageOLS;
+import com.acurian.utils.Properties;
 import io.qameta.allure.Description;
 import org.testng.annotations.Test;
 
@@ -97,10 +98,14 @@ public class FlareActivationCode extends BaseTest {
 //                .enterEmail(Instant.now().getEpochSecond() + "@gmail.com")
                 .getPage(new ThankYouCloseGmegaOLS());
 
-        thankYouCloseGmegaOLS
+        AboutHealthPageOLS aboutHealthPageOLS = thankYouCloseGmegaOLS
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())
-                .waitForPageLoad()
-                .pidFromDbToLog(env);
+                .waitForPageLoad();
+        if (aboutHealthPageOLS.getHostName().equals(Properties.getHostName())) {
+            aboutHealthPageOLS
+                    .waitForPageLoad()
+                    .pidFromDbToLog(env);
+        }
     }
 }

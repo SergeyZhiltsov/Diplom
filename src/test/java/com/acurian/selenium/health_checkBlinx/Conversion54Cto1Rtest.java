@@ -44,7 +44,7 @@ public class Conversion54Cto1Rtest extends BaseTest {
                 .clickNextButton(new GenderPageOLS());
 
         WhatKindOfArthritisPageOLS whatKindOfArthritisPageOLS = genderPageOLS
-                .waitForPageLoadGMEGAConfirm()
+                .waitForPageLoadGMEGASelect()
                 .clickOnAnswer("Female")
                 .clickNextButton(new WhatKindOfArthritisPageOLS()); //BoneOrJointConditionsPageOLS
 
@@ -72,7 +72,7 @@ public class Conversion54Cto1Rtest extends BaseTest {
                 .clickNextButton(new HSGeneralPageOLS());
 
         hsGeneralPageOLS
-                .waitForPageLoadByTitle(hsGeneralPageOLS.titleRaExpectedQA);
+                .waitForPageLoadNew();
         if (hsGeneralPageOLS.getHostName().equals(Properties.getHostName())) {
             hsGeneralPageOLS
                     .pidFromDbToLog(env)

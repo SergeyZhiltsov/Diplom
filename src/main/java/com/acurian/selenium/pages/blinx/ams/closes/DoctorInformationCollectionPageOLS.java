@@ -19,6 +19,9 @@ public class DoctorInformationCollectionPageOLS extends MainPageBlinx {
             "\n" +
             "Please be assured that your records will be kept confidential and only shared with the study doctor's office, except as required by law.";
 
+    public final String titleExpectedGmegaPRD = "We now need some information on the doctors who are treating or who have treated your condition.  \n" +
+            "We will then email you a link where you can verify your information and e-sign a release form so that we can obtain your records. ";
+
     public final String titleExpected1 = "We're almost done with this questionnaire!\n" +
             "\n" +
             "Please enter contact information for the doctors who are treating or who have treated your condition. We will contact your doctor(s) to request your medical records and send them to the study doctor. The information you provide now will help speed up your first appointment at the study doctor’s office.\n" +
@@ -38,6 +41,14 @@ public class DoctorInformationCollectionPageOLS extends MainPageBlinx {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
+
+    @Step
+    public DoctorInformationCollectionPageOLS waitForPageLoadGMEGA() {
+        waitForAnimation();
+        waitForPageLoadMain(titleText, titleExpectedGmegaPRD);
+        return this;
+    }
+
     @Step
     public DoctorInformationCollectionPageOLS waitForPageLoad1() {
         waitForAnimation();
