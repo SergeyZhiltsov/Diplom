@@ -28,7 +28,7 @@ public class IBS_4684_OLSBlinx extends BaseTest {
 
     @Test(enabled = true)
     @Description("IBS 4684 OLS")
-    public void ibs46484olsTest() {
+    public void ibs4684olsTest() {
         String phoneNumber = "AUTAMS1IBS";
         String protocol1 = "OM_201";
 //        String[] protocols = {protocol1, protocol2, AKC, protocol3};
@@ -741,10 +741,10 @@ public class IBS_4684_OLSBlinx extends BaseTest {
 
 
         AboutHealthPageOLS aboutHealthPageOLS = identificationPageOLS
-                .waitForPageLoadNew()
+                .waitForPageLoadNewPRD()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999")
                 .clickNextButton(new SiteSelectionPageOLS())
-                .waitForPageLoad(studyName)
+                .waitForPageLoad(studyName+" study!")
                 .getPID()
                 .clickOnFacilityName(siteName)
                 .clickNextButton(new QualifiedClose2PageOLS())

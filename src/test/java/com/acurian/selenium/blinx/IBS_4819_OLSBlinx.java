@@ -669,14 +669,14 @@ public class IBS_4819_OLSBlinx extends BaseTest {
                 .clickOnAnswer("Yes")
                 .clickNextButton(new IdentificationPageOLS());
         AboutHealthPageOLS aboutHealthPageOLS = identificationPageOLS
-                .waitForPageLoadNew()
+                .waitForPageLoadNewPRD()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999")
                 .clickNextButton(new SiteSelectionPageOLS())
-                .waitForPageLoad(studyName)
+                .waitForPageLoad(studyName+" study!")
                 .getPID()
                 .clickOnFacilityName(site.name)
                 .clickNextButton(new QualifiedClose2PageOLS())
-                .waitForPageLoad1()
+                .waitForPageLoad3()
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())
