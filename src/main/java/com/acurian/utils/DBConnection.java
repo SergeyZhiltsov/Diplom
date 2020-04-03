@@ -108,6 +108,7 @@ public class DBConnection {
             stmt = getDbCon(environment).createStatement();
             stmt.setQueryTimeout(120);
             String sql = "select * from call where patient_id in (" + pidNumber + ")";
+            logToAllure("Initiated sql is: " + sql);
             rset = stmt.executeQuery(sql);
             while (rset.next()) {
                 dispoCode = rset.getString("dispo_cd");

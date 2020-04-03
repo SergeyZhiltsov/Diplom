@@ -241,7 +241,7 @@ public class MainPageBlinx extends BasePage {
     @Step
     public MainPageBlinx pidFromDbToLog(String env) {
         pid = PassPID.getInstance().getPidNumber();
-        logTextToAllureAndConsole("pid initiated");
+        logTextToAllureAndConsole("pid initiated: " + pid);
         getDbConnection().dbReadPID(env, pid);
         logTextToAllureAndConsole("dbreadpid is done");
         dispoParent = getDbConnection().getDispo();
