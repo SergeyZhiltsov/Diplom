@@ -68,7 +68,7 @@ public abstract class BaseTest {
         Log.info("Browser version " + ((RemoteWebDriver) (((EventFiringWebDriver) getDriver()).getWrappedDriver())).getCapabilities().getVersion());
     }
 
-    //@AfterMethod
+    @AfterMethod
     public void tearDown() {
         if (DRIVER.get() != null) {
             DRIVER.get().quit();
