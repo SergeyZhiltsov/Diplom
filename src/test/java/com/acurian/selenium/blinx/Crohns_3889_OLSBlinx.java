@@ -522,7 +522,7 @@ public class Crohns_3889_OLSBlinx extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("Continue with medical records")
                 .clickNextButton(new DoctorInformationCollectionPageOLS())
-                .waitForPageLoadIBD("Crohn's Disease")
+//              .waitForPageLoadIBD("Crohn's Disease")
                 .clickNextButton(hs1PageOLS)
                 .waitForPageLoad()
                 .clickOkInPopUp()
