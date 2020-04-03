@@ -18,6 +18,7 @@ import com.acurian.selenium.pages.blinx.gmega.DigestiveConditionsPageOLS;
 import com.acurian.selenium.pages.blinx.gmega.WhenYouDiagnosedWithRaGmegaPageOLS;
 import com.acurian.selenium.pages.blinx.gmega.intro.IdentificationPageOLS;
 import io.qameta.allure.Description;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class GmegaToGban extends BaseTest {
@@ -116,19 +117,18 @@ public class GmegaToGban extends BaseTest {
         dateOfBirthPageOLS
                 .waitForPageLoad1();
 //                .waitForPageLoadByTitle(dateOfBirthPageOLS.titleExpectedGBAN1);
-//TODO assert
-//        Assert.assertEquals(debugPageOLS.getProjectNameText(), "GBAN1", "Project name is diff");
+
+        Assert.assertEquals(debugPageOLS.getProjectNameText(), "GBAN1", "Project name is diff");
         dateOfBirthPageOLS.setDate("09/09/1955")
                 .clickNextButton(behalfOfSomeoneElsePageOLS);
 
         behalfOfSomeoneElsePageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Someone else")
-                .clickNextButton(identificationPageOLS);
-//TODO complete
-//                .waitForPageLoadCaregiver();
+                .clickNextButton(identificationPageOLS)
+                .waitForPageLoadCaregiver();
 
-//        Assert.assertEquals(identificationPageOLS.getFirstName(), firstName, "First name is diff");
-//        Assert.assertEquals(identificationPageOLS.getLastName(), lastName, "Last name is diff");
+        Assert.assertEquals(identificationPageOLS.getFirstName(), firstName, "First name is diff");
+        Assert.assertEquals(identificationPageOLS.getLastName(), lastName, "Last name is diff");
     }
 }

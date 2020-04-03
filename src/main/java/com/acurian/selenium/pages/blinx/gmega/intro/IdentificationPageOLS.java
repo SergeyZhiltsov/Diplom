@@ -26,6 +26,8 @@ public class IdentificationPageOLS extends MainPageBlinx {
     private final String titleExpectedPart4STG = "Your privacy is important to us. By clicking \"Next,\" you agree to our Privacy Policy and Terms of Use, and agree that we may share your information with personnel involved in conducting the study and may contact you by phone using automated technology or pre-recorded voicemail or other means regarding research studies.";
     private final String titleExpectedNew ="Your privacy is important to us. By clicking \"Next,\" you agree to our Privacy Policy and Terms of Use, and agree that we may share your information with personnel involved in conducting the study and may contact you by phone using automated technology or pre-recorded voicemail or other means regarding research studies.";
     private final String titleExpectedNewPRD = "Your privacy is important to us. By clicking \"Next,\" you agree to our Privacy Policy and Terms of Use, and agree that we may share your information with personnel involved in conducting the study, or otherwise as described in the Acurian Privacy Policy, and we or our affiliates may contact you by phone using automated technology or pre-recorded voicemail or other means regarding research studies.";
+    public final String titleExpectedCaregiver = "Caregiver or Parent/Guardian Information (*required fields)";
+
     @FindBy(xpath = "(//div[@class='question-text'])[1]")
     WebElement titleTextPart1;
     @FindBy(xpath = "(//div[@class='question-text'])[2]")
@@ -48,6 +50,8 @@ public class IdentificationPageOLS extends MainPageBlinx {
     WebElement stateDropdown;
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS_BLINX)
     WebElement titleText;
+    @FindBy(xpath = "//div[@class='question-text' and contains(text(),'Caregiver or Parent')]") //caregiver or parent page
+    WebElement titleTextCaregiver;
 
     @Step
     public IdentificationPageOLS waitForPageLoad() {
@@ -108,6 +112,12 @@ public class IdentificationPageOLS extends MainPageBlinx {
     public IdentificationPageOLS waitForPageLoadNotQ() {
         waitForAnimation();
         waitForPageLoadMain(titleTextPart2, titleExpectedPart2);
+        return this;
+    }
+
+    @Step
+    public IdentificationPageOLS waitForPageLoadCaregiver () {
+        waitForPageLoadMain(titleTextCaregiver, titleExpectedCaregiver);
         return this;
     }
 
@@ -179,4 +189,15 @@ public class IdentificationPageOLS extends MainPageBlinx {
         selectDropDownListOptionByText(stateDropdown, state);
         return this;
     }
+
+    @Step
+    public String getFirstName() {
+        return getText(firstNameField);
+    }
+
+    @Step
+    public String getLastName() {
+        return getText(lastNameField);
+    }
+
 }
