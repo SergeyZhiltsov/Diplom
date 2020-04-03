@@ -45,8 +45,8 @@ public abstract class BaseTest {
         driver = new EventFiringWebDriver(DriverFactory.initDriver(Properties.getBrowser()));
 //        }
 //        driver.register(new EventHandler());
-        driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
-        driver.manage().timeouts().setScriptTimeout(30, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+        driver.manage().timeouts().setScriptTimeout(0, TimeUnit.SECONDS);
 
         switch (Locators.isEnvWeb) {
             case Platforms.WEB:
