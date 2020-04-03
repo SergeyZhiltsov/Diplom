@@ -295,7 +295,7 @@ public class Chronic_4471_OLSBlinx extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("Continue with medical records")
                 .clickNextButton(new DoctorInformationCollectionPageOLS())
-                .waitForPageLoad()
+                .waitForPageLoad1()
                 .clickNextButton(new HS1PageOLS());
         hs1PageOLS
                 .waitForPageLoad()

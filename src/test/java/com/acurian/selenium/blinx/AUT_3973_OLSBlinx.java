@@ -295,7 +295,7 @@ public class AUT_3973_OLSBlinx extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("Continue with medical records")
                 .clickNextButton(new DoctorInformationCollectionPageOLS())
-                .waitForPageLoad()
+                .waitForPageLoad1()
                 .clickNextButton(new HS1PageOLS())
                 .waitForPageLoad()
                 .clickOkInPopUp()
