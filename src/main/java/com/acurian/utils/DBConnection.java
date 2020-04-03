@@ -103,11 +103,23 @@ public class DBConnection {
         }
     }
 
+    /**
+     * Extract digit from string.
+     *
+     * @param word the word
+     * @return the string as number
+     */
+    public static String extractNumberFromString(String word) {
+        String number = word.replaceAll("\\s+", "");
+        return number.replaceAll("[^0-9]", "");
+    }
+
     public void dbReadPID(String environment, String pidNumber) {
         try {
+            String pidWithoutChars = extractNumberFromString(pidNumber);
             stmt = getDbCon(environment).createStatement();
             stmt.setQueryTimeout(120);
-            String sql = "select * from call where patient_id in (" + pidNumber + ")";
+            String sql = "select * from call where patient_id in (" + pidWithoutChars + ")";
             logToAllure("Initiated sql is: " + sql);
             rset = stmt.executeQuery(sql);
             while (rset.next()) {
