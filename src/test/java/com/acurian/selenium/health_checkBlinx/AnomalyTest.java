@@ -29,7 +29,7 @@ public class AnomalyTest extends BaseTest {
         String zipCode = "19422";
         String env = System.getProperty("acurian.env", "STG");
         String studyName = env.equals("QA") ?
-                "Arthritis,a low back pain study,a rheumatoid arthritis (RA)" : "Arthritis, a low back pain study, a rheumatoid arthritis (RA)";
+                "Arthritis,a low back pain study,a rheumatoid arthritis (RA) study" : "Arthritis, a low back pain study, a rheumatoid arthritis (RA) study";
 
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
@@ -50,7 +50,7 @@ public class AnomalyTest extends BaseTest {
                 .clickNextButton(new GenderPageOLS());
 
         ApproximateHeightPageOLS approximateHeightPageOLS = genderPageOLS
-                .waitForPageLoadByTitle(genderPageOLS.titleExpectedGmega)
+                .waitForPageLoadGMEGAConfirm()
                 .clickOnAnswer("Female")
                 .clickNextButton(new ApproximateHeightPageOLS());
 

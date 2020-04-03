@@ -10,7 +10,6 @@
         <packages>
             <package name="com.acurian.selenium.CC.*" />
             <package name="com.acurian.selenium.OLS.*" />
-            <package name="com.acurian.selenium.blinx.*" />
         </packages>
     </test>
 

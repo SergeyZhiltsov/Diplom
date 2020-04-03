@@ -39,6 +39,7 @@ public class ApproximateHeightPageOLS extends MainPageBlinx {
 
     @Step
     public ApproximateHeightPageOLS waitForPageLoadGMEGA() {
+        waitForAnimation();
         waitForPageLoadMain(titleTextPartGMEGA, titleExpectedPart1);
         return this;
     }

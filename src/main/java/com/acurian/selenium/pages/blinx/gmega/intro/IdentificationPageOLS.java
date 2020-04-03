@@ -134,7 +134,6 @@ public class IdentificationPageOLS extends MainPageBlinx {
         setEmailAddress(email);
         setPhone(phoneNumber);
         setZipCode(zipCode);
-        threadSleep(1);
         waitForAnimation();
         return this;
     }

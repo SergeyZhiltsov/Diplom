@@ -60,7 +60,7 @@ public class ChatFillTest extends BaseTest {
                 .clickNextButton(new GenderPageOLS());
 
         ApproximateHeightPageOLS approximateHeightPageOLS = genderPageOLS
-                .waitForPageLoadByTitle(genderPageOLS.titleExpected)
+                .waitForPageLoadGMEGAConfirm()
                 .clickOnAnswer("Female")
                 .clickNextButton(new ApproximateHeightPageOLS());
 
@@ -106,12 +106,13 @@ public class ChatFillTest extends BaseTest {
                 .waitForPageLoad()
                 .setSignature("Acurian")
                 .clickToSignButton(new ThankYouCloseGmegaOLS());
-
+//h4[text()='Thank you']
         ThanksPageOLS thanksPageOLS = thankYouCloseGmegaOLS
                 .waitForPageLoadByTitle(thankYouCloseGmegaOLS.titleExpectedGBAN)
                 .clickNextButton(new ThanksPageOLS());
 
-        thanksPageOLS.waitForPageLoad();
+//        thanksPageOLS
+//                .waitForPageLoad();
 
         if (env.equals("STG")) {
             LoginPageAS loginPageAS = new LoginPageAS();

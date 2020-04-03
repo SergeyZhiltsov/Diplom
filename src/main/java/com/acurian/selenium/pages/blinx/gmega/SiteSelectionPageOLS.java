@@ -1,6 +1,5 @@
 package com.acurian.selenium.pages.blinx.gmega;
 
-import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.blinx.MainPageBlinx;
 import com.acurian.utils.PassPID;
 import org.apache.logging.log4j.LogManager;
@@ -27,7 +26,9 @@ public class SiteSelectionPageOLS extends MainPageBlinx {
 
     @FindBy(xpath = "//span[@class='show-in-ols'][contains(., 'Matching You With a Study Doctor...')]")
     WebElement loadingAnimation;
-    @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS_BLINX)
+    @FindBy(xpath = "//div[@class='show-in-ols'][contains(., 'Matching You With a Study Doctor...')]")
+    WebElement loadingAnimation2;
+    @FindBy(xpath = "//div[@class='question-text']")
     WebElement titleText;
     @FindBy(xpath = "//div[contains(@class,'address2')]")
     List<WebElement> radioButtonsList;
@@ -57,9 +58,20 @@ public class SiteSelectionPageOLS extends MainPageBlinx {
 
     @Step
     public SiteSelectionPageOLS waitForPageLoad(String studyName) {
+//        waitForAnimation();
+//        waitforVisibility(loadingAnimation);
+//        waitForAbsence(loadingAnimation);
         waitForAnimation();
-        waitforVisibility(loadingAnimation);
-        waitForAbsence(loadingAnimation);
+        waitForPageLoadMain(titleText, String.format(titleExpected, studyName));
+        attachPageScreenshot();
+        return this;
+    }
+
+    @Step
+    public SiteSelectionPageOLS waitForPageLoad2(String studyName) {
+//        waitForAnimation();
+//        waitforVisibility(loadingAnimation2);
+//        waitForAbsence(loadingAnimation2);
         waitForAnimation();
         waitForPageLoadMain(titleText, String.format(titleExpected, studyName));
         attachPageScreenshot();
