@@ -1,6 +1,8 @@
 package com.acurian.selenium.pages.blinx.ams.closes;
 
 import com.acurian.selenium.pages.blinx.MainPageBlinx;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import ru.yandex.qatools.allure.annotations.Step;
@@ -14,9 +16,9 @@ public class AboutHealthPageOLS extends MainPageBlinx {
 
     @Step
     public AboutHealthPageOLS waitForPageLoad() {
-        try {
+        try{
             waitForPageLoadMain(titleText, titleExpected);
-        } catch (Exception e) {
+        } catch (WebDriverException e) {
             logTextToAllureAndConsole("AboutHealth Page uploaded for more than 20 seconds");
             waitForPageLoadMain(titleText, titleExpected);
         }

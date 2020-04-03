@@ -37,9 +37,9 @@ public class SiteSelectionPageOLS extends MainPageBlinx {
 
     @FindBy(xpath = "//*[@id='collapsedContent1']/div[1]")
     WebElement pidNumberPath;
-    @FindBy(xpath = "//div[contains(@class,'debug-question-helper')]")
+    @FindBy(xpath = "//div[contains(@class,'debugQuestionInfo noMt')]")
     List<WebElement> debuqQuestionList;
-    @FindBy(xpath = "//b[@id='additional-sites-toggle']")
+    @FindBy(xpath = "//button[@id='expandLocationsCta']")
     WebElement additionalLocationLink;
 
     @Step
@@ -50,7 +50,7 @@ public class SiteSelectionPageOLS extends MainPageBlinx {
     }
 
     private void clickOnAddLocLinkIfExist() {
-        if (isElementPresent(By.xpath("//b[@id='additional-sites-toggle']"))) {
+        if (isElementPresent(By.xpath("//button[@id='expandLocationsCta']"))) {
             additionalLocationLink.click();
             waitForAnimation();
         }

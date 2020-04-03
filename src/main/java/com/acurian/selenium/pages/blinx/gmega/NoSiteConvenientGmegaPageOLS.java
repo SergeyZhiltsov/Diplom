@@ -25,6 +25,7 @@ public class NoSiteConvenientGmegaPageOLS extends MainPageBlinx {
 
     @Step
     public NoSiteConvenientGmegaPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

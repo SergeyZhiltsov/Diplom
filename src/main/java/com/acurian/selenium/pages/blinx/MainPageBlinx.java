@@ -43,7 +43,7 @@ public class MainPageBlinx extends BasePage {
 
     @FindBy(xpath = "//*[@id='collapsedContent1']/div[1]")
     WebElement pidNumberPath;
-    @FindBy(id = "submit")
+    @FindBy(xpath = "//button[@id='submit']")
     WebElement nextButton;
     @FindBy(id = "footerLinksContainer")
     WebElement footerLinksContainer;

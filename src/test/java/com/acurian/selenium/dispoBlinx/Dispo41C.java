@@ -83,12 +83,12 @@ public class Dispo41C extends BaseTest {
                 .clickNextButton(identificationPageOLS)
                 .waitForPageLoadGMEGA()
                 .clickNextButton(new SiteSelectionPageOLS())
-                .waitForPageLoad(env.equals("QA") ? "Arthritis,a low back pain study,a rheumatoid arthritis (RA)" :
-                        "Arthritis, a low back pain study, a rheumatoid arthritis (RA)")
+                .waitForPageLoad(env.equals("QA") ? "Arthritis,a low back pain study,a rheumatoid arthritis (RA) study!" :
+                        "Arthritis, a low back pain study, a rheumatoid arthritis (RA) study!")
                 .getPID()
                 .clickOnFacilityName(site.name)
                 .clickNextButton(new QualifiedClose2PageOLS())
-                .waitForPageLoadGMEGA()
+                .waitForPageLoadGMEGA2()
                 .clickNextButton(new ThankYouCloseGmegaOLS())
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS());
