@@ -22,6 +22,7 @@ public class TakingAcetaminophenTylenolPageOLS extends MainPageBlinx {
 
     @Step
     public TakingAcetaminophenTylenolPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText1, titleExpected);
         return this;
     }

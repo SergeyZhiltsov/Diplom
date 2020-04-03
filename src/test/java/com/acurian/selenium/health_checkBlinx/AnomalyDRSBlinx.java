@@ -1,4 +1,4 @@
-package com.acurian.selenium.health_check;
+package com.acurian.selenium.health_checkBlinx;
 
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.blinx.ams.shared.DateOfBirthPageOLS;

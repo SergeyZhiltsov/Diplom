@@ -239,17 +239,6 @@ public class MainPageBlinx extends BasePage {
     }
 
     @Step
-    public MainPageBlinx pidFromDbToLog(String env) {
-        pid = PassPID.getInstance().getPidNumber();
-        logTextToAllureAndConsole("pid initiated: " + pid);
-        getDbConnection().dbReadPID(env, pid);
-        logTextToAllureAndConsole("dbreadpid is done");
-        dispoParent = getDbConnection().getDispo();
-        textToAttachment("Parent dispoBlinx = " + dispoParent + " for PID " + pid);
-        return this;
-    }
-
-    @Step
     public MainPageBlinx childPidFromDbToLog(String env, String... firstPartOfChildPhoneNumber) {
         ChildResult childResult = getDbConnection().dbReadChildPID(env, pid, firstPartOfChildPhoneNumber);
         dispoChild = childResult.getDispoCd() + childResult.getApplicantStatus();
@@ -388,10 +377,22 @@ public class MainPageBlinx extends BasePage {
 //        cpid = PassPID.getInstance().getPidNumber();
         copyRun(env);
         ChildResult childResult = getDbConnection().dbReadChildPID(env, pid, firstPartOfChildPhoneNumber);
+        logTextToAllureAndConsole("child result is: " + childResult.toString());
         dispoChild = childResult.getDispoCd() + childResult.getApplicantStatus();
         childPid = childResult.getChildPid();
         textToAttachment("Child dispoBlinx =" + childResult.getDispoCd() + childResult.getApplicantStatus() + " for PID " + pid +
                 " with child pid = "+ childResult.getChildPid());
+        return this;
+    }
+
+    @Step
+    public MainPageBlinx pidFromDbToLog(String env) {
+        pid = PassPID.getInstance().getPidNumber();
+        logTextToAllureAndConsole("pid initiated: " + pid);
+        getDbConnection().dbReadPID(env, pid);
+        logTextToAllureAndConsole("dbreadpid is done");
+        dispoParent = getDbConnection().getDispo();
+        textToAttachment("Parent dispoBlinx = " + dispoParent + " for PID " + pid);
         return this;
     }
 
