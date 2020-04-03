@@ -60,7 +60,7 @@ public class ChatFillTest extends BaseTest {
                 .clickNextButton(new GenderPageOLS());
 
         ApproximateHeightPageOLS approximateHeightPageOLS = genderPageOLS
-                .waitForPageLoadGMEGAConfirm()
+                .waitForPageLoadGMEGASelect()
                 .clickOnAnswer("Female")
                 .clickNextButton(new ApproximateHeightPageOLS());
 
