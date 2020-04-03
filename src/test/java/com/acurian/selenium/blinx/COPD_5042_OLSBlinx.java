@@ -320,7 +320,7 @@ public class COPD_5042_OLSBlinx extends BaseTest {
         identificationPageOLS
                 .waitForPageLoad2();
         SiteSelectionPageOLS siteSelectionPageOLS = identificationPageOLS
-                .setAllFields("Acurian", "Trial", "", "9999999999")
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999")
                 .clickNextButton(new SiteSelectionPageOLS());
         MedicalRecordsOptionPageOLS medicalRecordsOptionPageOLS = siteSelectionPageOLS
                 .waitForPageLoad(studyName + " study!")
@@ -331,18 +331,16 @@ public class COPD_5042_OLSBlinx extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("Continue with medical records")
                 .clickNextButton(new HSGeneralPageOLS());
-        DoctorInformationCollectionPageOLS doctorInformationCollectionPageOLS = hsGeneralPageOLS
-                .waitForPageLoadEmailNotProvided()
-                .typeEmail("qa.acurian@gmail.com")
-                .clickNextButton(new DoctorInformationCollectionPageOLS());
+        DoctorInformationCollectionPageOLS doctorInformationCollectionPageOLS = new DoctorInformationCollectionPageOLS();
+
         HS1PageOLS hs1PageOLS = doctorInformationCollectionPageOLS
                 .waitForPageLoad()
                 .clickNextButton(new HS1PageOLS());
+
         hs1PageOLS
                 .waitForPageLoad()
                 .clickOkInPopUp()
                 .setSignature();
-//                .waitToClickNext();
         ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = new ThankYouCloseSimplePageOLS();
         AboutHealthPageOLS aboutHealthPageOLS = thankYouCloseSimplePageOLS
                 .waitForPageLoad()

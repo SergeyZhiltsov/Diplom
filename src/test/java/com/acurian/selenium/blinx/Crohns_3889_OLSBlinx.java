@@ -38,7 +38,7 @@ public class Crohns_3889_OLSBlinx extends BaseTest {
     public Object[][] flare() {
         return new Object[][]{
                 {true}
-//                {false}
+///                {false}
         };
     }
 
@@ -509,8 +509,8 @@ public class Crohns_3889_OLSBlinx extends BaseTest {
         HS1PageOLS hs1PageOLS = new HS1PageOLS();
 
         MedicalRecordsOptionPageOLS medicalRecordsOptionPageOLS = siteSelectionPageOLS
-                .waitForPageLoad(studyName)
-                .getPID()
+                .waitForPageLoad(studyName + " study!")
+//                .getPID()
                 .clickOnFacilityName(site.name)
                 .clickNextButton(new MedicalRecordsOptionPageOLS());
 
