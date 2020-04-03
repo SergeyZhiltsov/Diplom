@@ -33,7 +33,7 @@ public class Crohns_4818_OLSBlinx extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "sites", enabled = false)
+    @Test(dataProvider = "sites", enabled = true)
     @Description("Crohns_4818_OLSBlinx")
     public void Crohns_4818_OLS(Site site) {
 //        Site site = Site.AUT_AMS1_4818A_Site;

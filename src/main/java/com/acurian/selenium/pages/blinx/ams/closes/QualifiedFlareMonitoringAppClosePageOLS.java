@@ -77,7 +77,7 @@ public class QualifiedFlareMonitoringAppClosePageOLS extends MainPageBlinx {
 
     @Step
     public QualifiedFlareMonitoringAppClosePageOLS getActivationCodeCrohns() {
-        activationCode = getText(activationCodePath5);
+        activationCode = getText(titleText2);
         textToAttachment("Activation Code " + activationCode);
         Log.info("Activation Code = " + activationCode);
         return this;

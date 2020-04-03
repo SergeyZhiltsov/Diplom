@@ -81,15 +81,15 @@ public class Dispo54C extends BaseTest {
                 .clickNextButton(identificationPageOLS)
                 .waitForPageLoadGMEGA()
                 .clickNextButton(new SiteSelectionPageOLS())
-                .waitForPageLoad(env.equals("QA") ? "Arthritis,a low back pain study,a rheumatoid arthritis (RA)" :
-                        "Arthritis, a low back pain study, a rheumatoid arthritis (RA)")
+                .waitForPageLoad(env.equals("QA") ? "Arthritis,a low back pain study,a rheumatoid arthritis (RA) study!" :
+                        "Arthritis, a low back pain study, a rheumatoid arthritis (RA) study!")
                 .getPID()
                 .clickOnFacilityName(siteName)
                 .clickNextButton(new QualifiedClose2PageOLS())
-                .waitForPageLoadGMEGA();
+                .waitForPageLoadGMEGA2();
         if (qualifiedClose2PageOLS.getHostName().equals(Properties.getHostName())) {
             qualifiedClose2PageOLS
-                    .waitForPageLoadGMEGA()
+                    .waitForPageLoadGMEGA2()
                     .pidFromDbToLog(env)
                     .dispoShouldMatch("54C");
         }

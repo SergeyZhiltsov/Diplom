@@ -43,7 +43,7 @@ public class MainPageBlinx extends BasePage {
 
     @FindBy(xpath = "//*[@id='collapsedContent1']/div[1]")
     WebElement pidNumberPath;
-    @FindBy(id = "submit")
+    @FindBy(xpath = "//button[@id='submit']")
     WebElement nextButton;
     @FindBy(id = "footerLinksContainer")
     WebElement footerLinksContainer;
@@ -52,7 +52,7 @@ public class MainPageBlinx extends BasePage {
 
     public MainPageBlinx() {
         PageFactory.initElements(getDriver(), this);
-        getDriver().manage().timeouts().implicitlyWait(501, TimeUnit.MILLISECONDS);
+        getDriver().manage().timeouts().implicitlyWait(0, TimeUnit.MILLISECONDS);
     }
 
     @Step
@@ -241,7 +241,9 @@ public class MainPageBlinx extends BasePage {
     @Step
     public MainPageBlinx pidFromDbToLog(String env) {
         pid = PassPID.getInstance().getPidNumber();
+        logTextToAllureAndConsole("pid initiated");
         getDbConnection().dbReadPID(env, pid);
+        logTextToAllureAndConsole("dbreadpid is done");
         dispoParent = getDbConnection().getDispo();
         textToAttachment("Parent dispoBlinx = " + dispoParent + " for PID " + pid);
         return this;
