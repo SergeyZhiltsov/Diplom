@@ -129,11 +129,12 @@ public class IdentificationPageOLS extends MainPageBlinx {
     @Step
     public IdentificationPageOLS setAllFields(String firstName, String lastName, String email, String phoneNumber,
                                               String zipCode) {
+        setZipCode(zipCode);
+        waitForAnimation();
         setFirstName(firstName);
         setLastName(lastName);
         setEmailAddress(email);
         setPhone(phoneNumber);
-        setZipCode(zipCode);
         waitForAnimation();
         return this;
     }
