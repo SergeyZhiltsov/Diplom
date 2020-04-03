@@ -116,10 +116,14 @@ public class DBConnection {
 
     public void dbReadPID(String environment, String pidNumber) {
         try {
-            String pidWithoutChars = extractNumberFromString(pidNumber);
+            String pidWithoutChars = pidNumber.replaceAll("[^0-9]", "");
+            logToAllure(pidWithoutChars);
+            logToAllure(extractNumberFromString(pidNumber));
             stmt = getDbCon(environment).createStatement();
             stmt.setQueryTimeout(120);
-            String sql = "select * from call where patient_id in (" + pidWithoutChars + ")";
+            String sql = "select * from call where patient_id in (" + extractNumberFromString(pidNumber) + ")";
+            String sql2 = "select * from call where patient_id in (" + pidWithoutChars + ")";
+            logToAllure("sql2: " + sql2);
             logToAllure("Initiated sql is: " + sql);
             rset = stmt.executeQuery(sql);
             while (rset.next()) {
