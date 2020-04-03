@@ -94,7 +94,8 @@ public class AnomalyTest extends BaseTest {
                 .waitForPageLoadGMEGA2()
                 .clickNextButton(new ThankYouCloseGmegaOLS())
                 .waitForPageLoad()
-                .clickNextButton(new AboutHealthPageOLS());
+                .clickNextButton(new AboutHealthPageOLS())
+                .waitForPageLoad();
         if (aboutHealthPageOLS.getHostName().equals(Properties.getHostName())) {
             aboutHealthPageOLS
                     .waitForPageLoad()

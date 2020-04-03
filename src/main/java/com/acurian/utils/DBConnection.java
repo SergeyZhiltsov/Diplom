@@ -80,7 +80,7 @@ public class DBConnection {
                     "BEGIN\n" +
                     "    FOR REC IN\n" +
                     "    ( select call_id ,PATIENT_ID,STUDY_ID\n" +
-                    "    from call where patient_id IN ('" + pidNumber + "')-- enter patient id\n" +
+                    "    from call where patient_id IN ('" + extractNumberFromString(pidNumber) + "')-- enter patient id\n" +
                     "    ) LOOP\n" +
                     "        BEGIN    \n" +
                     "            select study_group_id INTO v_study_group_id from study_group \n" +
@@ -196,7 +196,7 @@ public class DBConnection {
             stmt = connTemp.createStatement();
             String sql = "DECLARE " +
                     "BEGIN " +
-                    "cc_dev.patient_admin_pkg.fix_54C_patient(" + pidNumber + ", 1, 'R'); " +
+                    "cc_dev.patient_admin_pkg.fix_54C_patient(" + extractNumberFromString(pidNumber) + ", 1, 'R'); " +
                     "END;";
             stmt.execute(sql);
             connTemp.commit();
@@ -213,8 +213,9 @@ public class DBConnection {
         String dobCell = null;
         try {
             stmt = getDbCon(env).createStatement();
-            final String query = "select ANSWER_DATE from PATIENT_QSTNR_ANSWER_RESP where patient_id in (select patient_id from call where old_patient_id = '" + pidNumber + "' " +
+            final String query = "select ANSWER_DATE from PATIENT_QSTNR_ANSWER_RESP where patient_id in (select patient_id from call where old_patient_id = '" + extractNumberFromString(pidNumber) + "' " +
                     "and phone_number like '" + studyId + "%')";
+            logToAllure("method dbreadchilddob query is: " + query);
             rset = stmt.executeQuery(query);
             while (rset.next()) {
                 dobCell = rset.getString("ANSWER_DATE");
@@ -251,7 +252,7 @@ public class DBConnection {
     public RadiantResults dbReadRadiant(String environment, String pidNumber) {
         try {
             stmt = getDbCon(environment).createStatement();
-            String sql = "select * from S_EXT_CONTACT.CNL_OUTBOUND_LOG where Patient_ID IN(select patient_id from call where old_patient_id ='" + pidNumber + "')";
+            String sql = "select * from S_EXT_CONTACT.CNL_OUTBOUND_LOG where Patient_ID IN(select patient_id from call where old_patient_id ='" + extractNumberFromString(pidNumber) + "')";
             rset = stmt.executeQuery(sql);
 
             RadiantResults radiantResults = null;
@@ -310,7 +311,7 @@ public class DBConnection {
     public AnomalyResults dbReadAnomaly(String environment, String pidNumber) {
         try {
             stmt = getDbCon(environment).createStatement();
-            String sql = "select * from SECOND_SCREEN_PROCESSING where Patient_ID =" + pidNumber;
+            String sql = "select * from SECOND_SCREEN_PROCESSING where Patient_ID =" + extractNumberFromString(pidNumber);
             rset = stmt.executeQuery(sql);
 
             AnomalyResults anomalyResults = null;
@@ -334,7 +335,7 @@ public class DBConnection {
         String flareStatus = null;
         try {
             stmt = getDbCon(env).createStatement();
-            final String query = "Select patient_id, status_set_member_id from patient_study_secondary_status where patient_id in (" + childPid + ")";
+            final String query = "Select patient_id, status_set_member_id from patient_study_secondary_status where patient_id in (" + extractNumberFromString(childPid) + ")";
             rset = stmt.executeQuery(query);
             while (rset.next()) {
                 flareStatus = rset.getString("STATUS_SET_MEMBER_ID");
