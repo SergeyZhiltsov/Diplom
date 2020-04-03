@@ -34,7 +34,7 @@ public class Crohns_LC_4912_OLSBlinx extends BaseTest {
     @DataProvider
     public Object[][] sites() {
         return new Object[][]{
-//                {Site.AUT_AMS1_4912_site},
+                {Site.AUT_AMS1_4912_site},
                 {Site.AUT_AMS1_4912S_site}
         };
     }
@@ -230,9 +230,9 @@ public class Crohns_LC_4912_OLSBlinx extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(currentlyHaveAnyFollowingOLS)
-                .waitForPageLoad()
-                .getPID()
-                .pidFromDbToLog(env);
+                .waitForPageLoad();
+//                .getPID()
+//               .pidFromDbToLog(env);
 //              .flareCodeShouldMatch(env, "3");
 
         //back
@@ -265,9 +265,9 @@ public class Crohns_LC_4912_OLSBlinx extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(currentlyHaveAnyFollowingOLS)
-                .waitForPageLoad()
-                .getPID()
-                .pidFromDbToLog(env);
+                .waitForPageLoad();
+//                .getPID()
+//                .pidFromDbToLog(env);
 //              .flareCodeShouldMatch(env, "4");
 
         HashMap<String, List<String>> disqualify = new HashMap<>();
@@ -487,14 +487,14 @@ public class Crohns_LC_4912_OLSBlinx extends BaseTest {
         switch (site) {
             case AUT_AMS1_4912S_site:
                 siteSelectionPageOLS
-                        .waitForPageLoad("a Crohn's")
+                        .waitForPageLoad("a Crohn's study!")
                         .getPID()
                         .clickOnFacilityName(site.name)
                         .clickNextButton(new MedicalRecordsOptionPageOLS())
                         .waitForPageLoad()
                         .clickOnAnswer("Continue with medical records")
                         .clickNextButton(new DoctorInformationCollectionPageOLS())
-                        .waitForPageLoadIBD("Crohn's Disease")
+//                        .waitForPageLoadIBD("Crohn's Disease")
                         .clickNextButton(new HS1PageOLS())
                         .waitForPageLoad()
                         .clickOkInPopUp()
