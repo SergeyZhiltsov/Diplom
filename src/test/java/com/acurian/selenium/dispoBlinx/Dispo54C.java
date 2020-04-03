@@ -89,7 +89,7 @@ public class Dispo54C extends BaseTest {
                 .waitForPageLoadGMEGA2();
         if (qualifiedClose2PageOLS.getHostName().equals(Properties.getHostName())) {
             qualifiedClose2PageOLS
-                    .waitForPageLoadGMEGA()
+                    .waitForPageLoadGMEGA2()
                     .pidFromDbToLog(env)
                     .dispoShouldMatch("54C");
         }
