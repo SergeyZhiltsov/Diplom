@@ -168,11 +168,7 @@ public class MainPageBlinx extends BasePage {
         textToAttachment("Anomaly : current status = " + anomalyResults.getCurrentStatus() +
                 ", request status id = " + anomalyResults.getRequestStatus() + " for PID " + pid);
         Assert.assertEquals(anomalyResults.getCurrentStatus(), "SENT", "Current status is not SENT");
-        if (env.equals("STG")) {
-            Assert.assertEquals(anomalyResults.getRequestStatus(), "2", "Request status is not 2");
-        } else {
-            Assert.assertEquals(anomalyResults.getRequestStatus(), "3", "Request status is not 3");
-        }
+        Assert.assertEquals(anomalyResults.getRequestStatus(), "2", "Request status is not 2");
         return this;
     }
 

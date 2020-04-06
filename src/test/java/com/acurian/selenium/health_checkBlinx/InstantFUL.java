@@ -111,6 +111,8 @@ public class InstantFUL extends BaseTest {
         AboutHealthPageOLS aboutHealthPageOLS = thankYouCloseGmegaOLS
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS());
+        aboutHealthPageOLS
+                .waitForPageLoad();
         if (aboutHealthPageOLS.getHostName().equals(Properties.getHostName())) {
             aboutHealthPageOLS
                 .waitForPageLoad()

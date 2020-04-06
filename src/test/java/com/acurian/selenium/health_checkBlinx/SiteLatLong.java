@@ -85,7 +85,7 @@ public class SiteLatLong extends BaseTest {
                 .clickNextButton(identificationPageOLS)
                 .waitForPageLoadGMEGA()
                 .clickNextButton(new SiteSelectionPageOLS())
-                .waitForPageLoad(studyName)
+                .waitForPageLoad(studyName + " study!")
                 //.waitForPageLoadNONE()
                 .getPID()
                 .clickOnFacilityName(siteName);
