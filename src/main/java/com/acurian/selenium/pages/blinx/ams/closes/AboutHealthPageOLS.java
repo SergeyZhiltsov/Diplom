@@ -7,6 +7,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import ru.yandex.qatools.allure.annotations.Step;
 
+import java.util.NoSuchElementException;
+
 public class AboutHealthPageOLS extends MainPageBlinx {
 
     public final String titleExpected = "Join Our Community";
@@ -17,6 +19,7 @@ public class AboutHealthPageOLS extends MainPageBlinx {
     @Step
     public AboutHealthPageOLS waitForPageLoad() {
         try{
+            threadSleep(15);
             waitForPageLoadMain(titleText, titleExpected);
         } catch (WebDriverException e) {
             logTextToAllureAndConsole("AboutHealth Page uploaded for more than 20 seconds");

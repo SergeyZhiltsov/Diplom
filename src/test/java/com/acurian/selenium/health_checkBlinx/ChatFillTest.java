@@ -106,7 +106,7 @@ public class ChatFillTest extends BaseTest {
                 .waitForPageLoad()
                 .setSignature("Acurian")
                 .clickToSignButton(new ThankYouCloseGmegaOLS());
-//h4[text()='Thank you']
+
         ThanksPageOLS thanksPageOLS = thankYouCloseGmegaOLS
                 .waitForPageLoadByTitle(thankYouCloseGmegaOLS.titleExpectedGBAN)
                 .clickNextButton(new ThanksPageOLS());

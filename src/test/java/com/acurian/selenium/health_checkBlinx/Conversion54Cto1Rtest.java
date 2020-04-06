@@ -72,7 +72,7 @@ public class Conversion54Cto1Rtest extends BaseTest {
                 .clickNextButton(new HSGeneralPageOLS());
 
         hsGeneralPageOLS
-                .waitForPageLoadNew();
+                .waitForPageLoadCut();
         if (hsGeneralPageOLS.getHostName().equals(Properties.getHostName())) {
             hsGeneralPageOLS
                     .pidFromDbToLog(env)
