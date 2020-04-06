@@ -108,7 +108,7 @@ public class ChatFillTest extends BaseTest {
                 .clickToSignButton(new ThankYouCloseGmegaOLS());
 
         ThanksPageOLS thanksPageOLS = thankYouCloseGmegaOLS
-                .waitForPageLoadByTitle(thankYouCloseGmegaOLS.titleExpectedGBAN)
+                .waitForPageLoadAfterForm(thankYouCloseGmegaOLS.titleExpectedGBAN)
                 .clickNextButton(new ThanksPageOLS());
 
 //        thanksPageOLS

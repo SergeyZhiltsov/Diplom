@@ -7,6 +7,7 @@ import com.acurian.selenium.pages.CC.DIA_4241.*;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.*;
 import com.acurian.selenium.pages.CC.LOWT.CardiovascularDiseaseThanOthersPageCC;
 import com.acurian.selenium.pages.CC.closes.*;
+import com.acurian.selenium.pages.CC.cv_study.CholesterolTriglyceridesLipidsPageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
@@ -289,8 +290,8 @@ public class DIA_4483_CC extends BaseTest {
                 .clickOnAnswers("Cirrhosis")
                 .clickNextButton(new LiverBiopsyConfirmsNASHDiagnosisCC());
 
-        CurrentlyTreatingYourDiabetesPageCC currentlyTreatingYourDiabetesPageCC = new CurrentlyTreatingYourDiabetesPageCC();
-        currentlyTreatingYourDiabetesPageCC
+        CholesterolTriglyceridesLipidsPageCC cholesterolTriglyceridesLipidsPageCC = new CholesterolTriglyceridesLipidsPageCC();
+        cholesterolTriglyceridesLipidsPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS8506", site.activeProtocols)

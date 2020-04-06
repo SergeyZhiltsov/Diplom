@@ -838,7 +838,7 @@ public class GAST_4357_CC extends BaseTest {
                             .clickNextButton(directSheduleVaccCC);
                     if (env.equals("PRD")) {
                         directSheduleVaccCC
-                                .waitForPageLoad();
+                                .waitForPageLoad2();
                     }
                     if (env.equals("STG")) {
                         directSheduleVaccCC
@@ -862,7 +862,7 @@ public class GAST_4357_CC extends BaseTest {
                     SynexusRadiantDirectScheduleCC synexusRadiantDirectScheduleCC = new SynexusRadiantDirectScheduleCC();
                     if (env.equals("PRD")) {
                         directSheduleVaccCC
-                                .waitForPageLoad();
+                                .waitForPageLoad2();
                     }
                     if (env.equals("STG")) {
                         directSheduleVaccCC

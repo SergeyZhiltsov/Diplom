@@ -122,7 +122,7 @@ public class LOWT_3017_CC_A_S extends BaseTest {
                 .checkProtocolsContainsForQNumber("QSI8013", protocol2)
                 .back(genderPageCC)
                 .waitForPageLoad()
-                .setYear("1975")
+                .setYear("1976")
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
