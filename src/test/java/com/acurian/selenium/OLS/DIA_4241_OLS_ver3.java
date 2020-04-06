@@ -6,6 +6,7 @@ import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.ADG_4357.EverDiagnosedGastroparesisOrStomachEmptyingOLS;
 import com.acurian.selenium.pages.OLS.ADG_4357.WithType1DiabetesPageOLS;
 import com.acurian.selenium.pages.OLS.DIA_4241.*;
+import com.acurian.selenium.pages.OLS.DPN_3769_4557.DoYouExperienceDPN_OLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.*;
 import com.acurian.selenium.pages.OLS.LOWT_3017.CardiovascularDiseaseThanOthersPageOLS;
 import com.acurian.selenium.pages.OLS.closes.*;
@@ -162,20 +163,20 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
                 .clickOnAnswer("7 - 11 months ago")
                 .clickNextButton(currentlyTreatingYourDiabetesPageOLS);
 
-        EverDiagnosedGastroparesisOrStomachEmptyingOLS everDiagnosedGastroparesisOrStomachEmptyingOLS = currentlyTreatingYourDiabetesPageOLS
+        DoYouExperienceDPN_OLS doYouExperienceDPN_ols = currentlyTreatingYourDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Diet and exercise")
-                .clickNextButton(new EverDiagnosedGastroparesisOrStomachEmptyingOLS());
-        everDiagnosedGastroparesisOrStomachEmptyingOLS
-                .waitForPageLoad()
+                .clickNextButton(new  DoYouExperienceDPN_OLS());
+        doYouExperienceDPN_ols
+                .waitForPageLoadNew()
                 .getPage(debugPageOLS)
                 .checkProtocolsEqualsForQNumber("QS4631", protocol2, protocol3, protocol4)
                 .back();
         currentlyTreatingYourDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("I am not currently treating my diabetes")
-                .clickNextButton(everDiagnosedGastroparesisOrStomachEmptyingOLS)
-                .waitForPageLoad()
+                .clickNextButton(doYouExperienceDPN_ols)
+                .waitForPageLoadNew()
                 .getPage(debugPageOLS)
                 .checkProtocolsEqualsForQNumber("QS4631", protocol2, protocol3, protocol4)
                 .back();
@@ -491,8 +492,8 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
         poundsOrMorePageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(everDiagnosedGastroparesisOrStomachEmptyingOLS)
-                .waitForPageLoad()
+                .clickNextButton(doYouExperienceDPN_ols)
+                .waitForPageLoadNew()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS4617", protocols)
                 .back();

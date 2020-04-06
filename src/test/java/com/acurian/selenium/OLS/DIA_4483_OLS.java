@@ -11,6 +11,7 @@ import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.*;
+import com.acurian.selenium.pages.OLS.shared.DIA.CholesterolTriglyceridesLipidsPageOLS;
 import com.acurian.utils.Properties;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -261,12 +262,12 @@ public class DIA_4483_OLS extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS());
 
-        CurrentlyTreatingYourDiabetesPageOLS currentlyTreatingYourDiabetesPageOLS = whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS
+        CholesterolTriglyceridesLipidsPageOLS cholesterolTriglyceridesLipidsPageOLS = whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Cirrhosis")
-                .clickNextButton(new CurrentlyTreatingYourDiabetesPageOLS());
+                .clickNextButton(new CholesterolTriglyceridesLipidsPageOLS());
 
-        currentlyTreatingYourDiabetesPageOLS
+        cholesterolTriglyceridesLipidsPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS8506", site.activeProtocols)
@@ -325,7 +326,7 @@ public class DIA_4483_OLS extends BaseTest {
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(answer)
-                    .clickNextButton(new CurrentlyTreatingYourDiabetesPageOLS())
+                    .clickNextButton(cholesterolTriglyceridesLipidsPageOLS)
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS8510", site.activeProtocols)
