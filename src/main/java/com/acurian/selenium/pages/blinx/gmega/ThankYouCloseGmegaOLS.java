@@ -38,6 +38,13 @@ public class ThankYouCloseGmegaOLS extends MainPageBlinx {
     }
 
     @Step
+    public ThankYouCloseGmegaOLS waitForPageLoadAfterForm(String title) {
+        threadSleep(10);
+        waitForPageLoadMain(titleText, title);
+        return this;
+    }
+
+    @Step
     public String getTitleText() {
         return getText(titleText);
     }

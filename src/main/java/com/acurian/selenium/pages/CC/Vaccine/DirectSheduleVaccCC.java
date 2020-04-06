@@ -24,6 +24,15 @@ public class DirectSheduleVaccCC extends MainPageCC {
             "\n" +
             "SCHEDULE APPOINTMENT NOW";
 
+    public final String titleExpected2 = "The next step is to schedule an appointment with the study doctor’s team.\n" +
+            "Depending on the site, many of these visits can be conducted by video or phone. The study doctor’s team will reach out to you if this is an option.\n" +
+            "\n" +
+            "Agent Note: Click the link below to schedule an appointment for the patient—this will open a new window with available timeslots at the patient’s preferred site. Please choose the date and time that is most convenient for the patient, then return to the current screen to complete the screening process.\n" +
+            "\n" +
+            "Agent Note: Later, you may be prompted to warm transfer the patient to the site or schedule the patient in Clinical Conductor (even if you have successfully scheduled an appointment here).\n" +
+            "\n" +
+            "If an appointment has already been scheduled, please do NOT complete the warm transfer or schedule the patient in Clinical Conductor.";
+
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_CC)
     WebElement titleText;
 //    @FindBy(xpath = "//*[@id='command']/div[1]/div[1]/a")
@@ -34,6 +43,12 @@ public class DirectSheduleVaccCC extends MainPageCC {
     @Step
     public DirectSheduleVaccCC waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
+        return this;
+    }
+
+    @Step
+    public DirectSheduleVaccCC waitForPageLoad2() {
+        waitForPageLoadMain(titleText, titleExpected2);
         return this;
     }
 
