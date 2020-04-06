@@ -121,7 +121,6 @@ public class HSGeneralPageOLS extends MainPageBlinx {
     @Step
     public HSGeneralPageOLS waitForPageLoadCut() {
         waitForAnimation();
-//        String titleExpectedMod = String.format(titleExpected, siteIndication);
         waitForPageLoadMain(titleText, titleExpectedCut);
         return this;
     }
