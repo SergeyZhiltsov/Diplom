@@ -8,6 +8,8 @@ public class Properties {
     private static final String DEFAULT_BROWSER = BrowserType.CHROME;
     private static final String DEFAULT_USERNAME = "aautotest";
     private static final String DEFAULT_PASSWORD = "aautotest";
+    private static final String DEFAULT_USERNAMECC = "sergey.zhyltsov@globalaes.com";
+    private static final String DEFAULT_PASSWORDCC = "Onceuponatime1!";
     private static final String DEFAULT_GRID_URL = "http://10.6.0.26:55555/wd/hub2";
     private static final String DEFAULT_GRID_URL_NEW = "http://10.6.0.26:66666/wd/hub2";
     private static final String DEFAULT_HOSTNAME = "QA-Selenium";
@@ -42,6 +44,14 @@ public class Properties {
 
     public static String getPassword() {
         return DEFAULT_PASSWORD;
+    }
+
+    public static String getUsernameCC() {
+        return DEFAULT_USERNAMECC;
+    }
+
+    public static String getPasswordCC() {
+        return DEFAULT_PASSWORDCC;
     }
 
     public static String getHostName() {

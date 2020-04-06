@@ -8,7 +8,7 @@
 
     <test name="TestFlag">
         <classes>
-            <class name="com.acurian.utils.db.CheckTestSiteFlag" />
+            <class name="com.acurian.selenium.DB.CheckTestSiteFlag" />
         </classes>
     </test>
 

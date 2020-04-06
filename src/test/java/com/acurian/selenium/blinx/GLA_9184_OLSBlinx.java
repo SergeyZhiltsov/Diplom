@@ -2,13 +2,13 @@ package com.acurian.selenium.blinx;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.blinx.glaucoma.*;
 import com.acurian.selenium.pages.blinx.ams.closes.*;
 import com.acurian.selenium.pages.blinx.ams.cv_study.HeartRelatedSurgeriesProceduresPageOLS;
 import com.acurian.selenium.pages.blinx.ams.cv_study.MostRecentHeartRelatedSurgeryProcedurePageOLS;
 import com.acurian.selenium.pages.blinx.ams.debug.DebugPageOLS;
 import com.acurian.selenium.pages.blinx.ams.diabetes.SubquestionExperiencedHeartPageOLS;
 import com.acurian.selenium.pages.blinx.ams.generalHealth.*;
-import com.acurian.selenium.pages.blinx.ams.glaucoma.*;
 import com.acurian.selenium.pages.blinx.ams.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.blinx.ams.shared.GenderPageOLS;
 import com.acurian.selenium.pages.blinx.ams.shared.ZipCodePageOLS;

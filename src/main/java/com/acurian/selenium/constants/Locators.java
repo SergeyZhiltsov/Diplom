@@ -53,4 +53,6 @@ public @interface Locators {
     String DEBUG_DQ_NUMBERS = ".//div[@class='proto']";
     String DEBUG_QUESTION = "//table[@id='questionHistoryTable']//a[text()='%s']/ancestor::tr";
 
+    String BASIC_TITLE_WITH_RADIO_BUTTON_CC_BLINX = "div[contains(@class,'question-title')] | //div[contains(@class,'question-text')]";
+    String BASIC_INPUT_TEXT = "//input[contains(@class, 'input')]";
 }
