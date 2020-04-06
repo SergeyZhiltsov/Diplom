@@ -81,7 +81,9 @@ public class IBS_4684_OLSBlinx extends BaseTest {
 
         //DebugPageOLS debugPageOLS = new DebugPageOLS();
 
-        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = sufferFromIrritablePageOLS
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS =
+                sufferFromIrritablePageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("I do not experience these symptoms of IBS")
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
