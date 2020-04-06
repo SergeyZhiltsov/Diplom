@@ -1,4 +1,4 @@
-package com.acurian.selenium.pages.blinx.ams.glaucoma;
+package com.acurian.selenium.pages.blinx.glaucoma;
 
 import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.blinx.MainPageBlinx;

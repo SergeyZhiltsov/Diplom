@@ -1,4 +1,4 @@
-package com.acurian.utils.db;
+package com.acurian.selenium.DB;
 
 import com.acurian.utils.DBConnection;
 import org.testng.annotations.Test;

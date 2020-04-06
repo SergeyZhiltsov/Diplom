@@ -18,7 +18,7 @@ public class QualifiedClose2PageOLS extends MainPageBlinx {
             "We will forward your contact information to the doctor's office that you selected so they can contact you.";
 
     public final String titleExpectedGMEGA = "We're glad the location is convenient for you.\n" +
-            "We will forward your contact information to the doctor's office that you selected so they may contact you about your condition Low Back Pain, Arthritis, Rheumatoid Arthritis, Diabetes";
+            "We will forward your contact information to the doctor's office that you selected so they may contact you about your condition Low Back Pain, Diabetes, Arthritis, Rheumatoid Arthritis";
 
     public final String titleExpectedGMEGA2 = "We're glad the location is convenient for you.\n" +
             "We will forward your contact information to the doctor's office that you selected so they may contact you about your condition";
@@ -54,6 +54,13 @@ public class QualifiedClose2PageOLS extends MainPageBlinx {
     public QualifiedClose2PageOLS waitForPageLoad3() {
         waitForAnimation();
         waitForPageLoadMain(titleTextPart3, titleExpectedPart3);
+        return this;
+    }
+
+    @Step
+    public QualifiedClose2PageOLS waitForPageLoadGMEGA3() {
+        waitForAnimation();
+        waitForPageLoadMain(titleTextPart3, titleExpectedGMEGA);
         return this;
     }
 

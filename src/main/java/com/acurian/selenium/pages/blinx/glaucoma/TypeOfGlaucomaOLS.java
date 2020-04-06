@@ -1,4 +1,4 @@
-package com.acurian.selenium.pages.blinx.ams.glaucoma;
+package com.acurian.selenium.pages.blinx.glaucoma;
 
 import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.blinx.MainPageBlinx;
@@ -8,10 +8,9 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class SurgeryOrImplantToTreatGlaucomaOLS extends MainPageBlinx {
+public class TypeOfGlaucomaOLS extends MainPageBlinx {
 
-    public final String titleExpected = "Have you ever had any type of surgery or implant to treat your glaucoma or ocular hypertension?\n" +
-            "This includes laser surgery or surgery involving an incision.";
+    public final String titleExpected = "What type of glaucoma do you have?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS_BLINX)
     WebElement titleText;
@@ -19,14 +18,14 @@ public class SurgeryOrImplantToTreatGlaucomaOLS extends MainPageBlinx {
     List<WebElement> radioButtonsList;
 
     @Step
-    public SurgeryOrImplantToTreatGlaucomaOLS waitForPageLoad() {
+    public TypeOfGlaucomaOLS waitForPageLoad() {
         waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public SurgeryOrImplantToTreatGlaucomaOLS clickOnAnswer(String answerText) {
+    public TypeOfGlaucomaOLS clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }

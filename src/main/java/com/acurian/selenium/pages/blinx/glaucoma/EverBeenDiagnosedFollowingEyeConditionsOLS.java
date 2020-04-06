@@ -1,4 +1,4 @@
-package com.acurian.selenium.pages.blinx.ams.glaucoma;
+package com.acurian.selenium.pages.blinx.glaucoma;
 
 import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.blinx.MainPageBlinx;
@@ -8,25 +8,27 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class PrescribedMedicationForGlaucomaOLS extends MainPageBlinx {
+public class EverBeenDiagnosedFollowingEyeConditionsOLS extends MainPageBlinx {
 
-    public final String titleExpected = "Has a doctor ever prescribed you a medication for your glaucoma or ocular hypertension?";
+    public final String titleExpected = "Have you ever been diagnosed with any of the following eye conditions?\n" +
+            "Please select all that apply.";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS_BLINX)
     WebElement titleText;
-    @FindBy(xpath = Locators.RADIO_BUTTON_LIST_OLS)
-    List<WebElement> radioButtonsList;
+
+    @FindBy(xpath = Locators.CHEKBOX_LIST_OLS_BLINX)
+    List<WebElement> checkBoxList;
 
     @Step
-    public PrescribedMedicationForGlaucomaOLS waitForPageLoad() {
+    public EverBeenDiagnosedFollowingEyeConditionsOLS waitForPageLoad() {
         waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public PrescribedMedicationForGlaucomaOLS clickOnAnswer(String answerText) {
-        clickOnRadioButton(radioButtonsList, answerText);
+    public EverBeenDiagnosedFollowingEyeConditionsOLS clickOnAnswers(String ...answerText) {
+        clickOnCheckBoxes(checkBoxList, answerText);
         return this;
     }
 
