@@ -11,6 +11,7 @@ import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.*;
+import com.acurian.selenium.pages.OLS.shared.DIA.CholesterolTriglyceridesLipidsPageOLS;
 import com.acurian.utils.Properties;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -221,28 +222,27 @@ public class DIA_5062_OLS extends BaseTest {
                 .clickOnAnswers("High cholesterol or high triglycerides", "High blood pressure or hypertension")
                 .clickNextButton(new WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS());
 
-        CurrentlyTreatingYourDiabetesPageOLS currentlyTreatingYourDiabetesPageOLS = whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS
+        CholesterolTriglyceridesLipidsPageOLS cholesterolTriglyceridesLipidsPageOLS = whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Cirrhosis")
-                .clickNextButton(new CurrentlyTreatingYourDiabetesPageOLS());
+                .clickNextButton(new CholesterolTriglyceridesLipidsPageOLS());
 
-        currentlyTreatingYourDiabetesPageOLS
+        cholesterolTriglyceridesLipidsPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS8506", site.activeProtocols)
                 .back();
 
-        whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS
+        NoOfAlcoholicDrinkOLS noOfAlcoholicDrinkOLS =  whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(currentlyTreatingYourDiabetesPageOLS);
+                .clickNextButton(new NoOfAlcoholicDrinkOLS());
 
 //        NoOfAlcoholicDrinkOLS noOfAlcoholicDrinkOLS = liverBiopsyConfirmsNASHDiagnosisOLS
 //                .waitForPageLoad()
 //                .clickOnAnswer("Yes")
 //                .clickNextButton(new NoOfAlcoholicDrinkOLS());
 
-        NoOfAlcoholicDrinkOLS noOfAlcoholicDrinkOLS = new NoOfAlcoholicDrinkOLS();
         LiverRelatedConditionOLS liverRelatedConditionOLS = noOfAlcoholicDrinkOLS
                 .waitForPageLoad()
                 .setDrinks("26")
@@ -270,8 +270,8 @@ public class DIA_5062_OLS extends BaseTest {
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(entry.getKey())
-                    .clickNextButton(currentlyTreatingYourDiabetesPageOLS);
-            currentlyTreatingYourDiabetesPageOLS
+                    .clickNextButton(cholesterolTriglyceridesLipidsPageOLS);
+            cholesterolTriglyceridesLipidsPageOLS
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS8510", (String[]) entry.getValue().toArray())

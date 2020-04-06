@@ -799,7 +799,7 @@ public class GAST_4357_OLS extends BaseTest {
                                 .clickNextButton(directSheduleVaccOLS);
                         if (env.equals("PRD")) {
                             directSheduleVaccOLS
-                                    .waitForPageLoad();
+                                    .waitForPageLoadNew();
                         }
                         if (env.equals("STG")) {
                             qualifiedClose2PageOLS3
@@ -821,7 +821,7 @@ public class GAST_4357_OLS extends BaseTest {
                         getDriver().switchTo().window(tabs.get(0));
                         if (env.equals("PRD")) {
                             directSheduleVaccOLS
-                                    .waitForPageLoad();
+                                    .waitForPageLoadNew();
                         }
                         if (env.equals("STG")) {
                             directSheduleVaccOLS

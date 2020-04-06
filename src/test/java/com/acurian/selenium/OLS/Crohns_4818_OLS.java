@@ -556,7 +556,7 @@ public class Crohns_4818_OLS extends BaseTest {
                 .clickNextButton(new HS1PageOLS())
                 .waitForPageLoad()
                 .clickOkInPopUp()
-                .waitForPageLoad()
+                //.waitForPageLoad()
                 .setSignature();
 //                .clickNextButton(new QualifiedClose2PageOLS())
 //                .waitForPageLoadCrohns4818()

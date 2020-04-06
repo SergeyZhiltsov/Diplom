@@ -323,27 +323,21 @@ public class COPD_5042_OLS extends BaseTest {
         identificationPageOLS
                 .waitForPageLoad();
         SiteSelectionPageOLS siteSelectionPageOLS = identificationPageOLS
-                .setAllFields("Acurian", "Trial", "", "9999999999", site.zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageOLS());
-        MedicalRecordsOptionPageOLS medicalRecordsOptionPageOLS = siteSelectionPageOLS
-                .waitForPageLoad(studyName)
+        siteSelectionPageOLS
+                .waitForPageLoad("a COPD")
                 .getPID()
                 .clickOnFacilityName(site.name)
-                .clickNextButton(new MedicalRecordsOptionPageOLS());
-        HSGeneralPageOLS hsGeneralPageOLS = medicalRecordsOptionPageOLS
+                .clickNextButton(new MedicalRecordsOptionPageOLS())
                 .waitForPageLoad()
                 .clickOnAnswer("Continue with medical records")
-                .clickNextButton(new HSGeneralPageOLS());
-        DoctorInformationCollectionPageOLS doctorInformationCollectionPageOLS = hsGeneralPageOLS
-                .waitForPageLoadEmailNotProvided()
-                .typeEmail("qa.acurian@gmail.com")
-                .clickNextButton(new DoctorInformationCollectionPageOLS());
-        HS1PageOLS hs1PageOLS = doctorInformationCollectionPageOLS
+                .clickNextButton(new DoctorInformationCollectionPageOLS())
                 .waitForPageLoad()
-                .clickNextButton(new HS1PageOLS());
-        hs1PageOLS
+                .clickNextButton(new HS1PageOLS())
                 .waitForPageLoad()
                 .clickOkInPopUp()
+                .waitForPageLoad()
                 .setSignature();
 //                .waitToClickNext();
         ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = new ThankYouCloseSimplePageOLS();

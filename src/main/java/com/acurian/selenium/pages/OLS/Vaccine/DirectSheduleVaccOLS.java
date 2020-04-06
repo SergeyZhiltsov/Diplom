@@ -18,6 +18,15 @@ public class DirectSheduleVaccOLS extends MainPageOLS {
             "\n" +
             "SCHEDULE AN APPOINTMENT";
 
+    public final String titleExpectedNew = "Click the link below to schedule an appointment:\n" +
+            "Depending on the site, many of these visits can be conducted by video or phone. The study doctor’s team will reach out to you if this is an option.\n"+
+            "\n" +
+            "Once your appointment has been confirmed, please return to this window and click \"Next\" to complete the screening process.\n" +
+            "If you are unable to schedule an appointment now, the study doctor's office will contact you with additional scheduling options.\n" +
+            "\n" +
+            "\n" +
+            "SCHEDULE AN APPOINTMENT";
+
     public final String titleExpectedSTG = "Click below to schedule your appointment. After the appointment confirmation, please return to this window and click \"next\" to complete the process.\n" +
             "If you are not able to schedule now, you will be contacted by the study doctor's office to schedule your appointment.\n" +
             "\n" +
@@ -32,6 +41,10 @@ public class DirectSheduleVaccOLS extends MainPageOLS {
     @Step
     public DirectSheduleVaccOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
+        return this;
+    } @Step
+    public DirectSheduleVaccOLS waitForPageLoadNew() {
+        waitForPageLoadMain(titleText, titleExpectedNew);
         return this;
     }
 

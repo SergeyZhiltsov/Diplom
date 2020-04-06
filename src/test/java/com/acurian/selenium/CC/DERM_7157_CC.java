@@ -527,7 +527,7 @@ public class DERM_7157_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("Stent placement in your heart, neck or legs",
                         "Heart bypass surgery or Coronary Artery Bypass Graft (CABG)",
-                        "Any other surgery on the arteries in your legs, neck or heart")
+                        "Any other surgery on the arteries in your legs, neck, abdomen, or heart")
                 .clickNextButton(new MostRecentHeartProcedurePageСС());
         //Q14: QS49
         mostRecentHeartProcedurePageСС
