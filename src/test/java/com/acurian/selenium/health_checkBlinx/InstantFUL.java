@@ -16,6 +16,7 @@ import com.acurian.selenium.pages.blinx.gmega.SiteSelectionPageOLS;
 import com.acurian.selenium.pages.blinx.gmega.ThankYouCloseGmegaOLS;
 import com.acurian.selenium.pages.blinx.gmega.WhenYouDiagnosedWithRaGmegaPageOLS;
 import com.acurian.selenium.pages.blinx.gmega.intro.IdentificationPageOLS;
+import com.acurian.utils.Properties;
 import io.qameta.allure.Description;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -93,7 +94,7 @@ public class InstantFUL extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("7 - 11 months ago")
                 .clickNextButton(identificationPageOLS)
-                .waitForPageLoad()
+                .waitForPageLoad2()
                 .clickNextButton(new SiteSelectionPageOLS());
 
         siteSelectionPageOLS
@@ -110,9 +111,11 @@ public class InstantFUL extends BaseTest {
         AboutHealthPageOLS aboutHealthPageOLS = thankYouCloseGmegaOLS
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS());
-        aboutHealthPageOLS
+        if (aboutHealthPageOLS.getHostName().equals(Properties.getHostName())) {
+            aboutHealthPageOLS
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
                 .assertGeneratedFul(env, site);
+        }
     }
 }
