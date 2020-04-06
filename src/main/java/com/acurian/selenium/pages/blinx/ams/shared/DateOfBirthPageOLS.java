@@ -116,12 +116,14 @@ public class DateOfBirthPageOLS extends MainPageBlinx {
 
     @Step
     public DateOfBirthPageOLS waitForPageAHLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleAHExpected);
         return this;
     }
 
     @Step
     public DateOfBirthPageOLS waitForPageLoad1() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected1);
         return this;
     }

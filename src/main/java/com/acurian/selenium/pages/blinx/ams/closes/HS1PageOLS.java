@@ -30,7 +30,7 @@ public class HS1PageOLS extends MainPageBlinx {
     WebElement nameField;
 
     //@FindBy(xpath = "//div[@id='signer-mobile-application']//div[@class='m-document-signature-field input']/span[text()='Click to sign']")
-    @FindBy (xpath = "//div[@data-qa-ref = 'signature-input'] | //*[@id='page-1']/div[6]/div/div[1]")
+    @FindBy(xpath = "//div[@data-qa-ref = 'signature-input'] | //*[@id='page-1']/div[6]/div/div[1]")
     WebElement clickToSignButton;
 
     @FindBy(xpath = "//body[@id='signer-mobile-body']//div[@role='dialog']//div[@class='m-sign-modal--menu']/div[3]/span[@class='m-sign-modal--menu--item--label']")
@@ -49,11 +49,11 @@ public class HS1PageOLS extends MainPageBlinx {
     WebElement agreeButton;
 
 
-    private void waitJQuery(){
+    private void waitJQuery() {
         wait.until((ExpectedCondition<Boolean>) wdriver -> ((JavascriptExecutor) getDriver()).executeScript(
                 "return document.readyState"
         ).equals("complete"));
-        wait.until((ExpectedCondition<Boolean>) wdriver -> (boolean)((JavascriptExecutor) getDriver()).executeScript(
+        wait.until((ExpectedCondition<Boolean>) wdriver -> (boolean) ((JavascriptExecutor) getDriver()).executeScript(
                 "return jQuery.active == 0"
         ));
     }
@@ -64,8 +64,7 @@ public class HS1PageOLS extends MainPageBlinx {
         try {
             acceptAlert();
             acceptAlert();
-        }
-        catch (Exception ex){
+        } catch (Exception ex) {
             textToAttachment("alerts was not appeared");
         }
         waitForAnimation();
@@ -93,7 +92,7 @@ public class HS1PageOLS extends MainPageBlinx {
         }
         waitForAnimation();
         nameField.click();
-        typeTextWithoutClear(nameField,"Acurian trial");
+        typeTextWithoutClear(nameField, "Acurian trial");
         waitForAnimation();
         waitJQuery();
         clickToSignButton.click();
@@ -108,7 +107,11 @@ public class HS1PageOLS extends MainPageBlinx {
         waitForAnimation();
         waitforVisibility(continueButton);
         waitAndClickWebElement(continueButton);
-//        continueButton.click();
+        waitForAnimation();
+        if (isElementPresent(continueButton)) {
+            continueButton.click();
+            threadSleep(5);
+        }
         waitForAnimation();
         waitAndClickWebElement(agreeButton);
 //        agreeButton.click();
@@ -128,7 +131,7 @@ public class HS1PageOLS extends MainPageBlinx {
 
 
     @Step
-    public String getTitleText(){
+    public String getTitleText() {
         return getText(titleText);
     }
 

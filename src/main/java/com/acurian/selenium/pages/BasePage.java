@@ -72,7 +72,7 @@ public abstract class BasePage {
         csvParser = new CSVParser();
         dbConnection = new DBConnection();
         dimension = driver.manage().window().getSize();
-        wait = new WebDriverWait(driver, 20);
+        wait = new WebDriverWait(driver, 30);
         minimalWait = new WebDriverWait(driver, 5);
         shortWait = new WebDriverWait(driver, 10);
         longWait = new WebDriverWait(driver, 60);
@@ -296,7 +296,7 @@ public abstract class BasePage {
     }
 
     public void waitforVisibility(WebElement element) {
-        if (element.isDisplayed() || element.isEnabled()) return;
+        //if (element.isDisplayed() || element.isEnabled()) return;
         wait.until(ExpectedConditions.visibilityOf(element));
     }
 

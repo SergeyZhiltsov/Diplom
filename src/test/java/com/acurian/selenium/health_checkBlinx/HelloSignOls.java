@@ -77,7 +77,7 @@ public class HelloSignOls extends BaseTest {
                 .clickNextButton(new HSGeneralPageOLS());
 
         DoctorInformationCollectionPageOLS doctorInformationCollectionPageOLS = hsGeneralPageOLS
-                .waitForPageLoadNew()
+                .waitForPageLoadCut()
                 .clickNextButton(new DoctorInformationCollectionPageOLS());
 
         HS1PageOLS hs1PageOLS = doctorInformationCollectionPageOLS
