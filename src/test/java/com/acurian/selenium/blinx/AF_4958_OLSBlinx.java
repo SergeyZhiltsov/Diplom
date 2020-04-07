@@ -1,7 +1,12 @@
 package com.acurian.selenium.blinx;
 
 import com.acurian.selenium.constants.Site;
+import com.acurian.selenium.constants.Version;
 import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.blinx.ams.CCBlinxBeginning.AcurianHealthResearchStudyLine;
+import com.acurian.selenium.pages.blinx.ams.CCBlinxBeginning.AdminPortalPage;
+import com.acurian.selenium.pages.blinx.ams.CCBlinxBeginning.DnisPage;
+import com.acurian.selenium.pages.blinx.ams.CCBlinxBeginning.LoginPage;
 import com.acurian.selenium.pages.blinx.ams.chronic_cough.EverDiagnosedWithFollowingConditionsOLS;
 import com.acurian.selenium.pages.blinx.ams.closes.*;
 import com.acurian.selenium.pages.blinx.ams.cv_study.SubquestionHeartPageOLS;
@@ -19,6 +24,7 @@ import com.acurian.selenium.pages.blinx.ams.shared.*;
 import com.acurian.selenium.pages.blinx.ams.generalHealth.*;
 import com.acurian.selenium.pages.blinx.gmega.intro.IdentificationPageOLS;
 import com.acurian.utils.Properties;
+import com.acurian.utils.VersionGetter;
 import io.qameta.allure.Description;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -35,41 +41,75 @@ public class AF_4958_OLSBlinx extends BaseTest {
     @DataProvider
     public Object[][] sites() {
         return new Object[][]{
-                {Site.AUT_AMS1_4958_site},
-                // {Site.AUT_AMS1_4958S_site}
+                {Site.AUT_AMS1_4958_site, Version.CC},
+                //{Site.AUT_AMS1_4958_site, Version.OLS},
+                //{Site.AUT_AMS1_4958S_site}
         };
     }
 
     @Test(dataProvider = "sites")
     @Description("4958 NYX-2925-2005 Aptinyx Fibromyalgia OLS")
-    public void af4958BlinxTest(Site site) {
+    public void af4958BlinxTest(Site site, Version version) {
         final String phoneNumber = "AUTAMS1FIB";
+        String dnis = "2131.0";
         final String studyName = "a fibromyalgia study";
         String env = System.getProperty("acurian.env", "STG");
+        VersionGetter.setVersion(version.toString());
 
         DebugPageOLS debugPageOLS = new DebugPageOLS();
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
 
-        dateOfBirthPageOLS
-                .openPage(env, phoneNumber)
-                .waitForPageLoad(studyName, "350");
-//        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS
-//                .getExpectedModifiedTitle(studyName, "350"), "Title is diff");
+        if(version == Version.CC) {
+            LoginPage loginPage = new LoginPage();
+            AdminPortalPage adminPortalPage = loginPage
+                    .openPage(env)
+                    .waitForPageLoad()
+                    .setEmail()
+                    .setPass()
+                    .clickLogin(new AdminPortalPage());
+
+            DnisPage dnisPage = adminPortalPage
+                    .waitForPageLoad()
+                    .clickScreener(new DnisPage());
+
+            AcurianHealthResearchStudyLine acurianHealthResearchStudyLine = dnisPage
+                    .waitForPageLoad()
+                    .setDnis(dnis)
+                    .clickBegin(new AcurianHealthResearchStudyLine());
+
+            acurianHealthResearchStudyLine
+                    .waitForPageLoad()
+                    .clickOnAnswer("Learn more about matching to clinical trials");
+        }
+
+        if(version == Version.OLS) {
+            dateOfBirthPageOLS
+                    .openPage(env, phoneNumber);
+        }
+
         LessThan18YearsOldPageOLS lessThan18YearsOldPageOLS = dateOfBirthPageOLS
+                .waitForPageLoad(studyName, "350")
                 .clickOnAnswer("No")
                 .getPage(new LessThan18YearsOldPageOLS());
+        if(VersionGetter.getVersion().equals("CC")) {
+            dateOfBirthPageOLS
+                    .clickNextButton(lessThan18YearsOldPageOLS);
+        }
+
         lessThan18YearsOldPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QSI8005", site.activeProtocols)
                 .back(dateOfBirthPageOLS);
-
 
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
                 .waitForPageLoad(studyName, "350")
                 .clickOnAnswer("Yes")
                 .getPage(new ZipCodePageOLS());
-
+        if(VersionGetter.getVersion().equals("CC")) {
+            dateOfBirthPageOLS
+                    .clickNextButton(lessThan18YearsOldPageOLS);
+        }
 
         GenderPageOLS genderPageOLS = zipCodePageOLS
                 .waitForPageLoad()
@@ -469,7 +509,7 @@ public class AF_4958_OLSBlinx extends BaseTest {
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
-                    .back(            doAnyOftheFollowingAdditionalDiagnosesOLS
+                    .back(doAnyOftheFollowingAdditionalDiagnosesOLS
                     );
         }
         List<String> disqualifyQ24pt2 = Arrays.asList("Kidney disease requiring dialysis", "Multiple sclerosis (MS)",
@@ -516,10 +556,10 @@ public class AF_4958_OLSBlinx extends BaseTest {
                     .clickOnAnswer("Yes")
                     .clickNextButton(identificationPageOLS);
         }
-        if (env.equals("STG")){
+        if (env.equals("STG")) {
             approximateHeightPageOLS
                     .waitForPageLoad()
-                    .setAll("3","3","30")
+                    .setAll("3", "3", "30")
                     .clickNextButton(new CurrentlySufferOfAnyOfFollowingOLS())
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -571,7 +611,7 @@ public class AF_4958_OLSBlinx extends BaseTest {
         AboutHealthPageOLS aboutHealthPageOLS = alzheimerClosePageOLS
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS());
-        if(aboutHealthPageOLS.getHostName().equals(Properties.getHostName())) {
+        if (aboutHealthPageOLS.getHostName().equals(Properties.getHostName())) {
             aboutHealthPageOLS
                     .waitForPageLoad()
                     .pidFromDbToLog(env)
