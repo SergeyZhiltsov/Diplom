@@ -28,7 +28,7 @@ public class DERM_4967_CC extends BaseTest {
 
     private static Logger Log = LogManager.getLogger(DERM_4967_CC.class.getName());
 
-    @Test(dataProvider = "sites", dataProviderClass = DERM_4967_OLS.class)
+    @Test(dataProvider = "sites", dataProviderClass = DERM_4967_OLS.class, enabled = false)
     @Description("DERM 4967 Regeneron Atopic Dermatitis")
     public void derm4967ccRADtest(Site site) {
         final String phoneNumber = "AUTAMS1KAD";
