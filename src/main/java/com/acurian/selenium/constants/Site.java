@@ -178,7 +178,7 @@ public enum Site {
     AUT_GFLR1_site("AUT_GFLR1_site", "92586", "", false, false), //FlareActivationCode.java
     //Health check
     AUT_GRA1_Site("AUT_GRA1_Site", "19901", "1R", false, false),
-    AUT_GRA_FUL_Site("AUT_GRA_FUL_Site", "60415", "1R", true, false),
+    AUT_GRA_FUL_Site("AUT_GRA_FUL_Site", "19901", "1R", true, false),
     AUT_GRA_FULm_Site("AUT_GRA_FULm_Site", "19901", "1R", true, true),
     //Dispo sites
     AUT_GMEGA_New("AUT_GMEGA_New", "08204", "1R", true, false), //"AUT_GMEGA_Site";//AUT_GMEGA_01

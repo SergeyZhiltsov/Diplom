@@ -25,6 +25,7 @@ public class StudiesThatAreCurrentlyEnrollingPageOLS extends MainPageBlinx {
 
     @Step
     public StudiesThatAreCurrentlyEnrollingPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

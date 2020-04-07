@@ -117,6 +117,7 @@ public class IdentificationPageOLS extends MainPageBlinx {
 
     @Step
     public IdentificationPageOLS waitForPageLoadCaregiver () {
+        waitForAnimation();
         waitForPageLoadMain(titleTextCaregiver, titleExpectedCaregiver);
         return this;
     }

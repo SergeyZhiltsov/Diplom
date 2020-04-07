@@ -43,6 +43,10 @@ public class StudyProjectsListPage extends MainPageSB {
     WebElement commentLogicField;
     @FindBy(css = "div.alert.alert-success.alert-dismissable")
     WebElement alertMessage;
+    @FindBy(xpath = "//div[@id='mytable_filter']//input[@type='search']")
+    WebElement dashboardSearch;
+    @FindBy(xpath = "//table[@id='mytable']/tbody/tr[@data-appid]")
+    List<WebElement> screenerList;
 
     public StudyProjectsListPage() {
         PageFactory.initElements(getDriver(), this);
@@ -146,6 +150,39 @@ public class StudyProjectsListPage extends MainPageSB {
     }
 
     @Step
+    public StudyProjectsListPage searchForScreener(String text) {
+        typeText(dashboardSearch, text);
+        return this;
+    }
+
+    @Step
+    private WebElement getDesiredScreener(String screenerName) {
+        WebElement desiredScreener = null;
+        for (WebElement el : screenerList) {
+            if (el.findElement(By.xpath(".//span[@class='text-primary big']/a")).getText().equals(screenerName)) {
+                desiredScreener = el;
+                break;
+            }
+        }
+        return desiredScreener;
+    }
+
+    @Step
+    public StudyProjectsListPage clickOnElementInScreener(String screenerName) {
+        waitForAnimation();
+        getDesiredScreener(screenerName).findElement(By.xpath(".//button[@id='editMenu']")).click();
+        return this;
+    }
+
+    @Step
+    public StudyProjectsListPage openActionsOfScreener(String screenerName) {
+        waitForAnimation();
+        searchForScreener(screenerName);
+        clickOnElementInScreener(screenerName);
+        return this;
+    }
+
+    @Step
     public StudyProjectsListPage openActionsOf(String studyName) {
         waitForAnimation();
         WebElement screenerRow = screeners.stream().filter(element -> element.getText().equals(studyName))
@@ -158,7 +195,7 @@ public class StudyProjectsListPage extends MainPageSB {
     @Step
     public StudyProjectsListPage clearStudyCacheOf(String screenerName, SetupEnv env) {
         waitForAnimation();
-        openActionsOf(screenerName);
+        openActionsOfScreener(screenerName);
         WebElement clearCacheDropdownItem = screenerActions.stream().filter(element -> element.getText().equals("Clear Cache"))
                 .findFirst()
                 .get();

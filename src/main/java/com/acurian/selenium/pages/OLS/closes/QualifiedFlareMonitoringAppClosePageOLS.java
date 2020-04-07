@@ -27,6 +27,8 @@ public class QualifiedFlareMonitoringAppClosePageOLS extends MainPageOLS {
 
     @FindBy(xpath = "(//*[contains(@class, 'visible-md-block')][contains(@class, 'ng-scope')])[2]")
     WebElement titleTextQuestion;
+    @FindBy(xpath = "//h4/div[contains(@class, 'visible-md-block')]")
+    WebElement titleTextQuestion2;
 
     @FindBy(xpath = "//div[@class='question']")
     WebElement titleText;
@@ -70,7 +72,7 @@ public class QualifiedFlareMonitoringAppClosePageOLS extends MainPageOLS {
 
     @Step
     public QualifiedFlareMonitoringAppClosePageOLS waitForPageLoadHealthCheck() {
-        waitForPageLoadMain(titleTextQuestion, titleExpectedQuestion);
+        waitForPageLoadMain(titleTextQuestion2, titleExpectedHealthCheck);
         return this;
     }
 
