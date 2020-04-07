@@ -1,6 +1,5 @@
-package com.acurian.selenium.pages.CCBlinxTest;
+package com.acurian.selenium.pages.blinx.ams.CCBlinxBeginning;
 
-import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.blinx.MainPageBlinx;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;

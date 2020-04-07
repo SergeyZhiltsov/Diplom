@@ -2,7 +2,6 @@ package com.acurian.selenium.pages.blinx;
 
 import com.acurian.selenium.constants.FULType;
 import com.acurian.selenium.constants.Site;
-import com.acurian.selenium.listeners.TestListener;
 import com.acurian.selenium.pages.BasePage;
 import com.acurian.selenium.pages.FUL_Letters.FollowupLetter;
 import com.acurian.utils.PassPID;
@@ -87,7 +86,7 @@ public class MainPageBlinx extends BasePage {
     }
 
     protected void clickOnRadioButton(List<WebElement> radioButtonList, String answerText) {
-        radioButtonList.stream().filter(el -> el.getText().equals(answerText))
+        radioButtonList.stream().filter(el -> el.getText().contains(answerText))
                 .forEach(el -> {
                     try {
                         el.click();
@@ -172,6 +171,7 @@ public class MainPageBlinx extends BasePage {
         Assert.assertEquals(anomalyResults.getRequestStatus(), "2", "Request status is not 2");
         return this;
     }
+
 
     @Step
     public <T extends MainPageBlinx> T clickNextButton(T page) {
