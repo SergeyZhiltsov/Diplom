@@ -5,6 +5,7 @@ import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.ADG_4357.EverDiagnosedGastroparesisOrStomachEmptyingCC;
 import com.acurian.selenium.pages.CC.ADG_4357.WithType1DiabetesPageCC;
 import com.acurian.selenium.pages.CC.DIA_4241.*;
+import com.acurian.selenium.pages.CC.DPN_3769_4557.DoYouExperienceDPN_CC;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.*;
 import com.acurian.selenium.pages.CC.LOWT.CardiovascularDiseaseThanOthersPageCC;
 import com.acurian.selenium.pages.CC.closes.CurrentlyParticipatingInStudy;
@@ -170,20 +171,20 @@ public class DIA_4241_СС_ver3 extends BaseTest {
                 .clickNextButton(currentlyTreatingYourDiabetesPageCC);
 
         CardiovascularDiseaseThanOthersPageCC cardiovascularDiseaseThanOthersPageCC = new CardiovascularDiseaseThanOthersPageCC();
-        currentlyTreatingYourDiabetesPageCC
+        DoYouExperienceDPN_CC doYouExperienceDPN_cc =  currentlyTreatingYourDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("Diet and exercise")
-                .clickNextButton(everDiagnosedGastroparesisOrStomachEmptyingCC);
-        everDiagnosedGastroparesisOrStomachEmptyingCC
-                .waitForPageLoad()
+                .clickNextButton(new DoYouExperienceDPN_CC());
+       doYouExperienceDPN_cc
+                .waitForPageLoadNew()
                 .getPage(debugPageCC)
                 .checkProtocolsEqualsForQNumber("QS4631", protocols)
                 .back();
         currentlyTreatingYourDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("I am not currently treating my diabetes")
-                .clickNextButton(everDiagnosedGastroparesisOrStomachEmptyingCC)
-                .waitForPageLoad()
+                .clickNextButton(doYouExperienceDPN_cc)
+                .waitForPageLoadNew()
                 .getPage(debugPageCC)
                 .checkProtocolsEqualsForQNumber("QS4631", protocols)
                 .back();
@@ -668,8 +669,8 @@ public class DIA_4241_СС_ver3 extends BaseTest {
         poundsOrMorePageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(everDiagnosedGastroparesisOrStomachEmptyingCC)
-                .waitForPageLoad()
+                .clickNextButton(doYouExperienceDPN_cc)
+                .waitForPageLoadNew()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS4617", protocols)
                 .back();

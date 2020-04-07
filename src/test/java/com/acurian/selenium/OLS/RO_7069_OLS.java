@@ -10,6 +10,7 @@ import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.cv_study.SubquestionHeartPageOLS;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
+import com.acurian.selenium.pages.OLS.shared.DIA.CholesterolTriglyceridesLipidsPageOLS;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
 import com.acurian.selenium.pages.OLS.shared.HaveYouGoneThroughMenopauseOLS;
@@ -523,11 +524,11 @@ public class RO_7069_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS);
 
 
-        CurrentlySufferOfAnyOfFollowingOLS currentlySufferOfAnyOfFollowingOLS = approximateHeightPageOLS
+        CholesterolTriglyceridesLipidsPageOLS cholesterolTriglyceridesLipidsPageOLS = approximateHeightPageOLS
                 .waitForPageLoad()
                 .setAll("5", "5", "107") //Disqualify ("Low BMI") if < 18
-                .clickNextButton(new CurrentlySufferOfAnyOfFollowingOLS());
-        currentlySufferOfAnyOfFollowingOLS
+                .clickNextButton(new CholesterolTriglyceridesLipidsPageOLS());
+        cholesterolTriglyceridesLipidsPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS68", site.activeProtocols)
@@ -536,7 +537,7 @@ public class RO_7069_OLS extends BaseTest {
                 .waitForPageLoad()
                 .setLbs("220") //Disqualify ("High BMI") if > 33.5
                 .clickNextButton(new EverDiagnosedGastroparesisOrStomachEmptyingOLS());
-        IdentificationPageOLS identificationPageOLS = everDiagnosedGastroparesisOrStomachEmptyingOLS
+        IdentificationPageOLS identificationPageOLS = cholesterolTriglyceridesLipidsPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS68", site.activeProtocols)

@@ -10,6 +10,7 @@ import com.acurian.selenium.pages.CC.closes.CurrentlyParticipatingInStudy;
 import com.acurian.selenium.pages.CC.closes.LessThan18YearsOldPageCC;
 import com.acurian.selenium.pages.CC.closes.RequirePassDrugTest;
 import com.acurian.selenium.pages.CC.closes.SynexusRadiantDirectScheduleCC;
+import com.acurian.selenium.pages.CC.cv_study.CholesterolTriglyceridesLipidsPageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
@@ -247,12 +248,13 @@ public class DIA_5062_CC extends BaseTest {
                 .clickOnAnswers("High cholesterol or high triglycerides")
                 .clickNextButton(new WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseCC());
 
-        CurrentlyTreatingYourDiabetesPageCC currentlyTreatingYourDiabetesPageCC = whichOfFollowingHaveYouDiagnosedWith_liverDiseaseCC
+        CholesterolTriglyceridesLipidsPageCC cholesterolTriglyceridesLipidsPageCC = whichOfFollowingHaveYouDiagnosedWith_liverDiseaseCC
                 .waitForPageLoad()
                 .clickOnAnswers("Cirrhosis")
-                .clickNextButton(new CurrentlyTreatingYourDiabetesPageCC());
+                .clickNextButton(new CholesterolTriglyceridesLipidsPageCC());
 
-        currentlyTreatingYourDiabetesPageCC
+
+        cholesterolTriglyceridesLipidsPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS8506", site.activeProtocols)
@@ -295,7 +297,7 @@ public class DIA_5062_CC extends BaseTest {
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(condition)
-                    .clickNextButton(new CurrentlyTreatingYourDiabetesPageCC())
+                    .clickNextButton(cholesterolTriglyceridesLipidsPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("QS8510", site.activeProtocols)
