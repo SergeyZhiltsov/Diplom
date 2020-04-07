@@ -33,6 +33,7 @@ public class ChooseTheMatterYouAreHereOLS  extends MainPageBlinx {
 
     @Step
     public ChooseTheMatterYouAreHereOLS waitForPageLoadQA() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpectedQA);
         return this;
     }

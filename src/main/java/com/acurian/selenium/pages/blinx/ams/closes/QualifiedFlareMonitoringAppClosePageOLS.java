@@ -71,6 +71,7 @@ public class QualifiedFlareMonitoringAppClosePageOLS extends MainPageBlinx {
 
     @Step
     public QualifiedFlareMonitoringAppClosePageOLS waitForPageLoadHealthCheck() {
+        waitForAnimation();
         waitForPageLoadMain(titleTextQuestion, titleExpectedHealthCheck);
         return this;
     }
