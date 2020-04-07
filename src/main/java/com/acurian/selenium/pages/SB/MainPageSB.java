@@ -1,12 +1,10 @@
 package com.acurian.selenium.pages.SB;
 
 import com.acurian.selenium.pages.BasePage;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriverException;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.testng.Assert;
 import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.concurrent.TimeUnit;
@@ -23,6 +21,20 @@ public class MainPageSB extends BasePage {
                 -> ((JavascriptExecutor) getDriver()).executeScript(
                 "return document.readyState"
         ).equals("complete"));
+    }
+
+    protected void waitForPageLoadMain(WebElement titleText, String titleExpected) {
+        textToAttachment(this.getClass().getSimpleName() + " class with:");
+        textToAttachment(titleExpected, "Title text");
+        waitForAnimation();
+        waitforVisibility(titleText);
+        try {
+            wait.until((ExpectedCondition<Boolean>) w -> titleText.getText().contains(titleExpected));
+        } catch (TimeoutException ex) {
+            Assert.assertEquals(titleText.getText(), titleExpected, "Failed after timeout wait cause Title is diff");
+            throw ex;
+        }
+//        wait.until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
     }
 
     public WebElement waitForVisibility(WebElement element) {

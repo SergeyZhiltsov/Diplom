@@ -89,7 +89,7 @@ public class FlareActivationCode extends BaseTest {
         ThankYouCloseGmegaOLS thankYouCloseGmegaOLS = qualifiedFlareMonitoringAppClosePageOLS
                 .waitForPageLoadHealthCheck()
                 .getActivationCodeQA()
-                .enterEmail(Instant.now().getEpochSecond() + "@gmail.com")
+//                .enterEmail(Instant.now().getEpochSecond() + "@gmail.com")
                 .clickNextButton(new ThankYouCloseGmegaOLS());
 
         thankYouCloseGmegaOLS

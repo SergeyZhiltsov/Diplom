@@ -16,12 +16,14 @@ public class LetsStartPageOLS extends MainPageBlinx {
 
     @Step
     public LetsStartPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
     public LetsStartPageOLS waitForPageLoadByTitle(String titleExpected) {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

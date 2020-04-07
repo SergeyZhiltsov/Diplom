@@ -30,7 +30,9 @@ public class SBClearCachePublish extends BaseTest {
         ScreenBuilderApp screenBuilder = new ScreenBuilderApp();
         StudyProjectsListPage studyProjectsListPage = new StudyProjectsListPage();
 
-        loginSBPage.openPage(env);
+        loginSBPage
+                .openPage(env)
+                .waitForPageLoad();
 
         Assert.assertFalse(loginSBPage.checkLogoImage().hasDiff(), "Logos are differs!");
 
