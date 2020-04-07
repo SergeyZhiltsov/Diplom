@@ -201,6 +201,15 @@ public abstract class BasePage {
         actions.moveToElement(element).click().sendKeys(text).build().perform();
     }
 
+    /**
+     * Switch to frame.
+     *
+     * @param frameName the frame name
+     */
+    public final void switchToFrame(String frameName) {
+        driver.switchTo().frame(frameName);
+    }
+
     //rewrite bad method
     protected void typeTextSlow(WebElement webElement, String text) {
         for (char sign : text.toCharArray()) {

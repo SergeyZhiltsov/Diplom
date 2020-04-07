@@ -13,6 +13,7 @@ import com.acurian.selenium.pages.blinx.ams.gerd.WhatTypeOfSurgeryDidYouHave_OLS
 import com.acurian.selenium.pages.blinx.ams.gerd.WhenDidYouHaveAppendixRemoved_OLS;
 import com.acurian.selenium.pages.blinx.ams.ibs.*;
 import com.acurian.selenium.pages.blinx.ams.shared.*;
+import com.acurian.selenium.pages.blinx.gmega.ThankYouCloseGmegaOLS;
 import com.acurian.selenium.pages.blinx.gmega.intro.IdentificationPageOLS;
 import com.acurian.utils.Properties;
 import io.qameta.allure.Description;
@@ -675,15 +676,14 @@ public class IBS_5019_OLSBlinx extends BaseTest {
                 .waitForPageLoad2()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999")
                 .clickNextButton(new SiteSelectionPageOLS())
-                .waitForPageLoad("an irritable bowel syndrome (IBS) study")
+                .waitForPageLoad("an irritable bowel syndrome (IBS) study!")
                 .getPID()
                 .clickOnFacilityName(site.name)
                 .clickNextButton(new QualifiedClose2PageOLS())
-                .waitForPageLoad1()
+                .waitForPageLoad3()
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
                 .waitForPageLoad()
-                .clickNextButton(new AboutHealthPageOLS())
-                .waitForPageLoad();
+                .clickNextButton(new AboutHealthPageOLS());
         if (aboutHealthPageOLS.getHostName().equals(Properties.getHostName())) {
             aboutHealthPageOLS
                     .waitForPageLoad()

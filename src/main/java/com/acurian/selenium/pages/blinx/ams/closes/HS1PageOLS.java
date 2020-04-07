@@ -106,7 +106,11 @@ public class HS1PageOLS extends MainPageBlinx {
         insertButton.click();
         waitForAnimation();
         waitforVisibility(continueButton);
-        waitAndClickWebElement(continueButton);
+        try {
+            waitAndClickWebElement(continueButton);
+        } catch (Exception e) {
+            clickByActions(continueButton);
+        }
         waitForAnimation();
         if (isElementPresent(continueButton)) {
             continueButton.click();

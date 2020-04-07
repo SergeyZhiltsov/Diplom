@@ -159,6 +159,7 @@ public class MainPageBlinx extends BasePage {
     @Step
     public <T extends MainPageBlinx> T back(T page) {
         waitAndClickWebElement(previousQuestion);
+        waitForAnimation();
         return (T) page;
     }
 

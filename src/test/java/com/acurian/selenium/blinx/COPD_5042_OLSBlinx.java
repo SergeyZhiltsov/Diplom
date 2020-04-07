@@ -128,7 +128,7 @@ public class COPD_5042_OLSBlinx extends BaseTest {
                 .waitForPageLoadHaveYouBeenSmoking()
                 .setFirst("15") //This page is mad. We have to put there some text to prevent idiotic crushes.
                 .setSecond("15")
-                .back(everSmokedCigarettesPageOLS)
+//                .back(everSmokedCigarettesPageOLS)
                 .back(everSmokedCigarettesPageOLS);
         QuitSmokingOLS quitSmokingOLS = everSmokedCigarettesPageOLS
                 .waitForPageLoad()
