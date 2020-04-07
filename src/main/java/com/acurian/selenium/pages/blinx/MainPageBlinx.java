@@ -87,7 +87,7 @@ public class MainPageBlinx extends BasePage {
     }
 
     protected void clickOnRadioButton(List<WebElement> radioButtonList, String answerText) {
-        radioButtonList.stream().filter(el -> el.getText().equals(answerText))
+        radioButtonList.stream().filter(el -> el.getText().contains(answerText))
                 .forEach(el -> {
                     try {
                         el.click();
