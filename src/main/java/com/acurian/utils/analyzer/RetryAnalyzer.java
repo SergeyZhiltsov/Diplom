@@ -45,7 +45,7 @@ public class RetryAnalyzer implements IRetryAnalyzer {
         boolean retry = false;
         if (isRetryAvailable()) {
             Log.info("RETRYING TEST : " + result.getMethod() + ", "
-                    + ((MAX_RETRY_COUNT - count.intValue()) + 1) + " out of " + MAX_RETRY_COUNT);
+                    + ((MAX_RETRY_COUNT - count.intValue())) + " out of " + MAX_RETRY_COUNT);
             retry = true;
             count.decrementAndGet();
         }
