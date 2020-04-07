@@ -99,8 +99,8 @@ public class InstantFUL extends BaseTest {
 
         siteSelectionPageOLS
                 .waitForPageLoad(studyNameClose)
-                .clickOnFacilityName(site.name);
-//                .getPID();
+                .clickOnFacilityName(site.name)
+                .getPID();
         QualifiedClose2PageOLS qualifiedClose2PageOLS = siteSelectionPageOLS
                 .clickNextButton(new QualifiedClose2PageOLS());
 
