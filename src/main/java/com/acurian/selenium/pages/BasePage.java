@@ -64,7 +64,6 @@ public abstract class BasePage {
     private Dimension dimension;
     private Logger Log = LogManager.getLogger(BasePage.class.getName());
 
-
     public BasePage() {
         driver = BaseTest.getDriver();
         actions = new Actions(driver);
@@ -110,6 +109,7 @@ public abstract class BasePage {
         JavascriptExecutor executor = (JavascriptExecutor) driver;
         executor.executeScript("arguments[0].click();", element);
     }
+
 
     @Step
     protected void hoverTo(WebElement element) {
