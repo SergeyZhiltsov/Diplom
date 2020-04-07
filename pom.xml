@@ -170,7 +170,7 @@
             </property>
             <property>
               <name>retryCount</name>
-              <value>1</value>
+              <value>0</value>
             </property>
 <!--            <property>-->
 <!--              <name>listener</name>-->
