@@ -1,7 +1,12 @@
 package com.acurian.selenium.blinx;
 
 import com.acurian.selenium.constants.Site;
+import com.acurian.selenium.constants.Version;
 import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.blinx.ams.CCBlinxBeginning.AcurianHealthResearchStudyLine;
+import com.acurian.selenium.pages.blinx.ams.CCBlinxBeginning.AdminPortalPage;
+import com.acurian.selenium.pages.blinx.ams.CCBlinxBeginning.DnisPage;
+import com.acurian.selenium.pages.blinx.ams.CCBlinxBeginning.LoginPage;
 import com.acurian.selenium.pages.blinx.ams.adg_4357.HowLongAgoDiagnosedDiabetesPageOLS;
 import com.acurian.selenium.pages.blinx.ams.adg_4357.WithType1DiabetesPageOLS;
 import com.acurian.selenium.pages.blinx.ams.closes.*;
@@ -14,6 +19,7 @@ import com.acurian.selenium.pages.blinx.ams.lowt_3017.HasDoctorEverDiagnosedYouM
 import com.acurian.selenium.pages.blinx.ams.shared.*;
 import com.acurian.selenium.pages.blinx.gmega.intro.IdentificationPageOLS;
 import com.acurian.utils.Properties;
+import com.acurian.utils.VersionGetter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.annotations.DataProvider;
@@ -27,26 +33,59 @@ public class CV_4450_OLSBlinx extends BaseTest {
     private static Logger Log = LogManager.getLogger(CV_4450_OLSBlinx.class.getName());
 
     @DataProvider
-    public Object[][] sites() {
+    private Object[][] sites() {
         return new Object[][] {
-                {Site.AUT_CV1_4450S_Syn}
+                { Site.AUT_CV1_4450S_Syn,  Version.CC},
+                { Site.AUT_CV1_4450S_Syn,  Version.OLS},
         };
     }
 
     @Test(dataProvider = "sites", enabled = true)
-    public void CV_4450_Blinx(Site site) {
+    public void CV_4450_Blinx(Site site, Version version) {
         String phoneNumber = "AUTAMS1CV1";
+        String dnis = "22210.0";
         DebugPageOLS debugPageOLS = new DebugPageOLS();
         String env = System.getProperty("acurian.env", "STG");
         String studyName = "a heart health study";
-
+        VersionGetter.setVersion(version.toString());
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
 
+        if(version == Version.CC) {
+            LoginPage loginPage = new LoginPage();
+            AdminPortalPage adminPortalPage = loginPage
+                    .openPage(env)
+                    .waitForPageLoad()
+                    .setEmail()
+                    .setPass()
+                    .clickLogin(new AdminPortalPage());
+
+            DnisPage dnisPage = adminPortalPage
+                    .waitForPageLoad()
+                    .clickScreener(new DnisPage());
+
+            AcurianHealthResearchStudyLine acurianHealthResearchStudyLine = dnisPage
+                    .waitForPageLoad()
+                    .setDnis(dnis)
+                    .clickBegin(new AcurianHealthResearchStudyLine());
+
+            acurianHealthResearchStudyLine
+                    .waitForPageLoad()
+                    .clickOnAnswer("Learn more about matching to clinical trials");
+        }
+
+        if(version == Version.OLS) {
+            dateOfBirthPageOLS
+                    .openPage(env, phoneNumber);
+        }
+
         LessThan18YearsOldPageOLS lessThan18YearsOldPageOLS = dateOfBirthPageOLS
-                .openPage(env, phoneNumber)
                 .waitForPageLoad(studyName, "750")
                 .clickOnAnswer("No")
                 .getPage(new LessThan18YearsOldPageOLS());
+        if(VersionGetter.getVersion().equals("CC")) {
+            dateOfBirthPageOLS
+                    .clickNextButton(lessThan18YearsOldPageOLS);
+        }
 
         lessThan18YearsOldPageOLS
                 .waitForPageLoad()
@@ -58,6 +97,10 @@ public class CV_4450_OLSBlinx extends BaseTest {
                 .waitForPageLoad(studyName, "750")
                 .clickOnAnswer("Yes")
                 .getPage(new ZipCodePageOLS());
+        if(VersionGetter.getVersion().equals("CC")) {
+            dateOfBirthPageOLS
+                    .clickNextButton(lessThan18YearsOldPageOLS);
+        }
 
         GenderPageOLS genderPageOLS = zipCodePageOLS
                 .waitForPageLoad()

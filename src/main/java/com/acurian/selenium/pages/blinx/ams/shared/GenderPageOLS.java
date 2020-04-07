@@ -2,6 +2,7 @@ package com.acurian.selenium.pages.blinx.ams.shared;
 
 import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.blinx.MainPageBlinx;
+import com.acurian.utils.VersionGetter;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -13,6 +14,9 @@ public class GenderPageOLS extends MainPageBlinx {
     public final String titleExpectedPart1 = "What is your date of birth?";
     private final String titleExpectedPart2 = "Please select your gender:";
     public final String titleExpectedGmega = "Please confirm your gender:";
+
+    public final String titleExpectedPart1CC = "May I have your date of birth?";
+    private final String titleExpectedPart2CC = "This part of the questionnaire requires that we ask about your gender. To confirm, please tell me, is your gender male or female?";
 
     @FindBy(xpath = "(//div[@class='question-text']/span)[1]")
     WebElement titleTextPart1;
@@ -42,8 +46,13 @@ public class GenderPageOLS extends MainPageBlinx {
     @Step
     public GenderPageOLS waitForPageLoad() {
         waitForAnimation();
+        if(VersionGetter.getVersion().equals("OLS")) {
         waitForPageLoadMain(titleTextPart1, titleExpectedPart1);
         waitForPageLoadMain(titleTextPart2, titleExpectedPart2);
+        }else{
+            waitForPageLoadMain(titleTextPart1, titleExpectedPart1CC);
+            waitForPageLoadMain(titleTextPart2, titleExpectedPart2CC);
+        }
         return this;
     }
 
