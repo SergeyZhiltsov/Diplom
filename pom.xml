@@ -158,6 +158,7 @@
             <acurian.env>${base.env}</acurian.env>
             <acurian.platform>${platform}</acurian.platform>
             <resources.dir>${resources.dir}</resources.dir>
+            <retryCount>2</retryCount>
           </systemPropertyVariables>
           <properties>
             <property>
@@ -168,10 +169,7 @@
               <name>usedefaultlisteners</name>
               <value>false</value>
             </property>
-            <property>
-              <name>retryCount</name>
-              <value>2</value>
-            </property>
+
 <!--            <property>-->
 <!--              <name>listener</name>-->
 <!--              &lt;!&ndash;<value>com.acurian.selenium.listeners.TestListener</value>&ndash;&gt;-->
