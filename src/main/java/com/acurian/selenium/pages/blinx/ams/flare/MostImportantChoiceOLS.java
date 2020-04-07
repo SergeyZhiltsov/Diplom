@@ -27,6 +27,7 @@ public class MostImportantChoiceOLS extends MainPageBlinx {
 
     @Step
     public MostImportantChoiceOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
