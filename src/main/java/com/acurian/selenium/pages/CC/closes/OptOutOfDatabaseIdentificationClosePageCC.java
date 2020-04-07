@@ -46,7 +46,7 @@ public class OptOutOfDatabaseIdentificationClosePageCC extends IdentificationOpe
 
     @Step
     public OptOutOfDatabaseIdentificationClosePageCC setPhone(String phoneNumber) {
-        typeText(phoneField, phoneNumber);
+        typeTextByActions(phoneField, phoneNumber);
         return this;
     }
 

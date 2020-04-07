@@ -16,6 +16,11 @@ import static com.sun.webkit.network.URLs.newURL;
 
 public class LoginSBPage extends MainPageSB {
 
+    public final String titleExpected = "Please Sign in using your Email";
+
+    @FindBy(xpath = "//strong[text()='Please Sign in using your Email']")
+    WebElement titleText;
+
     @FindBy(id = "username")
     WebElement loginUsername;
     @FindBy(id = "password")
@@ -40,6 +45,12 @@ public class LoginSBPage extends MainPageSB {
                 openURL(URLs.SB_QA);
                 break;
         }
+        return this;
+    }
+
+    @Step
+    public LoginSBPage waitForPageLoad(){
+        waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 

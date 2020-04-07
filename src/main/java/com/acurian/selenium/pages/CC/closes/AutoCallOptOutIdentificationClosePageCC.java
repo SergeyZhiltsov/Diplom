@@ -47,13 +47,14 @@ public class AutoCallOptOutIdentificationClosePageCC extends IdentificationOpeni
 
     @Step
     public AutoCallOptOutIdentificationClosePageCC setPhone(String phoneNumber) {
-        typeText(phoneField, phoneNumber);
+        typeTextByActions(phoneField, phoneNumber);
+        waitForAnimation();
         return this;
     }
 
     @Step
     public AutoCallOptOutIdentificationClosePageCC setEveningPhoneNumber(String eveningPhoneNumber) {
-        typeText(eveningPhoneField, eveningPhoneNumber);
+        typeTextByActions(eveningPhoneField, eveningPhoneNumber);
         waitForAnimation();
         return this;
     }

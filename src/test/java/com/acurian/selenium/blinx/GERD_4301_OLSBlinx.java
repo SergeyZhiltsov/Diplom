@@ -605,14 +605,14 @@ public class GERD_4301_OLSBlinx extends BaseTest {
         // ----------PII (IdentificationPageOLS)
 
         identificationPageOLS
-                .waitForPageLoad()
+                .waitForPageLoadNewPRD()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999");
         SiteSelectionPageOLS siteSelectionPageOLS = identificationPageOLS
                 .clickNextButton(new SiteSelectionPageOLS());
 
         //----------SiteSelection Page--------------------
         siteSelectionPageOLS
-                .waitForPageLoad5("a heartburn or reflux") //could not DQ with (Phathom EE & HP) to avoid combined indication
+                .waitForPageLoad5("a heartburn or reflux study!") //could not DQ with (Phathom EE & HP) to avoid combined indication
                 .getPID()
                 .clickOnFacilityName(site.name);
         MedicalRecordsOptionPageOLS medicalRecordsOptionPageOLS = siteSelectionPageOLS

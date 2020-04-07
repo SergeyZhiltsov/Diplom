@@ -26,6 +26,7 @@ public class WhichContainAcetaminophenPageOLS extends MainPageBlinx {
 
     @Step
     public WhichContainAcetaminophenPageOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

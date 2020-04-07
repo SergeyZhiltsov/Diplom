@@ -42,7 +42,8 @@ public class FlareActivationCode extends BaseTest {
 
         GenderPageOLS genderPageOLS = identificationPageOLS
                 .waitForPageLoadNotQ()
-                .setAllFields("Acurian", "Trial", "", "9999999999", site.zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999",
+                        site.zipCode)
                 .clickNextButton(new GenderPageOLS());
 
         ApproximateHeightPageOLS approximateHeightPageOLS = genderPageOLS
@@ -88,7 +89,7 @@ public class FlareActivationCode extends BaseTest {
         ThankYouCloseGmegaOLS thankYouCloseGmegaOLS = qualifiedFlareMonitoringAppClosePageOLS
                 .waitForPageLoadHealthCheck()
                 .getActivationCodeQA()
-                .enterEmail(Instant.now().getEpochSecond() + "@gmail.com")
+//                .enterEmail(Instant.now().getEpochSecond() + "@gmail.com")
                 .clickNextButton(new ThankYouCloseGmegaOLS());
 
         thankYouCloseGmegaOLS

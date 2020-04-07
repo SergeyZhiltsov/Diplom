@@ -144,7 +144,7 @@ public class IdentificationPageCC extends MainPageCC {
 
     @Step
     public IdentificationPageCC setPhone(String phoneNumber) {
-        typeTextWithoutClear(phoneField, phoneNumber);
+        typeTextByActions(phoneField, phoneNumber);
 //        typeText(phoneField, phoneNumber);
         return this;
     }

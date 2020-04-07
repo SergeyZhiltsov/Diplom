@@ -86,7 +86,7 @@ public class MainPageBlinx extends BasePage {
     }
 
     protected void clickOnRadioButton(List<WebElement> radioButtonList, String answerText) {
-        radioButtonList.stream().filter(el -> el.getText().equals(answerText))
+        radioButtonList.stream().filter(el -> el.getText().contains(answerText))
                 .forEach(el -> {
                     try {
                         el.click();
@@ -158,6 +158,7 @@ public class MainPageBlinx extends BasePage {
     @Step
     public <T extends MainPageBlinx> T back(T page) {
         waitAndClickWebElement(previousQuestion);
+        waitForAnimation();
         return (T) page;
     }
 
