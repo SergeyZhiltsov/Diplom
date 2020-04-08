@@ -313,9 +313,14 @@ public abstract class BasePage {
         wait.until((ExpectedCondition<Boolean>) wdriver -> ((JavascriptExecutor) driver).executeScript(
                 "return document.readyState"
         ).equals("complete"));
-        wait.until((ExpectedCondition<Boolean>) wdriver -> (boolean) ((JavascriptExecutor) driver).executeScript(
-                "return jQuery.active == 0"
-        ));
+        try {
+            wait.until((ExpectedCondition<Boolean>) wdriver -> (boolean) ((JavascriptExecutor) driver).executeScript(
+                    "return jQuery.active == 0"
+            ));
+        } catch (Exception e) {
+            Log.error("jQuery is not defined");
+        }
+
     }
 
     /**

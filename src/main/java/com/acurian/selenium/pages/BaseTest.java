@@ -2,10 +2,12 @@ package com.acurian.selenium.pages;
 
 import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.constants.Platforms;
+import com.acurian.selenium.constants.Version;
 import com.acurian.selenium.listeners.EventHandler;
 import com.acurian.selenium.listeners.TestListener;
 import com.acurian.utils.DriverFactory;
 import com.acurian.utils.Properties;
+import com.acurian.utils.VersionGetter;
 import com.acurian.utils.allure.AllureUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -65,6 +67,9 @@ public abstract class BaseTest {
             AllureUtils.createProperties(getDriver());
             allureCounterRun = true;
         }
+
+        VersionGetter.setVersion(Version.OLS.toString());
+
         Log.info("Browser version " + ((RemoteWebDriver) (((EventFiringWebDriver) getDriver()).getWrappedDriver())).getCapabilities().getVersion());
     }
 
@@ -74,6 +79,7 @@ public abstract class BaseTest {
             DRIVER.get().quit();
             DRIVER.remove();
         }
+        VersionGetter.clearTh();
     }
 
     public String getHostName() {

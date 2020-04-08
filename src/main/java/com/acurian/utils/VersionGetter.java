@@ -12,12 +12,13 @@ public class VersionGetter {
     }
 
     public static void clearTh() {
-        th.remove();
+        if (th.get() != null)
+            th.remove();
     }
 
     public static String getVersion() {
         String version = th.get();
-        String versionValue = "";
+//        String versionValue = "";
         return version;
     }
 }
