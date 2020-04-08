@@ -23,7 +23,7 @@ public class LOWT_3017_OLSBlinx extends BaseTest {
     public Object[][] sites() {
         return new Object[][]{
                 {Site.AUT_LOWT_3017S_Site},
-                //{Site.AUT_LOWT_3017_Site}
+                {Site.AUT_LOWT_3017_Site}
         };
     }
 
