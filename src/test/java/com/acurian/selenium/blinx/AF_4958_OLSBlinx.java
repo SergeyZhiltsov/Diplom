@@ -59,7 +59,7 @@ public class AF_4958_OLSBlinx extends BaseTest {
         DebugPageOLS debugPageOLS = new DebugPageOLS();
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
 
-        if(version == Version.CC) {
+        if (version == Version.CC) {
             LoginPage loginPage = new LoginPage();
             AdminPortalPage adminPortalPage = loginPage
                     .openPage(env)
@@ -82,16 +82,16 @@ public class AF_4958_OLSBlinx extends BaseTest {
                     .clickOnAnswer("Learn more about matching to clinical trials");
         }
 
-        if(version == Version.OLS) {
+        if (version == Version.OLS) {
             dateOfBirthPageOLS
                     .openPage(env, phoneNumber);
         }
 
         LessThan18YearsOldPageOLS lessThan18YearsOldPageOLS = dateOfBirthPageOLS
-                .waitForPageLoad(studyName, "350")
+                .waitForPageLoadAF(studyName, "350")
                 .clickOnAnswer("No")
                 .getPage(new LessThan18YearsOldPageOLS());
-        if(VersionGetter.getVersion().equals("CC")) {
+        if (VersionGetter.getVersion().equals("CC")) {
             dateOfBirthPageOLS
                     .clickNextButton(lessThan18YearsOldPageOLS);
         }
@@ -99,14 +99,14 @@ public class AF_4958_OLSBlinx extends BaseTest {
         lessThan18YearsOldPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QSI8005", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
                 .back(dateOfBirthPageOLS);
 
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
-                .waitForPageLoad(studyName, "350")
+                .waitForPageLoadAF(studyName, "350")
                 .clickOnAnswer("Yes")
                 .getPage(new ZipCodePageOLS());
-        if(VersionGetter.getVersion().equals("CC")) {
+        if (VersionGetter.getVersion().equals("CC")) {
             dateOfBirthPageOLS
                     .clickNextButton(lessThan18YearsOldPageOLS);
         }
@@ -123,7 +123,7 @@ public class AF_4958_OLSBlinx extends BaseTest {
                 .setDate("01012003")
                 .clickNextButton(lessThan18YearsOldPageOLS);
         lessThan18YearsOldPageOLS
-                .waitForPageLoad()
+                .waitForPageLoadAF()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
                 .back(genderPageOLS);
@@ -147,7 +147,7 @@ public class AF_4958_OLSBlinx extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
-                .waitForPageLoad()
+                .waitForPageLoadArea()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS7802", site.activeProtocols)
                 .back(diagnosedWithFibromyalgiaOLS);
@@ -190,7 +190,7 @@ public class AF_4958_OLSBlinx extends BaseTest {
                 .waitForPageLoad2()
                 .clickOnAnswer("Yes")
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
-                .waitForPageLoad()
+                .waitForPageLoadHistory()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS7806", site.activeProtocols)
                 .back(areYouCurrentlyReceivingWorkersPageOLS)
@@ -200,12 +200,17 @@ public class AF_4958_OLSBlinx extends BaseTest {
 
 
         //#############General_Health ###########################
-        DoAnyOftheFollowingAdditionalDiagnosesOLS doAnyOftheFollowingAdditionalDiagnosesOLS =
-                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
-                        .waitForPageLoad()
-                        .clickOnAnswers("None of the above")
-                        .clickOnAnswers("Lupus")
-                        .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS());
+        DoAnyOftheFollowingAdditionalDiagnosesOLS doAnyOftheFollowingAdditionalDiagnosesOLS = new DoAnyOftheFollowingAdditionalDiagnosesOLS();
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+                .waitForPageLoadHistory();
+        if (VersionGetter.getVersion().equals("CC")) {
+            haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+                    .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
+        }
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Lupus")
+                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS);
 
 
         doAnyOftheFollowingAdditionalDiagnosesOLS

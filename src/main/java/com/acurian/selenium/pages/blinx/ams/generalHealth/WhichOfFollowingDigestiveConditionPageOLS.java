@@ -11,8 +11,7 @@ import java.util.List;
 public class WhichOfFollowingDigestiveConditionPageOLS extends MainPageBlinx {
 
     public final String titleExpected = "You indicated that you have a digestive condition.\n" +
-            "Which of the following have you been diagnosed with by a doctor?\n" +
-            "Please select all that apply.";
+            "Which of the following have you been diagnosed with by a doctor?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS_BLINX)
     WebElement titleText;

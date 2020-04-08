@@ -11,8 +11,7 @@ import java.util.List;
 
 public class HeartrelatedMedicalProceduresPageOLS extends MainPageBlinx {
 
-    public final String titleExpected = "Have you ever had any of the following heart-related surgeries or procedures?\n" +
-            "Please select all that apply.";
+    public final String titleExpected = "Have you ever had any of the following heart-related surgeries or procedures?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS_BLINX)
     WebElement titleText;

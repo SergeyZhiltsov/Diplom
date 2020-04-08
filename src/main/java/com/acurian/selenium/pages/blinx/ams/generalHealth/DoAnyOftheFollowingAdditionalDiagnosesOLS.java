@@ -10,8 +10,7 @@ import java.util.List;
 
 public class DoAnyOftheFollowingAdditionalDiagnosesOLS extends MainPageBlinx {
 
-    public final String titleExpected = "Do any of the following additional diagnoses apply to you?\n" +
-            "Please select all that apply.";
+    public final String titleExpected = "Do any of the following additional diagnoses apply to you?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS_BLINX)
     WebElement titleText;

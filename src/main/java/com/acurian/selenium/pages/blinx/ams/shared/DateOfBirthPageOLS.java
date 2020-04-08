@@ -29,7 +29,7 @@ public class DateOfBirthPageOLS extends MainPageBlinx {
             "No-cost study medication";
 
     public final String titleExpected = "Let's get started to see if there is %2$s that's right for you!\n" +
-            "\n" +
+            "\n"+
             "If you attend all required study visits, you may receive*:\n" +
             "Payment up to $%1$s, which varies by study\n" +
             "No-cost study-related care from doctors\n" +
@@ -39,6 +39,17 @@ public class DateOfBirthPageOLS extends MainPageBlinx {
             "\n" +
             "If you attend all required study visits, you may receive:\n" +
             "\n" +
+            "Study medication or placebo, at no-cost to you\n" +
+            "Study-related care from a local doctor for the length of the study, at no-cost to you\n" +
+            "And depending on the study, compensation of up to $%s for time and travel, for qualified participants who complete study related visits\n" +
+            "\n" +
+            "Agent Note: If caller has questions about the process, or availability of sites in their area, read: \"If there is a study that's right for you, I’ll let you know which study doctor’s offices in your area are participating in the study, and you can select the one that is most convenient for you. Then we’ll send the study doctor's office your information, so they can get in touch with you to continue the process to make sure you are a match for the study.\"\n" +
+            "\n" +
+            "If you have any questions, you can contact information@acurian.com.";
+
+    public final String titleExpectedССAF = "Let's get started to see if there is %s that's right for you.\n" +
+            "\n" +
+            "If you attend all required study visits, you may receive:\n" +
             "Study medication or placebo, at no-cost to you\n" +
             "Study-related care from a local doctor for the length of the study, at no-cost to you\n" +
             "And depending on the study, compensation of up to $%s for time and travel, for qualified participants who complete study related visits\n" +
@@ -68,10 +79,14 @@ public class DateOfBirthPageOLS extends MainPageBlinx {
     WebElement titleTextPartGMEGA2;
     @FindBy(xpath = Locators.RADIO_BUTTON_LIST_OLS)
     List<WebElement> singleChoiceButtonsList;
-    //    @FindBy(xpath = "//*[@id='QSI8002']/div/div")
+//    @FindBy(xpath = "//*[@id='QSI8002']/div/div")
 //    WebElement titleText;
     @FindBy(xpath = "(//div[@class='mt-2 mt-sm-4']//div[contains(@class,'question-text')])[2]")
     WebElement titleTextCC;
+
+    @FindBy(xpath = "(//div[@class='mt-2 mt-sm-4']//div[contains(@class,'question-text')])[1]")
+    WebElement titleTextCCAF;
+
     @FindBy(xpath = "//*[@id='QSI8002']/div/span")
     WebElement titleText2;
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS_BLINX)
@@ -118,6 +133,19 @@ public class DateOfBirthPageOLS extends MainPageBlinx {
         waitForAnimation();
         if (VersionGetter.getVersion().equals("CC")) {
             waitForPageLoadMain(titleTextCC, String.format(titleExpectedСС, indication, compensation));
+
+        } else {
+            waitForPageLoadMain(titleTextPartGMEGA1, String.format(titleExpectedPart1, indication, compensation));
+            waitForPageLoadMain(titleTextPartGMEGA2, titleExpectedPart2);
+        }
+        return this;
+    }
+
+    @Step
+    public DateOfBirthPageOLS waitForPageLoadAF(String indication, String compensation) {
+        waitForAnimation();
+        if (VersionGetter.getVersion().equals("CC")) {
+            waitForPageLoadMain(titleTextCCAF, String.format(titleExpectedССAF, indication, compensation));
 
         } else {
             waitForPageLoadMain(titleTextPartGMEGA1, String.format(titleExpectedPart1, indication, compensation));

@@ -11,8 +11,7 @@ import java.util.List;
 
 public class WeightLossSurgeryPageOLS extends MainPageBlinx {
 
-    public final String titleExpected = "Have you ever had any of the following types of bariatric or weight loss surgery?\n" +
-            "Please select all that apply.";
+    public final String titleExpected = "Have you ever had any of the following types of bariatric or weight loss surgery?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS_BLINX)
     WebElement titleText;
