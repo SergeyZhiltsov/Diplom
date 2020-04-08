@@ -29,7 +29,7 @@ public class DateOfBirthPageOLS extends MainPageBlinx {
             "No-cost study medication";
 
     public final String titleExpected = "Let's get started to see if there is %2$s that's right for you!\n" +
-            "\n"+
+            "\n" +
             "If you attend all required study visits, you may receive*:\n" +
             "Payment up to $%1$s, which varies by study\n" +
             "No-cost study-related care from doctors\n" +
@@ -68,14 +68,15 @@ public class DateOfBirthPageOLS extends MainPageBlinx {
     WebElement titleTextPartGMEGA2;
     @FindBy(xpath = Locators.RADIO_BUTTON_LIST_OLS)
     List<WebElement> singleChoiceButtonsList;
-//    @FindBy(xpath = "//*[@id='QSI8002']/div/div")
+    //    @FindBy(xpath = "//*[@id='QSI8002']/div/div")
 //    WebElement titleText;
-@FindBy(xpath = "(//div[@class='mt-2 mt-sm-4']//div[contains(@class,'question-text')])[2]")
-WebElement titleTextCC;
+    @FindBy(xpath = "(//div[@class='mt-2 mt-sm-4']//div[contains(@class,'question-text')])[2]")
+    WebElement titleTextCC;
     @FindBy(xpath = "//*[@id='QSI8002']/div/span")
     WebElement titleText2;
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS_BLINX)
     WebElement titleText;
+
     @Step
     public DateOfBirthPageOLS waitForPageLoad0(String indication, String compensation) {
         waitForAnimation();
@@ -115,10 +116,10 @@ WebElement titleTextCC;
     @Step
     public DateOfBirthPageOLS waitForPageLoad(String indication, String compensation) {
         waitForAnimation();
-        if(VersionGetter.getVersion().equals("CC")) {
+        if (VersionGetter.getVersion().equals("CC")) {
             waitForPageLoadMain(titleTextCC, String.format(titleExpectedСС, indication, compensation));
 
-        }else{
+        } else {
             waitForPageLoadMain(titleTextPartGMEGA1, String.format(titleExpectedPart1, indication, compensation));
             waitForPageLoadMain(titleTextPartGMEGA2, titleExpectedPart2);
         }
