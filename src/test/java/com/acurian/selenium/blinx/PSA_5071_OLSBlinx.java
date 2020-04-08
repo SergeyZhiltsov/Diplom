@@ -488,7 +488,7 @@ public class PSA_5071_OLSBlinx extends BaseTest {
                 .clickNextButton(new QualifiedClose2PageOLS())
                 .waitForPageLoad3()
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
-                .waitForPageLoad2()
+                .waitForPageLoad3()
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad();
         if (aboutHealthPageOLS.getHostName().equals(Properties.getHostName())) {
