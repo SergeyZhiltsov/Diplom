@@ -18,7 +18,7 @@
     <allure.version>1.5.4</allure.version>
     <browser>chrome</browser>
     <base.url>https://stg-cc.acuriancalls.com</base.url>
-    <base.env>STG</base.env>
+    <base.env>PRD</base.env>
     <platform>web</platform>
     <login>LOGIN</login>
     <password>PASSWORD</password>
