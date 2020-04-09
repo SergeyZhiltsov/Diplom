@@ -362,7 +362,11 @@ public class VACC_S10569_OLSBlinx extends BaseTest {
         ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = qualifiedClose2PageOLS
                 .waitForPageLoad3()
                 .clickNextButton(new ThankYouCloseSimplePageOLS());
-        AboutHealthPageOLS aboutHealthPageOLS = thankYouCloseSimplePageOLS
+        AlzheimerClosePageOLS alzheimerClosePageOLS = thankYouCloseSimplePageOLS
+                .waitForPageLoad()
+                .clickNextButton(new AlzheimerClosePageOLS());
+
+        AboutHealthPageOLS aboutHealthPageOLS = alzheimerClosePageOLS
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS());
 
