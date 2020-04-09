@@ -25,9 +25,9 @@ public class COPD_5042_OLSBlinx extends BaseTest {
     @DataProvider
     public Object[][] sites() {
         return new Object[][]{
-//                {Site.AUT_COPD_5042S_Site, Version.OLS},
-                {Site.AUT_COPD_5042S_Site, Version.CC},
-//                {Site.AUT_COPD_5042_Site, Version.OLS},
+                {Site.AUT_COPD_5042S_Site, Version.OLS},
+//                {Site.AUT_COPD_5042S_Site, Version.CC},
+                {Site.AUT_COPD_5042_Site, Version.OLS},
 //                {Site.AUT_COPD_5042_Site, Version.CC}
         };
     }
@@ -86,11 +86,11 @@ public class COPD_5042_OLSBlinx extends BaseTest {
         lessThan18YearsOldPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber(VersionGetter.getVersion().equals("CC") ? "QSI8004" : "QSI8005", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
                 .back(dateOfBirthPageOLS);
 
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
-                .waitForPageLoad(studyName, "750")
+                .waitForPageLoad(studyName, "700")
                 .clickOnAnswer("Yes")
                 .getPage(new ZipCodePageOLS());
         if(VersionGetter.getVersion().equals("CC")) {
@@ -380,7 +380,7 @@ public class COPD_5042_OLSBlinx extends BaseTest {
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999")
                 .clickNextButton(new SiteSelectionPageOLS());
         MedicalRecordsOptionPageOLS medicalRecordsOptionPageOLS = siteSelectionPageOLS
-                .waitForPageLoad(studyName + " study!")
+                .waitForPageLoad(studyName + "!")
                 .getPID()
                 .clickOnFacilityName(site.name)
                 .clickNextButton(new MedicalRecordsOptionPageOLS());
