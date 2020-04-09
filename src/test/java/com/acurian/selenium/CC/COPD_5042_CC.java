@@ -25,7 +25,7 @@ public class COPD_5042_CC extends BaseTest {
     @DataProvider
     public Object[][] sites() {
         return new Object[][] {
-                //{Site.AUT_COPD_5042S_Site},
+                {Site.AUT_COPD_5042S_Site},
                 {Site.AUT_COPD_5042_Site}
         };
     }

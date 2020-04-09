@@ -35,17 +35,19 @@ public class DateOfBirthPageOLS extends MainPageBlinx {
             "No-cost study-related care from doctors\n" +
             "No-cost study medication";
 
-    public final String titleExpectedСС = "Let's get started to see if there is %s that's right for you.\n" +
+    public final String titleExpectedСС1 = "Let's get started to see if there is a COPD study that's right for you.\n" +
             "\n" +
             "If you attend all required study visits, you may receive:\n" +
-            "\n" +
             "Study medication or placebo, at no-cost to you\n" +
             "Study-related care from a local doctor for the length of the study, at no-cost to you\n" +
-            "And depending on the study, compensation of up to $%s for time and travel, for qualified participants who complete study related visits\n" +
+            "And depending on the study, compensation of up to $700 for time and travel, for qualified participants who complete study related visits\n" +
             "\n" +
             "Agent Note: If caller has questions about the process, or availability of sites in their area, read: \"If there is a study that's right for you, I’ll let you know which study doctor’s offices in your area are participating in the study, and you can select the one that is most convenient for you. Then we’ll send the study doctor's office your information, so they can get in touch with you to continue the process to make sure you are a match for the study.\"\n" +
             "\n" +
             "If you have any questions, you can contact information@acurian.com.";
+
+    public final String titleExpectedСС2 = "Do I have your permission to proceed with the questionnaire?\n" +
+            "Agent Note: if the caller does not give permission, please abort screening.";
 
 
     private final String titleExpectedPart2 = "Are you age 18 or older?";
@@ -70,8 +72,10 @@ public class DateOfBirthPageOLS extends MainPageBlinx {
     List<WebElement> singleChoiceButtonsList;
     //    @FindBy(xpath = "//*[@id='QSI8002']/div/div")
 //    WebElement titleText;
+    @FindBy(xpath = "(//div[contains(@class,'question-text')])[1]")
+    WebElement titleTextCC1;
     @FindBy(xpath = "(//div[@class='mt-2 mt-sm-4']//div[contains(@class,'question-text')])[2]")
-    WebElement titleTextCC;
+    WebElement titleTextCC2;
     @FindBy(xpath = "//*[@id='QSI8002']/div/span")
     WebElement titleText2;
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS_BLINX)
@@ -117,7 +121,8 @@ public class DateOfBirthPageOLS extends MainPageBlinx {
     public DateOfBirthPageOLS waitForPageLoad(String indication, String compensation) {
         waitForAnimation();
         if (VersionGetter.getVersion().equals("CC")) {
-            waitForPageLoadMain(titleTextCC, String.format(titleExpectedСС, indication, compensation));
+            waitForPageLoadMain(titleTextCC1, String.format(titleExpectedСС1, indication, compensation));
+            waitForPageLoadMain(titleTextCC2, String.format(titleExpectedСС2, indication, compensation));
 
         } else {
             waitForPageLoadMain(titleTextPartGMEGA1, String.format(titleExpectedPart1, indication, compensation));

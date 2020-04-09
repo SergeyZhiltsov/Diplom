@@ -12,8 +12,7 @@ import java.util.List;
 public class InjectableMedicationsForYourDiabetesPageOLS extends MainPageBlinx {
 
     public final String titleExpected = "Do you currently take any of the following injectable medications for your diabetes?\n" +
-            "These are medications that are injected using a shot, needle, or pen.\n" +
-            "Please select all that apply.";
+            "These are medications that are injected using a shot, needle, or pen.";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS_BLINX)
     WebElement titleText;

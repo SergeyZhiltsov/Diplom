@@ -98,9 +98,7 @@ public class AHLandingPage_OLS extends BaseTest {
         //----------SiteSelection Page--------------------
 
         SiteSelectionPageOLS siteSelectionPageOLS = new SiteSelectionPageOLS();
-        if(siteSelectionPageOLS.getHostName().equals(Properties.getHostName())) {
             siteSelectionPageOLS
                     .getPID();
-        }
     }
 }

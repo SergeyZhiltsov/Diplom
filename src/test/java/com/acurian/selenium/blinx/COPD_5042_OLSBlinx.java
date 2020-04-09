@@ -1,17 +1,21 @@
 package com.acurian.selenium.blinx;
 import com.acurian.selenium.constants.Site;
+import com.acurian.selenium.constants.Version;
 import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.blinx.ams.CCBlinxBeginning.AcurianHealthResearchStudyLine;
+import com.acurian.selenium.pages.blinx.ams.CCBlinxBeginning.AdminPortalPage;
+import com.acurian.selenium.pages.blinx.ams.CCBlinxBeginning.DnisPage;
+import com.acurian.selenium.pages.blinx.ams.CCBlinxBeginning.LoginPage;
 import com.acurian.selenium.pages.blinx.ams.chronic_cough.QuitSmokingOLS;
 import com.acurian.selenium.pages.blinx.ams.closes.*;
 import com.acurian.selenium.pages.blinx.ams.copd.*;
 import com.acurian.selenium.pages.blinx.ams.debug.DebugPageOLS;
 import com.acurian.selenium.pages.blinx.ams.generalHealth.*;
 import com.acurian.selenium.pages.blinx.ams.lowt_3017.EverSmokedCigarettesPageOLS;
-import com.acurian.selenium.pages.blinx.ams.shared.DateOfBirthPageOLS;
-import com.acurian.selenium.pages.blinx.ams.shared.GenderPageOLS;
-import com.acurian.selenium.pages.blinx.ams.shared.ZipCodePageOLS;
+import com.acurian.selenium.pages.blinx.ams.shared.*;
 import com.acurian.selenium.pages.blinx.gmega.intro.IdentificationPageOLS;
 import com.acurian.utils.Properties;
+import com.acurian.utils.VersionGetter;
 import io.qameta.allure.Description;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -21,61 +25,88 @@ public class COPD_5042_OLSBlinx extends BaseTest {
     @DataProvider
     public Object[][] sites() {
         return new Object[][]{
-                {Site.AUT_COPD_5042S_Site},
-                {Site.AUT_COPD_5042_Site}
+//                {Site.AUT_COPD_5042S_Site, Version.OLS},
+                {Site.AUT_COPD_5042S_Site, Version.CC},
+//                {Site.AUT_COPD_5042_Site, Version.OLS},
+//                {Site.AUT_COPD_5042_Site, Version.CC}
         };
     }
 
     @Test(dataProvider = "sites")
     @Description("COPD_5042_OLS_A_S")
-    public void copd5042ols(Site site) {
+    public void copd5042ols(Site site, Version version) {
         String phoneNumber = "AUTAMSCOPD";
-        String protocol1 = "208657";
-        String protocol2 = "M16_100_S";
-        String kowaProtocolA = "208657";
-        String kowaProtocolS = "K_877_302_S";
-        String studyName = "a COPD";
-        String site_Indication = "low testosterone or hypogonadism";
-
+        String studyName = "a COPD study";
+        String dnis = "3321.0";
+        VersionGetter.setVersion(version.toString());
         String env = System.getProperty("acurian.env", "STG");
-
-        //---------------Date of Birth Question-------------------
-        DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
-        dateOfBirthPageOLS
-                .openPage(env, phoneNumber)
-                .waitForPageLoad("a COPD study", "700");
-//        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS
-//                .getExpectedModifiedTitle("a COPD study", "700"), "Title is diff");
-        ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
-                .clickOnAnswer("Yes")
-                .getPage(new ZipCodePageOLS());
-
-
-        //---------------ZIP-CODE Question-------------------
-        zipCodePageOLS
-                .waitForPageLoad();
         DebugPageOLS debugPageOLS = new DebugPageOLS();
-        GenderPageOLS genderPageOLS = zipCodePageOLS
-                .setZipCode(site.zipCode)
-                .clickNextButton(new GenderPageOLS());
+        DnisPage dnisPage = new DnisPage();
 
-        //---------------GENDER Question-------------------
-        genderPageOLS
-                .waitForPageLoad();
-        LessThan18YearsOldPageOLS lessThan18YearsOldPageOLS = genderPageOLS
-                .setDate("09092005")
-                .clickOnAnswer("Female")
-                .clickNextButton(new LessThan18YearsOldPageOLS());
+                //---------------Date of Birth Question-------------------
+        DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
 
+        if(version == Version.CC) {
+            LoginPage loginPage = new LoginPage();
+            AdminPortalPage adminPortalPage = loginPage
+                    .openPage(env)
+                    .waitForPageLoad()
+                    .setEmail()
+                    .setPass()
+                    .clickLogin(new AdminPortalPage());
+
+            adminPortalPage
+                    .waitForPageLoad()
+                    .clickScreener(dnisPage);
+
+            AcurianHealthResearchStudyLine acurianHealthResearchStudyLine = dnisPage
+                    .waitForPageLoad()
+                    .setDnis(dnis)
+                    .clickBegin(new AcurianHealthResearchStudyLine());
+
+            acurianHealthResearchStudyLine
+                    .waitForPageLoad()
+                    .clickOnAnswer("Learn more about matching to clinical trials");
+        }
+
+        if(version == Version.OLS) {
+            dateOfBirthPageOLS
+                    .openPage(env, phoneNumber);
+        }
+
+        LessThan18YearsOldPageOLS lessThan18YearsOldPageOLS = dateOfBirthPageOLS
+                .waitForPageLoad(studyName, "700")
+                .clickOnAnswer("No")
+                .getPage(new LessThan18YearsOldPageOLS());
+        if(VersionGetter.getVersion().equals("CC")) { //maybe will not work. If so, simplify like ols
+            dateOfBirthPageOLS
+                    .clickNextButton(lessThan18YearsOldPageOLS);
+        }
 
         lessThan18YearsOldPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
-                .back(genderPageOLS)
-                .waitForPageLoad();
+                .checkProtocolsContainsForQNumber(VersionGetter.getVersion().equals("CC") ? "QSI8004" : "QSI8005", site.activeProtocols)
+                .back(dateOfBirthPageOLS);
+
+        ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
+                .waitForPageLoad(studyName, "750")
+                .clickOnAnswer("Yes")
+                .getPage(new ZipCodePageOLS());
+        if(VersionGetter.getVersion().equals("CC")) {
+            dateOfBirthPageOLS
+                    .clickNextButton(zipCodePageOLS);
+        }
+
+        GenderPageOLS genderPageOLS = zipCodePageOLS
+                .waitForPageLoad()
+                .setZipCode(site.zipCode)
+                .clickNextButton(new GenderPageOLS());
+
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = genderPageOLS
+                .waitForPageLoad()
                 .setDate("09091980")
+                .clickOnAnswer("Female")
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
 
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
@@ -91,12 +122,23 @@ public class COPD_5042_OLSBlinx extends BaseTest {
         //ExperiencedAnyOfFollowingOLS experiencedAnyOfFollowing_OLS = hasHealthcareProfessionalDiagnosedLungCondOLS
         hasHealthcareProfessionalDiagnosedLungCondOLS
                 .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS())
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS7402", site.activeProtocols)
-                .back(hasHealthcareProfessionalDiagnosedLungCondOLS)
+                .clickOnAnswers("None of the above");
+        if (VersionGetter.getVersion().equals("CC")) {
+            hasHealthcareProfessionalDiagnosedLungCondOLS
+                    .clickNextButton(new NonQRtransitionPageCCBlinx())
+                    .waitForPageLoad()
+                    .getPage(debugPageOLS)
+                    .checkProtocolsContainsForQNumber("QS7402", site.activeProtocols)
+                    .back(hasHealthcareProfessionalDiagnosedLungCondOLS);
+        } else {
+            hasHealthcareProfessionalDiagnosedLungCondOLS
+                    .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
+                    .waitForPageLoad()
+                    .getPage(debugPageOLS)
+                    .checkProtocolsContainsForQNumber("QS7402", site.activeProtocols)
+                    .back(hasHealthcareProfessionalDiagnosedLungCondOLS);
+        }
+        hasHealthcareProfessionalDiagnosedLungCondOLS
                 .waitForPageLoad();
         WhenWereYouDiagnosedWithCopdOLS whenWereYouDiagnosedWithCopdOLS = hasHealthcareProfessionalDiagnosedLungCondOLS
                 .clickOnAnswers("COPD")//"Chronic bronchitis","Emphysema")
@@ -183,17 +225,8 @@ public class COPD_5042_OLSBlinx extends BaseTest {
         HaveYouEverHadFollowingLungSurgeriesOLS haveYouEverHadFollowingLungSurgeriesOLS =
                 inThePastYearHowManyUrgentMedicalforCopdOLS
                         .waitForPageLoad()
-//                .clickOnAnswer("None")
-//                .clickNextButton(new HaveYouEverHadFollowingLungSurgeriesOLS());
-//        haveYouEverHadFollowingLungSurgeriesOLS
-//                .waitForPageLoad()
-//                .getPage(debugPageOLS)
-//                .checkProtocolsContainsForQNumber("QS7411", site.activeProtocols)
-//                .back(inThePastYearHowManyUrgentMedicalforCopdOLS)
-//                .waitForPageLoad()
                         .clickOnAnswer("Twice")
                         .clickNextButton(new HaveYouEverHadFollowingLungSurgeriesOLS());
-
 
         //------------HaveYouEverHadFollowingLungSurgeriesOLS---------
         WhenDidYouHaveYourMostRecentLungSurgeryOLS whenDidYouHaveYourMostRecentLungSurgeryOLS =
@@ -216,15 +249,31 @@ public class COPD_5042_OLSBlinx extends BaseTest {
         //ApproximateHeightPageOLS approximateHeightPageOLS = whenDidYouHaveYourMostRecentLungSurgeryOLS
         whenDidYouHaveYourMostRecentLungSurgeryOLS
                 .waitForPageLoad()
-                .clickOnAnswer("6 months ago or less")
-                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+                .clickOnAnswer("6 months ago or less");
+        if (VersionGetter.getVersion().equals("CC")) {
+            whenDidYouHaveYourMostRecentLungSurgeryOLS
+                    .clickNextButton(new TransitionStatementCCBlinx())
+                    .waitForPageLoadCOPD()
+                    .getPage(debugPageOLS)
+                    .checkProtocolsContainsForQNumber("QS7413", site.activeProtocols)
+                    .back(whenDidYouHaveYourMostRecentLungSurgeryOLS);
+        } else {
+            whenDidYouHaveYourMostRecentLungSurgeryOLS
+                    .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS())
+                    .waitForPageLoad()
+                    .getPage(debugPageOLS)
+                    .checkProtocolsContainsForQNumber("QS7413", site.activeProtocols)
+                    .back(whenDidYouHaveYourMostRecentLungSurgeryOLS);
+        }
+        whenDidYouHaveYourMostRecentLungSurgeryOLS
                 .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS7413", site.activeProtocols)
-                .back(whenDidYouHaveYourMostRecentLungSurgeryOLS)
-                .waitForPageLoad()
-                .clickOnAnswer("1 year ago or more")
+                .clickOnAnswer("1 year ago or more");
+        if (VersionGetter.getVersion().equals("CC")) {
+            whenDidYouHaveYourMostRecentLungSurgeryOLS
+                    .clickNextButton(new TransitionStatementCCBlinx())
+                    .waitForPageLoadCOPD();
+        }
+        whenDidYouHaveYourMostRecentLungSurgeryOLS
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
 
 
@@ -302,11 +351,19 @@ public class COPD_5042_OLSBlinx extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(approximateHeightPageOLS);
 
+        LetMeSeePageCCBlinx letMeSeePageCCBlinx = new LetMeSeePageCCBlinx();
 
         //AboutHealthPageOLS aboutHealthPageOLS = approximateHeightPageOLS
-        IdentificationPageOLS identificationPageOLS = approximateHeightPageOLS
+        approximateHeightPageOLS
                 .waitForPageLoad()
-                .setAll("5", "5", "250")
+                .setAll("5", "5", "250");
+
+        if (VersionGetter.getVersion().equals("CC")) {
+            approximateHeightPageOLS
+                    .clickNextButton(letMeSeePageCCBlinx)
+                    .waitForPageLoad();
+        }
+        IdentificationPageOLS identificationPageOLS = approximateHeightPageOLS
                 .clickNextButton(new CurrentlyParticipatingInStudyOLS())
                 .waitForPageLoad()
                 .clickOnAnswer("No")
@@ -327,27 +384,45 @@ public class COPD_5042_OLSBlinx extends BaseTest {
                 .getPID()
                 .clickOnFacilityName(site.name)
                 .clickNextButton(new MedicalRecordsOptionPageOLS());
-        HSGeneralPageOLS hsGeneralPageOLS = medicalRecordsOptionPageOLS
+        medicalRecordsOptionPageOLS
                 .waitForPageLoad()
-                .clickOnAnswer("Continue with medical records")
-                .clickNextButton(new HSGeneralPageOLS());
-        DoctorInformationCollectionPageOLS doctorInformationCollectionPageOLS = new DoctorInformationCollectionPageOLS();
+                .clickOnAnswer("Continue with medical records");
 
-        HS1PageOLS hs1PageOLS = doctorInformationCollectionPageOLS
-                .waitForPageLoad()
-                .clickNextButton(new HS1PageOLS());
+        AboutHealthPageOLS aboutHealthPageOLS = new AboutHealthPageOLS();
 
-        hs1PageOLS
-                .waitForPageLoad()
-                .clickOkInPopUp()
-                .setSignature();
-        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = new ThankYouCloseSimplePageOLS();
-        AboutHealthPageOLS aboutHealthPageOLS = thankYouCloseSimplePageOLS
-                .waitForPageLoad()
-                .clickNextButton(new AboutHealthPageOLS());
+        if (VersionGetter.getVersion().equals("CC")) {
+            medicalRecordsOptionPageOLS
+                    .clickNextButton(new DoctorInformationCollectionPageOLS())
+                    .waitForPageLoad()
+                    .clickNextButton(new SynexusRadiantDirectScheduleCCBlinx())
+                    .waitForPageLoadSyn()
+                    .assertVariables("Acurian", "Trial", "09/09/1941", "US",
+                            "Cape May, NJ", site.zipCode, "qa.acurian@gmail.com", "999 -999-9999",
+                            "AUT_5042S", "AUT_AMS1_5042S_site", "GSKPPDCOP657")
+                    .clickOnAnswer("[Successful direct schedule in clinical conductor]")
+                    .clickNextButton(dnisPage)
+                    .waitForPageLoad();
+        } else {
+            medicalRecordsOptionPageOLS
+                    .clickNextButton(new HSGeneralPageOLS());
+            DoctorInformationCollectionPageOLS doctorInformationCollectionPageOLS = new DoctorInformationCollectionPageOLS();
+
+            HS1PageOLS hs1PageOLS = doctorInformationCollectionPageOLS
+                    .waitForPageLoad()
+                    .clickNextButton(new HS1PageOLS());
+
+            hs1PageOLS
+                    .waitForPageLoad()
+                    .clickOkInPopUp()
+                    .setSignature();
+            ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = new ThankYouCloseSimplePageOLS();
+            thankYouCloseSimplePageOLS
+                    .waitForPageLoad()
+                    .clickNextButton(new AboutHealthPageOLS())
+                    .waitForPageLoad();
+        }
         if (aboutHealthPageOLS.getHostName().equals(Properties.getHostName())) {
             aboutHealthPageOLS
-                    .waitForPageLoad()
                     .pidFromDbToLog(env)
                     .childPidFromDbToLog(env)
                     .dispoShouldMatch(site.dispo, site.dispo);
@@ -363,5 +438,4 @@ public class COPD_5042_OLSBlinx extends BaseTest {
             }
         }
     }
-
 }

@@ -14,9 +14,7 @@ public class HasHealthcareProfessionalDiagnosedLungCondOLS extends MainPageBlinx
     public final String titleExpected = "COPD, or chronic obstructive pulmonary disease, is a common lung condition that makes it difficult to breathe. It is mainly caused by smoking. There are two forms of COPD:\n" +
             "• Chronic bronchitis, in which the lining of your airways becomes inflamed, causing a long-term cough with mucus or phlegm, and\n" +
             "• Emphysema, in which the air sacs in your lungs become damaged, causing shortness of breath.\n" +
-            "Most people suffer from both forms, and symptoms often develop slowly over time.\n" +
-            "Has a healthcare professional ever diagnosed you with any of these lung conditions?\n" +
-            "Please select all that apply.";
+            "Most people suffer from both forms, and symptoms often develop slowly over time.";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS_BLINX)
     WebElement titleText;

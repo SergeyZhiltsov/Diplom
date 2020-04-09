@@ -10,8 +10,7 @@ import java.util.List;
 
 public class EverTreatedYourCronsOLS extends MainPageBlinx {
 
-    public final String titleExpected = "Have you ever treated your Crohn's disease with any of the following medications that suppress your immune system?\n" +
-            "Please select all that apply.";
+    public final String titleExpected = "Have you ever treated your Crohn's disease with any of the following medications that suppress your immune system?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS_BLINX)
     WebElement titleText;

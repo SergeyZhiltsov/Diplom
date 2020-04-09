@@ -11,8 +11,7 @@ import java.util.List;
 
 public class BrandsOfInsulinPageOLS extends MainPageBlinx {
 
-    public final String titleExpected = "Which of the following types or brands of insulin do you currently take?\n" +
-            "Please select all that apply.";
+    public final String titleExpected = "Which of the following types or brands of insulin do you currently take?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS_BLINX)
     WebElement titleText;

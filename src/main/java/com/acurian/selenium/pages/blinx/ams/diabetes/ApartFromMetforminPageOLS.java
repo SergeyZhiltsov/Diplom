@@ -11,8 +11,7 @@ import java.util.List;
 
 public class ApartFromMetforminPageOLS extends MainPageBlinx {
 
-    public final String titleExpected = "Apart from metformin, what other oral (taken by mouth) medications do you currently take for your diabetes?\n" +
-            "Please select all that apply.";
+    public final String titleExpected = "Apart from metformin, what other oral (taken by mouth) medications do you currently take for your diabetes?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS_BLINX)
     WebElement titleText;

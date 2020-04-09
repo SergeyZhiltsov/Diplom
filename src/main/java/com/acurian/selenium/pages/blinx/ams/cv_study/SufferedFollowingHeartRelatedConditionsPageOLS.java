@@ -10,8 +10,7 @@ import java.util.List;
 
 public class SufferedFollowingHeartRelatedConditionsPageOLS extends MainPageBlinx {
 
-    private final String titleExpected = "Have you ever had or suffered from any of the following heart-related events or conditions?\n" +
-            "Please select all that apply.";
+    private final String titleExpected = "Have you ever had or suffered from any of the following heart-related events or conditions?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS_BLINX)
     WebElement titleText;

@@ -11,8 +11,7 @@ import java.util.List;
 
 public class DigestiveConditionsAffectDiabetesPageOLS extends MainPageBlinx {
 
-    public final String titleExpected = "Have you ever been diagnosed with any of the following digestive conditions which affect some people with diabetes?\n" +
-            "Please select all that apply.";
+    public final String titleExpected = "Have you ever been diagnosed with any of the following digestive conditions which affect some people with diabetes?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS_BLINX)
     WebElement titleText;

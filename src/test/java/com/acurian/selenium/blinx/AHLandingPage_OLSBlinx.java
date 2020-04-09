@@ -96,9 +96,7 @@ public class AHLandingPage_OLSBlinx extends BaseTest {
         //----------SiteSelection Page--------------------
 
         SiteSelectionPageOLS siteSelectionPageOLS = new SiteSelectionPageOLS();
-        if(siteSelectionPageOLS.getHostName().equals(Properties.getHostName())) {
             siteSelectionPageOLS
                     .getPID();
-        }
     }
 }
