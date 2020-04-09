@@ -446,7 +446,7 @@ public class CG_4960_OLSBlinx extends BaseTest {
                 .clickNextButton(new AboutHealthPageOLS());
 //                .waitForPageLoad();
 
-        if(aboutHealthPageOLS.getHostName().equals(Properties.getHostName())) {
+        if (aboutHealthPageOLS.getHostName().equals(Properties.getHostName())) {
             aboutHealthPageOLS
                     .waitForPageLoad()
                     .pidFromDbToLog(env)
