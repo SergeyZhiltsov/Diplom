@@ -6,9 +6,9 @@
         <listener class-name="com.acurian.selenium.listeners.AnnotationTransformer"/>
     </listeners>
     <test name="Regression1">
-        <packages>
-            <package name="com.acurian.selenium.SB.dependentScreeners.SBStandAloneScreenerPart"/>
-        </packages>
+        <classes>
+            <class name="com.acurian.selenium.SB.dependentScreeners.SBStandAloneScreenerPart"/>
+        </classes>
     </test>
 
     <!--<test name="TC inner test">-->
