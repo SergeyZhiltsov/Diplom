@@ -11,10 +11,7 @@ import com.acurian.utils.db.ChildResult;
 import com.acurian.utils.db.RadiantResults;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -110,8 +107,13 @@ public class MainPageOLS extends BasePage {
     protected void clickOnCheckBoxes(List<WebElement> checkBoxList, String... answerText) {
         waitForAnimation();
         List<String> answerTextList = Arrays.asList(answerText);
-        checkBoxList.stream().filter(el -> answerTextList.contains(el.getText()))
-                .forEach(el -> getActions().moveToElement(el.findElement(By.xpath("ancestor::label/span[contains(@class,'debug-question-helper')]")), 5, 5).click().build().perform());
+        try {
+            checkBoxList.stream().filter(el -> answerTextList.contains(el.getText()))
+                    .forEach(el -> getActions().moveToElement(el.findElement(By.xpath("ancestor::label/span[contains(@class,'debug-question-helper')]")), 5, 5).click().build().perform());
+        }catch(WebDriverException e){
+            checkBoxList.stream().filter(el -> answerTextList.contains(el.getText()))
+                    .forEach(el ->  {scrollToElement(el, true).click(); getActions().moveToElement(el.findElement(By.xpath("ancestor::label/span[contains(@class,'debug-question-helper')]")), 5, 5).click().build().perform();});
+        }
 //            for (WebElement el : checkBoxList) {
 //                if (answerTextList.contains(el.getText())) {
 ////                scrollToElement(el, true);
