@@ -28,7 +28,7 @@ public class DIA_4483_CC extends BaseTest {
     @Test(dataProvider = "sites", dataProviderClass = DIA_4483_OLS.class)
     public void dia4483ccTest(Site site) {
         final String phoneNumber = "AUTAMSNASH";
-        final String studyName = "a fatty liver study for diabetics"; //"a NASH study";
+        final String studyName = "a fatty liver study"; //"a NASH study";
         final String indicationHistroyName = "diabetes";
 
         DebugPageCC debugPageCC = new DebugPageCC();
@@ -63,7 +63,7 @@ public class DIA_4483_CC extends BaseTest {
                 .clickNextButton(new DateOfBirthPageCC());
 
         dateOfBirthPageCC
-                .waitForPageLoad("a fatty liver study for diabetics", "750");
+                .waitForPageLoad("a fatty liver study", "750");
 //        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC
 //                .getExpectedModifiedTitle("a fatty liver study for diabetics", "750"), "Title is diff");
 
@@ -80,7 +80,7 @@ public class DIA_4483_CC extends BaseTest {
 
 
         GenderPageCC genderPageCC = dateOfBirthPageCC
-                .waitForPageLoad("a fatty liver study for diabetics", "750")
+                .waitForPageLoad("a fatty liver study", "750")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
                 .clickNextButton(new ZipCodePageCC())
                 .waitForPageLoad()
