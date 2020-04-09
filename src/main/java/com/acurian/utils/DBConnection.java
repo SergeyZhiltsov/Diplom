@@ -288,6 +288,7 @@ public class DBConnection {
 
             rset = stmt.executeQuery(sql);
 
+            Log.info("Result = " + rset);
             ChildResult childResult = null;
             while (rset.next()) {
                 childResult = new ChildResult();
