@@ -55,17 +55,14 @@ public class MainPageBlinx extends BasePage {
     }
 
     @Step
-    public String getHostName(){
+    public String getHostName() {
         String hostname = null;
 
-        try
-        {
+        try {
             InetAddress addr;
             addr = InetAddress.getLocalHost();
             hostname = addr.getHostName();
-        }
-        catch (UnknownHostException ex)
-        {
+        } catch (UnknownHostException ex) {
             Log.error("Hostname can not be resolved");
         }
         return hostname;
@@ -120,6 +117,7 @@ public class MainPageBlinx extends BasePage {
 
     /**
      * Use this method only for pages    HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS    and    DoAnyOftheFollowingAdditionalDiagnosesOLS
+     *
      * @param checkBoxList
      * @param answerText
      */
@@ -141,9 +139,10 @@ public class MainPageBlinx extends BasePage {
                     } catch (WebDriverException ex) {
                         try {
                             scrollToElement(el, true).click();
-                        }catch (WebDriverException ex1){
+                        } catch (WebDriverException ex1) {
                             scrollToTop();
-                            el.click();
+                            clickByActions(el);
+
                         }
                     }
                 });
@@ -155,6 +154,7 @@ public class MainPageBlinx extends BasePage {
     public void clickPreviousQuestion() {
         waitAndClickWebElement(previousQuestion);
     }
+
     @Step
     public <T extends MainPageBlinx> T back(T page) {
         waitForAnimation();
@@ -239,6 +239,7 @@ public class MainPageBlinx extends BasePage {
 
     @Step
     public MainPageBlinx childPidFromDbToLog(String env, String... firstPartOfChildPhoneNumber) {
+        Log.info("PID is " + pid);
         ChildResult childResult = getDbConnection().dbReadChildPID(env, pid, firstPartOfChildPhoneNumber);
         dispoChild = childResult.getDispoCd() + childResult.getApplicantStatus();
         childPid = childResult.getChildPid();
@@ -282,8 +283,8 @@ public class MainPageBlinx extends BasePage {
     }
 
     @Step
-    public MainPageBlinx getRadiantDbToLog(String env, String ... assertStudyReference) {
-        if(env.equals("QA")) {
+    public MainPageBlinx getRadiantDbToLog(String env, String... assertStudyReference) {
+        if (env.equals("QA")) {
             RadiantResults radiantResults = getDbConnection().dbReadRadiant(env, pid);
             textToAttachment("Radiant : current status = " + radiantResults.getCurrentStatus() +
                     ", response message = " + radiantResults.getResponseMessage() +
@@ -314,7 +315,7 @@ public class MainPageBlinx extends BasePage {
         StringBuilder sb = new StringBuilder();
         String line;
 
-        if(ful.getFulsToBeVerifiedFile().exists()) {
+        if (ful.getFulsToBeVerifiedFile().exists()) {
             try (BufferedReader br = new BufferedReader(new FileReader(ful.getFulsToBeVerifiedFile()))) {
                 while ((line = br.readLine()) != null) {
                     sb.append(line).append("\n");
@@ -334,16 +335,17 @@ public class MainPageBlinx extends BasePage {
             e.printStackTrace();
         }
     }
+
     @Step
     public MainPageBlinx flareCodeShouldMatch(String env, String statusCode) {
         String flareStatus = getDbConnection().dbGetStatusFlare(env, pid);
-        textToAttachment("Flare : current status = "+ flareStatus + " for childPID " + pid);
+        textToAttachment("Flare : current status = " + flareStatus + " for childPID " + pid);
         Assert.assertEquals(flareStatus, statusCode, "Current status for Flare is diff");
         return this;
     }
 
     @Step
-    public MainPageBlinx getPID(){
+    public MainPageBlinx getPID() {
         pidNumber = getText(pidNumberPath);
         pidNumber = pidNumber.split(" ")[1];
         textToAttachment("PID = " + pidNumber);
@@ -380,7 +382,7 @@ public class MainPageBlinx extends BasePage {
         dispoChild = childResult.getDispoCd() + childResult.getApplicantStatus();
         childPid = childResult.getChildPid();
         textToAttachment("Child dispoBlinx =" + childResult.getDispoCd() + childResult.getApplicantStatus() + " for PID " + pid +
-                " with child pid = "+ childResult.getChildPid());
+                " with child pid = " + childResult.getChildPid());
         return this;
     }
 

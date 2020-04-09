@@ -11,8 +11,7 @@ import java.util.List;
 
 public class WhichFollowingInhalersdoYouUseCopdOLS extends MainPageBlinx {
 
-    public final String titleExpected = "Which of the following inhalers or nebulizers do you currently use to manage your COPD?\n" +
-            "Please select all that apply.";
+    public final String titleExpected = "Which of the following inhalers or nebulizers do you currently use to manage your COPD?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS_BLINX)
     WebElement titleText;

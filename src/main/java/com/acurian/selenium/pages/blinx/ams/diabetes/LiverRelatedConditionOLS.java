@@ -11,8 +11,7 @@ import java.util.List;
 
 public class LiverRelatedConditionOLS extends MainPageBlinx {
 
-    public final String titleExpected = "Has a healthcare professional ever diagnosed you with any of the following liver-related conditions?\n" +
-            "Please select all that apply.";
+    public final String titleExpected = "Has a healthcare professional ever diagnosed you with any of the following liver-related conditions?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS_BLINX)
     WebElement titleText;

@@ -99,7 +99,7 @@ public class CV_4450_OLSBlinx extends BaseTest {
                 .getPage(new ZipCodePageOLS());
         if(VersionGetter.getVersion().equals("CC")) {
             dateOfBirthPageOLS
-                    .clickNextButton(lessThan18YearsOldPageOLS);
+                    .clickNextButton(zipCodePageOLS);
         }
 
         GenderPageOLS genderPageOLS = zipCodePageOLS

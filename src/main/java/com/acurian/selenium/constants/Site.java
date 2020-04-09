@@ -82,9 +82,9 @@ public enum Site {
     //    AUT_VAC_4556_Site("AUT_VAC_4556_Site", "60061", "1R", true, false, "B7471008"),//"B7471007"
     AUT_AMS_JANRSV("AUT_JANRSV_site", "19901", "1R", false, false, "VAC18193RSV2001"),
 
-    AUT_S10159("AUT_S10159", "19901", "1R", true, false, "FBP00004"),
-    AUT_S10001("AUT_S10001", "19044", "1R", true, false, "VLA1553_301"),
-    AUT_S10569("AUT_S10569", "19244", "1R", true, false, "VAC52416BAC1001"),
+    AUT_S10159("AUT_S10159", "19901", "41C", true, false, "FBP00004"),
+    AUT_S10001("AUT_S10001", "19044", "41C", true, false, "VLA1553_301"),
+    AUT_S10569("AUT_S10569", "19244", "41C", true, false, "VAC52416BAC1001"),
 
     AUT_AMS_JANRSV_Syn("AUT_JANRSVS_site", "19422", "41C", false, false, "VAC18193RSV2001"),
     JANRSV_AUT_JANDS("Synexus – 301010 : Chicago", "60602", "41C", false, false, "VAC18193RSV2001"),
@@ -100,7 +100,7 @@ public enum Site {
     //4656
     AUT_PSO4656("AUT_PSO4656", "19901", "1R", true, false, "CC_10004_PSOR_022"),
     //7469
-    AUT_S10484("AUT_S10484", "19901", "1R", true, false, "EDP1815_201"),
+    AUT_S10484("AUT_S10484", "19901", "41C", true, false, "EDP1815_201"),
     //4691
     AUT_AKC4691_MR("AUT_AKC4691_MR", "08204", "1R", true, false, "ISIS 703802_CS2"),
     //4708
@@ -165,7 +165,7 @@ public enum Site {
     AUT_AMS1_4960_site("AUT_AMS1_4960_site", "08204", "1R", true, false, "LG_GDCL002"),
     AUT_AMS1_4960S_site("AUT_AMS1_4960S_site", "08204", "41C", false, false, "LG_GDCL002"),
     //4912
-    AUT_AMS1_4912_site("AUT_AMS1_4912_site", "19422", "1R", true, true, "I6T_MC_AMAM"),
+    AUT_AMS1_4912_site("AUT_AMS1_4912_site", "19422", "41C", true, true, "I6T_MC_AMAM"),
     AUT_AMS1_4912S_site("AUT_AMS1_4912S_site", "08204", "41C", true, true, "I6T_MC_AMAM"),
     //7157
     AUT_AMS1_7157_site("AUT_AMS1_7157_site", "08204", "1R", true, true, "GBR_830_204"),

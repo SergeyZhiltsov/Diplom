@@ -25,7 +25,7 @@ public class COPD_5042_CC extends BaseTest {
     @DataProvider
     public Object[][] sites() {
         return new Object[][] {
-                //{Site.AUT_COPD_5042S_Site},
+                {Site.AUT_COPD_5042S_Site},
                 {Site.AUT_COPD_5042_Site}
         };
     }
@@ -352,20 +352,23 @@ public class COPD_5042_CC extends BaseTest {
                         .clickOnAnswer("Continue with medical records")
                         .clickNextButton(new DoctorInformationCollectionPageCC())
                         .waitForPageLoad()
-//                        .clickNextButton(new HSMedicalRecordsPageCC())
-//                        .waitForPageLoad()
+                        .clickNextButton(new HSMedicalRecordsPageCC())
+                        .waitForPageLoad()
                         .clickNextButton(new SynexusRadiantDirectScheduleCC())
                         .waitForPageLoadSyn()
-                        .assertVariables("Acurian", "Trial", "09/09/1941", "US",
-                            "Cape May, NJ", site.zipCode, "qa.acurian@gmail.com", "999 -999-9999",
-                            "AUT_5042S", "AUT_AMS1_5042S_site", "GSKPPDCOP657")
+                        .assertVariablesNew("Acurian", "Trial", "09/09/1941", "US",
+                            "Cape May, NJ", site.zipCode, "qa.acurian@gmail.com", "999-999-9999",
+                            "AUT_5042S", "AUT_AMS1_5042S_site", "GSKPPDCOP657 - GSK COPD MATINEE")
                         .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                         .clickNextButton(selectActionPageCC)
-                        .waitForPageLoad()
-                        .pidFromDbToLog(env)
-                        .getRadiantDbToLog(env)
-                        .childPidFromDbToLog(env, "5042")
-                        .dispoShouldMatch(site.dispo, site.dispo);
+                        .waitForPageLoad();
+                if (selectActionPageCC.getHostName().equals(Properties.getHostName())) {
+                    selectActionPageCC
+                            .pidFromDbToLog(env)
+                            .getRadiantDbToLog(env)
+                            .childPidFromDbToLog(env, "5042")
+                            .dispoShouldMatch(site.dispo, site.dispo);
+                }
 
                 break;
             case AUT_COPD_5042_Site:

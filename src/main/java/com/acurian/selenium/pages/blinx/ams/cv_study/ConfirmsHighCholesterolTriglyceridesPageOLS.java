@@ -10,8 +10,7 @@ import java.util.List;
 
 public class ConfirmsHighCholesterolTriglyceridesPageOLS extends MainPageBlinx {
 
-    private final String titleExpected = "Have you had a blood test that confirms you have high cholesterol or high triglycerides?\n" +
-            "Please select all that apply:";
+    private final String titleExpected = "Have you had a blood test that confirms you have high cholesterol or high triglycerides?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS_BLINX)
     WebElement titleText;

@@ -11,8 +11,7 @@ import java.util.List;
 
 public class HaveYouEverHadFollowingLungSurgeriesOLS extends MainPageBlinx {
 
-    public final String titleExpected = "Have you ever had any of the following lung surgeries?\n" +
-            "Please select all that apply.";
+    public final String titleExpected = "Have you ever had any of the following lung surgeries?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS_BLINX)
     WebElement titleText;
