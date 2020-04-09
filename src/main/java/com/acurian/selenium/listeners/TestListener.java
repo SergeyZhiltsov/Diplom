@@ -23,8 +23,8 @@ public class TestListener extends TestListenerAdapter implements ITestListener {
     @Override
     public void onTestFailure(ITestResult result) {
         //add allure attach
-        if (result.getMethod().getRetryAnalyzer() != null) {
-            RetryAnalyzer retryAnalyzer = (RetryAnalyzer) result.getMethod().getRetryAnalyzer();
+        if (result.getMethod().getRetryAnalyzer(result) != null) {
+            RetryAnalyzer retryAnalyzer = (RetryAnalyzer) result.getMethod().getRetryAnalyzer(result);
 
             if (retryAnalyzer.isRetryAvailable()) {
                 // do nothing
