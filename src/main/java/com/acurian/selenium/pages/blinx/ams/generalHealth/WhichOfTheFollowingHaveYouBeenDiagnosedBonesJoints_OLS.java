@@ -12,8 +12,7 @@ import java.util.List;
 public class WhichOfTheFollowingHaveYouBeenDiagnosedBonesJoints_OLS extends MainPageBlinx {
 
     public final String titleExpected = "You indicated that you have a condition that affects bones and joints.\n" +
-            "Which of the following specific conditions have you been diagnosed with?\n" +
-            "Please select all that apply.";
+            "Which of the following specific conditions have you been diagnosed with?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS_BLINX)
     WebElement titleText;

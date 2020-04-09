@@ -33,6 +33,16 @@ public class LessThan18YearsOldPageOLS extends MainPageBlinx {
         }
         return this;
     }
+    @Step
+    public LessThan18YearsOldPageOLS waitForPageLoadAF() {
+        waitForAnimation();
+        if(VersionGetter.getVersion().equals("OLS")) {
+            waitForPageLoadMain(titleText, titleExpected);
+        }else{
+            waitForPageLoadMain(titleTextCC, titleExpected);
+        }
+        return this;
+    }
 
     @Step
     public String getTitleText(){

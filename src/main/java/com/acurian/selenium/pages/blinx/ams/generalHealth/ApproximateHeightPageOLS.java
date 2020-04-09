@@ -1,6 +1,7 @@
 package com.acurian.selenium.pages.blinx.ams.generalHealth;
 
 import com.acurian.selenium.pages.blinx.MainPageBlinx;
+import com.acurian.utils.VersionGetter;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -10,6 +11,9 @@ public class ApproximateHeightPageOLS extends MainPageBlinx {
 
     public final String titleExpectedPart1 = "What is your approximate height?";
     private final String titleExpectedPart2 = "What is your approximate weight?";
+
+    public final String titleExpectedPartHeightCC = "May I have your approximate height?";
+    private final String titleExpectedPartWeightCC = "May I have your approximate weight?";
 
 
     @FindBy(xpath = "(//div[@class='question-text']/span)[1]")
@@ -32,8 +36,13 @@ public class ApproximateHeightPageOLS extends MainPageBlinx {
     @Step
     public ApproximateHeightPageOLS waitForPageLoad() {
         waitForAnimation();
-        waitForPageLoadMain(titleTextPart1, titleExpectedPart1);
-        waitForPageLoadMain(titleTextPart2, titleExpectedPart2);
+        if (VersionGetter.getVersion().equals("OLS")) {
+            waitForPageLoadMain(titleTextPart1, titleExpectedPart1);
+            waitForPageLoadMain(titleTextPart2, titleExpectedPart2);
+        } else {
+            waitForPageLoadMain(titleTextPart1, titleExpectedPartHeightCC);
+            waitForPageLoadMain(titleTextPart2, titleExpectedPartWeightCC);
+        }
         return this;
     }
 

@@ -29,7 +29,7 @@ public class DIA_5062_CC extends BaseTest {
     @Test()
     public void dia5062ccTest() {
         final String phoneNumber = "AUTAMSNASH";
-        final String studyName = "a fatty liver study for diabetics"; //"a NASH study";
+        final String studyName = "a fatty liver study"; //"a NASH study";
         final String indicationHistroyName = "diabetes";
         Site site = Site.AUT_NASH5062_site; //Synexus Site
         DebugPageCC debugPageCC = new DebugPageCC();
@@ -64,7 +64,7 @@ public class DIA_5062_CC extends BaseTest {
                 .clickNextButton(new DateOfBirthPageCC());
 
         dateOfBirthPageCC
-                .waitForPageLoad("a fatty liver study for diabetics", "750");
+                .waitForPageLoad("a fatty liver study", "750");
 //        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC
 //                .getExpectedModifiedTitle("a fatty liver study for diabetics", "750"), "Title is diff");
 
