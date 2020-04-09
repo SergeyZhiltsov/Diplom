@@ -10,8 +10,7 @@ import java.util.List;
 
 public class EverTakenAnyOfFollowingMedicationsOLS extends MainPageBlinx {
 
-    public final String titleExpected = "Have you ever taken any of the following medications for your Crohn's disease?\n" +
-            "Please select all that apply.";
+    public final String titleExpected = "Have you ever taken any of the following medications for your Crohn's disease?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS_BLINX)
     WebElement titleText;

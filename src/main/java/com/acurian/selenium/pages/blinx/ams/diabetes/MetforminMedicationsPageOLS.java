@@ -12,8 +12,7 @@ import java.util.List;
 public class MetforminMedicationsPageOLS extends MainPageBlinx {
 
     public final String titleExpected = "Do you currently take any of the following oral (taken by mouth) metformin medications?\n" +
-            "Metformin is a common medication prescribed to control blood sugar or treat type 2 diabetes.\n" +
-            "Please select all that apply.";
+            "Metformin is a common medication prescribed to control blood sugar or treat type 2 diabetes.";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS_BLINX)
     WebElement titleText;

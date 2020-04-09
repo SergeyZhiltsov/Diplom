@@ -100,7 +100,7 @@ public enum Site {
     //4656
     AUT_PSO4656("AUT_PSO4656", "19901", "1R", true, false, "CC_10004_PSOR_022"),
     //7469
-    AUT_S10484("AUT_S10484", "19901", "1R", true, false, "EDP1815_201"),
+    AUT_S10484("AUT_S10484", "19901", "41C", true, false, "EDP1815_201"),
     //4691
     AUT_AKC4691_MR("AUT_AKC4691_MR", "08204", "1R", true, false, "ISIS 703802_CS2"),
     //4708

@@ -10,8 +10,7 @@ import java.util.List;
 
 public class AsPartOfYourCronsDiseaseDiagnosisFollowingProceduresOLS extends MainPageBlinx {
 
-    public final String titleExpected = "As part of your Crohn's disease diagnosis, have you ever had any of the following procedures done?\n" +
-            "Please select all that apply.";
+    public final String titleExpected = "As part of your Crohn's disease diagnosis, have you ever had any of the following procedures done?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS_BLINX)
     WebElement titleText;

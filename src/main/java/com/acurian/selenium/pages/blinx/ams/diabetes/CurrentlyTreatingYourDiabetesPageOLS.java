@@ -11,8 +11,7 @@ import java.util.List;
 
 public class CurrentlyTreatingYourDiabetesPageOLS extends MainPageBlinx {
 
-    public final String titleExpected = "How are you currently treating your diabetes?\n" +
-            "Please select all that apply.";
+    public final String titleExpected = "How are you currently treating your diabetes?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS_BLINX)
     WebElement titleText;

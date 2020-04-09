@@ -10,8 +10,7 @@ import java.util.List;
 
 public class CurrentlyHaveAnyFollowingOLS extends MainPageBlinx {
 
-    public final String titleExpected = "Do you currently have any of the following?\n" +
-            "Please select all that apply.";
+    public final String titleExpected = "Do you currently have any of the following?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS_BLINX)
     WebElement titleText;

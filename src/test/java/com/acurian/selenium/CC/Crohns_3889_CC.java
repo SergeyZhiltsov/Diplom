@@ -629,7 +629,7 @@ public class Crohns_3889_CC extends BaseTest {
                     .pidFromDbToLog(env)
                     .childPidFromDbToLog(env)
                     //.assertGeneratedFul(env, site)
-                    .dispoShouldMatch(site.dispo, site.dispo);
+                    .dispoShouldMatch(site.dispo, site.dispo, "3889");
         }
     }
 }
