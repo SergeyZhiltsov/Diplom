@@ -1,6 +1,5 @@
 package com.acurian.selenium.OLS;
 
-import com.acurian.selenium.CC.PSA_5071_CC;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.ADG_4357.*;
@@ -16,10 +15,12 @@ import com.acurian.selenium.pages.OLS.GERD.WhatTypeOfSurgeryDidYouHave_OLS;
 import com.acurian.selenium.pages.OLS.MDD_3159.MostRecentHeartProcedurePageOLS;
 import com.acurian.selenium.pages.OLS.OAB_4867.DoYouTakeAnyMedicationsControlHypertension_OLS;
 import com.acurian.selenium.pages.OLS.RA.WhatKindOfArthritisPageOLS;
+import com.acurian.selenium.pages.OLS.Vaccine.AreYouInterestedInVaccineStudyOLS;
 import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.*;
+import com.acurian.selenium.pages.OLS.shared.DIA.HasDiagnosedFollowingComplicationsOfDiabetesOLS;
 import com.acurian.utils.Properties;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -44,7 +45,7 @@ public class GAST_7114_OLS extends BaseTest {
         };
     }
 
-    @Test (enabled = true, dataProvider = "sites")
+    @Test(enabled = true, dataProvider = "sites")
     @Description("GAST 7114 OLS (Neurogastrx Gastroparesis - Diabetic or Idiopathic)")
     public void gast7114OLSTest(Site site) {
 
@@ -88,6 +89,7 @@ public class GAST_7114_OLS extends BaseTest {
                 .clickNextButton(new DiagnosedAnyTypeOfDiabetesPageOLS());
 
         EverDiagnosedGastroparesisOrStomachEmptyingOLS everDiagnosedGastroparesisOrStomachEmptyingOLS = new EverDiagnosedGastroparesisOrStomachEmptyingOLS();
+        HasDiagnosedFollowingComplicationsOfDiabetesOLS hasDiagnosedFollowingComplicationsOfDiabetesOLS = new HasDiagnosedFollowingComplicationsOfDiabetesOLS();
 
         //Q2
         WhatKindOfDiabetesPageOLS whatKindOfDiabetesPageOLS = diagnosedAnyTypeOfDiabetesPageOLS
@@ -98,8 +100,8 @@ public class GAST_7114_OLS extends BaseTest {
         whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Pre-diabetes") //Disqualify ("No diagnosis of diabetes")
-                .clickNextButton(everDiagnosedGastroparesisOrStomachEmptyingOLS);
-        everDiagnosedGastroparesisOrStomachEmptyingOLS
+                .clickNextButton(hasDiagnosedFollowingComplicationsOfDiabetesOLS);
+        hasDiagnosedFollowingComplicationsOfDiabetesOLS
                 .waitForPageLoad()
                 .back();
 
@@ -123,10 +125,19 @@ public class GAST_7114_OLS extends BaseTest {
         howLongAgoDiagnosedDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("1 to less than 5 years ago") //in this place we DQ for RLM_MD_01/02 protocols
-                .clickNextButton(everDiagnosedGastroparesisOrStomachEmptyingOLS);
+                .clickNextButton(hasDiagnosedFollowingComplicationsOfDiabetesOLS);
 
         //Q7
-// ---- START Q9 Ghost Question - Gastroparesis Logic check ----
+        hasDiagnosedFollowingComplicationsOfDiabetesOLS
+                .waitForPageLoad()
+                .clickOnAnswers("Diabetic retinopathy or eye damage",
+                        "Diabetic peripheral neuropathy or nerve damage",
+                        "Diabetic foot ulcer",
+                        "Amputation due to diabetes, such as removal of a toe",
+                        "Diabetic nephropathy or kidney damage",
+                        "None of the above")
+                .clickNextButton(everDiagnosedGastroparesisOrStomachEmptyingOLS);
+
         FollowingAreCommonSymptomsOLS followingAreCommonSymptomsOLS = everDiagnosedGastroparesisOrStomachEmptyingOLS
                 .waitForPageLoad()
                 .clickOnAnswer("No") //DQ for 9279
@@ -140,47 +151,44 @@ public class GAST_7114_OLS extends BaseTest {
                 .clickNextButton(currentlyTreatingYourDiabetesPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS7208", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS7227", site.activeProtocols)
                 .back();
-
-        followingAreCommonSymptomsOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Nausea or feeling sick to your stomach")
-                .clickNextButton(currentlyTreatingYourDiabetesPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS7209", site.activeProtocols)
-                .back(followingAreCommonSymptomsOLS);
-
 
         HowLongBeenHavingThoseSymptomsPageOLS howLongBeenHavingThoseSymptomsPageOLS = followingAreCommonSymptomsOLS
                 .waitForPageLoad()
-                .clickOnAnswers("Bloating")
+                .clickOnAnswers("Nausea or feeling sick to your stomach")
                 .clickNextButton(new HowLongBeenHavingThoseSymptomsPageOLS());
 
         //Q10
+        ThrownUpVomitedPastMonthPageOLS thrownUpVomitedPastMonthPageOLS = new ThrownUpVomitedPastMonthPageOLS();
         howLongBeenHavingThoseSymptomsPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("2 months or less")
-                .clickNextButton(currentlyTreatingYourDiabetesPageOLS)
-                .waitForPageLoad()
+                .clickNextButton(thrownUpVomitedPastMonthPageOLS)
+                .waitForPageLoad1()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS7222", site.activeProtocols)
                 .back();
-        ThrownUpVomitedPastMonthPageOLS thrownUpVomitedPastMonthPageOLS = howLongBeenHavingThoseSymptomsPageOLS
+
+         howLongBeenHavingThoseSymptomsPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("3 to 5 months")
-                .clickNextButton(new ThrownUpVomitedPastMonthPageOLS());
+                .clickNextButton(thrownUpVomitedPastMonthPageOLS);
 
         //Q11
-        KindOfTestsOrEvaluationHaveYouHadPageOLS kindOfTestsOrEvaluationHaveYouHadPageOLS = thrownUpVomitedPastMonthPageOLS
+        thrownUpVomitedPastMonthPageOLS
+                .waitForPageLoad1()
+                .clickOnAnswer("None")
+                .clickNextButton(currentlyTreatingYourDiabetesPageOLS);
+        currentlyTreatingYourDiabetesPageOLS
                 .waitForPageLoad()
-                .clickOnAnswer("None, I have not vomited in the past month")
-                .clickNextButton(new KindOfTestsOrEvaluationHaveYouHadPageOLS());
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS7209", site.activeProtocols)
+                .back();
 
-        GastroparesisSymptomsCausedByFollowingPageOLS gastroparesisSymptomsCausedByFollowingPageOLS = kindOfTestsOrEvaluationHaveYouHadPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
+        GastroparesisSymptomsCausedByFollowingPageOLS gastroparesisSymptomsCausedByFollowingPageOLS = thrownUpVomitedPastMonthPageOLS
+                .waitForPageLoad1()
+                .clickOnAnswer("1 time")
                 .clickNextButton(new GastroparesisSymptomsCausedByFollowingPageOLS());
 
         OpioidOrNarcoticMedicationPageOLS opioidOrNarcoticMedicationPageOLS = new OpioidOrNarcoticMedicationPageOLS();
@@ -188,7 +196,7 @@ public class GAST_7114_OLS extends BaseTest {
         List<String> DQ13 = Arrays.asList("Surgery", "Parkinson’s disease", "Radiation therapy",
                 "Crohn’s disease", "Chagas disease", "Cannabinoid hyperemesis syndrome", "Cyclic vomiting syndrome",
                 "Rumination syndrome");
-        for (String answer: DQ13) {
+        for (String answer : DQ13) {
             Log.info("Select answer for Q13: " + answer);
             gastroparesisSymptomsCausedByFollowingPageOLS
                     .waitForPageLoad()
@@ -515,7 +523,7 @@ public class GAST_7114_OLS extends BaseTest {
                     .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
-                    .checkProtocolsContainsForQNumber("QS44" , site.activeProtocols)
+                    .checkProtocolsContainsForQNumber("QS44", site.activeProtocols)
                     .back(whichOfFollowingDigestiveConditionPageOLS);
         }
         whichOfFollowingDigestiveConditionPageOLS
@@ -674,7 +682,7 @@ public class GAST_7114_OLS extends BaseTest {
                     .clickNextButton(approximateHeightPageOLS)
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
-                    .checkProtocolsContainsForQNumber("QS59" , site.activeProtocols)
+                    .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
                     .back();
         }
 
@@ -685,7 +693,7 @@ public class GAST_7114_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS61" , site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS61", site.activeProtocols)
                 .back();
 
         //Q24: QS59
@@ -704,40 +712,47 @@ public class GAST_7114_OLS extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
-                .setAll("3", "3", "37")
+                /*.setAll("3", "3", "37")
                 .clickNextButton(currentlyTreatingYourDiabetesPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS68", site.activeProtocols)
                 .back(approximateHeightPageOLS)
-                .waitForPageLoad()
-                .setAll("5","5","150");
-        if(env.equals("STG")) {
+                .waitForPageLoad()*/
+                .setAll("5", "5", "150");
+        /*if (env.equals("STG")) {
             switch (site) {
                 case AUT_GAST_7114:
-            approximateHeightPageOLS
-                    .clickNextButton(new CurrentlyTreatingYourDiabetesPageOLS())
-                    .waitForPageLoad()
-                    .clickOnAnswers("I am not currently treating my diabetes")
-                    .clickNextButton(new CurrentlySufferOfAnyOfFollowingOLS())
-                    .waitForPageLoad()
-                    .clickOnAnswers("None of the above")
-                    .clickNextButton(new DuringPastThreeMonthsOLS())
-                    .waitForPageLoad()
-                    .clickOnAnswer("No")
-                    .clickNextButton(new EverDiagnosedWithFollowingConditionsOLS())
-                    .waitForPageLoad()
-                    .clickOnAnswers("None of the above")
-                    .clickNextButton(new WhatTypeOfSurgeryDidYouHave_OLS())
-                    .waitForPageLoad()
-                    .clickOnAnswers("None of the above")
-                    .clickNextButton(new UseMarijuanaOrCannabisOLS())
-                    .waitForPageLoad()
-                    .clickOnAnswer("No");
+                    approximateHeightPageOLS
+                            .clickNextButton(new CurrentlyTreatingYourDiabetesPageOLS())
+                            .waitForPageLoad()
+                            .clickOnAnswers("I am not currently treating my diabetes")
+                            .clickNextButton(new CurrentlySufferOfAnyOfFollowingOLS())
+                            .waitForPageLoad()
+                            .clickOnAnswers("None of the above")
+                            .clickNextButton(new DuringPastThreeMonthsOLS())
+                            .waitForPageLoad()
+                            .clickOnAnswer("No")
+                            .clickNextButton(new EverDiagnosedWithFollowingConditionsOLS())
+                            .waitForPageLoad()
+                            .clickOnAnswers("None of the above")
+                            .clickNextButton(new WhatTypeOfSurgeryDidYouHave_OLS())
+                            .waitForPageLoad()
+                            .clickOnAnswers("None of the above")
+                            .clickNextButton(new UseMarijuanaOrCannabisOLS())
+                            .waitForPageLoad()
+                            .clickOnAnswer("No")
+                            .clickNextButton(new DoctorDiagnosedFollowingEyeConditionsOLS())
+                            .waitForPageLoad()
+                            .clickOnAnswers("None of the above")
+                            .clickNextButton(new AreYouInterestedInVaccineStudyOLS())
+                            .waitForPageLoad()
+                            .clickOnAnswers("None of the above");
                     break;
-                default: break;
+                default:
+                    break;
             }
-        }
+        }*/
         approximateHeightPageOLS
                 .clickNextButton(new CurrentlyParticipatingInStudyOLS())
                 .waitForPageLoad()
@@ -766,7 +781,7 @@ public class GAST_7114_OLS extends BaseTest {
                     .waitForPageLoad()
                     .pidFromDbToLog(env)
                     .getRadiantDbToLog(env)
-    //                .getAnomalyDbToLog(env)
+                    //                .getAnomalyDbToLog(env)
                     .childPidFromDbToLog(env)
                     .dispoShouldMatch(site.dispo, site.dispo);
         }
