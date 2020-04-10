@@ -28,7 +28,7 @@ public class DIA_5062_OLSBlinx extends BaseTest {
     public void dia5062olsTest() {
         String phoneNumber = "AUTAMSNASH";
         Site site = Site.AUT_NASH5062_site;
-        String studyName = "a fatty liver study for diabetics!";//"a NASH";
+        String studyName = "a fatty liver study!";//"a NASH";
 
         String env = System.getProperty("acurian.env", "STG");
 
@@ -37,9 +37,9 @@ public class DIA_5062_OLSBlinx extends BaseTest {
 
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
-                .waitForPageLoad0("a fatty liver study for diabetics", "750");
+                .waitForPageLoad0("a fatty liver study", "750");
         Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS
-                        .getExpectedModifiedTitle("a fatty liver study for diabetics", "750"),
+                        .getExpectedModifiedTitle("a fatty liver study", "750"),
                 "Title is diff");
         LessThan18YearsOldPageOLS lessThan18YearsOldPage_OLS = dateOfBirthPageOLS
                 .clickOnAnswer("No")
@@ -52,7 +52,7 @@ public class DIA_5062_OLSBlinx extends BaseTest {
 
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
-                .waitForPageLoadCrohns("a fatty liver study for diabetics", "750")
+                .waitForPageLoadCrohns("a fatty liver study", "750")
                 .clickOnAnswer("Yes")
                 .getPage(new ZipCodePageOLS());
 
@@ -412,6 +412,7 @@ public class DIA_5062_OLSBlinx extends BaseTest {
 
         QualifiedClose2PageOLS qualifiedClose2PageOLS = siteSelectionPageOLS
                 .waitForPageLoad5(studyName)
+                .getPID()
                 .clickOnFacilityName(site.name)
                 .clickNextButton(new QualifiedClose2PageOLS());
 
