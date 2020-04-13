@@ -41,9 +41,9 @@ public class AF_4958_OLSBlinx extends BaseTest {
     @DataProvider
     public Object[][] sites() {
         return new Object[][]{
-                {Site.AUT_AMS1_4958_site, Version.CC},
-                //{Site.AUT_AMS1_4958_site, Version.OLS},
-                //{Site.AUT_AMS1_4958S_site}
+                //{Site.AUT_AMS1_4958_site, Version.CC},
+                {Site.AUT_AMS1_4958_site, Version.OLS},
+                {Site.AUT_AMS1_4958S_site}
         };
     }
 
