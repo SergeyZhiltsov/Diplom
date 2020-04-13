@@ -12,8 +12,7 @@ import java.util.List;
 public class InThePast3MonthsHaveYouExperienced_OLS extends MainPageBlinx {
 
     public final String titleExpected = "The following can be common difficulties for people with autism.\n" +
-            "In the past three months, have you experienced any of the following?\n" +
-            "Please select all that apply.";
+            "In the past three months, have you experienced any of the following?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS_BLINX)
     WebElement titleText;

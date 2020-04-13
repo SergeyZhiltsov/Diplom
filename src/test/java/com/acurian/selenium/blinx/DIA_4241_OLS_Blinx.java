@@ -27,10 +27,10 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+// v.3
+public class DIA_4241_OLS_Blinx extends BaseTest {
 
-public class DIA_4241_OLS_ver3Blinx extends BaseTest {
-
-    private static Logger Log = LogManager.getLogger(DIA_4241_OLS_ver3Blinx.class.getName());
+    private static Logger Log = LogManager.getLogger(DIA_4241_OLS_Blinx.class.getName());
 
     @Test()
     @Description("Diabetes 4241 OLS")

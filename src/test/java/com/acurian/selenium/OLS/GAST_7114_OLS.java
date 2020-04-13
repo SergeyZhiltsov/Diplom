@@ -712,15 +712,15 @@ public class GAST_7114_OLS extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
-                /*.setAll("3", "3", "37")
+                .setAll("3", "3", "37")
                 .clickNextButton(currentlyTreatingYourDiabetesPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS68", site.activeProtocols)
                 .back(approximateHeightPageOLS)
-                .waitForPageLoad()*/
+                .waitForPageLoad()
                 .setAll("5", "5", "150");
-        /*if (env.equals("STG")) {
+        if (env.equals("STG")) {
             switch (site) {
                 case AUT_GAST_7114:
                     approximateHeightPageOLS
@@ -752,7 +752,7 @@ public class GAST_7114_OLS extends BaseTest {
                 default:
                     break;
             }
-        }*/
+        }
         approximateHeightPageOLS
                 .clickNextButton(new CurrentlyParticipatingInStudyOLS())
                 .waitForPageLoad()
