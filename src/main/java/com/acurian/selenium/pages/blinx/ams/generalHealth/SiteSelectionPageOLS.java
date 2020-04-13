@@ -62,11 +62,10 @@ public class SiteSelectionPageOLS extends MainPageBlinx {
         String titleExpectedMod = String.format(titleExpected, studyName);
         try {
             waitForPageLoadMain(titleText, titleExpectedMod);
-            return this;
         } catch (StaleElementReferenceException e) {
             waitForPageLoadMain(titleText, titleExpectedMod);
-            return this;
         }
+        return this;
     }
 
     @Step
