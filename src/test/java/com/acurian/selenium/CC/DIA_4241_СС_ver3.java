@@ -14,6 +14,7 @@ import com.acurian.selenium.pages.CC.closes.SynexusRadiantDirectScheduleCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
+import com.acurian.selenium.pages.CC.shared.DIA.HasDiagnosedFollowingComplicationsOfDiabetesCC;
 import com.acurian.utils.Properties;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -118,11 +119,14 @@ public class DIA_4241_СС_ver3 extends BaseTest {
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS4603", protocols)
                 .back();
-        EverDiagnosedGastroparesisOrStomachEmptyingCC everDiagnosedGastroparesisOrStomachEmptyingCC = whatKindOfDiabetesPageCC
+        HasDiagnosedFollowingComplicationsOfDiabetesCC hasDiagnosedFollowingComplicationsOfDiabetesCC = new HasDiagnosedFollowingComplicationsOfDiabetesCC();
+        //EverDiagnosedGastroparesisOrStomachEmptyingCC everDiagnosedGastroparesisOrStomachEmptyingCC = new EverDiagnosedGastroparesisOrStomachEmptyingCC();
+
+                whatKindOfDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Pre-diabetes")
-                .clickNextButton(new EverDiagnosedGastroparesisOrStomachEmptyingCC());
-        everDiagnosedGastroparesisOrStomachEmptyingCC
+                .clickNextButton(hasDiagnosedFollowingComplicationsOfDiabetesCC);
+        hasDiagnosedFollowingComplicationsOfDiabetesCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS4603", protocols)

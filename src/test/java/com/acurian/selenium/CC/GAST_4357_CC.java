@@ -12,6 +12,7 @@ import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
+import com.acurian.selenium.pages.CC.shared.DIA.HasDiagnosedFollowingComplicationsOfDiabetesCC;
 import com.acurian.selenium.pages.OLS.generalHealth.WhichOfFollowingHaveYouDiagnosedWith_NeurologicalCC;
 import com.acurian.selenium.pages.blinx.ams.shared.DRSBlinx;
 import com.acurian.utils.Properties;
@@ -120,7 +121,7 @@ public class GAST_4357_CC extends BaseTest {
                 .clickNextButton(new DiagnosedAnyTypeOfDiabetesPageCC());
 
         EverDiagnosedGastroparesisOrStomachEmptyingCC everDiagnosedGastroparesisOrStomachEmptyingCC = new EverDiagnosedGastroparesisOrStomachEmptyingCC();
-
+        HasDiagnosedFollowingComplicationsOfDiabetesCC hasDiagnosedFollowingComplicationsOfDiabetesCC = new HasDiagnosedFollowingComplicationsOfDiabetesCC();
         //Q2
         WhatKindOfDiabetesPageCC whatKindOfDiabetesPageCC = diagnosedAnyTypeOfDiabetesPageCC
                 .waitForPageLoad()
@@ -137,8 +138,8 @@ public class GAST_4357_CC extends BaseTest {
         whatKindOfDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Pre-diabetes") //Disqualify ("No diagnosis of diabetes")
-                .clickNextButton(everDiagnosedGastroparesisOrStomachEmptyingCC);
-        everDiagnosedGastroparesisOrStomachEmptyingCC
+                .clickNextButton(hasDiagnosedFollowingComplicationsOfDiabetesCC);
+        hasDiagnosedFollowingComplicationsOfDiabetesCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS7203", site.activeProtocols)
@@ -166,8 +167,8 @@ public class GAST_4357_CC extends BaseTest {
             withType2DiabetesPageCC
                     .waitForPageLoad()
                     .clickOnAnswer(answer) //skip to Q7
-                    .clickNextButton(everDiagnosedGastroparesisOrStomachEmptyingCC);
-            everDiagnosedGastroparesisOrStomachEmptyingCC
+                    .clickNextButton(hasDiagnosedFollowingComplicationsOfDiabetesCC);
+            hasDiagnosedFollowingComplicationsOfDiabetesCC
                     .waitForPageLoad()
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("QS7204", site.activeProtocols)
@@ -188,7 +189,7 @@ public class GAST_4357_CC extends BaseTest {
             withType1DiabetesPageCC
                     .waitForPageLoad()
                     .clickOnAnswer(answer) //skip to Q7
-                    .clickNextButton(everDiagnosedGastroparesisOrStomachEmptyingCC)
+                    .clickNextButton(hasDiagnosedFollowingComplicationsOfDiabetesCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("QS7205", site.activeProtocols)
@@ -208,7 +209,7 @@ public class GAST_4357_CC extends BaseTest {
             howLongAgoDiagnosedDiabetesPageCC
                     .waitForPageLoad()
                     .clickOnAnswer(answer) //skip to Q7
-                    .clickNextButton(everDiagnosedGastroparesisOrStomachEmptyingCC)
+                    .clickNextButton(hasDiagnosedFollowingComplicationsOfDiabetesCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("QS7206", site.activeProtocols)
@@ -220,20 +221,35 @@ public class GAST_4357_CC extends BaseTest {
                 .clickOnAnswer("10 years ago or more")
                 .clickNextButton(everDiagnosedGastroparesisOrStomachEmptyingCC);
         //Q7
-// ---- START Q9 Ghost Question - Gastroparesis Logic check ----
+        hasDiagnosedFollowingComplicationsOfDiabetesCC
+                .waitForPageLoad()
+                .clickOnAnswers("Diabetic retinopathy or eye damage",
+                        "Diabetic peripheral neuropathy or nerve damage",
+                        "Diabetic foot ulcer",
+                        "Amputation due to diabetes, such as removal of a toe",
+                        "Diabetic nephropathy or kidney damage",
+                        "None of the above")
+                .clickNextButton(everDiagnosedGastroparesisOrStomachEmptyingCC);
+
         FollowingAreCommonSymptomsCC followingAreCommonSymptomsCC = everDiagnosedGastroparesisOrStomachEmptyingCC
                 .waitForPageLoad()
-                .clickOnAnswer("No")
+                .clickOnAnswer("No") //Will DQ in Q9
                 .clickNextButton(new FollowingAreCommonSymptomsCC());
         //Q8
+        ThrownUpVomitedPastMonthPageCC thrownUpVomitedPastMonthPageCC = new ThrownUpVomitedPastMonthPageCC();
         followingAreCommonSymptomsCC
                 .waitForPageLoad()
-                .clickOnAnswers("None of the above")
+                .clickOnAnswers("None of the above") //Will DQ in Q9 //Skip to Q11
+                .clickNextButton(thrownUpVomitedPastMonthPageCC)
+                .waitForPageLoad1()
+                .clickOnAnswer("None")
                 .clickNextButton(currentlyTreatingYourDiabetesPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS7209", site.activeProtocols)
-                .back();
+                .back(thrownUpVomitedPastMonthPageCC)
+                .waitForPageLoad1()
+                .back(followingAreCommonSymptomsCC);
 //        followingAreCommonSymptomsCC
 //                .waitForPageLoad()
 //                .clickOnAnswers("Nausea or feeling sick to your stomach",
@@ -246,7 +262,7 @@ public class GAST_4357_CC extends BaseTest {
 
         HowLongBeenHavingThoseSymptomsPageCC howLongBeenHavingThoseSymptomsPageCC = followingAreCommonSymptomsCC
                 .waitForPageLoad()
-                .clickOnAnswers("Vomiting or throwing up",
+                .clickOnAnswers("Nausea or feeling sick to your stomach",
                                 "Bloating") //Deselect Bloating
                 .clickNextButton(new HowLongBeenHavingThoseSymptomsPageCC());
 
@@ -254,60 +270,51 @@ public class GAST_4357_CC extends BaseTest {
         howLongBeenHavingThoseSymptomsPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("2 months or less")
-                .clickNextButton(currentlyTreatingYourDiabetesPageCC)
-                .waitForPageLoad()
+                .clickNextButton(thrownUpVomitedPastMonthPageCC)
+                .waitForPageLoad1()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS7222", site.activeProtocols)
                 .back();
-        ThrownUpVomitedPastMonthPageCC thrownUpVomitedPastMonthPageCC = howLongBeenHavingThoseSymptomsPageCC
+        howLongBeenHavingThoseSymptomsPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("3 to 5 months")
-                .clickNextButton(new ThrownUpVomitedPastMonthPageCC());
+                .clickNextButton(thrownUpVomitedPastMonthPageCC);
         //Q11
-        KindOfTestsOrEvaluationHaveYouHadPageCC kindOfTestsOrEvaluationHaveYouHadPageCC = thrownUpVomitedPastMonthPageCC
-                .waitForPageLoad()
-                .clickOnAnswer("None, I have not vomited in the past month")
-                .clickNextButton(new KindOfTestsOrEvaluationHaveYouHadPageCC());// not in flare
-        if (inFlare) {
-            kindOfTestsOrEvaluationHaveYouHadPageCC
-                    .waitForPageLoad()
-                    .back();
-            List<String> inFlareAnswer = Arrays.asList("1 time", "2 times", "3 times", "4 or more times");
-            for (String answer: inFlareAnswer) {
-                Log.info("Select answer for Q11: " + answer);
-                thrownUpVomitedPastMonthPageCC
-                        .waitForPageLoad()
-                        .clickOnAnswer(answer)
-                        .clickNextButton(kindOfTestsOrEvaluationHaveYouHadPageCC)
-                        .waitForPageLoad()
-                        .getPage(debugPageCC)
-                        .checkStudyStatusContainsForQNumber("QS7211", "2-3")
-                        .back();
-            }
-            thrownUpVomitedPastMonthPageCC
-                    .waitForPageLoad()
-                    .clickNextButton(kindOfTestsOrEvaluationHaveYouHadPageCC);
-        } else {
-            kindOfTestsOrEvaluationHaveYouHadPageCC
-                    .waitForPageLoad()
-                    .getPage(debugPageCC)
-                    .checkStudyStatusContainsForQNumber("QS7211", "2-4");
-        }
+        GastroparesisSymptomsCausedByFollowingPageCC gastroparesisSymptomsCausedByFollowingPageCC = thrownUpVomitedPastMonthPageCC
+                .waitForPageLoad1()
+                .clickOnAnswer("None")// not in flare
+                .clickNextButton(new GastroparesisSymptomsCausedByFollowingPageCC());// not in flare
 
-        GastroparesisSymptomsCausedByFollowingPageCC gastroparesisSymptomsCausedByFollowingPageCC = kindOfTestsOrEvaluationHaveYouHadPageCC
+        if (inFlare) {
+            gastroparesisSymptomsCausedByFollowingPageCC
+                    .waitForPageLoad()
+                    .back(thrownUpVomitedPastMonthPageCC);
+            thrownUpVomitedPastMonthPageCC
+                    .waitForPageLoad1()
+                    .clickOnAnswer("1 time")// in flare
+                    .clickNextButton(gastroparesisSymptomsCausedByFollowingPageCC);
+        }
+        gastroparesisSymptomsCausedByFollowingPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new GastroparesisSymptomsCausedByFollowingPageCC());
 
-        OpioidOrNarcoticMedicationPageCC opioidOrNarcoticMedicationPageCC = gastroparesisSymptomsCausedByFollowingPageCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new OpioidOrNarcoticMedicationPageCC());
+        OpioidOrNarcoticMedicationPageCC opioidOrNarcoticMedicationPageCC = new OpioidOrNarcoticMedicationPageCC();
+        CurrentlyHaveAnyOffFollowingPageCC currentlyHaveAnyOffFollowingPageCC = new CurrentlyHaveAnyOffFollowingPageCC();
 
-        CurrentlyHaveAnyOffFollowingPageCC currentlyHaveAnyOffFollowingPageCC = opioidOrNarcoticMedicationPageCC
+        opioidOrNarcoticMedicationPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Yes, every day")
-                .clickNextButton(new CurrentlyHaveAnyOffFollowingPageCC());
+                .clickNextButton(currentlyHaveAnyOffFollowingPageCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS7225", site.activeProtocols)
+                .back(opioidOrNarcoticMedicationPageCC);
+
+        opioidOrNarcoticMedicationPageCC
+                .waitForPageLoad()
+                .clickOnAnswer("Yes, but not every day")
+                .clickNextButton(currentlyHaveAnyOffFollowingPageCC);
 
 
         //Q15
@@ -333,8 +340,16 @@ public class GAST_4357_CC extends BaseTest {
                 .clickNextButton(surgeriesPerformedPageCC);
         //Q16
         WeightLossSurgeryPageCC weightLossSurgeryPageCC = new WeightLossSurgeryPageCC();
-        List<String> disqualifyQ16 = Arrays.asList("Gastric pacemaker placement (Agent Note: gas-trik)",
-                "Gastrectomy or removal of part of the stomach (Agent Note: ga-strek-tuh-mee)",
+        surgeriesPerformedPageCC
+                .waitForPageLoad()
+                .clickOnAnswers("Gastric pacemaker placement (Agent Note: gas-trik)")
+                .clickNextButton(weightLossSurgeryPageCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS7213", site.activeProtocols)
+                .back(surgeriesPerformedPageCC);
+
+        List<String> disqualifyQ16 = Arrays.asList("Gastrectomy or removal of part of the stomach (Agent Note: ga-strek-tuh-mee)",
                 "Fundoplication (Agent Note: fun-do-pli-kae-tion)", "Vagotomy (Agent Note: vey-got-uh-mee)");
         for (String answer : disqualifyQ16) {
             Log.info("Select answer for Q16: " + answer);

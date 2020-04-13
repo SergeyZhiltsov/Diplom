@@ -10,7 +10,13 @@ import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
+import com.acurian.selenium.pages.CC.shared.DIA.HasDiagnosedFollowingComplicationsOfDiabetesCC;
 import com.acurian.selenium.pages.OLS.generalHealth.WhichOfFollowingHaveYouDiagnosedWith_NeurologicalCC;
+import com.acurian.selenium.pages.blinx.ams.adg_4357.FollowingAreCommonSymptomsOLS;
+import com.acurian.selenium.pages.blinx.ams.adg_4357.GastroparesisSymptomsCausedByFollowingPageOLS;
+import com.acurian.selenium.pages.blinx.ams.adg_4357.HowLongBeenHavingThoseSymptomsPageOLS;
+import com.acurian.selenium.pages.blinx.ams.adg_4357.OpioidOrNarcoticMedicationPageOLS;
+import com.acurian.selenium.pages.blinx.ams.diabetes.CurrentlyTreatingYourDiabetesPageOLS;
 import com.acurian.utils.Properties;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -106,6 +112,7 @@ public class GAST_7114_CC extends BaseTest {
                 .clickNextButton(new DiagnosedAnyTypeOfDiabetesPageCC());
 
         EverDiagnosedGastroparesisOrStomachEmptyingCC everDiagnosedGastroparesisOrStomachEmptyingCC = new EverDiagnosedGastroparesisOrStomachEmptyingCC();
+        HasDiagnosedFollowingComplicationsOfDiabetesCC hasDiagnosedFollowingComplicationsOfDiabetesCC = new HasDiagnosedFollowingComplicationsOfDiabetesCC();
 
         //Q2
         WhatKindOfDiabetesPageCC whatKindOfDiabetesPageCC = diagnosedAnyTypeOfDiabetesPageCC
@@ -116,8 +123,8 @@ public class GAST_7114_CC extends BaseTest {
         whatKindOfDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Pre-diabetes") //Disqualify ("No diagnosis of diabetes")
-                .clickNextButton(everDiagnosedGastroparesisOrStomachEmptyingCC);
-        everDiagnosedGastroparesisOrStomachEmptyingCC
+                .clickNextButton(hasDiagnosedFollowingComplicationsOfDiabetesCC);
+        hasDiagnosedFollowingComplicationsOfDiabetesCC
                 .waitForPageLoad()
                 .back();
 
@@ -141,16 +148,26 @@ public class GAST_7114_CC extends BaseTest {
         howLongAgoDiagnosedDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("1 to less than 5 years ago") //in this place we DQ for RLM_MD_01/02 protocols
-                .clickNextButton(everDiagnosedGastroparesisOrStomachEmptyingCC);
+                .clickNextButton(hasDiagnosedFollowingComplicationsOfDiabetesCC);
 
         CurrentlyTreatingYourDiabetesPageCC currentlyTreatingYourDiabetesPageCC = new CurrentlyTreatingYourDiabetesPageCC();
 
         //Q7
-// ---- START Q9 Ghost Question - Gastroparesis Logic check ----
+        hasDiagnosedFollowingComplicationsOfDiabetesCC
+                .waitForPageLoad()
+                .clickOnAnswers("Diabetic retinopathy or eye damage",
+                        "Diabetic peripheral neuropathy or nerve damage",
+                        "Diabetic foot ulcer",
+                        "Amputation due to diabetes, such as removal of a toe",
+                        "Diabetic nephropathy or kidney damage",
+                        "None of the above")
+                .clickNextButton(everDiagnosedGastroparesisOrStomachEmptyingCC);
+
         FollowingAreCommonSymptomsCC followingAreCommonSymptomsCC = everDiagnosedGastroparesisOrStomachEmptyingCC
                 .waitForPageLoad()
-                .clickOnAnswer("No")
+                .clickOnAnswer("No") //DQ for 9279
                 .clickNextButton(new FollowingAreCommonSymptomsCC());
+
 
         followingAreCommonSymptomsCC
                 .waitForPageLoad()
@@ -158,47 +175,44 @@ public class GAST_7114_CC extends BaseTest {
                 .clickNextButton(currentlyTreatingYourDiabetesPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS7208", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS7227", site.activeProtocols)
                 .back();
-
-        followingAreCommonSymptomsCC
-                .waitForPageLoad()
-                .clickOnAnswers("Nausea or feeling sick to your stomach")
-                .clickNextButton(currentlyTreatingYourDiabetesPageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS7209", site.activeProtocols)
-                .back(followingAreCommonSymptomsCC);
-
 
         HowLongBeenHavingThoseSymptomsPageCC howLongBeenHavingThoseSymptomsPageCC = followingAreCommonSymptomsCC
                 .waitForPageLoad()
-                .clickOnAnswers("Bloating")
+                .clickOnAnswers("Nausea or feeling sick to your stomach")
                 .clickNextButton(new HowLongBeenHavingThoseSymptomsPageCC());
 
+
         //Q10
+        ThrownUpVomitedPastMonthPageCC thrownUpVomitedPastMonthPageCC = new ThrownUpVomitedPastMonthPageCC();
         howLongBeenHavingThoseSymptomsPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("2 months or less")
-                .clickNextButton(currentlyTreatingYourDiabetesPageCC)
-                .waitForPageLoad()
+                .clickNextButton(thrownUpVomitedPastMonthPageCC)
+                .waitForPageLoad1()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS7222", site.activeProtocols)
                 .back();
-        ThrownUpVomitedPastMonthPageCC thrownUpVomitedPastMonthPageCC = howLongBeenHavingThoseSymptomsPageCC
+         howLongBeenHavingThoseSymptomsPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("3 to 5 months")
-                .clickNextButton(new ThrownUpVomitedPastMonthPageCC());
+                .clickNextButton(thrownUpVomitedPastMonthPageCC);
 
         //Q11
-        KindOfTestsOrEvaluationHaveYouHadPageCC kindOfTestsOrEvaluationHaveYouHadPageCC = thrownUpVomitedPastMonthPageCC
+        thrownUpVomitedPastMonthPageCC
+                .waitForPageLoad1()
+                .clickOnAnswer("None")
+                .clickNextButton(currentlyTreatingYourDiabetesPageCC);
+        currentlyTreatingYourDiabetesPageCC
                 .waitForPageLoad()
-                .clickOnAnswer("None, I have not vomited in the past month")
-                .clickNextButton(new KindOfTestsOrEvaluationHaveYouHadPageCC());
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS7209", site.activeProtocols)
+                .back(thrownUpVomitedPastMonthPageCC);
 
-        GastroparesisSymptomsCausedByFollowingPageCC gastroparesisSymptomsCausedByFollowingPageCC = kindOfTestsOrEvaluationHaveYouHadPageCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
+        GastroparesisSymptomsCausedByFollowingPageCC gastroparesisSymptomsCausedByFollowingPageCC = thrownUpVomitedPastMonthPageCC
+                .waitForPageLoad1()
+                .clickOnAnswer("1 time")
                 .clickNextButton(new GastroparesisSymptomsCausedByFollowingPageCC());
 
         OpioidOrNarcoticMedicationPageCC opioidOrNarcoticMedicationPageCC = new OpioidOrNarcoticMedicationPageCC();

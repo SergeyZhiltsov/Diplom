@@ -182,6 +182,7 @@ public class GAST_4357_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("10 years ago or more")
                 .clickNextButton(everDiagnosedGastroparesisOrStomachEmptyingOLS);
+
         //Q7
 
         hasDiagnosedFollowingComplicationsOfDiabetesOLS
@@ -194,7 +195,6 @@ public class GAST_4357_OLS extends BaseTest {
                         "None of the above")
                 .clickNextButton(everDiagnosedGastroparesisOrStomachEmptyingOLS);
 
-// ---- START Q9 Ghost Question - Gastroparesis Logic check ----
         FollowingAreCommonSymptomsOLS followingAreCommonSymptomsOLS = everDiagnosedGastroparesisOrStomachEmptyingOLS
                 .waitForPageLoad()
                 .clickOnAnswer("No") //Will DQ in Q9
