@@ -16,6 +16,7 @@ import com.acurian.utils.Properties;
 import io.qameta.allure.Description;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.util.Arrays;
@@ -24,15 +25,22 @@ import java.util.List;
 
 public class IBS_4684_OLSBlinx extends BaseTest {
 
+    @DataProvider
+    public Object[][] sites() {
+        return new Object[][]{
+                {Site.AUT_NASH4483_site},
+                {Site.AUT_NASH4483S_site}
+        };
+    }
+
     private static Logger Log = LogManager.getLogger(IBS_4684_OLSBlinx.class.getName());
 
-    @Test(enabled = true)
+    @Test(enabled = true, dataProvider = "sites")
     @Description("IBS 4684 OLS")
-    public void ibs4684olsTest() {
+    public void ibs4684olsTest(Site site) {
         String phoneNumber = "AUTAMS1IBS";
         String protocol1 = "OM_201";
 //        String[] protocols = {protocol1, protocol2, AKC, protocol3};
-        Site site = Site.AUT_IBS4684_site;
         String studyName = "an irritable bowel syndrome (IBS)";
         String siteName = "AUT_IBS4684_site";
         String zipCode = "19901";

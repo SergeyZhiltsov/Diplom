@@ -32,7 +32,7 @@ public class GERD_5098_OLSBlinx extends BaseTest {
     public Object[][] sites() {
         return new Object[][]{
                 {Site.AUT_AMS1_5098_site},
-                //{Site.AUT_AMS1_5098S_site}
+                {Site.AUT_AMS1_5098S_site}
         };
     }
 

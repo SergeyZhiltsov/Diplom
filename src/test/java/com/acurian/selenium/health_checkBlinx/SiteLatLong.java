@@ -90,6 +90,6 @@ public class SiteLatLong extends BaseTest {
                 .getPID()
                 .clickOnFacilityName(siteName);
         //bug, fix after fix :D
-        Assert.assertEquals(debugPageOLS.getPatientLatLongText(), "Patient LatLong: 0, 0", "Patient lat long is diff");
+        Assert.assertEquals(debugPageOLS.getPatientLatLongText(), "Patient LatLong: 39.296578,-75.3860779", "Patient lat long is diff");
     }
 }

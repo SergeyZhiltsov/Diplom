@@ -187,9 +187,7 @@ public class Lupus_4442_OLS extends BaseTest {
 
         EitherOfFollowingMedicationsOLS eitherOfFollowingMedicationsOLS = biologicMedications
                 .waitForPageLoadKAD()
-                .clickOnAnswers("Actemra", "Benlysta", "Cimzia", "Cosentyx", "Enbrel")
-                .clickOnAnswers("Entyvio", "Humira", "Kineret", "Orencia", "Prolia or Xgeva")
-                .clickOnAnswers("Raptiva", "Remicade", "Rituxan", "Simponi", "Stelara", "Taltz", "Tysabri")
+                .clickOnAnswers("Actemra", "Benlysta", "Cimzia", "Cosentyx", "Enbrel", "Entyvio", "Humira", "Kineret", "Orencia", "Prolia or Xgeva", "Raptiva", "Remicade", "Rituxan", "Simponi", "Stelara", "Taltz", "Tysabri")
                 .clickNextButton(new EitherOfFollowingMedicationsOLS())
                 .waitForPageLoad();
         eitherOfFollowingMedicationsOLS.back();
