@@ -23,20 +23,19 @@ public class TestListener extends TestListenerAdapter implements ITestListener {
     @Override
     public void onTestFailure(ITestResult result) {
         //add allure attach
-        if (result.getMethod().getRetryAnalyzer(result).retry(result)) {
-            RetryAnalyzer retryAnalyzer = (RetryAnalyzer) result.getMethod().getRetryAnalyzer(result);
+        if (result.getMethod().getRetryAnalyzer() != null) {
+            RetryAnalyzer retryAnalyzer = (RetryAnalyzer) result.getMethod().getRetryAnalyzer();
 
             if (retryAnalyzer.isRetryAvailable()) {
                 // do nothing
             } else {
-
+                result.setStatus(ITestResult.FAILURE);
                 Log.error("Test has failed. Test case - " + result.getMethod().getMethodName() +
                         " has failed due to reason:  " + result.getThrowable());
                 attachScreenshot();
                 //add allure attach
             }
         }
-        result.setStatus(ITestResult.FAILURE);
     }
 
     @Override

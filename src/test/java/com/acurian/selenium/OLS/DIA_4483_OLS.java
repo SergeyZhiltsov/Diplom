@@ -38,7 +38,7 @@ public class DIA_4483_OLS extends BaseTest {
     @Description("NASH study 4483 OLS")
     public void dia4483olsTest(Site site) {
         String phoneNumber = "AUTAMSNASH";
-        String studyName = "a fatty liver study for diabetics!";//"a NASH";
+        String studyName = "a fatty liver study!";//"a NASH";
         //String studyName1 = "a fatty liver study for diabetics, a study for diabetics!";
 
         String env = System.getProperty("acurian.env", "STG");
@@ -46,7 +46,7 @@ public class DIA_4483_OLS extends BaseTest {
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
-                .waitForPageLoad("a fatty liver study for diabetics", "750");
+                .waitForPageLoad("a fatty liver study", "750");
 //        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS
 //                .getExpectedModifiedTitle("a fatty liver study for diabetics", "750"),
 //                "Title is diff");

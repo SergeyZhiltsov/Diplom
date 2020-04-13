@@ -9,10 +9,7 @@ import com.acurian.selenium.pages.CC.Diabetes_4356A.WhatKindOfDiabetesPageCC;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.WithType2DiabetesPageCC;
 import com.acurian.selenium.pages.CC.LOWT.HasDoctorEverDiagnosedYouMedicalCondCC;
 import com.acurian.selenium.pages.CC.LOWT.HealthcareDiagnosedConditionsPageСС;
-import com.acurian.selenium.pages.CC.closes.CurrentlyParticipatingInStudy;
-import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
-import com.acurian.selenium.pages.CC.closes.RequirePassDrugTest;
-import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
+import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.pages.CC.cv_study.*;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
@@ -343,7 +340,10 @@ public class CV_8983_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickNextButton(new ThankYouCloseSimplePageCC())
                 .waitForPageLoad3()
-                .clickNextButton(selectActionPageCC);
+                .clickNextButton(new AlzheimerClosePageCC())
+                .waitForPageLoad()
+                .clickNextButton(selectActionPageCC)
+                .waitForPageLoad();
 
         if (selectActionPageCC.getHostName().equals(Properties.getHostName())) {
             selectActionPageCC

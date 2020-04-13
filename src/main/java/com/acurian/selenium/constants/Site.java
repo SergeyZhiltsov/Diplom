@@ -15,7 +15,7 @@ public enum Site {
     AUT_4950("AUT_4950", "19901", "1R", false, false, "201790", "201791", "202018"),
     //3017
     AUT_LOWT_3017S_Site("AUT_LOWT_3017S_Site", "19422", "41C", false, true, "M16_100_S"),
-    AUT_LOWT_3017_Site("AUT_LOWT_3017_Site", "19901", "1R", true, true, "M16_100"),
+    AUT_LOWT_3017_Site("AUT_LOWT_3017_Site", "19044", "1R", true, true, "M16_100"),
     //5042
     AUT_COPD_5042S_Site("AUT_AMS1_5042S_site", "08204", "41C", false, true, "208657"),
     AUT_COPD_5042_Site("AUT_AMS1_5042_site", "19422", "1R", true, true, "208657"),

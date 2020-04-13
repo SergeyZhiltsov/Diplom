@@ -139,12 +139,13 @@ public class DebugPageOLS extends MainPageBlinx {
         WebElement parentOfQuestion = getDriver().findElement(By.xpath(String.format(xpathForDesiredSection, questionNumber)));
         List<WebElement> dqNumberElements = parentOfQuestion.findElements(locatorForDQNumbers);
         List<String> dqNumbers = dqNumberElements.stream().map(WebElement::getText).collect(Collectors.toList());
+
         for (String expectedProtocol : expectedProtocols) {
             if (!dqNumbers.contains(expectedProtocol)) {
                 try {
                     dragAndDropButton(expandButton, 70, 150);
                 } catch (Exception e) {
-                    dragAndDropButton(expandButton,70, 120);
+                    scrollToElement(getDriver().findElement(By.xpath("//div[@class='protoContainer ']")), false);
                 }
 
                 dqNumbers = dqNumberElements.stream().map(WebElement::getText).collect(Collectors.toList());

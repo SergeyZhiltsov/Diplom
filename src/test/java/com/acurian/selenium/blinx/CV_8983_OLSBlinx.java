@@ -312,12 +312,17 @@ public class CV_8983_OLSBlinx extends BaseTest {
 
         QualifiedClose2PageOLS qualifiedClose2PageOLS = siteSelectionPageOLS
                 .waitForPageLoad5(studyName + "!")
+                .getPID()
                 .clickOnFacilityName(site.name)
                 .clickNextButton(new QualifiedClose2PageOLS());
         ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = qualifiedClose2PageOLS
                 .waitForPageLoad3()
                 .clickNextButton(new ThankYouCloseSimplePageOLS());
-        AboutHealthPageOLS aboutHealthPageOLS = thankYouCloseSimplePageOLS
+        AlzheimerClosePageOLS alzheimerClosePageOLS = thankYouCloseSimplePageOLS
+                .waitForPageLoad()
+                .clickNextButton(new AlzheimerClosePageOLS());
+
+        AboutHealthPageOLS aboutHealthPageOLS = alzheimerClosePageOLS
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS());
         if(aboutHealthPageOLS.getHostName().equals(Properties.getHostName())) {

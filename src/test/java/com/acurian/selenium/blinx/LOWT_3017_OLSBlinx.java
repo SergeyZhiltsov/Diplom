@@ -19,17 +19,11 @@ import org.testng.annotations.Test;
 
 public class LOWT_3017_OLSBlinx extends BaseTest {
 
-    @DataProvider
-    public Object[][] sites() {
-        return new Object[][]{
-                {Site.AUT_LOWT_3017S_Site},
-                {Site.AUT_LOWT_3017_Site}
-        };
-    }
 
-    @Test(dataProvider = "sites", enabled = true)
+    @Test()
     @Description("LOWT_3017_OLS_A_S")
-    public void lowt3017ols(Site site) {
+    public void lowt3017ols() {
+        Site site = Site.AUT_LOWT_3017S_Site;
         String phoneNumber = "AUTAMSLOWT";
         String protocol2 = "M16_100_S";
         String studyName = "a men's health";

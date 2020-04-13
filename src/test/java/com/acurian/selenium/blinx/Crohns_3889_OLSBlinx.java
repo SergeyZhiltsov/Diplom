@@ -510,7 +510,7 @@ public class Crohns_3889_OLSBlinx extends BaseTest {
 
         MedicalRecordsOptionPageOLS medicalRecordsOptionPageOLS = siteSelectionPageOLS
                 .waitForPageLoad(studyName + " study!")
-//                .getPID()
+                .getPID()
                 .clickOnFacilityName(site.name)
                 .clickNextButton(new MedicalRecordsOptionPageOLS());
 

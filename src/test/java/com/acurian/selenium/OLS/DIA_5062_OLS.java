@@ -32,14 +32,14 @@ public class DIA_5062_OLS extends BaseTest {
     public void dia5062olsTest() {
         String phoneNumber = "AUTAMSNASH";
         Site site = Site.AUT_NASH5062_site; //Synexus Site
-        String studyName = "a fatty liver study for diabetics!";//"a NASH";
+        String studyName = "a fatty liver study!";//"a NASH";
 
         String env = System.getProperty("acurian.env", "STG");
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
-                .waitForPageLoad("a fatty liver study for diabetics", "750");
+                .waitForPageLoad("a fatty liver study", "750");
 //        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS
 //                .getExpectedModifiedTitle("a fatty liver study for diabetics", "750"),
 //                "Title is diff");

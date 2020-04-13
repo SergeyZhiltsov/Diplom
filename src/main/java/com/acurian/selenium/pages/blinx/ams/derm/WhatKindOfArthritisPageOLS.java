@@ -10,8 +10,7 @@ import java.util.List;
 
 public class WhatKindOfArthritisPageOLS extends MainPageBlinx {
 
-    public final String titleExpected = "What kind of arthritis do you have?\n" +
-            "Please select all that apply.";
+    public final String titleExpected = "What kind of arthritis do you have?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS_BLINX)
     WebElement titleText;

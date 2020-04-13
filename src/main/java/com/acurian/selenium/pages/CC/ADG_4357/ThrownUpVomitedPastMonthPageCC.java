@@ -12,6 +12,7 @@ import java.util.List;
 public class ThrownUpVomitedPastMonthPageCC extends MainPageCC {
 
     public final String titleExpected = "How many times have you thrown up or vomited in the past month?";
+    public final String titleExpected1 = "How many times in the past month have you vomited (thrown up) or had food or liquid come up into your throat and mouth after eating?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_CC)
     WebElement titleText;
@@ -32,6 +33,12 @@ public class ThrownUpVomitedPastMonthPageCC extends MainPageCC {
     @Step
     public ThrownUpVomitedPastMonthPageCC clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
+        return this;
+    }
+    @Step
+    public ThrownUpVomitedPastMonthPageCC waitForPageLoad1() {
+        waitForAnimation();
+        waitForPageLoadMain(titleText, titleExpected1);
         return this;
     }
 

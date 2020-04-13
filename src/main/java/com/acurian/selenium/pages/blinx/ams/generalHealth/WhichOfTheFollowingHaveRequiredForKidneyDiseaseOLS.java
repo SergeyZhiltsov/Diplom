@@ -11,8 +11,7 @@ import java.util.List;
 public class WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS extends MainPageBlinx {
 
     public final String titleExpected = "You reported that you have kidney problems.\n" +
-            "Which of the following have you required for your kidney disease?\n" +
-            "Please select all that apply.";
+            "Which of the following have you required for your kidney disease?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS_BLINX)
     WebElement titleText;

@@ -11,8 +11,7 @@ import java.util.List;
 public class WhichOfFollowingHaveYouDiagnosedWith_NeurologicalOLS extends MainPageBlinx {
 
     public final String titleExpected = "You indicated that you have a neurological condition.\n" +
-            "Which of the following have you been diagnosed with?\n" +
-            "Please select all that apply.";
+            "Which of the following have you been diagnosed with?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS_BLINX)
     WebElement titleText;

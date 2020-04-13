@@ -37,14 +37,14 @@ public class DIA_4483_OLSBlinx extends BaseTest {
     @Description("NASH study 4483 OLS")
     public void dia4483olsTest(Site site) {
         String phoneNumber = "AUTAMSNASH";
-        String studyName = "a fatty liver study for diabetics!";//"a NASH";
+        String studyName = "a fatty liver study!";//"a NASH";
 
         String env = System.getProperty("acurian.env", "STG");
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
-                .waitForPageLoadCrohns("a fatty liver study for diabetics", "750")
+                .waitForPageLoadCrohns("a fatty liver study", "750")
                 .clickOnAnswer("Yes")
                 .getPage(new ZipCodePageOLS());
 

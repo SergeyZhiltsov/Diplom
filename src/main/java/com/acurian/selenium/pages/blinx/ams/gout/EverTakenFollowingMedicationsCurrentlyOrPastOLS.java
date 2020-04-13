@@ -10,8 +10,7 @@ import java.util.List;
 
 public class EverTakenFollowingMedicationsCurrentlyOrPastOLS extends MainPageBlinx {
 
-    public final String titleExpected = "Have you ever taken the following gout medications, either currently or in the past?\n" +
-            "Please select all that apply.";
+    public final String titleExpected = "Have you ever taken the following gout medications, either currently or in the past?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS_BLINX)
     WebElement titleText;

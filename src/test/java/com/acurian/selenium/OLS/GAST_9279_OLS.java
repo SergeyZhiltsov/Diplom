@@ -20,6 +20,7 @@ import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.*;
+import com.acurian.selenium.pages.OLS.shared.DIA.HasDiagnosedFollowingComplicationsOfDiabetesOLS;
 import com.acurian.utils.Properties;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -87,7 +88,7 @@ public class GAST_9279_OLS extends BaseTest {
                 .clickNextButton(new DiagnosedAnyTypeOfDiabetesPageOLS());
 
         EverDiagnosedGastroparesisOrStomachEmptyingOLS everDiagnosedGastroparesisOrStomachEmptyingOLS = new EverDiagnosedGastroparesisOrStomachEmptyingOLS();
-
+        HasDiagnosedFollowingComplicationsOfDiabetesOLS hasDiagnosedFollowingComplicationsOfDiabetesOLS = new HasDiagnosedFollowingComplicationsOfDiabetesOLS();
         //Q2
         WhatKindOfDiabetesPageOLS whatKindOfDiabetesPageOLS = diagnosedAnyTypeOfDiabetesPageOLS
                 .waitForPageLoad()
@@ -97,8 +98,8 @@ public class GAST_9279_OLS extends BaseTest {
         whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Pre-diabetes") //Disqualify ("No diagnosis of diabetes")
-                .clickNextButton(everDiagnosedGastroparesisOrStomachEmptyingOLS);
-        everDiagnosedGastroparesisOrStomachEmptyingOLS
+                .clickNextButton(hasDiagnosedFollowingComplicationsOfDiabetesOLS);
+        hasDiagnosedFollowingComplicationsOfDiabetesOLS
                 .waitForPageLoad()
                 .back();
 
@@ -125,7 +126,17 @@ public class GAST_9279_OLS extends BaseTest {
                 .clickNextButton(everDiagnosedGastroparesisOrStomachEmptyingOLS);
 
         //Q7
-// ---- START Q9 Ghost Question - Gastroparesis Logic check ----
+
+        hasDiagnosedFollowingComplicationsOfDiabetesOLS
+                .waitForPageLoad()
+                .clickOnAnswers("Diabetic retinopathy or eye damage",
+                        "Diabetic peripheral neuropathy or nerve damage",
+                        "Diabetic foot ulcer",
+                        "Amputation due to diabetes, such as removal of a toe",
+                        "Diabetic nephropathy or kidney damage",
+                        "None of the above")
+                .clickNextButton(everDiagnosedGastroparesisOrStomachEmptyingOLS);
+
         FollowingAreCommonSymptomsOLS followingAreCommonSymptomsOLS = everDiagnosedGastroparesisOrStomachEmptyingOLS
                 .waitForPageLoad()
                 .clickOnAnswer("No")
@@ -150,37 +161,33 @@ public class GAST_9279_OLS extends BaseTest {
                 .clickNextButton(currentlyTreatingYourDiabetesPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS7208", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS7227", site.activeProtocols)
                 .back();
 
         HowLongBeenHavingThoseSymptomsPageOLS howLongBeenHavingThoseSymptomsPageOLS = followingAreCommonSymptomsOLS
                 .waitForPageLoad()
-                .clickOnAnswers("Vomiting or throwing up")
+                .clickOnAnswers("Nausea or feeling sick to your stomach")
                 .clickNextButton(new HowLongBeenHavingThoseSymptomsPageOLS());
 
         //Q10
+        ThrownUpVomitedPastMonthPageOLS thrownUpVomitedPastMonthPageOLS = new ThrownUpVomitedPastMonthPageOLS();
         howLongBeenHavingThoseSymptomsPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("2 months or less")
-                .clickNextButton(currentlyTreatingYourDiabetesPageOLS)
-                .waitForPageLoad()
+                .clickNextButton(thrownUpVomitedPastMonthPageOLS)
+                .waitForPageLoad1()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS7222", site.activeProtocols)
                 .back();
-        ThrownUpVomitedPastMonthPageOLS thrownUpVomitedPastMonthPageOLS = howLongBeenHavingThoseSymptomsPageOLS
+          howLongBeenHavingThoseSymptomsPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("3 to 5 months")
-                .clickNextButton(new ThrownUpVomitedPastMonthPageOLS());
+                .clickNextButton(thrownUpVomitedPastMonthPageOLS);
 
         //Q11
-        KindOfTestsOrEvaluationHaveYouHadPageOLS kindOfTestsOrEvaluationHaveYouHadPageOLS = thrownUpVomitedPastMonthPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("None, I have not vomited in the past month")
-                .clickNextButton(new KindOfTestsOrEvaluationHaveYouHadPageOLS());
-
-        GastroparesisSymptomsCausedByFollowingPageOLS gastroparesisSymptomsCausedByFollowingPageOLS = kindOfTestsOrEvaluationHaveYouHadPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
+        GastroparesisSymptomsCausedByFollowingPageOLS gastroparesisSymptomsCausedByFollowingPageOLS = thrownUpVomitedPastMonthPageOLS
+                .waitForPageLoad1()
+                .clickOnAnswer("None")
                 .clickNextButton(new GastroparesisSymptomsCausedByFollowingPageOLS());
 
         OpioidOrNarcoticMedicationPageOLS opioidOrNarcoticMedicationPageOLS = new OpioidOrNarcoticMedicationPageOLS();
